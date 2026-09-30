@@ -417,6 +417,14 @@
 .hl-list b{font-size:15px}.hl-list span{font-size:14px;color:var(--success-text);font-weight:700}
 .hl-btn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:14px;border-radius:12px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:15px}
 .hl-wait{text-align:center;font-size:13.5px;font-weight:700;color:var(--text-muted);padding:6px}
+.rb{display:flex;flex-direction:column;gap:10px}
+.rb2{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.rbb{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:15px 10px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border)}
+.rbb.primary{background:var(--primary-bg);color:var(--primary-text);border-color:var(--primary-bg);font-size:16px}
+.rbb.warn{background:var(--error-bg);color:var(--error-text);border-color:var(--error-border)}
+.rbb.ghost{background:transparent;color:var(--text-muted)}
+.rbb:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.hl-next.locked{cursor:default;box-shadow:none;background:var(--card-bg);color:var(--text-muted);border:2px dashed var(--card-border);font-size:16px}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3</title>
@@ -1493,23 +1501,6 @@
     </sc-if>
 
     <sc-if value="{{isSummary}}" hint-placeholder-val="{{false}}">
-      <sc-if value="{{hasNextStep}}" hint-placeholder-val="{{false}}">
-        <div style="display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px solid var(--card-border);">
-          <span style="font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--text-faint-2);">{{passText}}</span>
-          <span class="display" style="font-size:18px;font-weight:800;">{{nextStepText}}</span>
-        </div>
-      </sc-if>
-      <sc-if value="{{outOfHearts}}" hint-placeholder-val="{{false}}">
-        <div style="padding:12px 14px;border-radius:14px;background:var(--error-bg);border:2px solid var(--error-border);font-size:14.5px;font-weight:700;color:var(--error-text);">Out of hearts — the round stopped early. Your cashi are safe, but this one doesn&rsquo;t count as passed. Run it again.</div>
-      </sc-if>
-      <sc-if value="{{hasFailNote}}" hint-placeholder-val="{{false}}">
-        <div style="padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px dashed var(--card-border);font-size:14px;font-weight:700;color:var(--text-muted);">{{failNote}}</div>
-      </sc-if>
-        <sc-if value="{{hasNextMode}}" hint-placeholder-val="{{false}}"><button onClick="{{nextModeHandler}}" class="hl-next">{{nextModeText}}</button></sc-if>
-        <sc-if value="{{hlClose}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">So close!</b><p>{{hlGapText}}</p><p class="hl-s">Start with <b>Fix my mistakes</b>: only the cards you missed. Then run the round again.</p></div></sc-if>
-        <sc-if value="{{hlRipasso}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-v"><b class="hl-h">&#128214; Ripassa con Boh &middot; 1 minute</b><p>{{hlRipText}}</p><sc-if value="{{hlRipWords}}" hint-placeholder-val="{{false}}"><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></sc-if><button onClick="{{hlRipH}}" class="hl-btn">{{hlRipBtn}}</button></div></sc-if>
-        <sc-if value="{{hlNote}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-n"><b class="hl-h">&#9999;&#65039; Scrivi nel quaderno</b><p>Copy these into your notebook <b>by hand</b>: the Italian and the answer. Writing it is how it sticks.</p><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div><button onClick="{{hlNoteH}}" class="hl-btn">{{hlNoteBtn}}</button></div></sc-if>
-        <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h">&#9995; Chiedi alla Prof</b><p><b>Raise your hand and show la Prof this screen.</b> You are working hard. Let&rsquo;s fix it together.</p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
       <div style="display:flex;flex-direction:column;gap:22px;padding-top:8px;">
         <div style="text-align:center;display:flex;flex-direction:column;gap:6px;">
           <div class="{{summaryFaceCls}} pop" style="margin:0 auto;"></div>
@@ -1519,6 +1510,24 @@
           <div style="font-size:13px;color:var(--text-faint);">{{bestStreakText}}</div>
           <div style="font-size:16px;font-weight:800;color:var(--success-text);padding-top:6px;">{{sessionEarnedText}}</div>
         </div>
+        <div class="rb">
+          <sc-if value="{{hasNextMode}}" hint-placeholder-val="{{false}}"><button onClick="{{nextModeHandler}}" class="hl-next">&#9654; {{nextModeText}}</button></sc-if>
+          <sc-if value="{{nextLocked}}" hint-placeholder-val="{{false}}"><div class="hl-next locked" aria-disabled="true">&#128274; {{nextLockedText}}</div></sc-if>
+        <sc-if value="{{hlClose}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">So close!</b><p>{{hlGapText}}</p><p class="hl-s">Try <b>Fix my mistakes</b> first.</p></div></sc-if>
+        <sc-if value="{{hlRipasso}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-v"><b class="hl-h">&#128214; Ripassa con Boh &middot; 1 min</b><p>{{hlRipText}}</p><sc-if value="{{hlRipWords}}" hint-placeholder-val="{{false}}"><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></sc-if><button onClick="{{hlRipH}}" class="hl-btn">{{hlRipBtn}}</button></div></sc-if>
+        <sc-if value="{{hlNote}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-n"><b class="hl-h">&#9999;&#65039; Scrivi nel quaderno</b><p>Copy these <b>by hand</b>.</p><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div><button onClick="{{hlNoteH}}" class="hl-btn">{{hlNoteBtn}}</button></div></sc-if>
+        <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h">&#9995; Chiedi alla Prof</b><p><b>Raise your hand. Show la Prof this screen.</b></p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
+          <div class="rb2"><sc-if value="{{hasMistakes}}" hint-placeholder-val="{{false}}"><button onClick="{{mistakesHandler}}" class="rbb warn">Fix my mistakes ({{mistakesCount}})</button></sc-if><sc-if value="{{showPlayAgain}}" hint-placeholder-val="{{true}}"><button onClick="{{playAgainHandler}}" class="{{playAgainCls}}">&#128257; Play again</button></sc-if></div>
+          <sc-if value="{{hlWait}}" hint-placeholder-val="{{false}}"><div class="hl-wait">Do the review first. Then Play again opens.</div></sc-if>
+          <div class="rb2"><button onClick="{{goShopHandler}}" class="rbb">&#128717;&#65039; Boh-tique</button><button onClick="{{goLockerHandler}}" class="rbb">&#128085; Locker</button></div>
+          <div class="rb2"><button onClick="{{saveQuitHandler}}" class="rbb ghost">&#128190; Save &amp; quit</button><button onClick="{{changeModeHandler}}" class="rbb ghost">&#9776; Change activity</button></div>
+        </div>
+      <sc-if value="{{outOfHearts}}" hint-placeholder-val="{{false}}">
+        <div style="padding:12px 14px;border-radius:14px;background:var(--error-bg);border:2px solid var(--error-border);font-size:14.5px;font-weight:700;color:var(--error-text);">Out of hearts — the round stopped early. Your cashi are safe, but this one doesn&rsquo;t count as passed. Run it again.</div>
+      </sc-if>
+      <sc-if value="{{hasFailNote}}" hint-placeholder-val="{{false}}">
+        <div style="padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px dashed var(--card-border);font-size:14px;font-weight:700;color:var(--text-muted);">{{failNote}}</div>
+      </sc-if>
 
         <sc-if value="{{hasPending}}" hint-placeholder-val="{{false}}">
           <button onClick="{{openPaccoHandler}}" class="pop" style="all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 16px;border-radius:18px;background:var(--primary-bg);color:var(--primary-text);text-align:center;">
@@ -1573,17 +1582,6 @@
           </div>
         </sc-if>
 
-        <div style="display:flex;flex-direction:column;gap:10px;padding-top:2px;">
-          <sc-if value="{{hasMistakes}}" hint-placeholder-val="{{false}}">
-            <button onClick="{{mistakesHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--error-bg);color:var(--error-text);font-weight:800;font-size:16px;border:2px solid var(--error-border);">Fix my mistakes ({{mistakesCount}})</button>
-          </sc-if>
-          <sc-if value="{{showPlayAgain}}" hint-placeholder-val="{{true}}"><button onClick="{{playAgainHandler}}" style="{{playAgainStyle}}">Play Again</button></sc-if><sc-if value="{{hlWait}}" hint-placeholder-val="{{false}}"><div class="hl-wait">Do the review above first. Then Play Again opens.</div></sc-if>
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
-            <button onClick="{{goShopHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Boh-tique · Shop</button>
-            <button onClick="{{goLockerHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Locker</button>
-          </div>
-          <button onClick="{{changeModeHandler}}" style="width:100%;padding:16px;border-radius:14px;background:transparent;color:var(--text-muted);font-weight:700;font-size:14px;border:2px solid var(--card-border);">Change Mode</button>
-        </div>
       </div>
     </sc-if>
 
@@ -13232,7 +13230,12 @@ class Component extends DCLogic {
         if (at !== -1) for (var i = at + 1; i < order.length; i++) if (open(order[i])) { nx = order[i]; break; }
         result.hasNextMode = !!nx && passedNow && md !== 'mistakes' && !s.outOfHearts;
         if (result.hasNextMode) result.hasNextStep = false;
-        result.nextModeText = nx ? 'Next round: ' + MODES[nx].label + ' →' : '';
+        var nxAny = at !== -1 && at + 1 < order.length ? order[at + 1] : null;
+        result.nextLocked = !result.hasNextMode && !!nxAny && md !== 'mistakes' && !passedNow;
+        result.nextLockedText = nxAny ? 'Next: ' + MODES[nxAny].label + ' \u00b7 get 85%' : '';
+        result.playAgainCls = 'rbb' + (result.hasNextMode ? '' : ' primary');
+        result.saveQuitHandler = function () { self.sfx('tap'); self.setState({ screen: 'home' }); setTimeout(function () { location.href = '../'; }, 150); };
+        result.nextModeText = nx ? 'Next: ' + MODES[nx].label : '';
         result.nextModeHandler = function () { self.sfx('tap'); self.startMode(nx); };
         var rec = ((s.stuck || {})[BT_UNIT + ':' + md]) || null, n = rec && !passedNow && s.failReason ? rec.n : 0;
         var seen = {}, items = [];
@@ -13240,9 +13243,7 @@ class Component extends DCLogic {
         result.hlItems = items;
         var tot = s.totalSoFar || 0, need = Math.max(0, Math.ceil(tot * 0.85) - (s.correctSoFar || 0));
         result.hlClose = n === 1;
-        result.hlGapText = s.failReason === 'accuracy'
-          ? 'You got ' + (tot ? Math.round(s.correctSoFar / tot * 100) : 0) + '%. You need 85%: that is ' + need + ' more right out of ' + tot + '.'
-          : 'The round stopped early. Finish the whole round at 85% to pass.';
+        result.hlGapText = s.failReason === 'accuracy' ? 'You need ' + need + ' more right to pass.' : 'Finish the whole round to pass.';
         var tab = btHasTab(), worst = null;
         if (tab) for (var j = 0; j < (s.missed || []).length && !worst; j++) {
           var mid = s.missed[j].id; if (!mid) continue;
@@ -13253,8 +13254,7 @@ class Component extends DCLogic {
         var tcard = tr ? (tr[2] != null ? tr[2] : ((BT_UNIT === 'vdp' ? BT_TRICK_CARD_VDP : BT_TRICK_CARD)[btTrickKey(tr)] || 0)) : 0;
         result.hlRipasso = n === 2;
         result.hlRipWords = !tab;
-        result.hlRipText = tab ? 'Boh opens La Tabella on the part you miss most' + (tr ? ': “' + tr[0] + '”' : '') + '. Read it, answer the Prova tu, then come back and play.'
-                               : 'Read each one OUT LOUD, twice: the Italian, then what it means. Then play again.';
+        result.hlRipText = tab ? 'Read this card: “' + tr[0] + '”.' : 'Say each one out loud. Twice.';
         result.hlRipBtn = s.helpDone ? '✓ Done. Read it again' : (tab ? '📖 Open the review' : '✓ I said each one out loud');
         result.hlRipH = function () { self.sfx('tap'); if (tab) self.setState({ helpDone: true, tabOpen: true, tabCard: tcard, tabAns: null, tabReveal: false }); else self.setState({ helpDone: true }); };
         result.hlNote = n === 3;
