@@ -81,6 +81,11 @@ h1 .dot{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-r
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bcw{display:none}:root:not([data-theme="dark"]) .bck{display:inline}}
 :root[data-theme="light"] .bcw{display:none}:root[data-theme="light"] .bck{display:inline}
 .go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 14px;border-radius:14px;background:var(--c);color:var(--on-c);font:800 15px var(--body)}
+.newtag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--c);color:var(--on-c);font-size:10px;letter-spacing:.1em;vertical-align:1px}
+.lvl .sub{align-self:center;white-space:nowrap;font-size:12.5px;font-weight:700;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.lvl .sub:hover{color:var(--ink)}
+a.go{text-decoration:none}
+a.go:focus-visible,.lvl .sub:focus-visible{outline:3px solid var(--c);outline-offset:2px}
 .lvl.soon{cursor:default;opacity:.72}
 .lvl.soon:hover{transform:none;box-shadow:var(--glow)}
 .lvl.soon .go{background:var(--surface-2);color:var(--muted)}
@@ -127,9 +132,10 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px
       <a class="lvl" href="italiano2/" data-key="essereAvereRipasso_v1" style="--c:#E0AA55;--on-c:#2A1C08">
         <span class="n">Livello 2</span><h3>Italiano 2</h3><p class="topic">Essere o avere</p>
         <span class="go">Gioca &rarr;</span></a>
-      <a class="lvl" href="italiano3/" data-key="volereDoverePotereRipasso_v1" style="--c:#E88A6C;--on-c:#241318">
-        <span class="n">Livello 3</span><h3>Italiano 3</h3><p class="topic">Volere, dovere, potere</p>
-        <span class="go">Gioca &rarr;</span></a>
+      <div class="lvl" data-key="bohItaliano3Imperfetto_v1" style="--c:#E88A6C;--on-c:#241318">
+        <span class="n">Livello 3 <span class="newtag">Nuovo</span></span><h3>Italiano 3</h3><p class="topic">Imperfetto &middot; Unit&agrave; 2</p>
+        <a class="go" href="italiano3/imperfetto/">Gioca &rarr;</a>
+        <a class="sub" href="italiano3/">Volere &middot; dovere &middot; potere</a></div>
       <a class="lvl" href="italiano4/" data-key="boh_aiutami" style="--c:#B79AE0;--on-c:#1C1520">
         <span class="n">Livello 4</span><h3>Italiano 4</h3><p class="topic">Comandi &middot; il futuro</p>
         <span class="go">Gioca &rarr;</span></a>
