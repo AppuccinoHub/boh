@@ -1,4 +1,7 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<a class="boh-home" href="../" aria-label="Back to all levels">&larr; Livelli</a>
+<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
+
 <title>Boh. Volere Dovere Potere</title>
 <meta name="author" content="Assunta Scotto">
 <meta name="author" content="Assunta Scotto">
@@ -1333,6 +1336,7 @@ function dollLayersFor(base, eq) {
 // above this line so nothing spikes through. Crowns and laurels are absent
 // on purpose (hair showing is right there), and so is the hijabi Boh.
 var HAIR_CUT = {"m": {"cappellino": 94, "berretto": 96, "cappello_pescatore": 104, "cappello_gondoliere": 96, "casco_vespa": 110}, "f": {"cappellino": 112, "berretto": 114, "cappello_pescatore": 122, "cappello_gondoliere": 114, "casco_vespa": 128}, "h": {}};
+function bohSharedTheme(){try{var t=localStorage.getItem('boh_theme');if(t==='light'||t==='dark')return t}catch(e){}return (window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
 var SKINS = [['light', '#F2D0B8'], ['fair', '#E8B896'], ['medium', '#D9956A'], ['olive', '#C08A5C'], ['brown', '#8E5A38'], ['deep', '#5A3522']];
 var HAIRS = [['dark', '#4A2A1C', 'dark brown'], ['black', '#1C1719', 'black'], ['brown', '#6E4127', 'brown'], ['auburn', '#8A3A1C', 'auburn'], ['blonde', '#B98E4E', 'blonde']];
 var CARDS = {
@@ -1733,7 +1737,7 @@ class Component extends DCLogic {
       verbCorrect: false,
       formOptions: [],
       formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false,
-      theme: 'dark'
+      theme: bohSharedTheme()
     };
     var pd = progressDefaults();
     for (var pk in pd) this.state[pk] = pd[pk];
@@ -1757,7 +1761,7 @@ class Component extends DCLogic {
         var saved = JSON.parse(raw);
         if (saved && typeof saved === 'object') {
           var patch = {};
-          if (saved.theme === 'light' || saved.theme === 'dark') patch.theme = saved.theme;
+          { var _bt = null; try { _bt = localStorage.getItem('boh_theme'); } catch (e) {} if (_bt === 'light' || _bt === 'dark') patch.theme = _bt; else if (saved.theme === 'light' || saved.theme === 'dark') patch.theme = saved.theme; }
           for (var i = 0; i < PERSIST_KEYS.length; i++) {
             var k = PERSIST_KEYS[i];
             if (saved[k] !== undefined && saved[k] !== null) patch[k] = saved[k];
@@ -2080,7 +2084,7 @@ class Component extends DCLogic {
   undress() { this.sfx('soft'); this.setState({ equipped: {} }); }
 
   toggleTheme() {
-    this.setState({ theme: this.state.theme === 'dark' ? 'light' : 'dark' });
+    var _nt = this.state.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('boh_theme', _nt); } catch (e) {} this.setState({ theme: _nt });
   }
 
   mistakeIds() {

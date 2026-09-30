@@ -7,84 +7,164 @@
 <meta name="author" content="Assunta Scotto">
 <meta name="description" content="Boh. Non sa niente. Per ora. — Italian learning game by Assunta Scotto.">
 <!-- Boh · created by Assunta Scotto, 2026. All rights reserved. Not for redistribution. -->
-<link rel="icon" href="assets/boh-f.webp">
+<link rel="icon" href="assets/bc.svg">
+<script>try{var t=localStorage.getItem("boh_theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@500;700;800&family=Caveat:wght@700&display=swap">
 <style>
+/* Layout: game hub — hero with the Bohs, then one card per level (like the level-select screen in the games). */
 :root{
-  --bg:#EFE6E8;--surface:#FFFFFF;--ink:#241B2B;--muted:#6B5F72;--line:#DCCFD6;
-  --accent:#6A4C93;--accent-soft:#E6DDF1;--on-accent:#FFFFFF;
-  --gold:#C88A2E;--it-g:#1E8C4A;--it-r:#D23A2F;
-  --shadow:0 1px 2px rgba(36,27,43,.06),0 8px 24px rgba(36,27,43,.08);
+  --bg:#1C1520;--surface:#251C2A;--surface-2:#2A2130;--line:#362A3D;
+  --ink:#F2EAF0;--muted:#B7A8B8;
+  --accent:#E88A6C;--on-accent:#241318;--violet:#B79AE0;--gold:#E0AA55;
+  --it-g:#1E8C4A;--it-r:#D23A2F;
+  --glow:0 0 0 1px var(--line),0 18px 40px rgba(0,0,0,.35);
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:Manrope,system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#1C1520;--surface:#271E2C;--ink:#F3ECF4;--muted:#B5A8BA;--line:#3F3446;
-    --accent:#B79AE0;--accent-soft:#3A2E4A;--on-accent:#1C1520;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#1C1520;--surface:#271E2C;--ink:#F3ECF4;--muted:#B5A8BA;--line:#3F3446;
-  --accent:#B79AE0;--accent-soft:#3A2E4A;--on-accent:#1C1520;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
-}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#EFE6E8;--surface:#FFFFFF;--surface-2:#F5EFEF;--line:#DDD0D5;
+  --ink:#2B2430;--muted:#6B5F68;--accent:#C1654F;--on-accent:#FFFFFF;--violet:#6A4C93;--gold:#B7802A;
+  --glow:0 0 0 1px var(--line),0 12px 28px rgba(43,36,48,.10);color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#EFE6E8;--surface:#FFFFFF;--surface-2:#F5EFEF;--line:#DDD0D5;
+  --ink:#2B2430;--muted:#6B5F68;--accent:#C1654F;--on-accent:#FFFFFF;--violet:#6A4C93;--gold:#B7802A;
+  --glow:0 0 0 1px var(--line),0 12px 28px rgba(43,36,48,.10);color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column}
-main{width:100%;max-width:960px;margin:0 auto;padding:28px 16px 24px;flex:1}
-h1,h2{font-family:"Bricolage Grotesque",Manrope,sans-serif;margin:0;letter-spacing:-.02em}
-.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--surface);border-radius:24px;padding:22px 28px;box-shadow:var(--shadow)}
-.duo{display:flex;align-items:flex-end;gap:4px}
-.duo img{height:220px;width:auto;display:block}
-.duo img+img{height:210px}
-h1{font-size:clamp(56px,10vw,96px);font-weight:800;line-height:.9}
-h1 i{display:inline-block;width:.2em;height:.2em;margin-left:.04em;border-radius:3px;background:linear-gradient(90deg,var(--it-g) 0 33.3%,#fff 33.3% 66.6%,var(--it-r) 66.6%);box-shadow:0 0 0 1.5px var(--ink)}
-.slogan{font-family:Caveat,cursive;font-size:30px;color:var(--accent);margin:6px 0 8px;line-height:1.1}
-.lede{margin:0;color:var(--muted);max-width:44ch}
-.pick{margin:28px 0 12px;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.lvl{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:18px 18px 16px;box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
-.lvl:hover{border-color:var(--accent);transform:translateY(-2px)}
-.lvl:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.lvl .n{font-family:"Bricolage Grotesque",sans-serif;font-size:44px;font-weight:800;line-height:1;color:var(--accent)}
-.lvl h2{font-size:20px}
-.lvl p{margin:0;font-size:14px;color:var(--muted)}
-.lvl .go{margin-top:auto;padding-top:8px;font-weight:800;font-size:14px;color:var(--accent)}
-.tip{margin:22px 0 0;background:var(--accent-soft);border-radius:16px;padding:14px 18px;font-size:15px}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);
+  background-image:radial-gradient(900px 420px at 85% -10%,color-mix(in srgb,var(--violet) 22%,transparent),transparent 70%),
+                   radial-gradient(700px 380px at -10% 110%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%);
+  background-attachment:fixed}
+main{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:22px 28px;display:grid;gap:26px}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+
+/* hero */
+.hero{position:relative;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;background:var(--surface);border-radius:28px;padding:26px 28px 0;box-shadow:var(--glow);overflow:hidden}
+.hero .copy{display:grid;gap:10px;padding-bottom:26px;min-width:0}
+.eyebrow{font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
+h1{font-size:clamp(64px,13vw,128px);font-weight:800;line-height:.82}
+h1 .dot{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-radius:4px;background:linear-gradient(90deg,var(--it-g) 0 33.3%,#fff 33.3% 66.6%,var(--it-r) 66.6%);box-shadow:0 0 0 2px var(--ink)}
+.slogan{font-family:Caveat,cursive;font-size:32px;line-height:1;color:var(--accent)}
+.lede{color:var(--muted);max-width:40ch}
+.tag{display:inline-flex;align-items:center;gap:8px;width:fit-content;background:#141014;color:#fff;border:1.5px solid #C9A04E;box-shadow:0 0 14px rgba(201,160,78,.35);border-radius:999px;padding:6px 14px 6px 10px;font:800 14px var(--display)}
+.tag img{height:18px;width:auto}
+.duo{display:flex;align-items:flex-end;gap:0;margin-right:-6px}
+.duo img{height:240px;width:auto;display:block;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+.duo img:nth-child(2){height:232px;margin-left:-18px}
+.duo img:nth-child(3){height:226px;margin-left:-18px}
+@media (prefers-reduced-motion:no-preference){
+  .duo img{animation:bob 3.2s ease-in-out infinite}
+  .duo img:nth-child(2){animation-delay:.4s}.duo img:nth-child(3){animation-delay:.8s}
+  @keyframes bob{50%{transform:translateY(-6px)}}
+}
+
+/* levels */
+.sech{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sech h2{font-size:24px}
+.sech span{color:var(--muted);font-size:14px}
+.levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.lvl{position:relative;display:flex;flex-direction:column;gap:6px;min-height:220px;padding:18px 18px 16px;border-radius:22px;background:var(--surface);box-shadow:var(--glow);color:inherit;text-decoration:none;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.lvl::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--c)}
+.lvl:hover{transform:translateY(-3px);box-shadow:0 0 0 2px var(--c),0 18px 40px rgba(0,0,0,.3)}
+.lvl:focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.lvl .n{font:800 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.lvl h3{font-size:30px;font-weight:800;line-height:1}
+.lvl .topic{color:var(--muted);font-size:15px}
+.me{display:flex;align-items:center;gap:8px;margin-top:6px;padding:8px 10px;border-radius:14px;background:var(--surface-2);font-size:14px;font-weight:700;min-width:0}
+.me .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.me .bc{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font:800 14px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.me .bc img{height:14px}
+.bck{display:none}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bcw{display:none}:root:not([data-theme="dark"]) .bck{display:inline}}
+:root[data-theme="light"] .bcw{display:none}:root[data-theme="light"] .bck{display:inline}
+.go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 14px;border-radius:14px;background:var(--c);color:var(--on-c);font:800 15px var(--body)}
+.lvl.soon{cursor:default;opacity:.72}
+.lvl.soon:hover{transform:none;box-shadow:var(--glow)}
+.lvl.soon .go{background:var(--surface-2);color:var(--muted)}
+.lock{position:absolute;top:16px;right:16px;font:800 11px var(--body);letter-spacing:.12em;padding:4px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+
+.themeb{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:800 14px var(--body);cursor:pointer}
+.themeb:hover{border-color:var(--accent)}
+.themeb:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tip{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:18px;padding:14px 18px;box-shadow:var(--glow);font-size:15px}
 .tip b{color:var(--accent)}
-footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 16px 22px}
-@media (max-width:760px){
-  .hero{grid-template-columns:1fr;justify-items:center;text-align:center;padding:20px 16px}
-  .duo img{height:160px}.duo img+img{height:152px}
-  .lede{margin-inline:auto}
-  .levels{grid-template-columns:repeat(2,1fr)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px}
+
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr;justify-items:center;text-align:center;padding:60px 18px 0}
+  .hero .copy{justify-items:center;padding-bottom:6px}
+  .duo img{height:170px}.duo img:nth-child(2){height:164px}.duo img:nth-child(3){height:160px}
+  .lvl{min-height:0}
 }
 </style>
 </head>
 <body>
 <main>
   <section class="hero">
+    <button class="themeb" id="themeBtn" type="button" aria-label="Switch light or dark">☾ Scuro</button>
+    <div class="copy">
+      <span class="eyebrow">Il gioco d'italiano</span>
+      <h1>Boh<span class="dot" aria-label="."></span></h1>
+      <p class="slogan">Non sa niente. Per ora.</p>
+      <p class="lede">Your Boh learns Italian when you do. Play your level, earn Boh Cashi, and dress your Boh at Scotto's Boh-tique.</p>
+      <span class="tag"><img src="assets/bc-white.svg" alt="">Learn it. Earn it. Spend it. Sfoggialo.</span>
+    </div>
     <div class="duo" aria-hidden="true">
       <img src="assets/boh-m.webp" alt="">
       <img src="assets/boh-f.webp" alt="">
-    </div>
-    <div>
-      <h1>Boh<i aria-label="."></i></h1>
-      <p class="slogan">Non sa niente. Per ora.</p>
-      <p class="lede">Your Boh learns Italian when you do. Pick your level, play, and earn Boh Cashi to spend in the Boh-tique.</p>
+      <img src="assets/boh-h.webp" alt="">
     </div>
   </section>
 
-  <p class="pick">Choose your level</p>
-  <nav class="levels" aria-label="Levels">
-    <a class="lvl" href="italiano1/"><span class="n">1</span><h2>Italiano 1</h2><p>Review &amp; test prep</p><span class="go">Gioca →</span></a>
-    <a class="lvl" href="italiano2/"><span class="n">2</span><h2>Italiano 2</h2><p>Essere o avere</p><span class="go">Gioca →</span></a>
-    <a class="lvl" href="italiano3/"><span class="n">3</span><h2>Italiano 3</h2><p>Volere, dovere, potere</p><span class="go">Gioca →</span></a>
-    <a class="lvl" href="italiano4/"><span class="n">4</span><h2>Italiano 4</h2><p>Comandi · il futuro</p><span class="go">Gioca →</span></a>
-  </nav>
+  <section style="display:grid;gap:14px">
+    <div class="sech"><h2>Scegli il tuo livello</h2><span>Your Boh and your Boh Cashi stay in each level.</span></div>
+    <nav class="levels" aria-label="Levels">
+      <a class="lvl" href="italiano1/" data-key="bohItaliano1Ripasso_v1" style="--c:#6FB7A0;--on-c:#10231D">
+        <span class="n">Livello 1</span><h3>Italiano 1</h3><p class="topic">Review &amp; test prep</p>
+        <span class="go">Gioca &rarr;</span></a>
+      <a class="lvl" href="italiano2/" data-key="essereAvereRipasso_v1" style="--c:#E0AA55;--on-c:#2A1C08">
+        <span class="n">Livello 2</span><h3>Italiano 2</h3><p class="topic">Essere o avere</p>
+        <span class="go">Gioca &rarr;</span></a>
+      <a class="lvl" href="italiano3/" data-key="volereDoverePotereRipasso_v1" style="--c:#E88A6C;--on-c:#241318">
+        <span class="n">Livello 3</span><h3>Italiano 3</h3><p class="topic">Volere, dovere, potere</p>
+        <span class="go">Gioca &rarr;</span></a>
+      <a class="lvl" href="italiano4/" data-key="boh_aiutami" style="--c:#B79AE0;--on-c:#1C1520">
+        <span class="n">Livello 4</span><h3>Italiano 4</h3><p class="topic">Comandi &middot; il futuro</p>
+        <span class="go">Gioca &rarr;</span></a>
+      <div class="lvl soon" style="--c:#8FA3C8;--on-c:#111827" aria-disabled="true">
+        <span class="lock">PRESTO</span>
+        <span class="n">AP</span><h3>AP Italiano</h3><p class="topic">Ripasso dei tempi verbali</p>
+        <span class="go">Coming soon</span></div>
+    </nav>
+  </section>
 
-  <p class="tip"><b>Tip:</b> your progress saves on this device. Always play on the same Chromebook, or use your save code if your level has one.</p>
+  <p class="tip"><span aria-hidden="true">💡</span><span><b>Tip:</b> your progress saves on this device. Play on the same Chromebook, and write down your save code if your level gives you one.</span></p>
 </main>
-<footer>Created by Assunta Scotto · © 2026 · All rights reserved</footer>
+<footer>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved</footer>
+<script>
+// Show each student's own Boh name + Boh Cashi on the level card (read-only, from this device).
+document.querySelectorAll('.lvl[data-key]').forEach(function(card){
+  var d=null;try{d=JSON.parse(localStorage.getItem(card.dataset.key)||'null')}catch(e){}
+  if(!d)return;
+  var name=d.bohName||d.name||'', cash=(d.cashi!=null?d.cashi:d.bc);
+  if(!name&&cash==null)return;
+  var row=document.createElement('div');row.className='me';
+  var nm=document.createElement('span');nm.className='nm';nm.textContent=name||'Il tuo Boh';
+  var bc=document.createElement('span');bc.className='bc';
+  bc.innerHTML='<img class="bcw" src="assets/bc-white.svg" alt="Boh Cashi"><img class="bck" src="assets/bc-black.svg" alt="">';bc.appendChild(document.createTextNode(String(cash||0)));
+  row.appendChild(nm);row.appendChild(bc);
+  card.insertBefore(row,card.querySelector('.go'));
+});
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn');
+  function cur(){return root.dataset.theme||((window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark')}
+  function label(){btn.textContent=cur()==='dark'?'☀ Chiaro':'☾ Scuro';btn.setAttribute('aria-label',cur()==='dark'?'Switch to light':'Switch to dark')}
+  label();
+  btn.onclick=function(){var n=cur()==='dark'?'light':'dark';root.dataset.theme=n;try{localStorage.setItem('boh_theme',n)}catch(e){}label()};
+})();
+</script>
 </body>
 </html>
