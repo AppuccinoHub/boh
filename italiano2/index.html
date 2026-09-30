@@ -6162,7 +6162,19 @@ class Component extends DCLogic {
             var k = PERSIST_KEYS[i];
             if (saved[k] !== undefined && saved[k] !== null) patch[k] = saved[k];
           }
-          try { var pr = JSON.parse(localStorage.getItem('boh_profile_v1') || 'null'); if (pr && pr.bohBase && (pr._t || 0) > (saved._pt || 0)) BT_SHARED_KEYS.forEach(function (k) { if (pr[k] !== undefined) patch[k] = pr[k]; }); } catch (e) {}
+          try { var pr = JSON.parse(localStorage.getItem('boh_profile_v1') || 'null');
+            if (pr && pr.bohBase) {
+              // one wallet: this level's coins and clothes join the shared Boh, once
+              var mg = pr._merged || {}, same = pr._by ? pr._by === STORAGE_KEY : (pr.cashi === saved.cashi && pr.lifetime === saved.lifetime);
+              if (!mg[STORAGE_KEY] && !same && saved.bohBase) {
+                pr.cashi = (pr.cashi || 0) + (saved.cashi || 0); pr.lifetime = (pr.lifetime || 0) + (saved.lifetime || 0);
+                var inv = (pr.inventory || []).slice(); (saved.inventory || []).forEach(function (x) { if (inv.indexOf(x) === -1) inv.push(x); }); pr.inventory = inv;
+                if (!pr.equipped || !Object.keys(pr.equipped).length) pr.equipped = saved.equipped || {};
+                pr._t = Date.now() + 1;
+              }
+              mg[STORAGE_KEY] = 1; pr._merged = mg; localStorage.setItem('boh_profile_v1', JSON.stringify(pr));
+              if ((pr._t || 0) > (saved._pt || 0)) BT_SHARED_KEYS.forEach(function (k) { if (pr[k] !== undefined) patch[k] = pr[k]; });
+            } } catch (e) {}
           var su = saved.unit || 'ea';
           if (su !== BT_UNIT) {
             var uu = {}; for (var uk in (patch.units || {})) uu[uk] = patch.units[uk];
@@ -6212,7 +6224,9 @@ class Component extends DCLogic {
       _p._src = _b7d(); _p._a = _k9;
       _p._pt = Date.now(); _p.unit = BT_UNIT;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(_p));
-      if (_p.bohBase) { var _pf = { _t: _p._pt }; BT_SHARED_KEYS.forEach(function (k) { if (_p[k] !== undefined) _pf[k] = _p[k]; }); localStorage.setItem('boh_profile_v1', JSON.stringify(_pf)); }
+      if (_p.bohBase) { var _o = null; try { _o = JSON.parse(localStorage.getItem('boh_profile_v1') || 'null'); } catch (e3) {}
+          var _pf = { _t: _p._pt, _by: STORAGE_KEY, _merged: (_o && _o._merged) || {} }; _pf._merged[STORAGE_KEY] = 1;
+          BT_SHARED_KEYS.forEach(function (k) { if (_p[k] !== undefined) _pf[k] = _p[k]; }); localStorage.setItem('boh_profile_v1', JSON.stringify(_pf)); }
     } catch (e) {}
   }
 

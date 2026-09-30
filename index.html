@@ -8,6 +8,7 @@
 <meta name="description" content="Boh. Non sa niente. Per ora. — Italian learning game by Assunta Scotto.">
 <!-- Boh · created by Assunta Scotto, 2026. All rights reserved. Not for redistribution. -->
 <link rel="icon" href="assets/bc.svg">
+<link rel="stylesheet" href="assets/bohlook.css">
 <script>try{var t=localStorage.getItem("boh_theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@500;700;800&family=Caveat:wght@700&display=swap">
@@ -32,16 +33,6 @@
   --ink:#2B2430;--muted:#6B5F68;--accent:#C1654F;--on-accent:#FFFFFF;--violet:#6A4C93;--gold:#B7802A;
   --glow:0 0 0 1px var(--line),0 12px 28px rgba(43,36,48,.10);color-scheme:light}
 *{box-sizing:border-box}
-.savecard{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 20px;border-radius:20px;background:var(--surface);box-shadow:var(--glow)}
-.me-boh{display:flex;align-items:center;gap:14px;flex:1 1 360px}
-.me-boh img{width:64px;height:auto;flex:none}
-.savecard .me-save{margin-top:6px;font-size:13.5px}
-.savecard h2{margin:0 0 4px;font:800 22px/1.1 var(--display)}
-.savecard p{margin:0;color:var(--muted);font-size:14.5px;max-width:560px}
-.saverow{display:flex;gap:10px;flex-wrap:wrap}
-.saveb{cursor:pointer;min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--accent);color:var(--on-accent);font:800 16px var(--body)}
-.saveb.alt{background:transparent;color:var(--ink);border:2px solid var(--accent)}
-.saveb:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
 html,body{min-height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);
   background-image:radial-gradient(900px 420px at 85% -10%,color-mix(in srgb,var(--violet) 22%,transparent),transparent 70%),
@@ -51,26 +42,45 @@ main{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:22px 28px;
 h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}
 p{margin:0}
 
-/* hero */
-.hero{position:relative;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;background:var(--surface);border-radius:28px;padding:26px 28px 0;box-shadow:var(--glow);overflow:hidden}
-.hero .copy{display:grid;gap:10px;padding-bottom:26px;min-width:0}
-.eyebrow{font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
-h1{font-size:clamp(64px,13vw,128px);font-weight:800;line-height:.82}
-h1 .dot{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-radius:4px;background:linear-gradient(90deg,var(--it-g) 0 33.3%,#fff 33.3% 66.6%,var(--it-r) 66.6%);box-shadow:0 0 0 2px var(--ink)}
-.slogan{font-family:Caveat,cursive;font-size:32px;line-height:1;color:var(--accent)}
-.lede{color:var(--muted);max-width:40ch}
-.tag{display:inline-flex;align-items:center;gap:8px;width:fit-content;background:#141014;color:#fff;border:1.5px solid #C9A04E;box-shadow:0 0 14px rgba(201,160,78,.35);border-radius:999px;padding:6px 14px 6px 10px;font:800 14px var(--display)}
-.tag img{height:18px;width:auto}
-.duo{display:flex;align-items:flex-end;gap:0;margin-right:-6px}
-.duo img{height:240px;width:auto;display:block;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
-.duo img:nth-child(2){height:232px;margin-left:-18px}
-.duo img:nth-child(3){height:226px;margin-left:-18px}
-@media (prefers-reduced-motion:no-preference){
-  .duo img{animation:bob 3.2s ease-in-out infinite}
-  .duo img:nth-child(2){animation-delay:.4s}.duo img:nth-child(3){animation-delay:.8s}
-  @keyframes bob{50%{transform:translateY(-6px)}}
-}
+/* top bar: small wordmark */
+.top{position:relative;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 20px;border-radius:22px;background:var(--surface);box-shadow:var(--glow)}
+.top h1{font-size:44px;font-weight:800;line-height:.9}
+h1 .dot{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-radius:3px;background:linear-gradient(90deg,var(--it-g) 0 33.3%,#fff 33.3% 66.6%,var(--it-r) 66.6%);box-shadow:0 0 0 2px var(--ink)}
+.slogan{font-family:Caveat,cursive;font-size:26px;line-height:1;color:var(--accent)}
+.top .themeb{position:static;margin-left:auto}
 
+/* il tuo Boh: the front door */
+.me-card{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:24px 28px;border-radius:28px;background:var(--surface);box-shadow:var(--glow)}
+.me-doll{display:flex;justify-content:center;align-items:flex-end;min-width:170px;padding:8px 10px 0;border-radius:22px;background:radial-gradient(closest-side,color-mix(in srgb,var(--violet) 22%,transparent),transparent)}
+.me-doll .doll{width:170px;height:442px}
+.me-copy{display:grid;gap:12px;min-width:0}
+.eyebrow{font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
+.me-copy h2{font-size:clamp(34px,5vw,52px);font-weight:800;line-height:1}
+.me-copy p{color:var(--muted);max-width:52ch}
+.wallet{display:inline-flex;align-items:center;gap:8px;width:fit-content;padding:8px 16px 8px 12px;border-radius:999px;background:#141014;color:#fff;border:1.5px solid #C9A04E;box-shadow:0 0 14px rgba(201,160,78,.35);font:800 20px var(--display);font-variant-numeric:tabular-nums}
+.wallet img{height:20px}
+.wallet small{font:700 13px var(--body);opacity:.8}
+.saverow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.saveb{cursor:pointer;min-height:52px;padding:0 22px;border-radius:999px;border:0;background:var(--accent);color:var(--on-accent);font:800 17px var(--body)}
+.saveb.alt{background:transparent;color:var(--ink);border:2px solid var(--accent)}
+.linkb{cursor:pointer;border:0;background:none;color:var(--muted);font:800 14px var(--body);text-decoration:underline;text-underline-offset:3px;padding:8px 4px}
+.linkb:hover{color:var(--ink)}
+.saveb:focus-visible,.linkb:focus-visible,.pick:focus-visible,.sw:focus-visible,.pill:focus-visible,.name-in:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+.small{font-size:13.5px;color:var(--muted)}
+/* creator */
+.mk{display:grid;gap:14px}
+.mk .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.mk .lab{font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);min-width:64px}
+.pick{cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 12px 8px;border-radius:18px;border:3px solid transparent;background:var(--surface-2);color:var(--ink);font:800 15px var(--body)}
+.pick .bbs{width:58px;height:151px;background-size:232px 232px}
+.pick .bbs.f,.pick .bbs.h{background-position:-58px 0}
+.pick[aria-pressed="true"]{border-color:var(--accent)}
+.pill{cursor:pointer;min-width:64px;padding:8px 16px;border-radius:999px;border:3px solid transparent;background:var(--surface-2);color:var(--ink);font:800 15px var(--body)}
+.pill[aria-pressed="true"]{border-color:var(--accent)}
+.sw{cursor:pointer;width:38px;height:38px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 2px var(--line)}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 3px var(--accent)}
+.name-in{width:min(320px,100%);min-height:50px;padding:0 16px;border-radius:14px;border:2px solid var(--line);background:var(--surface-2);color:var(--ink);font:800 20px var(--display)}
+.err{color:#E5484D;font-weight:800;font-size:14px;min-height:1em}
 /* levels */
 .sech{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 .sech h2{font-size:24px}
@@ -83,10 +93,6 @@ h1 .dot{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-r
 .lvl .n{font:800 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
 .lvl h3{font-size:30px;font-weight:800;line-height:1}
 .lvl .topic{color:var(--muted);font-size:15px}
-.me{display:flex;align-items:center;gap:8px;margin-top:6px;padding:8px 10px;border-radius:14px;background:var(--surface-2);font-size:14px;font-weight:700;min-width:0}
-.me .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.me .bc{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font:800 14px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
-.me .bc img{height:14px}
 .bck{display:none}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bcw{display:none}:root:not([data-theme="dark"]) .bck{display:inline}}
 :root[data-theme="light"] .bcw{display:none}:root[data-theme="light"] .bck{display:inline}
@@ -109,36 +115,31 @@ a.go:focus-visible,.lvl .sub:focus-visible{outline:3px solid var(--c);outline-of
 footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px}
 
 @media (max-width:700px){
-  .hero{grid-template-columns:1fr;justify-items:center;text-align:center;padding:60px 18px 0}
-  .hero .copy{justify-items:center;padding-bottom:6px}
-  .duo img{height:170px}.duo img:nth-child(2){height:164px}.duo img:nth-child(3){height:160px}
+  .me-card{grid-template-columns:1fr;justify-items:center;text-align:center;padding:20px 16px;gap:14px}
+  .me-copy{justify-items:center}
+  .me-doll{min-width:0}
+  .me-doll .doll{width:120px;height:312px}
+  .mk .row{justify-content:center}
+  .top h1{font-size:36px}.slogan{font-size:22px}
   .lvl{min-height:0}
 }
 </style>
 </head>
 <body>
 <main>
-  <section class="hero">
-    <button class="themeb" id="themeBtn" type="button" aria-label="Switch light or dark">☾ Scuro</button>
-    <div class="copy">
-      <span class="eyebrow">Il gioco d'italiano</span>
-      <h1>Boh<span class="dot" aria-label="."></span></h1>
-      <p class="slogan">Non sa niente. Per ora.</p>
-      <p class="lede">Your Boh learns Italian when you do. Play your level, earn Boh Cashi, and dress your Boh at Scotto's Boh-tique.</p>
-      <span class="tag"><img src="assets/bc-white.svg" alt="">Learn it. Earn it. Spend it. Sfoggialo.</span>
-    </div>
-    <div class="duo" aria-hidden="true">
-      <img src="assets/boh-m.webp" alt="">
-      <img src="assets/boh-f.webp" alt="">
-    </div>
+  <header class="top">
+    <h1>Boh<span class="dot" aria-label="."></span></h1>
+    <span class="slogan">Non sa niente. Per ora.</span>
+    <button class="themeb" id="themeBtn" type="button" aria-label="Switch light or dark">&#9790; Scuro</button>
+  </header>
+
+  <section class="me-card" id="me" aria-label="Il tuo Boh" aria-live="polite">
+    <div class="me-doll" id="meDoll"><img src="assets/boh-m.webp" alt="" style="height:300px;width:auto"></div>
+    <div class="me-copy" id="meCopy"></div>
   </section>
 
-  <section class="savecard" aria-label="Il tuo Boh">
-    <div class="me-boh" id="meBoh"><img alt="" hidden><div><h2>Nuovo? Crea il tuo Boh una volta sola</h2><p>Pick your level and make your Boh. Every level remembers it: you only sign in once. Already have a Boh from another Chromebook? Carica your save file.</p><p class="me-save">To play on another Chromebook, save <b>one file for every level</b> and keep it in your Google Drive.</p></div></div>
-    <div class="saverow"><button type="button" class="saveb" data-bohsave="save">&#128190; Salva</button><button type="button" class="saveb alt" data-bohsave="load">&#128194; Carica</button></div>
-  </section>
   <section style="display:grid;gap:14px">
-    <div class="sech"><h2>Scegli il tuo livello</h2><span>One Boh for every level. Boh Cashi stay in each level.</span></div>
+    <div class="sech"><h2>Scegli il tuo livello</h2><span>Your Boh plays every level.</span></div>
     <nav class="levels" aria-label="Levels">
       <a class="lvl" href="italiano1/" data-key="bohItaliano1Ripasso_v1" style="--c:#6FB7A0;--on-c:#10231D">
         <span class="n">Livello 1</span><h3>Italiano 1</h3><p class="topic">Review &amp; test prep</p>
@@ -162,19 +163,6 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px
 </main>
 <footer>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved</footer>
 <script>
-// Show each student's own Boh name + Boh Cashi on the level card (read-only, from this device).
-document.querySelectorAll('.lvl[data-key]').forEach(function(card){
-  var d=null;try{d=JSON.parse(localStorage.getItem(card.dataset.key)||'null')}catch(e){}
-  if(!d)return;
-  var name=d.bohName||d.name||'', cash=(d.cashi!=null?d.cashi:d.bc);
-  if(!name&&cash==null)return;
-  var row=document.createElement('div');row.className='me';
-  var nm=document.createElement('span');nm.className='nm';nm.textContent=name||'Il tuo Boh';
-  var bc=document.createElement('span');bc.className='bc';
-  bc.innerHTML='<img class="bcw" src="assets/bc-white.svg" alt="Boh Cashi"><img class="bck" src="assets/bc-black.svg" alt="">';bc.appendChild(document.createTextNode(String(cash||0)));
-  row.appendChild(nm);row.appendChild(bc);
-  card.insertBefore(row,card.querySelector('.go'));
-});
 (function(){
   var root=document.documentElement,btn=document.getElementById('themeBtn');
   function cur(){return root.dataset.theme||((window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark')}
@@ -183,18 +171,8 @@ document.querySelectorAll('.lvl[data-key]').forEach(function(card){
   btn.onclick=function(){var n=cur()==='dark'?'light':'dark';root.dataset.theme=n;try{localStorage.setItem('boh_theme',n)}catch(e){}label()};
 })();
 </script>
-<script>
-// Il tuo Boh: one sign-in for every level (the shared Boh saved by whichever level made it)
-(function(){
-  var box=document.getElementById('meBoh');if(!box)return;var pr=null;
-  try{pr=JSON.parse(localStorage.getItem('boh_profile_v1')||'null')}catch(e){}
-  if(pr&&pr.bohBase&&pr.bohName){
-    var img=box.querySelector('img');img.src='assets/boh-'+(pr.bohBase==='h'?'h':pr.bohBase==='f'?'f':'m')+'.webp';img.hidden=false;
-    box.querySelector('h2').textContent='Ciao, '+pr.bohName+'!';
-    box.querySelector('p').innerHTML='You are signed in on <b>every level</b>. Edit your Boh in any level and it changes everywhere.';
-  }
-})();
-</script>
+<script src="assets/bohlook.js"></script>
+<script src="assets/front.js"></script>
 <script src="assets/bohsave.js" defer></script>
 </body>
 </html>

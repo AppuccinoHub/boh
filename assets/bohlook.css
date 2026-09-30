@@ -1,0 +1,243 @@
+:root{--lk-hair-auburn:url(look/lk-hair-auburn.webp);--lk-hair-black:url(look/lk-hair-black.webp);--lk-hair-blonde:url(look/lk-hair-blonde.webp);--lk-hair-brown:url(look/lk-hair-brown.webp);--lk-hb-hij-bordeaux:url(look/lk-hb-hij-bordeaux.webp);--lk-hb-hij-navy:url(look/lk-hb-hij-navy.webp);--lk-hb-hij-rosa:url(look/lk-hb-hij-rosa.webp);--lk-hb-hij-sabbia:url(look/lk-hb-hij-sabbia.webp);--lk-hb-hij-verde:url(look/lk-hb-hij-verde.webp);--lk-hb-medium:url(look/lk-hb-medium.webp);--lk-hb-skin-brown:url(look/lk-hb-skin-brown.webp);--lk-hb-skin-deep:url(look/lk-hb-skin-deep.webp);--lk-hb-skin-fair:url(look/lk-hb-skin-fair.webp);--lk-hb-skin-light:url(look/lk-hb-skin-light.webp);--lk-hb-skin-olive:url(look/lk-hb-skin-olive.webp);--lk-skin-brown:url(look/lk-skin-brown.webp);--lk-skin-deep:url(look/lk-skin-deep.webp);--lk-skin-fair:url(look/lk-skin-fair.webp);--lk-skin-light:url(look/lk-skin-light.webp);--lk-skin-olive:url(look/lk-skin-olive.webp);--sprBoh:url(look/sprBoh.webp);--sprWear:url(look/sprWear.webp)}
+.bohlook{--skin:none;--hair:none;--hijc:none;--hskin:none}
+.dl.tee-tee_tricolore-m{background:url(boutique/wear/tee_tee_tricolore_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_tricolore-f{background:url(boutique/wear/tee_tee_tricolore_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_tricolore-h{background:url(boutique/wear/tee_tee_tricolore_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_cornicello-m{background:url(boutique/wear/tee_tee_cornicello_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_cornicello-f{background:url(boutique/wear/tee_tee_cornicello_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_cornicello-h{background:url(boutique/wear/tee_tee_cornicello_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_stivale-m{background:url(boutique/wear/tee_tee_stivale_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_stivale-f{background:url(boutique/wear/tee_tee_stivale_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_stivale-h{background:url(boutique/wear/tee_tee_stivale_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_carnevale-m{background:url(boutique/wear/tee_tee_carnevale_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_carnevale-f{background:url(boutique/wear/tee_tee_carnevale_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_carnevale-h{background:url(boutique/wear/tee_tee_carnevale_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_limoni-m{background:url(boutique/wear/tee_tee_limoni_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_limoni-f{background:url(boutique/wear/tee_tee_limoni_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_limoni-h{background:url(boutique/wear/tee_tee_limoni_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_cuore-m{background:url(boutique/wear/tee_tee_cuore_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_cuore-f{background:url(boutique/wear/tee_tee_cuore_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_cuore-h{background:url(boutique/wear/tee_tee_cuore_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_moka-m{background:url(boutique/wear/tee_tee_moka_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_moka-f{background:url(boutique/wear/tee_tee_moka_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_moka-h{background:url(boutique/wear/tee_tee_moka_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_pasta-m{background:url(boutique/wear/tee_tee_pasta_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_pasta-f{background:url(boutique/wear/tee_tee_pasta_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_pasta-h{background:url(boutique/wear/tee_tee_pasta_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_verde-m{background:url(boutique/wear/tee_ls_verde_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_verde-f{background:url(boutique/wear/tee_ls_verde_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_verde-h{background:url(boutique/wear/tee_ls_verde_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_stivale_oro-m{background:url(boutique/wear/tee_ls_stivale_oro_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_stivale_oro-f{background:url(boutique/wear/tee_ls_stivale_oro_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_stivale_oro-h{background:url(boutique/wear/tee_ls_stivale_oro_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_cornicello-m{background:url(boutique/wear/tee_ls_cornicello_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_cornicello-f{background:url(boutique/wear/tee_ls_cornicello_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_cornicello-h{background:url(boutique/wear/tee_ls_cornicello_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_limoni-m{background:url(boutique/wear/tee_ls_limoni_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_limoni-f{background:url(boutique/wear/tee_ls_limoni_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-ls_limoni-h{background:url(boutique/wear/tee_ls_limoni_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_retro-m{background:url(boutique/wear/tee_tee_retro_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_retro-f{background:url(boutique/wear/tee_tee_retro_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_retro-h{background:url(boutique/wear/tee_tee_retro_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_pizza-m{background:url(boutique/wear/tee_tee_pizza_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_pizza-f{background:url(boutique/wear/tee_tee_pizza_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_pizza-h{background:url(boutique/wear/tee_tee_pizza_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_gondola-m{background:url(boutique/wear/tee_tee_gondola_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_gondola-f{background:url(boutique/wear/tee_tee_gondola_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_gondola-h{background:url(boutique/wear/tee_tee_gondola_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_colosseo-m{background:url(boutique/wear/tee_tee_colosseo_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_colosseo-f{background:url(boutique/wear/tee_tee_colosseo_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_colosseo-h{background:url(boutique/wear/tee_tee_colosseo_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_prof-m{background:url(boutique/wear/tee_tee_prof_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_prof-f{background:url(boutique/wear/tee_tee_prof_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_prof-h{background:url(boutique/wear/tee_tee_prof_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_boh-m{background:url(boutique/wear/tee_tee_boh_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_boh-f{background:url(boutique/wear/tee_tee_boh_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_boh-h{background:url(boutique/wear/tee_tee_boh_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_ihs-m{background:url(boutique/wear/tee_tee_ihs_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_ihs-f{background:url(boutique/wear/tee_tee_ihs_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_ihs-h{background:url(boutique/wear/tee_tee_ihs_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_raga-m{background:url(boutique/wear/tee_tee_raga_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_raga-f{background:url(boutique/wear/tee_tee_raga_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_raga-h{background:url(boutique/wear/tee_tee_raga_h.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_ue-m{background:url(boutique/wear/tee_tee_ue_m.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_ue-f{background:url(boutique/wear/tee_tee_ue_f.webp) 0 0/100% 100% no-repeat}
+.dl.tee-tee_ue-h{background:url(boutique/wear/tee_tee_ue_h.webp) 0 0/100% 100% no-repeat}
+.bb{width:150px;height:390px;background:var(--sprBoh) no-repeat;background-size:600px 600px;flex-shrink:0}
+.bb.m{background-position:0 0}
+.bb.f{background-position:-150px 0}
+.bbs{width:96px;height:250px;background:var(--sprBoh) no-repeat;background-size:384px 384px;flex-shrink:0}
+.bbs.m{background-position:0 0}
+.bbs.f{background-position:-96px 0}
+.doll{position:relative;flex-shrink:0}
+.dS{width:96px;height:250px}
+.dM{width:150px;height:390px}
+.dl{position:absolute;inset:0;background:var(--sprWear) no-repeat;background-size:1000% 1300%}
+.dl.body{background-image:var(--sprBoh);background-size:400% 153.846%}
+.dl.body.m{background-position:0 0}
+.dl.body.f{background-position:33.333% 0}
+.dl.w0{background-position:0.000% 0.000%}
+.dl.w1{background-position:11.111% 0.000%}
+.dl.w2{background-position:22.222% 0.000%}
+.dl.w3{background-position:33.333% 0.000%}
+.dl.w4{background-position:44.444% 0.000%}
+.dl.w5{background-position:55.556% 0.000%}
+.dl.w6{background-position:66.667% 0.000%}
+.dl.w7{background-position:77.778% 0.000%}
+.dl.w8{background-position:88.889% 0.000%}
+.dl.w9{background-position:100.000% 0.000%}
+.dl.w10{background-position:0.000% 8.333%}
+.dl.w11{background-position:11.111% 8.333%}
+.dl.w12{background-position:22.222% 8.333%}
+.dl.w13{background-position:33.333% 8.333%}
+.dl.w14{background-position:44.444% 8.333%}
+.dl.w15{background-position:55.556% 8.333%}
+.dl.w16{background-position:66.667% 8.333%}
+.dl.w17{background-position:77.778% 8.333%}
+.dl.w18{background-position:88.889% 8.333%}
+.dl.w19{background-position:100.000% 8.333%}
+.dl.w20{background-position:0.000% 16.667%}
+.dl.w21{background-position:11.111% 16.667%}
+.dl.w22{background-position:22.222% 16.667%}
+.dl.w23{background-position:33.333% 16.667%}
+.dl.w24{background-position:44.444% 16.667%}
+.dl.w25{background-position:55.556% 16.667%}
+.dl.w26{background-position:66.667% 16.667%}
+.dl.w27{background-position:77.778% 16.667%}
+.dl.w28{background-position:88.889% 16.667%}
+.dl.w29{background-position:100.000% 16.667%}
+.dl.w30{background-position:0.000% 25.000%}
+.dl.w31{background-position:11.111% 25.000%}
+.dl.w32{background-position:22.222% 25.000%}
+.dl.w33{background-position:33.333% 25.000%}
+.dl.w34{background-position:44.444% 25.000%}
+.dl.w35{background-position:55.556% 25.000%}
+.dl.w36{background-position:66.667% 25.000%}
+.dl.w37{background-position:77.778% 25.000%}
+.dl.w38{background-position:88.889% 25.000%}
+.dl.w39{background-position:100.000% 25.000%}
+.dl.w40{background-position:0.000% 33.333%}
+.dl.w41{background-position:11.111% 33.333%}
+.dl.w42{background-position:22.222% 33.333%}
+.dl.w43{background-position:33.333% 33.333%}
+.dl.w44{background-position:44.444% 33.333%}
+.dl.w45{background-position:55.556% 33.333%}
+.dl.w46{background-position:66.667% 33.333%}
+.dl.w47{background-position:77.778% 33.333%}
+.dl.w48{background-position:88.889% 33.333%}
+.dl.w49{background-position:100.000% 33.333%}
+.dl.w50{background-position:0.000% 41.667%}
+.dl.w51{background-position:11.111% 41.667%}
+.dl.w52{background-position:22.222% 41.667%}
+.dl.w53{background-position:33.333% 41.667%}
+.dl.w54{background-position:44.444% 41.667%}
+.dl.w55{background-position:55.556% 41.667%}
+.dl.w56{background-position:66.667% 41.667%}
+.dl.w57{background-position:77.778% 41.667%}
+.dl.w58{background-position:88.889% 41.667%}
+.dl.w59{background-position:100.000% 41.667%}
+.dl.w60{background-position:0.000% 50.000%}
+.dl.w61{background-position:11.111% 50.000%}
+.dl.w62{background-position:22.222% 50.000%}
+.dl.w63{background-position:33.333% 50.000%}
+.dl.w64{background-position:44.444% 50.000%}
+.dl.w65{background-position:55.556% 50.000%}
+.dl.w66{background-position:66.667% 50.000%}
+.dl.w67{background-position:77.778% 50.000%}
+.dl.w68{background-position:88.889% 50.000%}
+.dl.w69{background-position:100.000% 50.000%}
+.dl.w70{background-position:0.000% 58.333%}
+.dl.w71{background-position:11.111% 58.333%}
+.dl.w72{background-position:22.222% 58.333%}
+.dl.w73{background-position:33.333% 58.333%}
+.dl.w74{background-position:44.444% 58.333%}
+.dl.w75{background-position:55.556% 58.333%}
+.dl.w76{background-position:66.667% 58.333%}
+.dl.w77{background-position:77.778% 58.333%}
+.dl.w78{background-position:88.889% 58.333%}
+.dl.w79{background-position:100.000% 58.333%}
+.dl.w80{background-position:0.000% 66.667%}
+.dl.w81{background-position:11.111% 66.667%}
+.dl.w82{background-position:22.222% 66.667%}
+.dl.w83{background-position:33.333% 66.667%}
+.dl.w84{background-position:44.444% 66.667%}
+.dl.w85{background-position:55.556% 66.667%}
+.dl.w86{background-position:66.667% 66.667%}
+.dl.w87{background-position:77.778% 66.667%}
+.dl.w88{background-position:88.889% 66.667%}
+.dl.w89{background-position:100.000% 66.667%}
+.dl.w90{background-position:0.000% 75.000%}
+.dl.w91{background-position:11.111% 75.000%}
+.dl.w92{background-position:22.222% 75.000%}
+.dl.w93{background-position:33.333% 75.000%}
+.dl.w94{background-position:44.444% 75.000%}
+.dl.w95{background-position:55.556% 75.000%}
+.dl.w96{background-position:66.667% 75.000%}
+.dl.w97{background-position:77.778% 75.000%}
+.dl.w98{background-position:88.889% 75.000%}
+.dl.w99{background-position:100.000% 75.000%}
+.dl.w100{background-position:0.000% 83.333%}
+.dl.w101{background-position:11.111% 83.333%}
+.dl.w102{background-position:22.222% 83.333%}
+.dl.w103{background-position:33.333% 83.333%}
+.dl.w104{background-position:44.444% 83.333%}
+.dl.w105{background-position:55.556% 83.333%}
+.dl.w106{background-position:66.667% 83.333%}
+.dl.w107{background-position:77.778% 83.333%}
+.dl.w108{background-position:88.889% 83.333%}
+.dl.w109{background-position:100.000% 83.333%}
+.dl.w110{background-position:0.000% 91.667%}
+.dl.w111{background-position:11.111% 91.667%}
+.dl.w112{background-position:22.222% 91.667%}
+.dl.w113{background-position:33.333% 91.667%}
+.dl.w114{background-position:44.444% 91.667%}
+.dl.w115{background-position:55.556% 91.667%}
+.dl.w116{background-position:66.667% 91.667%}
+.dl.w117{background-position:77.778% 91.667%}
+.dl.w118{background-position:88.889% 91.667%}
+.dl.w119{background-position:100.000% 91.667%}
+.dl.w120{background-position:0.000% 100.000%}
+.dl.w121{background-position:11.111% 100.000%}
+.dl.w122{background-position:22.222% 100.000%}
+.dl.w123{background-position:33.333% 100.000%}
+.dl.w124{background-position:44.444% 100.000%}
+.dl.w125{background-position:55.556% 100.000%}
+.bf{width:88px;height:88px;background:var(--sprBoh) no-repeat;background-size:352px 352px;flex-shrink:0}
+.bf.k0{background-position:-176px -0px}
+.bf.k1{background-position:-264px -0px}
+.bf.k2{background-position:-176px -88px}
+.bf.k3{background-position:-264px -88px}
+.bf.k4{background-position:-176px -176px}
+.bf.k5{background-position:-264px -176px}
+.bf.k6{background-position:-176px -264px}
+.sk-light{--hskin:var(--lk-hb-skin-light);--skin:var(--lk-skin-light)}
+.sk-fair{--hskin:var(--lk-hb-skin-fair);--skin:var(--lk-skin-fair)}
+.sk-olive{--hskin:var(--lk-hb-skin-olive);--skin:var(--lk-skin-olive)}
+.sk-brown{--hskin:var(--lk-hb-skin-brown);--skin:var(--lk-skin-brown)}
+.sk-deep{--hskin:var(--lk-hb-skin-deep);--skin:var(--lk-skin-deep)}
+.sk-medium{--hskin:none;--skin:none}
+.hr-black{--hair:var(--lk-hair-black)}
+.hr-brown{--hair:var(--lk-hair-brown)}
+.hr-auburn{--hair:var(--lk-hair-auburn)}
+.hr-blonde{--hair:var(--lk-hair-blonde)}
+.bb:not(.h),.bbs:not(.h),.bf:not(.h),.dl.body:not(.h){background-image:var(--hair),var(--skin),var(--sprBoh)}
+.bb.h,.bbs.h,.bf.h,.dl.body.h{background-image:var(--hijc),var(--hskin),var(--lk-hb-medium)}
+.hj-verde{--hijc:var(--lk-hb-hij-verde)}
+.hj-rosa{--hijc:var(--lk-hb-hij-rosa)}
+.hj-navy{--hijc:var(--lk-hb-hij-navy)}
+.hj-sabbia{--hijc:var(--lk-hb-hij-sabbia)}
+.hj-bordeaux{--hijc:var(--lk-hb-hij-bordeaux)}
+.bb.h{background-position:-150px 0}
+.bbs.h{background-position:-96px 0}
+.dl.body.h{background-position:33.333% 0}
+.cut94{-webkit-mask-image:linear-gradient(to bottom,transparent 0 18.077%,#000 18.077%);mask-image:linear-gradient(to bottom,transparent 0 18.077%,#000 18.077%)}
+.cut96{-webkit-mask-image:linear-gradient(to bottom,transparent 0 18.462%,#000 18.462%);mask-image:linear-gradient(to bottom,transparent 0 18.462%,#000 18.462%)}
+.cut104{-webkit-mask-image:linear-gradient(to bottom,transparent 0 20.000%,#000 20.000%);mask-image:linear-gradient(to bottom,transparent 0 20.000%,#000 20.000%)}
+.cut110{-webkit-mask-image:linear-gradient(to bottom,transparent 0 21.154%,#000 21.154%);mask-image:linear-gradient(to bottom,transparent 0 21.154%,#000 21.154%)}
+.cut112{-webkit-mask-image:linear-gradient(to bottom,transparent 0 21.538%,#000 21.538%);mask-image:linear-gradient(to bottom,transparent 0 21.538%,#000 21.538%)}
+.cut114{-webkit-mask-image:linear-gradient(to bottom,transparent 0 21.923%,#000 21.923%);mask-image:linear-gradient(to bottom,transparent 0 21.923%,#000 21.923%)}
+.cut122{-webkit-mask-image:linear-gradient(to bottom,transparent 0 23.462%,#000 23.462%);mask-image:linear-gradient(to bottom,transparent 0 23.462%,#000 23.462%)}
+.cut128{-webkit-mask-image:linear-gradient(to bottom,transparent 0 24.615%,#000 24.615%);mask-image:linear-gradient(to bottom,transparent 0 24.615%,#000 24.615%)}
+.idle{animation:bohIdle 2.6s ease-in-out infinite}
+[data-motion="reduce"] .idle{animation:none}
+@keyframes bohIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}

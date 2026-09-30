@@ -148,20 +148,20 @@
 
   function render(tab) {
     var name = bohName(), mine = cloudMine();
-    var head = '<div class="bs-top"><div><h2 id="bs-title">Il tuo Boh</h2><p class="mut">' + (name ? 'Boh: <b>' + esc(name) + '</b> · ' : '') + 'One code for every level: Italiano 1, 2, 3, 4 and AP.</p></div><button class="bs-x" aria-label="Chiudi">✕</button></div>' +
+    var head = '<div class="bs-top"><div><h2 id="bs-title">Il tuo Boh</h2><p class="mut">' + (name ? 'Boh: <b>' + esc(name) + '</b> · ' : '') + 'One save for every level: Italiano 1, 2, 3, 4 and AP.</p></div><button class="bs-x" aria-label="Chiudi">✕</button></div>' +
       '<div class="bs-tabs" role="tablist"><button role="tab" data-t="save" aria-selected="' + (tab === 'save') + '">💾 Salva</button><button role="tab" data-t="load" aria-selected="' + (tab === 'load') + '">📂 Carica</button></div>';
     var body = '';
     if (tab === 'save') {
       if (cloudOn()) body += '<div class="bs-sec"><h3>Nome + codice (online)</h3><p class="mut">The easy way: your Boh name and a short code. Type them on any Chromebook to get everything back.</p>' +
         (mine ? '<div class="bs-code">' + esc(shortCode(mine)) + '</div>' : '') +
         '<button class="bs-btn" id="bs-cloud-save">' + (mine ? 'Salva di nuovo online' : 'Crea il mio codice') + '</button><div id="bs-cloud-out"></div></div>';
-      body += '<div class="bs-sec"><h3>' + (cloudOn() ? 'Backup file' : 'Salva il tuo Boh') + '</h3><p class="mut">Download your save file and put it in your Google Drive. On another Chromebook: Carica → choose the file.</p>' +
-        '<div class="bs-row"><button class="bs-btn" id="bs-dl">⬇ Download my save file</button><button class="bs-btn2" id="bs-copy">Copy the code</button></div><div id="bs-out"></div></div>';
+      body += '<div class="bs-sec"><h3>' + (cloudOn() ? 'Backup file' : 'Salva il tuo Boh') + '</h3><p class="mut">One file saves your Boh, its Boh Cashi and every level. Put it in your Google Drive. On another Chromebook: Carica il mio Boh → choose the file.</p>' +
+        '<div class="bs-row"><button class="bs-btn" id="bs-dl">⬇ Salva il mio Boh (1 file)</button></div><div id="bs-out"></div></div>';
     } else {
       if (cloudOn()) body += '<div class="bs-sec"><h3>Nome + codice</h3><label>Nome del tuo Boh<input id="bs-n" autocomplete="off" maxlength="16" value="' + esc(mine ? mine.name : name) + '"></label>' +
         '<label>Codice<input id="bs-c" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="gatto-luna-7" value=""></label><button class="bs-btn" id="bs-cloud-load">Carica</button><div id="bs-cloud-msg"></div></div>';
-      body += '<div class="bs-sec"><h3>Save file o codice lungo</h3><button class="bs-btn2" id="bs-file-btn">📄 Choose my save file</button><input type="file" id="bs-file" accept=".txt,text/plain" hidden>' +
-        '<label>…or paste the long code<textarea id="bs-in" rows="3" placeholder="BOHZ.…"></textarea></label><button class="bs-btn" id="bs-load">Carica</button><div id="bs-msg"></div>' +
+      body += '<div class="bs-sec"><h3>Carica il mio Boh</h3><p class="mut">Choose your Boh save file (Google Drive or Downloads).</p><button class="bs-btn" id="bs-file-btn">📄 Choose my save file</button><input type="file" id="bs-file" accept=".txt,text/plain" hidden><div id="bs-msg"></div>' +
+        '<details class="bs-small"><summary>Prof: paste a code instead</summary><textarea id="bs-in" rows="3" placeholder="BOHZ.…"></textarea><button class="bs-btn2" id="bs-load">Carica</button></details>' +
         '<p class="bs-small">Loading replaces the Boh on this Chromebook with the saved one, in every level.</p></div>';
     }
     box().innerHTML = head + body;
@@ -179,14 +179,14 @@
       codeP.then(function (code) {
         var d = new Date(), stamp = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
         var txt = 'Boh · save file\nBoh: ' + (bundle.name || '') + '\nLevels: ' + levelsIn(bundle.d).join(', ') + '\nSaved: ' + d.toLocaleString() +
-          '\nTo load: open any Boh level → Settings → Salva / Carica → Carica → choose this file.\n\n' + code + '\n';
+          '\nTo load: open appuccinohub.github.io/boh → Carica il mio Boh → choose this file.\n\n' + code + '\n';
         var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = 'Boh-' + nm + '-' + stamp + '.txt';
         document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
         $('#bs-out').innerHTML = '<div class="bs-shot" role="alert"><b>📂 PUT THE FILE IN YOUR GOOGLE DRIVE</b>Open Files → Downloads → drag it to My Drive.</div>' +
           '<div class="bs-msg ok">Saved: ' + esc(levelsIn(bundle.d).join(', ') || 'your Boh') + '.</div>';
       });
     };
-    $('#bs-copy').onclick = function () {
+    if ($('#bs-copy')) $('#bs-copy').onclick = function () {
       codeP.then(function (code) {
         var ok = function () { $('#bs-out').innerHTML = '<div class="bs-msg ok">Copied! Paste it into a Google Doc or your Google Classroom page to keep it.</div>'; };
         try { navigator.clipboard.writeText(code).then(ok, function () { showRaw(code); }); } catch (e) { showRaw(code); }
