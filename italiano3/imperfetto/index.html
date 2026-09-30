@@ -1,6 +1,71 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <a class="boh-home" href="../../" aria-label="Back to all levels">&larr; Livelli</a>
-<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
+<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}
+.bt-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.bt-tab{all:unset;cursor:pointer;white-space:nowrap;padding:8px 14px;border-radius:999px;font-weight:800;font-size:13.5px;background:var(--card-bg);color:var(--text);border:2px solid var(--card-border)}
+.bt-tab[aria-pressed="true"]{background:var(--primary-bg);color:var(--primary-text);border-color:var(--primary-bg)}
+.bt-tab:focus-visible,.bt-redeem:focus-visible,.bt-skip:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.ic.bt-emo{background:var(--option-default-bg);display:grid;place-items:center;font-size:32px;line-height:1}
+.ic.bt-soon{filter:grayscale(.6);opacity:.7}
+.bt-skip{all:unset;cursor:pointer;align-self:center;margin:4px auto 0;padding:9px 16px;border-radius:999px;font-weight:800;font-size:13.5px;color:var(--text);border:2px dashed var(--card-border)}
+.bt-pinrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--text-muted)}
+.bt-pinrow input{width:110px;padding:8px 12px;border-radius:10px;border:2px solid var(--card-border);background:var(--option-default-bg);color:var(--text);font-size:16px;letter-spacing:.3em}
+.bt-vmsg{font-size:13.5px;font-weight:800;padding:8px 12px;border-radius:10px;background:var(--success-bg);color:var(--success-text)}
+.bt-voucher{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px dashed var(--accent-strong)}
+.bt-code{font:800 20px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--accent-strong)}
+.bt-redeem{all:unset;cursor:pointer;padding:9px 14px;border-radius:12px;font-weight:800;font-size:13.5px;background:var(--primary-bg);color:var(--primary-text)}
+.ic.bt-img{background-size:contain;background-position:center;background-repeat:no-repeat;background-color:transparent}
+.bt-chain{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;padding:12px;border-radius:16px;background:var(--card-bg);border:2px solid #C9A227}
+.bt-chain-art{position:relative;width:120px;aspect-ratio:1;background:url(../../assets/boutique/catena.webp) center/contain no-repeat;container-type:inline-size}
+.bt-chain-txt{position:absolute;left:27%;right:29%;top:52%;bottom:35%;display:grid;place-items:center;text-align:center;font:900 11cqw/1 "Bricolage Grotesque",system-ui,sans-serif;color:#5A3E00;text-shadow:0 1px 0 rgba(255,240,180,.8);overflow:hidden;white-space:nowrap;text-transform:uppercase}
+.bt-chain input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:2px solid var(--card-border);background:var(--option-default-bg);color:var(--text);font-size:16px;font-weight:800}
+.bt-chain input:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.bt-vmsg.bt-bad{background:#FDE3E0;color:#8A1C12}
+.bt-hud{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.hud-chip{all:unset;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:1px;padding:10px 14px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);min-width:0;position:relative}
+.hud-btn{cursor:pointer;padding-left:58px}
+.hud-btn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.hud-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:40px;height:auto}
+.hud-big{font:800 20px/1.1 "Bricolage Grotesque",system-ui,sans-serif}
+.hud-sm{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--text-faint-2)}
+.hud-boost{align-self:center;padding:8px 12px;border-radius:999px;font-weight:800;font-size:13px;background:var(--primary-bg);color:var(--primary-text)}
+.bt-fiamma{padding:10px 14px;border-radius:14px;font-weight:800;font-size:13.5px;background:var(--primary-bg);color:var(--primary-text);text-align:center}
+.gp{display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:20px;background:var(--card-bg);border:2px solid #C9A227}
+.gp-head{display:flex;align-items:center;gap:12px}
+.gp-book{width:64px;height:auto;flex:none}
+.gp-medal{width:60px;height:auto;flex:none}
+.gp-eye{font-size:11.5px;font-weight:800;letter-spacing:.12em;color:var(--text-faint-2)}
+.gp-count{font-size:24px;line-height:1.05}
+.gp-sub{font-size:12.5px;color:var(--text-muted)}
+.gp-map{position:relative;width:100%;max-width:560px;margin:0 auto;aspect-ratio:1064/1072;background:url(../../assets/boutique/mappa_italia.webp) center/contain no-repeat}
+.gp-pin{all:unset;cursor:pointer;position:absolute;width:9%;aspect-ratio:1;transform:translate(-50%,-50%);display:grid;place-items:center;border-radius:50%}
+.gp-pin:focus-visible{outline:3px solid var(--accent-strong);outline-offset:1px}
+.gp-in{width:88%;aspect-ratio:1;border-radius:50%;background:#FBF3E0 center/135% no-repeat;border:2px solid #C9A227;box-sizing:border-box}
+.gp-badge{position:absolute;right:-14%;top:-22%;width:52%;aspect-ratio:1;background:center/contain no-repeat;pointer-events:none}
+.gp-pin.is-locked .gp-in,.gp-pin.is-soon .gp-in{opacity:.0}
+.gp-pin.is-locked .gp-badge,.gp-pin.is-soon .gp-badge{display:none}
+.gp-pin.is-soon{opacity:.55}
+.gp-pin.is-booked .gp-in{border-style:dashed;animation:gpPulse 1.6s ease-in-out infinite}
+.gp-pin.is-ok .gp-in{border-color:#1E7F4A;border-width:3px}
+.gp-pin.is-sel .gp-in{opacity:1;box-shadow:0 0 0 3px var(--accent-strong)}
+@keyframes gpPulse{50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.gp-pin.is-booked .gp-in{animation:none}}
+.gp-card{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:14px;background:var(--option-default-bg)}
+.gp-top{display:flex;align-items:center;gap:12px}
+.gp-thumb{width:64px;aspect-ratio:1;flex:none;background:center/contain no-repeat}
+.gp-actions{display:flex;flex-wrap:wrap;gap:8px}
+.gp-btn{all:unset;cursor:pointer;box-sizing:border-box;text-align:center;padding:11px 14px;border-radius:12px;font-weight:800;font-size:14px;background:var(--primary-bg);color:var(--primary-text);flex:none}
+.gp-actions .gp-btn{flex:1 1 180px}
+.gp-btn.gp-ghost{background:transparent;color:var(--text);border:2px solid var(--card-border)}
+.gp-btn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.gp-pass{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;border:2px dashed var(--accent-strong);background:var(--card-bg)}
+.gp-card textarea{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-family:inherit;font-weight:600;font-size:16px;line-height:1.45;resize:vertical}
+.gp-card textarea:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.gp-count-sm{font-size:12px;font-weight:800;color:var(--text-faint-2)}
+.gp-post{position:relative;display:flex;flex-direction:column;gap:6px;padding:14px 60px 14px 14px;border-radius:12px;background:#FBF3E0;color:#3A2A10;border:2px solid #C9A227;font-family:Caveat,cursive,inherit;font-size:19px}
+.gp-post .gp-eye{font-family:inherit;color:#8A6A2A;font-size:11px}
+.gp-stamp{position:absolute;right:10px;top:10px;width:40px;transform:rotate(12deg)}
+.boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3 · Imperfetto</title>
 <meta name="author" content="Assunta Scotto">
@@ -480,6 +545,12 @@
           </div>
         </div>
 
+        <div class="bt-hud">
+          <div class="hud-chip" title="La Fiamma: school days in a row"><span class="hud-big">&#128293; {{fiammaN}}</span><span class="hud-sm">{{fiammaLbl}} &middot; &#128737;&#65039; {{scudiN}}</span></div>
+          <button class="hud-chip hud-btn" onClick="{{goPassHandler}}" aria-label="Il mio Giro d&rsquo;Italia"><img src="../../assets/boutique/aereo.webp" alt="" class="hud-ico"><span class="hud-big">{{tripCount}}/12</span><span class="hud-sm">Giro d&rsquo;Italia</span></button>
+          <sc-if value="{{hasBoost}}" hint-placeholder-val="{{false}}"><div class="hud-boost">{{boostText}}</div></sc-if>
+        </div>
+
         <sc-if value="{{hasPending}}" hint-placeholder-val="{{false}}">
           <button class="home-pacco" onClick="{{openPaccoHandler}}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);">
             <div class="ic i-pacco shake"></div>
@@ -493,7 +564,7 @@
         <div class="home-tiles" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
           <button onClick="{{goShopHandler}}" style="all:unset;cursor:pointer;box-sizing:border-box;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 14px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);">
             <div class="ic i-sneakers_rosse"></div>
-            <div style="display:flex;flex-direction:column;text-align:left;"><span class="display" style="font-size:17px;font-weight:800;">Il Negozio</span><span style="font-size:12px;color:var(--text-faint-2);">Shop</span></div>
+            <div style="display:flex;flex-direction:column;text-align:left;"><span class="display" style="font-size:17px;font-weight:800;">Boh-tique</span><span style="font-size:12px;color:var(--text-faint-2);">Shop</span></div>
           </button>
           <button onClick="{{goLockerHandler}}" style="all:unset;cursor:pointer;box-sizing:border-box;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 14px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);">
             <div class="ic i-zaino"></div>
@@ -512,7 +583,7 @@
           <button onClick="{{mistakesHandler}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border);">
             <div style="display:flex;flex-direction:column;gap:3px;text-align:left;">
               <span class="display" style="font-size:19px;font-weight:800;color:var(--error-text);">Fix my mistakes</span>
-              <span style="font-size:13px;color:var(--text-muted);">Cards you missed before. Fixing one pays 3 BC.</span>
+              <span style="font-size:13px;color:var(--text-muted);">Cards you missed before. Fixing one pays 15 BC.</span>
             </div>
             <span style="font-size:13px;font-weight:800;color:var(--error-text);white-space:nowrap;">{{mistakesCount}}</span>
           </button>
@@ -552,6 +623,7 @@
 
     <sc-if value="{{isPlay}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;flex:1;">
+        <sc-if value="{{hasFiammaNote}}" hint-placeholder-val="{{false}}"><div class="bt-fiamma" role="status">{{fiammaNote}}</div></sc-if>
         <div style="width:100%;height:5px;background:var(--progress-track);border-radius:999px;overflow:hidden;">
           <div style="width:{{progressPct}}%;height:100%;background:var(--progress-fill);border-radius:999px;transition:width .3s ease;"></div>
         </div>
@@ -701,6 +773,9 @@
           </div>
         </sc-if>
 
+        <sc-if value="{{canSkip}}" hint-placeholder-val="{{false}}">
+          <button onClick="{{skipHandler}}" class="bt-skip">&#9197; Salta questa domanda &middot; {{skipsLeft}} left</button>
+        </sc-if>
         <sc-if value="{{showContinue}}" hint-placeholder-val="{{false}}">
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div class="pop" style="display:flex;align-items:center;gap:10px;">
@@ -877,7 +952,7 @@
           </sc-if>
           <button onClick="{{playAgainHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Play Again</button>
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
-            <button onClick="{{goShopHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Il Negozio · Shop</button>
+            <button onClick="{{goShopHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Boh-tique · Shop</button>
             <button onClick="{{goLockerHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Locker</button>
           </div>
           <button onClick="{{changeModeHandler}}" style="width:100%;padding:16px;border-radius:14px;background:transparent;color:var(--text-muted);font-weight:700;font-size:14px;border:2px solid var(--card-border);">Change Mode</button>
@@ -891,20 +966,21 @@
           <div style="display:flex;align-items:flex-end;gap:12px;">
             <div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
             <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:6px;">
-              <h2 class="display" style="margin:0;font-size:34px;font-weight:800;">Il Negozio</h2>
+              <h2 class="display" style="margin:0;font-size:30px;font-weight:800;line-height:1.05;">Scotto&rsquo;s <span style="white-space:nowrap">Boh-tique</span></h2>
               <span style="font-size:14px;font-weight:700;color:var(--text-muted);">{{shopGreeting}}</span>
             </div>
           </div>
-          <p style="margin:0;font-size:14px;color:var(--text-muted);">Spend your cashi on style. The best stuff can&rsquo;t be bought &mdash; it only comes from a Pacco Boh.</p>
+          <p style="margin:0;font-size:14px;color:var(--text-muted);">Learn it. Earn it. Spend it. <b>Sfoggialo.</b> EPICO unlocks when you pass all 7 levels; ASSURDO at 90% on La Prova.</p>
         </div>
         <sc-if value="{{hasShopMsg}}" hint-placeholder-val="{{false}}">
           <div class="toast" style="font-size:14px;font-weight:800;padding:10px 14px;border-radius:12px;background:var(--success-bg);color:var(--success-text);">{{shopMsg}}</div>
         </sc-if>
+        <div class="bt-tabs" role="group" aria-label="Boh-tique sections"><sc-for list="{{shopTabs}}" as="tb" hint-placeholder-count="10"><button onClick="{{tb.pick}}" aria-pressed="{{tb.on}}" class="bt-tab">{{tb.label}}</button></sc-for></div>
         <div class="shop-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
           <sc-for list="{{shopItems}}" as="si" hint-placeholder-count="6">
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);text-align:center;">
               <span style="font-size:10px;font-weight:800;letter-spacing:.1em;color:#fff;background:{{si.rarityColor}};padding:3px 8px;border-radius:999px;">{{si.rarity}}</span>
-              <div class="{{si.cls}}"></div>
+              <div class="{{si.cls}}" style="{{si.ico}}">{{si.emo}}</div>
               <span style="font-size:15px;font-weight:800;line-height:1.2;">{{si.it}}</span>
               <span style="font-size:12px;color:var(--text-faint-2);">{{si.en}}</span>
               <span style="font-size:13px;font-weight:800;color:var(--accent-strong);">{{si.priceText}}</span>
@@ -928,10 +1004,61 @@
             </div>
           </div>
         </div>
+        <section class="gp" aria-label="Il mio Giro d&rsquo;Italia">
+          <div class="gp-head">
+            <img src="../../assets/boutique/passaporto.webp" alt="" class="gp-book">
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;">
+              <span class="gp-eye">IL MIO GIRO D&rsquo;ITALIA</span>
+              <b class="display gp-count">{{tripCount}}/12 citt&agrave;</b>
+              <span class="gp-sub">{{tripSub}}</span>
+            </div>
+            <sc-if value="{{tripAll}}" hint-placeholder-val="{{false}}"><img src="../../assets/boutique/medaglia.webp" alt="Giro d&rsquo;Italia completo" class="gp-medal"></sc-if>
+          </div>
+          <div class="gp-map">
+            <sc-for list="{{tripPins}}" as="tp" hint-placeholder-count="15">
+              <button class="{{tp.cls}}" style="{{tp.pos}}" onClick="{{tp.pick}}" aria-label="{{tp.label}}" aria-pressed="{{tp.on}}"><span class="gp-in" style="{{tp.img}}"></span><span class="gp-badge" style="{{tp.badge}}"></span></button>
+            </sc-for>
+          </div>
+          <sc-if value="{{hasTripSel}}" hint-placeholder-val="{{false}}">
+            <div class="gp-card">
+              <div class="gp-top"><div class="gp-thumb" style="{{tsImg}}"></div><div style="display:flex;flex-direction:column;gap:2px;min-width:0;"><b class="display" style="font-size:19px;line-height:1.15;">{{tsTitle}}</b><span style="font-size:12.5px;font-weight:800;color:var(--text-faint-2);">{{tsTier}}</span></div></div>
+              <sc-if value="{{tsOpen}}" hint-placeholder-val="{{false}}">
+                <span style="font-size:14px;font-weight:800;">{{tsNeed}}</span>
+                <div class="gp-actions"><button class="gp-btn" onClick="{{tsPlayCart}}">{{tsCart}}</button><button class="gp-btn gp-ghost" onClick="{{tsGoShop}}">Prenota nella Boh-tique &rarr;</button></div>
+              </sc-if>
+              <sc-if value="{{tsBooked}}" hint-placeholder-val="{{false}}">
+                <div class="gp-pass"><span class="gp-eye">CARTA D&rsquo;IMBARCO</span><span class="bt-code">{{tsCode}}</span><span style="font-size:12px;color:var(--text-faint-2);">{{tsDay}}</span></div>
+                <label for="gpCard" style="display:flex;flex-direction:column;gap:6px;">
+                  <span style="font-size:13px;font-weight:800;">Scrivi la cartolina: 3 frasi all&rsquo;imperfetto</span>
+                  <textarea id="gpCard" rows="4" maxlength="600" onInput="{{onTripCard}}" placeholder="Ogni mattina prendevo un cappuccino. Faceva caldo. Il mare era blu&hellip;">{{tsCard}}</textarea>
+                  <span class="gp-count-sm">{{tsCount}}</span>
+                </label>
+                <label for="gpPin" class="bt-pinrow"><span>PIN della Prof</span><input id="gpPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" value="{{tripPin}}" onInput="{{onTripPin}}" placeholder="&bull;&bull;&bull;&bull;"></label>
+                <button class="gp-btn" onClick="{{stampHandler}}">Timbra il passaporto &#10003;</button>
+              </sc-if>
+              <sc-if value="{{tsStamped}}" hint-placeholder-val="{{false}}">
+                <div class="gp-post"><span class="gp-eye">CARTOLINA &middot; {{tsDay}}</span><p style="margin:0;white-space:pre-wrap;">{{tsCard}}</p><img src="../../assets/boutique/pin_ok.webp" alt="Timbrato" class="gp-stamp"></div>
+              </sc-if>
+              <sc-if value="{{tsSoon}}" hint-placeholder-val="{{false}}"><span style="font-size:14px;color:var(--text-muted);">Presto! A new destination is coming.</span></sc-if>
+              <sc-if value="{{hasTripMsg}}" hint-placeholder-val="{{false}}"><div class="{{tripMsgCls}}">{{tripMsg}}</div></sc-if>
+            </div>
+          </sc-if>
+        </section>
+        <sc-if value="{{hasCatena}}" hint-placeholder-val="{{false}}">
+          <div class="bt-chain">
+            <div class="bt-chain-art" role="img" aria-label="La tua catena d&rsquo;oro: {{chainText}}"><span class="bt-chain-txt" style="{{chainFs}}">{{chainText}}</span></div>
+            <label for="btChain" style="display:flex;flex-direction:column;gap:6px;min-width:0;">
+              <span style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);">INCIDI LA CATENA</span>
+              <input id="btChain" type="text" maxlength="12" autocomplete="off" value="{{chainText}}" onInput="{{onChain}}" placeholder="Il tuo nome">
+              <span style="font-size:11.5px;color:var(--text-faint-2);">Max 12 lettere &middot; engrave your name</span>
+            </label>
+          </div>
+          <sc-if value="{{hasChainMsg}}" hint-placeholder-val="{{false}}"><div class="toast bt-vmsg bt-bad">{{chainMsg}}</div></sc-if>
+        </sc-if>
         <div class="locker-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">
           <sc-for list="{{lockerItems}}" as="li" hint-placeholder-count="9">
             <div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border-radius:14px;background:var(--card-bg);border:2px solid {{li.border}};text-align:center;">
-              <div class="{{li.cls}}" style="{{li.iconStyle}}"></div>
+              <div class="{{li.cls}}" style="{{li.iconStyle}}">{{li.emo}}</div>
               <span style="font-size:12.5px;font-weight:800;line-height:1.2;">{{li.it}}</span>
               <span style="font-size:11px;color:var(--text-faint-2);line-height:1.2;">{{li.en}}</span>
               <span style="font-size:9.5px;font-weight:800;letter-spacing:.08em;color:{{li.rarityColor}};">{{li.rarity}}</span>
@@ -939,6 +1066,18 @@
             </div>
           </sc-for>
         </div>
+
+        <sc-if value="{{hasVouchers}}" hint-placeholder-val="{{false}}">
+          <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);padding-top:6px;">VITA VERA &middot; I TUOI VOUCHER</div>
+          <label for="btPin" class="bt-pinrow"><span>PIN della Prof</span><input id="btPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" value="{{pinDraft}}" onInput="{{onPin}}" placeholder="&bull;&bull;&bull;&bull;"></label>
+          <sc-if value="{{hasVoucherMsg}}" hint-placeholder-val="{{false}}"><div class="toast bt-vmsg">{{voucherMsg}}</div></sc-if>
+          <sc-for list="{{voucherList}}" as="vc" hint-placeholder-count="1">
+            <div class="bt-voucher" style="{{vc.style}}">
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0;"><b style="font-size:15px;">{{vc.title}}</b><span class="bt-code">{{vc.code}}</span><span style="font-size:12px;color:var(--text-faint-2);">{{vc.day}} &middot; {{vc.status}}</span></div>
+              <sc-if value="{{vc.open}}" hint-placeholder-val="{{true}}"><button onClick="{{vc.redeem}}" class="bt-redeem">Riscatta</button></sc-if>
+            </div>
+          </sc-for>
+        </sc-if>
 
         <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);padding-top:6px;">CULTURE CARDS</div>
         <sc-if value="{{hasCards}}" hint-placeholder-val="{{false}}">
@@ -950,7 +1089,7 @@
           </sc-for>
         </sc-if>
         <sc-if value="{{noCards}}" hint-placeholder-val="{{true}}">
-          <div style="font-size:13px;color:var(--text-faint);">Earn your first centone (100 BC) to unlock your first culture card.</div>
+          <div style="font-size:13px;color:var(--text-faint);">Earn your first centone (500 BC) to unlock your first culture card.</div>
         </sc-if>
 
         <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);padding-top:6px;">BADGES</div>
@@ -1096,10 +1235,10 @@
           <div class="display" style="font-size:28px;font-weight:800;">How to play</div>
           <div style="display:flex;flex-direction:column;gap:12px;font-size:14.5px;line-height:1.5;">
             <div><b>1. Pick a mode.</b> Mixed Review is the whole test. Each card takes a few seconds.</div>
-            <div><b>2. The imperfetto = what you <i>used to</i> do.</b> Da piccolo/a, di solito, ogni estate, sempre &rarr; imperfetto. Take the infinitive, drop <b>-re</b>, add <b>-vo, -vi, -va, -vamo, -vate, -vano</b>: gioca-re &rarr; gioca<b>vo</b>. Only <b>essere</b> is irregular: ero, eri, era&hellip; Weather and age are always imperfetto: <i>Pioveva. Avevo 7 anni.</i></div>
-            <div><b>3. Earn Boh Cashi.</b> Correct answer 1 BC &middot; fixing an old mistake 3 BC &middot; finishing a round 5 BC &middot; first round of the day 2 BC. Wrong answers never cost you anything.</div>
-            <div><b>4. Every 100 BC = un centone.</b> Each one opens a <b>Pacco Boh</b> with a surprise prize. Some are amazing. Some are&hellip; a sock.</div>
-            <div><b>5. Spend Boh Cashi in Il Negozio</b> and show off your collection in your locker. The best stuff only comes from a Pacco Boh.</div>
+            <div><b>2. The imperfetto = what you <i>used to</i> do.</b> Da piccolo/a, di solito, ogni estate, sempre &rarr; imperfetto. Take the infinitive, drop <b>-re</b>, add <b>-vo, -vi, -va, -vamo, -vate, -vano</b>: gioca-re &rarr; gioca<b>vo</b>. <b>Essere</b> is the big irregular: ero, eri, era&hellip; <b>Fare, bere, dire</b> use their old Latin stems: <b>face</b>vo, <b>beve</b>vo, <b>dice</b>vo. Weather and age are always imperfetto: <i>Pioveva. Avevo 7 anni.</i></div>
+            <div><b>3. Earn Boh Cashi.</b> Correct answer 5&ndash;30 BC (harder cards pay more) &middot; fixing an old mistake 15 BC &middot; finishing a round 25 BC. Wrong answers never cost you anything.</div>
+            <div><b>4. Every 500 BC = un centone.</b> Each one opens a <b>Pacco Boh</b> with a surprise prize. Some are amazing. Some are&hellip; a sock.</div>
+            <div><b>5. Spend Boh Cashi in Scotto&rsquo;s Boh-tique</b> and show off your collection in your locker. The best stuff only comes from a Pacco Boh.</div>
             <div><b>Tip:</b> &ldquo;Fix my mistakes&rdquo; pays the most &mdash; and it&rsquo;s what actually raises your test score.</div>
             <div style="font-size:12.5px;color:var(--text-faint);">Each card pays once per day. Your progress is saved on this device.</div>
           </div>
@@ -1360,20 +1499,111 @@ var CARDS = {
   card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = €5 · un deca = €10 · una piotta = €100 · un sacco = €1,000. Careful: venti sacchi = €20,000!' }
 };
 var BADGES = [
-  { id: 'centone',       name: 'Un Centone',          desc: 'Earn 100 Boh Cashi.' },
+  { id: 'centone',       name: 'Un Centone',          desc: 'Earn 500 Boh Cashi.' },
   { id: 'permission_trap', name: 'Pioveva!',            desc: 'Get “Piove → Pioveva” right 3 times.' },
   { id: 'the_musts',     name: 'Leggevo',             desc: 'Get all six LEGGERE forms right.' },
   { id: 'the_wants',     name: 'Parlavo',             desc: 'Get all six PARLARE forms right.' },
   { id: 'the_cans',      name: 'Dormivo',             desc: 'Get all six DORMIRE forms right.' },
   { id: 'perfect_blank', name: 'Meteo Master',        desc: '10 weather cards right in a row.' },
   { id: 'comeback',      name: 'Comeback',            desc: 'Get one right after missing 3 in a row.' },
-  { id: 'tre_di_fila',   name: '3 giorni di fila',    desc: 'Practice 3 days in a row.' },
-  { id: 'un_sacco',      name: 'Un Sacco',            desc: 'Earn 1,000 Boh Cashi.' }
+  { id: 'tre_di_fila',   name: '3 giorni di fila',    desc: 'Practice 3 school days in a row.' },
+  { id: 'fiamma_oro',    name: 'Fiamma d\u2019oro',   desc: '30 school days in a row. Leggenda.' },
+  { id: 'giro_italia',   name: 'Giro d\u2019Italia',  desc: 'All 12 cities stamped in your Passaporto.' },
+  { id: 'un_sacco',      name: 'Un Sacco',            desc: 'Earn 5,000 Boh Cashi.' }
 ];
+
+// ===== Scotto's Boh-tique =====
+var BT_SECTIONS = [["drip", "Boh Drip"], ["testa", "Testa"], ["accessori", "Accessori"], ["sciarpe", "Sciarpe di Scotto"], ["occhiali", "Occhiali"], ["sport", "Sport"], ["cultura", "Cultura"], ["souvenir", "Souvenir"], ["garage", "Il Garage"], ["viaggi", "Viaggi \u2708"], ["pacco", "Pacco Boh"], ["aiuti", "Aiuti"], ["vita", "Vita Vera"]];
+var BT_SEC_OF = {"felpa": "drip", "maglia_calcio": "drip", "giacca_jeans": "drip", "sneakers_rosse": "drip", "felpa_verde": "drip", "piumino": "drip", "giacca_college": "drip", "maglia_azzurra": "drip", "maglia_hhw": "drip", "cappellino": "testa", "berretto": "testa", "cappello_pescatore": "testa", "cappello_gondoliere": "testa", "casco_vespa": "testa", "corona_oro": "testa", "hijab_verde": "testa", "hijab_rosa": "testa", "hijab_navy": "testa", "hijab_sabbia": "testa", "hijab_bordeaux": "testa", "braccialetto": "accessori", "cuffie": "accessori", "zaino": "accessori", "borsello": "accessori", "telefono": "accessori", "borsa_colosseo": "accessori", "mantello": "accessori", "aura": "accessori", "sciarpa_calcio": "sciarpe", "occhiali_sole": "occhiali", "occhiali_tondi": "occhiali", "occhiali_firmati": "occhiali", "tazzina": "cultura", "gelato": "cultura", "pizza": "cultura", "ripara": "aiuti"};
+var BT_NEW = [{"id": "maglia_boh00", "it": "La maglia BOH 00", "en": "The Boh Drip jersey", "rarity": "ASSURDO", "source": "shop", "price": 1500, "sec": "drip", "emo": "👕", "soon": true}, {"id": "gonna_pieghe", "it": "La gonna a pieghe", "en": "Pleated skirt", "rarity": "COMUNE", "source": "shop", "price": 200, "sec": "drip", "emo": "👗", "soon": true}, {"id": "jeans_larghi", "it": "I jeans larghi", "en": "Baggy jeans", "rarity": "COMUNE", "source": "shop", "price": 250, "sec": "drip", "emo": "👖", "soon": true}, {"id": "cargo", "it": "I pantaloni cargo", "en": "Cargo pants", "rarity": "COMUNE", "source": "shop", "price": 250, "sec": "drip", "emo": "👖", "soon": true}, {"id": "pantaloncini", "it": "I pantaloncini", "en": "Shorts", "rarity": "COMUNE", "source": "shop", "price": 150, "sec": "drip", "emo": "🩳", "soon": true}, {"id": "sneakers_bianche", "it": "Le sneakers bianche", "en": "White sneakers", "rarity": "COMUNE", "source": "shop", "price": 200, "sec": "drip", "emo": "👟", "soon": true}, {"id": "look_azzurro", "it": "Look completo · Azzurro", "en": "Full fit · Napoli blue", "rarity": "EPICO", "source": "shop", "price": 900, "sec": "drip", "emo": "⚽", "soon": true}, {"id": "look_hornets", "it": "Look completo · Hornets", "en": "Full fit · orange & black", "rarity": "EPICO", "source": "shop", "price": 900, "sec": "drip", "emo": "🐝", "soon": true}, {"id": "sciarpa_seta", "it": "La sciarpa di seta fiorentina", "en": "Florentine silk scarf", "rarity": "RARO", "source": "shop", "price": 300, "sec": "sciarpe", "emo": "🧣", "soon": true}, {"id": "sciarpa_tricolore", "it": "La sciarpa tricolore", "en": "Tricolor scarf", "rarity": "COMUNE", "source": "shop", "price": 250, "sec": "sciarpe", "emo": "🧣", "soon": true}, {"id": "sciarpa_leopardata", "it": "La sciarpa leopardata", "en": "Leopard scarf", "rarity": "RARO", "source": "shop", "price": 400, "sec": "sciarpe", "emo": "🧣", "soon": true}, {"id": "sciarpa_cashmere", "it": "La sciarpa di cashmere milanese", "en": "Milanese cashmere scarf", "rarity": "EPICO", "source": "shop", "price": 600, "sec": "sciarpe", "emo": "🧣", "soon": true}, {"id": "sciarpa_prof", "it": "La sciarpa della Prof", "en": "The Prof’s own scarf", "rarity": "EPICO", "source": "shop", "price": 900, "sec": "sciarpe", "emo": "🧣", "soon": true}, {"id": "occhiali_milano", "it": "Occhiali Milano Couture", "en": "Milan runway sunglasses", "rarity": "EPICO", "source": "shop", "price": 800, "sec": "occhiali", "emo": "🕶️", "soon": true}, {"id": "occhiali_riviera", "it": "Occhiali Riviera d’Oro", "en": "Gold Riviera sunglasses", "rarity": "EPICO", "source": "shop", "price": 1000, "sec": "occhiali", "emo": "🕶️", "soon": true}, {"id": "occhiali_capri", "it": "Occhiali Diva di Capri", "en": "Capri diva sunglasses", "rarity": "ASSURDO", "source": "shop", "price": 1200, "sec": "occhiali", "emo": "🕶️", "soon": true}, {"id": "cannolo", "it": "Il cannolo", "en": "Cannolo with pistachios", "rarity": "COMUNE", "source": "shop", "price": 75, "sec": "cultura", "emo": "", "img": "../../assets/boutique/cannolo.webp"}, {"id": "moka", "it": "La moka", "en": "Stovetop espresso maker", "rarity": "COMUNE", "source": "shop", "price": 100, "sec": "cultura", "emo": "", "img": "../../assets/boutique/moka.webp"}, {"id": "sfogliatella", "it": "La sfogliatella", "en": "Naples’ famous pastry", "rarity": "RARO", "source": "shop", "price": 150, "sec": "cultura", "emo": "", "img": "../../assets/boutique/sfogliatella.webp"}, {"id": "maschera_carnevale", "it": "La maschera di Carnevale", "en": "Carnevale di Venezia mask", "rarity": "RARO", "source": "shop", "price": 300, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/maschera_rossa.webp"}, {"id": "cornicello_gigante", "it": "Il cornicello gigante", "en": "Giant lucky horn · keeps the malocchio away", "rarity": "EPICO", "source": "shop", "price": 600, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/cornicello.webp"}, {"id": "bici_rossa", "it": "La bici rossa", "en": "Red city bike", "rarity": "RARO", "source": "shop", "price": 1000, "sec": "garage", "emo": "", "img": "../../assets/boutique/bici.webp"}, {"id": "scooter_rosso", "it": "Lo scooter rosso", "en": "Red Italian scooter", "rarity": "EPICO", "source": "shop", "price": 2500, "sec": "garage", "emo": "", "img": "../../assets/boutique/scooter.webp"}, {"id": "cinquecento", "it": "La Cinquecento color panna", "en": "Cream vintage city car", "rarity": "EPICO", "source": "shop", "price": 4000, "sec": "garage", "emo": "", "img": "../../assets/boutique/cinquecento.webp"}, {"id": "ape", "it": "L’Ape", "en": "Three-wheeled mini truck", "rarity": "EPICO", "source": "shop", "price": 5000, "sec": "garage", "emo": "", "img": "../../assets/boutique/ape.webp"}, {"id": "supercar_rossa", "it": "La Supercar Rossa", "en": "The red Italian supercar", "rarity": "ASSURDO", "source": "shop", "price": 10000, "sec": "garage", "emo": "", "img": "../../assets/boutique/supercar.webp"}, {"id": "pacco_mini", "it": "Pacco Boh Mini", "en": "Blind box · a surprise prize", "rarity": "COMUNE", "source": "shop", "price": 150, "sec": "pacco", "emo": "", "pack": "mini", "img": "../../assets/boutique/regalo.webp"}, {"id": "pacco_grande", "it": "Pacco Boh Grande", "en": "Treasure box · EPICO or better", "rarity": "EPICO", "source": "shop", "price": 600, "sec": "pacco", "emo": "", "pack": "grande", "img": "../../assets/boutique/forziere.webp"}, {"id": "sticker_set", "it": "Collezione sticker", "en": "Boh sticker collection", "rarity": "RARO", "source": "shop", "price": 200, "sec": "pacco", "emo": "✨", "soon": true}, {"id": "salta", "it": "Salta una domanda", "en": "Skip one practice question (never on La Prova)", "rarity": "COMUNE", "source": "shop", "price": 60, "sec": "aiuti", "emo": "⏭️", "consumable": true}, {"id": "vv_posto", "it": "Scegli il tuo posto", "en": "Pick your seat for one day", "rarity": "RARO", "source": "shop", "price": 800, "sec": "vita", "emo": "🪑", "voucher": true}, {"id": "vv_canzone", "it": "La canzone del giorno", "en": "Pick the Italian song for class", "rarity": "RARO", "source": "shop", "price": 800, "sec": "vita", "emo": "🎵", "voucher": true}, {"id": "vv_prof", "it": "Fai il Prof", "en": "Lead the warm-up", "rarity": "EPICO", "source": "shop", "price": 1200, "sec": "vita", "emo": "🎓", "voucher": true}, {"id": "vv_wall", "it": "Boh Wall of Fame", "en": "Your name on the Wall of Fame", "rarity": "RARO", "source": "shop", "price": 1000, "sec": "vita", "emo": "", "voucher": true, "img": "../../assets/boutique/trofeo.webp"}, {"id": "vv_gioco", "it": "Il gioco del venerdì", "en": "Pick Friday’s review game", "rarity": "EPICO", "source": "shop", "price": 1500, "sec": "vita", "emo": "🎲", "voucher": true}, {"id": "vv_warmup", "it": "Salta il warm-up", "en": "Skip one warm-up question", "rarity": "RARO", "source": "shop", "price": 1000, "sec": "vita", "emo": "✋", "voucher": true}, {"id": "vv_sticker", "it": "Uno sticker Boh vero", "en": "A real Boh sticker", "rarity": "EPICO", "source": "shop", "price": 1500, "sec": "vita", "emo": "🏷️", "voucher": true, "soon": true}, {"id": "catena_oro", "it": "La catena d’oro", "en": "Gold chain · engrave your own name", "rarity": "EPICO", "source": "shop", "price": 900, "sec": "accessori", "emo": "", "img": "../../assets/boutique/catena.webp", "engrave": true}, {"id": "cornetto_collana", "it": "La collana col cornetto", "en": "Lucky-horn necklace", "rarity": "RARO", "source": "shop", "price": 350, "sec": "accessori", "emo": "", "img": "../../assets/boutique/cornetto_collana.webp"}, {"id": "espresso", "it": "Un espresso al bar", "en": "Drink it al banco, like a local", "rarity": "COMUNE", "source": "shop", "price": 60, "sec": "cultura", "emo": "", "img": "../../assets/boutique/espresso.webp"}, {"id": "pizza_asporto", "it": "La pizza d’asporto", "en": "Pizza to go", "rarity": "COMUNE", "source": "shop", "price": 80, "sec": "cultura", "emo": "", "img": "../../assets/boutique/pizzabox.webp"}, {"id": "gelato_tre", "it": "Il gelato tre gusti", "en": "Pistacchio, crema, fragola", "rarity": "COMUNE", "source": "shop", "price": 90, "sec": "cultura", "emo": "", "img": "../../assets/boutique/gelato3.webp"}, {"id": "moka_oro", "it": "La moka d’oro", "en": "Trophy for the best coffee", "rarity": "EPICO", "source": "shop", "price": 700, "sec": "cultura", "emo": "", "img": "../../assets/boutique/moka_oro.webp"}, {"id": "forziere_cannoli", "it": "Il tesoro di cannoli", "en": "A treasure chest of cannoli", "rarity": "ASSURDO", "source": "shop", "price": 1200, "sec": "cultura", "emo": "", "img": "../../assets/boutique/forziere_cannoli.webp"}, {"id": "pallone_tricolore", "it": "Il pallone tricolore", "en": "Tricolor soccer ball", "rarity": "COMUNE", "source": "shop", "price": 120, "sec": "sport", "emo": "", "img": "../../assets/boutique/pallone_tricolore.webp"}, {"id": "pallone_stelle", "it": "Il pallone stellato", "en": "Star soccer ball", "rarity": "RARO", "source": "shop", "price": 250, "sec": "sport", "emo": "", "img": "../../assets/boutique/pallone_stelle.webp"}, {"id": "scarpini", "it": "Gli scarpini tricolore", "en": "Tricolor soccer cleats", "rarity": "RARO", "source": "shop", "price": 300, "sec": "sport", "emo": "", "img": "../../assets/boutique/scarpini.webp"}, {"id": "trofeo_calcio", "it": "Il trofeo del campione", "en": "The champion’s trophy", "rarity": "ASSURDO", "source": "shop", "price": 1500, "sec": "sport", "emo": "", "img": "../../assets/boutique/trofeo_calcio.webp"}, {"id": "maschera_blu", "it": "La maschera veneziana blu", "en": "Blue Venetian mask", "rarity": "RARO", "source": "shop", "price": 250, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/maschera_blu.webp"}, {"id": "maschera_arlecchino", "it": "La maschera di Arlecchino", "en": "Harlequin, from the commedia dell’arte", "rarity": "RARO", "source": "shop", "price": 300, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/maschera_arlecchino.webp"}, {"id": "maschera_medico", "it": "Il medico della peste", "en": "The plague-doctor mask of Venice", "rarity": "EPICO", "source": "shop", "price": 450, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/maschera_medico.webp"}, {"id": "palla_colosseo", "it": "La palla di neve del Colosseo", "en": "Colosseum snow globe", "rarity": "COMUNE", "source": "shop", "price": 150, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/palla_colosseo.webp"}, {"id": "torre_pisa", "it": "La Torre di Pisa (cool)", "en": "Leaning Tower in sunglasses", "rarity": "COMUNE", "source": "shop", "price": 180, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/torre_pisa.webp"}, {"id": "tamburello", "it": "Il tamburello della tarantella", "en": "Tambourine for the tarantella", "rarity": "RARO", "source": "shop", "price": 200, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/tamburello.webp"}, {"id": "carretto", "it": "Il carretto siciliano", "en": "Painted Sicilian cart", "rarity": "EPICO", "source": "shop", "price": 900, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/carretto.webp"}, {"id": "corona_pasta", "it": "La corona di pasta", "en": "A crown made of pasta", "rarity": "EPICO", "source": "shop", "price": 800, "sec": "souvenir", "emo": "", "img": "../../assets/boutique/corona_pasta.webp"}];
+
+var BT_TRIPS = [
+  ['pisa', 'La Torre di Pisa', 'Pisa', 'RARO', 2000, 'Gita'],
+  ['verona', 'Verona e l’Arena', 'Verona', 'RARO', 3000, 'Gita'],
+  ['milano', 'Il Duomo di Milano', 'Milano', 'RARO', 3000, 'Gita'],
+  ['trevi', 'La Fontana di Trevi', 'Fontana di Trevi', 'RARO', 3000, 'Gita'],
+  ['roma', 'Il Colosseo', 'Roma', 'EPICO', 5000, 'Vacanza'],
+  ['firenze', 'Firenze e il Duomo', 'Firenze', 'EPICO', 5000, 'Vacanza'],
+  ['venezia', 'Venezia in gondola', 'Venezia', 'EPICO', 5000, 'Vacanza'],
+  ['pompei', 'Gli scavi di Pompei', 'Pompei', 'EPICO', 5000, 'Vacanza'],
+  ['capri', 'Capri e i Faraglioni', 'Capri', 'ASSURDO', 8000, 'Viaggio da sogno'],
+  ['amalfi', 'La Costiera Amalfitana', 'Costiera Amalfitana', 'ASSURDO', 8000, 'Viaggio da sogno'],
+  ['napoli', 'Napoli e il Vesuvio', 'Napoli', 'ASSURDO', 8000, 'Viaggio da sogno'],
+  ['sicilia', 'Taormina e l’Etna', 'Sicilia', 'ASSURDO', 8000, 'Viaggio da sogno']
+];
+var BT_SPARE = { rimini: 'Rimini', ischia: 'Ischia', sardegna: 'Sardegna' };
+var BT_MAP = {"milano": [19.92, 18.66], "verona": [36.84, 20.24], "venezia": [54.7, 16.98], "rimini": [59.21, 32.09], "pisa": [29.7, 35.07], "firenze": [43.52, 35.17], "trevi": [38.16, 41.51], "roma": [49.34, 48.79], "napoli": [59.87, 59.7], "pompei": [75.0, 59.42], "ischia": [54.7, 65.95], "capri": [60.43, 70.06], "amalfi": [74.53, 69.87], "sicilia": [52.35, 89.09], "sardegna": [15.23, 61.66]};
+var CART_KEYS = BT_TRIPS.map(function (t) { return t[0]; });
+var BT_TRIP = {};
+BT_TRIPS.forEach(function (t) {
+  BT_TRIP[t[0]] = { key: t[0], title: t[1], city: t[2], rarity: t[3], price: t[4], tier: t[5] };
+  BT_NEW.push({ id: 'viaggio_' + t[0], it: t[1], en: t[5] + ' · boarding pass + passport stamp', rarity: t[3], source: 'shop',
+                price: t[4], sec: 'viaggi', emo: '', img: '../../assets/boutique/viaggio_' + t[0] + '.webp', trip: t[0] });
+});
+BT_NEW.push({ id: 'scudo', it: 'Lo Scudo della Fiamma', en: 'Saves your 🔥 for one missed school day', rarity: 'RARO', source: 'shop',
+              price: 150, sec: 'aiuti', emo: '🛡️', consumable: true });
+var BT_MILES = { 3: { bc: 0, mini: 1, t: '+1 Pacco Boh' }, 7: { bc: 0, grande: 1, t: '+1 Pacco Grande' },
+                 15: { bc: 500, grande: 1, t: '+500 BC e un Pacco Grande' }, 30: { bc: 1000, badge: 'fiamma_oro', t: '+1000 BC e la Fiamma d’oro' } };
+function btParse(k) { var p = String(k).split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+function btWeek(d) { var t = new Date(d.getFullYear(), d.getMonth(), d.getDate()); t.setDate(t.getDate() - ((t.getDay() + 6) % 7)); return t.getFullYear() + '-' + (t.getMonth() + 1) + '-' + t.getDate(); }
+// School-day streak: weekends never break it; 1 free Scudo a week covers a sick day.
+function btFiamma(s, today) {
+  var now = btParse(today), week = btWeek(now), scudi = s.scudi || 0, streak = s.diFila || 0, out = { used: 0, back: false, pause: false };
+  if (s.scudoWeek !== week) scudi = Math.max(scudi, 1);
+  if (!s.lastPlay) { out.streak = 1; }
+  else {
+    var last = btParse(s.lastPlay), missed = 0, d = new Date(last.getFullYear(), last.getMonth(), last.getDate() + 1);
+    while (d < now) { var wd = d.getDay(); if (wd !== 0 && wd !== 6) missed++; d.setDate(d.getDate() + 1); }
+    if (missed === 0) out.streak = streak + 1;
+    else if (missed <= scudi) { scudi -= missed; out.used = missed; out.streak = streak + 1; }
+    else if (missed >= 6) { out.pause = true; out.streak = Math.max(streak, 1); }   // school break: paused, not lost
+    else out.streak = 1;
+    out.back = missed >= 3;
+  }
+  out.scudi = scudi; out.week = week;
+  return out;
+}
+function btBoost(s) { var pd = s.playDays || 0; return (pd > 0 && pd <= 5) || (s.bentornato || 0) > 0 ? 2 : 1; }
+function btMult(s, fresh) {
+  var m = btBoost(s), mode = s.mode || '';
+  if (fresh && /^cart_/.test(mode) && (s.passed || []).indexOf(mode) === -1) m *= 3;
+  if (fresh && mode === 'dialetti') m *= 2;
+  return Math.min(m, 4);
+}
+function btNextCart(s) { var p = s.passed || []; for (var i = 0; i < CART_KEYS.length; i++) if (p.indexOf('cart_' + CART_KEYS[i]) === -1) return 'cart_' + CART_KEYS[i]; return 'cart_' + CART_KEYS[Math.floor(Math.random() * CART_KEYS.length)]; }
+function btCartDone(s) { var p = s.passed || []; return CART_KEYS.filter(function (k) { return p.indexOf('cart_' + k) !== -1; }).length; }
+var BT_IMPF = /\b[a-zà-ù]+(avo|evo|ivo|avi|evi|ivi|ava|eva|iva|avamo|evamo|ivamo|avate|evate|ivate|avano|evano|ivano)\b|\b(ero|eri|era|eravamo|eravate|erano|c'era|c'erano)\b/i;
+function btSentences(t) {
+  return String(t || '').split(/[.!?\n]+/).map(function (x) { return x.trim(); })
+    .filter(function (x) { return x.split(/\s+/).length >= 2; });
+}
+function btCardOk(t) { return btSentences(t.replace(/’/g, "'")).filter(function (x) { return BT_IMPF.test(x); }).length; }
+var BT_PIN = '1b0fa6c4c967f1c21f9c23ecc41ef8a27528a7be52b29d65d47123f5ac18d5be';
+var BT_ECON = 5; // every payout and price is x5: ~5-30 BC a card, 500 BC = un centone
+(function () {
+  ITEMS.forEach(function (it) {
+    if (it.price) it.price = it.price * BT_ECON;
+    it.sec = BT_SEC_OF[it.id] || (it.source === 'shop' ? 'accessori' : undefined);
+  });
+  var rip = itemById('ripara'); if (rip) rip.price = 40;
+  BT_NEW.forEach(function (it) { ITEMS.push(it); });
+})();
+function btGate(it, s) {
+  if (it.voucher || it.pack || it.consumable) return '';
+  if (it.rarity === 'ASSURDO' && !((s.provaBest || 0) >= 90)) return 'Unlock: 90% on La Prova';
+  if (it.rarity === 'EPICO' && (s.passed || []).indexOf('frasi') === -1) return 'Unlock: pass all 7 levels';
+  return '';
+}
+function btCode() { var a = '23456789ABCDEFGHJKMNPQRSTVWXYZ', o = ''; for (var i = 0; i < 6; i++) o += a[Math.floor(Math.random() * a.length)]; return o.slice(0, 3) + '-' + o.slice(3); }
+function btSha(txt) {
+  try { return crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt)).then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }); }
+  catch (e) { return Promise.resolve(''); }
+}
+
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession'];
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles'];
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
 function cleanName(raw) { return (raw || '').replace(/[^A-Za-z0-9\u00C0-\u017F ]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
@@ -1382,7 +1612,7 @@ function badgeById(id) { for (var i = 0; i < BADGES.length; i++) if (BADGES[i].i
 function dayKey(offset) { var d = new Date(); d.setDate(d.getDate() + (offset || 0)); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
 function addUnique(arr, v) { return arr.indexOf(v) === -1 ? arr.concat([v]) : arr; }
 function progressDefaults() {
-  return { cashi: 0, lifetime: 0, centoniOpened: 0, sacchiOpened: 0, inventory: [], badges: [], missedEver: [], lastPlay: null, diFila: 0, ageTrap: 0, formsHit: [],
+  return { trips: [], scudi: 0, scudoWeek: '', playDays: 0, bentornato: 0, fiammaMiles: [], cashi: 0, lifetime: 0, centoniOpened: 0, sacchiOpened: 0, inventory: [], badges: [], missedEver: [], lastPlay: null, diFila: 0, ageTrap: 0, formsHit: [],
            paid: [], missedNow: [], sessionEarned: 0, lastEarn: 0, newBadges: [], eaRun: 0, missRun: 0, zooSession: [],
            paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, returnScreen: 'home', shopMsg: '',
            glossWord: '', glossMean: '', lastTyped: '', fixing: false,
@@ -1594,6 +1824,15 @@ var MODES = {
   dialetti: { label: 'BONUS \u00b7 Dialetti', sub: 'Napoli, Roma, Sicilia, Venezia \u2014 just for fun', cats: ['dialetti'], needs: null },
   mistakes: { label: 'Fix my mistakes', sub: 'Only the cards you missed', cats: [], needs: null }
 };
+(function () {
+  var CITY = { pisa: 'Pisa', verona: 'Verona', milano: 'Milano', trevi: 'Fontana di Trevi', roma: 'Roma', firenze: 'Firenze', venezia: 'Venezia',
+               pompei: 'Pompei', capri: 'Capri', amalfi: 'Costiera Amalfitana', napoli: 'Napoli', sicilia: 'Sicilia' };
+  Object.keys(CITY).forEach(function (k) {
+    MODES['cart_' + k] = { label: 'Cartolina da ' + CITY[k], sub: '5 cartoline all’imperfetto', cats: ['cart_' + k], needs: null };
+    CAT_LABEL['cart_' + k] = 'CARTOLINA DA ' + CITY[k].toUpperCase();
+  });
+  MODES.cartoline = { label: 'BONUS · Cartoline ✈', sub: '12 cities · 3× BC the first time', cats: Object.keys(CITY).map(function (k) { return 'cart_' + k; }), needs: null, total: 5 };
+})();
 
 
 var QUESTION_BANK = [
@@ -4141,10 +4380,10 @@ var QUESTION_BANK = [
 },
 {
 "id": "d",
-"label": "Quando ero piccolo / piccola…"
+"label": "Dai! Forza! (Come on!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Chiove! (Napoletano) = Piove! (It’s raining!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl2",
@@ -4160,18 +4399,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "È bello! (It’s nice!)"
+"label": "Adesso (now)"
 },
 {
 "id": "c",
-"label": "Andiamo! (Let’s go!)"
+"label": "Guarda! (Look!)"
 },
 {
 "id": "d",
-"label": "Adesso (now)"
+"label": "Quando ero ragazzino…"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Quanno ero piccerillo / piccerella… (Napoletano) = Quando ero piccolo / piccola…. Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl3",
@@ -4187,18 +4426,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Guarda! (Look!)"
+"label": "Ehi! (Hey!)"
 },
 {
 "id": "c",
-"label": "I soldi (money — like Boh Cashi!)"
+"label": "Piove! (It’s raining!)"
 },
 {
 "id": "d",
-"label": "Ehi! (Hey!)"
+"label": "I soldi (money — like Boh Cashi!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Jamme! (Napoletano) = Andiamo! (Let’s go!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl4",
@@ -4214,18 +4453,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Piove! (It’s raining!)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "c",
-"label": "Andiamo! (Let’s go!)"
+"label": "Adesso (now)"
 },
 {
 "id": "d",
-"label": "Andiamo! (Let’s go!)"
+"label": "Quando ero ragazzino…"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Uè! (Napoletano) = Ehi! (Hey!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl5",
@@ -4241,18 +4480,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Andiamo! (Let’s go!)"
+"label": "I soldi (money — like Boh Cashi!)"
 },
 {
 "id": "c",
-"label": "Quando ero piccolo / piccola…"
+"label": "Ehi! (Hey!)"
 },
 {
 "id": "d",
-"label": "Guarda! (Look!)"
+"label": "Piove! (It’s raining!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Daje! (Romanesco) = Dai! Forza! (Come on!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl6",
@@ -4268,18 +4507,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Andiamo! (Let’s go!)"
+"label": "Dai! Forza! (Come on!)"
 },
 {
 "id": "c",
-"label": "Andiamo! (Let’s go!)"
+"label": "Ehi! (Hey!)"
 },
 {
 "id": "d",
-"label": "Quando ero piccolo / piccola…"
+"label": "I soldi (money — like Boh Cashi!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Quanno ero pischello… (Romanesco) = Quando ero ragazzino…. Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl7",
@@ -4295,18 +4534,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Dai! Forza! (Come on!)"
+"label": "Quando ero ragazzino…"
 },
 {
 "id": "c",
-"label": "Quando ero piccolo / piccola…"
+"label": "I soldi (money — like Boh Cashi!)"
 },
 {
 "id": "d",
-"label": "È bello! (It’s nice!)"
+"label": "Adesso (now)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Annamo! (Romanesco) = Andiamo! (Let’s go!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl8",
@@ -4322,18 +4561,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "È bello! (It’s nice!)"
+"label": "I soldi (money — like Boh Cashi!)"
 },
 {
 "id": "c",
-"label": "Dai! Forza! (Come on!)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "d",
-"label": "Quando ero piccolo / piccola…"
+"label": "Piove! (It’s raining!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Mo’ (Romanesco) = Adesso (now). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl9",
@@ -4349,18 +4588,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "I soldi (money — like Boh Cashi!)"
+"label": "Quando ero ragazzino…"
 },
 {
 "id": "c",
-"label": "Guarda! (Look!)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "d",
-"label": "Andiamo! (Let’s go!)"
+"label": "Dai! Forza! (Come on!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Chiovi! (Siciliano) = Piove! (It’s raining!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl10",
@@ -4376,18 +4615,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Dai! Forza! (Come on!)"
+"label": "Ehi! (Hey!)"
 },
 {
 "id": "c",
-"label": "Guarda! (Look!)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "d",
-"label": "Quando ero ragazzino…"
+"label": "Adesso (now)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Quannu era nicu / nica… (Siciliano) = Quando ero piccolo / piccola…. Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl11",
@@ -4403,18 +4642,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "È bello! (It’s nice!)"
+"label": "Piove! (It’s raining!)"
 },
 {
 "id": "c",
-"label": "Quando ero ragazzino…"
+"label": "Adesso (now)"
 },
 {
 "id": "d",
-"label": "Guarda! (Look!)"
+"label": "È bello! (It’s nice!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Amunì! (Siciliano) = Andiamo! (Let’s go!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl12",
@@ -4438,10 +4677,10 @@ var QUESTION_BANK = [
 },
 {
 "id": "d",
-"label": "Andiamo! (Let’s go!)"
+"label": "Dai! Forza! (Come on!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Talìa! (Siciliano) = Guarda! (Look!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl13",
@@ -4457,18 +4696,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Dai! Forza! (Come on!)"
+"label": "Quando ero ragazzino…"
 },
 {
 "id": "c",
-"label": "Quando ero piccolo / piccola…"
+"label": "Dai! Forza! (Come on!)"
 },
 {
 "id": "d",
-"label": "Andiamo! (Let’s go!)"
+"label": "Guarda! (Look!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Xe bèo! (Veneziano) = È bello! (It’s nice!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl14",
@@ -4484,18 +4723,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Ehi! (Hey!)"
-},
-{
-"id": "c",
 "label": "Quando ero piccolo / piccola…"
 },
 {
+"id": "c",
+"label": "Quando ero ragazzino…"
+},
+{
 "id": "d",
-"label": "Piove! (It’s raining!)"
+"label": "Ehi! (Hey!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Andemo! (Veneziano) = Andiamo! (Let’s go!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl15",
@@ -4511,18 +4750,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "È bello! (It’s nice!)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "c",
-"label": "Quando ero ragazzino…"
+"label": "Dai! Forza! (Come on!)"
 },
 {
 "id": "d",
-"label": "Guarda! (Look!)"
+"label": "È bello! (It’s nice!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "I schei (Veneziano) = I soldi (money — like Boh Cashi!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "dl16",
@@ -4538,18 +4777,18 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Andiamo! (Let’s go!)"
+"label": "Quando ero piccolo / piccola…"
 },
 {
 "id": "c",
-"label": "Andiamo! (Let’s go!)"
+"label": "Piove! (It’s raining!)"
 },
 {
 "id": "d",
-"label": "Guarda! (Look!)"
+"label": "Dai! Forza! (Come on!)"
 }
 ],
-"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+"why": "Ciò! (Veneziano) = Ehi! (Hey!). Andiamo! in 4 dialetti: Jamme! · Annamo! · Amunì! · Andemo!"
 },
 {
 "id": "c1",
@@ -6665,6 +6904,1626 @@ var QUESTION_BANK = [
 "alts": [
 "Quando ero malata, riposavo."
 ]
+},
+{
+"id": "ct_venezia1",
+"cat": "cart_venezia",
+"type": "mc",
+"prompt": "Quando ero piccolo/a, a Venezia ____ sempre il vaporetto.",
+"sub": "Cartolina da Venezia · prendere · io",
+"options": [
+{
+"id": "a",
+"label": "prendevo",
+"correct": true
+},
+{
+"id": "b",
+"label": "ho preso"
+},
+{
+"id": "c",
+"label": "prendo"
+},
+{
+"id": "d",
+"label": "prendeva"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “sempre” is the clue."
+},
+{
+"id": "ct_venezia2",
+"cat": "cart_venezia",
+"type": "mc",
+"prompt": "Ogni estate i miei nonni ____ in una casa vicino a Rialto.",
+"sub": "Cartolina da Venezia · abitare · loro",
+"options": [
+{
+"id": "a",
+"label": "abitavano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno abitato"
+},
+{
+"id": "c",
+"label": "abitano"
+},
+{
+"id": "d",
+"label": "abitavamo"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni estate” = every summer."
+},
+{
+"id": "ct_venezia3",
+"cat": "cart_venezia",
+"type": "mc",
+"prompt": "C’era l’acqua alta e noi ____ gli stivali di gomma.",
+"sub": "Cartolina da Venezia · mettere · noi",
+"options": [
+{
+"id": "a",
+"label": "mettevamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo messo"
+},
+{
+"id": "c",
+"label": "mettiamo"
+},
+{
+"id": "d",
+"label": "mettevano"
+}
+],
+"why": "Description (how things were) → imperfetto. Acqua alta = Venice’s high tide."
+},
+{
+"id": "ct_venezia4",
+"cat": "cart_venezia",
+"type": "mc",
+"prompt": "A Carnevale tutti ____ una maschera.",
+"sub": "Cartolina da Venezia · portare · tutti",
+"options": [
+{
+"id": "a",
+"label": "portavano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno portato"
+},
+{
+"id": "c",
+"label": "portano"
+},
+{
+"id": "d",
+"label": "portavate"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Tutti takes the loro form."
+},
+{
+"id": "ct_venezia5",
+"cat": "cart_venezia",
+"type": "mc",
+"prompt": "La gondola ____ nera e lunghissima.",
+"sub": "Cartolina da Venezia · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_roma1",
+"cat": "cart_roma",
+"type": "mc",
+"prompt": "Da piccolo/a, ogni domenica ____ in bici vicino al Colosseo.",
+"sub": "Cartolina da Roma · andare · io",
+"options": [
+{
+"id": "a",
+"label": "andavo",
+"correct": true
+},
+{
+"id": "b",
+"label": "sono andato/a"
+},
+{
+"id": "c",
+"label": "vado"
+},
+{
+"id": "d",
+"label": "andava"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni domenica” = every Sunday."
+},
+{
+"id": "ct_roma2",
+"cat": "cart_roma",
+"type": "mc",
+"prompt": "I gladiatori ____ nell’arena.",
+"sub": "Cartolina da Roma · combattere · loro",
+"options": [
+{
+"id": "a",
+"label": "combattevano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno combattuto"
+},
+{
+"id": "c",
+"label": "combattono"
+},
+{
+"id": "d",
+"label": "combatteva"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Ancient history told as “how life was”."
+},
+{
+"id": "ct_roma3",
+"cat": "cart_roma",
+"type": "mc",
+"prompt": "Mio zio ____ la pizza al taglio a Trastevere.",
+"sub": "Cartolina da Roma · fare · lui",
+"options": [
+{
+"id": "a",
+"label": "faceva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha fatto"
+},
+{
+"id": "c",
+"label": "fa"
+},
+{
+"id": "d",
+"label": "facevo"
+}
+],
+"why": "Fare is irregular in the imperfetto: facevo, facevi, faceva… Job back then → imperfetto."
+},
+{
+"id": "ct_roma4",
+"cat": "cart_roma",
+"type": "mc",
+"prompt": "Faceva caldo e noi ____ un gelato ogni pomeriggio.",
+"sub": "Cartolina da Roma · mangiare · noi",
+"options": [
+{
+"id": "a",
+"label": "mangiavamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo mangiato"
+},
+{
+"id": "c",
+"label": "mangiamo"
+},
+{
+"id": "d",
+"label": "mangiavano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni pomeriggio” is the clue."
+},
+{
+"id": "ct_roma5",
+"cat": "cart_roma",
+"type": "mc",
+"prompt": "Quanti anni ____ quando hai visto il Colosseo la prima volta?",
+"sub": "Cartolina da Roma · avere · tu",
+"options": [
+{
+"id": "a",
+"label": "avevi",
+"correct": true
+},
+{
+"id": "b",
+"label": "hai avuto"
+},
+{
+"id": "c",
+"label": "hai"
+},
+{
+"id": "d",
+"label": "aveva"
+}
+],
+"why": "Age in the past is always imperfetto: avevo 8 anni, avevi 10 anni."
+},
+{
+"id": "ct_trevi1",
+"cat": "cart_trevi",
+"type": "mc",
+"prompt": "Da piccolo/a, ogni volta ____ una moneta nella Fontana di Trevi.",
+"sub": "Cartolina da Fontana di Trevi · lanciare · io",
+"options": [
+{
+"id": "a",
+"label": "lanciavo",
+"correct": true
+},
+{
+"id": "b",
+"label": "ho lanciato"
+},
+{
+"id": "c",
+"label": "lancio"
+},
+{
+"id": "d",
+"label": "lanciava"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Legend: throw a coin and you’ll come back to Rome."
+},
+{
+"id": "ct_trevi2",
+"cat": "cart_trevi",
+"type": "mc",
+"prompt": "____ sempre tantissimi turisti davanti alla fontana.",
+"sub": "Cartolina da Fontana di Trevi · esserci · plural",
+"options": [
+{
+"id": "a",
+"label": "C’erano",
+"correct": true
+},
+{
+"id": "b",
+"label": "Ci sono stati"
+},
+{
+"id": "c",
+"label": "Ci sono"
+},
+{
+"id": "d",
+"label": "C’era"
+}
+],
+"why": "Description (how things were) → imperfetto. Turisti is plural → c’erano."
+},
+{
+"id": "ct_trevi3",
+"cat": "cart_trevi",
+"type": "mc",
+"prompt": "Mentre noi ____ le foto, è arrivato un gabbiano enorme.",
+"sub": "Cartolina da Fontana di Trevi · fare · noi",
+"options": [
+{
+"id": "a",
+"label": "facevamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo fatto"
+},
+{
+"id": "c",
+"label": "facciamo"
+},
+{
+"id": "d",
+"label": "facevano"
+}
+],
+"why": "Background action, interrupted by a one-time event (passato prossimo) → imperfetto."
+},
+{
+"id": "ct_trevi4",
+"cat": "cart_trevi",
+"type": "mc",
+"prompt": "L’acqua ____ fresca e azzurra.",
+"sub": "Cartolina da Fontana di Trevi · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_trevi5",
+"cat": "cart_trevi",
+"type": "mc",
+"prompt": "I miei genitori ____ in un piccolo albergo vicino alla fontana.",
+"sub": "Cartolina da Fontana di Trevi · dormire · loro",
+"options": [
+{
+"id": "a",
+"label": "dormivano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno dormito"
+},
+{
+"id": "c",
+"label": "dormono"
+},
+{
+"id": "d",
+"label": "dormivate"
+}
+],
+"why": "Description (how things were) → imperfetto. Where you stayed, as background."
+},
+{
+"id": "ct_pisa1",
+"cat": "cart_pisa",
+"type": "mc",
+"prompt": "Tutti i turisti ____ la stessa foto: “reggevano” la Torre!",
+"sub": "Cartolina da Pisa · fare · loro",
+"options": [
+{
+"id": "a",
+"label": "facevano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno fatto"
+},
+{
+"id": "c",
+"label": "fanno"
+},
+{
+"id": "d",
+"label": "facevamo"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Everyone, every time → imperfetto."
+},
+{
+"id": "ct_pisa2",
+"cat": "cart_pisa",
+"type": "mc",
+"prompt": "La Torre ____ già storta nel Medioevo.",
+"sub": "Cartolina da Pisa · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto. It started leaning while they were still building it."
+},
+{
+"id": "ct_pisa3",
+"cat": "cart_pisa",
+"type": "mc",
+"prompt": "Da piccoli, io e mio fratello ____ sul prato dei Miracoli.",
+"sub": "Cartolina da Pisa · giocare · noi",
+"options": [
+{
+"id": "a",
+"label": "giocavamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo giocato"
+},
+{
+"id": "c",
+"label": "giochiamo"
+},
+{
+"id": "d",
+"label": "giocavate"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Io e mio fratello = noi."
+},
+{
+"id": "ct_pisa4",
+"cat": "cart_pisa",
+"type": "mc",
+"prompt": "Ogni volta che andavamo a Pisa, mia madre ____ i cantucci.",
+"sub": "Cartolina da Pisa · comprare · lei",
+"options": [
+{
+"id": "a",
+"label": "comprava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha comprato"
+},
+{
+"id": "c",
+"label": "compra"
+},
+{
+"id": "d",
+"label": "compravo"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni volta che” = every time that."
+},
+{
+"id": "ct_pisa5",
+"cat": "cart_pisa",
+"type": "mc",
+"prompt": "Pioveva e noi non ____ salire sulla Torre.",
+"sub": "Cartolina da Pisa · potere · noi",
+"options": [
+{
+"id": "a",
+"label": "potevamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo potuto"
+},
+{
+"id": "c",
+"label": "possiamo"
+},
+{
+"id": "d",
+"label": "potevano"
+}
+],
+"why": "Description (how things were) → imperfetto. A situation that lasted, not one moment."
+},
+{
+"id": "ct_verona1",
+"cat": "cart_verona",
+"type": "mc",
+"prompt": "Nella storia di Shakespeare, Giulietta ____ a Verona.",
+"sub": "Cartolina da Verona · abitare · lei",
+"options": [
+{
+"id": "a",
+"label": "abitava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha abitato"
+},
+{
+"id": "c",
+"label": "abita"
+},
+{
+"id": "d",
+"label": "abitavo"
+}
+],
+"why": "Description (how things were) → imperfetto. Setting of a story → imperfetto."
+},
+{
+"id": "ct_verona2",
+"cat": "cart_verona",
+"type": "mc",
+"prompt": "Romeo ____ Giulietta da morire.",
+"sub": "Cartolina da Verona · amare · lui",
+"options": [
+{
+"id": "a",
+"label": "amava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha amato"
+},
+{
+"id": "c",
+"label": "ama"
+},
+{
+"id": "d",
+"label": "amavano"
+}
+],
+"why": "Feelings in the past → imperfetto."
+},
+{
+"id": "ct_verona3",
+"cat": "cart_verona",
+"type": "mc",
+"prompt": "Quando ero a Verona, ogni sera ____ l’opera all’Arena.",
+"sub": "Cartolina da Verona · ascoltare · io",
+"options": [
+{
+"id": "a",
+"label": "ascoltavo",
+"correct": true
+},
+{
+"id": "b",
+"label": "ho ascoltato"
+},
+{
+"id": "c",
+"label": "ascolto"
+},
+{
+"id": "d",
+"label": "ascoltava"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni sera” = every evening."
+},
+{
+"id": "ct_verona4",
+"cat": "cart_verona",
+"type": "mc",
+"prompt": "Le persone ____ lettere d’amore per Giulietta.",
+"sub": "Cartolina da Verona · scrivere · loro",
+"options": [
+{
+"id": "a",
+"label": "scrivevano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno scritto"
+},
+{
+"id": "c",
+"label": "scrivono"
+},
+{
+"id": "d",
+"label": "scriveva"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. People still write to Juliet today."
+},
+{
+"id": "ct_verona5",
+"cat": "cart_verona",
+"type": "mc",
+"prompt": "L’Arena ____ piena di gente.",
+"sub": "Cartolina da Verona · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_milano1",
+"cat": "cart_milano",
+"type": "mc",
+"prompt": "Mia cugina ____ a Milano e lavorava nella moda.",
+"sub": "Cartolina da Milano · vivere · lei",
+"options": [
+{
+"id": "a",
+"label": "viveva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha vissuto"
+},
+{
+"id": "c",
+"label": "vive"
+},
+{
+"id": "d",
+"label": "vivevo"
+}
+],
+"why": "Description (how things were) → imperfetto. Lavorava is the clue: same time frame."
+},
+{
+"id": "ct_milano2",
+"cat": "cart_milano",
+"type": "mc",
+"prompt": "Ogni mattina lei ____ un cappuccino e una brioche al bar.",
+"sub": "Cartolina da Milano · prendere · lei",
+"options": [
+{
+"id": "a",
+"label": "prendeva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha preso"
+},
+{
+"id": "c",
+"label": "prende"
+},
+{
+"id": "d",
+"label": "prendevano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. In Milano it’s a brioche; in Rome, a cornetto."
+},
+{
+"id": "ct_milano3",
+"cat": "cart_milano",
+"type": "mc",
+"prompt": "Il Duomo ____ bianco e bellissimo.",
+"sub": "Cartolina da Milano · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stato"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_milano4",
+"cat": "cart_milano",
+"type": "mc",
+"prompt": "C’era traffico, quindi noi ____ sempre in metro.",
+"sub": "Cartolina da Milano · andare · noi",
+"options": [
+{
+"id": "a",
+"label": "andavamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "siamo andati"
+},
+{
+"id": "c",
+"label": "andiamo"
+},
+{
+"id": "d",
+"label": "andavano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Sempre” is the clue."
+},
+{
+"id": "ct_milano5",
+"cat": "cart_milano",
+"type": "mc",
+"prompt": "Da piccolo/a, per quale squadra ____?",
+"sub": "Cartolina da Milano · tifare · tu",
+"options": [
+{
+"id": "a",
+"label": "tifavi",
+"correct": true
+},
+{
+"id": "b",
+"label": "hai tifato"
+},
+{
+"id": "c",
+"label": "tifi"
+},
+{
+"id": "d",
+"label": "tifava"
+}
+],
+"why": "Tifare = to root for a team. “Da piccolo/a” → imperfetto."
+},
+{
+"id": "ct_firenze1",
+"cat": "cart_firenze",
+"type": "mc",
+"prompt": "Da ragazzo, Michelangelo ____ a Firenze.",
+"sub": "Cartolina da Firenze · vivere · lui",
+"options": [
+{
+"id": "a",
+"label": "viveva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha vissuto"
+},
+{
+"id": "c",
+"label": "vive"
+},
+{
+"id": "d",
+"label": "vivevano"
+}
+],
+"why": "Description (how things were) → imperfetto. “Da ragazzo” = as a young man."
+},
+{
+"id": "ct_firenze2",
+"cat": "cart_firenze",
+"type": "mc",
+"prompt": "Mentre ____ il Duomo, è cominciato a piovere.",
+"sub": "Cartolina da Firenze · guardare · noi",
+"options": [
+{
+"id": "a",
+"label": "guardavamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo guardato"
+},
+{
+"id": "c",
+"label": "guardiamo"
+},
+{
+"id": "d",
+"label": "guardavano"
+}
+],
+"why": "Background action, interrupted by a one-time event (passato prossimo) → imperfetto."
+},
+{
+"id": "ct_firenze3",
+"cat": "cart_firenze",
+"type": "mc",
+"prompt": "In estate a Firenze ____ un caldo terribile.",
+"sub": "Cartolina da Firenze · fare · weather",
+"options": [
+{
+"id": "a",
+"label": "faceva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha fatto"
+},
+{
+"id": "c",
+"label": "fa"
+},
+{
+"id": "d",
+"label": "facevano"
+}
+],
+"why": "Description (how things were) → imperfetto. Weather back then: faceva caldo, faceva freddo."
+},
+{
+"id": "ct_firenze4",
+"cat": "cart_firenze",
+"type": "mc",
+"prompt": "Ogni domenica mia nonna ____ la bistecca alla fiorentina.",
+"sub": "Cartolina da Firenze · preparare · lei",
+"options": [
+{
+"id": "a",
+"label": "preparava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha preparato"
+},
+{
+"id": "c",
+"label": "prepara"
+},
+{
+"id": "d",
+"label": "preparavo"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni domenica” is the clue."
+},
+{
+"id": "ct_firenze5",
+"cat": "cart_firenze",
+"type": "mc",
+"prompt": "I negozi sul Ponte Vecchio ____ gioielli d’oro.",
+"sub": "Cartolina da Firenze · vendere · loro",
+"options": [
+{
+"id": "a",
+"label": "vendevano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno venduto"
+},
+{
+"id": "c",
+"label": "vendono"
+},
+{
+"id": "d",
+"label": "vendeva"
+}
+],
+"why": "Description (how things were) → imperfetto. Negozi is plural → loro."
+},
+{
+"id": "ct_napoli1",
+"cat": "cart_napoli",
+"type": "mc",
+"prompt": "Mio nonno ____ il pizzaiolo a Napoli.",
+"sub": "Cartolina da Napoli · fare · lui",
+"options": [
+{
+"id": "a",
+"label": "faceva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha fatto"
+},
+{
+"id": "c",
+"label": "fa"
+},
+{
+"id": "d",
+"label": "facevo"
+}
+],
+"why": "Jobs back then → imperfetto: faceva il pizzaiolo."
+},
+{
+"id": "ct_napoli2",
+"cat": "cart_napoli",
+"type": "mc",
+"prompt": "Il Vesuvio ____ sempre lì, sopra la città.",
+"sub": "Cartolina da Napoli · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stato"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_napoli3",
+"cat": "cart_napoli",
+"type": "mc",
+"prompt": "La domenica tutta la famiglia ____ il ragù.",
+"sub": "Cartolina da Napoli · mangiare · la famiglia",
+"options": [
+{
+"id": "a",
+"label": "mangiava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha mangiato"
+},
+{
+"id": "c",
+"label": "mangia"
+},
+{
+"id": "d",
+"label": "mangiavano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Trap: la famiglia is singular → mangiava."
+},
+{
+"id": "ct_napoli4",
+"cat": "cart_napoli",
+"type": "mc",
+"prompt": "Da piccolo/a, ____ il babà nella pasticceria sotto casa.",
+"sub": "Cartolina da Napoli · comprare · io",
+"options": [
+{
+"id": "a",
+"label": "compravo",
+"correct": true
+},
+{
+"id": "b",
+"label": "ho comprato"
+},
+{
+"id": "c",
+"label": "compro"
+},
+{
+"id": "d",
+"label": "comprava"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Babà = Naples’ rum cake."
+},
+{
+"id": "ct_napoli5",
+"cat": "cart_napoli",
+"type": "mc",
+"prompt": "Quando la squadra vinceva, i tifosi ____ per le strade.",
+"sub": "Cartolina da Napoli · cantare · loro",
+"options": [
+{
+"id": "a",
+"label": "cantavano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno cantato"
+},
+{
+"id": "c",
+"label": "cantano"
+},
+{
+"id": "d",
+"label": "cantava"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Quando vinceva” = whenever they won."
+},
+{
+"id": "ct_pompei1",
+"cat": "cart_pompei",
+"type": "mc",
+"prompt": "Nel 79 d.C. gli abitanti di Pompei ____ una vita normale.",
+"sub": "Cartolina da Pompei · fare · loro",
+"options": [
+{
+"id": "a",
+"label": "facevano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno fatto"
+},
+{
+"id": "c",
+"label": "fanno"
+},
+{
+"id": "d",
+"label": "faceva"
+}
+],
+"why": "Description (how things were) → imperfetto. Everyday life back then."
+},
+{
+"id": "ct_pompei2",
+"cat": "cart_pompei",
+"type": "mc",
+"prompt": "I bambini ____ per le strade della città.",
+"sub": "Cartolina da Pompei · giocare · loro",
+"options": [
+{
+"id": "a",
+"label": "giocavano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno giocato"
+},
+{
+"id": "c",
+"label": "giocano"
+},
+{
+"id": "d",
+"label": "giocava"
+}
+],
+"why": "Habit or \"used to\" → imperfetto."
+},
+{
+"id": "ct_pompei3",
+"cat": "cart_pompei",
+"type": "mc",
+"prompt": "Mentre la gente ____ al mercato, il Vesuvio è esploso.",
+"sub": "Cartolina da Pompei · essere · la gente",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Background action, interrupted by a one-time event (passato prossimo) → imperfetto. La gente is singular."
+},
+{
+"id": "ct_pompei4",
+"cat": "cart_pompei",
+"type": "mc",
+"prompt": "I fornai ____ il pane nei forni di pietra.",
+"sub": "Cartolina da Pompei · cuocere · loro",
+"options": [
+{
+"id": "a",
+"label": "cuocevano",
+"correct": true
+},
+{
+"id": "b",
+"label": "hanno cotto"
+},
+{
+"id": "c",
+"label": "cuociono"
+},
+{
+"id": "d",
+"label": "cuoceva"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Archaeologists found bread still in the ovens."
+},
+{
+"id": "ct_pompei5",
+"cat": "cart_pompei",
+"type": "mc",
+"prompt": "Quel giorno il cielo ____ nero di cenere.",
+"sub": "Cartolina da Pompei · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stato"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_capri1",
+"cat": "cart_capri",
+"type": "mc",
+"prompt": "Ogni estate noi ____ in barca intorno ai Faraglioni.",
+"sub": "Cartolina da Capri · andare · noi",
+"options": [
+{
+"id": "a",
+"label": "andavamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "siamo andati"
+},
+{
+"id": "c",
+"label": "andiamo"
+},
+{
+"id": "d",
+"label": "andavano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni estate” is the clue."
+},
+{
+"id": "ct_capri2",
+"cat": "cart_capri",
+"type": "mc",
+"prompt": "L’acqua della Grotta Azzurra ____ di un blu incredibile.",
+"sub": "Cartolina da Capri · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_capri3",
+"cat": "cart_capri",
+"type": "mc",
+"prompt": "Ogni anno mia madre ____ i sandali fatti a mano.",
+"sub": "Cartolina da Capri · comprare · lei",
+"options": [
+{
+"id": "a",
+"label": "comprava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha comprato"
+},
+{
+"id": "c",
+"label": "compra"
+},
+{
+"id": "d",
+"label": "compravo"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Capri is famous for handmade sandals."
+},
+{
+"id": "ct_capri4",
+"cat": "cart_capri",
+"type": "mc",
+"prompt": "Da piccolo/a, ____ paura della barca?",
+"sub": "Cartolina da Capri · avere · tu",
+"options": [
+{
+"id": "a",
+"label": "avevi",
+"correct": true
+},
+{
+"id": "b",
+"label": "hai avuto"
+},
+{
+"id": "c",
+"label": "hai"
+},
+{
+"id": "d",
+"label": "aveva"
+}
+],
+"why": "Feelings and states in the past → imperfetto: avevo paura."
+},
+{
+"id": "ct_capri5",
+"cat": "cart_capri",
+"type": "mc",
+"prompt": "Le bouganville ____ dappertutto.",
+"sub": "Cartolina da Capri · fiorire · loro",
+"options": [
+{
+"id": "a",
+"label": "fiorivano",
+"correct": true
+},
+{
+"id": "b",
+"label": "sono fiorite"
+},
+{
+"id": "c",
+"label": "fioriscono"
+},
+{
+"id": "d",
+"label": "fioriva"
+}
+],
+"why": "Description (how things were) → imperfetto. No -isc- in the imperfetto: fiorivano."
+},
+{
+"id": "ct_amalfi1",
+"cat": "cart_amalfi",
+"type": "mc",
+"prompt": "La strada ____ stretta e piena di curve.",
+"sub": "Cartolina da Costiera Amalfitana · essere",
+"options": [
+{
+"id": "a",
+"label": "era",
+"correct": true
+},
+{
+"id": "b",
+"label": "è stata"
+},
+{
+"id": "c",
+"label": "è"
+},
+{
+"id": "d",
+"label": "erano"
+}
+],
+"why": "Description (how things were) → imperfetto."
+},
+{
+"id": "ct_amalfi2",
+"cat": "cart_amalfi",
+"type": "mc",
+"prompt": "Mio padre ____ piano perché aveva paura.",
+"sub": "Cartolina da Costiera Amalfitana · guidare · lui",
+"options": [
+{
+"id": "a",
+"label": "guidava",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha guidato"
+},
+{
+"id": "c",
+"label": "guida"
+},
+{
+"id": "d",
+"label": "guidavo"
+}
+],
+"why": "Description (how things were) → imperfetto. Aveva paura is the clue: same background."
+},
+{
+"id": "ct_amalfi3",
+"cat": "cart_amalfi",
+"type": "mc",
+"prompt": "I limoni di Amalfi ____ enormi!",
+"sub": "Cartolina da Costiera Amalfitana · essere · loro",
+"options": [
+{
+"id": "a",
+"label": "erano",
+"correct": true
+},
+{
+"id": "b",
+"label": "sono stati"
+},
+{
+"id": "c",
+"label": "sono"
+},
+{
+"id": "d",
+"label": "era"
+}
+],
+"why": "Description (how things were) → imperfetto. Limoni is plural → erano."
+},
+{
+"id": "ct_amalfi4",
+"cat": "cart_amalfi",
+"type": "mc",
+"prompt": "Ogni pomeriggio noi ____ in spiaggia a Positano.",
+"sub": "Cartolina da Costiera Amalfitana · scendere · noi",
+"options": [
+{
+"id": "a",
+"label": "scendevamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "siamo scesi"
+},
+{
+"id": "c",
+"label": "scendiamo"
+},
+{
+"id": "d",
+"label": "scendevano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto."
+},
+{
+"id": "ct_amalfi5",
+"cat": "cart_amalfi",
+"type": "mc",
+"prompt": "____ la granita al limone ogni giorno?",
+"sub": "Cartolina da Costiera Amalfitana · prendere · tu",
+"options": [
+{
+"id": "a",
+"label": "Prendevi",
+"correct": true
+},
+{
+"id": "b",
+"label": "Hai preso"
+},
+{
+"id": "c",
+"label": "Prendi"
+},
+{
+"id": "d",
+"label": "Prendeva"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. “Ogni giorno” is the clue."
+},
+{
+"id": "ct_sicilia1",
+"cat": "cart_sicilia",
+"type": "mc",
+"prompt": "A colazione noi ____ la granita con la brioche.",
+"sub": "Cartolina da Sicilia · mangiare · noi",
+"options": [
+{
+"id": "a",
+"label": "mangiavamo",
+"correct": true
+},
+{
+"id": "b",
+"label": "abbiamo mangiato"
+},
+{
+"id": "c",
+"label": "mangiamo"
+},
+{
+"id": "d",
+"label": "mangiavano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. A real Sicilian breakfast!"
+},
+{
+"id": "ct_sicilia2",
+"cat": "cart_sicilia",
+"type": "mc",
+"prompt": "L’Etna ____ fumo ogni giorno.",
+"sub": "Cartolina da Sicilia · fare · lui",
+"options": [
+{
+"id": "a",
+"label": "faceva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha fatto"
+},
+{
+"id": "c",
+"label": "fa"
+},
+{
+"id": "d",
+"label": "facevano"
+}
+],
+"why": "Habit or \"used to\" → imperfetto. Etna is an active volcano."
+},
+{
+"id": "ct_sicilia3",
+"cat": "cart_sicilia",
+"type": "mc",
+"prompt": "Ad Agrigento ____ templi greci enormi.",
+"sub": "Cartolina da Sicilia · esserci · plural",
+"options": [
+{
+"id": "a",
+"label": "c’erano",
+"correct": true
+},
+{
+"id": "b",
+"label": "ci sono stati"
+},
+{
+"id": "c",
+"label": "ci sono"
+},
+{
+"id": "d",
+"label": "c’era"
+}
+],
+"why": "Description (how things were) → imperfetto. Templi is plural → c’erano."
+},
+{
+"id": "ct_sicilia4",
+"cat": "cart_sicilia",
+"type": "mc",
+"prompt": "Mia nonna ____ i cannoli per tutto il quartiere.",
+"sub": "Cartolina da Sicilia · fare · lei",
+"options": [
+{
+"id": "a",
+"label": "faceva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha fatto"
+},
+{
+"id": "c",
+"label": "fa"
+},
+{
+"id": "d",
+"label": "facevo"
+}
+],
+"why": "Habit or \"used to\" → imperfetto."
+},
+{
+"id": "ct_sicilia5",
+"cat": "cart_sicilia",
+"type": "mc",
+"prompt": "A Taormina ____ caldo anche a ottobre.",
+"sub": "Cartolina da Sicilia · fare · weather",
+"options": [
+{
+"id": "a",
+"label": "faceva",
+"correct": true
+},
+{
+"id": "b",
+"label": "ha fatto"
+},
+{
+"id": "c",
+"label": "fa"
+},
+{
+"id": "d",
+"label": "facevano"
+}
+],
+"why": "Description (how things were) → imperfetto. Weather: faceva caldo."
 }
 ];
 
@@ -6957,8 +8816,8 @@ class Component extends DCLogic {
   pending() {
     var s = this.state;
     return {
-      sacchi: Math.max(0, Math.floor(s.lifetime / 1000) - s.sacchiOpened),
-      centoni: Math.max(0, Math.floor(s.lifetime / 100) - s.centoniOpened)
+      sacchi: Math.max(0, Math.floor(s.lifetime / 5000) + (s.paccoGrande || 0) - s.sacchiOpened),
+      centoni: Math.max(0, Math.floor(s.lifetime / 500) + (s.paccoMini || 0) - s.centoniOpened)
     };
   }
 
@@ -7034,6 +8893,36 @@ class Component extends DCLogic {
         shopMsg: 'Riparato! One mistake cleared \u2014 ' + (ids.length - 1) + ' left.' });
       return;
     }
+    if (it.soon) { this.setState({ shopMsg: 'Presto! ' + it.it + ' arrives soon.' }); return; }
+    var gate = btGate(it, s);
+    if (gate) { this.setState({ shopMsg: 'Locked \u2014 ' + gate + '.' }); return; }
+    if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough Boh Cashi yet \u2014 ' + (it.price - s.cashi) + ' BC more to go.' }); return; }
+    if (id === 'salta') { this.sfx('buy'); this.setState({ cashi: s.cashi - it.price, skips: (s.skips || 0) + 1, shopMsg: 'Comprato! You have ' + ((s.skips || 0) + 1) + ' skip(s) for practice rounds.' }); return; }
+    if (it.pack) {
+      this.sfx('buy');
+      var pp = { cashi: s.cashi - it.price, shopMsg: '' };
+      if (it.pack === 'grande') pp.paccoGrande = (s.paccoGrande || 0) + 1; else pp.paccoMini = (s.paccoMini || 0) + 1;
+      this.setState(pp); this.openPacco(); return;
+    }
+    if (it.voucher) {
+      this.sfx('buy');
+      var v = { id: id, code: btCode(), day: new Date().toISOString().slice(0, 10), used: false };
+      this.setState({ cashi: s.cashi - it.price, vouchers: (s.vouchers || []).concat([v]),
+        shopMsg: 'Comprato! Your voucher ' + v.code + ' is in your locker. Show it to la Prof.' });
+      return;
+    }
+    if (id === 'scudo') {
+      if ((s.scudi || 0) >= 5) { this.setState({ shopMsg: 'You already have 5 Scudi — that’s the max.' }); return; }
+      this.sfx('buy'); this.setState({ cashi: s.cashi - it.price, scudi: (s.scudi || 0) + 1, shopMsg: 'Comprato! Scudi: ' + ((s.scudi || 0) + 1) + '. A missed school day won’t break your 🔥.' }); return;
+    }
+    if (it.trip) {
+      if (s.inventory.indexOf(id) !== -1) { this.openTrip(it.trip); return; }
+      this.sfx('fanfare');
+      var tp = { k: it.trip, code: btCode(), day: new Date().toISOString().slice(0, 10), card: '', stamped: false };
+      this.setState({ cashi: s.cashi - it.price, inventory: s.inventory.concat([id]), trips: (s.trips || []).concat([tp]),
+        shopMsg: 'Buon viaggio! ✈ Boarding pass ' + tp.code + ' is in your Passaporto (Locker).' });
+      return;
+    }
     if (it.source !== 'shop' || s.inventory.indexOf(id) !== -1) return;
     if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough cashi yet \u2014 ' + (it.price - s.cashi) + ' BC more to go. Go answer some questions!' }); return; }
     this.sfx('buy');
@@ -7054,6 +8943,44 @@ class Component extends DCLogic {
   }
 
   undress() { this.sfx('soft'); this.setState({ equipped: {} }); }
+
+  openTrip(k) { this.sfx('tap'); this.setState({ screen: 'locker', tripSel: k, tripMsg: '', tripPin: '' }); }
+
+  stampTrip() {
+    var self = this, s = this.state, k = s.tripSel, pin = (s.tripPin || '').trim();
+    var tr = (s.trips || []).filter(function (t) { return t.k === k; })[0];
+    if (!tr || tr.stamped) return;
+    if (btCardOk(tr.card) < 3) { this.setState({ tripMsg: 'First write your cartolina: 3 sentences, each with a verb in the imperfetto.' }); return; }
+    btSha(pin).then(function (h) {
+      if (h !== BT_PIN) { self.setState({ tripMsg: 'Wrong PIN. Only la Prof can stamp your Passaporto.' }); return; }
+      var ts = (self.state.trips || []).map(function (t) { return t.k === k ? Object.assign({}, t, { stamped: true, stampDay: new Date().toISOString().slice(0, 10) }) : t; });
+      var patch = { trips: ts, tripPin: '', tripMsg: 'TIMBRATO! ' + BT_TRIP[k].city + ' is on your map.' };
+      if (ts.filter(function (t) { return t.stamped; }).length >= 12 && (self.state.badges || []).indexOf('giro_italia') === -1) {
+        patch.badges = self.state.badges.concat(['giro_italia']); patch.newBadges = (self.state.newBadges || []).concat(['giro_italia']);
+      }
+      self.sfx('fanfare'); self.setState(patch);
+    });
+  }
+
+  skipCard() {
+    var s = this.state;
+    if (!(s.skips > 0) || s.revealed || s.mode === 'prova') return;
+    this.sfx('soft');
+    this.setState({ skips: s.skips - 1, skippedRound: (s.skippedRound || 0) + 1 });
+    this.nextCard();
+  }
+
+  redeemVoucher(i) {
+    var self = this, s = this.state, pin = (s.pinDraft || '').trim();
+    btSha(pin).then(function (h) {
+      if (h !== BT_PIN) { self.setState({ voucherMsg: 'Wrong PIN. Only la Prof can mark a voucher as used.' }); return; }
+      var vs = (self.state.vouchers || []).slice();
+      if (!vs[i]) return;
+      vs[i] = Object.assign({}, vs[i], { used: true, usedDay: new Date().toISOString().slice(0, 10) });
+      self.sfx('fanfare');
+      self.setState({ vouchers: vs, pinDraft: '', voucherMsg: 'Fatto! Voucher ' + vs[i].code + ' marked USATO.' });
+    });
+  }
 
   toggleTheme() {
     var _nt = this.state.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('boh_theme', _nt); } catch (e) {} this.setState({ theme: _nt });
@@ -7102,22 +9029,35 @@ class Component extends DCLogic {
 
   startMode(modeKey) {
     var s = this.state;
+    if (modeKey === 'cartoline') modeKey = btNextCart(s);
     var today = dayKey(0);
     if (modeKey === 'mistakes' && this.mistakeIds().length === 0) { this.setState({ screen: 'home', overlay: null }); return; }
     var extra = { missedNow: [], sessionEarned: 0, lastEarn: 0, newBadges: [], eaRun: 0, missRun: 0, zooSession: [], cardsPaid: 0, overlay: null,
                   paid: s.paidDay === today ? s.paid : [], paidDay: today,
                   missedEver: s.missedEver.concat(s.missedNow.filter(function (x) { return s.missedEver.indexOf(x) === -1; })) };
     if (s.lastPlay !== today) {
-      var streak = s.lastPlay === dayKey(-1) ? s.diFila + 1 : 1;
-      extra.lastPlay = today;
-      extra.diFila = streak;
-      extra.cashi = s.cashi + 2;
-      extra.lifetime = s.lifetime + 2;
-      extra.sessionEarned = 2;
-      var b = s.badges, nb = [];
+      var fz = btFiamma(s, today), streak = fz.streak;
+      extra.lastPlay = today; extra.diFila = streak; extra.scudi = fz.scudi; extra.scudoWeek = fz.week;
+      extra.playDays = (s.playDays || 0) + 1;
+      if (fz.back) extra.bentornato = 3;
+      var add = Math.min(20 + (streak - 1) * 10, 100), notes = ['🔥 ' + streak + (streak === 1 ? ' giorno' : ' giorni di fila') + ' · +' + add + ' BC'];
+      var b = s.badges, nb = [], miles = s.fiammaMiles || [], mi = BT_MILES[streak];
+      if (mi && miles.indexOf(streak) === -1) {
+        miles = miles.concat([streak]); add += mi.bc || 0; notes.push(mi.t);
+        if (mi.mini) extra.paccoMini = (s.paccoMini || 0) + mi.mini;
+        if (mi.grande) extra.paccoGrande = (s.paccoGrande || 0) + mi.grande;
+        if (mi.badge && b.indexOf(mi.badge) === -1) { b = b.concat([mi.badge]); nb.push(mi.badge); }
+      }
+      extra.fiammaMiles = miles;
+      if (fz.used) notes.push('Scudo usato 🛡️');
+      if (fz.pause) notes.push('Bentornato dalle vacanze — la fiamma è salva');
+      if (fz.back) notes.push('Bentornato! 2× BC for 3 rounds');
+      else if (extra.playDays <= 5) notes.push('Benvenuto! 2× BC · day ' + extra.playDays + ' of 5');
+      extra.cashi = s.cashi + add; extra.lifetime = s.lifetime + add; extra.sessionEarned = add;
+      extra.fiammaNote = notes.join(' · ');
       if (streak >= 3 && b.indexOf('tre_di_fila') === -1) { b = b.concat(['tre_di_fila']); nb.push('tre_di_fila'); }
       extra.badges = b; extra.newBadges = nb;
-    }
+    } else { extra.fiammaNote = ''; }
     var deck = this.buildDeck(modeKey);
     extra.roundActive = true;
     this.setState(extra);
@@ -7125,7 +9065,7 @@ class Component extends DCLogic {
     this.setState({
       screen: 'play',
       mode: modeKey,
-      queue: deck,
+      queue: deck, skippedRound: 0,
       qIndex: 0,
       hearts: 3,
       streak: 0,
@@ -7166,6 +9106,7 @@ class Component extends DCLogic {
       if (paid.indexOf(qid) === -1) { pay = wasMistake ? Math.max(base || 0, 3) : (base || 0); paid = paid.concat([qid]); }
       else { pay = 1; }
     }
+    pay = pay * BT_ECON * btMult(s, (s.paid || []).indexOf(qid) === -1);
     if (isCorrect && wasMistake) missedEver = missedEver.filter(function (x) { return x !== qid; });
     if (!isCorrect && qid) missedNow = addUnique(missedNow, qid);
     this.sfx(isCorrect ? (pay > 0 ? 'coin' : 'good') : 'soft');
@@ -7185,8 +9126,8 @@ class Component extends DCLogic {
     if (hasAll(['c13', 'c14', 'c15', 'c16', 'c17', 'c18'])) award('the_cans');
     var zoo = s.zooSession;
     var lifetime = s.lifetime + pay;
-    if (lifetime >= 100) award('centone');
-    if (lifetime >= 1000) award('un_sacco');
+    if (lifetime >= 500) award('centone');
+    if (lifetime >= 5000) award('un_sacco');
     var money = { cashi: s.cashi + pay, lifetime: lifetime, sessionEarned: s.sessionEarned + pay, lastEarn: pay, paid: paid,
                   missedEver: missedEver, missedNow: missedNow, badges: badges, newBadges: newBadges, missRun: missRun,
                   eaRun: eaRun, ageTrap: ageTrap, formsHit: formsHit, zooSession: zoo, cardsPaid: s.cardsPaid + (pay > 0 ? 1 : 0) };
@@ -7229,7 +9170,7 @@ class Component extends DCLogic {
       // the next stage after answering barely half the questions.
       var qLen = (this.state.queue || []).length;
       var knockedOut = !!(out.outOfHearts !== undefined ? out.outOfHearts : this.state.outOfHearts);
-      var finished = qLen > 0 && accT >= qLen;
+      var finished = qLen > 0 && accT + (this.state.skippedRound || 0) >= qLen;
       if (accT > 0 && accC / accT >= 0.85 && finished && !knockedOut &&
           this.state.mode && this.state.mode !== 'mistakes') {
         out.passed = addUnique(this.state.passed || [], this.state.mode);
@@ -7245,14 +9186,15 @@ class Component extends DCLogic {
       out.roundActive = false;
       var cp = (out.cardsPaid !== undefined ? out.cardsPaid : cur.cardsPaid);
       var rightNow = (out.correctSoFar !== undefined ? out.correctSoFar : cur.correctSoFar);
-      var bonus = cp >= 5 ? 5 : (rightNow >= 8 ? 2 : 0);
+      var bonus = (cp >= 5 ? 25 : (rightNow >= 8 ? 10 : 0)) * btBoost(cur);
+      if ((cur.bentornato || 0) > 0 && (out.totalSoFar !== undefined ? out.totalSoFar : cur.totalSoFar) >= 5) out.bentornato = cur.bentornato - 1;
       out.cashi = (out.cashi !== undefined ? out.cashi : cur.cashi) + bonus;
       out.lifetime = (out.lifetime !== undefined ? out.lifetime : cur.lifetime) + bonus;
       out.sessionEarned = (out.sessionEarned !== undefined ? out.sessionEarned : cur.sessionEarned) + bonus;
       out.roundBonus = bonus;
       var badges = out.badges || cur.badges, nb = out.newBadges || cur.newBadges;
-      if (out.lifetime >= 100 && badges.indexOf('centone') === -1) { badges = badges.concat(['centone']); nb = nb.concat(['centone']); }
-      if (out.lifetime >= 1000 && badges.indexOf('un_sacco') === -1) { badges = badges.concat(['un_sacco']); nb = nb.concat(['un_sacco']); }
+      if (out.lifetime >= 500 && badges.indexOf('centone') === -1) { badges = badges.concat(['centone']); nb = nb.concat(['centone']); }
+      if (out.lifetime >= 5000 && badges.indexOf('un_sacco') === -1) { badges = badges.concat(['un_sacco']); nb = nb.concat(['un_sacco']); }
       out.badges = badges; out.newBadges = nb;
       var mn = out.missedNow || cur.missedNow, me = out.missedEver || cur.missedEver;
       out.missedEver = me.concat(mn.filter(function (x) { return me.indexOf(x) === -1; }));
@@ -7416,7 +9358,7 @@ class Component extends DCLogic {
     var s = this.state;
 
     var modeList = [];
-    var order = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'mixed', 'prova', 'dialetti'];
+    var order = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'mixed', 'prova', 'dialetti', 'cartoline'];
     var mistakeCount = this.mistakeIds().length;
     for (var i = 0; i < order.length; i++) {
       (function (key) {
@@ -7438,6 +9380,13 @@ class Component extends DCLogic {
         });
       })(order[i]);
     }
+    modeList.forEach(function (m) {
+      if (m.key !== 'cartoline') return;
+      var nk = btNextCart(s), fresh = (s.passed || []).indexOf(nk) === -1;
+      m.sub = (fresh ? 'Next: ' : 'Replay: ') + MODES[nk].label.replace('Cartolina da ', '') + (fresh ? ' · 3× BC' : '');
+      m.count = btCartDone(s) + '/12 fatte';
+      m.done = btCartDone(s) === 12 ? '✓ ' : '';
+    });
 
     var result = {
       isHome: s.screen === 'home',
@@ -7535,7 +9484,8 @@ class Component extends DCLogic {
     // ----- prizes view data -----
     var pend = this.pending();
     var owned = s.inventory;
-    var ownedCount = ITEMS.filter(function (it) { return owned.indexOf(it.id) !== -1; }).length;
+    var btInLocker = function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip; };
+    var ownedCount = ITEMS.filter(function (it) { return btInLocker(it) && owned.indexOf(it.id) !== -1; }).length;
     var pc = s.provaCard;
     if (pc) {
       var SECN = { A: 'Verb forms from memory', B: 'Fill in the blank', C: 'Modal + verb phrases', D: 'Whole sentences' };
@@ -7557,6 +9507,66 @@ class Component extends DCLogic {
       result.pvHasMissed = pc.missed.length > 0;
       result.pvPerfect = pc.missed.length === 0;
     }
+    (function () {
+      var trips = s.trips || [], byK = {};
+      trips.forEach(function (t) { byK[t.k] = t; });
+      var stamped = trips.filter(function (t) { return t.stamped; }).length;
+      result.fiammaN = s.diFila || 0;
+      result.fiammaLbl = (s.diFila || 0) === 1 ? 'giorno' : 'giorni';
+      result.scudiN = s.scudi || 0;
+      result.tripCount = stamped;
+      result.tripBooked = trips.length;
+      var boost = (s.playDays || 0) > 0 && (s.playDays || 0) <= 5 ? 'Benvenuto 2× · day ' + s.playDays + '/5'
+                : (s.bentornato || 0) > 0 ? 'Bentornato 2× · ' + s.bentornato + (s.bentornato === 1 ? ' round' : ' rounds') + ' left' : '';
+      result.hasBoost = !!boost; result.boostText = boost;
+      result.hasFiammaNote = !!s.fiammaNote && s.screen === 'play' && (s.qIndex || 0) === 0;
+      result.fiammaNote = s.fiammaNote || '';
+      result.goPassHandler = function () { self.sfx('tap'); self.goScreen('locker'); };
+      result.goViaggiHandler = function () { self.sfx('tap'); self.setState({ screen: 'shop', shopTab: 'viaggi', shopMsg: '' }); };
+      result.tripAll = stamped >= 12;
+      result.tripSub = stamped >= 12 ? 'Giro d’Italia completo! Leggenda.' : trips.length > stamped ? (trips.length - stamped) + ' boarding pass waiting for la Prof’s stamp' : 'Tap a city. Earn it, book it, write the cartolina, get stamped.';
+      var sel = s.tripSel || '';
+      var pins = [];
+      Object.keys(BT_MAP).forEach(function (k) {
+        var p = BT_MAP[k], T = BT_TRIP[k], t = byK[k];
+        var st = !T ? 'soon' : t && t.stamped ? 'ok' : t ? 'booked' : 'locked';
+        pins.push({ cls: 'gp-pin is-' + st + (sel === k ? ' is-sel' : ''), pos: 'left:' + p[0] + '%;top:' + p[1] + '%;',
+          img: T && t ? 'background-image:url(../../assets/boutique/viaggio_' + k + '.webp);' : '',
+          badge: 'background-image:url(../../assets/boutique/' + (st === 'ok' ? 'pin_ok' : st === 'booked' ? 'aereo' : 'pin_lock') + '.webp);',
+          label: T ? T.city + (st === 'ok' ? ' · timbrato' : st === 'booked' ? ' · prenotato' : ' · ' + T.price.toLocaleString('it-IT') + ' BC') : BT_SPARE[k] + ' · presto',
+          on: sel === k ? 'true' : 'false',
+          pick: function () { self.sfx('tap'); self.setState({ tripSel: k, tripMsg: '', tripPin: '' }); } });
+      });
+      result.tripPins = pins;
+      var T = BT_TRIP[sel], t = byK[sel];
+      result.hasTripSel = !!sel;
+      result.tsSoon = !!sel && !T;
+      result.tsTitle = T ? T.title : sel ? BT_SPARE[sel] : '';
+      result.tsTier = T ? T.tier + ' · ' + T.price.toLocaleString('it-IT') + ' BC' : 'Presto · new destination coming';
+      result.tsImg = T ? 'background-image:url(../../assets/boutique/viaggio_' + sel + '.webp);' : 'background-image:url(../../assets/boutique/pin_lock.webp);';
+      result.tsOpen = !!T && !t;
+      result.tsBooked = !!t && !t.stamped;
+      result.tsStamped = !!t && !!t.stamped;
+      result.tsCode = t ? t.code : '';
+      result.tsDay = t ? (t.stamped ? 'Timbrato ' + (t.stampDay || '') : 'Prenotato ' + t.day) : '';
+      result.tsCard = t ? t.card : '';
+      var ok = t ? btCardOk(t.card) : 0;
+      result.tsCount = Math.min(ok, 3) + '/3 frasi all’imperfetto';
+      result.tsReady = ok >= 3;
+      result.tsCart = T ? ((s.passed || []).indexOf('cart_' + sel) === -1 ? 'Gioca la Cartolina da ' + T.city + ' · 3× BC' : '✓ Cartolina fatta · replay') : '';
+      result.tsPlayCart = function () { if (T) self.startMode('cart_' + sel); };
+      result.tsGoShop = function () { self.sfx('tap'); self.setState({ screen: 'shop', shopTab: 'viaggi', shopMsg: '' }); };
+      result.tsNeed = T && !t ? (s.cashi >= T.price ? 'You can book it now!' : (T.price - s.cashi).toLocaleString('it-IT') + ' BC to go') : '';
+      result.onTripCard = function (e) {
+        var v = (e && e.target ? e.target.value : '').slice(0, 600);
+        self.setState({ trips: (self.state.trips || []).map(function (x) { return x.k === sel ? Object.assign({}, x, { card: v }) : x; }), tripMsg: '' });
+      };
+      result.tripPin = s.tripPin || '';
+      result.onTripPin = function (e) { self.setState({ tripPin: e && e.target ? e.target.value : '', tripMsg: '' }); };
+      result.stampHandler = function () { self.stampTrip(); };
+      result.hasTripMsg = !!s.tripMsg; result.tripMsg = s.tripMsg || '';
+      result.tripMsgCls = 'toast bt-vmsg' + (/^TIMBRATO/.test(s.tripMsg || '') ? '' : ' bt-bad');
+    })();
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
     result.isPacco = s.screen === 'pacco';
@@ -7565,12 +9575,12 @@ class Component extends DCLogic {
     result.hasEarnToast = s.lastEarn > 0 && s.screen === 'play';
     result.earnToast = '+' + s.lastEarn + ' BC';
     result.hasPending = (pend.sacchi + pend.centoni) > 0 && (s.screen === 'home' || s.screen === 'summary');
-    result.pendingTitle = pend.sacchi > 0 ? 'UN SACCO! 1,000 BC earned!' : 'HAI FATTO UN CENTONE!';
+    result.pendingTitle = pend.sacchi > 0 ? 'UN SACCO! 5,000 BC earned!' : 'HAI FATTO UN CENTONE!';
     result.pendingSub = (pend.sacchi + pend.centoni) <= 1 ? '1 Pacco Boh to open' : (pend.sacchi + pend.centoni) + ' Pacchi Boh to open';
     result.openPaccoHandler = function () { self.openPacco(); };
     result.goShopHandler = function () { self.goScreen('shop'); };
     result.goLockerHandler = function () { self.goScreen('locker'); };
-    var collectable = ITEMS.filter(function (it) { return !it.consumable; });
+    var collectable = ITEMS.filter(btInLocker);
     result.lockerCount = ownedCount + ' / ' + collectable.length + ' collected';
     result.hasDayStreak = s.diFila > 0;
     result.dayStreakText = s.diFila === 1 ? 'Day 1 — come back tomorrow to start a streak' : s.diFila + ' giorni di fila';
@@ -7580,7 +9590,11 @@ class Component extends DCLogic {
       result.hasShopMsg = !!s.shopMsg;
       result.shopMsg = s.shopMsg;
       result.dollLayers = dollLayersFor(s.bohBase, s.equipped);
-      result.shopItems = ITEMS.filter(function (it) { return it.source === 'shop'; }).map(function (it) {
+      var tab = s.shopTab || 'drip';
+      result.shopTabs = BT_SECTIONS.map(function (t) {
+        return { label: t[1], on: t[0] === tab ? 'true' : 'false', pick: function () { self.sfx('tap'); self.setState({ shopTab: t[0], shopMsg: '' }); } };
+      });
+      result.shopItems = ITEMS.filter(function (it) { return it.source === 'shop' && it.sec === tab; }).map(function (it) {
         var have = owned.indexOf(it.id) !== -1;
         var can = !have && s.cashi >= it.price;
         var btn = 'margin-top:4px;width:100%;padding:10px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;';
@@ -7590,20 +9604,49 @@ class Component extends DCLogic {
         var fits = slotAllowed(s.bohBase, it.id);
         var wearing = have && fits && (s.equipped || {})[SLOT[it.id]] === it.id;
         if (have && !wearing) btn = 'margin-top:4px;width:100%;padding:10px;border-radius:12px;font-weight:800;font-size:13.5px;cursor:pointer;background:transparent;color:' + (fits ? 'var(--text);border:2px solid var(--primary-bg);' : 'var(--text-faint);border:2px dashed var(--card-border);');
-        return { id: it.id, it: it.it, en: it.en, rarity: it.rarity, rarityColor: RARITY[it.rarity].color, cls: 'ic i-' + it.id,
-                 priceText: have ? (wearing ? 'Wearing now' : 'Yours') : PRICE_WORD[it.price] + ' · ' + it.price + ' BC',
-                 btnText: !have ? 'Buy' : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
-                 act: function () { if (have) self.wearItem(it.id); else self.buyItem(it.id); } };
+        var multi = !!(it.voucher || it.pack || it.consumable);
+        if (multi) { have = false; can = s.cashi >= it.price; }
+        var gate = btGate(it, s);
+        if (it.soon || gate || (multi && !can)) btn = 'margin-top:4px;width:100%;padding:10px;border-radius:12px;font-weight:800;font-size:13.5px;cursor:pointer;background:transparent;color:var(--text-faint);border:2px dashed var(--card-border);';
+        else if (multi) btn = 'margin-top:4px;width:100%;padding:10px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;background:var(--primary-bg);color:var(--primary-text);border:none;';
+        var owns = it.id === 'salta' ? ' \u00b7 you have ' + (s.skips || 0) : it.id === 'scudo' ? ' \u00b7 you have ' + (s.scudi || 0) : '';
+        return { id: it.id, it: it.it, en: gate ? gate : it.en, rarity: it.rarity, rarityColor: RARITY[it.rarity].color,
+                 cls: it.img ? 'ic bt-img' + (it.soon ? ' bt-soon' : '') : it.emo ? 'ic bt-emo' + (it.soon ? ' bt-soon' : '') : 'ic i-' + it.id, emo: it.emo || '', ico: it.img ? 'background-image:url(' + it.img + ')' : '',
+                 priceText: it.soon ? 'PRESTO \u00b7 ' + it.price.toLocaleString('it-IT') + ' BC' : have ? (wearing ? 'Wearing now' : 'Yours') : it.price.toLocaleString('it-IT') + ' BC' + owns,
+                 btnText: it.soon ? 'Presto' : gate ? 'Locked' : it.voucher ? 'Buy voucher' : it.pack ? 'Apri!' : !have ? (it.trip ? 'Prenota \u2708' : 'Buy') : it.trip ? 'Nel Passaporto' : !SLOT[it.id] ? 'Nel tuo armadietto' : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
+                 act: function () { if (have) { if (SLOT[it.id]) self.wearItem(it.id); else if (it.trip) self.openTrip(it.trip); } else self.buyItem(it.id); } };
       });
     }
 
     if (s.screen === 'locker') {
-      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable; }).map(function (it) {
+      result.hasCatena = (s.inventory || []).indexOf('catena_oro') !== -1;
+      result.chainText = (s.chainText !== undefined && s.chainText !== null) ? s.chainText : (s.bohName || 'BOH');
+      result.onChain = function (e) {
+        var t = (e && e.target ? e.target.value : '').replace(/[<>]/g, '').slice(0, 12);
+        var low = t.toLowerCase().replace(/[^a-z]/g, '');
+        if (BLOCKED_NAMES.some(function (w) { return low.indexOf(w) !== -1; })) { self.setState({ chainMsg: 'Scegli un’altra parola.' }); return; }
+        self.setState({ chainText: t, chainMsg: '' });
+      };
+      result.chainMsg = s.chainMsg || '';
+      result.chainFs = 'font-size:' + Math.min(8, 40 / Math.max(1, String(result.chainText).length * 0.7)).toFixed(2) + 'cqw;';
+      result.hasChainMsg = !!s.chainMsg;
+      result.voucherList = (s.vouchers || []).map(function (v, i) {
+        var vi = itemById(v.id) || { it: v.id, emo: '' };
+        return { title: (vi.emo || '') + ' ' + vi.it, code: v.code, day: v.day, used: !!v.used, open: !v.used,
+                 status: v.used ? 'USATO \u00b7 ' + (v.usedDay || '') : 'Show this to la Prof',
+                 style: v.used ? 'opacity:.55;' : '', redeem: function () { self.redeemVoucher(i); } };
+      }).reverse();
+      result.hasVouchers = result.voucherList.length > 0;
+      result.pinDraft = s.pinDraft || '';
+      result.onPin = function (e) { self.setState({ pinDraft: e && e.target ? e.target.value : '', voucherMsg: '' }); };
+      result.voucherMsg = s.voucherMsg || '';
+      result.hasVoucherMsg = !!s.voucherMsg;
+      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip; }).map(function (it) {
         var have = owned.indexOf(it.id) !== -1;
         var hidden = !have && it.source === 'pacco';
         var fitsIt = slotAllowed(s.bohBase, it.id);
         var wearingIt = have && fitsIt && (s.equipped || {})[SLOT[it.id]] === it.id;
-        return { cls: 'ic i-' + it.id, iconStyle: have ? '' : 'filter:grayscale(1) brightness(.35);opacity:.35;',
+        return { cls: it.img ? 'ic bt-img' : it.emo ? 'ic bt-emo' : 'ic i-' + it.id, emo: it.img ? '' : (it.emo || ''), iconStyle: (it.img ? 'background-image:url(' + it.img + ');' : '') + (have ? '' : 'filter:grayscale(1) brightness(.35);opacity:.35;'),
                  it: hidden ? '???' : it.it, en: hidden ? (it.secret ? 'secret' : 'Pacco Boh only') : it.en,
                  rarity: it.rarity, rarityColor: RARITY[it.rarity].color,
                  border: have ? RARITY[it.rarity].color : 'var(--card-border)',
@@ -7715,6 +9758,9 @@ class Component extends DCLogic {
         return { fillColor: idx < s.hearts ? 'var(--heart-filled)' : 'var(--heart-empty)' };
       });
       result.continueHandler = function () { self.nextCard(); };
+      result.canSkip = s.screen === 'play' && !s.revealed && (s.skips || 0) > 0 && s.mode !== 'prova';
+      result.skipsLeft = s.skips || 0;
+      result.skipHandler = function () { self.skipCard(); };
 
       if (q.type === 'mc') {
         result.options = (q.options || []).map(function (o) {
@@ -7835,7 +9881,7 @@ class Component extends DCLogic {
 
     if (s.screen === 'summary') {
       var pct2 = s.totalSoFar ? Math.round((s.correctSoFar / s.totalSoFar) * 100) : 0;
-      var catOrder = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'dialetti'];
+      var catOrder = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'dialetti'].concat(CART_KEYS.map(function (k) { return 'cart_' + k; }));
       var breakdown = [];
       for (var j = 0; j < catOrder.length; j++) {
         var c = catOrder[j];
@@ -7861,7 +9907,7 @@ class Component extends DCLogic {
       result.correctTotalText = s.correctSoFar + ' out of ' + s.totalSoFar + ' correct';
       result.bestStreakText = 'Best streak: ' + s.bestStreak + ' di fila';
       result.sessionEarnedText = s.sessionEarned > 0
-        ? '+' + s.sessionEarned + ' Boh Cashi this session' + (s.roundBonus ? ' (incl. 5 BC round bonus)' : '')
+        ? '+' + s.sessionEarned + ' Boh Cashi this session' + (s.roundBonus ? ' (incl. ' + s.roundBonus + ' BC round bonus)' : '')
         : 'No new cashi \u2014 you already cashed these cards today. Fix your mistakes or come back tomorrow!';
       result.newBadgeList = s.newBadges.map(function (id) { var b = badgeById(id); return { name: b.name, desc: b.desc }; });
       result.hasNewBadges = result.newBadgeList.length > 0;
