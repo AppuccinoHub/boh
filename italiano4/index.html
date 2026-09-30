@@ -773,6 +773,7 @@ function wireCam(){
     b.parentNode.innerHTML=`<div class="hint">Correct-a-Mistake is on. Get it right now and you get full credit back.</div>`};
 }
 function next(){P.idx++;render()}
+function autoNx(ms){const n=$("#nx");if(!n)return;clearTimeout(P._auto);P._auto=setTimeout(()=>{if(document.body.contains(n)&&!n.disabled)n.click()},ms||1500)}
 function nextStep(){if(P.prova&&P.step===1){P.step=2;P.idx=0;P.tries=0;return render()}if(P.practice)return practiceEnd();P.step++;P.idx=0;P.tries=0;render()}
 function render(){
   window.scrollTo({top:0});
@@ -794,7 +795,7 @@ function stepRead(l){
   app.querySelectorAll(".gl").forEach(g=>g.onclick=()=>g.classList.toggle("show"));
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
     const ok=+b.dataset.i===l.q.a;score(ok);react(ok);
-    if(ok){b.classList.add("ok");app.querySelectorAll(".opt").forEach(x=>x.disabled=true);$("#nx").disabled=false}
+    if(ok){b.classList.add("ok");app.querySelectorAll(".opt").forEach(x=>x.disabled=true);$("#nx").disabled=false;autoNx(1300)}
     else{b.classList.add("no");b.disabled=true;$("#fb").innerHTML=tipBox(l.q.tip||"Find the key words of the question in the letter, then reread that sentence.")+camBtn("");wireCam()}
   });
   $("#nx").onclick=nextStep;
@@ -812,7 +813,7 @@ function stepMT(l){
     const ok=b.dataset.a===it.a;const g=score(ok);react(ok);
     const slot=$("#slot");
     if(ok){slot.textContent=it.a;slot.className="slot "+it.a;b.classList.add("ok");app.querySelectorAll(".mt button").forEach(x=>x.disabled=true);
-      $("#fb").innerHTML=`<div class="fb ok"><b>${it.s}${it.a}!</b> ${esc(it.why)} ${g?" +"+g+" BC":""}</div>`;$("#nx").disabled=false}
+      $("#fb").innerHTML=`<div class="fb ok"><b>${it.s}${it.a}!</b> ${esc(it.why)} ${g?" +"+g+" BC":""}</div>`;$("#nx").disabled=false;autoNx(1700)}
     else{b.classList.add("no");b.disabled=true;$("#fb").innerHTML=`<div class="fb no">Non ancora. Riprova!</div>`+tipBox(it.tip)+camBtn("");wireCam()}
   });
   $("#nx").onclick=()=>P.idx<l.mt.length-1?next():nextStep();
@@ -827,7 +828,7 @@ function stepCH(l,it){
   app.querySelectorAll(".mt button").forEach(b=>b.onclick=()=>{
     const ok=+b.dataset.i===it.a;const g=score(ok);react(ok);
     if(ok){const s=$("#slot");s.textContent=it.o[it.a];s.className="slot mi";b.classList.add("ok");app.querySelectorAll(".mt button").forEach(x=>x.disabled=true);
-      $("#fb").innerHTML=`<div class="fb ok">${esc(it.why)}${g?" +"+g+" BC":""}</div>`;$("#nx").disabled=false}
+      $("#fb").innerHTML=`<div class="fb ok">${esc(it.why)}${g?" +"+g+" BC":""}</div>`;$("#nx").disabled=false;autoNx(1700)}
     else{b.classList.add("no");b.disabled=true;$("#fb").innerHTML=`<div class="fb no">Non ancora. Riprova!</div>`+tipBox(it.tip)+camBtn("");wireCam()}
   });
   $("#nx").onclick=()=>P.idx<l.mt.length-1?next():nextStep();
@@ -842,7 +843,7 @@ function stepRS(l){
   <div class="row"><span class="count">${P.idx+1} / ${l.rs.length}</span><button class="go" id="nx" disabled>Avanti</button></div>`,esc(it.b),"worry");
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
     const ok=+b.dataset.i===it.a;const g=score(ok);react(ok);
-    if(ok){b.classList.add("ok");app.querySelectorAll(".opt").forEach(x=>x.disabled=true);$("#fb").innerHTML=`<div class="fb ok">${esc(it.why)} ${g?" +"+g+" BC":""}</div>`;$("#nx").disabled=false}
+    if(ok){b.classList.add("ok");app.querySelectorAll(".opt").forEach(x=>x.disabled=true);$("#fb").innerHTML=`<div class="fb ok">${esc(it.why)} ${g?" +"+g+" BC":""}</div>`;$("#nx").disabled=false;autoNx(1700)}
     else{b.classList.add("no");b.disabled=true;$("#fb").innerHTML=`<div class="fb no">Non ancora. Riprova!</div>`+tipBox(it.tip)+camBtn("");wireCam()}
   });
   $("#nx").onclick=()=>P.idx<l.rs.length-1?next():nextStep();

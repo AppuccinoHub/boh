@@ -1823,7 +1823,25 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
+  // Correct answer -> next card by itself (~1s; typed sentences ~1.8s). Wrong answers wait for Continue.
+  // Cancels itself if the student pauses, goes back, or leaves the round, so it can never skip a card.
+  __autoNext() {
+    var st = this.state, self = this;
+    var on = st.screen === 'play' && st.revealed && st.lastOk && !st.overlay;
+    if (!on) { if (st.screen !== 'play' || !st.revealed) this.__autoKey = null; return; }
+    var key = st.mode + ':' + st.qIndex + ':' + st.totalSoFar;
+    if (this.__autoKey === key) return;
+    this.__autoKey = key;
+    clearTimeout(this.__autoT);
+    this.__autoT = setTimeout(function () {
+      var s2 = self.state;
+      if (s2.overlay) { self.__autoKey = null; return; }
+      if (s2.screen === 'play' && s2.revealed && s2.lastOk && (s2.mode + ':' + s2.qIndex + ':' + s2.totalSoFar) === key) self.nextCard();
+    }, st.fr ? 1800 : 1000);
+  }
+
   componentDidUpdate() {
+    try { this.__autoNext(); } catch (e) {}
     try {
       var _p = {}; for (var _q in this.state) _p[_q] = this.state[_q];
       _p._src = _b7d(); _p._a = _k9;
@@ -2198,7 +2216,7 @@ class Component extends DCLogic {
     this.setState({
       screen: 'play',
       mode: modeKey,
-      queue: deck,
+      queue: deck, lastOk: false,
       qIndex: 0,
       hearts: 3,
       streak: 0,
@@ -2223,7 +2241,7 @@ class Component extends DCLogic {
 
   backCard() {
     if (this.state.qIndex > 0) {
-      this.setState({ qIndex: this.state.qIndex - 1, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false });
+      this.setState({ qIndex: this.state.qIndex - 1, lastOk: false, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false });
     }
   }
 
@@ -2285,6 +2303,7 @@ class Component extends DCLogic {
       hearts: newHearts,
       correctSoFar: s.correctSoFar + (isCorrect ? 1 : 0),
       totalSoFar: s.totalSoFar + 1,
+      lastOk: !!isCorrect,
       _money: money
     };
   }
@@ -2457,7 +2476,7 @@ class Component extends DCLogic {
     if (nextIndex >= this.state.queue.length) {
       this.setState(this.finish({ screen: 'summary', lastEarn: 0 }));
     } else {
-      this.setState({ qIndex: nextIndex, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, lastEarn: 0 });
+      this.setState({ qIndex: nextIndex, lastOk: false, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, lastEarn: 0 });
     }
   }
 
