@@ -1511,6 +1511,7 @@
           <div style="font-size:16px;font-weight:800;color:var(--success-text);padding-top:6px;">{{sessionEarnedText}}</div>
         </div>
         <div class="rb">
+          <sc-if value="{{hasBackRound}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">Mistakes fixed! &#9989;</b><p>Now the full round unlocks the next one.</p></div><button onClick="{{backRoundHandler}}" class="hl-next">&#9654; {{backRoundText}}</button></sc-if>
           <sc-if value="{{hasNextMode}}" hint-placeholder-val="{{false}}"><button onClick="{{nextModeHandler}}" class="hl-next">&#9654; {{nextModeText}}</button></sc-if>
           <sc-if value="{{nextLocked}}" hint-placeholder-val="{{false}}"><div class="hl-next locked" aria-disabled="true">&#128274; {{nextLockedText}}</div></sc-if>
         <sc-if value="{{hlClose}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">So close!</b><p>{{hlGapText}}</p><p class="hl-s">Try <b>Fix my mistakes</b> first.</p></div></sc-if>
@@ -2398,7 +2399,7 @@ function btRefund(p) {
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU', 'stuck', 'helpDone'];
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU', 'stuck', 'helpDone', 'mistakesFrom'];
 var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes", "lesson", "profU"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
@@ -11804,6 +11805,7 @@ class Component extends DCLogic {
     var deck = this.buildDeck(modeKey);
     extra.roundActive = true;
     this.setState(extra);
+    if (modeKey === 'mistakes' && this.state.mode && this.state.mode !== 'mistakes' && this.state.mode !== 'prova') this.setState({ mistakesFrom: this.state.mode });
     if (modeKey === 'prova') this.setState({ provaLog: [], provaStart: Date.now() });
     this.setState({
       screen: 'play',
@@ -13223,7 +13225,8 @@ class Component extends DCLogic {
       result.playAgainHandler = function () { self.playAgain(); };
       result.changeModeHandler = function () { self.backHome(); };
       (function () {   // next round + help ladder
-        var md = s.mode, passedNow = (s.passed || []).indexOf(md) !== -1;
+        var isFix = s.mode === 'mistakes';
+        var md = isFix && s.mistakesFrom && MODES[s.mistakesFrom] ? s.mistakesFrom : s.mode, passedNow = (s.passed || []).indexOf(md) !== -1;
         var order = BT_UNITS[BT_UNIT].order.filter(function (k) { return !(BT_LESSONS[BT_UNIT] && k === 'prova'); });
         var open = function (k) { var nd = MODES[k].needs; return !nd || (s.passed || []).indexOf(nd) !== -1 || ((s.profU || {}).modes || []).indexOf(k) !== -1; };
         var nx = null, at = order.indexOf(md);
@@ -13231,9 +13234,12 @@ class Component extends DCLogic {
         result.hasNextMode = !!nx && passedNow && md !== 'mistakes' && !s.outOfHearts;
         if (result.hasNextMode) result.hasNextStep = false;
         var nxAny = at !== -1 && at + 1 < order.length ? order[at + 1] : null;
-        result.nextLocked = !result.hasNextMode && !!nxAny && md !== 'mistakes' && !passedNow;
+        result.hasBackRound = isFix && md !== 'mistakes' && !passedNow && !!MODES[md];
+        result.backRoundText = result.hasBackRound ? 'Now pass it: ' + MODES[md].label : '';
+        result.backRoundHandler = function () { self.sfx('tap'); self.startMode(md); };
+        result.nextLocked = !result.hasNextMode && !result.hasBackRound && !!nxAny && md !== 'mistakes' && !passedNow;
         result.nextLockedText = nxAny ? 'Next: ' + MODES[nxAny].label + ' \u00b7 get 85%' : '';
-        result.playAgainCls = 'rbb' + (result.hasNextMode ? '' : ' primary');
+        result.playAgainCls = 'rbb' + (result.hasNextMode || result.hasBackRound ? '' : ' primary');
         result.saveQuitHandler = function () { self.sfx('tap'); self.setState({ screen: 'home' }); setTimeout(function () { location.href = '../'; }, 150); };
         result.nextModeText = nx ? 'Next: ' + MODES[nx].label : '';
         result.nextModeHandler = function () { self.sfx('tap'); self.startMode(nx); };

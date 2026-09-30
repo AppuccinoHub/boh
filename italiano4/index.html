@@ -92,6 +92,7 @@ h1,h2,h3{font-family:"Bricolage Grotesque",Manrope,system-ui,sans-serif;margin:0
 .cash{padding:6px 16px}
 .cash.bump{animation:bump .5s}
 @keyframes bump{40%{transform:scale(1.12)}}
+.rb4{display:flex;flex-direction:column;gap:10px;align-items:stretch;max-width:440px;margin:18px auto 0}.rb4 .go.big{font-size:18px;padding:16px}.rb4 .r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rb4 .ghost{padding:12px 10px;font-size:15px;font-weight:800}
 .ghost{background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px}
 .ghost:hover{border-color:var(--accent)}
 .helpb{width:40px;height:40px;padding:0;font-family:"Bricolage Grotesque",sans-serif;font-size:18px;font-weight:800}
@@ -700,6 +701,27 @@ function home(){
   app.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{S.unit=b.dataset.u;save();home()});
 }
 
+/* ---------- what comes next (one bar on every finish screen) ---------- */
+function nxtAfter(from){
+  const u=CUR(),ui=UNITS.indexOf(u),nu=UNITS[ui+1];
+  const nl=L.findIndex(x=>S.done[x.id]==null);
+  if(from!=="prova"&&nl>=0)return{t:"Next: "+(L[nl].title||("Lettera "+(nl+1))),f:()=>start(nl)};
+  if(from!=="prova"&&u.prova)return{t:"Next: "+u.prova.title,f:startProva};
+  if(nu)return{t:"Next: Unità "+nu.n+" · "+nu.title,f:()=>{S.unit=nu.id;save();home()}};
+  return null;
+}
+function endBar(nx,againLbl){
+  return `<div class="rb4">${nx?`<button class="go big" id="nxB">&#9654; ${esc(nx.t)}</button>`:""}
+    <div class="r2"><button class="ghost" id="again">&#128257; ${againLbl}</button><button class="ghost" id="shop2">&#128717;&#65039; Boh-tique</button></div>
+    <div class="r2"><button class="ghost" id="sq">&#128190; Save &amp; quit</button><button class="ghost" id="hm">&#9776; All letters</button></div></div>`;
+}
+function wireBar(nx,again,gate){
+  const g=gate||(f=>f());
+  if(nx)$("#nxB").onclick=()=>g(nx.f);
+  $("#again").onclick=()=>g(again);$("#shop2").onclick=()=>g(shop);$("#hm").onclick=()=>g(home);
+  $("#sq").onclick=()=>g(()=>{save();location.href="../"});
+}
+
 /* ---------- PLAY ---------- */
 const LENS=l=>[1,l.mt.length,l.rs.length,1,1];
 function start(i){
@@ -733,9 +755,9 @@ function provaEnd(){
     <div class="earn">${n} / ${tot} al primo tentativo</div>
     ${P.earned?`<div class="earn" style="font-size:18px"><i class="bc" aria-hidden="true"></i>+${P.earned} Boh Cashi</div>`:`<p class="dir">Replays are practice only: no Boh Cashi.</p>`}
     ${tips.length?`<div class="hint" style="text-align:left">${tips.join("<br>")}</div>`:""}
-    <div class="pv-save" data-bohsave-code="Salva il tuo Boh: Le lettere → 💾 Salva tutti i livelli">Salva il tuo Boh: Le lettere → 💾 Salva tutti i livelli</div><div class="row" id="pvRow" style="justify-content:center"><button class="ghost" id="again">Riprova</button><button class="go" id="hm">Le lettere</button></div></div>`,n>=13?"Bravissim"+G("{o|a}")+"!":"Pratica con me!","happy");
+    <div class="pv-save" data-bohsave-code="Salva il tuo Boh: Le lettere → 💾 Salva tutti i livelli">Salva il tuo Boh: Le lettere → 💾 Salva tutti i livelli</div><div id="pvRow">${endBar(nxtAfter("prova"),"Riprova")}</div></div>`,n>=13?"Bravissim"+G("{o|a}")+"!":"Pratica con me!","happy");
   const pvAsk=go=>{const r=$("#pvRow"),keep=r.outerHTML;r.outerHTML=`<div class="pv-ask" id="pvRow" role="alertdialog" aria-label="Screenshot check"><b>Hai fatto lo screenshot del tuo voto?</b><span>Make sure it&rsquo;s in your Google Classroom before you leave.</span><div class="row" style="justify-content:center"><button class="ghost" id="pvNo">Non ancora</button><button class="go" id="pvYes">Sì, fatto!</button></div></div>`;$("#pvYes").onclick=go;$("#pvNo").onclick=()=>{$("#pvRow").outerHTML=keep;wire()};$("#pvYes").focus()};
-  const wire=()=>{$("#again").onclick=()=>pvAsk(startProva);$("#hm").onclick=()=>pvAsk(home)};wire();
+  const wire=()=>wireBar(nxtAfter("prova"),startProva,pvAsk);wire();
 }
 function practiceEnd(){
   if(P.prova)return provaEnd();
@@ -743,8 +765,8 @@ function practiceEnd(){
   shell(`<div class="fine"><h2>${n===tot?"Perfetto!":n>=7?"Molto bene!":"Continua a praticare!"}</h2>
     <div class="earn">${n} / ${tot} al primo tentativo</div>
     <p class="dir">Practice mode never costs or pays Boh Cashi. It's just for you.</p>
-    <div class="row" style="justify-content:center"><button class="ghost" id="again">Ancora</button><button class="go" id="hm">Le lettere</button></div></div>`,n>=7?"Sei bravissim"+G("{o|a}")+"!":"Pratica con me!","happy");
-  $("#again").onclick=practice;$("#hm").onclick=home;
+    ${endBar(nxtAfter("practice"),"Ancora")}</div>`,n>=7?"Sei bravissim"+G("{o|a}")+"!":"Pratica con me!","happy");
+  wireBar(nxtAfter("practice"),practice);
 }
 function shell(inner,msg,mood){
   const st=STEPS.map((s,i)=>`<div class="${i<P.step?"done":i===P.step?"on":""}">${i===1?(P.l.bl||CUR().build):i===3&&P.l.plan?"Il mio piano":s}</div>`).join("");
@@ -949,13 +971,9 @@ function stepFine(l){
     <div class="earn"><i class="bc" aria-hidden="true"></i>+${P.earned+bonus+ubonus} Boh Cashi</div>
     ${ubonus?`<span class="badge">★ Unità ${u.n} completata: ${esc(u.title)} · +50 BC</span>`:""}
     <p class="dir">${P.first} of ${P.tot} right on the first try.${bonus?" Three-star bonus: +25 BC.":""}${P.review?" Review round: replays pay 1/5 of the first time.":""}</p>
-    <div class="row" style="justify-content:center">
-      <button class="ghost" id="shop2">Spend in the Boh-tique</button>
-      ${nxt>=0?`<button class="go" id="nl">Next letter</button>`:`<button class="go" id="hm">All letters</button>`}
-    </div></div>`,all?"Grazie mille! Mi hai salvato!":"Grazie! Mi hai aiutato!","happy");
+    ${endBar(nxtAfter("letter"),"Play again")}</div>`,all?"Grazie mille! Mi hai salvato!":"Grazie! Mi hai aiutato!","happy");
   $("#face").classList.add("pop");
-  $("#shop2").onclick=shop;
-  if(nxt>=0)$("#nl").onclick=()=>start(nxt);else $("#hm").onclick=home;
+  {const li=P.li;wireBar(nxtAfter("letter"),()=>start(li));}
 }
 
 /* ---------- SCOTTO'S BOH-TIQUE ---------- */
