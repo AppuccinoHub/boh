@@ -403,6 +403,20 @@
 .pv-ask-row button{flex:1;padding:14px;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer}
 .pv-ask-no{background:transparent;color:var(--text);border:2px solid var(--card-border)}
 .pv-ask-yes{background:var(--primary-bg);color:var(--primary-text);border:none}
+.hl-next{all:unset;box-sizing:border-box;cursor:pointer;width:100%;text-align:center;padding:20px 18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.hl-next:focus-visible,.hl-btn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.hl-card{display:flex;flex-direction:column;gap:8px;padding:16px 18px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);font-size:15px;line-height:1.45}
+.hl-card.hl-v{border-color:var(--primary-bg)}
+.hl-card.hl-n{border-color:var(--accent-strong);border-style:dashed}
+.hl-card.hl-p{background:var(--error-bg);border-color:var(--error-border)}
+.hl-h{font-size:18px;font-weight:800}
+.hl-s{font-size:13.5px;color:var(--text-muted)}
+.hl-facts{font-weight:800;font-size:14px}
+.hl-list{display:flex;flex-direction:column;gap:6px}
+.hl-list>div{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;background:var(--option-default-bg)}
+.hl-list b{font-size:15px}.hl-list span{font-size:14px;color:var(--success-text);font-weight:700}
+.hl-btn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:14px;border-radius:12px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:15px}
+.hl-wait{text-align:center;font-size:13.5px;font-weight:700;color:var(--text-muted);padding:6px}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3</title>
@@ -1491,6 +1505,11 @@
       <sc-if value="{{hasFailNote}}" hint-placeholder-val="{{false}}">
         <div style="padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px dashed var(--card-border);font-size:14px;font-weight:700;color:var(--text-muted);">{{failNote}}</div>
       </sc-if>
+        <sc-if value="{{hasNextMode}}" hint-placeholder-val="{{false}}"><button onClick="{{nextModeHandler}}" class="hl-next">{{nextModeText}}</button></sc-if>
+        <sc-if value="{{hlClose}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">So close!</b><p>{{hlGapText}}</p><p class="hl-s">Start with <b>Fix my mistakes</b>: only the cards you missed. Then run the round again.</p></div></sc-if>
+        <sc-if value="{{hlRipasso}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-v"><b class="hl-h">&#128214; Ripassa con Boh &middot; 1 minute</b><p>{{hlRipText}}</p><sc-if value="{{hlRipWords}}" hint-placeholder-val="{{false}}"><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></sc-if><button onClick="{{hlRipH}}" class="hl-btn">{{hlRipBtn}}</button></div></sc-if>
+        <sc-if value="{{hlNote}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-n"><b class="hl-h">&#9999;&#65039; Scrivi nel quaderno</b><p>Copy these into your notebook <b>by hand</b>: the Italian and the answer. Writing it is how it sticks.</p><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div><button onClick="{{hlNoteH}}" class="hl-btn">{{hlNoteBtn}}</button></div></sc-if>
+        <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h">&#9995; Chiedi alla Prof</b><p><b>Raise your hand and show la Prof this screen.</b> You are working hard. Let&rsquo;s fix it together.</p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
       <div style="display:flex;flex-direction:column;gap:22px;padding-top:8px;">
         <div style="text-align:center;display:flex;flex-direction:column;gap:6px;">
           <div class="{{summaryFaceCls}} pop" style="margin:0 auto;"></div>
@@ -1558,7 +1577,7 @@
           <sc-if value="{{hasMistakes}}" hint-placeholder-val="{{false}}">
             <button onClick="{{mistakesHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--error-bg);color:var(--error-text);font-weight:800;font-size:16px;border:2px solid var(--error-border);">Fix my mistakes ({{mistakesCount}})</button>
           </sc-if>
-          <button onClick="{{playAgainHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Play Again</button>
+          <sc-if value="{{showPlayAgain}}" hint-placeholder-val="{{true}}"><button onClick="{{playAgainHandler}}" style="{{playAgainStyle}}">Play Again</button></sc-if><sc-if value="{{hlWait}}" hint-placeholder-val="{{false}}"><div class="hl-wait">Do the review above first. Then Play Again opens.</div></sc-if>
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
             <button onClick="{{goShopHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Boh-tique · Shop</button>
             <button onClick="{{goLockerHandler}}" style="padding:14px;border-radius:14px;background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Locker</button>
@@ -2381,7 +2400,7 @@ function btRefund(p) {
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU'];
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU', 'stuck', 'helpDone'];
 var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes", "lesson", "profU"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
@@ -11862,7 +11881,7 @@ class Component extends DCLogic {
     var prev = cs[cat] || { c: 0, t: 0 };
     cs[cat] = { c: prev.c + (isCorrect ? 1 : 0), t: prev.t + 1 };
     var missed = s.missed;
-    if (!isCorrect) missed = s.missed.concat([missedItem]);
+    if (!isCorrect) { var _mi = { id: qid }; for (var _mk in missedItem) _mi[_mk] = missedItem[_mk]; missed = s.missed.concat([_mi]); }
     var newStreak = isCorrect ? s.streak + 1 : 0;
     var newHearts = s.hearts;
     if (isCorrect) {
@@ -11909,6 +11928,14 @@ class Component extends DCLogic {
           : (!finished ? 'unfinished'
             : 'accuracy'))
         : '';
+      (function (st) {   // help ladder: count misses of the same round until it is passed
+        var md = st.mode;
+        if (!md || md === 'mistakes' || md === 'prova' || !(accT > 0)) return;
+        var sk = BT_UNIT + ':' + md, stk = {}; for (var q in (st.stuck || {})) stk[q] = st.stuck[q];
+        if ((out.passed || []).indexOf(md) !== -1) delete stk[sk];
+        else if (out.failReason) { var pv = stk[sk] || { n: 0, best: 0 }; stk[sk] = { n: pv.n + 1, best: Math.max(pv.best || 0, Math.round(accC / accT * 100)) }; }
+        out.stuck = stk; out.helpDone = false;
+      })(this.state);
       var cur = this.state;
       out.roundActive = false;
       var cp = (out.cardsPaid !== undefined ? out.cardsPaid : cur.cardsPaid);
@@ -13197,6 +13224,50 @@ class Component extends DCLogic {
       result.hasMissed = s.missed.length > 0;
       result.playAgainHandler = function () { self.playAgain(); };
       result.changeModeHandler = function () { self.backHome(); };
+      (function () {   // next round + help ladder
+        var md = s.mode, passedNow = (s.passed || []).indexOf(md) !== -1;
+        var order = BT_UNITS[BT_UNIT].order.filter(function (k) { return !(BT_LESSONS[BT_UNIT] && k === 'prova'); });
+        var open = function (k) { var nd = MODES[k].needs; return !nd || (s.passed || []).indexOf(nd) !== -1 || ((s.profU || {}).modes || []).indexOf(k) !== -1; };
+        var nx = null, at = order.indexOf(md);
+        if (at !== -1) for (var i = at + 1; i < order.length; i++) if (open(order[i])) { nx = order[i]; break; }
+        result.hasNextMode = !!nx && passedNow && md !== 'mistakes' && !s.outOfHearts;
+        if (result.hasNextMode) result.hasNextStep = false;
+        result.nextModeText = nx ? 'Next round: ' + MODES[nx].label + ' →' : '';
+        result.nextModeHandler = function () { self.sfx('tap'); self.startMode(nx); };
+        var rec = ((s.stuck || {})[BT_UNIT + ':' + md]) || null, n = rec && !passedNow && s.failReason ? rec.n : 0;
+        var seen = {}, items = [];
+        (s.missed || []).forEach(function (m) { if (items.length < 3 && !seen[m.prompt]) { seen[m.prompt] = 1; items.push({ p: String(m.prompt).replace(/\s*\([^)]*\)\s*$/, ''), a: m.answer }); } });
+        result.hlItems = items;
+        var tot = s.totalSoFar || 0, need = Math.max(0, Math.ceil(tot * 0.85) - (s.correctSoFar || 0));
+        result.hlClose = n === 1;
+        result.hlGapText = s.failReason === 'accuracy'
+          ? 'You got ' + (tot ? Math.round(s.correctSoFar / tot * 100) : 0) + '%. You need 85%: that is ' + need + ' more right out of ' + tot + '.'
+          : 'The round stopped early. Finish the whole round at 85% to pass.';
+        var tab = btHasTab(), worst = null;
+        if (tab) for (var j = 0; j < (s.missed || []).length && !worst; j++) {
+          var mid = s.missed[j].id; if (!mid) continue;
+          for (var k2 = 0; k2 < QUESTION_BANK.length; k2++) if (QUESTION_BANK[k2].id === mid) { worst = QUESTION_BANK[k2]; break; }
+        }
+        var tr = worst ? btTrick(worst, '') : null;
+        tab = tab && !!tr;   // no trick card for this kind of question (vocabulary, pronouns): review the words instead
+        var tcard = tr ? (tr[2] != null ? tr[2] : ((BT_UNIT === 'vdp' ? BT_TRICK_CARD_VDP : BT_TRICK_CARD)[btTrickKey(tr)] || 0)) : 0;
+        result.hlRipasso = n === 2;
+        result.hlRipWords = !tab;
+        result.hlRipText = tab ? 'Boh opens La Tabella on the part you miss most' + (tr ? ': “' + tr[0] + '”' : '') + '. Read it, answer the Prova tu, then come back and play.'
+                               : 'Read each one OUT LOUD, twice: the Italian, then what it means. Then play again.';
+        result.hlRipBtn = s.helpDone ? '✓ Done. Read it again' : (tab ? '📖 Open the review' : '✓ I said each one out loud');
+        result.hlRipH = function () { self.sfx('tap'); if (tab) self.setState({ helpDone: true, tabOpen: true, tabCard: tcard, tabAns: null, tabReveal: false }); else self.setState({ helpDone: true }); };
+        result.hlNote = n === 3;
+        result.hlNoteBtn = s.helpDone ? '✓ Written. Good!' : '✏️ I wrote it in my notebook';
+        result.hlNoteH = function () { self.sfx('good'); self.setState({ helpDone: true }); };
+        result.hlProf = n >= 4;
+        result.hlProfFacts = 'Round: ' + (MODES[md] ? MODES[md].label : '') + ' · Tries: ' + n + ' · Best: ' + (rec ? rec.best : 0) + '%';
+        var gate = (n === 2 || n === 3) && !s.helpDone;
+        result.showPlayAgain = !gate;
+        result.hlWait = gate;
+        result.playAgainStyle = 'width:100%;padding:' + (result.hasNextMode || n > 0 ? '14px' : '18px') + ';border-radius:14px;font-weight:800;font-size:' + (result.hasNextMode || n > 0 ? '15px' : '16px') + ';' +
+          (result.hasNextMode || n > 0 ? 'background:var(--card-bg);color:var(--text);border:2px solid var(--card-border);' : 'background:var(--primary-bg);color:var(--primary-text);border:none;');
+      })();
     }
 
     return result;
