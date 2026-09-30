@@ -1253,17 +1253,23 @@
             <div class="display" style="font-size:30px;font-weight:800;line-height:1.05;">SCEGLI IL TUO BOH</div>
             <div style="font-size:14px;color:var(--text-muted);">Choose your Boh</div>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;">
             <button onClick="{{pickMHandler}}" aria-pressed="{{pickedM}}" style="{{pickMStyle}}">
               <div class="bbs m"></div><span style="font-weight:800;font-size:15px;">Boh &#9794;</span>
             </button>
             <button onClick="{{pickFHandler}}" aria-pressed="{{pickedF}}" style="{{pickFStyle}}">
-              <div class="bbs f"></div><span style="font-weight:800;font-size:15px;">Boh &#9792;</span>
-            </button>
-            <button onClick="{{pickHHandler}}" aria-pressed="{{pickedH}}" aria-label="Boh with hijab" style="{{pickHStyle}}">
-              <div class="bbs h"></div><span style="font-weight:800;font-size:15px;">Boh &#9792;</span><span style="font-size:11px;font-weight:700;color:var(--text-muted);margin-top:-4px;">hijab</span>
+              <div class="{{fThumbCls}}"></div><span style="font-weight:800;font-size:15px;">Boh &#9792;</span>
             </button>
           </div>
+          <sc-if value="{{showHijabRow}}" hint-placeholder-val="{{false}}">
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;">
+              <span style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);">HIJAB</span>
+              <div role="group" aria-label="Hijab" style="display:flex;gap:8px;justify-content:center;">
+                <button onClick="{{hijabOffHandler}}" aria-pressed="{{hijabOffPressed}}" style="{{hijabOffStyle}}">No</button>
+                <button onClick="{{hijabOnHandler}}" aria-pressed="{{hijabOnPressed}}" style="{{hijabOnStyle}}">S&igrave;</button>
+              </div>
+            </div>
+          </sc-if>
           <div style="display:flex;flex-direction:column;gap:6px;align-items:center;">
             <span style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);">SKIN</span>
             <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
@@ -3032,7 +3038,15 @@ class Component extends DCLogic {
       editBohHandler: function () { self.editBoh(); },
       ovCreator: s.overlay === 'creator',
       pickMHandler: function () { self.sfx('tap'); self.setState({ draftBase: 'm' }); },
-      pickFHandler: function () { self.sfx('tap'); self.setState({ draftBase: 'f' }); },
+      pickFHandler: function () { self.sfx('tap'); self.setState({ draftBase: s.draftBase === 'h' ? 'h' : 'f' }); },
+      showHijabRow: s.draftBase === 'f' || s.draftBase === 'h',
+      fThumbCls: 'bbs ' + (s.draftBase === 'h' ? 'h' : 'f'),
+      hijabOffHandler: function () { self.sfx('tap'); self.setState({ draftBase: 'f' }); },
+      hijabOnHandler: function () { self.sfx('tap'); self.setState(s.skinTouched ? { draftBase: 'h' } : { draftBase: 'h', draftSkin: 'olive' }); },
+      hijabOffPressed: s.draftBase === 'f' ? 'true' : 'false',
+      hijabOnPressed: s.draftBase === 'h' ? 'true' : 'false',
+      hijabOffStyle: 'all:unset;cursor:pointer;min-width:64px;text-align:center;padding:8px 16px;border-radius:999px;font-weight:800;font-size:15px;background:var(--option-default-bg);border:3px solid ' + (s.draftBase === 'f' ? 'var(--primary-bg)' : 'transparent') + ';',
+      hijabOnStyle: 'all:unset;cursor:pointer;min-width:64px;text-align:center;padding:8px 16px;border-radius:999px;font-weight:800;font-size:15px;background:var(--option-default-bg);border:3px solid ' + (s.draftBase === 'h' ? 'var(--primary-bg)' : 'transparent') + ';',
       pickHHandler: function () { self.sfx('tap'); self.setState(s.skinTouched ? { draftBase: 'h' } : { draftBase: 'h', draftSkin: 'olive' }); },
       showHairRow: s.draftBase !== 'h',
       skinSwatches: SKINS.map(function (k) {
@@ -3048,9 +3062,9 @@ class Component extends DCLogic {
       pickedH: s.draftBase === 'h' ? 'true' : 'false',
       pickHStyle: 'all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:16px;background:var(--option-default-bg);border:3px solid ' + (s.draftBase === 'h' ? 'var(--primary-bg)' : 'transparent') + ';',
       pickedM: s.draftBase === 'm' ? 'true' : 'false',
-      pickedF: s.draftBase === 'f' ? 'true' : 'false',
+      pickedF: (s.draftBase === 'f' || s.draftBase === 'h') ? 'true' : 'false',
       pickMStyle: 'all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:16px;background:var(--option-default-bg);border:3px solid ' + (s.draftBase === 'm' ? 'var(--primary-bg)' : 'transparent') + ';',
-      pickFStyle: 'all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:16px;background:var(--option-default-bg);border:3px solid ' + (s.draftBase === 'f' ? 'var(--primary-bg)' : 'transparent') + ';',
+      pickFStyle: 'all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:16px;background:var(--option-default-bg);border:3px solid ' + ((s.draftBase === 'f' || s.draftBase === 'h') ? 'var(--primary-bg)' : 'transparent') + ';',
       nameDraft: s.nameDraft,
       onNameInput: function (e) { self.setState({ nameDraft: e && e.target ? e.target.value : '', nameError: '' }); },
       hasNameError: !!s.nameError,
