@@ -33,7 +33,7 @@
     return d;
   }
   function bohName() {
-    var tries = ['boh_profile_v1', 'bohItaliano3_v2', 'essereAvereRipasso_v1', 'bohItaliano1Ripasso_v1', 'boh_aiutami'];
+    var tries = ['boh_profile_v1', 'bohItaliano3_v2', 'bohItaliano2_v2', 'essereAvereRipasso_v1', 'bohItaliano1Ripasso_v1', 'boh_aiutami'];
     for (var i = 0; i < tries.length; i++) {
       try { var o = JSON.parse(localStorage.getItem(tries[i]) || 'null'); if (o && (o.bohName || o.name)) return String(o.bohName || o.name); } catch (e) {}
     }
@@ -42,7 +42,7 @@
   function levelsIn(d) {
     var L = [];
     if (d.bohItaliano1Ripasso_v1) L.push('Italiano 1');
-    if (d.essereAvereRipasso_v1) L.push('Italiano 2');
+    if (d.essereAvereRipasso_v1 || d.bohItaliano2_v2) L.push('Italiano 2');
     if (d.bohItaliano3_v2) L.push('Italiano 3');
     if (d.boh_aiutami) L.push('Italiano 4');
     Object.keys(d).forEach(function (k) { if (/^boh_ap/i.test(k) && L.indexOf('AP') === -1) L.push('AP'); });

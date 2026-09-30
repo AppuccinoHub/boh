@@ -228,6 +228,17 @@
 .hud-refund:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .icbig.bt-img{background-size:contain;background-position:center;background-repeat:no-repeat;background-color:transparent}
 .pv-split{display:block;max-width:130px;text-align:right;white-space:normal;font-size:12px;line-height:1.3;font-weight:800;color:var(--text-faint-2);margin-top:2px}
+.prof-who{font-weight:800;font-size:15px;color:var(--accent-strong)}
+.prof-status{white-space:pre-line;font-size:13.5px;color:var(--text-muted);font-weight:700}
+.prof-acts{display:flex;flex-direction:column;gap:8px}
+.prof-act{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:var(--option-default-bg);border:2px solid var(--option-default-border);color:var(--text)}
+.prof-act b{font-size:15.5px}
+.prof-act span{font-size:12.5px;color:var(--text-muted);font-weight:700}
+.prof-act[disabled]{opacity:.45;cursor:default}
+.prof-act.danger{border-color:var(--error-border)}
+.prof-act.danger b{color:var(--error-text)}
+.prof-act:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.prof-msg{padding:10px 12px;border-radius:12px;background:var(--success-bg);color:var(--success-text);font-weight:800;font-size:14px}
 /* ---- lesson path ---- */
 [data-screen="lesson"] .wrap{max-width:920px !important}
 .lp{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:20px;background:var(--card-bg);border:2px solid var(--card-border)}
@@ -245,6 +256,7 @@
 .lp-stop.is-cur{border-color:var(--primary-bg);background:var(--card-bg)}
 .lp-stop.is-cur .lp-n{background:var(--primary-bg);color:var(--primary-text)}
 .lp-stop.is-lock{cursor:not-allowed;opacity:.62}
+.lp-stop.is-open .lp-n{background:var(--primary-bg);color:var(--primary-text);opacity:.75}
 .lp-go{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:15px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px}
 .lp-prova{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-radius:14px;border:2px dashed var(--card-border);color:var(--text-muted)}
 .lp-prova.is-open{border-style:solid;border-color:var(--primary-bg);color:var(--text)}
@@ -276,6 +288,13 @@
 .lc b{color:var(--accent-strong)}
 .lc.h{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);background:var(--option-default-bg)}
 .lc.p{font-weight:800}
+.ls-chart.c3{grid-template-columns:minmax(64px,.8fr) repeat(2,minmax(0,1fr))}
+.ls-chart.c4{grid-template-columns:minmax(64px,.8fr) repeat(3,minmax(0,1fr))}
+.ls-wgroup{display:flex;flex-direction:column;gap:6px}
+.ls-words2{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+.ls-w{display:flex;flex-direction:column;padding:8px 10px;border-radius:10px;background:var(--option-default-bg);font-size:14px;line-height:1.3}
+.ls-w b{font-size:15.5px}
+.ls-w span{color:var(--text-muted);font-size:13px}
 .ls-extra{margin:0;font-size:14px;color:var(--text-muted);line-height:1.5}
 .ls-tricks{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:14px;background:var(--catTag-bg);color:var(--catTag-text)}
 .ls-tt{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
@@ -1186,12 +1205,13 @@
 
               <sc-if value="{{lsImpara}}" hint-placeholder-val="{{false}}">
                 <h2 class="ls-head display">{{lsHead}}</h2>
-                <div class="ls-uses"><sc-for list="{{lsUses}}" as="u" hint-placeholder-count="3"><div class="ls-use"><b>{{u.t}}</b><span class="ls-it">{{u.it}}</span><span class="ls-en">{{u.en}}</span></div></sc-for></div>
-                <div class="ls-chart" role="table" aria-label="Imperfetto chart"><sc-for list="{{lsChart}}" as="c" hint-placeholder-count="35"><div class="{{c.cls}}" role="cell">{{c.t}}<b>{{c.e}}</b></div></sc-for></div>
-                <p class="ls-extra">{{lsExtra}}</p>
-                <div class="ls-tricks"><div class="ls-tt">Trucchi</div><sc-for list="{{lsTricks}}" as="t" hint-placeholder-count="4"><div class="ls-trick"><span>{{t.n}}</span>{{t.t}}</div></sc-for></div>
-                <div class="ls-spia"><span class="ls-sl">Parole spia · imperfetto</span><sc-for list="{{lsSpia}}" as="w" hint-placeholder-count="6"><span class="ls-chip">{{w.t}}</span></sc-for></div>
-                <div class="ls-spia"><span class="ls-sl">One single time</span><sc-for list="{{lsOnce}}" as="w" hint-placeholder-count="3"><span class="ls-chip alt">{{w.t}}</span></sc-for></div>
+                <sc-if value="{{lsHasUses}}" hint-placeholder-val="{{false}}"><div class="ls-uses"><sc-for list="{{lsUses}}" as="u" hint-placeholder-count="3"><div class="ls-use"><b>{{u.t}}</b><span class="ls-it">{{u.it}}</span><span class="ls-en">{{u.en}}</span></div></sc-for></div></sc-if>
+                <sc-if value="{{lsHasWords}}" hint-placeholder-val="{{false}}"><sc-for list="{{lsGroups}}" as="g" hint-placeholder-count="2"><div class="ls-wgroup"><div class="ls-tt">{{g.name}}</div><div class="ls-words2"><sc-for list="{{g.words}}" as="w" hint-placeholder-count="8"><div class="ls-w"><b>{{w.it}}</b><span>{{w.en}}</span></div></sc-for></div></div></sc-for></sc-if>
+                <sc-if value="{{lsHasChart}}" hint-placeholder-val="{{false}}"><div class="{{lsChartCls}}" role="table" aria-label="Chart"><sc-for list="{{lsChart}}" as="c" hint-placeholder-count="35"><div class="{{c.cls}}" role="cell">{{c.t}}<b>{{c.e}}</b></div></sc-for></div></sc-if>
+                <sc-if value="{{lsHasExtra}}" hint-placeholder-val="{{false}}"><p class="ls-extra">{{lsExtra}}</p></sc-if>
+                <sc-if value="{{lsHasTricks}}" hint-placeholder-val="{{false}}"><div class="ls-tricks"><div class="ls-tt">Trucchi</div><sc-for list="{{lsTricks}}" as="t" hint-placeholder-count="4"><div class="ls-trick"><span>{{t.n}}</span>{{t.t}}</div></sc-for></div></sc-if>
+                <sc-if value="{{lsHasSpia}}" hint-placeholder-val="{{false}}"><div class="ls-spia"><span class="ls-sl">{{lsSpiaLabel}}</span><sc-for list="{{lsSpia}}" as="w" hint-placeholder-count="6"><span class="ls-chip">{{w.t}}</span></sc-for></div></sc-if>
+                <sc-if value="{{lsHasOnce}}" hint-placeholder-val="{{false}}"><div class="ls-spia"><span class="ls-sl">One single time</span><sc-for list="{{lsOnce}}" as="w" hint-placeholder-count="3"><span class="ls-chip alt">{{w.t}}</span></sc-for></div></sc-if>
               </sc-if>
 
               <sc-if value="{{lsHasOggi}}" hint-placeholder-val="{{false}}"><div class="ls-oggi"><span class="ls-tag">Oggi</span><span>{{lsOggi}}</span></div></sc-if>
@@ -1218,11 +1238,11 @@
               <sc-if value="{{lsChat}}" hint-placeholder-val="{{false}}">
                 <div class="ls-chat">
                   <div class="ls-cb boh">{{lsPrompt}}</div>
-                  <div class="ls-lbl">1 · Scegli il verbo giusto</div>
+                  <div class="ls-lbl">{{lsVerbLbl}}</div>
                   <div class="ls-opts row"><sc-for list="{{lsVerbs}}" as="op" hint-placeholder-count="4"><button class="{{op.cls}}" onClick="{{op.pick}}" disabled="{{op.dis}}">{{op.t}}</button></sc-for></div>
                   <sc-if value="{{lsVerbOk}}" hint-placeholder-val="{{false}}"><div class="ls-vok">&#10003; {{lsVerbOkText}}</div></sc-if>
                   <sc-if value="{{lsEndStep}}" hint-placeholder-val="{{false}}">
-                    <div class="ls-lbl">2 · La tua risposta: scegli o scrivi</div>
+                    <div class="ls-lbl">{{lsEndLbl}}</div>
                     <div class="ls-opts row"><sc-for list="{{lsEnds}}" as="op" hint-placeholder-count="5"><button class="{{op.cls}}" onClick="{{op.pick}}">{{op.t}}</button></sc-for></div>
                   </sc-if>
                   <sc-if value="{{lsFreeStep}}" hint-placeholder-val="{{false}}"><div class="ls-free"><sc-for list="{{lsFreePart}}" as="p" hint-placeholder-count="1"><input class="{{p.cls}}" type="text" autocomplete="off" spellcheck="false" value="{{p.val}}" onInput="{{p.onInput}}" onKeyDown="{{lsKey}}" aria-label="{{p.aria}}" placeholder="{{lsFreePh}}"></sc-for></div></sc-if>
@@ -1266,10 +1286,10 @@
             <sc-if value="{{lsIsFine}}" hint-placeholder-val="{{false}}">
               <div class="ls-done">
                 <div class="ls-stamp big">LEZIONE FINITA</div>
-                <h2 class="ls-head display">Hai scritto, costruito, corretto e parlato in italiano.</h2>
+                <h2 class="ls-head display">{{lsFinishLine}}</h2>
                 <div class="ls-stats">
                   <div><b>{{lsTyped}}</b><span>answers you typed</span></div>
-                  <div><b>{{lsFixes}}</b><span>of Boh’s mistakes fixed</span></div>
+                  <sc-if value="{{lsHasFixStat}}" hint-placeholder-val="{{true}}"><div><b>{{lsFixes}}</b><span>of Boh’s mistakes fixed</span></div></sc-if>
                   <div><b>{{lsEarned}}</b><span>BC from the lesson</span></div>
                 </div>
                 <sc-if value="{{lsHasWorst}}" hint-placeholder-val="{{false}}"><button class="ls-worst" onClick="{{lsWorstH}}"><b>Ripassa: {{lsWorstT}}</b><span>{{lsWorstB}}</span></button></sc-if>
@@ -1807,9 +1827,25 @@
             <button onClick="{{toggleMotionHandler}}" aria-label="Toggle reduce motion" aria-pressed="{{motionOn}}" class="swt" style="background:{{motionTrack}};"><span style="position:absolute;top:3px;left:{{motionKnob}};width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s;"></span></button>
           </div>
           <button onClick="{{editBohHandler}}" style="margin-top:6px;padding:12px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Edit my Boh (look &amp; name)</button>
+          <button onClick="{{openProfHandler}}" style="margin-top:6px;padding:12px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:14px;border:2px dashed var(--card-border);cursor:pointer;">&#128273; Prof</button>
           <button data-bohsave="save" style="margin-top:6px;padding:12px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:14px;border:none;cursor:pointer;">&#128190; Salva / Carica il mio Boh (tutti i livelli)</button>
           <button onClick="{{askResetHandler}}" style="margin-top:6px;padding:12px;border-radius:14px;background:transparent;color:var(--error-text);font-weight:800;font-size:14px;border:2px solid var(--error-border);">Reset all my progress</button>
           <button onClick="{{closeOverlayHandler}}" style="padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Done</button>
+        </sc-if>
+
+        <sc-if value="{{ovProf}}" hint-placeholder-val="{{false}}">
+          <div class="display" style="font-size:28px;font-weight:800;">&#128273; Prof</div>
+          <sc-if value="{{profLocked}}" hint-placeholder-val="{{true}}">
+            <label for="profPin" class="bt-pinrow"><span>PIN della Prof</span><input id="profPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" value="{{profPinDraft}}" onInput="{{onProfPin}}" onKeyDown="{{profPinKey}}" placeholder="&bull;&bull;&bull;&bull;"></label>
+            <button onClick="{{profEnterH}}" style="padding:14px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;cursor:pointer;">Entra</button>
+          </sc-if>
+          <sc-if value="{{profOpen}}" hint-placeholder-val="{{false}}">
+            <div class="prof-who">{{profWho}}</div>
+            <div class="prof-status">{{profStatus}}</div>
+            <div class="prof-acts"><sc-for list="{{profActions}}" as="a" hint-placeholder-count="5"><button class="{{a.cls}}" onClick="{{a.go}}" disabled="{{a.dis}}"><b>{{a.t}}</b><span>{{a.sub}}</span></button></sc-for></div>
+          </sc-if>
+          <sc-if value="{{hasProfMsg}}" hint-placeholder-val="{{false}}"><div class="prof-msg" role="status">{{profMsg}}</div></sc-if>
+          <button onClick="{{profDoneH}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);cursor:pointer;">Fatto</button>
         </sc-if>
 
         <sc-if value="{{ovReset}}" hint-placeholder-val="{{false}}">
@@ -2345,8 +2381,8 @@ function btRefund(p) {
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson'];
-var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes", "lesson"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU'];
+var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes", "lesson", "profU"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
 function cleanName(raw) { return (raw || '').replace(/[^A-Za-z0-9\u00C0-\u017F ]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
@@ -2470,7 +2506,7 @@ function btTypoOk(said, want) {
 }
 
 // ---- Lesson path (Assunta's approved content) ----
-var BT_LESSONS = {"imp": {"title": "L'imperfetto", "minutes": 36, "stops": [{"key": "impara", "label": "Impara", "min": 4, "type": "impara", "kicker": "Boh ti spiega", "bubble": "Quando ero piccola, giocavo a calcio ogni sabato. D’inverno faceva freddo e spesso pioveva, ma io giocavo lo stesso. La nonna diceva sempre: “Boh, metti il cappello!”", "head": "L'imperfetto racconta com'era, non cosa è successo una volta.", "uses": [["Abitudini", "Giocavo a calcio ogni sabato.", "I used to play"], ["Descrizioni", "Faceva freddo. Ero felice.", "It was cold. I was happy."], ["Sfondo", "Mentre pioveva, guardavo la TV.", "While it was raining, I was watching"]], "verbs": ["parlare", "leggere", "dormire", "essere"], "rows": [["io", ["parla", "vo"], ["legge", "vo"], ["dormi", "vo"], ["", "ero"]], ["tu", ["parla", "vi"], ["legge", "vi"], ["dormi", "vi"], ["", "eri"]], ["lui / lei", ["parla", "va"], ["legge", "va"], ["dormi", "va"], ["", "era"]], ["noi", ["parla", "vamo"], ["legge", "vamo"], ["dormi", "vamo"], ["", "eravamo"]], ["voi", ["parla", "vate"], ["legge", "vate"], ["dormi", "vate"], ["", "eravate"]], ["loro", ["parla", "vano"], ["legge", "vano"], ["dormi", "vano"], ["", "erano"]]], "extra": "Also in this unit, all regular: andare → andavo, avere → avevo, stare → stavo. Only fare changes its stem: facevo.", "tricks": ["The heartbeat: vo · vi · va · vamo · vate · vano. Every verb gets the same heartbeat.", "Keep the vowel of the infinitive: parlAre → parlAvo, leggEre → leggEvo, dormIre → dormIvo. “Parlevo” means you swapped the vowel.", "Essere is the rebel: ero, eri, era, eravamo, eravate, erano.", "Fare uses its old Latin stem FAC-: facevo, faceva. “Fava” is a bean, not the weather!"], "spia": ["da piccolo/a", "quando ero piccolo/a", "sempre", "di solito", "spesso", "ogni giorno / estate / sabato", "mentre"], "once": ["una volta", "all’improvviso", "ieri alle tre"]}, {"key": "scegli", "label": "Scegli", "min": 4, "type": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta.", "items": [{"oggi": "Gioco a calcetto.", "prompt": "Da piccol{o|a}…", "answer": "Giocavo a calcetto.", "traps": ["Ho giocato a calcetto.", "Giochevo a calcetto."], "why": "Used to → imperfetto. -are keeps the a: gioc-avo."}, {"oggi": "Perdo sempre a carte.", "prompt": "Da piccol{o|a}…", "answer": "Perdevo sempre a carte.", "traps": ["Perdavo sempre a carte.", "Ho perso sempre a carte."], "why": "-ere → -evo."}, {"oggi": "Fa freddo.", "prompt": "Ieri…", "answer": "Faceva freddo.", "traps": ["Fava freddo.", "Ha fatto freddo."], "why": "Weather is background → imperfetto. fare → facev-."}, {"oggi": "C’è vento.", "prompt": "Ieri…", "answer": "C’era vento.", "traps": ["C’erano vento.", "È stato vento."], "why": "c’è → c’era: one thing, il vento."}, {"oggi": "Ho la febbre.", "prompt": "La settimana scorsa…", "answer": "Avevo la febbre.", "traps": ["Avevi la febbre.", "Ho avuto la febbre."], "why": "How you were → imperfetto. io → -vo."}, {"oggi": "Sono molto stanc{o|a}.", "prompt": "Ieri io ____ molto stanc{o|a}.", "answer": "ero", "traps": ["sono", "era"], "why": "Yesterday = the past → imperfetto: ero. Not sono: that would mean right now."}]}, {"key": "completa", "label": "Completa", "min": 6, "type": "type", "kicker": "Scrivi il verbo all’imperfetto", "bubble": "Adesso scrivi tu. Piccoli errori di battitura? Li perdono!", "items": [{"text": "Da piccol{o|a}, io ___ a pallavolo ogni sabato.", "hints": ["giocare"], "answers": [["giocavo"]], "why": "“Ogni sabato” = a habit → imperfetto. io → -vo."}, {"text": "L’anno scorso io ___ la signora Scotto.", "hints": ["avere"], "answers": [["avevo"]], "why": "Last year = the past → imperfetto: avevo."}, {"text": "Prima di dormire, io ___ i fumetti.", "hints": ["leggere"], "answers": [["leggevo"]], "why": "-ere keeps the e: legg-evo."}, {"text": "Quando ero malat{o|a}, io ___ tutto il giorno.", "hints": ["dormire"], "answers": [["dormivo"]], "why": "-ire keeps the i: dorm-ivo."}, {"text": "Da piccolo, tu ___ allo stadio con tuo papà?", "hints": ["andare"], "answers": [["andavi"]], "why": "New person: tu → -vi."}, {"text": "Ogni inverno ___ tanto.", "hints": ["nevicare"], "answers": [["nevicava"]], "why": "Weather → imperfetto, always the lui/lei form."}, {"text": "Noi ___ nuoto il martedì.", "hints": ["fare"], "answers": [["facevamo"]], "why": "noi → -vamo. fare → fac-evamo."}, {"text": "I miei nonni ___ per il Napoli.", "hints": ["tifare"], "answers": [["tifavano"]], "why": "loro → -vano."}]}, {"key": "costruisci", "label": "Costruisci", "min": 5, "type": "tiles", "kicker": "Costruisci la frase in italiano", "bubble": "Attenzione: due parole sono trappole!", "items": [{"en": "When I was little, I used to go to the beach every summer.", "tiles": ["Quando", "ero", "piccol{o|a},", "andavo", "al mare", "ogni estate."], "traps": ["sono andat{o|a}", "ero stat{o|a}"], "why": "“Every summer” = a habit → andavo."}, {"en": "When it was raining, I used to watch TV.", "tiles": ["Quando", "pioveva,", "guardavo", "la TV."], "traps": ["ha piovuto,", "guardava"], "why": "Weather + a habit → both imperfetto."}, {"en": "Every winter, it used to snow a lot.", "tiles": ["Ogni inverno,", "nevicava", "tanto."], "traps": ["ha nevicato", "nevicavo"], "why": "Weather uses the lui/lei form: nevicava."}, {"en": "When I was sick, I used to rest.", "tiles": ["Quando", "ero", "malat{o|a},", "riposavo."], "traps": ["sono stat{o|a}", "riposava."], "why": "How you were + what you used to do → imperfetto."}, {"en": "My grandfather and I used to go fishing.", "tiles": ["Io e mio nonno", "andavamo", "a pescare."], "traps": ["andavano", "siamo andati"], "why": "Io e mio nonno = noi → -vamo."}, {"en": "It was crazy hot and we were at the stadium.", "tiles": ["Faceva", "un caldo pazzesco", "e noi", "eravamo", "allo stadio."], "traps": ["Fava", "erano"], "why": "fare → faceva. noi → eravamo."}]}, {"key": "trasforma", "label": "Trasforma", "min": 5, "type": "type", "kicker": "Oggi → nel passato", "bubble": "Ogni carta è un pochino più difficile. Ce la fai!", "items": [{"oggi": "Io gioco a calcio.", "text": "Da piccol{o|a}, io ___ a calcio.", "answers": [["giocavo"]], "why": "gioco → giocavo. Same person, new tense."}, {"oggi": "Io leggo i fumetti.", "text": "Da piccol{o|a}, io ___ i fumetti.", "answers": [["leggevo"]], "why": "An -ere verb: legg-evo."}, {"oggi": "Noi giochiamo a carte con la nonna.", "text": "Da piccoli, noi ___ a carte con la nonna.", "answers": [["giocavamo"]], "why": "New person: noi → -vamo."}, {"oggi": "Lei fa danza.", "text": "Da piccola, lei ___ danza.", "answers": [["faceva"]], "why": "fare changes its stem: fac-eva."}, {"oggi": "Piove e c’è vento.", "text": "Ieri ___ e ___ vento.", "answers": [["pioveva"], ["c'era"]], "why": "Two verbs, both weather → pioveva, c’era."}, {"oggi": "Ho mal di gola e sto a casa.", "text": "La settimana scorsa ___ mal di gola e ___ a casa.", "answers": [["avevo"], ["stavo"]], "why": "How you were → avevo, stavo."}]}, {"key": "correggi", "label": "Correggi Boh", "min": 4, "type": "fix", "kicker": "Boh ha sbagliato una parola. Toccala e correggila.", "bubble": "Io non sbaglio mai… o forse sì?", "items": [{"words": ["Da", "piccola,", "io", "giocava", "sempre", "a", "tennis."], "wrong": 3, "fix": ["giocavo"], "why": "io needs -vo. -va is for lui / lei.", "boh": "Ops! Grazie, prof!"}, {"words": ["Quando", "ero", "piccolo,", "parlevo", "tanto."], "wrong": 3, "fix": ["parlavo"], "why": "parlare keeps its a: parl-avo.", "boh": "Io chiacchierone? Mai!"}, {"words": ["Ieri", "fava", "freddo."], "wrong": 1, "fix": ["faceva"], "why": "fare → fac-eva. The fava is a bean!", "boh": "Mangiavo le fave, non il tempo!"}, {"words": ["Al", "mare", "c'erano", "il", "sole."], "wrong": 2, "fix": ["c'era"], "why": "Il sole is one thing → c’era. Many things → c’erano.", "boh": "Un sole solo, per fortuna."}, {"words": ["Ogni", "estate,", "noi", "siamo andati", "al", "mare."], "wrong": 3, "fix": ["andavamo"], "why": "“Ogni estate” = a habit → imperfetto. Siamo andati = one time.", "boh": "Hai ragione: era un’abitudine!"}]}, {"key": "rispondi", "label": "Rispondi a Boh", "min": 3, "type": "chat", "kicker": "Rispondi a Boh", "bubble": "Adesso parliamo io e te!", "items": [{"q": "Da piccolo o da piccola, che sport facevi?", "verb": "facevo", "verbs": [["facevo", ""], ["faceva", "That’s lui / lei. For you: -vo."], ["ho fatto", "That’s one time. I asked what you used to do."], ["faccio", "That’s now. I asked about when you were little."]], "ends": [["nuoto", "Anche io facevo nuoto! Ma avevo sempre freddo."], ["danza", "Che eleganza! Io facevo danza in cucina con la nonna."], ["calcio", "Forza! Io tifavo per il Napoli."], ["atletica", "Veloce! Io correvo solo per il gelato."]]}, {"q": "D’estate, dove andavi?", "verb": "andavo", "verbs": [["andavo", ""], ["andava", "That’s lui / lei. For you: -vo."], ["sono andat{o|a}", "That’s one summer. I asked about every summer."], ["vado", "That’s now. I asked about when you were little."]], "ends": [["al mare", "Io andavo a Positano… nei miei sogni!"], ["in campeggio", "Coraggio! Io avevo paura degli insetti."], ["dai nonni", "Anche io! La nonna cucinava tutto il giorno."], ["in piscina", "Splash! Io nuotavo come un pesce."]]}, {"q": "Quando stavi male, cosa guardavi in TV?", "verb": "guardavo", "verbs": [["guardavo", ""], ["guardava", "That’s lui / lei. For you: -vo."], ["ho guardato", "That’s one time. I asked what you used to watch."], ["guardo", "That’s now. I asked about when you were sick."]], "ends": [["i cartoni animati", "Io guardavo i cartoni con la coperta e il tè."], ["la Formula 1", "Vroom! Io tifavo per la Ferrari."], ["le partite", "Io guardavo le partite con il nonno."], ["i film", "Io guardavo i film e poi dormivo sul divano."]]}], "freeBoh": "Bello! Raccontami di più in classe."}, {"key": "parla", "label": "Parla", "min": 5, "type": "parla", "kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Parlate! Io ascolto.", "prompts": [["Che sport facevi da piccolo/a?", "Facevo… · Giocavo a…"], ["Che tempo faceva durante le vacanze?", "Faceva… · Pioveva… · C’era…"], ["Cosa facevi quando stavi male?", "Stavo a letto… · Guardavo… · Prendevo…"]], "checks": ["Ho fatto le 3 domande.", "Ho risposto con l’imperfetto.", "Ho raccontato una risposta del mio compagno: “Lui / Lei faceva…”"]}]}};
+var BT_LESSONS = {"imp": {"title": "L'imperfetto", "minutes": 36, "stops": [{"key": "impara", "label": "Impara", "min": 8, "kicker": "Boh ti spiega", "bubble": "Quando ero piccola, giocavo a calcio ogni sabato. D’inverno faceva freddo e spesso pioveva, ma io giocavo lo stesso. La nonna diceva sempre: “Boh, metti il cappello!”", "items": [{"kicker": "Boh ti spiega", "bubble": "Quando ero piccola, giocavo a calcio ogni sabato. D’inverno faceva freddo e spesso pioveva, ma io giocavo lo stesso. La nonna diceva sempre: “Boh, metti il cappello!”", "head": "L'imperfetto racconta com'era, non cosa è successo una volta.", "uses": [["Abitudini", "Giocavo a calcio ogni sabato.", "I used to play"], ["Descrizioni", "Faceva freddo. Ero felice.", "It was cold. I was happy."], ["Sfondo", "Mentre pioveva, guardavo la TV.", "While it was raining, I was watching"]], "verbs": ["parlare", "leggere", "dormire", "essere"], "rows": [["io", ["parla", "vo"], ["legge", "vo"], ["dormi", "vo"], ["", "ero"]], ["tu", ["parla", "vi"], ["legge", "vi"], ["dormi", "vi"], ["", "eri"]], ["lui / lei", ["parla", "va"], ["legge", "va"], ["dormi", "va"], ["", "era"]], ["noi", ["parla", "vamo"], ["legge", "vamo"], ["dormi", "vamo"], ["", "eravamo"]], ["voi", ["parla", "vate"], ["legge", "vate"], ["dormi", "vate"], ["", "eravate"]], ["loro", ["parla", "vano"], ["legge", "vano"], ["dormi", "vano"], ["", "erano"]]], "extra": "Also in this unit, all regular: andare → andavo, avere → avevo, stare → stavo. Only fare changes its stem: facevo.", "tricks": ["The heartbeat: vo · vi · va · vamo · vate · vano. Every verb gets the same heartbeat.", "Keep the vowel of the infinitive: parlAre → parlAvo, leggEre → leggEvo, dormIre → dormIvo. “Parlevo” means you swapped the vowel.", "Essere is the rebel: ero, eri, era, eravamo, eravate, erano.", "Fare uses its old Latin stem FAC-: facevo, faceva. “Fava” is a bean, not the weather!"], "spia": ["da piccolo/a", "quando ero piccolo/a", "sempre", "di solito", "spesso", "ogni giorno / estate / sabato", "mentre"], "once": ["una volta", "all’improvviso", "ieri alle tre"], "items": [{"kicker": "Boh ti spiega", "bubble": "Quando ero piccola, giocavo a calcio ogni sabato. D’inverno faceva freddo e spesso pioveva, ma io giocavo lo stesso. La nonna diceva sempre: “Boh, metti il cappello!”", "head": "L'imperfetto racconta com'era, non cosa è successo una volta.", "uses": [["Abitudini", "Giocavo a calcio ogni sabato.", "I used to play"], ["Descrizioni", "Faceva freddo. Ero felice.", "It was cold. I was happy."], ["Sfondo", "Mentre pioveva, guardavo la TV.", "While it was raining, I was watching"]], "verbs": ["parlare", "leggere", "dormire", "essere"], "rows": [["io", ["parla", "vo"], ["legge", "vo"], ["dormi", "vo"], ["", "ero"]], ["tu", ["parla", "vi"], ["legge", "vi"], ["dormi", "vi"], ["", "eri"]], ["lui / lei", ["parla", "va"], ["legge", "va"], ["dormi", "va"], ["", "era"]], ["noi", ["parla", "vamo"], ["legge", "vamo"], ["dormi", "vamo"], ["", "eravamo"]], ["voi", ["parla", "vate"], ["legge", "vate"], ["dormi", "vate"], ["", "eravate"]], ["loro", ["parla", "vano"], ["legge", "vano"], ["dormi", "vano"], ["", "erano"]]], "extra": "Also in this unit, all regular: andare → andavo, avere → avevo, stare → stavo. Only fare changes its stem: facevo.", "tricks": ["The heartbeat: vo · vi · va · vamo · vate · vano. Every verb gets the same heartbeat.", "Keep the vowel of the infinitive: parlAre → parlAvo, leggEre → leggEvo, dormIre → dormIvo. “Parlevo” means you swapped the vowel.", "Essere is the rebel: ero, eri, era, eravamo, eravate, erano.", "Fare uses its old Latin stem FAC-: facevo, faceva. “Fava” is a bean, not the weather!"], "spia": ["da piccolo/a", "quando ero piccolo/a", "sempre", "di solito", "spesso", "ogni giorno / estate / sabato", "mentre"], "once": ["una volta", "all’improvviso", "ieri alle tre"], "t": "impara"}], "t": "impara"}, {"oggi": "Gioco a calcetto.", "prompt": "Da piccol{o|a}…", "answer": "Giocavo a calcetto.", "traps": ["Ho giocato a calcetto.", "Giochevo a calcetto."], "why": "Used to → imperfetto. -are keeps the a: gioc-avo.", "t": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta."}, {"oggi": "Perdo sempre a carte.", "prompt": "Da piccol{o|a}…", "answer": "Perdevo sempre a carte.", "traps": ["Perdavo sempre a carte.", "Ho perso sempre a carte."], "why": "-ere → -evo.", "t": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta."}, {"oggi": "Fa freddo.", "prompt": "Ieri…", "answer": "Faceva freddo.", "traps": ["Fava freddo.", "Ha fatto freddo."], "why": "Weather is background → imperfetto. fare → facev-.", "t": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta."}, {"oggi": "C’è vento.", "prompt": "Ieri…", "answer": "C’era vento.", "traps": ["C’erano vento.", "È stato vento."], "why": "c’è → c’era: one thing, il vento.", "t": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta."}, {"oggi": "Ho la febbre.", "prompt": "La settimana scorsa…", "answer": "Avevo la febbre.", "traps": ["Avevi la febbre.", "Ho avuto la febbre."], "why": "How you were → imperfetto. io → -vo.", "t": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta."}, {"oggi": "Sono molto stanc{o|a}.", "prompt": "Ieri io ____ molto stanc{o|a}.", "answer": "ero", "traps": ["sono", "era"], "why": "Yesterday = the past → imperfetto: ero. Not sono: that would mean right now.", "t": "mc", "kicker": "Scegli l’imperfetto", "bubble": "Riscaldamento! Tocca quella giusta."}]}, {"key": "completa", "label": "Completa", "min": 6, "type": "type", "kicker": "Scrivi il verbo all’imperfetto", "bubble": "Adesso scrivi tu. Piccoli errori di battitura? Li perdono!", "items": [{"text": "Da piccol{o|a}, io ___ a pallavolo ogni sabato.", "hints": ["giocare"], "answers": [["giocavo"]], "why": "“Ogni sabato” = a habit → imperfetto. io → -vo.", "t": "type"}, {"text": "L’anno scorso io ___ la signora Scotto.", "hints": ["avere"], "answers": [["avevo"]], "why": "Last year = the past → imperfetto: avevo.", "t": "type"}, {"text": "Prima di dormire, io ___ i fumetti.", "hints": ["leggere"], "answers": [["leggevo"]], "why": "-ere keeps the e: legg-evo.", "t": "type"}, {"text": "Quando ero malat{o|a}, io ___ tutto il giorno.", "hints": ["dormire"], "answers": [["dormivo"]], "why": "-ire keeps the i: dorm-ivo.", "t": "type"}, {"text": "Da piccolo, tu ___ allo stadio con tuo papà?", "hints": ["andare"], "answers": [["andavi"]], "why": "New person: tu → -vi.", "t": "type"}, {"text": "Ogni inverno ___ tanto.", "hints": ["nevicare"], "answers": [["nevicava"]], "why": "Weather → imperfetto, always the lui/lei form.", "t": "type"}, {"text": "Noi ___ nuoto il martedì.", "hints": ["fare"], "answers": [["facevamo"]], "why": "noi → -vamo. fare → fac-evamo.", "t": "type"}, {"text": "I miei nonni ___ per il Napoli.", "hints": ["tifare"], "answers": [["tifavano"]], "why": "loro → -vano.", "t": "type"}]}, {"key": "costruisci", "label": "Costruisci", "min": 5, "type": "tiles", "kicker": "Costruisci la frase in italiano", "bubble": "Attenzione: due parole sono trappole!", "items": [{"en": "When I was little, I used to go to the beach every summer.", "tiles": ["Quando", "ero", "piccol{o|a},", "andavo", "al mare", "ogni estate."], "traps": ["sono andat{o|a}", "ero stat{o|a}"], "why": "“Every summer” = a habit → andavo.", "t": "tiles"}, {"en": "When it was raining, I used to watch TV.", "tiles": ["Quando", "pioveva,", "guardavo", "la TV."], "traps": ["ha piovuto,", "guardava"], "why": "Weather + a habit → both imperfetto.", "t": "tiles"}, {"en": "Every winter, it used to snow a lot.", "tiles": ["Ogni inverno,", "nevicava", "tanto."], "traps": ["ha nevicato", "nevicavo"], "why": "Weather uses the lui/lei form: nevicava.", "t": "tiles"}, {"en": "When I was sick, I used to rest.", "tiles": ["Quando", "ero", "malat{o|a},", "riposavo."], "traps": ["sono stat{o|a}", "riposava."], "why": "How you were + what you used to do → imperfetto.", "t": "tiles"}, {"en": "My grandfather and I used to go fishing.", "tiles": ["Io e mio nonno", "andavamo", "a pescare."], "traps": ["andavano", "siamo andati"], "why": "Io e mio nonno = noi → -vamo.", "t": "tiles"}, {"en": "It was crazy hot and we were at the stadium.", "tiles": ["Faceva", "un caldo pazzesco", "e noi", "eravamo", "allo stadio."], "traps": ["Fava", "erano"], "why": "fare → faceva. noi → eravamo.", "t": "tiles"}]}, {"key": "trasforma", "label": "Trasforma e correggi", "min": 9, "kicker": "Oggi → nel passato", "bubble": "Ogni carta è un pochino più difficile. Ce la fai!", "items": [{"oggi": "Io gioco a calcio.", "text": "Da piccol{o|a}, io ___ a calcio.", "answers": [["giocavo"]], "why": "gioco → giocavo. Same person, new tense.", "t": "type", "kicker": "Oggi → nel passato"}, {"oggi": "Io leggo i fumetti.", "text": "Da piccol{o|a}, io ___ i fumetti.", "answers": [["leggevo"]], "why": "An -ere verb: legg-evo.", "t": "type", "kicker": "Oggi → nel passato"}, {"oggi": "Noi giochiamo a carte con la nonna.", "text": "Da piccoli, noi ___ a carte con la nonna.", "answers": [["giocavamo"]], "why": "New person: noi → -vamo.", "t": "type", "kicker": "Oggi → nel passato"}, {"oggi": "Lei fa danza.", "text": "Da piccola, lei ___ danza.", "answers": [["faceva"]], "why": "fare changes its stem: fac-eva.", "t": "type", "kicker": "Oggi → nel passato"}, {"oggi": "Piove e c’è vento.", "text": "Ieri ___ e ___ vento.", "answers": [["pioveva"], ["c'era"]], "why": "Two verbs, both weather → pioveva, c’era.", "t": "type", "kicker": "Oggi → nel passato"}, {"oggi": "Ho mal di gola e sto a casa.", "text": "La settimana scorsa ___ mal di gola e ___ a casa.", "answers": [["avevo"], ["stavo"]], "why": "How you were → avevo, stavo.", "t": "type", "kicker": "Oggi → nel passato"}, {"words": ["Da", "piccola,", "io", "giocava", "sempre", "a", "tennis."], "wrong": 3, "fix": ["giocavo"], "why": "io needs -vo. -va is for lui / lei.", "boh": "Ops! Grazie, prof!", "t": "fix", "kicker": "Boh ha sbagliato una parola. Toccala e correggila.", "bubble": "Io non sbaglio mai… o forse sì?"}, {"words": ["Quando", "ero", "piccolo,", "parlevo", "tanto."], "wrong": 3, "fix": ["parlavo"], "why": "parlare keeps its a: parl-avo.", "boh": "Io chiacchierone? Mai!", "t": "fix", "kicker": "Boh ha sbagliato una parola. Toccala e correggila.", "bubble": "Io non sbaglio mai… o forse sì?"}, {"words": ["Ieri", "fava", "freddo."], "wrong": 1, "fix": ["faceva"], "why": "fare → fac-eva. The fava is a bean!", "boh": "Mangiavo le fave, non il tempo!", "t": "fix", "kicker": "Boh ha sbagliato una parola. Toccala e correggila.", "bubble": "Io non sbaglio mai… o forse sì?"}, {"words": ["Al", "mare", "c'erano", "il", "sole."], "wrong": 2, "fix": ["c'era"], "why": "Il sole is one thing → c’era. Many things → c’erano.", "boh": "Un sole solo, per fortuna.", "t": "fix", "kicker": "Boh ha sbagliato una parola. Toccala e correggila.", "bubble": "Io non sbaglio mai… o forse sì?"}, {"words": ["Ogni", "estate,", "noi", "siamo andati", "al", "mare."], "wrong": 3, "fix": ["andavamo"], "why": "“Ogni estate” = a habit → imperfetto. Siamo andati = one time.", "boh": "Hai ragione: era un’abitudine!", "t": "fix", "kicker": "Boh ha sbagliato una parola. Toccala e correggila.", "bubble": "Io non sbaglio mai… o forse sì?"}]}, {"key": "rispondi", "label": "Rispondi a Boh", "min": 3, "type": "chat", "kicker": "Rispondi a Boh", "bubble": "Adesso parliamo io e te!", "items": [{"q": "Da piccolo o da piccola, che sport facevi?", "verb": "facevo", "verbs": [["facevo", ""], ["faceva", "That’s lui / lei. For you: -vo."], ["ho fatto", "That’s one time. I asked what you used to do."], ["faccio", "That’s now. I asked about when you were little."]], "ends": [["nuoto", "Anche io facevo nuoto! Ma avevo sempre freddo."], ["danza", "Che eleganza! Io facevo danza in cucina con la nonna."], ["calcio", "Forza! Io tifavo per il Napoli."], ["atletica", "Veloce! Io correvo solo per il gelato."]], "t": "chat"}, {"q": "D’estate, dove andavi?", "verb": "andavo", "verbs": [["andavo", ""], ["andava", "That’s lui / lei. For you: -vo."], ["sono andat{o|a}", "That’s one summer. I asked about every summer."], ["vado", "That’s now. I asked about when you were little."]], "ends": [["al mare", "Io andavo a Positano… nei miei sogni!"], ["in campeggio", "Coraggio! Io avevo paura degli insetti."], ["dai nonni", "Anche io! La nonna cucinava tutto il giorno."], ["in piscina", "Splash! Io nuotavo come un pesce."]], "t": "chat"}, {"q": "Quando stavi male, cosa guardavi in TV?", "verb": "guardavo", "verbs": [["guardavo", ""], ["guardava", "That’s lui / lei. For you: -vo."], ["ho guardato", "That’s one time. I asked what you used to watch."], ["guardo", "That’s now. I asked about when you were sick."]], "ends": [["i cartoni animati", "Io guardavo i cartoni con la coperta e il tè."], ["la Formula 1", "Vroom! Io tifavo per la Ferrari."], ["le partite", "Io guardavo le partite con il nonno."], ["i film", "Io guardavo i film e poi dormivo sul divano."]], "t": "chat"}], "freeBoh": "Bello! Raccontami di più in classe."}, {"key": "parla", "label": "Parla", "min": 5, "kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Parlate! Io ascolto.", "items": [{"kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Parlate! Io ascolto.", "prompts": [["Che sport facevi da piccolo/a?", "Facevo… · Giocavo a…"], ["Che tempo faceva durante le vacanze?", "Faceva… · Pioveva… · C’era…"], ["Cosa facevi quando stavi male?", "Stavo a letto… · Guardavo… · Prendevo…"]], "checks": ["Ho fatto le 3 domande.", "Ho risposto con l’imperfetto.", "Ho raccontato una risposta del mio compagno: “Lui / Lei faceva…”"], "items": [{"kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Parlate! Io ascolto.", "prompts": [["Che sport facevi da piccolo/a?", "Facevo… · Giocavo a…"], ["Che tempo faceva durante le vacanze?", "Faceva… · Pioveva… · C’era…"], ["Cosa facevi quando stavi male?", "Stavo a letto… · Guardavo… · Prendevo…"]], "checks": ["Ho fatto le 3 domande.", "Ho risposto con l’imperfetto.", "Ho raccontato una risposta del mio compagno: “Lui / Lei faceva…”"], "t": "parla"}], "t": "parla"}]}]}};
 var LS_TIPS = {
   vocale:   ['La vocale giusta', 'Keep the vowel of the infinitive: parlAre → parlAvo, leggEre → leggEvo, dormIre → dormIvo.'],
   persona:  ['Chi è?', 'io → -vo · tu → -vi · lui / lei → -va · noi → -vamo · voi → -vate · loro → -vano.'],
@@ -2479,6 +2515,7 @@ var LS_TIPS = {
   fare:     ['Fare → FAC-', 'fare → facevo, faceva, facevamo… Fava is a bean!'],
   cera:     ['C’era o c’erano?', 'One thing → c’era. Many things → c’erano.'],
   essere:   ['Essere è ribelle', 'ero, eri, era, eravamo, eravate, erano.'],
+  vocab:    ['Rileggi la parola', 'Many words look like English (tennis, ciclismo, nuotare = swim). Say it out loud and try again.'],
   generic:  ['Guarda la tabella', 'Find the verb in the chart and add the heartbeat: vo · vi · va · vamo · vate · vano.']
 };
 var LS_TIP_CARD = { vocale: 0, persona: 1, pp: 6, presente: 0, fare: 3, cera: 4, essere: 2, generic: 0 };
@@ -2498,6 +2535,9 @@ function lsMatch(given, answers) {
   for (var j = 0; j < answers.length; j++) {
     var a2 = lsNorm(answers[j]).replace(/'/g, ''), g2 = g.replace(/'/g, '');
     if (a2.indexOf(' ') === -1 && g2.indexOf(' ') === -1 && btTypoOk(g2, a2)) return { ok: true, note: 'Conta! Typo forgiven: ' + String(given).trim() + ' → ' + answers[j] + '.' };
+    var gw = g2.split(' '), aw = a2.split(' ');
+    if (gw.length === aw.length && gw.length > 1 && gw.every(function (w, q) { return w === aw[q] || stripAccents(w) === stripAccents(aw[q]) || btTypoOk(w, aw[q]); }))
+      return { ok: true, note: 'Conta! Typo forgiven: ' + String(given).trim() + ' → ' + answers[j] + '.' };
   }
   return { ok: false };
 }
@@ -2526,6 +2566,7 @@ function lsTipKey(given, answer) {
   if (!END.test(gv) && END.test(av)) return 'presente';
   return 'generic';
 }
+function btHasTab() { try { return !(BT_UNITS[BT_UNIT] && BT_UNITS[BT_UNIT].noTab); } catch (e) { return true; } }
 function lsD(b) { return b ? 'true' : null; }
 function lsNearest(list, w) { var best = list[0], bd = 99; list.forEach(function (x) { var d = btEdit(lsNorm(x), lsNorm(w)); if (d < bd) { bd = d; best = x; } }); return best; }
 function btProvaLeft(times, now) { return (times || []).filter(function (t) { return now - t < 3600000; }); }
@@ -11131,7 +11172,7 @@ var BT_UNITS = {
 };
 var BT_UNIT_ORDER = ['vdp', 'imp'];
 var BT_UNIT_SOON = [['Passato prossimo vs imperfetto', 'PRESTO'], ['Il futuro', 'PRESTO']];
-var BT_UNIT_KEYS = ["lesson", "badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
+var BT_UNIT_KEYS = ["lesson", "profU", "badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
 var BT_GLOBAL_BADGES = ['centone', 'un_sacco', 'tre_di_fila', 'fiamma_oro', 'giro_italia'];
 var BT_UNIT = 'imp', MODES = BT_UNITS.imp.MODES, QUESTION_BANK = BT_UNITS.imp.QB;
 function btAddCart(M, C) {
@@ -12082,6 +12123,7 @@ class Component extends DCLogic {
       extra.badges = b; extra.newBadges = nb;
   }
   lsData() { return BT_LESSONS[BT_UNIT] || null; }
+  lsTip(it, given, ans) { var D = this.lsData(); if (it && it.tip) return it.tip; if (D && D.tips === 'vocab') return 'vocab'; return lsTipKey(given, ans); }
   lsState() {
     var L = this.state.lesson;
     if (L && L.v === 1) return L;
@@ -12089,17 +12131,17 @@ class Component extends DCLogic {
   }
   lsFrontier(L, D) { for (var i = 0; i < D.stops.length; i++) if ((L.done || []).indexOf(i) === -1) return i; return D.stops.length; }
   lsFresh(k, i) {
-    var D = this.lsData(), st = D.stops[k], it = st.items ? st.items[i] : null;
+    var D = this.lsData(), st = D.stops[k], it = st.items[i] || null;
     var o = { st: 'ask', tries: 0, vals: [], tipKey: '', note: '', msg: '', pay: 0, placed: [], bank: [], sel: -1, vDone: false, vBad: [], vTries: 0, end: -1, free: false, freeTxt: '', checks: [false, false, false], optBad: [], opts: [], vOrder: [] };
-    if (it && st.type === 'tiles') { var idx = []; for (var q = 0; q < it.tiles.length + it.traps.length; q++) idx.push(q); o.bank = shuffleArr(idx); }
-    if (it && st.type === 'mc') o.opts = shuffleArr([it.answer].concat(it.traps));
-    if (it && st.type === 'chat') o.vOrder = shuffleArr(it.verbs.map(function (v, q) { return q; }));
+    if (it && it.t === 'tiles') { var idx = []; for (var q = 0; q < it.tiles.length + it.traps.length; q++) idx.push(q); o.bank = shuffleArr(idx); }
+    if (it && it.t === 'mc') o.opts = shuffleArr([it.answer].concat(it.traps));
+    if (it && it.t === 'chat') o.vOrder = shuffleArr(it.verbs.map(function (v, q) { return q; }));
     return o;
   }
   lsStart(k) {
     var s = this.state, D = this.lsData();
     if (!D) return;
-    var L = this.lsState(), fr = this.lsFrontier(L, D);
+    var L = this.lsState(), fr = Math.max(this.lsFrontier(L, D), ((s.profU || {}).openTo) || 0);
     if (k > fr || k >= D.stops.length) { this.sfx('soft'); return; }
     var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0), lsView: 'stop', lsStopEarn: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0 };
     var today = dayKey(0);
@@ -12125,7 +12167,7 @@ class Component extends DCLogic {
   }
   lsCopy() { return { o: JSON.parse(JSON.stringify(this.state.lsIt || {})), L: JSON.parse(JSON.stringify(this.lsState())) }; }
   lsMiss(L, key) { if (!key) return; L.miss = L.miss || {}; L.miss[key] = (L.miss[key] || 0) + 1; }
-  lsItem() { var s = this.state, D = this.lsData(), st = D.stops[s.lsCur]; return { D: D, st: st, it: st.items ? st.items[s.lsI] : null }; }
+  lsItem() { var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], it = st.items[s.lsI] || null; return { D: D, st: st, it: it, ty: it ? it.t : '' }; }
   lsRight(o, L, typed) {
     var s = this.state, patch = {};
     o.st = 'ok';
@@ -12147,7 +12189,7 @@ class Component extends DCLogic {
     var s = this.state, x = this.lsItem(), st = x.st, it = x.it, c = this.lsCopy(), o = c.o, L = c.L, base = s.bohBase, patch = {};
     if (!it || o.st === 'ok' || o.st === 'shown') return;
     o.msg = ''; o.note = ''; o.tipKey = '';
-    if (st.type === 'type') {
+    if (it.t === 'type') {
       var bad = -1, notes = [];
       for (var b = 0; b < it.answers.length; b++) {
         var r = lsMatch(o.vals[b] || '', it.answers[b].map(function (a) { return lsG(a, base); }));
@@ -12155,23 +12197,23 @@ class Component extends DCLogic {
         if (!r.ok && bad === -1) bad = b; else if (r.note) notes.push(r.note);
       }
       if (bad === -1) { patch = this.lsRight(o, L, true); o.note = notes.join(' '); }
-      else this.lsWrong(o, L, lsTipKey(o.vals[bad] || '', it.answers[bad][0]));
-    } else if (st.type === 'tiles') {
+      else this.lsWrong(o, L, this.lsTip(it, o.vals[bad] || '', it.answers[bad][0]));
+    } else if (it.t === 'tiles') {
       var n = it.tiles.length;
       if (!o.placed.length) { o.msg = 'Tocca le parole per costruire la frase.'; this.sfx('soft'); this.setState({ lsIt: o }); return; }
       var ok = o.placed.length === n && o.placed.every(function (q, k) { return q === k; });
       if (ok) patch = this.lsRight(o, L, false);
       else {
         var trap = o.placed.filter(function (q) { return q >= n; })[0];
-        if (trap !== undefined) { var tw = lsG(it.traps[trap - n], base); o.msg = '“' + tw + '” è una trappola!'; this.lsWrong(o, L, lsTipKey(tw, lsG(lsNearest(it.tiles, tw), base))); }
+        if (trap !== undefined) { var tw = lsG(it.traps[trap - n], base); o.msg = '“' + tw + '” è una trappola!'; this.lsWrong(o, L, this.lsTip(it, tw, lsG(lsNearest(it.tiles, tw), base))); }
         else { o.msg = o.placed.length < n ? 'Manca qualcosa: usa tutte le parole giuste.' : 'Le parole giuste ci sono! Cambia l’ordine.'; this.lsWrong(o, L, 'generic'); o.tipKey = ''; }
       }
-    } else if (st.type === 'fix') {
+    } else if (it.t === 'fix') {
       var r2 = lsMatch(o.vals[0] || '', it.fix);
       if (r2.empty) { o.msg = 'Scrivi la parola giusta.'; this.sfx('soft'); this.setState({ lsIt: o }); return; }
       if (r2.ok) { patch = this.lsRight(o, L, true); o.note = r2.note || ''; L.fixes = (L.fixes || 0) + 1; }
-      else this.lsWrong(o, L, lsTipKey(o.vals[0] || '', it.fix[0]));
-    } else if (st.type === 'chat') {
+      else this.lsWrong(o, L, this.lsTip(it, o.vals[0] || '', it.fix[0]));
+    } else if (it.t === 'chat') {
       if (!lsNorm(o.freeTxt)) { o.msg = 'Scrivi la tua risposta.'; this.sfx('soft'); this.setState({ lsIt: o }); return; }
       if (lsHasWord(o.freeTxt, it.verb)) { o.st = 'ok'; o.end = -1; L.typed = (L.typed || 0) + 1; this.sfx('good'); }
       else { o.msg = 'Usa il verbo che hai scelto: ' + it.verb + '.'; this.sfx('soft'); }
@@ -12185,7 +12227,7 @@ class Component extends DCLogic {
     if (o.st === 'ok' || o.optBad.indexOf(label) !== -1) return;
     o.sel = label;
     if (label === it.answer) { patch = this.lsRight(o, L, false); o.tipKey = ''; }
-    else { o.optBad.push(label); o.tries++; o.tipKey = lsTipKey(lsG(label, s.bohBase), lsG(it.answer, s.bohBase)); this.lsMiss(L, o.tipKey); o.st = 'wrong'; this.sfx('soft'); }
+    else { o.optBad.push(label); o.tries++; o.tipKey = this.lsTip(it, lsG(label, s.bohBase), lsG(it.answer, s.bohBase)); this.lsMiss(L, o.tipKey); o.st = 'wrong'; this.sfx('soft'); }
     patch.lsIt = o; patch.lesson = L;
     this.setState(patch);
   }
@@ -12213,7 +12255,7 @@ class Component extends DCLogic {
       this.lsMoney(patch, pay); this.sfx(pay ? 'coin' : 'good');
     } else {
       o.vBad.push(k); o.vTries++; o.msg = it.verbs[k][1];
-      this.lsMiss(L, lsTipKey(lsG(it.verbs[k][0], s.bohBase), it.verb)); this.sfx('soft');
+      this.lsMiss(L, this.lsTip(it, lsG(it.verbs[k][0], s.bohBase), it.verb)); this.sfx('soft');
     }
     patch.lsIt = o; patch.lesson = L;
     this.setState(patch);
@@ -12222,7 +12264,7 @@ class Component extends DCLogic {
   lsFree() { var o = this.lsCopy().o; if (!o.vDone || o.st === 'ok') return; o.free = true; o.msg = ''; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsCheckTog(k) { var o = this.lsCopy().o; o.checks[k] = !o.checks[k]; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsNext() {
-    var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], n = st.items ? st.items.length : 1;
+    var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], n = st.items.length;
     if (s.lsI + 1 < n) { this.sfx('tap'); this.setState({ lsI: s.lsI + 1, lsIt: this.lsFresh(s.lsCur, s.lsI + 1) }); return; }
     var L = this.lsCopy().L, patch = {};
     if (L.done.indexOf(s.lsCur) === -1) L.done = L.done.concat([s.lsCur]);
@@ -12235,29 +12277,91 @@ class Component extends DCLogic {
     this.setState(patch);
   }
 
+
+  // ---------------- Prof panel: unlock / re-lock on this Chromebook ----------------
+  profUnit() { var P = this.state.profU; return P && typeof P === 'object' ? JSON.parse(JSON.stringify(P)) : { openTo: 0, prova: false, modes: [] }; }
+  profEnter() {
+    var self = this, pin = (this.state.profPinDraft || '').trim();
+    if (!pin) return;
+    btSha(pin).then(function (h) {
+      if (h !== BT_PIN) { self.sfx('soft'); self.setState({ profMsg: 'PIN sbagliato.', profPinDraft: '' }); return; }
+      self.sfx('good'); self.setState({ profOk: true, profMsg: '', profPinDraft: '', profArm: false });
+    });
+  }
+  profDo(what, arg) {
+    var s = this.state, P = this.profUnit(), D = this.lsData(), msg = '';
+    if (what === 'next') { var L = this.lsState(), fr = Math.max(this.lsFrontier(L, D), P.openTo || 0); P.openTo = Math.min(D.stops.length - 1, fr + 1); msg = 'Tappa ' + (P.openTo + 1) + ' aperta.'; }
+    if (what === 'all') { P.openTo = D.stops.length - 1; msg = 'Tutto il percorso è aperto.'; }
+    if (what === 'prova') { if (D) P.prova = true; else P.modes = addUnique(P.modes || [], 'prova'); msg = 'La Prova è aperta.'; }
+    if (what === 'mode') { P.modes = addUnique(P.modes || [], arg); msg = MODES[arg].label + ': aperto.'; }
+    if (what === 'lock') { P = { openTo: 0, prova: false, modes: [] }; msg = 'Bloccato di nuovo. Only what the student earned stays open.'; }
+    if (what === 'reset') {
+      if (!s.profArm) { this.sfx('soft'); this.setState({ profArm: true, profMsg: 'Tap again to start this unit over.' }); return; }
+      var dd = btUnitDefaults(), patch = { profArm: false, profMsg: 'Unità ricominciata.', lesson: null, profU: null };
+      BT_UNIT_KEYS.forEach(function (k) { if (k !== 'lesson' && k !== 'profU') patch[k] = dd[k]; });
+      this.sfx('tap'); this.setState(patch); return;
+    }
+    this.sfx('tap'); this.setState({ profU: P, profMsg: msg, profArm: false });
+  }
+  profVals(s, result) {
+    var self = this, D = this.lsData(), P = s.profU || {};
+    result.ovProf = s.overlay === 'prof';
+    result.openProfHandler = function () { self.sfx('tap'); self.setState({ overlay: 'prof', profOk: false, profPinDraft: '', profMsg: '', profArm: false }); };
+    if (!result.ovProf) return;
+    result.profLocked = !s.profOk; result.profOpen = !!s.profOk;
+    result.profPinDraft = s.profPinDraft || '';
+    result.onProfPin = function (e) { self.setState({ profPinDraft: e && e.target ? e.target.value : '', profMsg: '' }); };
+    result.profPinKey = function (e) { if (e && e.key === 'Enter') self.profEnter(); };
+    result.profEnterH = function () { self.profEnter(); };
+    result.hasProfMsg = !!s.profMsg; result.profMsg = s.profMsg || '';
+    result.profDoneH = function () { self.sfx('tap'); self.setState({ overlay: null, profOk: false, profPinDraft: '', profMsg: '', profArm: false }); };
+    result.profWho = (s.bohName || 'Boh') + ' · ' + BT_UNITS[BT_UNIT].tab;
+    var acts = [], st = [];
+    if (D) {
+      var L = this.lsState(), fr = this.lsFrontier(L, D), frP = Math.max(fr, P.openTo || 0), N = D.stops.length;
+      st.push('Percorso: ' + L.done.length + ' / ' + N + ' tappe fatte');
+      acts.push({ t: 'Sblocca la prossima tappa', sub: frP + 1 < N ? 'Tappa ' + (frP + 2) + ': ' + D.stops[frP + 1].label : 'All stops are open', dis: lsD(frP + 1 >= N), go: function () { self.profDo('next'); } });
+      acts.push({ t: 'Sblocca tutto il percorso', sub: 'Every stop opens', dis: lsD(frP >= N - 1), go: function () { self.profDo('all'); } });
+      var pOpen = L.finished || P.prova;
+      acts.push({ t: 'Apri La Prova', sub: pOpen ? 'Already open' : 'Without finishing the path', dis: lsD(pOpen), go: function () { self.profDo('prova'); } });
+    } else {
+      var pOpen2 = (s.passed || []).indexOf('mixed') !== -1 || (P.modes || []).indexOf('prova') !== -1;
+      acts.push({ t: 'Apri La Prova', sub: pOpen2 ? 'Already open' : 'Without the Test Simulation', dis: lsD(pOpen2), go: function () { self.profDo('prova'); } });
+    }
+    var order = BT_UNITS[BT_UNIT].order, nextLocked = null;
+    for (var q = 0; q < order.length; q++) { var key = order[q], need = MODES[key] && MODES[key].needs; if (key === 'prova' && D) continue; if (need && (s.passed || []).indexOf(need) === -1 && (P.modes || []).indexOf(key) === -1) { nextLocked = key; break; } }
+    acts.push({ t: 'Sblocca il prossimo Ripasso', sub: nextLocked ? MODES[nextLocked].label : 'Ripasso libero is all open', dis: lsD(!nextLocked), go: function () { self.profDo('mode', nextLocked); } });
+    var any = (P.openTo || 0) > 0 || P.prova || (P.modes || []).length;
+    if (any) st.push('Prof unlocks: ' + [(P.openTo || 0) > 0 ? 'path to tappa ' + (P.openTo + 1) : '', P.prova ? 'La Prova' : '', (P.modes || []).map(function (m) { return MODES[m] ? MODES[m].label : m; }).join(', ')].filter(Boolean).join(' · '));
+    acts.push({ t: 'Blocca di nuovo', sub: 'Undo your unlocks. What the student earned stays.', dis: lsD(!any), go: function () { self.profDo('lock'); } });
+    acts.push({ t: s.profArm ? 'Sicura? Tocca di nuovo' : 'Ricomincia questa unità', sub: 'Clears this unit only: path, rounds, La Prova. Coins and closet stay.', dis: null, cls: 'prof-act danger', go: function () { self.profDo('reset'); } });
+    result.profActions = acts.map(function (a) { a.cls = a.cls || 'prof-act'; return a; });
+    result.profStatus = st.join('\n');
+  }
+
   lsVals(s, result) {
     var self = this, D = this.lsData(), base = s.bohBase;
     result.hasLesson = !!D;
     result.noLesson = !D;
     result.isLesson = s.screen === 'lesson' && !!D;
-    result.homeLede = D ? 'Follow the path: ' + D.stops.length + ' short stops (about ' + D.minutes + ' minutes), then La Prova. Extra practice is under Ripasso libero.'
+    result.homeLede = D && D.lede ? D.lede : D ? 'Follow the path: ' + D.stops.length + ' short stops (about ' + D.minutes + ' minutes), then La Prova. Extra practice is under Ripasso libero.'
                         : 'Pick a mode. Each card only takes a few seconds — get through as many rounds as you can before the test.';
     if (!D) return;
-    var L = this.lsState(), fr = this.lsFrontier(L, D), N = D.stops.length;
+    var L = this.lsState(), PU = s.profU || {}, fr = this.lsFrontier(L, D), frP = Math.max(fr, PU.openTo || 0), N = D.stops.length;
     result.lsTitle = D.title;
     result.lsPath = D.stops.map(function (st, k) {
-      var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = k > fr;
+      var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = k > frP;
       return { n: done ? '✓' : String(k + 1), label: st.label, min: st.min + ' min', dis: lsD(lock),
-               cls: 'lp-stop' + (done ? ' is-done' : cur ? ' is-cur' : ' is-lock'),
+               cls: 'lp-stop' + (done ? ' is-done' : cur ? ' is-cur' : lock ? ' is-lock' : ' is-open'),
                aria: 'Tappa ' + (k + 1) + ': ' + st.label + (done ? ', fatta' : lock ? ', bloccata' : ''),
                pick: function () { self.lsStart(k); } };
     });
-    result.lsPathSub = L.finished ? 'Lezione finita! Replay any stop, or go to La Prova.'
+    result.lsPathSub = D.pathSub && !L.finished && !L.done.length ? D.pathSub : L.finished ? 'Lezione finita! Replay any stop, or go to La Prova.'
       : L.done.length ? L.done.length + ' of ' + N + ' stops done · pick up where you left off'
       : 'About ' + D.minutes + ' minutes · then La Prova';
     result.lsGoLabel = L.finished ? 'Ripassa dall’inizio' : fr === 0 ? 'Comincia: ' + D.stops[0].label : 'Continua: ' + D.stops[fr].label;
     result.lsGoH = function () { self.lsStart(L.finished ? 0 : fr); };
-    var provaOpen = L.finished || (s.passed || []).indexOf('mixed') !== -1 || (s.passed || []).indexOf('prova') !== -1;
+    var provaOpen = L.finished || !!PU.prova || (s.passed || []).indexOf('mixed') !== -1 || (s.passed || []).indexOf('prova') !== -1;
     var pn = Date.now(), pt = btProvaLeft(s.provaTimes, pn), left = 3 - pt.length;
     result.lsProvaCls = 'lp-prova' + (provaOpen && left > 0 ? ' is-open' : ' is-lock');
     result.lsProvaSub = !provaOpen ? 'Opens after stop ' + N + '.' : left > 0 ? 'Graded · ' + left + ' of 3 tries left this hour' : 'Tries used up. Next try at ' + btClock(Math.min.apply(null, pt) + 3600000) + '.';
@@ -12267,81 +12371,86 @@ class Component extends DCLogic {
     if (!result.isLesson) return;
 
     // ---------- the lesson screen ----------
-    var k = s.lsCur || 0, st = D.stops[k], items = st.items || null, i = s.lsI || 0, it = items ? items[i] : null, o = s.lsIt || this.lsFresh(k, i), view = s.lsView || 'stop';
+    var k = s.lsCur || 0, st = D.stops[k], items = st.items || null, i = s.lsI || 0, it = items ? items[i] : null, o = s.lsIt || this.lsFresh(k, i), view = s.lsView || 'stop', ty = it ? it.t : '';
     var G = function (t) { return lsG(t, base); };
     result.lsBars = D.stops.map(function (x, q) { return { cls: 'ls-bar' + (q === k ? ' cur' : L.done.indexOf(q) !== -1 ? ' done' : '') }; });
     result.lsEyebrow = 'Tappa ' + (k + 1) + ' di ' + N + ' · ' + st.label + (items ? ' · ' + (i + 1) + ' / ' + items.length : '');
     result.lsDoll = dollLayersFor(base, s.equipped);
     result.lsFiamma = s.fiammaNote || ''; result.hasLsFiamma = !!s.fiammaNote && view === 'stop' && i === 0;
     result.lsIsStop = view === 'stop'; result.lsIsBetween = view === 'between'; result.lsIsFine = view === 'fine';
-    var bubble = G(st.bubble);
-    if (view === 'stop' && o.st === 'ok') bubble = st.type === 'fix' ? it.boh : G(LS_CHEER[(k + i) % LS_CHEER.length]);
+    var bubble = G((it && it.bubble) || st.bubble);
+    if (view === 'stop' && o.st === 'ok') bubble = ty === 'fix' ? it.boh : G(LS_CHEER[(k + i) % LS_CHEER.length]);
     if (view === 'stop' && (o.st === 'wrong' || o.st === 'shown')) bubble = 'Boh. Let’s fix it.';
     if (view === 'between') bubble = G('Brav{o|a}! Tappa ' + (k + 1) + ' fatta.');
     if (view === 'fine') bubble = 'Ce l’hai fatta! Adesso sai raccontare com’era.';
     result.lsBubble = bubble;
     if (view === 'fine') result.lsEyebrow = 'Lezione finita · ' + D.title;
-    result.lsKicker = G(st.kicker);
+    result.lsKicker = G((it && it.kicker) || st.kicker);
     ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla'].forEach(function (t) { result['ls' + t] = false; });
     result.lsHasOggi = false; result.lsHasPrompt = false; result.lsPrompt = ''; result.lsSub = '';
     var tip = o.tipKey ? LS_TIPS[o.tipKey] : null;
     result.lsHasMsg = !!o.msg; result.lsMsg = o.msg || '';
-    result.lsOk = o.st === 'ok' && st.type !== 'chat'; result.lsOkText = (o.note ? o.note : 'Giusto!') + (o.pay ? '  +' + o.pay + ' BC' : '');
-    result.lsBad = o.st === 'wrong' && !!tip; result.lsBadText = st.type === 'mc' ? 'Non ancora. Scegli un’altra.' : 'Non ancora.';
+    result.lsOk = o.st === 'ok' && ty !== 'chat'; result.lsOkText = (o.note ? o.note : 'Giusto!') + (o.pay ? '  +' + o.pay + ' BC' : '');
+    result.lsBad = o.st === 'wrong' && !!tip; result.lsBadText = ty === 'mc' ? 'Non ancora. Scegli un’altra.' : 'Non ancora.';
     result.lsTipT = tip ? tip[0] : ''; result.lsTipB = tip ? tip[1] : '';
     result.lsShown = o.st === 'shown';
     result.lsNoLoss = o.st === 'wrong' || o.st === 'shown';
     result.lsAnswer = '';
     result.lsHasWhy = !!it && !!it.why && (o.st === 'ok' || o.st === 'shown');
+    result.lsHasTab = btHasTab();
     result.lsWhy = it && it.why ? G(it.why) : '';
-    result.lsCanTab = !!tip && (o.st === 'wrong' || o.st === 'shown');
+    result.lsCanTab = btHasTab() && !!tip && o.tipKey !== 'vocab' && (o.st === 'wrong' || o.st === 'shown');
     result.lsTabH = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: LS_TIP_CARD[o.tipKey] || 0, tabAns: null, tabReveal: false }); };
-    result.lsCanCheck = false; result.lsCanRetry = o.st === 'wrong' && st.type !== 'mc' && st.type !== 'chat';
+    result.lsCanCheck = false; result.lsCanRetry = o.st === 'wrong' && ty !== 'mc' && ty !== 'chat';
     result.lsCanNext = o.st === 'ok' || o.st === 'shown';
     result.lsNextLabel = items && i + 1 < items.length ? 'Avanti' : 'Finisci la tappa';
     result.lsCheckH = function () { self.lsCheck(); };
     result.lsRetryH = function () { self.lsRetry(); };
     result.lsNextH = function () { self.lsNext(); };
-    result.lsKey = function (e) { if (e && e.key === 'Enter') { if (e.preventDefault) e.preventDefault(); var o2 = self.state.lsIt || {}; if (o2.st === 'ok' || o2.st === 'shown') self.lsNext(); else if (o2.st === 'wrong' && st.type !== 'chat') self.lsRetry(); else self.lsCheck(); } };
+    result.lsKey = function (e) { if (e && e.key === 'Enter') { if (e.preventDefault) e.preventDefault(); var o2 = self.state.lsIt || {}; if (o2.st === 'ok' || o2.st === 'shown') self.lsNext(); else if (o2.st === 'wrong' && ty !== 'chat') self.lsRetry(); else self.lsCheck(); } };
     var inputFor = function (b, aria, hint) {
       var dis = o.st === 'ok' || o.st === 'shown';
       return { txt: false, blank: true, val: o.vals[b] || '', hint: hint || '', aria: aria, dis: lsD(dis), cls: 'ls-in' + (o.st === 'ok' ? ' ok' : o.st === 'wrong' || o.st === 'shown' ? ' bad' : ''),
                onInput: function (e) { var o2 = JSON.parse(JSON.stringify(self.state.lsIt)); o2.vals[b] = e && e.target ? e.target.value : ''; if (o2.st === 'wrong') { o2.st = 'ask'; } o2.msg = ''; self.setState({ lsIt: o2 }); } };
     };
 
-    if (view === 'stop' && st.type === 'impara') {
+    if (view === 'stop' && ty === 'impara') {
       result.lsImpara = true;
-      result.lsHead = st.head;
-      result.lsUses = st.uses.map(function (u) { return { t: u[0], it: u[1], en: u[2] }; });
-      var cells = [{ t: '', e: '', cls: 'lc h' }].concat(st.verbs.map(function (v) { return { t: v, e: '', cls: 'lc h' }; }));
-      st.rows.forEach(function (r) { cells.push({ t: r[0], e: '', cls: 'lc p' }); for (var q = 1; q < r.length; q++) cells.push({ t: r[q][0], e: r[q][1], cls: 'lc' }); });
-      result.lsChart = cells;
-      result.lsExtra = st.extra;
-      result.lsTricks = st.tricks.map(function (t, q) { return { n: q + 1, t: t }; });
-      result.lsSpia = st.spia.map(function (t) { return { t: t }; });
-      result.lsOnce = st.once.map(function (t) { return { t: t }; });
-      result.lsCanNext = true; result.lsNextLabel = 'Ho capito! Avanti';
+      result.lsHead = it.head || '';
+      result.lsHasUses = !!it.uses; result.lsUses = (it.uses || []).map(function (u) { return { t: u[0], it: u[1], en: u[2] }; });
+      result.lsHasChart = !!it.rows;
+      var cells = [{ t: '', e: '', cls: 'lc h' }].concat((it.verbs || []).map(function (v) { return { t: v, e: '', cls: 'lc h' }; }));
+      (it.rows || []).forEach(function (r) { cells.push({ t: r[0], e: '', cls: 'lc p' }); for (var q = 1; q < r.length; q++) cells.push({ t: r[q][0], e: r[q][1], cls: 'lc' }); });
+      result.lsChart = cells; result.lsChartCls = 'ls-chart c' + ((it.verbs || []).length + 1);
+      result.lsHasExtra = !!it.extra; result.lsExtra = it.extra || '';
+      result.lsHasTricks = !!(it.tricks && it.tricks.length); result.lsTricks = (it.tricks || []).map(function (t, q) { return { n: q + 1, t: t }; });
+      result.lsHasSpia = !!(it.spia && it.spia.length); result.lsSpiaLabel = it.spiaLabel || 'Parole spia · imperfetto'; result.lsSpia = (it.spia || []).map(function (t) { return { t: t }; });
+      result.lsHasOnce = !!(it.once && it.once.length); result.lsOnce = (it.once || []).map(function (t) { return { t: t }; });
+      result.lsHasWords = !!it.groups;
+      result.lsGroups = (it.groups || []).map(function (g) { return { name: g[0], words: g[1].map(function (w) { return { it: w[0], en: w[1] }; }) }; });
+      result.lsCanNext = true; result.lsNextLabel = i + 1 < items.length ? 'Ho capito! Avanti' : 'Finisci la tappa';
     }
-    if (view === 'stop' && st.type === 'mc') {
-      result.lsMc = true; result.lsHasOggi = true; result.lsOggi = G(it.oggi); result.lsHasPrompt = true; result.lsPrompt = G(it.prompt);
+    if (view === 'stop' && ty === 'mc') {
+      result.lsMc = true; result.lsHasOggi = !!it.oggi; result.lsOggi = G(it.oggi || ''); result.lsHasPrompt = true; result.lsPrompt = G(it.prompt); if (it.sub) result.lsKicker = it.sub;
       result.lsOpts = o.opts.map(function (lab) {
         var right = o.st === 'ok' && lab === it.answer, bad = o.optBad.indexOf(lab) !== -1;
         return { t: G(lab), dis: lsD(bad || o.st === 'ok'), cls: 'ls-opt' + (right ? ' ok' : bad ? ' bad' : ''), pick: function () { self.lsPickMc(lab); } };
       });
     }
-    if (view === 'stop' && st.type === 'type') {
+    if (view === 'stop' && ty === 'type') {
       result.lsType = true;
       if (it.oggi) { result.lsHasOggi = true; result.lsOggi = G(it.oggi); }
+      if (it.prompt) { result.lsHasPrompt = true; result.lsPrompt = G(it.prompt); }
       var segs = G(it.text).split('___'), parts = [];
       segs.forEach(function (sg, q) {
         if (sg) parts.push({ txt: true, blank: false, t: sg });
-        if (q < segs.length - 1) parts.push(inputFor(q, 'Verbo ' + (q + 1), it.hints ? '(' + it.hints[q] + ')' : ''));
+        if (q < segs.length - 1) parts.push(inputFor(q, it.aria || ('Risposta ' + (q + 1)), it.hints ? '(' + it.hints[q] + ')' : ''));
       });
       result.lsParts = parts;
       result.lsCanCheck = o.st === 'ask';
       result.lsAnswer = it.answers.map(function (a) { return G(a[0]); }).join(' · ');
     }
-    if (view === 'stop' && st.type === 'tiles') {
+    if (view === 'stop' && ty === 'tiles') {
       result.lsTiles = true; result.lsHasPrompt = true; result.lsPrompt = it.en;
       var all = it.tiles.concat(it.traps).map(G), fin = o.st === 'ok' || o.st === 'shown';
       var shownIdx = o.st === 'shown' ? it.tiles.map(function (t, q) { return q; }) : o.placed;
@@ -12354,7 +12463,7 @@ class Component extends DCLogic {
       result.lsTipT = tip ? tip[0] : 'Riprova'; result.lsTipB = tip ? tip[1] : 'Tocca una parola per toglierla, poi controlla di nuovo.';
       result.lsHasMsg = !!o.msg && o.st === 'ask';
     }
-    if (view === 'stop' && st.type === 'fix') {
+    if (view === 'stop' && ty === 'fix') {
       result.lsFix = true;
       result.lsWords = it.words.map(function (w, q) {
         var isW = q === it.wrong && o.sel === it.wrong;
@@ -12366,7 +12475,7 @@ class Component extends DCLogic {
       result.lsAnswer = it.fix[0];
       if (o.st === 'ask' && o.sel !== it.wrong && !o.msg) { result.lsHasMsg = false; }
     }
-    if (view === 'stop' && st.type === 'chat') {
+    if (view === 'stop' && ty === 'chat') {
       result.lsChat = true; result.lsPrompt = it.q;
       result.lsVerbStep = true;
       result.lsVerbs = o.vOrder.map(function (q) {
@@ -12382,16 +12491,17 @@ class Component extends DCLogic {
       result.lsCanCheck = result.lsFreeStep;
       var cap = function (t) { t = String(t || '').trim(); return t.charAt(0).toUpperCase() + t.slice(1); };
       result.lsMe = o.st === 'ok';
-      result.lsMeText = o.end >= 0 ? cap(it.verb + ' ' + it.ends[o.end][0]) + '.' : cap(o.freeTxt);
-      result.lsBohReply = o.end >= 0 ? it.ends[o.end][1] : D.stops[k].freeBoh;
-      result.lsVerbOk = o.vDone; result.lsVerbOkText = it.verb + ': imperfetto giusto' + (o.pay ? '  +' + o.pay + ' BC' : '');
+      result.lsMeText = o.end >= 0 ? cap(G(it.verbs[0][0]) + (/^[.,:;!?]/.test(it.ends[o.end][0]) ? '' : ' ') + it.ends[o.end][0]) + (/[.!?]$/.test(it.ends[o.end][0]) ? '' : '.') : cap(o.freeTxt);
+      result.lsVerbLbl = it.verbLbl || '1 · Scegli il verbo giusto'; result.lsEndLbl = it.endLbl || '2 · La tua risposta: scegli o scrivi';
+      result.lsBohReply = o.end >= 0 ? it.ends[o.end][1] : (it.freeBoh || st.freeBoh || 'Bello!');
+      result.lsVerbOk = o.vDone; result.lsVerbOkText = G(it.verbOk || (it.verb + ': imperfetto giusto')) + (o.pay ? '  +' + o.pay + ' BC' : '');
       result.lsBad = false; result.lsCanRetry = false;
       result.lsCanNext = o.st === 'ok';
     }
-    if (view === 'stop' && st.type === 'parla') {
+    if (view === 'stop' && ty === 'parla') {
       result.lsParla = true;
-      result.lsPrompts = st.prompts.map(function (p) { return { q: p[0], s: p[1] }; });
-      result.lsChecks = st.checks.map(function (t, q) { var on = !!o.checks[q]; return { t: t, on: on ? 'true' : 'false', cls: 'ls-check' + (on ? ' on' : ''), tog: function () { self.lsCheckTog(q); } }; });
+      result.lsPrompts = it.prompts.map(function (p) { return { q: p[0], s: p[1] }; });
+      result.lsChecks = it.checks.map(function (t, q) { var on = !!o.checks[q]; return { t: t, on: on ? 'true' : 'false', cls: 'ls-check' + (on ? ' on' : ''), tog: function () { self.lsCheckTog(q); } }; });
       result.lsCanNext = o.checks.every(function (x) { return x; });
       result.lsNextLabel = 'Fatto! Avanti';
       result.lsParlaHint = result.lsCanNext ? '' : 'Tick all three when you and your partner are done.';
@@ -12407,9 +12517,11 @@ class Component extends DCLogic {
     result.lsNextStopSub = nx ? 'Tappa ' + (k + 2) + ' di ' + N + ' · ' + nx.min + ' min' : '';
     result.lsNextStopH = function () { self.lsStart(k + 1); };
     result.lsPathH = function () { self.sfx('tap'); self.setState({ screen: 'home', lastEarn: 0 }); };
-    result.lsNextOk = !!nx && k + 1 <= fr;
+    result.lsNextOk = !!nx && k + 1 <= frP;
     // finish
     var worst = '', wn = 0; for (var mk in (L.miss || {})) if (mk !== 'generic' && L.miss[mk] > wn) { wn = L.miss[mk]; worst = mk; }
+    result.lsHasFixStat = D.stops.some(function (x) { return x.items.some(function (y) { return y.t === 'fix'; }); });
+    result.lsFinishLine = D.finishLine || 'Hai scritto, costruito, corretto e parlato in italiano.';
     result.lsTyped = String(L.typed || 0); result.lsFixes = String(L.fixes || 0); result.lsEarned = '+' + (L.earned || 0);
     result.lsHasWorst = !!worst; result.lsWorstT = worst ? LS_TIPS[worst][0] : ''; result.lsWorstB = worst ? LS_TIPS[worst][1] : '';
     result.lsWorstH = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: LS_TIP_CARD[worst] || 0, tabAns: null, tabReveal: false }); };
@@ -12425,7 +12537,7 @@ class Component extends DCLogic {
     for (var i = 0; i < order.length; i++) {
       (function (key) {
         var need = MODES[key].needs;
-        var locked = !!need && (s.passed || []).indexOf(need) === -1;
+        var locked = !!need && (s.passed || []).indexOf(need) === -1 && ((s.profU || {}).modes || []).indexOf(key) === -1;
         modeList.push({
           key: key,
           label: MODES[key].label,
@@ -12560,7 +12672,7 @@ class Component extends DCLogic {
     var ownedCount = ITEMS.filter(function (it) { return btInLocker(it) && owned.indexOf(it.id) !== -1; }).length;
     var pc = s.provaCard;
     if (pc) {
-      var SECN = BT_UNIT === 'imp' ? { A: 'Verb forms from memory', B: 'Sport e passatempi → imperfetto', C: 'Il tempo e la salute → imperfetto', D: 'Whole sentences' } : { A: 'Verb forms from memory', B: 'Fill in the blank', C: 'Modal + verb phrases', D: 'Whole sentences' };
+      var SECN = BT_UNITS[BT_UNIT].secn || (BT_UNIT === 'imp' ? { A: 'Verb forms from memory', B: 'Sport e passatempi → imperfetto', C: 'Il tempo e la salute → imperfetto', D: 'Whole sentences' } : { A: 'Verb forms from memory', B: 'Fill in the blank', C: 'Modal + verb phrases', D: 'Whole sentences' });
       result.pvName = pc.name;
       result.pvDate = pc.date;
       result.pvMins = pc.mins + (pc.mins === 1 ? ' min' : ' min');
@@ -12699,6 +12811,7 @@ class Component extends DCLogic {
     result.hasRefund = !!s.refundNote; result.refundNote = s.refundNote || '';
     result.refundOkHandler = function () { self.sfx('tap'); self.setState({ refundNote: '' }); };
     this.lsVals(s, result);
+    this.profVals(s, result);
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
     result.isPacco = s.screen === 'pacco';
