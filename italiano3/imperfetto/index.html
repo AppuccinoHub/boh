@@ -1544,7 +1544,8 @@ var CAT_LABEL = {
   vdp: 'CHE TEMPO FACEVA?',
   salute: 'STAVO MALE',
   frasi: 'QUANDO ERO PICCOLO/A',
-  prova: 'LA PROVA'
+  prova: 'LA PROVA',
+  dialetti: 'BONUS \u00b7 DIALETTI'
 };
 
 var FORMS = {
@@ -1590,6 +1591,7 @@ var MODES = {
   mixed:  { label: 'TEST SIMULATION', sub: '30 questions from every level', cats: ['sort', 'conj', 'vdp', 'salute', 'frasi'], needs: 'frasi', cap: { sort: 6, conj: 8, vdp: 6, salute: 4, frasi: 6 }, total: 30 },
   prova:  { label: 'LA PROVA \u00b7 voto', sub: 'Graded. One pass, no hints \u2014 then screenshot your card.',
             cats: ['prova'], needs: 'mixed', total: 21, ordered: true, graded: true },
+  dialetti: { label: 'BONUS \u00b7 Dialetti', sub: 'Napoli, Roma, Sicilia, Venezia \u2014 just for fun', cats: ['dialetti'], needs: null },
   mistakes: { label: 'Fix my mistakes', sub: 'Only the cards you missed', cats: [], needs: null }
 };
 
@@ -4118,11 +4120,11 @@ var QUESTION_BANK = [
 ]
 },
 {
-"id": "v98",
-"cat": "vocab",
+"id": "dl1",
+"cat": "dialetti",
 "type": "mc",
 "prompt": "Chiove!",
-"sub": "Napoletano · What does it mean?",
+"sub": "Napoletano · What does it mean in Italian?",
 "options": [
 {
 "id": "a",
@@ -4131,43 +4133,423 @@ var QUESTION_BANK = [
 },
 {
 "id": "b",
-"label": "Chiudi! (Close it!)"
+"label": "Quando ero piccolo / piccola…"
 },
 {
 "id": "c",
-"label": "Che bello! (How nice!)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "d",
-"label": "Ciao! (Hi!)"
+"label": "Quando ero piccolo / piccola…"
 }
-]
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
 },
 {
-"id": "v99",
-"cat": "vocab",
+"id": "dl2",
+"cat": "dialetti",
 "type": "mc",
 "prompt": "Quanno ero piccerillo / piccerella…",
-"sub": "Napoletano · What does it mean?",
+"sub": "Napoletano · What does it mean in Italian?",
 "options": [
 {
 "id": "a",
-"label": "Quando ero piccolo / piccola… (When I was little…)",
+"label": "Quando ero piccolo / piccola…",
 "correct": true
 },
 {
 "id": "b",
-"label": "Quando ero malato… (When I was sick…)"
+"label": "È bello! (It’s nice!)"
 },
 {
 "id": "c",
-"label": "Quando pioveva… (When it rained…)"
+"label": "Andiamo! (Let’s go!)"
 },
 {
 "id": "d",
-"label": "Quando ero a scuola… (When I was at school…)"
+"label": "Adesso (now)"
 }
-]
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl3",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Jamme!",
+"sub": "Napoletano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Andiamo! (Let’s go!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Guarda! (Look!)"
+},
+{
+"id": "c",
+"label": "I soldi (money — like Boh Cashi!)"
+},
+{
+"id": "d",
+"label": "Ehi! (Hey!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl4",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Uè!",
+"sub": "Napoletano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Ehi! (Hey!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Piove! (It’s raining!)"
+},
+{
+"id": "c",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "d",
+"label": "Andiamo! (Let’s go!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl5",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Daje!",
+"sub": "Romanesco · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Dai! Forza! (Come on!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "c",
+"label": "Quando ero piccolo / piccola…"
+},
+{
+"id": "d",
+"label": "Guarda! (Look!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl6",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Quanno ero pischello…",
+"sub": "Romanesco · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Quando ero ragazzino…",
+"correct": true
+},
+{
+"id": "b",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "c",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "d",
+"label": "Quando ero piccolo / piccola…"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl7",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Annamo!",
+"sub": "Romanesco · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Andiamo! (Let’s go!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Dai! Forza! (Come on!)"
+},
+{
+"id": "c",
+"label": "Quando ero piccolo / piccola…"
+},
+{
+"id": "d",
+"label": "È bello! (It’s nice!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl8",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Mo’",
+"sub": "Romanesco · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Adesso (now)",
+"correct": true
+},
+{
+"id": "b",
+"label": "È bello! (It’s nice!)"
+},
+{
+"id": "c",
+"label": "Dai! Forza! (Come on!)"
+},
+{
+"id": "d",
+"label": "Quando ero piccolo / piccola…"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl9",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Chiovi!",
+"sub": "Siciliano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Piove! (It’s raining!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "I soldi (money — like Boh Cashi!)"
+},
+{
+"id": "c",
+"label": "Guarda! (Look!)"
+},
+{
+"id": "d",
+"label": "Andiamo! (Let’s go!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl10",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Quannu era nicu / nica…",
+"sub": "Siciliano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Quando ero piccolo / piccola…",
+"correct": true
+},
+{
+"id": "b",
+"label": "Dai! Forza! (Come on!)"
+},
+{
+"id": "c",
+"label": "Guarda! (Look!)"
+},
+{
+"id": "d",
+"label": "Quando ero ragazzino…"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl11",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Amunì!",
+"sub": "Siciliano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Andiamo! (Let’s go!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "È bello! (It’s nice!)"
+},
+{
+"id": "c",
+"label": "Quando ero ragazzino…"
+},
+{
+"id": "d",
+"label": "Guarda! (Look!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl12",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Talìa!",
+"sub": "Siciliano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Guarda! (Look!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "c",
+"label": "Quando ero piccolo / piccola…"
+},
+{
+"id": "d",
+"label": "Andiamo! (Let’s go!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl13",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Xe bèo!",
+"sub": "Veneziano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "È bello! (It’s nice!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Dai! Forza! (Come on!)"
+},
+{
+"id": "c",
+"label": "Quando ero piccolo / piccola…"
+},
+{
+"id": "d",
+"label": "Andiamo! (Let’s go!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl14",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Andemo!",
+"sub": "Veneziano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Andiamo! (Let’s go!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Ehi! (Hey!)"
+},
+{
+"id": "c",
+"label": "Quando ero piccolo / piccola…"
+},
+{
+"id": "d",
+"label": "Piove! (It’s raining!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl15",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "I schei",
+"sub": "Veneziano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "I soldi (money — like Boh Cashi!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "È bello! (It’s nice!)"
+},
+{
+"id": "c",
+"label": "Quando ero ragazzino…"
+},
+{
+"id": "d",
+"label": "Guarda! (Look!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
+},
+{
+"id": "dl16",
+"cat": "dialetti",
+"type": "mc",
+"prompt": "Ciò!",
+"sub": "Veneziano · What does it mean in Italian?",
+"options": [
+{
+"id": "a",
+"label": "Ehi! (Hey!)",
+"correct": true
+},
+{
+"id": "b",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "c",
+"label": "Andiamo! (Let’s go!)"
+},
+{
+"id": "d",
+"label": "Guarda! (Look!)"
+}
+],
+"why": "Andiamo! in 4 dialetti: Jamme! (Napoli) · Annamo! (Roma) · Amunì! (Sicilia) · Andemo! (Venezia)."
 },
 {
 "id": "c1",
@@ -7034,7 +7416,7 @@ class Component extends DCLogic {
     var s = this.state;
 
     var modeList = [];
-    var order = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'mixed', 'prova'];
+    var order = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'mixed', 'prova', 'dialetti'];
     var mistakeCount = this.mistakeIds().length;
     for (var i = 0; i < order.length; i++) {
       (function (key) {
@@ -7453,7 +7835,7 @@ class Component extends DCLogic {
 
     if (s.screen === 'summary') {
       var pct2 = s.totalSoFar ? Math.round((s.correctSoFar / s.totalSoFar) * 100) : 0;
-      var catOrder = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi'];
+      var catOrder = ['vocab', 'pron', 'sort', 'conj', 'vdp', 'salute', 'frasi', 'dialetti'];
       var breakdown = [];
       for (var j = 0; j < catOrder.length; j++) {
         var c = catOrder[j];
