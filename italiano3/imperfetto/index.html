@@ -1,6 +1,17 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <a class="boh-home" href="../../" aria-label="Back to all levels">&larr; Livelli</a>
-<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}
+<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
+.bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
+.bb-head span{display:block;font-size:13px;font-weight:700;color:var(--text-muted);margin-top:2px}
+.bb-trick{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:12px;background:var(--why-bg);color:var(--text);font-size:14.5px;line-height:1.45}
+.bb-trick b{font-size:15px}
+.bb-buy{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:18px;text-align:center}
+.bb-buy small{font-size:12.5px;font-weight:700;opacity:.9}
+.bb-row{display:flex;gap:8px;flex-wrap:wrap}
+.bb-ghost{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 140px;text-align:center;padding:12px;border-radius:12px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px}
+.bb-buy:focus-visible,.bb-ghost:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.bb-note{font-size:13.5px;font-weight:800;color:var(--accent-strong);text-align:center}
+
 .bt-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
 .bt-tab{all:unset;cursor:pointer;white-space:nowrap;padding:8px 14px;border-radius:999px;font-weight:800;font-size:13.5px;background:var(--card-bg);color:var(--text);border:2px solid var(--card-border)}
 .bt-tab[aria-pressed="true"]{background:var(--primary-bg);color:var(--primary-text);border-color:var(--primary-bg)}
@@ -128,6 +139,80 @@
 .dl.tee-tee_ue-m{background:url(../../assets/boutique/wear/tee_tee_ue_m.webp) 0 0/100% 100% no-repeat}
 .dl.tee-tee_ue-f{background:url(../../assets/boutique/wear/tee_tee_ue_f.webp) 0 0/100% 100% no-repeat}
 .dl.tee-tee_ue-h{background:url(../../assets/boutique/wear/tee_tee_ue_h.webp) 0 0/100% 100% no-repeat}
+.tab-ov{position:fixed;inset:0;z-index:60;background:rgba(20,12,24,.55);display:flex;justify-content:center;align-items:flex-end;padding:12px}
+.tab-sheet{width:100%;max-width:620px;max-height:calc(100dvh - 24px);overflow:auto;display:flex;flex-direction:column;gap:12px;padding:18px 16px 16px;border-radius:22px;background:var(--bg,#FBF6F0);color:var(--text);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.tab-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tab-top h2{margin:0;font-size:26px}
+.tab-x{all:unset;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:12px;font-size:28px;font-weight:800;background:var(--card-bg);border:2px solid var(--card-border)}
+.tab-x:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.tab-lede{margin:0;font-size:15px;line-height:1.5;color:var(--text-muted)}
+.tab-sheet>*{flex:none}
+@media (max-width:400px){.tab-t{font-size:13px!important}.tab-t th,.tab-t td{padding:7px 4px!important}}
+.tab-scroll{overflow-x:auto}
+.tab-t{width:100%;border-collapse:separate;border-spacing:0;font-size:14.5px;background:var(--card-bg);border:2px solid var(--card-border);border-radius:14px;overflow:hidden}
+.tab-t th,.tab-t td{padding:8px 5px;text-align:left;border-bottom:1px solid var(--card-border)}
+.tab-t thead th{font-size:13px;letter-spacing:.06em;color:var(--accent-strong)}
+.tab-t tbody th{font-size:13px;color:var(--text-faint-2);font-weight:800}
+.tab-t tr:last-child th,.tab-t tr:last-child td{border-bottom:0}
+.tab-t b{color:#E07A2E}
+.tab-chant{text-align:center;font-weight:800;font-size:17px;letter-spacing:.04em;padding:10px;border-radius:12px;background:var(--primary-bg);color:var(--primary-text)}
+.tab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.tab-card{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px solid var(--card-border)}
+.tab-card h3{margin:0;font-size:15.5px}
+.tab-card p{margin:0;font-size:15px;line-height:1.5}
+.tab-tip{color:var(--text-muted);font-size:13.5px!important}
+.tab-ex{padding:8px 10px;border-radius:10px;background:var(--why-bg)}
+.tab-chips{display:flex;flex-wrap:wrap;gap:6px}
+.tab-chips span{padding:6px 10px;border-radius:999px;background:var(--why-bg);font-weight:800;font-size:13.5px}
+.hud-tab{cursor:pointer;justify-content:center;align-items:center;font-weight:800;font-size:15px}
+.hud-tab:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.tc{gap:14px}
+.tc-dots{display:flex;gap:6px;flex-wrap:wrap}
+.tc-dot{all:unset;cursor:pointer;width:22px;height:8px;border-radius:999px;background:var(--card-border)}
+.tc-dot.done{background:var(--success-border)}
+.tc-dot.on{background:var(--primary-bg);width:34px}
+.tc-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:18px 10px;border-radius:20px;background:var(--card-bg);border:2px solid var(--card-border);min-height:260px;justify-content:center;animation:tcIn .25s ease}
+@keyframes tcIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.tc-emo{font-size:46px;line-height:1}
+.tc-title{margin:0;font-size:28px;line-height:1.1}
+.tc-line{margin:0;font-size:17px;line-height:1.45}
+.tc-big{margin:0;font-size:24px;font-weight:800;line-height:1.45}
+.tc-big b,.tc-verbs .tc-end{color:#E07A2E}
+.tc-chant b{color:inherit}
+.tc-verbs{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;align-items:center;padding:12px 18px;border-radius:16px;background:var(--why-bg);font-size:26px;font-weight:800}
+.tc-verbs span{display:block}
+.tc-verbs small{font-size:13px;font-weight:700;color:var(--text-muted)}
+.tc-end{font-style:normal;opacity:0;display:inline-block;transform:scale(.3);transition:opacity .2s,transform .25s}
+.tc-end.on{opacity:1;transform:none}
+.tc-chant{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+.tc-chant span{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:14px;background:var(--why-bg);font-size:13px;font-weight:800;color:#E07A2E;animation:tcSing 4.2s infinite}
+.tc-chant span b{font-size:22px}
+.tc-chant span:nth-child(2){animation-delay:.7s}.tc-chant span:nth-child(3){animation-delay:1.4s}.tc-chant span:nth-child(4){animation-delay:2.1s}.tc-chant span:nth-child(5){animation-delay:2.8s}.tc-chant span:nth-child(6){animation-delay:3.5s}
+@keyframes tcSing{0%,14%{transform:scale(1.12);background:#E07A2E;color:#fff}16%,100%{transform:none}}
+.tc-card .tab-scroll{width:100%}
+.tc-card .tab-t{font-size:13px!important}
+.tc-card .tab-t th,.tc-card .tab-t td{padding:6px 3px!important}
+.tc-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.tc-chips span{padding:8px 12px;border-radius:999px;background:#E07A2E;color:#fff;font-weight:800;font-size:15px}
+.tc-film{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.tc-film div{display:flex;flex-direction:column;gap:2px;padding:12px 8px;border-radius:14px;background:var(--why-bg);font-size:16px}
+.tc-film div span{font-size:13px;color:var(--text-muted);font-weight:700}
+.tc-q{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:16px;border:2px dashed var(--accent-strong)}
+.tc-qh{display:flex;justify-content:space-between;font-weight:800;font-size:14px;color:var(--accent-strong)}
+.tc-qq{font-size:18px;font-weight:800}
+.tc-qo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tc-opt{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:14px 8px;border-radius:14px;font-weight:800;font-size:17px;background:var(--option-default-bg);border:2px solid var(--option-default-border)}
+.tc-opt.ok{background:var(--success-bg);color:var(--success-text);border-color:var(--success-border)}
+.tc-opt.no{background:var(--error-bg);color:var(--error-text);border-color:var(--error-border)}
+.tc-opt:focus-visible,.tc-dot:focus-visible,.tc-verbs:focus-visible,.tc-playbtn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.tc-fb{font-weight:800;font-size:15px}.tc-fb.ok{color:var(--success-text)}.tc-fb.no{color:var(--error-text)}
+.tc-nav{display:flex;gap:8px}
+.tc-nav .bb-ghost{flex:0 0 auto}
+.tc-nav .bb-ghost[disabled]{opacity:.4;cursor:default}
+.tc-next{flex:1;font-size:16px}
+.tc-swipe{text-align:center;font-size:12px;font-weight:800;color:var(--text-faint-2);letter-spacing:.08em}
+.tc-playbtn{all:unset;cursor:pointer;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--icon-btn-bg);font-size:19px}
+@media (prefers-reduced-motion:reduce){.tc-card,.tc-chant span{animation:none!important}.tc-end{transition:none}}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3 · Imperfetto</title>
@@ -559,6 +644,7 @@
           <button onClick="{{pauseHandler}}" aria-label="Pause" style="all:unset;cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--icon-btn-bg);color:var(--icon-btn-text);border:1px solid var(--card-border);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.5"></rect><rect x="14" y="5" width="4" height="14" rx="1.5"></rect></svg>
           </button>
+          <sc-if value="{{showTabBtn}}" hint-placeholder-val="{{true}}"><button onClick="{{openTabHandler}}" aria-label="La Tabella" class="tc-playbtn">&#128203;</button></sc-if>
         </sc-if>
         <sc-if value="{{showHomeBtn}}" hint-placeholder-val="{{false}}">
           <button onClick="{{backHandler}}" aria-label="Back" style="cursor:pointer;display:flex;align-items:center;gap:5px;padding:9px 14px;border-radius:999px;background:var(--icon-btn-bg);color:var(--icon-btn-text);border:1px solid var(--card-border);font-weight:800;font-size:14px;font-family:inherit;">
@@ -611,6 +697,7 @@
         <div class="bt-hud">
           <div class="hud-chip" title="La Fiamma: school days in a row"><span class="hud-big">&#128293; {{fiammaN}}</span><span class="hud-sm">{{fiammaLbl}} &middot; &#128737;&#65039; {{scudiN}}</span></div>
           <button class="hud-chip hud-btn" onClick="{{goPassHandler}}" aria-label="Il mio Giro d&rsquo;Italia"><img src="../../assets/boutique/aereo.webp" alt="" class="hud-ico"><span class="hud-big">{{tripCount}}/12</span><span class="hud-sm">Giro d&rsquo;Italia</span></button>
+          <button class="hud-chip hud-tab" onClick="{{openTabHandler}}">&#128203; La Tabella</button>
           <sc-if value="{{hasBoost}}" hint-placeholder-val="{{false}}"><div class="hud-boost">{{boostText}}</div></sc-if>
         </div>
 
@@ -737,6 +824,23 @@
           </div>
         </sc-if>
 
+        <sc-if value="{{bbPending}}" hint-placeholder-val="{{false}}">
+          <div class="bb-box" role="status">
+            <div class="bb-head">Non ancora! <span>{{bbWrongText}}</span></div>
+            <sc-if value="{{hasTrick}}" hint-placeholder-val="{{false}}">
+              <div class="bb-trick"><b>&#128161; {{trickTitle}}</b><span>{{trickBody}}</span></div>
+            </sc-if>
+            <button onClick="{{bbBuyHandler}}" class="bb-buy">&#128257; Ricompra &middot; {{bbPrice}} BC<small>Try again for full credit &middot; keep your heart</small></button>
+            <div class="bb-row">
+              <button onClick="{{bbShowHandler}}" class="bb-ghost">Mostrami la risposta</button>
+              <sc-if value="{{hasTabella}}" hint-placeholder-val="{{false}}"><button onClick="{{openTabTrick}}" class="bb-ghost">&#128203; La Tabella</button></sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{bbRetry}}" hint-placeholder-val="{{false}}">
+          <div class="bb-note">Ricompra attiva: pick again. Right = full credit.</div>
+        </sc-if>
+
         <sc-if value="{{isBinary}}" hint-placeholder-val="{{false}}">
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);">{{step1Label}}</div>
@@ -848,6 +952,9 @@
             <sc-if value="{{hasWhy}}" hint-placeholder-val="{{false}}">
               <div style="font-size:13.5px;color:var(--why-text);line-height:1.5;padding:12px 14px;background:var(--why-bg);border-radius:12px;">{{whyText}}</div>
             </sc-if>
+            <sc-if value="{{hasTrickRev}}" hint-placeholder-val="{{false}}">
+              <div class="bb-trick"><b>&#128161; {{trickTitle}}</b><span>{{trickBody}}</span><button onClick="{{openTabTrick}}" class="bb-ghost" style="margin-top:6px;">&#128203; Vedi La Tabella</button></div>
+            </sc-if>
             <sc-if value="{{isBinaryDone}}" hint-placeholder-val="{{false}}">
               <sc-if value="{{eaGood}}" hint-placeholder-val="{{false}}">
                 <div style="display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:14px;background:var(--success-bg);border:2px solid var(--success-border);">
@@ -879,6 +986,86 @@
       </div>
     </sc-if>
 
+    <sc-if value="{{tabOpen}}" hint-placeholder-val="{{false}}">
+      <div class="tab-ov" role="dialog" aria-modal="true" aria-label="La Tabella">
+        <div class="tab-sheet tc" onTouchStart="{{tabTouchStart}}" onTouchEnd="{{tabTouchEnd}}">
+          <div class="tab-top"><div class="tc-dots" aria-label="{{tabPosLabel}}"><sc-for list="{{tabDots}}" as="td" hint-placeholder-count="8"><button onClick="{{td.go}}" class="{{td.cls}}" aria-label="{{td.label}}"></button></sc-for></div><button onClick="{{closeTabHandler}}" class="tab-x" aria-label="Chiudi">&times;</button></div>
+          <div class="tc-card">
+            <sc-if value="{{tc0}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#9986;&#65039;</div>
+              <h2 class="display tc-title">Taglia, tieni, aggiungi</h2>
+              <p class="tc-line">Cut <b>-re</b>. Keep the vowel. Add the ending.</p><button onClick="{{tabRevealHandler}}" class="tc-verbs" aria-pressed="{{tabRevealOn}}"><span>parla<i class="tc-end {{tabRevCls}}">vo</i></span><span>legge<i class="tc-end {{tabRevCls}}">vo</i></span><span>dormi<i class="tc-end {{tabRevCls}}">vo</i></span><small>{{tabRevealTip}}</small></button>
+              
+            </sc-if>
+            <sc-if value="{{tc1}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#127926;</div>
+              <h2 class="display tc-title">VO &middot; VI &middot; VA</h2>
+              <p class="tc-line">The ending tells <b>who</b>. Sing it!</p><div class="tc-chant"><span><b>VO</b>io</span><span><b>VI</b>tu</span><span><b>VA</b>lui/lei</span><span><b>VAMO</b>noi</span><span><b>VATE</b>voi</span><span><b>VANO</b>loro</span></div>
+              
+            </sc-if>
+            <sc-if value="{{tc2}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#129464;</div>
+              <h2 class="display tc-title">Essere &egrave; il ribelle</h2>
+              <p class="tc-big">ero &middot; eri &middot; era<br>eravamo &middot; eravate &middot; erano</p><p class="tc-line">io <b>ERO</b> un <b>ERO</b>e &#129464;</p>
+              
+            </sc-if>
+            <sc-if value="{{tc3}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128548;</div>
+              <h2 class="display tc-title">FACE &middot; BEVE &middot; DICE</h2>
+              <p class="tc-big">fare &rarr; <b>face</b>vo<br>bere &rarr; <b>beve</b>vo<br>dire &rarr; <b>dice</b>vo</p><p class="tc-line">The 3 stubborn ones. Then regular endings.</p>
+              
+            </sc-if>
+            <sc-if value="{{tc4}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128101;</div>
+              <h2 class="display tc-title">C&rsquo;era o c&rsquo;erano?</h2>
+              <p class="tc-big">1 &rarr; <b>c&rsquo;era</b><br>2+ &rarr; <b>c&rsquo;erano</b></p><p class="tc-line">Look at the thing after it: c&rsquo;era <u>un</u> gatto &middot; c&rsquo;erano <u>tre</u> gatti.</p>
+              
+            </sc-if>
+            <sc-if value="{{tc5}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128269;</div>
+              <h2 class="display tc-title">Parole-indizio</h2>
+              <p class="tc-line">See these? Think <b>imperfetto</b>.</p><div class="tc-chips"><span>sempre</span><span>di solito</span><span>ogni&hellip;</span><span>da piccolo/a</span><span>mentre</span><span>spesso</span></div><p class="tc-line">Also: weather &#9730;&#65039;, age &#127874;, time &#128339;, feelings &#128522;.</p>
+              
+            </sc-if>
+            <sc-if value="{{tc6}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#127916;</div>
+              <h2 class="display tc-title">Sfondo o evento?</h2>
+              <div class="tc-film"><div><b>Imperfetto</b><span>the set &middot; background</span></div><div><b>Passato prossimo</b><span>the action &middot; one time</span></div></div><p class="tc-line">Mentre <b>guardavo</b> la TV, <u>&egrave; suonato</u> il telefono.</p>
+              
+            </sc-if>
+            <sc-if value="{{tc7}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128203;</div>
+              <h2 class="display tc-title">Tutto insieme</h2>
+              <div class="tab-scroll"><table class="tab-t">
+                <thead><tr><th></th><th>parlA-re</th><th>leggE-re</th><th>dormI-re</th></tr></thead>
+                <tbody>
+                  <tr><th>io</th><td>parla<b>vo</b></td><td>legge<b>vo</b></td><td>dormi<b>vo</b></td></tr>
+                  <tr><th>tu</th><td>parla<b>vi</b></td><td>legge<b>vi</b></td><td>dormi<b>vi</b></td></tr>
+                  <tr><th>lui/lei</th><td>parla<b>va</b></td><td>legge<b>va</b></td><td>dormi<b>va</b></td></tr>
+                  <tr><th>noi</th><td>parla<b>vamo</b></td><td>legge<b>vamo</b></td><td>dormi<b>vamo</b></td></tr>
+                  <tr><th>voi</th><td>parla<b>vate</b></td><td>legge<b>vate</b></td><td>dormi<b>vate</b></td></tr>
+                  <tr><th>loro</th><td>parla<b>vano</b></td><td>legge<b>vano</b></td><td>dormi<b>vano</b></td></tr>
+                </tbody></table></div>
+              <p class="tc-line"><b>essere:</b> ero, eri, era, eravamo, eravate, erano<br>+ face&middot;vo, beve&middot;vo, dice&middot;vo &middot; c&rsquo;era / c&rsquo;erano</p>
+              
+            </sc-if>
+          </div>
+          <sc-if value="{{tabHasQ}}" hint-placeholder-val="{{false}}">
+            <div class="tc-q">
+              <div class="tc-qh">&#9997;&#65039; Prova tu <span>{{tabQReward}}</span></div>
+              <div class="tc-qq">{{tabQText}}</div>
+              <div class="tc-qo"><sc-for list="{{tabQOpts}}" as="qo" hint-placeholder-count="2"><button onClick="{{qo.pick}}" class="{{qo.cls}}">{{qo.label}}</button></sc-for></div>
+              <sc-if value="{{tabHasFb}}" hint-placeholder-val="{{false}}"><div class="{{tabFbCls}}" role="status">{{tabFb}}</div></sc-if>
+            </div>
+          </sc-if>
+          <div class="tc-nav">
+            <button onClick="{{tabPrev}}" class="bb-ghost" disabled="{{tabPrevDis}}">&larr; Indietro</button>
+            <button onClick="{{tabNext}}" class="bb-buy tc-next">{{tabNextLabel}}</button>
+          </div>
+          <div class="tc-swipe">swipe &larr; &rarr;</div>
+        </div>
+      </div>
+    </sc-if>
     <sc-if value="{{isProva}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px;">
         <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:var(--card-bg);border:3px solid var(--primary-bg);">
@@ -1561,6 +1748,72 @@ var CARDS = {
   card_rap:   { title: 'Geolier', text: 'Neapolitan rapper Geolier (Emanuele Palumbo, from Secondigliano) raps entirely in napoletano. He finished 2nd at Sanremo 2024 with “I p’ me, tu p’ te” — io per me, tu per te.' },
   card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = €5 · un deca = €10 · una piotta = €100 · un sacco = €1,000. Careful: venti sacchi = €20,000!' }
 };
+
+var BT_TRICKS = {
+  pp:       ['Una volta o sempre?', 'Ho/sono + participio = ONE time (passato prossimo). Used to, was -ing, how things were = imperfetto. Clue words: sempre, di solito, ogni giorno, da piccolo/a, mentre.'],
+  presente: ['Oggi → ieri: aggiungi la V', 'That’s the present. The story is in the past, so add the V: gioco → gioca-V-o · leggo → legge-V-o · dormo → dormi-V-o.'],
+  persona:  ['Chi? La terminazione dice chi', 'io -vo · tu -vi · lui/lei -va · noi -vamo · voi -vate · loro -vano. Chant it: VO-VI-VA, VAMO-VATE-VANO! Trap: la gente, la famiglia, tutti → check singular or plural.'],
+  are:      ['-ARE tiene la sua A', 'Drop -re, keep the vowel: parlA-re → parlA-vo. aiutare → aiutAvo, never aiutevo.'],
+  ere:      ['-ERE tiene la sua E', 'Drop -re, keep the vowel: leggE-re → leggE-vo. piovere → piovEva, never piovava.'],
+  ire:      ['-IRE tiene la sua I', 'dormI-re → dormI-vo. No -isc- in the imperfetto: finivo, fiorivano.'],
+  essere:   ['Essere è il ribelle', 'ero · eri · era · eravamo · eravate · erano. Trucco: io ERO un EROe (hero). Descriptions and time use era: Era tardi. La gondola era nera.'],
+  irr:      ['I tre testardi (the stubborn three)', 'FARE → facevo · BERE → bevevo · DIRE → dicevo. They use their old Latin stems: FAC-ere, BEV-ere, DIC-ere. Say it: FACE, BEVE, DICE!'],
+  cera:     ['C’era o c’erano?', 'c’è → c’era (one thing) · ci sono → c’erano (many). Look at the noun after it: c’era un tempio · c’erano templi.'],
+  meteo:    ['Il tempo = lo sfondo', 'Weather is background, so it’s imperfetto: pioveva, nevicava, faceva caldo, c’era il sole.'],
+  stati:    ['Come stavi?', 'Feelings, health and age are states, so they’re imperfetto: stavo male, avevo la febbre, ero stanco/a, avevo 7 anni.'],
+  quando:   ['Quando uso l’imperfetto?', 'Used to (habits), was -ing (background), how things were (description, weather, age, feelings). Clue words: sempre, di solito, ogni…, da piccolo/a, mentre.']
+};
+var BT_IMPF_END = /(avo|avi|ava|avamo|avate|avano|evo|evi|eva|evamo|evate|evano|ivo|ivi|iva|ivamo|ivate|ivano)$/;
+var BT_ESS = ['ero', 'eri', 'era', 'eravamo', 'eravate', 'erano'];
+function btNorm(t) { return String(t || '').toLowerCase().replace(/[’`]/g, "'").replace(/[.,!?…;:()"]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function btDiff(w, r) {
+  var a = w.split(' '), b = r.split(' ');
+  for (var i = 0; i < Math.max(a.length, b.length); i++) if (a[i] !== b[i]) return [a.slice(i, i + 2).join(' '), b[i] || '', a[i] || ''];
+  return [w, r, w];
+}
+function btTrick(q, wrong) {
+  if (!q) return null;
+  var cat = q.cat || '';
+  if (cat === 'vocab' || cat === 'dialetti') return null;
+  var right = q.answer || '';
+  if (q.options) for (var i = 0; i < q.options.length; i++) if (q.options[i].correct) right = q.options[i].label;
+  var r = btNorm(right), w = btNorm(wrong);
+  var PP = /\b(ho|hai|ha|abbiamo|avete|hanno|sono|sei|siamo|siete) [a-zà-ù']+(ato|ata|ati|ate|uto|uta|uti|ute|ito|ita|iti|ite|tto|tta|tti|tte|so|sa|si|se|sto|sta)\b|è stat|ci sono stat/;
+  if (w && PP.test(w) && !PP.test(r)) return BT_TRICKS.pp;
+  var d = w ? btDiff(w, r) : ['', r, ''];
+  var rt = d[1], wt = d[2];
+  if (/c'er/.test(r) && /c'er|ci sono|c'è/.test(w)) return BT_TRICKS.cera;
+  if (BT_ESS.indexOf(rt) !== -1) return BT_TRICKS.essere;
+  if (/^(fac|bev|dic)ev/.test(rt)) return BT_TRICKS.irr;
+  if (wt && BT_IMPF_END.test(wt) && BT_IMPF_END.test(rt)) {
+    var sw = wt.replace(/(v[oia]|vamo|vate|vano)$/, ''), sr = rt.replace(/(v[oia]|vamo|vate|vano)$/, '');
+    if (sw === sr) return BT_TRICKS.persona;
+    if (/a$/.test(sr) && /e$/.test(sw)) return BT_TRICKS.are;
+    if (/e$/.test(sr) && /a$/.test(sw)) return BT_TRICKS.ere;
+    if (/i$/.test(sr)) return BT_TRICKS.ire;
+  }
+  if (wt && BT_IMPF_END.test(rt) && !BT_IMPF_END.test(wt) && BT_ESS.indexOf(wt) === -1) return BT_TRICKS.presente;
+  if (cat === 'vdp') return BT_TRICKS.meteo;
+  if (cat === 'salute') return BT_TRICKS.stati;
+  if (/(avo|avi|ava|avamo|avate|avano)$/.test(rt)) return BT_TRICKS.are;
+  if (/(evo|evi|eva|evamo|evate|evano)$/.test(rt)) return BT_TRICKS.ere;
+  if (/(ivo|ivi|iva|ivamo|ivate|ivano)$/.test(rt)) return BT_TRICKS.ire;
+  return BT_TRICKS.quando;
+}
+
+var BT_TAB_Q = [
+  { q: 'tu + giocare → ?', o: ['giocavi', 'giocavo'], a: 0, ok: 'Sì! tu = -vi' },
+  { q: 'noi + parlare → ?', o: ['parlavano', 'parlavamo'], a: 1, ok: 'Sì! noi = -vamo' },
+  { q: 'Da piccoli, loro ___ felici.', o: ['erano', 'era'], a: 0, ok: 'Sì! loro = erano' },
+  { q: 'Io ___ sempre i compiti. (fare)', o: ['farevo', 'facevo'], a: 1, ok: 'Sì! FACE → facevo' },
+  { q: '___ tanti turisti a Roma.', o: ['C’erano', 'C’era'], a: 0, ok: 'Sì! tanti turisti = many' },
+  { q: 'Da piccola ___ a calcio ogni sabato.', o: ['ho giocato', 'giocavo'], a: 1, ok: 'Sì! ogni sabato = habit' },
+  { q: 'Mentre ___ la TV, è suonato il telefono.', o: ['guardavo', 'ho guardato'], a: 0, ok: 'Sì! the TV = background' }
+];
+var BT_TAB_N = 8; // 7 idea cards + "Tutto insieme"
+var BT_TRICK_CARD = { pp: 6, presente: 0, persona: 1, are: 0, ere: 0, ire: 0, essere: 2, irr: 3, cera: 4, meteo: 5, stati: 5, quando: 5 };
+function btTrickKey(tr) { for (var k in BT_TRICKS) if (BT_TRICKS[k] === tr) return k; return 'quando'; }
+var BB_PRICE = 15;
 var BADGES = [
   { id: 'centone',       name: 'Un Centone',          desc: 'Earn 500 Boh Cashi.' },
   { id: 'permission_trap', name: 'Pioveva!',            desc: 'Get “Piove → Pioveva” right 3 times.' },
@@ -1572,6 +1825,7 @@ var BADGES = [
   { id: 'tre_di_fila',   name: '3 giorni di fila',    desc: 'Practice 3 school days in a row.' },
   { id: 'fiamma_oro',    name: 'Fiamma d\u2019oro',   desc: '30 school days in a row. Leggenda.' },
   { id: 'giro_italia',   name: 'Giro d\u2019Italia',  desc: 'All 12 cities stamped in your Passaporto.' },
+  { id: 'tabella_master', name: 'Maestro della Tabella', desc: 'Every Prova tu in La Tabella, right.' },
   { id: 'un_sacco',      name: 'Un Sacco',            desc: 'Earn 5,000 Boh Cashi.' }
 ];
 
@@ -1669,7 +1923,7 @@ function btSha(txt) {
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles'];
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone'];
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
 function cleanName(raw) { return (raw || '').replace(/[^A-Za-z0-9\u00C0-\u017F ]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
@@ -8679,7 +8933,7 @@ class Component extends DCLogic {
   // Cancels itself if the student pauses, goes back, or leaves the round, so it can never skip a card.
   __autoNext() {
     var st = this.state, self = this;
-    var on = st.screen === 'play' && st.revealed && st.lastOk && !st.overlay;
+    var on = st.screen === 'play' && st.revealed && st.lastOk && !st.overlay && !st.tabOpen;
     if (!on) { if (st.screen !== 'play' || !st.revealed) this.__autoKey = null; return; }
     var key = st.mode + ':' + st.qIndex + ':' + st.totalSoFar;
     if (this.__autoKey === key) return;
@@ -8687,7 +8941,7 @@ class Component extends DCLogic {
     clearTimeout(this.__autoT);
     this.__autoT = setTimeout(function () {
       var s2 = self.state;
-      if (s2.overlay) { self.__autoKey = null; return; }
+      if (s2.overlay || s2.tabOpen) { self.__autoKey = null; return; }
       if (s2.screen === 'play' && s2.revealed && s2.lastOk && (s2.mode + ':' + s2.qIndex + ':' + s2.totalSoFar) === key) self.nextCard();
     }, st.fr ? 1800 : 1000);
   }
@@ -8715,7 +8969,7 @@ class Component extends DCLogic {
   resumeSaved() {
     var st = this.state;
     if (st.roundActive && st.queue && st.queue.length > 0 && st.qIndex < st.queue.length) {
-      this.setState({ screen: 'play', selected: null, revealed: false, outOfHearts: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, overlay: null, lastEarn: 0,
+      this.setState({ screen: 'play', selected: null, revealed: false, outOfHearts: false, bbPending: false, bbRetry: false, bbStruck: [], eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, overlay: null, lastEarn: 0,
                       paid: st.paidDay === dayKey(0) ? st.paid : [], paidDay: dayKey(0) });
       return;
     }
@@ -9149,7 +9403,7 @@ class Component extends DCLogic {
     this.setState({
       screen: 'play',
       mode: modeKey,
-      queue: deck, skippedRound: 0, lastOk: false,
+      queue: deck, skippedRound: 0, lastOk: false, bbPending: false, bbRetry: false, bbStruck: [],
       qIndex: 0,
       hearts: 3,
       streak: 0,
@@ -9174,7 +9428,7 @@ class Component extends DCLogic {
 
   backCard() {
     if (this.state.qIndex > 0) {
-      this.setState({ qIndex: this.state.qIndex - 1, lastOk: false, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false });
+      this.setState({ qIndex: this.state.qIndex - 1, lastOk: false, bbPending: false, bbRetry: false, bbStruck: [], selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false });
     }
   }
 
@@ -9288,10 +9542,40 @@ class Component extends DCLogic {
     return out;
   }
 
+  bbKeyOf(s) { return (s.mode || '') + ':' + s.qIndex + ':' + s.totalSoFar; }
+
+  bbOffer(q, opt) {
+    var s = this.state;
+    if (s.mode === 'prova' || s.bbCard === this.bbKeyOf(s)) return false;
+    if ((s.cashi || 0) < BB_PRICE) return false;
+    this.sfx('soft');
+    this.setState({ bbPending: true, bbPick: opt.id, bbStruck: [opt.id], bbRetry: false });
+    return true;
+  }
+
+  bbBuy() {
+    var s = this.state;
+    if (!s.bbPending || (s.cashi || 0) < BB_PRICE) return;
+    this.sfx('buy');
+    this.setState({ cashi: s.cashi - BB_PRICE, bbPending: false, bbRetry: true, bbCard: this.bbKeyOf(s), bbSpent: (s.bbSpent || 0) + BB_PRICE });
+  }
+
+  bbShow() {
+    var s = this.state, q = s.queue[s.qIndex], pick = null;
+    if (!s.bbPending) return;
+    for (var i = 0; i < q.options.length; i++) if (q.options[i].id === s.bbPick) pick = q.options[i];
+    // un-strike the pick so selectAnswer reveals it as the wrong answer (it still shows red via 'selected')
+    this.setState({ bbPending: false, bbStruck: [], bbCard: this.bbKeyOf(s) });
+    if (pick) this.selectAnswer(pick);
+  }
+
   selectAnswer(opt) {
     if (this.state.revealed) return;
     var q = this.state.queue[this.state.qIndex];
+    if (this.state.bbPending) return;
+    if ((this.state.bbStruck || []).indexOf(opt.id) !== -1) return;
     var isCorrect = !!opt.correct;
+    if (!isCorrect && this.bbOffer(q, opt)) return;
     var correctOpt = q.options[0];
     for (var i = 0; i < q.options.length; i++) { if (q.options[i].correct) { correctOpt = q.options[i]; break; } }
     var patch = this.computeResult(q.cat, isCorrect, { cat: q.cat, prompt: q.prompt + (q.sub ? ' (' + q.sub + ')' : ''), answer: correctOpt.label }, q.id, 1);
@@ -9410,12 +9694,13 @@ class Component extends DCLogic {
     if (nextIndex >= this.state.queue.length) {
       this.setState(this.finish({ screen: 'summary', lastEarn: 0 }));
     } else {
-      this.setState({ qIndex: nextIndex, lastOk: false, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, lastEarn: 0 });
+      this.setState({ qIndex: nextIndex, lastOk: false, bbPending: false, bbRetry: false, bbStruck: [], selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, lastEarn: 0 });
     }
   }
 
   optionStyle(o, s) {
     var base = 'display:flex;align-items:center;justify-content:center;text-align:center;padding:14px 10px;border-radius:14px;font-weight:700;font-size:17px;min-height:56px;cursor:pointer;';
+    if ((s.bbStruck || []).indexOf(o.id) !== -1) return base + 'background:var(--error-bg);color:var(--error-text);border:2px solid var(--error-border);text-decoration:line-through;opacity:.8;';
     if (!s.revealed) return base + 'background:var(--option-default-bg);color:var(--text);border:2px solid var(--option-default-border);';
     if (o.correct) return base + 'background:var(--success-bg);color:var(--success-text);border:2px solid var(--success-border);';
     if (o.id === s.selected) return base + 'background:var(--error-bg);color:var(--error-text);border:2px solid var(--error-border);';
@@ -9652,6 +9937,53 @@ class Component extends DCLogic {
       result.hasTripMsg = !!s.tripMsg; result.tripMsg = s.tripMsg || '';
       result.tripMsgCls = 'toast bt-vmsg' + (/^TIMBRATO/.test(s.tripMsg || '') ? '' : ' bt-bad');
     })();
+    result.tabOpen = !!s.tabOpen;
+    (function () {
+      var i = Math.max(0, Math.min(BT_TAB_N - 1, s.tabCard || 0)), done = s.tabDone || [];
+      for (var c = 0; c < BT_TAB_N; c++) result['tc' + c] = c === i;
+      result.tabDots = []; for (var d = 0; d < BT_TAB_N; d++) (function (d) {
+        result.tabDots.push({ cls: 'tc-dot' + (d === i ? ' on' : '') + (done.indexOf(d) !== -1 ? ' done' : ''), label: 'Card ' + (d + 1), go: function () { self.setState({ tabCard: d, tabAns: null }); } });
+      })(d);
+      result.tabPosLabel = 'Card ' + (i + 1) + ' of ' + BT_TAB_N;
+      result.tabPrevDis = i === 0 ? 'true' : null;
+      result.tabNextLabel = i === BT_TAB_N - 1 ? 'Ho capito! Torna al gioco' : 'Avanti →';
+      var go = function (n) { if (n < 0) return; if (n >= BT_TAB_N) { self.setState({ tabOpen: false }); return; } self.sfx('tap'); self.setState({ tabCard: n, tabAns: null, tabReveal: false }); };
+      result.tabPrev = function () { go(i - 1); };
+      result.tabNext = function () { go(i + 1); };
+      result.tabTouchStart = function (e) { try { self.__tx = e.changedTouches[0].clientX; self.__ty = e.changedTouches[0].clientY; } catch (er) {} };
+      result.tabTouchEnd = function (e) { try { var dx = e.changedTouches[0].clientX - self.__tx, dy = e.changedTouches[0].clientY - self.__ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? i + 1 : i - 1); } catch (er) {} };
+      result.tabRevealOn = s.tabReveal ? 'true' : 'false';
+      result.tabRevCls = s.tabReveal ? 'on' : '';
+      result.tabRevealTip = s.tabReveal ? 'parla-VO · legge-VO · dormi-VO' : '👆 tap to add the ending';
+      result.tabRevealHandler = function () { self.sfx('tap'); self.setState({ tabReveal: !s.tabReveal }); };
+      var Q = BT_TAB_Q[i];
+      result.tabHasQ = !!Q;
+      if (Q) {
+        var ans = s.tabAns;
+        result.tabQText = Q.q;
+        result.tabQReward = done.indexOf(i) === -1 ? '+5 BC' : '✓';
+        result.tabQOpts = Q.o.map(function (lab, k) {
+          var cls = 'tc-opt' + (ans != null && k === ans ? (k === Q.a ? ' ok' : ' no') : '');
+          return { label: lab, cls: cls, pick: function () {
+            if (k === Q.a) {
+              var p = { tabAns: k };
+              if (done.indexOf(i) === -1) {
+                p.tabDone = done.concat([i]); p.cashi = (s.cashi || 0) + 5; p.lifetime = (s.lifetime || 0) + 5;
+                if (p.tabDone.length >= BT_TAB_Q.length && (s.badges || []).indexOf('tabella_master') === -1) { p.badges = (s.badges || []).concat(['tabella_master']); p.newBadges = (s.newBadges || []).concat(['tabella_master']); }
+                self.sfx('coin');
+              } else self.sfx('good');
+              self.setState(p);
+            } else { self.sfx('soft'); self.setState({ tabAns: k }); }
+          } };
+        });
+        result.tabHasFb = ans != null;
+        result.tabFb = ans == null ? '' : ans === Q.a ? Q.ok + (done.indexOf(i) === -1 ? '' : '') : 'Quasi! Look at the card and try again.';
+        result.tabFbCls = 'tc-fb ' + (ans === Q.a ? 'ok' : 'no');
+      }
+    })();
+    result.openTabHandler = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: 0, tabAns: null, tabReveal: false }); };
+    result.closeTabHandler = function () { self.sfx('soft'); self.setState({ tabOpen: false }); };
+    result.showTabBtn = s.mode !== 'prova';
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
     result.isPacco = s.screen === 'pacco';
@@ -9846,6 +10178,23 @@ class Component extends DCLogic {
       result.canSkip = s.screen === 'play' && !s.revealed && (s.skips || 0) > 0 && s.mode !== 'prova';
       result.skipsLeft = s.skips || 0;
       result.skipHandler = function () { self.skipCard(); };
+      result.bbPending = !!s.bbPending; result.bbRetry = !!s.bbRetry && !s.revealed; result.bbPrice = BB_PRICE;
+      result.bbBuyHandler = function () { self.bbBuy(); }; result.bbShowHandler = function () { self.bbShow(); };
+      result.bbWrongText = (function () { var qq = s.queue && s.queue[s.qIndex]; if (!qq || !qq.options) return ''; for (var i = 0; i < qq.options.length; i++) if (qq.options[i].id === s.bbPick) return 'You picked: ' + qq.options[i].label; return ''; })();
+      if (typeof result.hasTrick === 'undefined') result.hasTrick = false;
+      if (typeof result.hasTabella === 'undefined') result.hasTabella = false;
+      (function () {
+        var qq = s.queue && s.queue[s.qIndex], wrong = '';
+        if (qq && qq.options) { var pid = s.bbPending ? s.bbPick : s.selected; for (var i = 0; i < qq.options.length; i++) if (qq.options[i].id === pid) wrong = qq.options[i].label; }
+        else if (qq) wrong = s.lastTyped || s.typed || '';
+        var tr = btTrick(qq, wrong);
+        result.hasTrick = !!tr && !!s.bbPending;
+        result.hasTrickRev = !!tr && !!s.revealed && !s.lastOk;
+        result.trickTitle = tr ? tr[0] : ''; result.trickBody = tr ? tr[1] : '';
+        result.hasTabella = true;
+        var tcard = tr ? (BT_TRICK_CARD[btTrickKey(tr)] || 0) : 0;
+        result.openTabTrick = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: tcard, tabAns: null, tabReveal: false }); };
+      })();
 
       if (q.type === 'mc') {
         result.options = (q.options || []).map(function (o) {

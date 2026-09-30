@@ -1,6 +1,17 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <a class="boh-home" href="../" aria-label="Back to all levels">&larr; Livelli</a>
-<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
+<style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
+.bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
+.bb-head span{display:block;font-size:13px;font-weight:700;color:var(--text-muted);margin-top:2px}
+.bb-trick{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:12px;background:var(--why-bg);color:var(--text);font-size:14.5px;line-height:1.45}
+.bb-trick b{font-size:15px}
+.bb-buy{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:18px;text-align:center}
+.bb-buy small{font-size:12.5px;font-weight:700;opacity:.9}
+.bb-row{display:flex;gap:8px;flex-wrap:wrap}
+.bb-ghost{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 140px;text-align:center;padding:12px;border-radius:12px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px}
+.bb-buy:focus-visible,.bb-ghost:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.bb-note{font-size:13.5px;font-weight:800;color:var(--accent-strong);text-align:center}
+.boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Volere Dovere Potere</title>
 <meta name="author" content="Assunta Scotto">
@@ -595,6 +606,23 @@
               <button onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
             </sc-for>
           </div>
+        </sc-if>
+
+        <sc-if value="{{bbPending}}" hint-placeholder-val="{{false}}">
+          <div class="bb-box" role="status">
+            <div class="bb-head">Non ancora! <span>{{bbWrongText}}</span></div>
+            <sc-if value="{{hasTrick}}" hint-placeholder-val="{{false}}">
+              <div class="bb-trick"><b>&#128161; {{trickTitle}}</b><span>{{trickBody}}</span></div>
+            </sc-if>
+            <button onClick="{{bbBuyHandler}}" class="bb-buy">&#128257; Ricompra &middot; {{bbPrice}} BC<small>Try again for full credit &middot; keep your heart</small></button>
+            <div class="bb-row">
+              <button onClick="{{bbShowHandler}}" class="bb-ghost">Mostrami la risposta</button>
+              <sc-if value="{{hasTabella}}" hint-placeholder-val="{{false}}"><button onClick="{{openTabHandler}}" class="bb-ghost">&#128203; La Tabella</button></sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{bbRetry}}" hint-placeholder-val="{{false}}">
+          <div class="bb-note">Ricompra attiva: pick again. Right = full credit.</div>
         </sc-if>
 
         <sc-if value="{{isBinary}}" hint-placeholder-val="{{false}}">
@@ -1344,6 +1372,7 @@ var CARDS = {
   card_rap:   { title: 'Geolier', text: 'Neapolitan rapper Geolier (Emanuele Palumbo, from Secondigliano) raps entirely in napoletano. He finished 2nd at Sanremo 2024 with “I p’ me, tu p’ te” — io per me, tu per te.' },
   card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = €5 · un deca = €10 · una piotta = €100 · un sacco = €1,000. Careful: venti sacchi = €20,000!' }
 };
+var BB_PRICE = 5;
 var BADGES = [
   { id: 'centone',       name: 'Un Centone',          desc: 'Earn €100 in cashi.' },
   { id: 'permission_trap', name: 'Permission Trap Survivor', desc: 'Get “Posso andare in bagno?” fully right 3 times.' },
@@ -1818,7 +1847,7 @@ class Component extends DCLogic {
   resumeSaved() {
     var st = this.state;
     if (st.roundActive && st.queue && st.queue.length > 0 && st.qIndex < st.queue.length) {
-      this.setState({ screen: 'play', selected: null, revealed: false, outOfHearts: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, overlay: null, lastEarn: 0,
+      this.setState({ screen: 'play', selected: null, revealed: false, outOfHearts: false, bbPending: false, bbRetry: false, bbStruck: [], eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, overlay: null, lastEarn: 0,
                       paid: st.paidDay === dayKey(0) ? st.paid : [], paidDay: dayKey(0) });
       return;
     }
@@ -2171,7 +2200,7 @@ class Component extends DCLogic {
     this.setState({
       screen: 'play',
       mode: modeKey,
-      queue: deck, lastOk: false,
+      queue: deck, lastOk: false, bbPending: false, bbRetry: false, bbStruck: [],
       qIndex: 0,
       hearts: 3,
       streak: 0,
@@ -2196,7 +2225,7 @@ class Component extends DCLogic {
 
   backCard() {
     if (this.state.qIndex > 0) {
-      this.setState({ qIndex: this.state.qIndex - 1, lastOk: false, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false });
+      this.setState({ qIndex: this.state.qIndex - 1, lastOk: false, bbPending: false, bbRetry: false, bbStruck: [], selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false });
     }
   }
 
@@ -2308,10 +2337,40 @@ class Component extends DCLogic {
     return out;
   }
 
+  bbKeyOf(s) { return (s.mode || '') + ':' + s.qIndex + ':' + s.totalSoFar; }
+
+  bbOffer(q, opt) {
+    var s = this.state;
+    if (s.mode === 'prova' || s.bbCard === this.bbKeyOf(s)) return false;
+    if ((s.cashi || 0) < BB_PRICE) return false;
+    this.sfx('soft');
+    this.setState({ bbPending: true, bbPick: opt.id, bbStruck: [opt.id], bbRetry: false });
+    return true;
+  }
+
+  bbBuy() {
+    var s = this.state;
+    if (!s.bbPending || (s.cashi || 0) < BB_PRICE) return;
+    this.sfx('buy');
+    this.setState({ cashi: s.cashi - BB_PRICE, bbPending: false, bbRetry: true, bbCard: this.bbKeyOf(s), bbSpent: (s.bbSpent || 0) + BB_PRICE });
+  }
+
+  bbShow() {
+    var s = this.state, q = s.queue[s.qIndex], pick = null;
+    if (!s.bbPending) return;
+    for (var i = 0; i < q.options.length; i++) if (q.options[i].id === s.bbPick) pick = q.options[i];
+    // un-strike the pick so selectAnswer reveals it as the wrong answer (it still shows red via 'selected')
+    this.setState({ bbPending: false, bbStruck: [], bbCard: this.bbKeyOf(s) });
+    if (pick) this.selectAnswer(pick);
+  }
+
   selectAnswer(opt) {
     if (this.state.revealed) return;
     var q = this.state.queue[this.state.qIndex];
+    if (this.state.bbPending) return;
+    if ((this.state.bbStruck || []).indexOf(opt.id) !== -1) return;
     var isCorrect = !!opt.correct;
+    if (!isCorrect && this.bbOffer(q, opt)) return;
     var correctOpt = q.options[0];
     for (var i = 0; i < q.options.length; i++) { if (q.options[i].correct) { correctOpt = q.options[i]; break; } }
     var patch = this.computeResult(q.cat, isCorrect, { cat: q.cat, prompt: q.prompt + (q.sub ? ' (' + q.sub + ')' : ''), answer: correctOpt.label }, q.id, 1);
@@ -2430,12 +2489,13 @@ class Component extends DCLogic {
     if (nextIndex >= this.state.queue.length) {
       this.setState(this.finish({ screen: 'summary', lastEarn: 0 }));
     } else {
-      this.setState({ qIndex: nextIndex, lastOk: false, selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, lastEarn: 0 });
+      this.setState({ qIndex: nextIndex, lastOk: false, bbPending: false, bbRetry: false, bbStruck: [], selected: null, revealed: false, eaStage: 'verb', verbCorrect: false, formOptions: [], formSelected: null, canRetry: false, tBuilt: [], typed: '', fr: null, tilesHelp: false, lastEarn: 0 });
     }
   }
 
   optionStyle(o, s) {
     var base = 'display:flex;align-items:center;justify-content:center;text-align:center;padding:14px 10px;border-radius:14px;font-weight:700;font-size:17px;min-height:56px;cursor:pointer;';
+    if ((s.bbStruck || []).indexOf(o.id) !== -1) return base + 'background:var(--error-bg);color:var(--error-text);border:2px solid var(--error-border);text-decoration:line-through;opacity:.8;';
     if (!s.revealed) return base + 'background:var(--option-default-bg);color:var(--text);border:2px solid var(--option-default-border);';
     if (o.correct) return base + 'background:var(--success-bg);color:var(--success-text);border:2px solid var(--success-border);';
     if (o.id === s.selected) return base + 'background:var(--error-bg);color:var(--error-text);border:2px solid var(--error-border);';
@@ -2762,6 +2822,11 @@ class Component extends DCLogic {
         return { fillColor: idx < s.hearts ? 'var(--heart-filled)' : 'var(--heart-empty)' };
       });
       result.continueHandler = function () { self.nextCard(); };
+      result.bbPending = !!s.bbPending; result.bbRetry = !!s.bbRetry && !s.revealed; result.bbPrice = BB_PRICE;
+      result.bbBuyHandler = function () { self.bbBuy(); }; result.bbShowHandler = function () { self.bbShow(); };
+      result.bbWrongText = (function () { var qq = s.queue && s.queue[s.qIndex]; if (!qq || !qq.options) return ''; for (var i = 0; i < qq.options.length; i++) if (qq.options[i].id === s.bbPick) return 'You picked: ' + qq.options[i].label; return ''; })();
+      if (typeof result.hasTrick === 'undefined') result.hasTrick = false;
+      if (typeof result.hasTabella === 'undefined') result.hasTabella = false;
 
       if (q.type === 'mc') {
         result.options = (q.options || []).map(function (o) {
