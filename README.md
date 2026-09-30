@@ -4,7 +4,7 @@
 
 An Italian-language learning game. Students customize their own Boh, learn Italian, and earn rewards as Boh grows.
 
-**Play:** https://appuccinohub.github.io/Boh/
+**Play:** https://appuccinohub.github.io/boh/
 
 | Level | Folder |
 |---|---|
