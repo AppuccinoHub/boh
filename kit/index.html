@@ -1,0 +1,144 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><!-- Boh · created by Assunta Scotto, 2026. All rights reserved. --><title>Boh Face Kit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@500;700;800&display=swap">
+<style>
+/* Layout: one narrow column you work down on a phone — steps, prompts, pictures. */
+:root{
+  --bg:#F3EEF1;--surface:#FFFFFF;--ink:#241B2B;--muted:#6B5F72;--line:#DCCFD6;
+  --accent:#6A4C93;--accent-soft:#E6DDF1;--on-accent:#FFFFFF;--ok:#1E7F4A;--bad:#C23A2E;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:Manrope,system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1C1520;--surface:#271E2C;--ink:#F3ECF4;--muted:#B5A8BA;--line:#3F3446;--accent:#B79AE0;--accent-soft:#3A2E4A;--on-accent:#1C1520;--ok:#5FCB8C;--bad:#F08477;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1C1520;--surface:#271E2C;--ink:#F3ECF4;--muted:#B5A8BA;--line:#3F3446;--accent:#B79AE0;--accent-soft:#3A2E4A;--on-accent:#1C1520;--ok:#5FCB8C;--bad:#F08477;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);margin:0}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:22px 48px;display:grid;gap:22px}
+h1,h2{font-family:var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:34px;line-height:1.05}
+h2{font-size:21px}
+p{margin:0}
+.lede{color:var(--muted)}
+.box{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px;min-width:0}
+ol.steps{margin:0;padding-left:22px;display:grid;gap:8px}
+ol.steps b{color:var(--accent)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:800 15px var(--body);border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.base{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
+.base img{width:120px;height:auto;background:repeating-conic-gradient(var(--line) 0 25%,transparent 0 50%) 0 0/16px 16px;border-radius:12px}
+.fname{font:700 14px var(--mono);background:var(--accent-soft);color:var(--ink);padding:2px 8px;border-radius:6px;word-break:break-all}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.card .n{font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card h3{margin:0;font:800 18px var(--display)}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;font:13px/1.5 var(--mono);background:var(--bg);border-radius:10px;padding:12px;max-height:180px;overflow:auto}
+.copy{font:800 15px var(--body);background:var(--accent);color:var(--on-accent);border:0;border-radius:12px;padding:12px 16px;cursor:pointer;width:100%}
+.copy.done{background:var(--ok)}
+.card.used{opacity:.6}
+ul.no{margin:0;padding-left:20px;display:grid;gap:4px}
+ul.no li::marker{color:var(--bad)}
+.foot{color:var(--muted);font-size:13px;text-align:center}
+</style>
+
+</head><body><div class="wrap">
+  <header style="display:grid;gap:8px">
+    <h1>Boh Face Kit</h1>
+    <p class="lede">Everything for the ChatGPT faces job, in one place. 6 faces × 3 Bohs = 18 images. Only the face changes, so every item students bought still fits.</p>
+  </header>
+
+  <section class="box">
+    <h2>How to do each one</h2>
+    <ol class="steps">
+      <li>Open a <b>new ChatGPT chat</b> for every image.</li>
+      <li>Upload the right Boh picture (below). Tap <b>Download</b> next to it.</li>
+      <li>In ChatGPT, tap the image → <b>Select</b>. Paint over <b>only the eyes, eyebrows and mouth</b>. Not the hair, ears or hijab.</li>
+      <li>Tap <b>Copy</b> on one face card below and paste it into ChatGPT.</li>
+      <li>Save the result with the file name shown on the card.</li>
+    </ol>
+    <p><b>Do the first card first and send it to Claude</b> before doing the rest.</p>
+  </section>
+
+  <section class="box">
+    <h2>Pick your Boh</h2>
+    <div class="tabs" role="group" aria-label="Which Boh">
+      <button id="t-m" data-k="m" aria-pressed="true">Boh ♂</button>
+      <button id="t-f" data-k="f" aria-pressed="false">Boh ♀</button>
+      <button id="t-h" data-k="h" aria-pressed="false">Boh ♀ hijab</button>
+    </div>
+    <div class="base">
+      <img id="baseImg" alt="The Boh to upload to ChatGPT">
+      <div style="display:grid;gap:6px;min-width:0">
+        <span>Upload this picture:</span>
+        <span class="fname" id="baseName">boh-m-base.png</span>
+        <a class="copy" id="dl" href="boh-m-base.png" download style="text-align:center;text-decoration:none;display:block">Download</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:12px" id="cards" aria-label="Face prompts"></section>
+
+  <section class="box">
+    <h2>Reject and redo if</h2>
+    <ul class="no">
+      <li>Anything moved besides the face</li>
+      <li>The hair, hijab or ears changed</li>
+      <li>Colors shifted, or the style got "improved"</li>
+      <li>Anything was added: background, shadow, sparkles, text</li>
+      <li>The picture got cropped or resized</li>
+    </ul>
+    <p class="lede" style="font-size:14px">Tip: put the result next to the original. If you can spot a difference outside the face, it's a redo.</p>
+  </section>
+
+  <p class="foot">Boh · created by Assunta Scotto · © 2026</p>
+</div>
+
+<script>
+const IMGS={"m":"boh-m-base.png","f":"boh-f-base.png","h":"boh-h-base.png"};
+const FACES=[
+ ["laugh","Laughing","laughing, eyes squeezed shut, big open smile"],
+ ["wow","Surprised","surprised, eyebrows up, eyes wide, small open mouth"],
+ ["sad","Sad","sad, eyebrows tilted up in the middle, small frown"],
+ ["think","Thinking","thinking, eyes looking up to one side, mouth pushed to the side"],
+ ["boh","Confused (boh?)","confused, one eyebrow raised, crooked mouth"],
+ ["cool","Proud","proud and confident, small smirk, one eyebrow slightly raised"]
+];
+const RULES=`STRICT RULES — follow every one:
+- Do NOT change anything outside the selected area.
+- Do NOT change the hair, head shape, ears, skin color, hijab, body, clothes, socks, shoes, pose, or size.
+- Do NOT change the art style. Same line thickness, same shading, same colors.
+- Do NOT add anything: no props, no text, no background, no shadow, no sparkles.
+- Do NOT redraw, improve, sharpen, or restyle the character.
+- Keep the exact same image size and position.
+- Keep the background transparent.
+
+If you cannot change only the selected area, tell me instead of redrawing the whole image.`;
+let K="m";const used=new Set();
+try{JSON.parse(localStorage.getItem("bohFaceKitUsed")||"[]").forEach(x=>used.add(x))}catch(e){}
+function prompt(desc){return `Edit ONLY the area I selected (the eyes, eyebrows and mouth).
+Change the facial expression to: ${desc}.
+
+${RULES}`}
+function render(){
+  document.getElementById("baseImg").src=IMGS[K];
+  document.getElementById("baseName").textContent=`boh-${K}-base.png`;const d=document.getElementById("dl");d.href=`boh-${K}-base.png`;d.setAttribute("download",`boh-${K}-base.png`);
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===K?"true":"false"));
+  const box=document.getElementById("cards");box.innerHTML="";
+  FACES.forEach(([id,label,desc],i)=>{
+    const fn=`boh-${K}-face-${id}.png`,txt=prompt(desc);
+    const c=document.createElement("article");c.className="card"+(used.has(fn)?" used":"");
+    c.innerHTML=`<div class="top"><div><span class="n">Face ${i+1} of 6</span><h3>${label}</h3></div><span class="fname">${fn}</span></div><pre></pre><button class="copy" id="c-${K}-${id}">Copy prompt</button>`;
+    c.querySelector("pre").textContent=txt;
+    const btn=c.querySelector("button");
+    btn.onclick=async()=>{
+      try{await navigator.clipboard.writeText(txt);btn.textContent="Copied ✓ — paste into ChatGPT";btn.classList.add("done")}
+      catch(e){const r=document.createRange();r.selectNodeContents(c.querySelector("pre"));const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Selected — tap Copy on your phone"}
+      used.add(fn);c.classList.add("used");try{localStorage.setItem("bohFaceKitUsed",JSON.stringify([...used]))}catch(e){}
+    };
+    box.appendChild(c);
+  });
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{K=b.dataset.k;render()});
+render();
+</script>
+</body></html>
