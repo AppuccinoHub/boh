@@ -32,6 +32,16 @@
   --ink:#2B2430;--muted:#6B5F68;--accent:#C1654F;--on-accent:#FFFFFF;--violet:#6A4C93;--gold:#B7802A;
   --glow:0 0 0 1px var(--line),0 12px 28px rgba(43,36,48,.10);color-scheme:light}
 *{box-sizing:border-box}
+.savecard{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 20px;border-radius:20px;background:var(--surface);box-shadow:var(--glow)}
+.me-boh{display:flex;align-items:center;gap:14px;flex:1 1 360px}
+.me-boh img{width:64px;height:auto;flex:none}
+.savecard .me-save{margin-top:6px;font-size:13.5px}
+.savecard h2{margin:0 0 4px;font:800 22px/1.1 var(--display)}
+.savecard p{margin:0;color:var(--muted);font-size:14.5px;max-width:560px}
+.saverow{display:flex;gap:10px;flex-wrap:wrap}
+.saveb{cursor:pointer;min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--accent);color:var(--on-accent);font:800 16px var(--body)}
+.saveb.alt{background:transparent;color:var(--ink);border:2px solid var(--accent)}
+.saveb:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
 html,body{min-height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);
   background-image:radial-gradient(900px 420px at 85% -10%,color-mix(in srgb,var(--violet) 22%,transparent),transparent 70%),
@@ -123,8 +133,12 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px
     </div>
   </section>
 
+  <section class="savecard" aria-label="Il tuo Boh">
+    <div class="me-boh" id="meBoh"><img alt="" hidden><div><h2>Nuovo? Crea il tuo Boh una volta sola</h2><p>Pick your level and make your Boh. Every level remembers it: you only sign in once. Already have a Boh from another Chromebook? Carica your save file.</p><p class="me-save">To play on another Chromebook, save <b>one file for every level</b> and keep it in your Google Drive.</p></div></div>
+    <div class="saverow"><button type="button" class="saveb" data-bohsave="save">&#128190; Salva</button><button type="button" class="saveb alt" data-bohsave="load">&#128194; Carica</button></div>
+  </section>
   <section style="display:grid;gap:14px">
-    <div class="sech"><h2>Scegli il tuo livello</h2><span>Your Boh and your Boh Cashi stay in each level.</span></div>
+    <div class="sech"><h2>Scegli il tuo livello</h2><span>One Boh for every level. Boh Cashi stay in each level.</span></div>
     <nav class="levels" aria-label="Levels">
       <a class="lvl" href="italiano1/" data-key="bohItaliano1Ripasso_v1" style="--c:#6FB7A0;--on-c:#10231D">
         <span class="n">Livello 1</span><h3>Italiano 1</h3><p class="topic">Review &amp; test prep</p>
@@ -145,7 +159,6 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px
     </nav>
   </section>
 
-  <p class="tip"><span aria-hidden="true">💡</span><span><b>Tip:</b> your progress saves on this device. Play on the same Chromebook, and write down your save code if your level gives you one.</span></p>
 </main>
 <footer>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved</footer>
 <script>
@@ -170,5 +183,18 @@ document.querySelectorAll('.lvl[data-key]').forEach(function(card){
   btn.onclick=function(){var n=cur()==='dark'?'light':'dark';root.dataset.theme=n;try{localStorage.setItem('boh_theme',n)}catch(e){}label()};
 })();
 </script>
+<script>
+// Il tuo Boh: one sign-in for every level (the shared Boh saved by whichever level made it)
+(function(){
+  var box=document.getElementById('meBoh');if(!box)return;var pr=null;
+  try{pr=JSON.parse(localStorage.getItem('boh_profile_v1')||'null')}catch(e){}
+  if(pr&&pr.bohBase&&pr.bohName){
+    var img=box.querySelector('img');img.src='assets/boh-'+(pr.bohBase==='h'?'h':pr.bohBase==='f'?'f':'m')+'.webp';img.hidden=false;
+    box.querySelector('h2').textContent='Ciao, '+pr.bohName+'!';
+    box.querySelector('p').innerHTML='You are signed in on <b>every level</b>. Edit your Boh in any level and it changes everywhere.';
+  }
+})();
+</script>
+<script src="assets/bohsave.js" defer></script>
 </body>
 </html>

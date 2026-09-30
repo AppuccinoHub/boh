@@ -11,6 +11,20 @@
 .bb-ghost{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 140px;text-align:center;padding:12px;border-radius:12px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px}
 .bb-buy:focus-visible,.bb-ghost:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .bb-note{font-size:13.5px;font-weight:800;color:var(--accent-strong);text-align:center}
+.pv-shot{display:flex;flex-direction:column;gap:3px;align-items:center;text-align:center;padding:14px 16px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:700;font-size:14.5px;animation:pvPulse 1.6s ease-in-out infinite}
+.pv-shot b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:21px;line-height:1.15;font-weight:800}
+.pv-shot kbd{font:800 13px ui-monospace,Menlo,monospace;padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.45)}
+@keyframes pvPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@media (prefers-reduced-motion:reduce){.pv-shot{animation:none}}
+[data-motion="reduce"] .pv-shot{animation:none}
+.pv-save{font-size:12.5px;font-weight:800;color:var(--accent-strong);text-align:center}
+.pv-ask{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:16px;background:var(--card-bg);border:3px solid var(--primary-bg);text-align:center}
+.pv-ask b{font-size:18px}
+.pv-ask span{font-size:13.5px;color:var(--text-muted)}
+.pv-ask-row{display:flex;gap:10px}
+.pv-ask-row button{flex:1;padding:14px;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer}
+.pv-ask-no{background:transparent;color:var(--text);border:2px solid var(--card-border)}
+.pv-ask-yes{background:var(--primary-bg);color:var(--primary-text);border:none}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh · Italian 1 review Test prep</title>
@@ -1018,6 +1032,7 @@
 
     <sc-if value="{{isProva}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px;">
+        <div class="pv-shot" role="alert"><b>&#128248; FAI UNO SCREENSHOT DEL TUO VOTO</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press <kbd>Ctrl</kbd> + <kbd>Show windows &#9645;&#9647;</kbd></span></div>
         <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:var(--card-bg);border:3px solid var(--primary-bg);">
           <div style="display:flex;align-items:center;gap:14px;">
             <div class="doll dS idle" style="flex-shrink:0;"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
@@ -1043,11 +1058,8 @@
             <span style="font-size:12px;color:var(--text-faint);">First attempt: {{pvFirst}} &middot; Best: {{pvBest}}</span>
             <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;font-weight:800;letter-spacing:.08em;color:var(--accent-strong);">{{pvCode}}</span>
           </div>
+          <div class="pv-save" data-bohsave-code="Salva il tuo Boh: Settings → 💾 Salva / Carica">Salva il tuo Boh: Settings &rarr; &#128190; Salva / Carica</div>
           <div style="font-size:11px;color:var(--text-faint);text-align:center;">Created by Assunta Scotto</div>
-        </div>
-
-        <div style="padding:12px 14px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-size:14.5px;font-weight:700;text-align:center;">
-          Screenshot this card and upload it to Google Classroom.
         </div>
 
         <sc-if value="{{pvHasMissed}}" hint-placeholder-val="{{true}}">
@@ -1066,7 +1078,8 @@
           <div style="padding:14px;border-radius:14px;background:var(--success-bg);border:2px solid var(--success-border);color:var(--success-text);font-weight:800;text-align:center;">Tutto giusto. Niente da studiare.</div>
         </sc-if>
 
-        <button onClick="{{backHandler}}" style="all:unset;cursor:pointer;text-align:center;padding:15px;border-radius:14px;background:var(--card-bg);border:2px solid var(--card-border);font-weight:800;font-size:15px;">Back to the menu</button>
+        <sc-if value="{{pvNoAsk}}" hint-placeholder-val="{{true}}"><button onClick="{{pvLeaveHandler}}" style="all:unset;cursor:pointer;text-align:center;padding:15px;border-radius:14px;background:var(--card-bg);border:2px solid var(--card-border);font-weight:800;font-size:15px;">Back to the menu</button></sc-if>
+        <sc-if value="{{pvAsk}}" hint-placeholder-val="{{false}}"><div class="pv-ask" role="alertdialog" aria-label="Screenshot check"><b>Hai fatto lo screenshot del tuo voto?</b><span>Make sure it&rsquo;s in your Google Classroom before you leave this card.</span><div class="pv-ask-row"><button onClick="{{pvNotYetHandler}}" class="pv-ask-no">Non ancora</button><button onClick="{{pvYesHandler}}" class="pv-ask-yes">S&igrave;, fatto!</button></div></div></sc-if>
       </div>
     </sc-if>
 
@@ -1328,6 +1341,7 @@
             <div style="font-size:13px;font-weight:700;color:var(--error-text);text-align:center;">{{nameError}}</div>
           </sc-if>
           <button onClick="{{saveBohHandler}}" style="padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">{{saveBohText}}</button>
+          <button data-bohsave="load" style="all:unset;cursor:pointer;text-align:center;font-size:14px;font-weight:800;color:var(--accent-strong);padding:8px;">Hai gi&agrave; un Boh? Carica il tuo salvataggio</button>
         </sc-if>
         <sc-if value="{{ovPause}}" hint-placeholder-val="{{false}}">
           <div class="display" style="font-size:30px;font-weight:800;text-align:center;">Paused</div>
@@ -1354,6 +1368,7 @@
             <button onClick="{{toggleMotionHandler}}" aria-label="Toggle reduce motion" aria-pressed="{{motionOn}}" class="swt" style="background:{{motionTrack}};"><span style="position:absolute;top:3px;left:{{motionKnob}};width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s;"></span></button>
           </div>
           <button onClick="{{editBohHandler}}" style="margin-top:6px;padding:12px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:14px;border:2px solid var(--card-border);">Edit my Boh (look &amp; name)</button>
+          <button data-bohsave="save" style="margin-top:6px;padding:12px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:14px;border:none;cursor:pointer;">&#128190; Salva / Carica il mio Boh (tutti i livelli)</button>
           <button onClick="{{askResetHandler}}" style="margin-top:6px;padding:12px;border-radius:14px;background:transparent;color:var(--error-text);font-weight:800;font-size:14px;border:2px solid var(--error-border);">Reset all my progress</button>
           <button onClick="{{closeOverlayHandler}}" style="padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Done</button>
         </sc-if>
@@ -2284,6 +2299,8 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    var BOH_ID_KEYS = ['bohBase', 'bohName', 'bohSkin', 'bohHair'], pr = null;
+    try { pr = JSON.parse(localStorage.getItem('boh_profile_v1') || 'null'); if (pr && !pr.bohBase) pr = null; } catch (e) { pr = null; }
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
@@ -2296,11 +2313,14 @@ class Component extends DCLogic {
             if (saved[k] !== undefined && saved[k] !== null) patch[k] = saved[k];
           }
           patch.screen = 'home';
-          if (!saved.bohBase) { patch.overlay = 'creator'; patch.draftBase = 'm'; patch.draftSkin = 'medium'; patch.draftHair = 'dark'; patch.skinTouched = false; patch.nameDraft = ''; }
+          if (pr && (!saved.bohBase || (pr._t || 0) > (saved._pt || 0))) BOH_ID_KEYS.forEach(function (k) { if (pr[k] !== undefined) patch[k] = pr[k]; });
+          if (!patch.bohBase) { patch.overlay = 'creator'; patch.draftBase = 'm'; patch.draftSkin = 'medium'; patch.draftHair = 'dark'; patch.skinTouched = false; patch.nameDraft = ''; }
           else if (!saved.seenHelp) patch.overlay = 'help';
           else patch.overlay = null;
           this.setState(patch);
         }
+      } else if (pr) {
+        var p1 = { overlay: 'help' }; BOH_ID_KEYS.forEach(function (k) { if (pr[k] !== undefined) p1[k] = pr[k]; }); this.setState(p1);
       } else {
         this.setState({ overlay: 'creator', draftBase: 'm', draftSkin: 'medium', draftHair: 'dark', skinTouched: false, nameDraft: '' });
       }
@@ -2328,8 +2348,13 @@ class Component extends DCLogic {
     try { this.__autoNext(); } catch (e) {}
     try {
       var _p = {}; for (var _q in this.state) _p[_q] = this.state[_q];
-      _p._src = _b7d(); _p._a = _k9;
+      _p._src = _b7d(); _p._a = _k9; _p._pt = Date.now();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(_p));
+      if (_p.bohBase) {   // one Boh for every level
+        var _pf = null; try { _pf = JSON.parse(localStorage.getItem('boh_profile_v1') || 'null'); } catch (e2) {} _pf = _pf || {};
+        var _ch = ['bohBase', 'bohName', 'bohSkin', 'bohHair'].some(function (k) { return _pf[k] !== _p[k]; });
+        if (_ch) { ['bohBase', 'bohName', 'bohSkin', 'bohHair'].forEach(function (k) { _pf[k] = _p[k]; }); _pf._t = _p._pt; localStorage.setItem('boh_profile_v1', JSON.stringify(_pf)); }
+      }
     } catch (e) {}
   }
 
@@ -3112,6 +3137,10 @@ class Component extends DCLogic {
       isPlay: s.screen === 'play',
       isSummary: s.screen === 'summary',
       isProva: s.screen === 'prova',
+      pvAsk: s.screen === 'prova' && !!s.pvAsk, pvNoAsk: !s.pvAsk,
+      pvLeaveHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true }); },
+      pvNotYetHandler: function () { self.sfx('tap'); self.setState({ pvAsk: false }); },
+      pvYesHandler: function () { self.setState({ pvAsk: false }); self.backHome(); },
       showHomeIcon: s.screen !== 'home',
       canGoBack: false,
       bohName: s.bohName || 'Boh',
@@ -3157,7 +3186,7 @@ class Component extends DCLogic {
       faceShopCls: 'bf ' + FACES[s.bohBase || 'm'].wink,
       faceWhoaCls: 'bf ' + FACES[s.bohBase || 'm'].whoa,
       shopGreeting: 'Shopping for ' + (s.bohName || 'Boh'),
-      showHomeBtn: s.screen !== 'home' && s.screen !== 'play',
+      showHomeBtn: s.screen !== 'home' && s.screen !== 'play' && s.screen !== 'prova',
       pauseHandler: function () { self.sfx('tap'); self.openOverlay('pause'); },
       helpHandler: function () { self.openOverlay('help'); },
       trucchiHandler: function () { self.openOverlay('trucchi'); },
@@ -3572,4 +3601,5 @@ window.__game = window.__mountDC(Component, document.getElementById('tpl'), docu
 </script>
 
 
+<script src="../assets/bohsave.js" defer></script>
 </body></html>

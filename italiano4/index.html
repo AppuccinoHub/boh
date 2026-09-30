@@ -1,4 +1,14 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+.pv-shot{display:flex;flex-direction:column;gap:3px;align-items:center;text-align:center;padding:14px 16px;border-radius:16px;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:14.5px;margin-bottom:12px;animation:pvPulse 1.6s ease-in-out infinite}
+.pv-shot b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:21px;line-height:1.15;font-weight:800}
+.pv-shot kbd{font:800 13px ui-monospace,Menlo,monospace;padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.45)}
+@keyframes pvPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@media (prefers-reduced-motion:reduce){.pv-shot{animation:none}}
+.pv4-who{font-weight:800;color:var(--muted);font-size:14px}
+.pv-save{font-size:12.5px;font-weight:800;color:var(--accent);margin-top:6px}
+.pv-ask{display:grid;gap:8px;padding:14px;border-radius:16px;border:3px solid var(--accent);text-align:center;margin-top:8px}
+.pv-ask b{font-size:18px}
+</style></head><body>
 <title>Boh. Italiano 4</title>
 <meta name="author" content="Assunta Scotto">
 <!-- Boh · Italiano Seniors (Italian 4H · comandi con -mi / -ti) — created by Assunta Scotto, 2026. Not for redistribution. -->
@@ -515,6 +525,8 @@ const NO=["Boh... no.","Riprova!","Mmm, non credo.","Quasi!"];
 /* ---------- STATE ---------- */
 let S={boh:"m",skin:"medium",hair:"dark",bc:0,done:{},own:[],cam:0,name:"",prog:{},unit:"chiamami",badges:[]};
 try{const d=JSON.parse(localStorage.getItem("boh_aiutami")||"null");if(d)S=Object.assign(S,d)}catch(e){}
+/* one Boh for every level: the shared Boh wins when it is newer, or when this level has no name yet */
+try{const pr=JSON.parse(localStorage.getItem("boh_profile_v1")||"null");if(pr&&pr.bohBase&&(!S.name||(pr._t||0)>(S._pt||0))){S.boh=pr.bohBase;if(pr.bohName)S.name=String(pr.bohName).replace(/[^A-Za-zÀ-ÿ' ]/g,"").slice(0,14);if(pr.bohSkin)S.skin=pr.bohSkin;if(pr.bohHair)S.hair=pr.bohHair}}catch(e){}
 if(!AVAIL.includes(S.boh))S.boh="m";
 if(!Array.isArray(S.badges))S.badges=[];
 const B32="0123456789ABCDEFGHJKMNPQRSTVWXYZ";
@@ -575,7 +587,7 @@ function readCodeV1(raw){
   const name=parts.slice(3).join("-").replace(/_/g," ").replace(/[^A-Za-zÀ-ÿ' ]/g,"").slice(0,14);
   return {boh:AVAIL.includes(["m","f","h"][bo])?["m","f","h"][bo]:"m",skin:SKINS[sk][0],bc,done,own,cam,name,badges:[]};
 }
-function save(){try{localStorage.setItem("boh_aiutami",JSON.stringify(S))}catch(e){}}
+function save(){try{S._pt=Date.now();localStorage.setItem("boh_aiutami",JSON.stringify(S));if(S.name){let pf=null;try{pf=JSON.parse(localStorage.getItem("boh_profile_v1")||"null")}catch(e){}pf=pf||{};const nx={bohBase:S.boh,bohName:S.name,bohSkin:S.skin,bohHair:S.hair};if(Object.keys(nx).some(k=>pf[k]!==nx[k])){Object.assign(pf,nx);pf._t=S._pt;localStorage.setItem("boh_profile_v1",JSON.stringify(pf))}}}catch(e){}}
 let P=null; // play state
 const $=s=>document.querySelector(s);
 const app=$("#app");
@@ -668,9 +680,9 @@ function home(){
   ${CUR().prova?`<button class="rulelink" id="provaBtn" style="border-style:solid;margin-top:14px"><span class="tag tmi">✓</span><span style="display:grid;gap:2px"><span>${esc(CUR().prova.title)}: get ready for the test</span><span style="font-weight:600;font-size:13px;color:var(--muted)">14 questions like the test. ${(S.provaBest||{})[CUR().prova.id]!=null?"Your best: "+S.provaBest[CUR().prova.id]+" / 14. Replays are practice only.":"Pays up to 42 Boh Cashi the first time."}</span></span></button>`:""}
   <div class="savebox">
     <div><h3>Salva il tuo Boh</h3><p>Your game saves on this Chromebook automatically. To keep it on another device, get your save code and write it down.</p>
-      <button class="go" id="saveBtn" style="justify-self:start">Salva e mostra il codice</button><div id="codeOut"></div></div>
+      <button class="go" id="saveBtn" style="justify-self:start">Salva e mostra il codice</button><div id="codeOut"></div><button class="ghost" data-bohsave="save" style="justify-self:start;margin-top:8px">&#128190; Salva tutti i livelli (file)</button></div>
     <div><h3>Hai un codice?</h3><p>Type your save code to load your Boh, your Boh Cashi, your stars and your closet.</p>
-      <div class="namerow" style="margin:0"><input class="inp" id="codeIn" placeholder="ABCD-EFGH-...Nome" autocomplete="off" style="flex:1;min-width:0"><button class="ghost" id="loadBtn">Carica</button></div><div id="loadMsg"></div></div>
+      <div class="namerow" style="margin:0"><input class="inp" id="codeIn" placeholder="ABCD-EFGH-...Nome" autocomplete="off" style="flex:1;min-width:0"><button class="ghost" id="loadBtn">Carica</button></div><div id="loadMsg"></div><button class="ghost" data-bohsave="load" style="justify-self:start;margin-top:8px">&#128194; Carica un file di tutti i livelli</button></div>
   </div>`;
   app.querySelectorAll("[data-b]").forEach(b=>b.onclick=()=>{const k=b.dataset.b;S.boh=k==="f"&&S.boh==="h"?"h":k;save();home()});
   app.querySelectorAll("[data-hj]").forEach(b=>b.onclick=()=>{S.boh=b.dataset.hj==="1"?"h":"f";save();home()});
@@ -717,12 +729,13 @@ function provaEnd(){
   const pv=CUR().prova,n=P.first,tot=P.tot;S.provaBest=S.provaBest||{};
   const prev=S.provaBest[pv.id];S.provaBest[pv.id]=Math.max(prev||0,n);save();sfx("win");
   const tips=[];if(P.miss[1]>1)tips.push("Review <b>Regola -mi / -ti</b>: who gets the action?");if(P.miss[2]>1)tips.push("Replay the <b>Rispondi</b> step in the letters: watch the traps (calmami, chiamati).");
-  shell(`<div class="fine"><h2>${n>=13?"Sei pront"+G("{o|a}")+" per il test!":n>=10?"Quasi pront"+G("{o|a}")+"!":"Continua a praticare!"}</h2>
+  shell(`<div class="fine"><div class="pv-shot" role="alert"><b>&#128248; FAI UNO SCREENSHOT DEL TUO VOTO</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press <kbd>Ctrl</kbd> + <kbd>Show windows &#9645;&#9647;</kbd></span></div><div class="pv4-who">${esc(NM())} · ${esc(pv.title)} · ${new Date().toLocaleDateString()}</div><h2>${n>=13?"Sei pront"+G("{o|a}")+" per il test!":n>=10?"Quasi pront"+G("{o|a}")+"!":"Continua a praticare!"}</h2>
     <div class="earn">${n} / ${tot} al primo tentativo</div>
     ${P.earned?`<div class="earn" style="font-size:18px"><i class="bc" aria-hidden="true"></i>+${P.earned} Boh Cashi</div>`:`<p class="dir">Replays are practice only: no Boh Cashi.</p>`}
     ${tips.length?`<div class="hint" style="text-align:left">${tips.join("<br>")}</div>`:""}
-    <div class="row" style="justify-content:center"><button class="ghost" id="again">Riprova</button><button class="go" id="hm">Le lettere</button></div></div>`,n>=13?"Bravissim"+G("{o|a}")+"!":"Pratica con me!","happy");
-  $("#again").onclick=startProva;$("#hm").onclick=home;
+    <div class="pv-save" data-bohsave-code="Salva il tuo Boh: Le lettere → 💾 Salva tutti i livelli">Salva il tuo Boh: Le lettere → 💾 Salva tutti i livelli</div><div class="row" id="pvRow" style="justify-content:center"><button class="ghost" id="again">Riprova</button><button class="go" id="hm">Le lettere</button></div></div>`,n>=13?"Bravissim"+G("{o|a}")+"!":"Pratica con me!","happy");
+  const pvAsk=go=>{const r=$("#pvRow"),keep=r.outerHTML;r.outerHTML=`<div class="pv-ask" id="pvRow" role="alertdialog" aria-label="Screenshot check"><b>Hai fatto lo screenshot del tuo voto?</b><span>Make sure it&rsquo;s in your Google Classroom before you leave.</span><div class="row" style="justify-content:center"><button class="ghost" id="pvNo">Non ancora</button><button class="go" id="pvYes">Sì, fatto!</button></div></div>`;$("#pvYes").onclick=go;$("#pvNo").onclick=()=>{$("#pvRow").outerHTML=keep;wire()};$("#pvYes").focus()};
+  const wire=()=>{$("#again").onclick=()=>pvAsk(startProva);$("#hm").onclick=()=>pvAsk(home)};wire();
 }
 function practiceEnd(){
   if(P.prova)return provaEnd();
@@ -1105,4 +1118,5 @@ $("#tmrBtn").onclick=tmMenu;
 })();
 </script>
 
+<script src="../assets/bohsave.js" defer></script>
 </body></html>
