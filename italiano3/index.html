@@ -227,6 +227,7 @@
 .hud-refund b{padding:6px 12px;border-radius:999px;background:var(--success-border);color:#fff}
 .hud-refund:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .icbig.bt-img{background-size:contain;background-position:center;background-repeat:no-repeat;background-color:transparent}
+.pv-split{display:block;font-size:12.5px;font-weight:800;color:var(--text-faint-2);margin-top:2px}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3</title>
@@ -1135,7 +1136,7 @@
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;">
               <span class="display" style="font-size:44px;font-weight:800;line-height:1;color:var(--primary-bg);">{{pvPct}}</span>
-              <span style="font-size:14px;font-weight:800;color:var(--text-muted);">{{pvScore}}</span>
+              <span style="font-size:14px;font-weight:800;color:var(--text-muted);">{{pvScore}}</span><span class="pv-split">{{pvSplit}}</span>
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px;">
@@ -1700,7 +1701,7 @@ var STORAGE_KEY = 'bohItaliano3_v2';
 (function () {
   try {
     if (localStorage.getItem(STORAGE_KEY)) return;
-    var UK = ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone"];
+    var UK = ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
     var imp = JSON.parse(localStorage.getItem('bohItaliano3Imperfetto_v1') || 'null');
     var vdp = JSON.parse(localStorage.getItem('volereDoverePotereRipasso_v1') || 'null');
     var prof = JSON.parse(localStorage.getItem('boh_profile_v1') || 'null');
@@ -2062,8 +2063,8 @@ function btRefund(p) {
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units'];
-var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes'];
+var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
 function cleanName(raw) { return (raw || '').replace(/[^A-Za-z0-9\u00C0-\u017F ]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
@@ -2145,9 +2146,51 @@ function lcsMarks(a, b, eq) {
   return { okA: okA, okB: okB };
 }
 // Score the student's words against ONE accepted answer.
+
+// ---- typo tolerance: forgive a slip of the finger, never a grammar mistake ----
+function btEdit(a, b) {                       // Damerau (optimal string alignment): a swap counts as 1
+  var m = a.length, n = b.length, d = [], i, j;
+  for (i = 0; i <= m; i++) { d[i] = [i]; }
+  for (j = 0; j <= n; j++) d[0][j] = j;
+  for (i = 1; i <= m; i++) for (j = 1; j <= n; j++) {
+    var c = a[i - 1] === b[j - 1] ? 0 : 1;
+    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + c);
+    if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+  }
+  return d[m][n];
+}
+var BT_LEX_FOR = null, BT_LEX = {};
+function btLex() {
+  if (BT_LEX_FOR === QUESTION_BANK) return BT_LEX;
+  var lex = {}, add = function (w) { if (w) lex[stripAccents(w)] = true; };
+  var grab = function (t) { (String(t || '').toLowerCase().replace(/[’`]/g, "'").match(/[a-zà-ù]+/g) || []).forEach(add); };
+  QUESTION_BANK.forEach(function (q) {
+    grab(q.answer); grab(q.prompt); (q.alts || []).forEach(grab); (q.options || []).forEach(function (o) { grab(o.label); });
+  });
+  ['ero', 'eri', 'era', 'eravamo', 'eravate', 'erano', 'sono', 'sei', 'siamo', 'siete', 'ho', 'hai', 'abbiamo', 'avete', 'hanno'].forEach(add);
+  if (typeof BT_VF !== 'undefined') for (var v in BT_VF) BT_VF[v].forEach(add);
+  Object.keys(lex).forEach(function (w) {        // every person of every imperfetto form in the bank is a real form
+    var m = /^(.+[aei])v(o|i|a|amo|ate|ano)$/.exec(w);
+    if (m) ['o', 'i', 'a', 'amo', 'ate', 'ano'].forEach(function (e) { lex[m[1] + 'v' + e] = true; });
+  });
+  BT_LEX = lex; BT_LEX_FOR = QUESTION_BANK;
+  return lex;
+}
+function btTypoOk(said, want) {
+  var x = stripAccents(said), y = stripAccents(want);
+  if (x === y) return true;
+  if (y.length < 4 || x.length < 3) return false;                          // short words: e/è, ha/a, io/lo are grammar
+  if (btLex()[x]) return false;                                             // it's another real word or form
+  if (x.slice(0, -1) === y.slice(0, -1)) return false;                      // only the last letter differs: person/gender/number
+  var cv = function (w) { var m = /([aei])v(o|i|a|amo|ate|ano)$/.exec(w); return m ? m[1] : null; };
+  if (cv(x) && cv(y) && cv(x) !== cv(y)) return false;                      // -ava/-eva/-iva mix-up is the grammar being tested
+  return btEdit(x, y) <= (y.length >= 8 ? 2 : 1);
+}
+function btProvaLeft(times, now) { return (times || []).filter(function (t) { return now - t < 3600000; }); }
+function btClock(ms) { var d = new Date(ms); return d.getHours() + ':' + ('0' + d.getMinutes()).slice(-2); }
 function scoreFrasi(q, said, want) {
   var exact = said.join(' ') === want.join(' ');
-  var loose = function (x, y) { return stripAccents(x) === stripAccents(y); };
+  var loose = function (x, y) { return stripAccents(x) === stripAccents(y) || btTypoOk(x, y); };
   var mk = lcsMarks(said, want, loose);
   var ok = said.length === want.length && mk.okA.every(Boolean);
   var marks = said.map(function (w, i) { return { w: w, bad: !mk.okA[i] }; });
@@ -2164,7 +2207,11 @@ function scoreFrasi(q, said, want) {
   }
   var accentNote = '';
   if (ok && !exact) {
-    for (var i = 0; i < want.length; i++) if (said[i] !== want[i]) { accentNote = 'Counts, but watch the accent: ' + want[i] + (want[i] === 'è' ? ' (is). Plain e means “and.”' : '.'); break; }
+    for (var i = 0; i < want.length; i++) if (said[i] !== want[i]) {
+      if (stripAccents(said[i]) === stripAccents(want[i])) accentNote = 'Counts, but watch the accent: ' + want[i] + (want[i] === 'è' ? ' (is). Plain e means “and.”' : '.');
+      else accentNote = 'Counts! Typo forgiven: ' + said[i] + ' → ' + want[i] + '.';
+      break;
+    }
   }
   return { ok: ok, marks: marks, whys: whys, accentNote: accentNote };
 }
@@ -10742,7 +10789,7 @@ var BT_UNITS = {
 };
 var BT_UNIT_ORDER = ['vdp', 'imp'];
 var BT_UNIT_SOON = [['Passato prossimo vs imperfetto', 'PRESTO'], ['Il futuro', 'PRESTO']];
-var BT_UNIT_KEYS = ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone"];
+var BT_UNIT_KEYS = ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
 var BT_GLOBAL_BADGES = ['centone', 'un_sacco', 'tre_di_fila', 'fiamma_oro', 'giro_italia'];
 var BT_UNIT = 'imp', MODES = BT_UNITS.imp.MODES, QUESTION_BANK = BT_UNITS.imp.QB;
 function btAddCart(M, C) {
@@ -11025,10 +11072,13 @@ class Component extends DCLogic {
     var q = s.queue[s.qIndex];
     if (!q) return;
     var res = evalFrasi(q, text || '');
+    if (!res.ok && !s.provaRetry) { this.sfx('soft'); this.setState({ provaRetry: true, provaTry1: (text || '').trim() }); return; }
     var log = (s.provaLog || []).concat([{ id: q.id, sec: q.sec || '?', prompt: q.prompt,
-      given: (text || '').trim(), want: q.answer, ok: !!res.ok }]);
+      given: (text || '').trim(), want: q.answer, ok: !!res.ok && !s.provaRetry, half: !!res.ok && !!s.provaRetry,
+      first: s.provaRetry ? (s.provaTry1 || '') : '', note: res.accentNote || '' }]);
+    this.state.provaRetry = false; this.state.provaTry1 = '';
     if (s.qIndex + 1 < s.queue.length) {
-      this.setState({ provaLog: log, qIndex: s.qIndex + 1, typed: '', fr: null,
+      this.setState({ provaLog: log, qIndex: s.qIndex + 1, typed: '', fr: null, provaRetry: false, provaTry1: '',
                       revealed: false, selected: null, tBuilt: [], tilesHelp: false });
       return;
     }
@@ -11037,20 +11087,21 @@ class Component extends DCLogic {
 
   finishProva(log) {
     var s = this.state;
-    var right = log.filter(function (r) { return r.ok; }).length;
+    var firsts = log.filter(function (r) { return r.ok; }).length, seconds = log.filter(function (r) { return r.half; }).length;
+    var right = firsts + seconds / 2;
     var pct = Math.round(100 * right / log.length);
     var bySec = {};
     log.forEach(function (r) {
       bySec[r.sec] = bySec[r.sec] || { right: 0, total: 0 };
       bySec[r.sec].total++;
-      if (r.ok) bySec[r.sec].right++;
+      if (r.ok) bySec[r.sec].right++; else if (r.half) bySec[r.sec].right += 0.5;
     });
     var attempt = (s.provaAttempt || 0) + 1;
     var mins = Math.max(1, Math.round((Date.now() - (s.provaStart || Date.now())) / 60000));
     var card = {
       name: s.bohName || 'Boh', date: new Date().toLocaleDateString(),
       right: right, total: log.length, pct: pct, attempt: attempt, mins: mins,
-      sections: bySec, missed: log.filter(function (r) { return !r.ok; }),
+      sections: bySec, missed: log.filter(function (r) { return !r.ok && !r.half; }), firsts: firsts, seconds: seconds,
       first: s.provaFirst === null || s.provaFirst === undefined ? pct : s.provaFirst,
       best: Math.max(pct, s.provaBest === null || s.provaBest === undefined ? 0 : s.provaBest)
     };
@@ -11324,6 +11375,11 @@ class Component extends DCLogic {
   startMode(modeKey) {
     var s = this.state;
     if (modeKey === 'cartoline') modeKey = btNextCart(s);
+    if (modeKey === 'prova') {
+      var pnow = Date.now(), ptimes = btProvaLeft(s.provaTimes, pnow);
+      if (ptimes.length >= 3) { this.sfx('soft'); this.setState({ provaTimes: ptimes, screen: 'home', overlay: null }); return; }
+      this.state.provaTimes = ptimes.concat([pnow]); this.state.provaRetry = false; this.state.provaTry1 = '';
+    }
     var today = dayKey(0);
     if (modeKey === 'mistakes' && this.mistakeIds().length === 0) { this.setState({ screen: 'home', overlay: null }); return; }
     var extra = { missedNow: [], sessionEarned: 0, lastEarn: 0, newBadges: [], eaRun: 0, missRun: 0, zooSession: [], cardsPaid: 0, overlay: null,
@@ -11707,6 +11763,12 @@ class Component extends DCLogic {
       })(order[i]);
     }
     modeList.forEach(function (m) {
+      if (m.key === 'prova' && m.count !== 'LOCKED') {
+        var pn = Date.now(), pt = btProvaLeft(s.provaTimes, pn), left = 3 - pt.length;
+        m.sub = left > 0 ? MODES.prova.sub + ' · ' + left + ' of 3 tries left this hour' : 'Tries used up. Next try at ' + btClock(Math.min.apply(null, pt) + 3600000) + '. Practice meanwhile!';
+        if (left <= 0) { m.pick = function () { self.sfx('soft'); }; m.cls += ' is-locked'; }
+        return;
+      }
       if (m.key !== 'cartoline') return;
       var nk = btNextCart(s), fresh = (s.passed || []).indexOf(nk) === -1;
       m.sub = (fresh ? 'Next: ' : 'Replay: ') + MODES[nk].label.replace('Cartolina da ', '') + (fresh ? ' · 3× BC' : '');
@@ -11831,6 +11893,7 @@ class Component extends DCLogic {
         return { prompt: m.prompt, given: m.given || '(left blank)', want: m.want };
       });
       result.pvHasMissed = pc.missed.length > 0;
+      result.pvSplit = pc.firsts !== undefined ? pc.firsts + ' al primo colpo · ' + pc.seconds + ' corretti (½ punto) · ' + pc.missed.length + ' sbagliati' : '';
       result.pvPerfect = pc.missed.length === 0;
     }
     (function () {
@@ -12231,6 +12294,7 @@ class Component extends DCLogic {
         result.frasiAgain = q.retry ? 'This one is back. Write it from memory this time.' : '';
         result.showHelpBtn = !noHelp && fmode === 'type' && !s.revealed;
         result.showTilesHandler = function () { self.showTiles(); };
+        if (s.mode === 'prova' && s.provaRetry) result.frasiAgain = 'Non ancora! Correggi e riprova · ½ punto';
         result.hasFrasiAgain = !!result.frasiAgain;
         result.builtTiles = built.map(function (ix) {
           return { label: tiles[ix], style: tileBase + 'background:var(--primary-bg);color:var(--primary-text);border:2px solid var(--primary-bg);', tap: function () { self.tapTile(ix); } };
