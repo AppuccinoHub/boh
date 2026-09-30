@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Boh.</title>
+<meta name="author" content="Assunta Scotto">
+<meta name="description" content="Boh. Non sa niente. Per ora. — Italian learning game by Assunta Scotto.">
+<!-- Boh · created by Assunta Scotto, 2026. All rights reserved. Not for redistribution. -->
+<link rel="icon" href="assets/boh-f.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@500;700;800&family=Caveat:wght@700&display=swap">
+<style>
+:root{
+  --bg:#EFE6E8;--surface:#FFFFFF;--ink:#241B2B;--muted:#6B5F72;--line:#DCCFD6;
+  --accent:#6A4C93;--accent-soft:#E6DDF1;--on-accent:#FFFFFF;
+  --gold:#C88A2E;--it-g:#1E8C4A;--it-r:#D23A2F;
+  --shadow:0 1px 2px rgba(36,27,43,.06),0 8px 24px rgba(36,27,43,.08);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1C1520;--surface:#271E2C;--ink:#F3ECF4;--muted:#B5A8BA;--line:#3F3446;
+    --accent:#B79AE0;--accent-soft:#3A2E4A;--on-accent:#1C1520;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1C1520;--surface:#271E2C;--ink:#F3ECF4;--muted:#B5A8BA;--line:#3F3446;
+  --accent:#B79AE0;--accent-soft:#3A2E4A;--on-accent:#1C1520;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+main{width:100%;max-width:960px;margin:0 auto;padding:28px 16px 24px;flex:1}
+h1,h2{font-family:"Bricolage Grotesque",Manrope,sans-serif;margin:0;letter-spacing:-.02em}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--surface);border-radius:24px;padding:22px 28px;box-shadow:var(--shadow)}
+.duo{display:flex;align-items:flex-end;gap:4px}
+.duo img{height:220px;width:auto;display:block}
+.duo img+img{height:210px}
+h1{font-size:clamp(56px,10vw,96px);font-weight:800;line-height:.9}
+h1 i{display:inline-block;width:.2em;height:.2em;margin-left:.04em;border-radius:3px;background:linear-gradient(90deg,var(--it-g) 0 33.3%,#fff 33.3% 66.6%,var(--it-r) 66.6%);box-shadow:0 0 0 1.5px var(--ink)}
+.slogan{font-family:Caveat,cursive;font-size:30px;color:var(--accent);margin:6px 0 8px;line-height:1.1}
+.lede{margin:0;color:var(--muted);max-width:44ch}
+.pick{margin:28px 0 12px;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.lvl{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:18px 18px 16px;box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+.lvl:hover{border-color:var(--accent);transform:translateY(-2px)}
+.lvl:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.lvl .n{font-family:"Bricolage Grotesque",sans-serif;font-size:44px;font-weight:800;line-height:1;color:var(--accent)}
+.lvl h2{font-size:20px}
+.lvl p{margin:0;font-size:14px;color:var(--muted)}
+.lvl .go{margin-top:auto;padding-top:8px;font-weight:800;font-size:14px;color:var(--accent)}
+.tip{margin:22px 0 0;background:var(--accent-soft);border-radius:16px;padding:14px 18px;font-size:15px}
+.tip b{color:var(--accent)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 16px 22px}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;justify-items:center;text-align:center;padding:20px 16px}
+  .duo img{height:160px}.duo img+img{height:152px}
+  .lede{margin-inline:auto}
+  .levels{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="duo" aria-hidden="true">
+      <img src="assets/boh-m.webp" alt="">
+      <img src="assets/boh-f.webp" alt="">
+    </div>
+    <div>
+      <h1>Boh<i aria-label="."></i></h1>
+      <p class="slogan">Non sa niente. Per ora.</p>
+      <p class="lede">Your Boh learns Italian when you do. Pick your level, play, and earn Boh Cashi to spend in the Boh-tique.</p>
+    </div>
+  </section>
+
+  <p class="pick">Choose your level</p>
+  <nav class="levels" aria-label="Levels">
+    <a class="lvl" href="italiano1/"><span class="n">1</span><h2>Italiano 1</h2><p>Review &amp; test prep</p><span class="go">Gioca →</span></a>
+    <a class="lvl" href="italiano2/"><span class="n">2</span><h2>Italiano 2</h2><p>Essere o avere</p><span class="go">Gioca →</span></a>
+    <a class="lvl" href="italiano3/"><span class="n">3</span><h2>Italiano 3</h2><p>Volere, dovere, potere</p><span class="go">Gioca →</span></a>
+    <a class="lvl" href="italiano4/"><span class="n">4</span><h2>Italiano 4</h2><p>Comandi · il futuro</p><span class="go">Gioca →</span></a>
+  </nav>
+
+  <p class="tip"><b>Tip:</b> your progress saves on this device. Always play on the same Chromebook, or use your save code if your level has one.</p>
+</main>
+<footer>Created by Assunta Scotto · © 2026 · All rights reserved</footer>
+</body>
+</html>
