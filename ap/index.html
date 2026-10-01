@@ -3052,6 +3052,49 @@ function lsTxParts(line, words) {   // split a chat line into plain text + tappa
   if (buf) out.push({ t: buf, w: '' });
   return out;
 }
+
+var BREAK_EVERY = 12;
+function bohBreak(game, done) {
+  var old = document.getElementById('bohBreak'); if (old) old.remove();
+  var el = document.createElement('div'); el.id = 'bohBreak';
+  el.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(20,16,40,.94);display:flex;align-items:center;justify-content:center;padding:16px;font-family:inherit;color:#fff;';
+  var box = document.createElement('div');
+  box.style.cssText = 'width:100%;max-width:440px;background:#2a2150;border-radius:22px;padding:22px 20px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.5);';
+  el.appendChild(box); document.body.appendChild(el);
+  var finished = false;
+  function btn(label, bg) { var b = document.createElement('button'); b.textContent = label; b.style.cssText = 'border:0;border-radius:14px;padding:12px 18px;font-size:16px;font-weight:800;cursor:pointer;margin:6px;background:' + (bg || '#ffd54a') + ';color:#241a4a;'; return b; }
+  function close(won) { if (finished) return; finished = true; clearInterval(timer); el.remove(); done(won); }
+  var timer = null;
+  function head(t, s) { box.innerHTML = '<div style="font-size:12px;font-weight:800;letter-spacing:.14em;opacity:.7;">PAUSA!</div><div style="font-size:24px;font-weight:900;margin:6px 0;">' + t + '</div><div style="opacity:.8;margin-bottom:12px;">' + s + '</div>'; }
+  function skipBtn() { var s = btn('Salta →', '#ffffff22'); s.style.color = '#fff'; s.style.fontSize = '13px'; s.onclick = function () { close(false); }; box.appendChild(s); }
+  function win(msg) { clearInterval(timer); box.innerHTML = '<div style="font-size:54px;">🎉</div><div style="font-size:22px;font-weight:900;margin:8px 0;">' + msg + '</div><div style="opacity:.85;margin-bottom:10px;">+5 Boh Cashi</div>'; var b = btn('Torniamo a studiare'); b.onclick = function () { close(true); }; box.appendChild(b); }
+  if (game === 0) {
+    var emo = ['🍝', '🍕', '🧀', '🍨', '☕', '🛵'], hits = 0, left = 20;
+    head('Acchiappa il cibo!', 'Tap the food 8 times in 20 seconds.');
+    var info = document.createElement('div'); info.style.cssText = 'font-weight:800;margin-bottom:6px;'; box.appendChild(info);
+    var arena = document.createElement('div'); arena.style.cssText = 'position:relative;height:210px;background:#1b1540;border-radius:16px;overflow:hidden;touch-action:manipulation;'; box.appendChild(arena);
+    var f = document.createElement('button'); f.style.cssText = 'position:absolute;font-size:44px;background:none;border:0;cursor:pointer;line-height:1;'; arena.appendChild(f);
+    function move() { f.textContent = emo[Math.floor(Math.random() * emo.length)]; f.style.left = Math.floor(Math.random() * (arena.clientWidth - 60)) + 'px'; f.style.top = Math.floor(Math.random() * 150) + 'px'; }
+    function show() { info.textContent = hits + ' / 8 · ' + left + 's'; }
+    f.onclick = function () { hits++; show(); if (hits >= 8) { win('Che velocità!'); } else move(); };
+    setTimeout(move, 0); show();
+    timer = setInterval(function () { left--; show(); if (left <= 0) win('Tempo! Bravissimi lo stesso.'); }, 1000);
+    arena.addEventListener('click', function (e) { if (e.target === arena) { left = Math.max(1, left - 1); show(); } });
+    skipBtn();
+  } else {
+    var R = [['la farfalla', 1, 'butterfly (and bow-tie pasta!)'], ['il blipo', 0, 'invented'], ['la pantofola', 1, 'slipper'], ['lo zorgone', 0, 'invented'], ['il gattopardo', 1, 'a real wild cat, and a famous novel'], ['la scarpetta', 1, 'little shoe, or bread for mopping the sauce'], ['il gnocchiccio', 0, 'invented'], ['il cavolfiore', 1, 'cauliflower'], ['la brumbola', 0, 'invented'], ['il tartufo', 1, 'truffle (or a chocolate ice cream)']];
+    R.sort(function () { return Math.random() - .5; }); R = R.slice(0, 5); var i = 0, ok = 0;
+    (function round() {
+      if (i >= R.length) { win(ok + ' su 5! Parola vera o inventata?'); return; }
+      head('Vera o inventata?', 'Is this a real Italian word? (' + (i + 1) + ' / 5)');
+      var w = document.createElement('div'); w.style.cssText = 'font-size:30px;font-weight:900;margin:10px 0 14px;'; w.textContent = R[i][0]; box.appendChild(w);
+      var a = btn('✅ Vera', '#7be0a0'), b = btn('🤪 Inventata', '#ff9bb0'); box.appendChild(a); box.appendChild(b);
+      function pick(v) { if (v === R[i][1]) ok++; var m = document.createElement('div'); m.style.cssText = 'margin-top:10px;font-weight:700;'; m.textContent = (v === R[i][1] ? '✓ ' : '✗ ') + R[i][0] + ' = ' + R[i][2]; box.appendChild(m); a.disabled = b.disabled = true; setTimeout(function () { i++; round(); }, 1300); }
+      a.onclick = function () { pick(1); }; b.onclick = function () { pick(0); };
+      skipBtn();
+    })();
+  }
+}
 Object.assign(LS_TIPS, {"a1a": ["avevo / ero + participio", "The trapassato is “had done”: avevo mangiato, aveva visto. It is the imperfect of avere or essere + the participle."], "a1b": ["Imperfetto = the family as it was", "Era numerosa. Ci riunivamo ogni domenica. Use the imperfetto for habits and descriptions, the trapassato for what had already happened before."], "a1c": ["Essere verbs agree", "ero andato / ero andata · erano partiti / erano partite. Reflexives too: mi ero svegliata."], "a3a": ["Penso che · credo che · spero che · voglio che", "After opinion, hope, wish and doubt expressions, the verb goes in the congiuntivo: Penso che sia vero. Voglio che tu venga."], "a3b": ["-are → -i · -ere / -ire → -a", "parlare → che io parli, tu parli, lui parli. scrivere → che io scriva. io, tu and lui/lei always look the same!"], "a3c": ["Irregular forms", "essere → sia · avere → abbia · andare → vada · fare → faccia · venire → venga · potere → possa · volere → voglia · dovere → debba · sapere → sappia · dire → dica · uscire → esca."], "a3d": ["-isc- verbs", "finire → che io finisca, che loro finiscano. noi and voi do not take -isc-: finiamo, finiate."], "a2a": ["-ei · -esti · -ebbe · -emmo · -este · -ebbero", "Take the future stem and change the endings: parlerò → parlerei, parleresti, parlerebbe, parleremmo, parlereste, parlerebbero."], "a2b": ["Polite requests", "Vorrei un caffè. Potrei avere un cornetto? Mi daresti una mano? The condizionale is softer than the present."], "a2c": ["Advice and wishes", "Al tuo posto, andrei. Dovresti studiare di più. Mangerei volentieri una pizza."], "a2d": ["Same irregular stems as the future", "essere → sarei · avere → avrei · andare → andrei · volere → vorrei · potere → potrei · dovere → dovrei · fare → farei · venire → verrei."], "r8a": ["-ò · -ai · -à · -emo · -ete · -anno", "Every verb gets the same endings: parlerò, parlerai, parlerà, parleremo, parlerete, parleranno."], "r8b": ["-are changes to -er-", "parlare → parlerò (not “parlarò”). prendere → prenderò. partire → partirò."], "r8c": ["Keep the sound", "cercare → cercherò (add h). mangiare → mangerò (drop the i). studiare → studierò (keep the i)."], "r8d": ["Irregular stems", "essere → sarò · avere → avrò · andare → andrò · fare → farò · venire → verrò · volere → vorrò. The endings never change."], "r8e": ["Reflexive: the pronoun first", "mi sposerò · ti sposerai · si sposerà. The little word comes first, as always."], "r7a": ["tu: -a or -i", "-are → -a: ascolta! parla! · -ere / -ire → -i: scrivi! apri!"], "r7b": ["noi and voi", "noi → -iamo (a suggestion: Parliamo! = Let’s talk!). voi → -ate / -ete / -ite, same as the present: parlate! scrivete! aprite!"], "r7c": ["Reflexive: the pronoun joins the end", "alzati! · alziamoci! · alzatevi! The little word sticks to the verb."], "r7d": ["No! to a friend (tu)", "non + infinitive: Non parlare! Reflexive: Non alzarti! or Non ti alzare!"], "r6a": ["Film or photo?", "Imperfetto is the film: how things were, what used to happen. Passato prossimo is the photo: one thing that happened and finished."], "r6b": ["Spia words", "sempre · di solito · spesso · ogni giorno · mentre → imperfetto. ieri · una volta · all’improvviso · due giorni fa → passato prossimo."], "r6c": ["Mentre + imperfetto, then BAM", "Mentre dormivo (background), il telefono ha suonato (event). The long action is imperfetto, the interruption is passato prossimo."]});
 function lsTipKey(given, answer) {
   var g = lsNorm(given), a = lsNorm(answer);
@@ -4158,6 +4201,11 @@ class Component extends DCLogic {
 
   nextCard() {
     var nextIndex = this.state.qIndex + 1;
+    if (nextIndex < this.state.queue.length && nextIndex % BREAK_EVERY === 0 && this.state.mode !== 'prova' && !this._inBreak) {
+      var self = this; this._inBreak = true;
+      bohBreak(Math.floor(Math.random() * 2), function (won) { self._inBreak = false; if (won) self.setState({ cashi: self.state.cashi + 5, lifetime: self.state.lifetime + 5, sessionEarned: self.state.sessionEarned + 5 }); self.nextCard(); });
+      return;
+    }
     if (nextIndex >= this.state.queue.length) {
       this.setState(this.finish({ screen: 'summary', lastEarn: 0 }));
     } else {
@@ -5525,9 +5573,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010907" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010907" defer></script>
-<script src="../assets/gloss.js?v=202610010907" defer></script>
+<script src="../assets/flashcards.js?v=202610010916" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010916" defer></script>
+<script src="../assets/gloss.js?v=202610010916" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5568,5 +5616,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010907" defer></script>
+<script src="../assets/bohsave.js?v=202610010916" defer></script>
 </body></html>
