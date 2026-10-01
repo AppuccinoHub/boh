@@ -155,13 +155,14 @@
       if (cloudOn()) body += '<div class="bs-sec"><h3>Nome + codice (online)</h3><p class="mut">The easy way: your Boh name and a short code. Type them on any Chromebook to get everything back.</p>' +
         (mine ? '<div class="bs-code">' + esc(shortCode(mine)) + '</div>' : '') +
         '<button class="bs-btn" id="bs-cloud-save">' + (mine ? 'Salva di nuovo online' : 'Crea il mio codice') + '</button><div id="bs-cloud-out"></div></div>';
-      body += '<div class="bs-sec"><h3>' + (cloudOn() ? 'Backup file' : 'Salva il tuo Boh') + '</h3><p class="mut">One file saves your Boh, its Boh Cashi and every level. Put it in your Google Drive. On another Chromebook: Carica il mio Boh → choose the file.</p>' +
-        '<div class="bs-row"><button class="bs-btn" id="bs-dl">⬇ Salva il mio Boh (1 file)</button></div><div id="bs-out"></div></div>';
+      body += '<div class="bs-sec"><h3>' + (cloudOn() ? 'Backup file' : 'Salva il tuo Boh') + '</h3><p class="mut">One code saves your Boh, its Boh Cashi and every level.</p>' +
+        '<div class="bs-row"><button class="bs-btn" id="bs-copy">📋 Copy my save code</button><button class="bs-btn2" id="bs-dl">⬇ Save as a file</button></div>' +
+        '<p class="bs-small">Easiest: copy the code, then paste it into a Google Doc (Ctrl + V). To load it: Carica il mio Boh → paste the code.</p><div id="bs-out"></div></div>';
     } else {
       if (cloudOn()) body += '<div class="bs-sec"><h3>Nome + codice</h3><label>Nome del tuo Boh<input id="bs-n" autocomplete="off" maxlength="16" value="' + esc(mine ? mine.name : name) + '"></label>' +
         '<label>Codice<input id="bs-c" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="gatto-luna-7" value=""></label><button class="bs-btn" id="bs-cloud-load">Carica</button><div id="bs-cloud-msg"></div></div>';
-      body += '<div class="bs-sec"><h3>Carica il mio Boh</h3><p class="mut">Choose your Boh save file (Google Drive or Downloads).</p><button class="bs-btn" id="bs-file-btn">📄 Choose my save file</button><input type="file" id="bs-file" accept=".txt,text/plain" hidden><div id="bs-msg"></div>' +
-        '<details class="bs-small"><summary>Prof: paste a code instead</summary><textarea id="bs-in" rows="3" placeholder="BOHZ.…"></textarea><button class="bs-btn2" id="bs-load">Carica</button></details>' +
+      body += '<div class="bs-sec"><h3>Carica il mio Boh</h3><label>📋 Paste your save code here<textarea id="bs-in" rows="3" placeholder="BOHZ.…"></textarea></label><button class="bs-btn" id="bs-load">Carica</button>' +
+        '<p class="bs-small">Saved a file instead? <button class="bs-btn2" id="bs-file-btn">📄 Choose my save file</button></p><input type="file" id="bs-file" accept=".txt,text/plain" hidden><div id="bs-msg"></div>' +
         '<p class="bs-small">Loading replaces the Boh on this Chromebook with the saved one, in every level.</p></div>';
     }
     box().innerHTML = head + body;
@@ -207,13 +208,16 @@
         }, function (e) { if (e && e.name === 'AbortError') return; linkSave(); });
       } else linkSave();
     };
+    var codeNow = ''; codeP.then(function (c) { codeNow = c; });
     if ($('#bs-copy')) $('#bs-copy').onclick = function () {
-      codeP.then(function (code) {
-        var ok = function () { $('#bs-out').innerHTML = '<div class="bs-msg ok">Copied! Paste it into a Google Doc or your Google Classroom page to keep it.</div>'; };
+      var go = function (code) {
+        var ok = function () { $('#bs-out').innerHTML = '<div class="bs-shot" role="alert"><b>✅ COPIED!</b>Now open your Google Doc and paste it: Ctrl + V (Mac: Cmd + V).</div>' +
+          '<textarea rows="3" readonly>' + esc(code) + '</textarea>'; };
         try { navigator.clipboard.writeText(code).then(ok, function () { showRaw(code); }); } catch (e) { showRaw(code); }
-      });
+      };
+      if (codeNow) go(codeNow); else codeP.then(go);
     };
-    function showRaw(code) { $('#bs-out').innerHTML = '<textarea rows="4" readonly>' + esc(code) + '</textarea><div class="bs-small">Select all (Ctrl + A) and copy (Ctrl + C).</div>'; var t = $('#bs-out textarea'); t.focus(); t.select(); }
+    function showRaw(code) { $('#bs-out').innerHTML = '<textarea rows="4" readonly>' + esc(code) + '</textarea><div class="bs-small">Select all (Ctrl + A), copy (Ctrl + C), then paste it into your Google Doc.</div>'; var t = $('#bs-out textarea'); t.focus(); t.select(); }
     var cs = $('#bs-cloud-save');
     if (cs) cs.onclick = function () {
       var mine = cloudMine(), out = $('#bs-cloud-out'); cs.disabled = true; out.innerHTML = '<div class="bs-msg">Salvo…</div>';
