@@ -176,16 +176,36 @@
   function wireSave() {
     var bundle = makeBundle(), codeP = pack(bundle), nm = (bundle.name || 'Boh').replace(/[^A-Za-z0-9À-ÿ]+/g, '');
     $('#bs-dl').onclick = function () {
-      codeP.then(function (code) {
-        var d = new Date(), stamp = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-        var txt = 'Boh · save file\nBoh: ' + (bundle.name || '') + '\nLevels: ' + levelsIn(bundle.d).join(', ') + '\nSaved: ' + d.toLocaleString() +
+      var d = new Date(), stamp = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(), fname = 'Boh-' + nm + '-' + stamp + '.txt';
+      var make = function (code) {
+        return 'Boh · save file\nBoh: ' + (bundle.name || '') + '\nLevels: ' + levelsIn(bundle.d).join(', ') + '\nSaved: ' + d.toLocaleString() +
           '\nTo load: open appuccinohub.github.io/boh → Carica il mio Boh → choose this file.\n\n' + code + '\n';
-        // The file lives inside the link itself (about 1 KB), so it never expires: "Save as…", Google Drive and "Try again" all work.
-        var a = document.createElement('a'); a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(txt); a.download = 'Boh-' + nm + '-' + stamp + '.txt';
-        document.body.appendChild(a); a.click(); setTimeout(function () { a.remove(); }, 1500);
-        $('#bs-out').innerHTML = '<div class="bs-shot" role="alert"><b>📂 PUT THE FILE IN YOUR GOOGLE DRIVE</b>Open Files → Downloads → drag it to My Drive.</div>' +
-          '<div class="bs-msg ok">Saved: ' + esc(levelsIn(bundle.d).join(', ') || 'your Boh') + '.</div>';
-      });
+      };
+      var saved = function (msg) {
+        $('#bs-out').innerHTML = msg + '<div class="bs-msg ok">Saved: ' + esc(levelsIn(bundle.d).join(', ') || 'your Boh') + '.</div>';
+      };
+      // Plan B: a download link. The file lives inside the link (about 1 KB), so it never expires,
+      // and a visible copy of the link stays on screen in case the browser blocks the first try.
+      var linkSave = function () {
+        codeP.then(function (code) {
+          var href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(make(code));
+          var a = document.createElement('a'); a.href = href; a.download = fname;
+          document.body.appendChild(a); a.click(); setTimeout(function () { a.remove(); }, 1500);
+          saved('<div class="bs-shot" role="alert"><b>&#128194; PUT THE FILE IN YOUR GOOGLE DRIVE</b>Open Files &rarr; Downloads &rarr; drag it to My Drive.</div>' +
+                '<p class="bs-small">Nothing downloaded? <a download="' + esc(fname) + '" href="' + href + '">Tap here to save the file</a>.</p>');
+        });
+      };
+      // Plan A (Chrome on Chromebooks and computers): Boh writes the file itself into the folder you pick,
+      // so the browser's download list never gets in the way. On a Chromebook you can pick Google Drive directly.
+      if (window.showSaveFilePicker) {
+        var pick;
+        try { pick = window.showSaveFilePicker({ suggestedName: fname, types: [{ description: 'Boh save file', accept: { 'text/plain': ['.txt'] } }] }); } catch (e) { linkSave(); return; }
+        pick.then(function (h) {
+          return codeP.then(function (code) { return h.createWritable().then(function (w) { return w.write(make(code)).then(function () { return w.close(); }); }); });
+        }).then(function () {
+          saved('<div class="bs-shot" role="alert"><b>&#9989; SAVED!</b>Your Boh is in the folder you picked. Pick Google Drive to keep it safe.</div>');
+        }, function (e) { if (e && e.name === 'AbortError') return; linkSave(); });
+      } else linkSave();
     };
     if ($('#bs-copy')) $('#bs-copy').onclick = function () {
       codeP.then(function (code) {
