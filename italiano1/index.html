@@ -1100,7 +1100,7 @@
           <div style="padding:14px;border-radius:14px;background:var(--success-bg);border:2px solid var(--success-border);color:var(--success-text);font-weight:800;text-align:center;">Tutto giusto. Niente da studiare.</div>
         </sc-if>
 
-        <sc-if value="{{pvNoAsk}}" hint-placeholder-val="{{true}}"><button onClick="{{pvLeaveHandler}}" style="all:unset;cursor:pointer;text-align:center;padding:15px;border-radius:14px;background:var(--card-bg);border:2px solid var(--card-border);font-weight:800;font-size:15px;">Back to the menu</button></sc-if>
+        <sc-if value="{{pvNoAsk}}" hint-placeholder-val="{{true}}"><div class="rb"><sc-if value="{{pvHasNext}}" hint-placeholder-val="{{false}}"><button onClick="{{pvNextHandler}}" class="hl-next">&#9654; {{pvNextText}}</button></sc-if><div class="rb2"><button onClick="{{pvQuitHandler}}" class="rbb ghost">&#128190; Save &amp; quit</button><button onClick="{{pvLeaveHandler}}" class="rbb ghost">&#9776; Back to the menu</button></div></div></sc-if>
         <sc-if value="{{pvAsk}}" hint-placeholder-val="{{false}}"><div class="pv-ask" role="alertdialog" aria-label="Screenshot check"><b>Hai fatto lo screenshot del tuo voto?</b><span>Make sure it&rsquo;s in your Google Classroom before you leave this card.</span><div class="pv-ask-row"><button onClick="{{pvNotYetHandler}}" class="pv-ask-no">Non ancora</button><button onClick="{{pvYesHandler}}" class="pv-ask-yes">S&igrave;, fatto!</button></div></div></sc-if>
       </div>
     </sc-if>
@@ -1804,6 +1804,31 @@ function frTiles(str) { return (str || '').replace(/[?.!,;:]/g, '').split(/\s+/)
 // acting as an optional subject: at the start, or after an opener, and sitting
 // in front of a verb. Applied to the student's words and to the model answer
 // alike, so neither spelling is privileged.
+var GR_ART = ['un', 'una', 'uno', "un'", 'il', 'la', 'lo', "l'", 'i', 'le', 'gli'];
+var GR_H = ['ho', 'hai', 'ha', 'hanno'];
+var GR_ESAV = ['ho', 'hai', 'ha', 'abbiamo', 'avete', 'hanno', 'sono', 'sei', 'e', 'siamo', 'siete'];
+function grArtTested(q) { return !!q && (q.cat === 'vocab' || /article/i.test(q.sub || '')); }
+function grTypo(x, y) {
+  x = stripAccents(x); y = stripAccents(y); if (x === y) return true;
+  if (y.length < 5 || x.slice(0, -1) === y.slice(0, -1)) return false;
+  var d = [], i, j; for (i = 0; i <= x.length; i++) d[i] = [i]; for (j = 0; j <= y.length; j++) d[0][j] = j;
+  for (i = 1; i <= x.length; i++) for (j = 1; j <= y.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (x[i - 1] === y[j - 1] ? 0 : 1));
+  return d[x.length][y.length] <= 1;
+}
+function grLoose(q, x, y) {
+  if (stripAccents(x) === stripAccents(y)) return true;
+  if (typeof btTypoOk === 'function' ? btTypoOk(x, y) : grTypo(x, y)) return true;
+  if (GR_H.indexOf(y) !== -1 && x === y.slice(1)) return true;
+  if (!grArtTested(q) && GR_ART.indexOf(x) !== -1 && GR_ART.indexOf(y) !== -1) return true;
+  return false;
+}
+function grNote(x, y) {
+  if (GR_ART.indexOf(x) !== -1 && GR_ART.indexOf(y) !== -1) return 'Counts! Watch the article: ' + y + '.';
+  if (GR_H.indexOf(y) !== -1 && x === y.slice(1)) return 'Counts! Don’t forget the H: ' + y + '.';
+  if (stripAccents(x) === stripAccents(y)) return 'Counts, but watch the accent: ' + y + (y === 'è' ? ' (is). Plain e means “and.”' : '.');
+  return 'Counts! Typo forgiven: ' + x + ' → ' + y + '.';
+}
+function grLead(ws) { var w = ws[0] && OPENERS.indexOf(stripAccents(ws[0])) !== -1 ? ws[1] : ws[0]; return w && PRONOUNS.indexOf(w) !== -1 ? w : null; }
 function dropPronoun(ws) {
   var out = [], i;
   for (i = 0; i < ws.length; i++) {
@@ -1813,7 +1838,7 @@ function dropPronoun(ws) {
     var nxt = i + 1 < ws.length ? stripAccents(ws[i + 1]) : '';
     var nxt2 = i + 2 < ws.length ? stripAccents(ws[i + 2]) : '';
     // "Tu cosa hai?" - the pronoun can also sit in front of the question word
-    var beforeVerb = VERBISH.indexOf(nxt) !== -1 ||
+    var beforeVerb = VERBISH.indexOf(nxt) !== -1 || GR_ESAV.indexOf(nxt) !== -1 || /^[a-z]{2,}(o|i|a|iamo|ate|ete|ite|ano|ono)$/.test(nxt) ||
       (['cosa', 'che'].indexOf(nxt) !== -1 && VERBISH.indexOf(nxt2) !== -1);
     if (isPron && startish && beforeVerb && ws.length > 1) continue;
     out.push(ws[i]);
@@ -1845,7 +1870,7 @@ function lcsMarks(a, b, eq) {
 // Score the student's words against ONE accepted answer.
 function scoreFrasi(q, said, want) {
   var exact = said.join(' ') === want.join(' ');
-  var loose = function (x, y) { return stripAccents(x) === stripAccents(y); };
+  var loose = function (x, y) { return grLoose(q, x, y); };
   var mk = lcsMarks(said, want, loose);
   var ok = said.length === want.length && mk.okA.every(Boolean);
   var marks = said.map(function (w, i) { return { w: w, bad: !mk.okA[i] }; });
@@ -1862,7 +1887,7 @@ function scoreFrasi(q, said, want) {
   }
   var accentNote = '';
   if (ok && !exact) {
-    for (var i = 0; i < want.length; i++) if (said[i] !== want[i]) { accentNote = 'Counts, but watch the accent: ' + want[i] + (want[i] === 'è' ? ' (is). Plain e means “and.”' : '.'); break; }
+    for (var i = 0; i < want.length; i++) if (said[i] !== want[i]) { accentNote = grNote(said[i], want[i]); break; }
   }
   return { ok: ok, marks: marks, whys: whys, accentNote: accentNote };
 }
@@ -1870,13 +1895,20 @@ function scoreFrasi(q, said, want) {
 // the first that passes; if none does, report against the one the student came
 // closest to, so the feedback points at what they were actually building.
 function evalFrasi(q, text) {
-  var prep = function (str) { return frNormalise(dropPronoun(frWords(str))); };
-  var said = prep(text);
+  var prep = function (str, keep) { var ws = frWords(str); return frNormalise(keep ? ws : dropPronoun(ws)); };
+  var noArt = function (ws) { return ws.filter(function (w) { return GR_ART.indexOf(w) === -1; }); };
+  var pS = grLead(frWords(text));
   var answers = [q.answer].concat(q.alts || []);
   var best = null;
   for (var i = 0; i < answers.length; i++) {
-    var r = scoreFrasi(q, said, prep(answers[i]));
+    var pA = grLead(frWords(answers[i])), keep = !!(pS && pA && pS !== pA);   // io optional, but lui for lei is still wrong
+    var said = prep(text, keep), want = prep(answers[i], keep);
+    var r = scoreFrasi(q, said, want);
     if (r.ok) return r;
+    if (!grArtTested(q) && noArt(want).length < want.length) {
+      var r2 = scoreFrasi(q, noArt(said), noArt(want));
+      if (r2.ok) { r2.accentNote = 'Counts! Watch the article: ' + answers[i]; r2.marks = said.map(function (w) { return { w: w, bad: false }; }); return r2; }
+    }
     if (!best || r.marks.filter(function (m) { return !m.bad; }).length >
                  best.marks.filter(function (m) { return !m.bad; }).length) best = r;
   }
@@ -3159,15 +3191,20 @@ class Component extends DCLogic {
       })(order[i]);
     }
 
+    var pvNextU = (function () { if (typeof BT_UNIT_ORDER === 'undefined' || typeof BT_UNIT === 'undefined') return null; var i = BT_UNIT_ORDER.indexOf(BT_UNIT); return i >= 0 && i + 1 < BT_UNIT_ORDER.length ? BT_UNIT_ORDER[i + 1] : null; })();
     var result = {
       isHome: s.screen === 'home',
       isPlay: s.screen === 'play',
       isSummary: s.screen === 'summary',
       isProva: s.screen === 'prova',
       pvAsk: s.screen === 'prova' && !!s.pvAsk, pvNoAsk: !s.pvAsk,
-      pvLeaveHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true }); },
+      pvLeaveHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true, pvGo: 'menu' }); },
+      pvNextHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true, pvGo: 'next' }); },
+      pvQuitHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true, pvGo: 'quit' }); },
+      pvHasNext: !!pvNextU, pvNextText: pvNextU ? 'Next: ' + (BT_UNITS[pvNextU].tab || pvNextU) : '',
       pvNotYetHandler: function () { self.sfx('tap'); self.setState({ pvAsk: false }); },
-      pvYesHandler: function () { self.setState({ pvAsk: false }); self.backHome(); },
+      pvYesHandler: function () { var go = s.pvGo; self.setState({ pvAsk: false, pvGo: null });
+        if (go === 'next' && pvNextU) self.btSwitchUnit(pvNextU); else if (go === 'quit') setTimeout(function () { location.href = '../'; }, 150); else self.backHome(); },
       showHomeIcon: s.screen !== 'home',
       canGoBack: false,
       bohName: s.bohName || 'Boh',
