@@ -3091,6 +3091,7 @@ function lsTxParts(line, words) {   // split a chat line into plain text + tappa
   if (buf) out.push({ t: buf, w: '' });
   return out;
 }
+Object.assign(LS_TIPS, {"pp3a": ["Oggi o ieri?", "Look at the time word first. oggi · adesso · ogni giorno · di solito → presente. ieri · ieri sera · due giorni fa · la settimana scorsa → passato prossimo."], "pp3b": ["Passato prossimo = helper + participle", "ho / hai / ha / abbiamo… + mangiato. -are → -ato, -ere → -uto, -ire → -ito. Irregular: fatto, visto, letto, scritto, preso, detto."], "pp3c": ["Essere o avere?", "Going and coming (andare, uscire, arrivare, tornare, partire) use ESSERE and agree: Marco è andato, Sara è andata. Almost everything else uses AVERE."]});
 
 var BREAK_EVERY = 12;
 function bohBreak(game, done) {
@@ -5630,9 +5631,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610011009" defer></script>
-<script src="../assets/gloss-dict.js?v=202610011009" defer></script>
-<script src="../assets/gloss.js?v=202610011009" defer></script>
+<script src="../assets/flashcards.js?v=202610012327" defer></script>
+<script src="../assets/gloss-dict.js?v=202610012327" defer></script>
+<script src="../assets/gloss.js?v=202610012327" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5673,5 +5674,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610011009" defer></script>
+<script src="../assets/bohsave.js?v=202610012327" defer></script>
 </body></html>
