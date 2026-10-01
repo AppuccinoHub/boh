@@ -671,6 +671,7 @@ function home(){
   </div>
   ${S.future&&PLAN.every(r=>S.future[r.k]!=null)?`<div class="rulelink" style="border-style:solid;color:var(--ink);cursor:default;display:block"><span class="n" style="font-size:12px;letter-spacing:.1em;color:var(--muted)">IL MIO FUTURO · ${esc(NM())}</span><div style="font-family:Caveat,cursive;font-size:24px;font-weight:600;line-height:1.3">${esc(planText())}</div></div>`:""}
   ${CUR().ruleLink?`<button class="rulelink" id="ruleLink">${CUR().ruleLink}</button>`:""}
+  <button class="rulelink" id="fcBtn" style="border-style:solid"><span class="tag tmi">&#127183;</span><span style="display:grid;gap:2px"><span>Flashcards: the words from Boh&rsquo;s letters</span><span style="font-weight:600;font-size:13px;color:var(--muted)">Tap the ones you know. Keep the ones you don&rsquo;t.</span></span></button>
   <div class="sec"><h2>Unità ${CUR().n} · ${esc(CUR().title)}</h2><span>Pick a letter. Finish all ${L.length} to complete the unit.</span></div>
   <div class="letters">
     ${L.map((l,i)=>`<button class="env" data-l="${i}">
@@ -697,6 +698,7 @@ function home(){
   app.querySelectorAll("[data-hr]").forEach(b=>b.onclick=()=>{S.hair=b.dataset.hr;save();home()});
   app.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>start(+b.dataset.l));
   const pb=$("#provaBtn");if(pb)pb.onclick=startProva;
+  const fb=$("#fcBtn");if(fb)fb.onclick=fcOpen;
   const rl=$("#ruleLink");if(rl)rl.onclick=()=>help("regola");
   app.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{S.unit=b.dataset.u;save();home()});
 }
@@ -721,6 +723,12 @@ function wireBar(nx,again,gate){
   $("#again").onclick=()=>g(again);$("#shop2").onclick=()=>g(shop);$("#hm").onclick=()=>g(home);
   $("#sq").onclick=()=>g(()=>{save();location.href="../"});
 }
+
+/* 🃏 Flashcards: one deck per letter, from the words Boh underlines in that letter */
+function fcDecks(){const u=CUR();return u.letters.map((l,i)=>{const t=G(l.letter||"");const seen={};const cards=[];
+  t.replace(/\[\[(.+?)\|(.+?)\]\]/g,(m,w,e)=>{w=w.trim();if(!seen[w]){seen[w]=1;cards.push([w,e.trim()])}return m});
+  return{id:"i4:"+u.id+":"+(l.id||i),title:"Lettera "+(i+1)+" · "+(l.title||""),cards}}).filter(d=>d.cards.length)}
+function fcOpen(){if(!window.BohCards)return;BohCards.open({decks:fcDecks(),pay:n=>{setCash(n);save()},onClose:()=>home()})}
 
 /* ---------- PLAY ---------- */
 const LENS=l=>[1,l.mt.length,l.rs.length,1,1];
@@ -1136,5 +1144,6 @@ $("#tmrBtn").onclick=tmMenu;
 })();
 </script>
 
-<script src="../assets/bohsave.js?v=202610010030" defer></script>
+<script src="../assets/flashcards.js?v=202610010100" defer></script>
+<script src="../assets/bohsave.js?v=202610010100" defer></script>
 </body></html>

@@ -47,6 +47,9 @@
 .rbb.ghost{background:transparent;color:var(--text-muted)}
 .rbb:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .hl-next.locked{cursor:default;box-shadow:none;background:var(--card-bg);color:var(--text-muted);border:2px dashed var(--card-border);font-size:16px}
+.fc-home{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;background:var(--card-bg);border:2px solid var(--primary-bg);margin-bottom:12px}
+.fc-home .fc-ic{font-size:30px;line-height:1}.fc-home .fc-tx{display:flex;flex-direction:column;gap:2px;flex:1}.fc-home b{font-size:18px;font-weight:800}.fc-home small{font-size:13px;font-weight:700;color:var(--text-muted)}
+.fc-home .fc-go{font-size:28px;font-weight:800;color:var(--primary-bg)}.fc-home:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh · Italian 1 review Test prep</title>
@@ -789,6 +792,7 @@
           </button>
         </sc-if>
 
+        <sc-if value="{{hasFc}}" hint-placeholder-val="{{false}}"><button class="fc-home" onClick="{{fcHomeH}}"><span class="fc-ic" aria-hidden="true">&#127183;</span><span class="fc-tx"><b>Flashcards</b><small>{{fcSub}}</small></span><span class="fc-go">&rsaquo;</span></button></sc-if>
         <div class="mode-list" style="display:flex;flex-direction:column;gap:12px;">
           <sc-for list="{{modeList}}" as="m" hint-placeholder-count="5">
             <button onClick="{{m.pick}}" class="{{m.cls}}" style="{{m.style}}">
@@ -3615,6 +3619,14 @@ class Component extends DCLogic {
       }
     }
 
+    (function () {   // 🃏 Flashcards on the home screen
+      var decks = typeof btFcDecks === 'function' ? btFcDecks() : [];
+      result.hasFc = s.screen === 'home' && decks.length > 0 && typeof BohCards !== 'undefined';
+      if (!result.hasFc) { result.fcSub = ''; result.fcHomeH = function () {}; return; }
+      var n = 0, k = 0; decks.forEach(function (d) { n += d.cards.length; k += BohCards.stats(d.id, d.cards.length).known; });
+      result.fcSub = k + ' / ' + n + ' words known \u00b7 ' + decks.length + (decks.length === 1 ? ' deck' : ' decks');
+      result.fcHomeH = function () { self.sfx('tap'); BohCards.open({ decks: decks, pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); }, onClose: function () { self.setState({}); } }); };
+    })();
     if (s.screen === 'summary') {
       var pct2 = s.totalSoFar ? Math.round((s.correctSoFar / s.totalSoFar) * 100) : 0;
       var catOrder = ['pron', 'pronfill', 'conj', 'ea', 'vocab', 'agg', 'frasi'];
@@ -3715,5 +3727,11 @@ window.__game = window.__mountDC(Component, document.getElementById('tpl'), docu
 </script>
 
 
-<script src="../assets/bohsave.js?v=202610010030" defer></script>
+<script>
+var BT_FC = [{"id": "i1:pron", "title": "I pronomi", "cards": [["io", "I"], ["tu", "you (one person)"], ["lui", "he"], ["lei", "she"], ["noi", "we"], ["voi", "you all"], ["loro", "they"]]}, {"id": "i1:animali", "title": "Gli animali", "cards": [["cane", "a dog"], ["gatto", "a cat"], ["tartaruga", "a turtle"], ["furetto", "a ferret"], ["criceto", "a hamster"], ["pappagallo", "a parrot"], ["uccello", "a bird"]]}, {"id": "i1:agg", "title": "Gli aggettivi", "cards": [["simpatico", "nice, likeable"], ["gentile", "kind, polite"], ["bravo", "good at something, talented"], ["vecchio", "old"], ["grande", "big"], ["piccolo", "small"], ["rosso", "red"], ["bianco", "white"], ["un animale domestico", "a pet"], ["una penna", "a pen"], ["cellulari", "cell phones"], ["senza", "without"], ["molti amici", "many friends"], ["nice — more than one person", "simpatici"]]}, {"id": "i1:ea", "title": "Essere e avere", "cards": [["io sono", "I am"], ["tu sei", "you are"], ["lui / lei è", "he / she is"], ["noi siamo", "we are"], ["voi siete", "you all are"], ["loro sono", "they are"], ["io ho", "I have"], ["tu hai", "you have"], ["lui / lei ha", "he / she has"], ["noi abbiamo", "we have"], ["voi avete", "you all have"], ["loro hanno", "they have"]]}];
+function btFcDecks() { return BT_FC; }
+window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
+</script>
+<script src="../assets/flashcards.js?v=202610010100" defer></script>
+<script src="../assets/bohsave.js?v=202610010100" defer></script>
 </body></html>

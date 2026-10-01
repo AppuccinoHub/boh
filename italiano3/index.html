@@ -239,6 +239,12 @@
 .prof-act.danger b{color:var(--error-text)}
 .prof-act:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .prof-msg{padding:10px 12px;border-radius:12px;background:var(--success-bg);color:var(--success-text);font-weight:800;font-size:14px}
+.ls-fc{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 16px;border-radius:18px;background:var(--option-default-bg);border:2px dashed var(--primary-bg);text-align:center}
+.ls-fc-n{font-size:14px;font-weight:800;color:var(--text-muted)}
+.ls-fc-go{all:unset;box-sizing:border-box;cursor:pointer;width:100%;max-width:360px;padding:18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:900;font-size:19px}
+.ls-fc-go.again{background:var(--card-bg);color:var(--text);border:2px solid var(--card-border);font-size:16px;padding:14px}
+.ls-fc-go:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.ls-fc-s{font-size:13.5px;font-weight:700;color:var(--text-muted)}
 /* ---- lesson path ---- */
 [data-screen="lesson"] .wrap{max-width:920px !important}
 .lp{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:20px;background:var(--card-bg);border:2px solid var(--card-border)}
@@ -433,6 +439,9 @@
 .pop-x{font-size:16px;font-weight:700;color:var(--success-text);padding:10px 12px;border-radius:12px;background:var(--option-default-bg)}
 .pop-go{all:unset;box-sizing:border-box;cursor:pointer;margin-top:4px;padding:15px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:17px}
 .pop-go:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.fc-home{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;background:var(--card-bg);border:2px solid var(--primary-bg);margin-bottom:12px}
+.fc-home .fc-ic{font-size:30px;line-height:1}.fc-home .fc-tx{display:flex;flex-direction:column;gap:2px;flex:1}.fc-home b{font-size:18px;font-weight:800}.fc-home small{font-size:13px;font-weight:700;color:var(--text-muted)}
+.fc-home .fc-go{font-size:28px;font-weight:800;color:var(--primary-bg)}.fc-home:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3</title>
@@ -975,6 +984,7 @@
         </sc-if>
 
         <sc-if value="{{hasLesson}}" hint-placeholder-val="{{false}}"><h2 class="lp-rip display">Ripasso libero <span>extra practice, one step at a time</span></h2></sc-if>
+        <sc-if value="{{hasFc}}" hint-placeholder-val="{{false}}"><button class="fc-home" onClick="{{fcHomeH}}"><span class="fc-ic" aria-hidden="true">&#127183;</span><span class="fc-tx"><b>Flashcards</b><small>{{fcSub}}</small></span><span class="fc-go">&rsaquo;</span></button></sc-if>
         <div class="mode-list" style="display:flex;flex-direction:column;gap:12px;">
           <sc-for list="{{modeList}}" as="m" hint-placeholder-count="5">
             <button onClick="{{m.pick}}" class="{{m.cls}}" style="{{m.style}}">
@@ -1238,7 +1248,7 @@
               <sc-if value="{{lsImpara}}" hint-placeholder-val="{{false}}">
                 <h2 class="ls-head display">{{lsHead}}</h2>
                 <sc-if value="{{lsHasUses}}" hint-placeholder-val="{{false}}"><div class="ls-uses"><sc-for list="{{lsUses}}" as="u" hint-placeholder-count="3"><div class="ls-use"><b>{{u.t}}</b><span class="ls-it">{{u.it}}</span><span class="ls-en">{{u.en}}</span></div></sc-for></div></sc-if>
-                <sc-if value="{{lsHasWords}}" hint-placeholder-val="{{false}}"><sc-for list="{{lsGroups}}" as="g" hint-placeholder-count="2"><div class="ls-wgroup"><div class="ls-tt">{{g.name}}</div><div class="ls-words2"><sc-for list="{{g.words}}" as="w" hint-placeholder-count="8"><div class="ls-w"><b>{{w.it}}</b><span>{{w.en}}</span></div></sc-for></div></div></sc-for></sc-if>
+                <sc-if value="{{lsHasWords}}" hint-placeholder-val="{{false}}"><div class="ls-fc"><div class="ls-fc-n">{{lsFcN}}</div><button class="{{lsFcGoCls}}" onClick="{{lsFcH}}">{{lsFcLbl}}</button><div class="ls-fc-s">{{lsFcSub}}</div></div></sc-if>
                 <sc-if value="{{lsHasChart}}" hint-placeholder-val="{{false}}"><div class="{{lsChartCls}}" role="table" aria-label="Chart"><sc-for list="{{lsChart}}" as="c" hint-placeholder-count="35"><div class="{{c.cls}}" role="cell">{{c.t}}<b>{{c.e}}</b></div></sc-for></div></sc-if>
                 <sc-if value="{{lsHasExtra}}" hint-placeholder-val="{{false}}"><p class="ls-extra">{{lsExtra}}</p></sc-if>
                 <sc-if value="{{lsHasTricks}}" hint-placeholder-val="{{false}}"><div class="ls-tricks"><div class="ls-tt">Trucchi</div><sc-for list="{{lsTricks}}" as="t" hint-placeholder-count="4"><div class="ls-trick"><span>{{t.n}}</span>{{t.t}}</div></sc-for></div></sc-if>
@@ -12513,6 +12523,18 @@ class Component extends DCLogic {
       result.lsHasWords = !!it.groups;
       result.lsGroups = (it.groups || []).map(function (g) { return { name: g[0], words: g[1].map(function (w) { return { it: w[0], en: w[1] }; }) }; });
       result.lsCanNext = true; result.lsNextLabel = i + 1 < items.length ? 'Ho capito! Avanti' : 'Finisci la tappa';
+      if (it.groups) {   // the word list is a flashcard deck: one pass through it opens Avanti
+        var fcId = BT_UNIT + ':ls' + k + '-' + i, fcCards = [];
+        it.groups.forEach(function (g) { g[1].forEach(function (w) { fcCards.push([w[0], w[1]]); }); });
+        var fcOk = typeof BohCards === 'undefined' || BohCards.passed(fcId);
+        result.lsFcN = fcCards.length + ' words \u00b7 ' + it.groups.map(function (g) { return g[0]; }).join(' \u00b7 ');
+        result.lsFcLbl = fcOk ? '\ud83c\udccf Study again' : '\ud83c\udccf Study the ' + fcCards.length + ' words';
+        result.lsFcSub = fcOk ? '\u2713 Done! Avanti is open.' : 'Go through the cards once. Then Avanti opens.';
+        result.lsFcGoCls = 'ls-fc-go' + (fcOk ? ' again' : '');
+        result.lsFcH = function () { self.sfx('tap'); if (typeof BohCards === 'undefined') return; BohCards.open({ decks: [{ id: fcId, title: it.groups.map(function (g) { return g[0]; }).join(' \u00b7 '), cards: fcCards }],
+          pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); }, onPass: function () { self.setState({}); }, onClose: function () { self.setState({}); } }); };
+        result.lsCanNext = fcOk;
+      }
     }
     if (view === 'stop' && ty === 'mc') {
       result.lsMc = true; result.lsHasOggi = !!it.oggi; result.lsOggi = G(it.oggi || ''); result.lsHasPrompt = true; result.lsPrompt = G(it.prompt); if (it.sub) result.lsKicker = it.sub;
@@ -13243,6 +13265,14 @@ class Component extends DCLogic {
       result.hasPop = !!hit; result.popT = hit ? hit.t : ''; result.popB = hit ? hit.b : ''; result.popX = hit ? (hit.x || '') : '';
       result.popOkH = function () { self.sfx('tap'); self.setState({ popSeen: (s.popSeen || []).concat([hit.id]), popAt: s.qIndex }); };
     })();
+    (function () {   // 🃏 Flashcards on the home screen
+      var decks = typeof btFcDecks === 'function' ? btFcDecks() : [];
+      result.hasFc = s.screen === 'home' && decks.length > 0 && typeof BohCards !== 'undefined';
+      if (!result.hasFc) { result.fcSub = ''; result.fcHomeH = function () {}; return; }
+      var n = 0, k = 0; decks.forEach(function (d) { n += d.cards.length; k += BohCards.stats(d.id, d.cards.length).known; });
+      result.fcSub = k + ' / ' + n + ' words known \u00b7 ' + decks.length + (decks.length === 1 ? ' deck' : ' decks');
+      result.fcHomeH = function () { self.sfx('tap'); BohCards.open({ decks: decks, pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); }, onClose: function () { self.setState({}); } }); };
+    })();
     if (s.screen === 'summary') {
       var pct2 = s.totalSoFar ? Math.round((s.correctSoFar / s.totalSoFar) * 100) : 0;
       var catOrder = BT_UNITS[BT_UNIT].catOrder.concat(CART_KEYS.map(function (k) { return 'cart_' + k; }));
@@ -13343,5 +13373,11 @@ window.__game = window.__mountDC(Component, document.getElementById('tpl'), docu
 </script>
 
 
-<script src="../assets/bohsave.js?v=202610010030" defer></script>
+<script>
+if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id": "sport", "title": "Sport e passatempi", "cards": [["aiutare", "to help"], ["andare a cavallo", "to go horseback riding"], ["andare al cinema", "to go to the movies"], ["andare in bici", "to ride a bike"], ["ascoltare musica", "to listen to music"], ["ballare", "to dance"], ["camminare", "to walk"], ["cantare", "to sing"], ["giocare", "to play (a game or sport)"], ["guardare la TV", "to watch TV"], ["nuotare", "to swim"], ["perdere", "to lose"], ["pescare", "to go fishing"], ["suonare la batteria", "to play drums"], ["suonare la chitarra", "to play guitar"], ["suonare il piano", "to play piano"], ["vincere", "to win"], ["l’atletica", "track and field"], ["l’automobilismo", "car racing (la Formula 1)"], ["il calcio", "soccer"], ["il calcetto", "5-a-side soccer"], ["il campeggio", "camping"], ["il campo", "field or court"], ["le carte", "playing cards"], ["il ciclismo", "cycling"], ["la danza classica", "ballet"], ["il football americano", "American football"], ["le freccette", "darts"], ["il giocatore / la giocatrice", "player"], ["il nuoto", "swimming"], ["la palestra", "gym"], ["la pallacanestro (il basket)", "basketball"], ["la pallavolo", "volleyball"], ["il pallone", "ball"], ["la partita", "game or match"], ["gli scacchi", "chess"], ["lo sci", "skiing"], ["la squadra", "team"], ["lo stadio", "stadium"], ["il tennis", "tennis"], ["Ti piace…?", "Do you like…?"], ["(Non) mi piace…", "I (don’t) like…"]]}, {"id": "tempo", "title": "Il tempo", "cards": [["Che tempo fa?", "What’s the weather like?"], ["C’è il sole.", "It’s sunny."], ["C’è il temporale.", "There’s a storm."], ["C’è vento.", "It’s windy."], ["Fa bel tempo.", "The weather is nice."], ["Fa brutto tempo.", "The weather is bad."], ["Fa caldo.", "It’s hot."], ["Fa freddo.", "It’s cold."], ["Fa fresco.", "It’s cool."], ["Quanti gradi ci sono?", "What’s the temperature?"], ["Ci sono 18 gradi.", "It’s 18 degrees."], ["la foschia", "mist"], ["il fulmine", "lightning"], ["la grandine", "hail"], ["l’impermeabile", "raincoat"], ["il lampo", "flash of lightning"], ["l’ombrello", "umbrella"], ["la neve", "snow"], ["la nuvola", "cloud"], ["la pioggia", "rain"], ["il tuono", "thunder"], ["l’umidità", "humidity"], ["nevicare", "to snow"], ["piovere", "to rain"], ["coperto/a", "overcast"], ["nuvoloso/a", "cloudy"], ["piovoso/a", "rainy"], ["secco/a", "dry"], ["soleggiato/a", "sunny"], ["umido/a", "humid"], ["ventoso/a", "windy"]]}, {"id": "date", "title": "Date e stagioni", "cards": [["Che giorno è oggi?", "What’s today’s date?"], ["Quando è il tuo compleanno?", "When is your birthday?"], ["l’anno", "year"], ["l’autunno", "fall"], ["il compleanno", "birthday"], ["l’estate", "summer"], ["il mese", "month"], ["l’inverno", "winter"], ["la primavera", "spring"], ["il primo", "the first (of the month)"], ["la stagione", "season"], ["domani", "tomorrow"], ["gennaio", "January"], ["febbraio", "February"], ["marzo", "March"], ["aprile", "April"], ["maggio", "May"], ["giugno", "June"], ["luglio", "July"], ["agosto", "August"], ["settembre", "September"], ["ottobre", "October"], ["novembre", "November"], ["dicembre", "December"]]}]; if (BT_UNITS.vdp) BT_UNITS.vdp.fc = [{"id": "vdp", "title": "Volere, dovere, potere", "cards": [["voglio", "I want"], ["vuoi", "you want"], ["vuole", "he / she wants"], ["vogliamo", "we want"], ["volete", "you all want"], ["vogliono", "they want"], ["devo", "I have to"], ["devi", "you have to"], ["deve", "he / she has to"], ["dobbiamo", "we have to"], ["dovete", "you all have to"], ["devono", "they have to"], ["posso", "I can"], ["puoi", "you can"], ["può", "he / she can"], ["possiamo", "we can"], ["potete", "you all can"], ["possono", "they can"], ["Posso andare in bagno?", "May I go to the bathroom?"], ["vorrei", "I would like"]]}]; }
+function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
+window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
+</script>
+<script src="../assets/flashcards.js?v=202610010100" defer></script>
+<script src="../assets/bohsave.js?v=202610010100" defer></script>
 </body></html>
