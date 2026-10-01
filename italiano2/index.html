@@ -239,6 +239,24 @@
 .prof-act.danger b{color:var(--error-text)}
 .prof-act:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .prof-msg{padding:10px 12px;border-radius:12px;background:var(--success-bg);color:var(--success-text);font-weight:800;font-size:14px}
+.ls-phone{display:flex;flex-direction:column;border-radius:26px;overflow:hidden;background:#F4F1F6;border:8px solid #141014;max-width:420px;width:100%;margin:0 auto;color:#2B2430}
+.ls-ph-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid #E3D8DC}
+.ls-ph-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;background:#E88A6C}
+.ls-ph-who{display:flex;flex-direction:column;line-height:1.1}.ls-ph-who small{color:#1E8C4A;font-weight:700;font-size:12px}
+.ls-ph-help{margin-left:auto;font-size:11.5px;font-weight:800;color:#6A4C93;text-align:right;max-width:44%}
+.ls-ph-msgs{display:flex;flex-direction:column;gap:8px;padding:14px 12px;min-height:200px}
+.ls-ph-m{max-width:80%;padding:10px 14px;border-radius:20px;font-size:18px;font-weight:600;line-height:1.3;display:flex;flex-direction:column;gap:4px}
+.ls-ph-m.them{align-self:flex-start;background:#fff;border-bottom-left-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.ls-ph-m.me{align-self:flex-end;background:#2F6FDB;color:#fff;border-bottom-right-radius:6px}
+.ls-ph-m.tap{cursor:pointer}.ls-ph-m.pop{animation:popIn .25s ease-out}
+.ls-ph-en{font-size:14px;font-weight:700;opacity:.85;border-top:1px dashed currentColor;padding-top:4px}
+.ls-ph-w{border-bottom:3px dotted currentColor;cursor:pointer}
+.ls-ph-dots{align-self:flex-start;background:#fff;border-radius:20px;padding:12px 16px;display:flex;gap:5px}
+.ls-ph-dots i{width:8px;height:8px;border-radius:50%;background:#B7A8B8;animation:lsDot 1s infinite}.ls-ph-dots i:nth-child(2){animation-delay:.15s}.ls-ph-dots i:nth-child(3){animation-delay:.3s}
+@keyframes lsDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.ls-ph-gloss{margin:0 12px 10px;padding:10px 12px;border-radius:12px;background:#141014;color:#fff;font-weight:800;font-size:15px;text-align:center}
+.ls-ph-next{all:unset;box-sizing:border-box;cursor:pointer;margin:0 12px 12px;padding:14px;border-radius:999px;background:#C1654F;color:#fff;text-align:center;font-weight:800;font-size:17px}
+.ls-ph-next:focus-visible,.ls-ph-m.tap:focus-visible{outline:3px solid #6A4C93;outline-offset:2px}
 .ls-fc{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 16px;border-radius:18px;background:var(--option-default-bg);border:2px dashed var(--primary-bg);text-align:center}
 .ls-fc-n{font-size:14px;font-weight:800;color:var(--text-muted)}
 .ls-fc-go{all:unset;box-sizing:border-box;cursor:pointer;width:100%;max-width:360px;padding:18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:900;font-size:19px}
@@ -391,6 +409,10 @@
   .ls-uses{grid-template-columns:1fr}
   .ls-chart{font-size:13.5px}
   .lc{padding:5px 5px}
+  .ls-chart,.ls-chart.c3,.ls-chart.c4{grid-template-columns:42px repeat(var(--lsn,4),minmax(0,1fr))}
+  .ls-chart.c3{--lsn:2}.ls-chart.c4{--lsn:3}
+  .lc{overflow-wrap:normal;word-break:keep-all}
+  .lc.h{font-size:9.5px;letter-spacing:0;padding:5px 3px}
   .ls-sent{font-size:19px}
   .ls-stats b{font-size:22px}
 }
@@ -1290,6 +1312,16 @@
                   </sc-if>
                   <sc-if value="{{lsFreeStep}}" hint-placeholder-val="{{false}}"><div class="ls-free"><sc-for list="{{lsFreePart}}" as="p" hint-placeholder-count="1"><input class="{{p.cls}}" type="text" autocomplete="off" spellcheck="false" value="{{p.val}}" onInput="{{p.onInput}}" onKeyDown="{{lsKey}}" aria-label="{{p.aria}}" placeholder="{{lsFreePh}}"></sc-for></div></sc-if>
                   <sc-if value="{{lsMe}}" hint-placeholder-val="{{false}}"><div class="ls-cb me">{{lsMeText}}</div><div class="ls-cb boh">{{lsBohReply}}</div></sc-if>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{lsText}}" hint-placeholder-val="{{false}}">
+                <div class="ls-phone">
+                  <div class="ls-ph-bar"><span class="ls-ph-av" aria-hidden="true">{{lsTxAv}}</span><span class="ls-ph-who"><b>{{lsTxName}}</b><small>online</small></span><span class="ls-ph-help">{{lsTxHelp}}</span></div>
+                  <div class="ls-ph-msgs" aria-live="polite"><sc-for list="{{lsTxMsgs}}" as="m" hint-placeholder-count="3"><div class="{{m.cls}}" onClick="{{m.tap}}"><span><sc-for list="{{m.parts}}" as="pp" hint-placeholder-count="2"><span class="{{pp.cls}}" onClick="{{pp.tap}}">{{pp.t}}</span></sc-for></span><sc-if value="{{m.hasEn}}" hint-placeholder-val="{{false}}"><small class="ls-ph-en">{{m.en}}</small></sc-if></div></sc-for>
+                    <sc-if value="{{lsTxTyping}}" hint-placeholder-val="{{false}}"><div class="ls-ph-dots" aria-label="typing"><i></i><i></i><i></i></div></sc-if></div>
+                  <sc-if value="{{lsTxHasGloss}}" hint-placeholder-val="{{false}}"><div class="ls-ph-gloss" role="status">{{lsTxGloss}}</div></sc-if>
+                  <sc-if value="{{lsTxMore}}" hint-placeholder-val="{{false}}"><button class="ls-ph-next" onClick="{{lsTxNextH}}">Avanti &rsaquo;</button></sc-if>
                 </div>
               </sc-if>
 
@@ -2630,7 +2662,7 @@ function btTypoOk(said, want) {
 }
 
 // ---- Lesson path (Assunta's approved content) ----
-var BT_LESSONS = {"u2": {"title": "Unità 2 · Vocabolario", "minutes": 50, "tips": "vocab", "lede": "This week: one stop a day, about 12 minutes each. La Prova · Vocabolario opens after stop 5. Extra practice is under Ripasso libero.", "finishLine": "Hai imparato, scritto, costruito e parlato in italiano.", "pathSub": "One stop a day, about 12 minutes · La Prova on day 5", "stops": [{"key": "sport", "label": "Sport e passatempi", "min": 12, "kicker": "Sport e passatempi", "bubble": "Io gioco a calcio, nuoto e… perdo sempre a carte!", "items": [{"t": "impara", "head": "Review, part 1 of 2: things you do.", "groups": [["Verbi", [["aiutare", "to help"], ["andare a cavallo", "to go horseback riding"], ["andare al cinema", "to go to the movies"], ["andare in bici", "to ride a bike"], ["ascoltare musica", "to listen to music"], ["ballare", "to dance"], ["camminare", "to walk"], ["cantare", "to sing"], ["giocare", "to play (a game or sport)"], ["guardare la TV", "to watch TV"], ["nuotare", "to swim"], ["perdere", "to lose"], ["pescare", "to go fishing"], ["suonare la batteria", "to play drums"], ["suonare la chitarra", "to play guitar"], ["suonare il piano", "to play piano"], ["vincere", "to win"]]]], "tricks": ["giocare a + game: gioco a calcio, gioco a carte. suonare + instrument: suono la chitarra.", "andare + a / al / in: vado a cavallo, vado al cinema, vado in bici."], "spiaLabel": "Frasi utili", "spia": ["gioco a…", "suono…", "vado a / al / in…"]}, {"t": "mc", "prompt": "nuotare", "sub": "Che cosa vuol dire?", "answer": "to swim", "traps": ["tennis", "player"], "why": "nuotare = to swim.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "pescare", "sub": "Che cosa vuol dire?", "answer": "to go fishing", "traps": ["to watch TV", "to go to the movies"], "why": "pescare = to go fishing.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "vincere", "sub": "Che cosa vuol dire?", "answer": "to win", "traps": ["swimming", "car racing (la Formula 1)"], "why": "vincere = to win.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "impara", "head": "Review, part 2 of 2: sports, games and places.", "groups": [["Sport, giochi e posti", [["l’atletica", "track and field"], ["l’automobilismo", "car racing (la Formula 1)"], ["il calcio", "soccer"], ["il calcetto", "5-a-side soccer"], ["il campeggio", "camping"], ["il campo", "field or court"], ["le carte", "playing cards"], ["il ciclismo", "cycling"], ["la danza classica", "ballet"], ["il football americano", "American football"], ["le freccette", "darts"], ["il giocatore / la giocatrice", "player"], ["il nuoto", "swimming"], ["la palestra", "gym"], ["la pallacanestro (il basket)", "basketball"], ["la pallavolo", "volleyball"], ["il pallone", "ball"], ["la partita", "game or match"], ["gli scacchi", "chess"], ["lo sci", "skiing"], ["la squadra", "team"], ["lo stadio", "stadium"], ["il tennis", "tennis"], ["Ti piace…?", "Do you like…?"], ["(Non) mi piace…", "I (don’t) like…"]]]], "tricks": ["Many sport words look like English: il tennis, il ciclismo, il football americano, lo sci.", "Ti piace…? = Do you like…? → Sì, mi piace! / No, non mi piace."], "spiaLabel": "Frasi utili", "spia": ["Ti piace…?", "Mi piace…", "Non mi piace…"]}, {"t": "mc", "prompt": "la squadra", "sub": "Che cosa vuol dire?", "answer": "team", "traps": ["darts", "volleyball"], "why": "la squadra = team.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "la partita", "sub": "Che cosa vuol dire?", "answer": "game or match", "traps": ["basketball", "to watch TV"], "why": "la partita = game or match.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "lo stadio", "sub": "Che cosa vuol dire?", "answer": "stadium", "traps": ["to watch TV", "to play guitar"], "why": "lo stadio = stadium.", "bubble": "Quick check! Che cosa vuol dire?"}]}, {"key": "scrivi", "label": "Scrivi · Ti piace?", "min": 12, "kicker": "Scrivi in italiano", "bubble": "Adesso scrivi tu. Piccoli errori? Li perdono!", "items": [{"t": "type", "prompt": "to swim", "text": "___", "answers": [["nuotare"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to swim = nuotare."}, {"t": "type", "prompt": "to dance", "text": "___", "answers": [["ballare"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to dance = ballare."}, {"t": "type", "prompt": "soccer", "text": "___", "answers": [["il calcio", "calcio"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "soccer = il calcio."}, {"t": "type", "prompt": "team", "text": "___", "answers": [["la squadra", "squadra"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "team = la squadra."}, {"t": "type", "prompt": "to win", "text": "___", "answers": [["vincere"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to win = vincere."}, {"t": "type", "prompt": "game or match", "text": "___", "answers": [["la partita", "partita"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "game or match = la partita."}, {"t": "type", "prompt": "to go to the movies", "text": "___", "answers": [["andare al cinema"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to go to the movies = andare al cinema."}, {"t": "type", "prompt": "to play guitar", "text": "___", "answers": [["suonare la chitarra"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to play guitar = suonare la chitarra."}, {"t": "chat", "kicker": "Rispondi a Boh", "bubble": "Adesso parliamo io e te!", "q": "Ti piace il calcio?", "verb": "piace", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Mi piace: giusto!", "verbs": [["Sì, mi piace", ""], ["Sì, ti piace", "Ti piace = you like. About you: MI piace."], ["Sì, mi piacciono", "Il calcio is one thing: piace."], ["Sì, piace mi", "Mi goes first: mi piace."]], "ends": [["tanto!", "Anche a me! Forza Napoli!"], ["guardarlo allo stadio.", "Che bello! Lo stadio è magico."], ["giocare con gli amici.", "Io gioco in cortile con i cugini."]], "freeBoh": "Bello! Raccontami di più in classe."}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Ti piace nuotare?", "verb": "piace", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Mi piace: giusto!", "verbs": [["Sì, mi piace", ""], ["Sì, mi piaccio", "Mi piaccio = I like myself! Say: mi piace."], ["Sì, ti piace", "About you: MI piace."], ["Sì, piace", "Who likes it? Add mi: mi piace."]], "ends": [["nuotare in piscina.", "Io nuoto come un pesce… un pesce lento."], ["nuotare al mare, d’estate.", "Il mare d’estate è il top!"], ["un po’.", "Un po’ va bene!"]], "freeBoh": "Bello! Raccontami di più in classe."}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Ti piace giocare a scacchi?", "verb": "piace", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Non mi piace: giusto!", "verbs": [["No, non mi piace", ""], ["No, mi non piace", "Non goes first: non mi piace."], ["No, non ti piace", "About you: non MI piace."], ["No, non piace mi", "The order is: non mi piace."]], "ends": [[". Preferisco il calcio!", "Anche io! Gli scacchi sono lenti."], ["per niente!", "Ahah, sincero!"], [". È troppo difficile.", "Boh… anche per me!"]], "freeBoh": "Va bene! Ognuno ha i suoi gusti."}]}, {"key": "tempo", "label": "Il tempo · Date e stagioni", "min": 12, "kicker": "Il tempo · Date e stagioni", "bubble": "Che tempo fa? Oggi fa bel tempo… o no?", "items": [{"t": "impara", "head": "Che tempo fa? Quando è il tuo compleanno?", "groups": [["Il tempo", [["Che tempo fa?", "What’s the weather like?"], ["C’è il sole.", "It’s sunny."], ["C’è il temporale.", "There’s a storm."], ["C’è vento.", "It’s windy."], ["Fa bel tempo.", "The weather is nice."], ["Fa brutto tempo.", "The weather is bad."], ["Fa caldo.", "It’s hot."], ["Fa freddo.", "It’s cold."], ["Fa fresco.", "It’s cool."], ["Quanti gradi ci sono?", "What’s the temperature?"], ["Ci sono 18 gradi.", "It’s 18 degrees."], ["la foschia", "mist"], ["il fulmine", "lightning"], ["la grandine", "hail"], ["l’impermeabile", "raincoat"], ["il lampo", "flash of lightning"], ["l’ombrello", "umbrella"], ["la neve", "snow"], ["la nuvola", "cloud"], ["la pioggia", "rain"], ["il tuono", "thunder"], ["l’umidità", "humidity"], ["nevicare", "to snow"], ["piovere", "to rain"], ["coperto/a", "overcast"], ["nuvoloso/a", "cloudy"], ["piovoso/a", "rainy"], ["secco/a", "dry"], ["soleggiato/a", "sunny"], ["umido/a", "humid"], ["ventoso/a", "windy"]]], ["Date e stagioni", [["Che giorno è oggi?", "What’s today’s date?"], ["Quando è il tuo compleanno?", "When is your birthday?"], ["l’anno", "year"], ["l’autunno", "fall"], ["il compleanno", "birthday"], ["l’estate", "summer"], ["il mese", "month"], ["l’inverno", "winter"], ["la primavera", "spring"], ["il primo", "the first (of the month)"], ["la stagione", "season"], ["domani", "tomorrow"], ["gennaio", "January"], ["febbraio", "February"], ["marzo", "March"], ["aprile", "April"], ["maggio", "May"], ["giugno", "June"], ["luglio", "July"], ["agosto", "August"], ["settembre", "September"], ["ottobre", "October"], ["novembre", "November"], ["dicembre", "December"]]]], "tricks": ["fa + weather: fa caldo, fa freddo, fa bel tempo. c’è + one thing: c’è il sole, c’è vento.", "Months and seasons are lowercase in Italian: gennaio, l’estate.", "The first of the month is il primo: il primo maggio. Then numbers: il 2 maggio, il 15 maggio."], "spiaLabel": "Frasi utili", "spia": ["Che tempo fa?", "Fa caldo / freddo", "C’è il sole", "Quanti gradi ci sono?", "Quando è il tuo compleanno?"]}, {"t": "mc", "prompt": "Fa freddo.", "sub": "Che cosa vuol dire?", "answer": "It’s cold.", "traps": ["March", "snow"], "why": "Fa freddo. = It’s cold..", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "la neve", "sub": "Che cosa vuol dire?", "answer": "snow", "traps": ["humid", "birthday"], "why": "la neve = snow.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "l’ombrello", "sub": "Che cosa vuol dire?", "answer": "umbrella", "traps": ["The weather is bad.", "There’s a storm."], "why": "l’ombrello = umbrella.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "nuvoloso/a", "sub": "Che cosa vuol dire?", "answer": "cloudy", "traps": ["winter", "to rain"], "why": "nuvoloso/a = cloudy.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "l’estate", "sub": "Che cosa vuol dire?", "answer": "summer", "traps": ["mist", "windy"], "why": "l’estate = summer.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "il compleanno", "sub": "Che cosa vuol dire?", "answer": "birthday", "traps": ["It’s cold.", "lightning"], "why": "il compleanno = birthday.", "bubble": "Quick check! Che cosa vuol dire?"}]}, {"key": "costruisci", "label": "Scrivi · Costruisci", "min": 12, "kicker": "Scrivi in italiano", "bubble": "Scrivi e costruisci. Ce la fai!", "items": [{"t": "type", "prompt": "It’s cold.", "text": "___", "answers": [["fa freddo"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "It’s cold. = fa freddo."}, {"t": "type", "prompt": "It’s hot.", "text": "___", "answers": [["fa caldo"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "It’s hot. = fa caldo."}, {"t": "type", "prompt": "It’s windy.", "text": "___", "answers": [["c'è vento"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "It’s windy. = c'è vento."}, {"t": "type", "prompt": "snow", "text": "___", "answers": [["la neve", "neve"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "snow = la neve."}, {"t": "type", "prompt": "summer", "text": "___", "answers": [["l'estate", "estate"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "summer = l'estate."}, {"t": "type", "prompt": "umbrella", "text": "___", "answers": [["l'ombrello", "ombrello"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "umbrella = l'ombrello."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "When it’s cold, I watch TV.", "tiles": ["Quando", "fa freddo,", "guardo", "la TV."], "traps": ["fa caldo,", "guardi"], "why": "fa freddo = it’s cold. io guardo, tu guardi."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "I like to swim in summer.", "tiles": ["Mi piace", "nuotare", "d’estate."], "traps": ["Ti piace", "nuoto"], "why": "Mi piace + infinitive: mi piace nuotare."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "My birthday is in May.", "tiles": ["Il mio compleanno", "è", "a maggio."], "traps": ["ha", "Maggio."], "why": "Months are lowercase: maggio."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "Do you like to play soccer?", "tiles": ["Ti piace", "giocare", "a calcio?"], "traps": ["Mi piace", "gioco"], "why": "Ti piace + infinitive: giocare."}]}, {"key": "parla", "label": "Parla", "min": 5, "kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Parlate! Io ascolto.", "items": [{"t": "parla", "prompts": [["Che sport ti piace?", "Mi piace… · Non mi piace…"], ["Che tempo fa oggi?", "Oggi fa… · C’è…"], ["Quando è il tuo compleanno?", "Il mio compleanno è il … di …"]], "checks": ["Ho fatto le 3 domande.", "Ho risposto con frasi intere.", "Ho raccontato una risposta del mio compagno: “A lui / A lei piace…”"]}]}]}};
+var BT_LESSONS = {"u2": {"title": "Unità 2 · Vocabolario", "minutes": 50, "tips": "vocab", "lede": "This week: one stop a day, about 12 minutes each. La Prova · Vocabolario opens after stop 5. Extra practice is under Ripasso libero.", "finishLine": "Hai imparato, scritto, costruito e parlato in italiano.", "pathSub": "One stop a day, about 12 minutes · La Prova on day 5", "stops": [{"key": "sport", "label": "Sport e passatempi", "min": 12, "kicker": "Sport e passatempi", "bubble": "Io gioco a calcio, nuoto e… perdo sempre a carte!", "items": [{"t": "impara", "head": "Review, part 1 of 2: things you do.", "groups": [["Verbi", [["aiutare", "to help"], ["andare a cavallo", "to go horseback riding"], ["andare al cinema", "to go to the movies"], ["andare in bici", "to ride a bike"], ["ascoltare musica", "to listen to music"], ["ballare", "to dance"], ["camminare", "to walk"], ["cantare", "to sing"], ["giocare", "to play (a game or sport)"], ["guardare la TV", "to watch TV"], ["nuotare", "to swim"], ["perdere", "to lose"], ["pescare", "to go fishing"], ["suonare la batteria", "to play drums"], ["suonare la chitarra", "to play guitar"], ["suonare il piano", "to play piano"], ["vincere", "to win"]]]], "tricks": ["giocare a + game: gioco a calcio, gioco a carte. suonare + instrument: suono la chitarra.", "andare + a / al / in: vado a cavallo, vado al cinema, vado in bici."], "spiaLabel": "Frasi utili", "spia": ["gioco a…", "suono…", "vado a / al / in…"]}, {"t": "mc", "prompt": "nuotare", "sub": "Che cosa vuol dire?", "answer": "to swim", "traps": ["tennis", "player"], "why": "nuotare = to swim.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "pescare", "sub": "Che cosa vuol dire?", "answer": "to go fishing", "traps": ["to watch TV", "to go to the movies"], "why": "pescare = to go fishing.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "vincere", "sub": "Che cosa vuol dire?", "answer": "to win", "traps": ["swimming", "car racing (la Formula 1)"], "why": "vincere = to win.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "impara", "head": "Review, part 2 of 2: sports, games and places.", "groups": [["Sport, giochi e posti", [["l’atletica", "track and field"], ["l’automobilismo", "car racing (la Formula 1)"], ["il calcio", "soccer"], ["il calcetto", "5-a-side soccer"], ["il campeggio", "camping"], ["il campo", "field or court"], ["le carte", "playing cards"], ["il ciclismo", "cycling"], ["la danza classica", "ballet"], ["il football americano", "American football"], ["le freccette", "darts"], ["il giocatore / la giocatrice", "player"], ["il nuoto", "swimming"], ["la palestra", "gym"], ["la pallacanestro (il basket)", "basketball"], ["la pallavolo", "volleyball"], ["il pallone", "ball"], ["la partita", "game or match"], ["gli scacchi", "chess"], ["lo sci", "skiing"], ["la squadra", "team"], ["lo stadio", "stadium"], ["il tennis", "tennis"], ["Ti piace…?", "Do you like…?"], ["(Non) mi piace…", "I (don’t) like…"]]]], "tricks": ["Many sport words look like English: il tennis, il ciclismo, il football americano, lo sci.", "Ti piace…? = Do you like…? → Sì, mi piace! / No, non mi piace."], "spiaLabel": "Frasi utili", "spia": ["Ti piace…?", "Mi piace…", "Non mi piace…"]}, {"t": "mc", "prompt": "la squadra", "sub": "Che cosa vuol dire?", "answer": "team", "traps": ["darts", "volleyball"], "why": "la squadra = team.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "la partita", "sub": "Che cosa vuol dire?", "answer": "game or match", "traps": ["basketball", "to watch TV"], "why": "la partita = game or match.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "lo stadio", "sub": "Che cosa vuol dire?", "answer": "stadium", "traps": ["to watch TV", "to play guitar"], "why": "lo stadio = stadium.", "bubble": "Quick check! Che cosa vuol dire?"}]}, {"key": "scrivi", "label": "Scrivi · Ti piace?", "min": 12, "kicker": "Scrivi in italiano", "bubble": "Adesso scrivi tu. Piccoli errori? Li perdono!", "items": [{"t": "type", "prompt": "to swim", "text": "___", "answers": [["nuotare"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to swim = nuotare."}, {"t": "type", "prompt": "to dance", "text": "___", "answers": [["ballare"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to dance = ballare."}, {"t": "type", "prompt": "soccer", "text": "___", "answers": [["il calcio", "calcio"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "soccer = il calcio."}, {"t": "type", "prompt": "team", "text": "___", "answers": [["la squadra", "squadra"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "team = la squadra."}, {"t": "type", "prompt": "to win", "text": "___", "answers": [["vincere"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to win = vincere."}, {"t": "type", "prompt": "game or match", "text": "___", "answers": [["la partita", "partita"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "game or match = la partita."}, {"t": "type", "prompt": "to go to the movies", "text": "___", "answers": [["andare al cinema"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to go to the movies = andare al cinema."}, {"t": "type", "prompt": "to play guitar", "text": "___", "answers": [["suonare la chitarra"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "to play guitar = suonare la chitarra."}, {"t": "chat", "kicker": "Rispondi a Boh", "bubble": "Adesso parliamo io e te!", "q": "Ti piace il calcio?", "verb": "piace", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Mi piace: giusto!", "verbs": [["Sì, mi piace", ""], ["Sì, ti piace", "Ti piace = you like. About you: MI piace."], ["Sì, mi piacciono", "Il calcio is one thing: piace."], ["Sì, piace mi", "Mi goes first: mi piace."]], "ends": [["tanto!", "Anche a me! Forza Napoli!"], ["guardarlo allo stadio.", "Che bello! Lo stadio è magico."], ["giocare con gli amici.", "Io gioco in cortile con i cugini."]], "freeBoh": "Bello! Raccontami di più in classe."}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Ti piace nuotare?", "verb": "piace", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Mi piace: giusto!", "verbs": [["Sì, mi piace", ""], ["Sì, mi piaccio", "Mi piaccio = I like myself! Say: mi piace."], ["Sì, ti piace", "About you: MI piace."], ["Sì, piace", "Who likes it? Add mi: mi piace."]], "ends": [["nuotare in piscina.", "Io nuoto come un pesce… un pesce lento."], ["nuotare al mare, d’estate.", "Il mare d’estate è il top!"], ["un po’.", "Un po’ va bene!"]], "freeBoh": "Bello! Raccontami di più in classe."}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Ti piace giocare a scacchi?", "verb": "piace", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Non mi piace: giusto!", "verbs": [["No, non mi piace", ""], ["No, mi non piace", "Non goes first: non mi piace."], ["No, non ti piace", "About you: non MI piace."], ["No, non piace mi", "The order is: non mi piace."]], "ends": [[". Preferisco il calcio!", "Anche io! Gli scacchi sono lenti."], ["per niente!", "Ahah, sincero!"], [". È troppo difficile.", "Boh… anche per me!"]], "freeBoh": "Va bene! Ognuno ha i suoi gusti."}]}, {"key": "tempo", "label": "Il tempo · Date e stagioni", "min": 12, "kicker": "Il tempo · Date e stagioni", "bubble": "Che tempo fa? Oggi fa bel tempo… o no?", "items": [{"t": "impara", "head": "Che tempo fa? Quando è il tuo compleanno?", "groups": [["Il tempo", [["Che tempo fa?", "What’s the weather like?"], ["C’è il sole.", "It’s sunny."], ["C’è il temporale.", "There’s a storm."], ["C’è vento.", "It’s windy."], ["Fa bel tempo.", "The weather is nice."], ["Fa brutto tempo.", "The weather is bad."], ["Fa caldo.", "It’s hot."], ["Fa freddo.", "It’s cold."], ["Fa fresco.", "It’s cool."], ["Quanti gradi ci sono?", "What’s the temperature?"], ["Ci sono 18 gradi.", "It’s 18 degrees."], ["la foschia", "mist"], ["il fulmine", "lightning"], ["la grandine", "hail"], ["l’impermeabile", "raincoat"], ["il lampo", "flash of lightning"], ["l’ombrello", "umbrella"], ["la neve", "snow"], ["la nuvola", "cloud"], ["la pioggia", "rain"], ["il tuono", "thunder"], ["l’umidità", "humidity"], ["nevicare", "to snow"], ["piovere", "to rain"], ["coperto/a", "overcast"], ["nuvoloso/a", "cloudy"], ["piovoso/a", "rainy"], ["secco/a", "dry"], ["soleggiato/a", "sunny"], ["umido/a", "humid"], ["ventoso/a", "windy"]]], ["Date e stagioni", [["Che giorno è oggi?", "What’s today’s date?"], ["Quando è il tuo compleanno?", "When is your birthday?"], ["l’anno", "year"], ["l’autunno", "fall"], ["il compleanno", "birthday"], ["l’estate", "summer"], ["il mese", "month"], ["l’inverno", "winter"], ["la primavera", "spring"], ["il primo", "the first (of the month)"], ["la stagione", "season"], ["domani", "tomorrow"], ["gennaio", "January"], ["febbraio", "February"], ["marzo", "March"], ["aprile", "April"], ["maggio", "May"], ["giugno", "June"], ["luglio", "July"], ["agosto", "August"], ["settembre", "September"], ["ottobre", "October"], ["novembre", "November"], ["dicembre", "December"]]]], "tricks": ["fa + weather: fa caldo, fa freddo, fa bel tempo. c’è + one thing: c’è il sole, c’è vento.", "Months and seasons are lowercase in Italian: gennaio, l’estate.", "The first of the month is il primo: il primo maggio. Then numbers: il 2 maggio, il 15 maggio."], "spiaLabel": "Frasi utili", "spia": ["Che tempo fa?", "Fa caldo / freddo", "C’è il sole", "Quanti gradi ci sono?", "Quando è il tuo compleanno?"]}, {"t": "mc", "prompt": "Fa freddo.", "sub": "Che cosa vuol dire?", "answer": "It’s cold.", "traps": ["March", "snow"], "why": "Fa freddo. = It’s cold..", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "la neve", "sub": "Che cosa vuol dire?", "answer": "snow", "traps": ["humid", "birthday"], "why": "la neve = snow.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "l’ombrello", "sub": "Che cosa vuol dire?", "answer": "umbrella", "traps": ["The weather is bad.", "There’s a storm."], "why": "l’ombrello = umbrella.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "nuvoloso/a", "sub": "Che cosa vuol dire?", "answer": "cloudy", "traps": ["winter", "to rain"], "why": "nuvoloso/a = cloudy.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "l’estate", "sub": "Che cosa vuol dire?", "answer": "summer", "traps": ["mist", "windy"], "why": "l’estate = summer.", "bubble": "Quick check! Che cosa vuol dire?"}, {"t": "mc", "prompt": "il compleanno", "sub": "Che cosa vuol dire?", "answer": "birthday", "traps": ["It’s cold.", "lightning"], "why": "il compleanno = birthday.", "bubble": "Quick check! Che cosa vuol dire?"}]}, {"key": "costruisci", "label": "Scrivi · Costruisci", "min": 12, "kicker": "Scrivi in italiano", "bubble": "Scrivi e costruisci. Ce la fai!", "items": [{"t": "type", "prompt": "It’s cold.", "text": "___", "answers": [["fa freddo"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "It’s cold. = fa freddo."}, {"t": "type", "prompt": "It’s hot.", "text": "___", "answers": [["fa caldo"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "It’s hot. = fa caldo."}, {"t": "type", "prompt": "It’s windy.", "text": "___", "answers": [["c'è vento"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "It’s windy. = c'è vento."}, {"t": "type", "prompt": "snow", "text": "___", "answers": [["la neve", "neve"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "snow = la neve."}, {"t": "type", "prompt": "summer", "text": "___", "answers": [["l'estate", "estate"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "summer = l'estate."}, {"t": "type", "prompt": "umbrella", "text": "___", "answers": [["l'ombrello", "ombrello"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "umbrella = l'ombrello."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "When it’s cold, I watch TV.", "tiles": ["Quando", "fa freddo,", "guardo", "la TV."], "traps": ["fa caldo,", "guardi"], "why": "fa freddo = it’s cold. io guardo, tu guardi."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "I like to swim in summer.", "tiles": ["Mi piace", "nuotare", "d’estate."], "traps": ["Ti piace", "nuoto"], "why": "Mi piace + infinitive: mi piace nuotare."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "My birthday is in May.", "tiles": ["Il mio compleanno", "è", "a maggio."], "traps": ["ha", "Maggio."], "why": "Months are lowercase: maggio."}, {"t": "tiles", "kicker": "Costruisci la frase", "en": "Do you like to play soccer?", "tiles": ["Ti piace", "giocare", "a calcio?"], "traps": ["Mi piace", "gioco"], "why": "Ti piace + infinitive: giocare."}]}, {"key": "parla", "label": "Parla", "min": 5, "kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Parlate! Io ascolto.", "items": [{"t": "parla", "prompts": [["Che sport ti piace?", "Mi piace… · Non mi piace…"], ["Che tempo fa oggi?", "Oggi fa… · C’è…"], ["Quando è il tuo compleanno?", "Il mio compleanno è il … di …"]], "checks": ["Ho fatto le 3 domande.", "Ho risposto con frasi intere.", "Ho raccontato una risposta del mio compagno: “A lui / A lei piace…”"]}]}]}, "u3": {"title": "Unità 2 · -are e voglio, devo, posso", "minutes": 60, "tips": "are", "lede": "One stop a day, about 12 minutes. La Prova opens after stop 5. Extra practice is under Ripasso libero.", "finishLine": "Hai letto, scritto, invitato e parlato in italiano.", "pathSub": "One stop a day · La Prova on day 6", "stops": [{"key": "are", "label": "Impara · -are: io e tu", "min": 12, "kicker": "-are: io e tu", "bubble": "Io nuoto. E tu? Tu nuoti?", "items": [{"t": "text", "who": ["Giulia", "Marco"], "help": "translate", "lines": [[0, "Ciao Marco! Tu nuoti stasera? 🏊", "Hi Marco! Are you swimming tonight?"], [1, "No, stasera guardo la TV. 📺", "No, tonight I am watching TV."], [0, "Perché?", "Why?"], [1, "Perché sono stanco! 😴", "Because I am tired!"], [0, "Nuoti domani con me?", "Are you swimming tomorrow with me?"], [1, "Sì! Domani nuoto con te! 🙌", "Yes! Tomorrow I swim with you!"]], "words": {"stasera": "tonight", "domani": "tomorrow", "perché": "why / because", "con me": "with me", "con te": "with you"}, "kicker": "La chat del giorno", "bubble": "Tap a message to see it in English."}, {"t": "impara", "head": "io → -o · tu → -i", "verbs": ["parlare", "nuotare", "giocare", "mangiare"], "rows": [["io", ["parl", "o"], ["nuot", "o"], ["gioc", "o"], ["mangi", "o"]], ["tu", ["parl", "i"], ["nuot", "i"], ["gioch", "i"], ["mang", "i"]]], "tricks": ["Cut -are. io adds -o: nuoto.", "tu adds -i: nuoti.", "giocare → giochi: the h keeps the hard sound.", "mangiare → mangi: one i is enough."], "spiaLabel": "Frasi utili", "spia": ["io nuoto", "tu nuoti", "io gioco", "tu giochi"]}, {"t": "mc", "prompt": "tu + ballare", "answer": "balli", "traps": ["ballo", "balla"], "why": "tu → -i: balli.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "I sing.", "answer": "Canto.", "traps": ["Canti.", "Cantare."], "why": "I → io → -o: canto.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "tu + giocare", "answer": "giochi", "traps": ["gioci", "giocchi"], "why": "giocare → giochi. The h keeps the hard sound.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "io + guardare", "answer": "guardo", "traps": ["guardi", "guarda"], "why": "io → -o: guardo.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "tu + mangiare", "answer": "mangi", "traps": ["mangii", "mangia"], "why": "mangiare → mangi. One i.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "You swim.", "answer": "Nuoti.", "traps": ["Nuoto.", "Nuotare."], "why": "You → tu → -i: nuoti.", "kicker": "Scegli quella giusta"}]}, {"key": "scrivi", "label": "Scrivi · Io e tu", "min": 12, "kicker": "Scrivi: io e tu", "bubble": "Adesso scrivi tu. Piccoli errori? Li perdono!", "items": [{"t": "text", "who": ["Sofia", "Luca"], "help": "words", "lines": [[0, "Ciao Luca! Tu visiti Roma? 🏛️", "Hi Luca! Are you visiting Rome?"], [1, "Sì! Visito il Colosseo!", "Yes! I am visiting the Colosseum!"], [0, "Compri il biglietto?", "Are you buying the ticket?"], [1, "Sì, compro il biglietto stasera. 🎟️", "Yes, I am buying the ticket tonight."], [0, "Visiti il museo domani?", "Are you visiting the museum tomorrow?"], [1, "No, domani mangio la pizza! 🍕", "No, tomorrow I am eating pizza!"]], "words": {"il biglietto": "the ticket", "il museo": "the museum", "compri": "you buy", "compro": "I buy"}, "kicker": "La chat del giorno", "bubble": "Tap the dotted words if you need help."}, {"t": "type", "text": "Io ___ la chitarra.", "hints": ["suonare"], "answers": [["suono"]], "why": "io → -o: suono.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Tu ___ il Colosseo?", "hints": ["visitare"], "answers": [["visiti"]], "why": "tu → -i: visiti.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Io ___ a calcio.", "hints": ["giocare"], "answers": [["gioco"]], "why": "io → -o: gioco.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Tu ___ la pizza?", "hints": ["mangiare"], "answers": [["mangi"]], "why": "mangiare → mangi. One i.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Io ___ un gelato.", "hints": ["comprare"], "answers": [["compro"]], "why": "io → -o: compro.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Tu ___ l’italiano?", "hints": ["studiare"], "answers": [["studi"]], "why": "studiare → studi. One i.", "kicker": "Scrivi la forma giusta"}, {"t": "tiles", "en": "Do you dance?", "tiles": ["Tu", "balli?"], "traps": ["ballo?"], "why": "tu → -i: balli.", "kicker": "Costruisci la frase"}, {"t": "tiles", "en": "I buy a gelato in Florence.", "tiles": ["Compro", "un gelato", "a Firenze."], "traps": ["Compri"], "why": "io → -o: compro.", "kicker": "Costruisci la frase"}, {"t": "tiles", "en": "I don’t swim.", "tiles": ["Non", "nuoto."], "traps": ["nuoti."], "why": "non goes first: non nuoto.", "kicker": "Costruisci la frase"}, {"t": "chat", "kicker": "Rispondi a Boh", "bubble": "Adesso parliamo io e te!", "q": "Tu nuoti?", "verb": "nuoto", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Nuoto: giusto!", "verbs": [["Sì, nuoto", ""], ["Sì, nuoti", "nuoti = you swim. About you: nuoto."], ["Sì, nuotare", "Use the io form: nuoto."]], "ends": [["in piscina.", "Anche io! Ma ho sempre freddo."], ["al mare.", "Il mare è il top!"], ["un po’.", "Un po’ va bene!"]], "freeBoh": "Bello!"}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Tu balli?", "verb": "ballo", "verbLbl": "1 · Scegli la risposta giusta", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Ballo: giusto!", "verbs": [["No, non ballo", ""], ["No, non balli", "balli = you dance. About you: ballo."], ["No, ballo non", "non goes first: non ballo."]], "ends": [[". Canto!", "Io canto sotto la doccia!"], ["mai!", "Mai? Neanche in cucina?"], [". Sono timido!", "Anche io, un po’."]], "freeBoh": "Va bene!"}]}, {"key": "vdp", "label": "Impara · Voglio, devo, posso", "min": 12, "kicker": "Voglio, devo, posso", "bubble": "Voglio giocare. Devo studiare. Uffa!", "items": [{"t": "text", "who": ["Luca", "Sofia"], "help": "words", "lines": [[0, "Ciao Sofia! Vuoi giocare a calcio? ⚽", "Hi Sofia! Do you want to play soccer?"], [1, "No, non posso. 😕", "No, I can’t."], [0, "Perché?", "Why?"], [1, "Devo studiare. 📚", "I have to study."], [0, "Vuoi giocare domani?", "Do you want to play tomorrow?"], [1, "Sì! Domani posso! 😄", "Yes! Tomorrow I can!"]], "words": {"vuoi": "do you want", "posso": "I can", "non posso": "I can’t", "devo": "I have to"}, "kicker": "La chat del giorno", "bubble": "New words are dotted. Tap them."}, {"t": "impara", "head": "want · have to · can", "verbs": ["volere", "dovere", "potere"], "rows": [["io", ["vogli", "o"], ["dev", "o"], ["poss", "o"]], ["tu", ["vuo", "i"], ["dev", "i"], ["puo", "i"]], ["lui / lei", ["vuol", "e"], ["dev", "e"], ["pu", "ò"]]], "tricks": ["Verb 2 never changes: Voglio nuotare.", "Posso? = May I? Posso andare in bagno?", "vorrei = I would like. A polite chunk: Vorrei un gelato.", "lui / lei is a sneak peek: vuole, deve, può."], "spiaLabel": "Frasi utili", "spia": ["voglio · vuoi", "devo · devi", "posso · puoi", "vorrei"]}, {"t": "mc", "prompt": "I want to swim.", "answer": "Voglio nuotare.", "traps": ["Devo nuotare.", "Voglio nuoto."], "why": "want = volere. Verb 2 stays: nuotare.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "tu + potere", "answer": "puoi", "traps": ["posso", "poti"], "why": "tu → puoi.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "I have to study.", "answer": "Devo studiare.", "traps": ["Voglio studiare.", "Devo studio."], "why": "have to = dovere: devo studiare.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "tu + volere", "answer": "vuoi", "traps": ["voglio", "vuole"], "why": "tu → vuoi.", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "Lei ___ nuotare. (potere)", "answer": "può", "traps": ["puoi", "posso"], "why": "lei → può. Sneak peek!", "kicker": "Scegli quella giusta"}, {"t": "mc", "prompt": "I would like a gelato.", "answer": "Vorrei un gelato.", "traps": ["Vuoi un gelato.", "Devo un gelato."], "why": "I would like = vorrei.", "kicker": "Scegli quella giusta"}]}, {"key": "correggi", "label": "Scrivi e correggi", "min": 12, "kicker": "Scrivi e correggi", "bubble": "Io non sbaglio mai… o forse sì?", "items": [{"t": "text", "who": ["Marco", "Giulia"], "help": "words", "lines": [[0, "Ciao Giulia! Puoi nuotare stasera? 🏊", "Hi Giulia! Can you swim tonight?"], [1, "Mi dispiace, non posso. Domani ho la verifica. 📚", "I’m sorry, I can’t. Tomorrow I have the test."], [0, "E domani? Puoi nuotare domani?", "And tomorrow? Can you swim tomorrow?"], [1, "Sì! Domani posso nuotare! 😄", "Yes! Tomorrow I can swim!"], [0, "Nuoti con me?", "Are you swimming with me?"], [1, "Sì, nuoto con te! 🙌", "Yes, I swim with you!"]], "words": {"puoi": "can you", "mi dispiace": "I’m sorry", "la verifica": "the test"}, "kicker": "La chat del giorno", "bubble": "Leggi la chat. Un messaggio alla volta."}, {"t": "type", "text": "Tu ___ venire?", "hints": ["volere"], "answers": [["vuoi"]], "why": "tu → vuoi.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Io ___ prendere il treno.", "hints": ["dovere"], "answers": [["devo"]], "why": "io → devo.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "text": "Tu ___ nuotare stasera?", "hints": ["potere"], "answers": [["puoi"]], "why": "tu → puoi.", "kicker": "Scrivi la forma giusta"}, {"t": "type", "prompt": "I have to eat.", "text": "___", "answers": [["Devo mangiare.", "Io devo mangiare."]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "have to = devo + mangiare."}, {"t": "type", "prompt": "Do you want to dance?", "text": "___", "answers": [["Vuoi ballare?", "Tu vuoi ballare?"]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "tu → vuoi + ballare."}, {"t": "type", "prompt": "I can’t swim.", "text": "___", "answers": [["Non posso nuotare.", "Io non posso nuotare."]], "aria": "In italiano", "kicker": "Scrivi in italiano", "why": "non first: non posso nuotare."}, {"t": "fix", "words": ["Voglio", "mangio", "una", "pizza."], "wrong": 1, "fix": ["mangiare"], "why": "Verb 2 never changes: mangiare.", "boh": "Ops! Grazie!", "kicker": "Boh ha sbagliato una parola. Toccala e correggila."}, {"t": "fix", "words": ["Tu", "vuole", "giocare?"], "wrong": 1, "fix": ["vuoi"], "why": "tu → vuoi. Vuole is lui / lei.", "boh": "Ops! Grazie!", "kicker": "Boh ha sbagliato una parola. Toccala e correggila."}, {"t": "fix", "words": ["Io", "devi", "studiare."], "wrong": 1, "fix": ["devo"], "why": "io → devo.", "boh": "Ops! Grazie!", "kicker": "Boh ha sbagliato una parola. Toccala e correggila."}, {"t": "fix", "words": ["Posso", "vado", "in", "bagno?"], "wrong": 1, "fix": ["andare"], "why": "Verb 2 never changes: andare.", "boh": "Ops! Grazie!", "kicker": "Boh ha sbagliato una parola. Toccala e correggila."}]}, {"key": "invita", "label": "Invita!", "min": 12, "kicker": "Invita!", "bubble": "Vuoi venire a Roma con me?", "items": [{"t": "text", "who": ["Sofia", "Luca"], "help": "none", "lines": [[0, "Ciao Luca! Vuoi visitare Venezia? 🚤", "Hi Luca! Do you want to visit Venice?"], [1, "Sì! Vorrei visitare Venezia!", "Yes! I would like to visit Venice!"], [0, "Puoi domani?", "Can you tomorrow?"], [1, "No, non posso. Devo studiare. 😕", "No, I can’t. I have to study."], [0, "Va bene. E sabato?", "Okay. And Saturday?"], [1, "Sabato posso! A sabato! 👋", "Saturday I can! See you Saturday!"]], "words": {}, "kicker": "La chat del giorno", "bubble": "On your own this time. You can do it!"}, {"t": "mc", "prompt": "Why can’t Luca go tomorrow?", "answer": "He has to study.", "traps": ["He wants to swim.", "He is in Venice."], "why": "Devo studiare = I have to study.", "kicker": "Hai capito?"}, {"t": "mc", "prompt": "When do they go?", "answer": "Saturday", "traps": ["Tomorrow", "Monday"], "why": "Sabato posso! = Saturday I can!", "kicker": "Hai capito?"}, {"t": "impara", "head": "Invite · say yes · say no", "tricks": ["Invite: Vuoi venire a Roma?", "Yes: Sì! Vorrei venire!", "No: Mi dispiace, non posso. Devo studiare."], "spiaLabel": "Frasi utili", "spia": ["Vuoi venire…?", "Sì! Vorrei venire!", "Mi dispiace, non posso.", "Devo…"]}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Vuoi visitare Roma con me? 🏛️", "verb": "vorrei", "verbLbl": "1 · Say yes", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Vorrei venire: perfetto!", "verbs": [["Sì! Vorrei venire!", ""], ["Sì! Vuoi venire!", "vuoi = you want. About you: vorrei."], ["Sì! Vorrei vengo!", "After vorrei: the infinitive, venire."]], "ends": [["Il Colosseo! 🏛️", "Andiamo! Il Colosseo è enorme."], ["La pizza! 🍕", "La pizza a Roma è buonissima."], ["Tutto! 😄", "Tutto? Ci vuole una settimana!"]], "freeBoh": "Che bello!"}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Vuoi mangiare una pizza a Napoli? 🍕", "verb": "posso", "verbLbl": "1 · Say no, nicely", "endLbl": "2 · Why? Scegli o scrivi", "verbOk": "Non posso: giusto!", "verbs": [["Mi dispiace, non posso.", ""], ["Mi dispiace, non puoi.", "puoi = you can. About you: posso."], ["Mi dispiace, posso non.", "non goes first: non posso."]], "ends": [["Devo studiare.", "Va bene! Un’altra volta."], ["Devo lavorare.", "Peccato!"], ["Devo fare i compiti.", "Ok, ciao!"]], "freeBoh": "Va bene!"}, {"t": "chat", "kicker": "Rispondi a Boh", "q": "Puoi venire a Venezia sabato? 🚤", "verb": "posso", "verbLbl": "1 · Say yes", "endLbl": "2 · Finisci la frase: scegli o scrivi", "verbOk": "Posso: giusto!", "verbs": [["Sì, posso!", ""], ["Sì, puoi!", "puoi = you can. About you: posso."], ["Sì, potere!", "Use the io form: posso."]], "ends": [["A sabato! 👋", "A sabato!"], ["Che bello!", "Sì! La gondola ci aspetta."], ["Vorrei vedere San Marco.", "Bellissima!"]], "freeBoh": "A sabato!"}, {"t": "tiles", "en": "Do you want to play soccer?", "tiles": ["Vuoi", "giocare", "a calcio?"], "traps": ["Voglio", "gioca"], "why": "tu → vuoi + giocare.", "kicker": "Costruisci la frase"}, {"t": "tiles", "en": "I would like to visit Rome.", "tiles": ["Vorrei", "visitare", "Roma."], "traps": ["visito"], "why": "vorrei + visitare.", "kicker": "Costruisci la frase"}, {"t": "tiles", "en": "I’m sorry, I can’t.", "tiles": ["Mi dispiace,", "non posso."], "traps": ["non puoi."], "why": "About you: posso.", "kicker": "Costruisci la frase"}, {"t": "parla", "kicker": "Con un compagno: fate a turno", "bubble": "Trova un compagno. Invita! Io ascolto.", "prompts": [["Invita il tuo compagno nella città del tuo libro.", "Vuoi venire a … ?"], ["Rispondi: sì", "Sì! Vorrei venire!"], ["Rispondi: no", "Mi dispiace, non posso. Devo …"]], "checks": ["Ho invitato il mio compagno.", "Ho detto sì una volta.", "Ho detto no con un perché."]}]}]}};
 var LS_TIPS = {
   vocale:   ['La vocale giusta', 'Keep the vowel of the infinitive: parlAre → parlAvo, leggEre → leggEvo, dormIre → dormIvo.'],
   persona:  ['Chi è?', 'io → -vo · tu → -vi · lui / lei → -va · noi → -vamo · voi → -vate · loro → -vano.'],
@@ -2639,6 +2671,8 @@ var LS_TIPS = {
   fare:     ['Fare → FAC-', 'fare → facevo, faceva, facevamo… Fava is a bean!'],
   cera:     ['C’era o c’erano?', 'One thing → c’era. Many things → c’erano.'],
   essere:   ['Essere è ribelle', 'ero, eri, era, eravamo, eravate, erano.'],
+  iotu:     ['io -o · tu -i', 'Cut -are. io nuoto · tu nuoti. giocare → giochi · mangiare → mangi.'],
+  vdp:      ['Voglio · devo · posso', 'voglio / vuoi · devo / devi · posso / puoi. Verb 2 stays the same: voglio nuotare.'],
   vocab:    ['Rileggi la parola', 'Many words look like English (tennis, ciclismo, nuotare = swim). Say it out loud and try again.'],
   generic:  ['Guarda la tabella', 'Find the verb in the chart and add the heartbeat: vo · vi · va · vamo · vate · vano.']
 };
@@ -2669,6 +2703,20 @@ function lsHasWord(text, verb) {
   var ws = lsNorm(text).split(' '), v = lsNorm(verb);
   for (var i = 0; i < ws.length; i++) if (ws[i] === v || stripAccents(ws[i]) === stripAccents(v) || (ws[i].length >= 4 && btTypoOk(ws[i], v))) return true;
   return false;
+}
+function lsTxParts(line, words) {   // split a chat line into plain text + tappable new words (longest match first)
+  var keys = Object.keys(words || {}).sort(function (a, b) { return b.length - a.length; }), out = [], buf = '', low = String(line).toLowerCase(), i = 0;
+  while (i < line.length) {
+    var hit = null;
+    if (i === 0 || /[\s¿¡"“(]/.test(line.charAt(i - 1))) for (var k = 0; k < keys.length; k++) {
+      var kk = keys[k].toLowerCase();
+      if (low.substr(i, kk.length) === kk && !/[a-zà-ù]/i.test(line.charAt(i + kk.length) || '')) { hit = keys[k]; break; }
+    }
+    if (hit) { if (buf) out.push({ t: buf, w: '' }); buf = ''; out.push({ t: line.substr(i, hit.length), w: hit }); i += hit.length; }
+    else { buf += line.charAt(i); i++; }
+  }
+  if (buf) out.push({ t: buf, w: '' });
+  return out;
 }
 function lsTipKey(given, answer) {
   var g = lsNorm(given), a = lsNorm(answer);
@@ -6119,10 +6167,1599 @@ var BT_UNITS = {
         order: ['v1', 'v2', 'v3', 'scrivi', 'mixed', 'prova'], catOrder: ['v1', 'v2', 'v3', 'scrivi'], ord: ['v1', 'v2', 'v3', 'scrivi', 'mixed'],
         eyebrow: 'ITALIANO 2 \u00b7 UNIT\u00c0 2', title: 'IL TEMPO LIBERO \u00b7 VOCABOLARIO', short: 'UNIT\u00c0 2 \u00b7 VOCABOLARIO', tab: 'Il tempo libero', tabSub: 'UNIT\u00c0 2 \u00b7 VOCABOLARIO', noTab: true, fc: [{"id": "sport", "title": "Sport e passatempi", "cards": [["aiutare", "to help"], ["andare a cavallo", "to go horseback riding"], ["andare al cinema", "to go to the movies"], ["andare in bici", "to ride a bike"], ["ascoltare musica", "to listen to music"], ["ballare", "to dance"], ["camminare", "to walk"], ["cantare", "to sing"], ["giocare", "to play (a game or sport)"], ["guardare la TV", "to watch TV"], ["nuotare", "to swim"], ["perdere", "to lose"], ["pescare", "to go fishing"], ["suonare la batteria", "to play drums"], ["suonare la chitarra", "to play guitar"], ["suonare il piano", "to play piano"], ["vincere", "to win"], ["l’atletica", "track and field"], ["l’automobilismo", "car racing (la Formula 1)"], ["il calcio", "soccer"], ["il calcetto", "5-a-side soccer"], ["il campeggio", "camping"], ["il campo", "field or court"], ["le carte", "playing cards"], ["il ciclismo", "cycling"], ["la danza classica", "ballet"], ["il football americano", "American football"], ["le freccette", "darts"], ["il giocatore / la giocatrice", "player"], ["il nuoto", "swimming"], ["la palestra", "gym"], ["la pallacanestro (il basket)", "basketball"], ["la pallavolo", "volleyball"], ["il pallone", "ball"], ["la partita", "game or match"], ["gli scacchi", "chess"], ["lo sci", "skiing"], ["la squadra", "team"], ["lo stadio", "stadium"], ["il tennis", "tennis"], ["Ti piace…?", "Do you like…?"], ["(Non) mi piace…", "I (don’t) like…"]]}, {"id": "tempo", "title": "Il tempo", "cards": [["Che tempo fa?", "What’s the weather like?"], ["C’è il sole.", "It’s sunny."], ["C’è il temporale.", "There’s a storm."], ["C’è vento.", "It’s windy."], ["Fa bel tempo.", "The weather is nice."], ["Fa brutto tempo.", "The weather is bad."], ["Fa caldo.", "It’s hot."], ["Fa freddo.", "It’s cold."], ["Fa fresco.", "It’s cool."], ["Quanti gradi ci sono?", "What’s the temperature?"], ["Ci sono 18 gradi.", "It’s 18 degrees."], ["la foschia", "mist"], ["il fulmine", "lightning"], ["la grandine", "hail"], ["l’impermeabile", "raincoat"], ["il lampo", "flash of lightning"], ["l’ombrello", "umbrella"], ["la neve", "snow"], ["la nuvola", "cloud"], ["la pioggia", "rain"], ["il tuono", "thunder"], ["l’umidità", "humidity"], ["nevicare", "to snow"], ["piovere", "to rain"], ["coperto/a", "overcast"], ["nuvoloso/a", "cloudy"], ["piovoso/a", "rainy"], ["secco/a", "dry"], ["soleggiato/a", "sunny"], ["umido/a", "humid"], ["ventoso/a", "windy"]]}, {"id": "date", "title": "Date e stagioni", "cards": [["Che giorno è oggi?", "What’s today’s date?"], ["Quando è il tuo compleanno?", "When is your birthday?"], ["l’anno", "year"], ["l’autunno", "fall"], ["il compleanno", "birthday"], ["l’estate", "summer"], ["il mese", "month"], ["l’inverno", "winter"], ["la primavera", "spring"], ["il primo", "the first (of the month)"], ["la stagione", "season"], ["domani", "tomorrow"], ["gennaio", "January"], ["febbraio", "February"], ["marzo", "March"], ["aprile", "April"], ["maggio", "May"], ["giugno", "June"], ["luglio", "July"], ["agosto", "August"], ["settembre", "September"], ["ottobre", "October"], ["novembre", "November"], ["dicembre", "December"]]}],
         secn: { A: 'Sport e passatempi', B: 'Il tempo', C: 'Date e stagioni', D: 'Frasi' },
-        badges: { permission_trap: ['Mi piace!', 'Answer Boh with Mi piace 3 times.'], the_musts: ['Sportivo', 'Know every sport word.'], the_wants: ['Meteo', 'Know every weather word.'], the_cans: ['Calendario', 'Know every month and season.'], perfect_blank: ['Parolaio', '10 words right in a row.'] } }
+        badges: { permission_trap: ['Mi piace!', 'Answer Boh with Mi piace 3 times.'], the_musts: ['Sportivo', 'Know every sport word.'], the_wants: ['Meteo', 'Know every weather word.'], the_cans: ['Calendario', 'Know every month and season.'], perfect_blank: ['Parolaio', '10 words right in a row.'] } },
+  u3: { MODES: {
+  are:    { cap: { are: 16 }, total: 16, label: '1 \u00b7 -are: io e tu', sub: 'parlo or parli? Who is it?', cats: ['are'], needs: null },
+  vdp:    { cap: { vdp: 12 }, total: 12, label: '2 \u00b7 Voglio, devo, posso', sub: 'want, have to, can', cats: ['vdp'], needs: 'are' },
+  inf:    { cap: { inf: 8 }, total: 8, label: '3 \u00b7 + infinito', sub: 'Voglio nuotare: write the sentence', cats: ['inf'], needs: 'vdp' },
+  inv:    { cap: { inv: 8 }, total: 8, label: '4 \u00b7 Inviti', sub: 'Invite, say yes, say no', cats: ['inv'], needs: 'inf' },
+  mixed:  { label: 'TEST SIMULATION', sub: '24 questions from every level', cats: ['are', 'vdp', 'inf', 'inv'], needs: 'inv', cap: { are: 6, vdp: 6, inf: 6, inv: 6 }, total: 24 },
+  prova:  { label: 'LA PROVA \u00b7 voto', sub: 'Graded. One pass, no hints \u2014 then screenshot your card.', cats: ['prova'], needs: 'mixed', total: 24, ordered: true, graded: true },
+  mistakes: { label: 'Fix my mistakes', sub: 'Only the cards you missed', cats: [], needs: null }
+}, QB: [
+{
+"id": "a1",
+"cat": "are",
+"type": "mc",
+"prompt": "io + parlare",
+"sub": "Which form?",
+"why": "io → -o: parlo.",
+"options": [
+{
+"id": "a",
+"label": "parlo",
+"correct": true
+},
+{
+"id": "b",
+"label": "parli"
+},
+{
+"id": "c",
+"label": "parlare"
+},
+{
+"id": "d",
+"label": "parla"
+}
+]
+},
+{
+"id": "a2",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + parlare",
+"sub": "Which form?",
+"why": "tu → -i: parli.",
+"options": [
+{
+"id": "a",
+"label": "parli",
+"correct": true
+},
+{
+"id": "b",
+"label": "parlo"
+},
+{
+"id": "c",
+"label": "parlare"
+},
+{
+"id": "d",
+"label": "parla"
+}
+]
+},
+{
+"id": "a3",
+"cat": "are",
+"type": "mc",
+"prompt": "io + nuotare",
+"sub": "Which form?",
+"why": "io → -o: nuoto.",
+"options": [
+{
+"id": "a",
+"label": "nuoto",
+"correct": true
+},
+{
+"id": "b",
+"label": "nuoti"
+},
+{
+"id": "c",
+"label": "nuotare"
+},
+{
+"id": "d",
+"label": "nuota"
+}
+]
+},
+{
+"id": "a4",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + nuotare",
+"sub": "Which form?",
+"why": "tu → -i: nuoti.",
+"options": [
+{
+"id": "a",
+"label": "nuoti",
+"correct": true
+},
+{
+"id": "b",
+"label": "nuoto"
+},
+{
+"id": "c",
+"label": "nuotare"
+},
+{
+"id": "d",
+"label": "nuota"
+}
+]
+},
+{
+"id": "a5",
+"cat": "are",
+"type": "mc",
+"prompt": "io + ballare",
+"sub": "Which form?",
+"why": "io → -o: ballo.",
+"options": [
+{
+"id": "a",
+"label": "ballo",
+"correct": true
+},
+{
+"id": "b",
+"label": "balli"
+},
+{
+"id": "c",
+"label": "ballare"
+},
+{
+"id": "d",
+"label": "balla"
+}
+]
+},
+{
+"id": "a6",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + ballare",
+"sub": "Which form?",
+"why": "tu → -i: balli.",
+"options": [
+{
+"id": "a",
+"label": "balli",
+"correct": true
+},
+{
+"id": "b",
+"label": "ballo"
+},
+{
+"id": "c",
+"label": "ballare"
+},
+{
+"id": "d",
+"label": "balla"
+}
+]
+},
+{
+"id": "a7",
+"cat": "are",
+"type": "mc",
+"prompt": "io + cantare",
+"sub": "Which form?",
+"why": "io → -o: canto.",
+"options": [
+{
+"id": "a",
+"label": "canto",
+"correct": true
+},
+{
+"id": "b",
+"label": "canti"
+},
+{
+"id": "c",
+"label": "cantare"
+},
+{
+"id": "d",
+"label": "canta"
+}
+]
+},
+{
+"id": "a8",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + cantare",
+"sub": "Which form?",
+"why": "tu → -i: canti.",
+"options": [
+{
+"id": "a",
+"label": "canti",
+"correct": true
+},
+{
+"id": "b",
+"label": "canto"
+},
+{
+"id": "c",
+"label": "cantare"
+},
+{
+"id": "d",
+"label": "canta"
+}
+]
+},
+{
+"id": "a9",
+"cat": "are",
+"type": "mc",
+"prompt": "io + giocare",
+"sub": "Which form?",
+"why": "io → -o: gioco.",
+"options": [
+{
+"id": "a",
+"label": "gioco",
+"correct": true
+},
+{
+"id": "b",
+"label": "giochi"
+},
+{
+"id": "c",
+"label": "giocare"
+},
+{
+"id": "d",
+"label": "gioca"
+}
+]
+},
+{
+"id": "a10",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + giocare",
+"sub": "Which form?",
+"why": "tu → -i: giochi.",
+"options": [
+{
+"id": "a",
+"label": "giochi",
+"correct": true
+},
+{
+"id": "b",
+"label": "gioco"
+},
+{
+"id": "c",
+"label": "giocare"
+},
+{
+"id": "d",
+"label": "gioca"
+}
+]
+},
+{
+"id": "a11",
+"cat": "are",
+"type": "mc",
+"prompt": "io + mangiare",
+"sub": "Which form?",
+"why": "io → -o: mangio.",
+"options": [
+{
+"id": "a",
+"label": "mangio",
+"correct": true
+},
+{
+"id": "b",
+"label": "mangi"
+},
+{
+"id": "c",
+"label": "mangiare"
+},
+{
+"id": "d",
+"label": "mangia"
+}
+]
+},
+{
+"id": "a12",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + mangiare",
+"sub": "Which form?",
+"why": "tu → -i: mangi.",
+"options": [
+{
+"id": "a",
+"label": "mangi",
+"correct": true
+},
+{
+"id": "b",
+"label": "mangio"
+},
+{
+"id": "c",
+"label": "mangiare"
+},
+{
+"id": "d",
+"label": "mangia"
+}
+]
+},
+{
+"id": "a13",
+"cat": "are",
+"type": "mc",
+"prompt": "io + studiare",
+"sub": "Which form?",
+"why": "io → -o: studio.",
+"options": [
+{
+"id": "a",
+"label": "studio",
+"correct": true
+},
+{
+"id": "b",
+"label": "studi"
+},
+{
+"id": "c",
+"label": "studiare"
+},
+{
+"id": "d",
+"label": "studia"
+}
+]
+},
+{
+"id": "a14",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + studiare",
+"sub": "Which form?",
+"why": "tu → -i: studi.",
+"options": [
+{
+"id": "a",
+"label": "studi",
+"correct": true
+},
+{
+"id": "b",
+"label": "studio"
+},
+{
+"id": "c",
+"label": "studiare"
+},
+{
+"id": "d",
+"label": "studia"
+}
+]
+},
+{
+"id": "a15",
+"cat": "are",
+"type": "mc",
+"prompt": "io + guardare",
+"sub": "Which form?",
+"why": "io → -o: guardo.",
+"options": [
+{
+"id": "a",
+"label": "guardo",
+"correct": true
+},
+{
+"id": "b",
+"label": "guardi"
+},
+{
+"id": "c",
+"label": "guardare"
+},
+{
+"id": "d",
+"label": "guarda"
+}
+]
+},
+{
+"id": "a16",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + guardare",
+"sub": "Which form?",
+"why": "tu → -i: guardi.",
+"options": [
+{
+"id": "a",
+"label": "guardi",
+"correct": true
+},
+{
+"id": "b",
+"label": "guardo"
+},
+{
+"id": "c",
+"label": "guardare"
+},
+{
+"id": "d",
+"label": "guarda"
+}
+]
+},
+{
+"id": "a17",
+"cat": "are",
+"type": "mc",
+"prompt": "io + ascoltare",
+"sub": "Which form?",
+"why": "io → -o: ascolto.",
+"options": [
+{
+"id": "a",
+"label": "ascolto",
+"correct": true
+},
+{
+"id": "b",
+"label": "ascolti"
+},
+{
+"id": "c",
+"label": "ascoltare"
+},
+{
+"id": "d",
+"label": "ascolta"
+}
+]
+},
+{
+"id": "a18",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + ascoltare",
+"sub": "Which form?",
+"why": "tu → -i: ascolti.",
+"options": [
+{
+"id": "a",
+"label": "ascolti",
+"correct": true
+},
+{
+"id": "b",
+"label": "ascolto"
+},
+{
+"id": "c",
+"label": "ascoltare"
+},
+{
+"id": "d",
+"label": "ascolta"
+}
+]
+},
+{
+"id": "a19",
+"cat": "are",
+"type": "mc",
+"prompt": "io + suonare",
+"sub": "Which form?",
+"why": "io → -o: suono.",
+"options": [
+{
+"id": "a",
+"label": "suono",
+"correct": true
+},
+{
+"id": "b",
+"label": "suoni"
+},
+{
+"id": "c",
+"label": "suonare"
+},
+{
+"id": "d",
+"label": "suona"
+}
+]
+},
+{
+"id": "a20",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + suonare",
+"sub": "Which form?",
+"why": "tu → -i: suoni.",
+"options": [
+{
+"id": "a",
+"label": "suoni",
+"correct": true
+},
+{
+"id": "b",
+"label": "suono"
+},
+{
+"id": "c",
+"label": "suonare"
+},
+{
+"id": "d",
+"label": "suona"
+}
+]
+},
+{
+"id": "a21",
+"cat": "are",
+"type": "mc",
+"prompt": "io + camminare",
+"sub": "Which form?",
+"why": "io → -o: cammino.",
+"options": [
+{
+"id": "a",
+"label": "cammino",
+"correct": true
+},
+{
+"id": "b",
+"label": "cammini"
+},
+{
+"id": "c",
+"label": "camminare"
+},
+{
+"id": "d",
+"label": "cammina"
+}
+]
+},
+{
+"id": "a22",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + camminare",
+"sub": "Which form?",
+"why": "tu → -i: cammini.",
+"options": [
+{
+"id": "a",
+"label": "cammini",
+"correct": true
+},
+{
+"id": "b",
+"label": "cammino"
+},
+{
+"id": "c",
+"label": "camminare"
+},
+{
+"id": "d",
+"label": "cammina"
+}
+]
+},
+{
+"id": "a23",
+"cat": "are",
+"type": "mc",
+"prompt": "io + visitare",
+"sub": "Which form?",
+"why": "io → -o: visito.",
+"options": [
+{
+"id": "a",
+"label": "visito",
+"correct": true
+},
+{
+"id": "b",
+"label": "visiti"
+},
+{
+"id": "c",
+"label": "visitare"
+},
+{
+"id": "d",
+"label": "visita"
+}
+]
+},
+{
+"id": "a24",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + visitare",
+"sub": "Which form?",
+"why": "tu → -i: visiti.",
+"options": [
+{
+"id": "a",
+"label": "visiti",
+"correct": true
+},
+{
+"id": "b",
+"label": "visito"
+},
+{
+"id": "c",
+"label": "visitare"
+},
+{
+"id": "d",
+"label": "visita"
+}
+]
+},
+{
+"id": "a25",
+"cat": "are",
+"type": "mc",
+"prompt": "io + comprare",
+"sub": "Which form?",
+"why": "io → -o: compro.",
+"options": [
+{
+"id": "a",
+"label": "compro",
+"correct": true
+},
+{
+"id": "b",
+"label": "compri"
+},
+{
+"id": "c",
+"label": "comprare"
+},
+{
+"id": "d",
+"label": "compra"
+}
+]
+},
+{
+"id": "a26",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + comprare",
+"sub": "Which form?",
+"why": "tu → -i: compri.",
+"options": [
+{
+"id": "a",
+"label": "compri",
+"correct": true
+},
+{
+"id": "b",
+"label": "compro"
+},
+{
+"id": "c",
+"label": "comprare"
+},
+{
+"id": "d",
+"label": "compra"
+}
+]
+},
+{
+"id": "a27",
+"cat": "are",
+"type": "mc",
+"prompt": "io + aiutare",
+"sub": "Which form?",
+"why": "io → -o: aiuto.",
+"options": [
+{
+"id": "a",
+"label": "aiuto",
+"correct": true
+},
+{
+"id": "b",
+"label": "aiuti"
+},
+{
+"id": "c",
+"label": "aiutare"
+},
+{
+"id": "d",
+"label": "aiuta"
+}
+]
+},
+{
+"id": "a28",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + aiutare",
+"sub": "Which form?",
+"why": "tu → -i: aiuti.",
+"options": [
+{
+"id": "a",
+"label": "aiuti",
+"correct": true
+},
+{
+"id": "b",
+"label": "aiuto"
+},
+{
+"id": "c",
+"label": "aiutare"
+},
+{
+"id": "d",
+"label": "aiuta"
+}
+]
+},
+{
+"id": "a29",
+"cat": "are",
+"type": "mc",
+"prompt": "io + pescare",
+"sub": "Which form?",
+"why": "io → -o: pesco.",
+"options": [
+{
+"id": "a",
+"label": "pesco",
+"correct": true
+},
+{
+"id": "b",
+"label": "peschi"
+},
+{
+"id": "c",
+"label": "pescare"
+},
+{
+"id": "d",
+"label": "pesca"
+}
+]
+},
+{
+"id": "a30",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + pescare",
+"sub": "Which form?",
+"why": "tu → -i: peschi.",
+"options": [
+{
+"id": "a",
+"label": "peschi",
+"correct": true
+},
+{
+"id": "b",
+"label": "pesco"
+},
+{
+"id": "c",
+"label": "pescare"
+},
+{
+"id": "d",
+"label": "pesca"
+}
+]
+},
+{
+"id": "a31",
+"cat": "are",
+"type": "mc",
+"prompt": "io + lavorare",
+"sub": "Which form?",
+"why": "io → -o: lavoro.",
+"options": [
+{
+"id": "a",
+"label": "lavoro",
+"correct": true
+},
+{
+"id": "b",
+"label": "lavori"
+},
+{
+"id": "c",
+"label": "lavorare"
+},
+{
+"id": "d",
+"label": "lavora"
+}
+]
+},
+{
+"id": "a32",
+"cat": "are",
+"type": "mc",
+"prompt": "tu + lavorare",
+"sub": "Which form?",
+"why": "tu → -i: lavori.",
+"options": [
+{
+"id": "a",
+"label": "lavori",
+"correct": true
+},
+{
+"id": "b",
+"label": "lavoro"
+},
+{
+"id": "c",
+"label": "lavorare"
+},
+{
+"id": "d",
+"label": "lavora"
+}
+]
+},
+{
+"id": "d1",
+"cat": "vdp",
+"type": "mc",
+"prompt": "I want",
+"sub": "Which form?",
+"why": "I want = voglio.",
+"options": [
+{
+"id": "a",
+"label": "voglio",
+"correct": true
+},
+{
+"id": "b",
+"label": "vuoi"
+},
+{
+"id": "c",
+"label": "devo"
+},
+{
+"id": "d",
+"label": "posso"
+}
+]
+},
+{
+"id": "d2",
+"cat": "vdp",
+"type": "mc",
+"prompt": "you want",
+"sub": "Which form?",
+"why": "you want = vuoi.",
+"options": [
+{
+"id": "a",
+"label": "vuoi",
+"correct": true
+},
+{
+"id": "b",
+"label": "voglio"
+},
+{
+"id": "c",
+"label": "vuole"
+},
+{
+"id": "d",
+"label": "puoi"
+}
+]
+},
+{
+"id": "d3",
+"cat": "vdp",
+"type": "mc",
+"prompt": "I have to",
+"sub": "Which form?",
+"why": "I have to = devo.",
+"options": [
+{
+"id": "a",
+"label": "devo",
+"correct": true
+},
+{
+"id": "b",
+"label": "devi"
+},
+{
+"id": "c",
+"label": "voglio"
+},
+{
+"id": "d",
+"label": "posso"
+}
+]
+},
+{
+"id": "d4",
+"cat": "vdp",
+"type": "mc",
+"prompt": "you have to",
+"sub": "Which form?",
+"why": "you have to = devi.",
+"options": [
+{
+"id": "a",
+"label": "devi",
+"correct": true
+},
+{
+"id": "b",
+"label": "devo"
+},
+{
+"id": "c",
+"label": "deve"
+},
+{
+"id": "d",
+"label": "vuoi"
+}
+]
+},
+{
+"id": "d5",
+"cat": "vdp",
+"type": "mc",
+"prompt": "I can",
+"sub": "Which form?",
+"why": "I can = posso.",
+"options": [
+{
+"id": "a",
+"label": "posso",
+"correct": true
+},
+{
+"id": "b",
+"label": "puoi"
+},
+{
+"id": "c",
+"label": "devo"
+},
+{
+"id": "d",
+"label": "voglio"
+}
+]
+},
+{
+"id": "d6",
+"cat": "vdp",
+"type": "mc",
+"prompt": "you can",
+"sub": "Which form?",
+"why": "you can = puoi.",
+"options": [
+{
+"id": "a",
+"label": "puoi",
+"correct": true
+},
+{
+"id": "b",
+"label": "posso"
+},
+{
+"id": "c",
+"label": "può"
+},
+{
+"id": "d",
+"label": "devi"
+}
+]
+},
+{
+"id": "d7",
+"cat": "vdp",
+"type": "mc",
+"prompt": "io + volere",
+"sub": "Which form?",
+"why": "io + volere = voglio.",
+"options": [
+{
+"id": "a",
+"label": "voglio",
+"correct": true
+},
+{
+"id": "b",
+"label": "vuoi"
+},
+{
+"id": "c",
+"label": "volo"
+},
+{
+"id": "d",
+"label": "vuole"
+}
+]
+},
+{
+"id": "d8",
+"cat": "vdp",
+"type": "mc",
+"prompt": "tu + volere",
+"sub": "Which form?",
+"why": "tu + volere = vuoi.",
+"options": [
+{
+"id": "a",
+"label": "vuoi",
+"correct": true
+},
+{
+"id": "b",
+"label": "voglio"
+},
+{
+"id": "c",
+"label": "voli"
+},
+{
+"id": "d",
+"label": "vuole"
+}
+]
+},
+{
+"id": "d9",
+"cat": "vdp",
+"type": "mc",
+"prompt": "io + dovere",
+"sub": "Which form?",
+"why": "io + dovere = devo.",
+"options": [
+{
+"id": "a",
+"label": "devo",
+"correct": true
+},
+{
+"id": "b",
+"label": "devi"
+},
+{
+"id": "c",
+"label": "dovo"
+},
+{
+"id": "d",
+"label": "deve"
+}
+]
+},
+{
+"id": "d10",
+"cat": "vdp",
+"type": "mc",
+"prompt": "tu + dovere",
+"sub": "Which form?",
+"why": "tu + dovere = devi.",
+"options": [
+{
+"id": "a",
+"label": "devi",
+"correct": true
+},
+{
+"id": "b",
+"label": "devo"
+},
+{
+"id": "c",
+"label": "dovi"
+},
+{
+"id": "d",
+"label": "deve"
+}
+]
+},
+{
+"id": "d11",
+"cat": "vdp",
+"type": "mc",
+"prompt": "io + potere",
+"sub": "Which form?",
+"why": "io + potere = posso.",
+"options": [
+{
+"id": "a",
+"label": "posso",
+"correct": true
+},
+{
+"id": "b",
+"label": "puoi"
+},
+{
+"id": "c",
+"label": "poto"
+},
+{
+"id": "d",
+"label": "può"
+}
+]
+},
+{
+"id": "d12",
+"cat": "vdp",
+"type": "mc",
+"prompt": "tu + potere",
+"sub": "Which form?",
+"why": "tu + potere = puoi.",
+"options": [
+{
+"id": "a",
+"label": "puoi",
+"correct": true
+},
+{
+"id": "b",
+"label": "posso"
+},
+{
+"id": "c",
+"label": "poti"
+},
+{
+"id": "d",
+"label": "può"
+}
+]
+},
+{
+"id": "d13",
+"cat": "vdp",
+"type": "mc",
+"prompt": "I would like",
+"sub": "Which form?",
+"why": "I would like = vorrei.",
+"options": [
+{
+"id": "a",
+"label": "vorrei",
+"correct": true
+},
+{
+"id": "b",
+"label": "voglio"
+},
+{
+"id": "c",
+"label": "vuoi"
+},
+{
+"id": "d",
+"label": "posso"
+}
+]
+},
+{
+"id": "f1",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "I want to swim.",
+"sub": "Write it in Italian.",
+"answer": "Voglio nuotare."
+},
+{
+"id": "f2",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "Do you want to dance?",
+"sub": "Write it in Italian.",
+"answer": "Vuoi ballare?"
+},
+{
+"id": "f3",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "I have to study.",
+"sub": "Write it in Italian.",
+"answer": "Devo studiare."
+},
+{
+"id": "f4",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "Can you play?",
+"sub": "Write it in Italian.",
+"answer": "Puoi giocare?"
+},
+{
+"id": "f5",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "I can’t sing.",
+"sub": "Write it in Italian.",
+"answer": "Non posso cantare."
+},
+{
+"id": "f6",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "You have to eat.",
+"sub": "Write it in Italian.",
+"answer": "Devi mangiare."
+},
+{
+"id": "f7",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "I want to visit Rome.",
+"sub": "Write it in Italian.",
+"answer": "Voglio visitare Roma."
+},
+{
+"id": "f8",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "May I go to the bathroom?",
+"sub": "Write it in Italian.",
+"answer": "Posso andare in bagno?"
+},
+{
+"id": "f9",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "I would like a gelato.",
+"sub": "Write it in Italian.",
+"answer": "Vorrei un gelato."
+},
+{
+"id": "f10",
+"cat": "inf",
+"type": "selfcheck",
+"prompt": "I would like to visit Venice.",
+"sub": "Write it in Italian.",
+"answer": "Vorrei visitare Venezia."
+},
+{
+"id": "i1",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "Do you want to come to the movies?",
+"sub": "Write it in Italian.",
+"answer": "Vuoi venire al cinema?"
+},
+{
+"id": "i2",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "Yes! I would like to come!",
+"sub": "Write it in Italian.",
+"answer": "Sì! Vorrei venire!"
+},
+{
+"id": "i3",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "I’m sorry, I can’t.",
+"sub": "Write it in Italian.",
+"answer": "Mi dispiace, non posso."
+},
+{
+"id": "i4",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "I have to work.",
+"sub": "Write it in Italian.",
+"answer": "Devo lavorare."
+},
+{
+"id": "i5",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "Can you come on Saturday?",
+"sub": "Write it in Italian.",
+"answer": "Puoi venire sabato?"
+},
+{
+"id": "i6",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "Okay. See you Saturday!",
+"sub": "Write it in Italian.",
+"answer": "Va bene. A sabato!"
+},
+{
+"id": "i7",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "Do you want to eat a pizza?",
+"sub": "Write it in Italian.",
+"answer": "Vuoi mangiare una pizza?"
+},
+{
+"id": "i8",
+"cat": "inv",
+"type": "selfcheck",
+"prompt": "Yes, I can!",
+"sub": "Write it in Italian.",
+"answer": "Sì, posso!"
+},
+{
+"id": "p1",
+"cat": "prova",
+"sec": "A",
+"type": "selfcheck",
+"prompt": "io + parlare",
+"sub": "Write the form.",
+"answer": "parlo"
+},
+{
+"id": "p2",
+"cat": "prova",
+"sec": "A",
+"type": "selfcheck",
+"prompt": "tu + nuotare",
+"sub": "Write the form.",
+"answer": "nuoti"
+},
+{
+"id": "p3",
+"cat": "prova",
+"sec": "A",
+"type": "selfcheck",
+"prompt": "io + giocare",
+"sub": "Write the form.",
+"answer": "gioco"
+},
+{
+"id": "p4",
+"cat": "prova",
+"sec": "A",
+"type": "selfcheck",
+"prompt": "tu + giocare",
+"sub": "Write the form.",
+"answer": "giochi"
+},
+{
+"id": "p5",
+"cat": "prova",
+"sec": "A",
+"type": "selfcheck",
+"prompt": "tu + mangiare",
+"sub": "Write the form.",
+"answer": "mangi"
+},
+{
+"id": "p6",
+"cat": "prova",
+"sec": "A",
+"type": "selfcheck",
+"prompt": "io + visitare",
+"sub": "Write the form.",
+"answer": "visito"
+},
+{
+"id": "p7",
+"cat": "prova",
+"sec": "B",
+"type": "selfcheck",
+"prompt": "io + volere",
+"sub": "Write the form.",
+"answer": "voglio"
+},
+{
+"id": "p8",
+"cat": "prova",
+"sec": "B",
+"type": "selfcheck",
+"prompt": "tu + volere",
+"sub": "Write the form.",
+"answer": "vuoi"
+},
+{
+"id": "p9",
+"cat": "prova",
+"sec": "B",
+"type": "selfcheck",
+"prompt": "io + dovere",
+"sub": "Write the form.",
+"answer": "devo"
+},
+{
+"id": "p10",
+"cat": "prova",
+"sec": "B",
+"type": "selfcheck",
+"prompt": "tu + dovere",
+"sub": "Write the form.",
+"answer": "devi"
+},
+{
+"id": "p11",
+"cat": "prova",
+"sec": "B",
+"type": "selfcheck",
+"prompt": "io + potere",
+"sub": "Write the form.",
+"answer": "posso"
+},
+{
+"id": "p12",
+"cat": "prova",
+"sec": "B",
+"type": "selfcheck",
+"prompt": "tu + potere",
+"sub": "Write the form.",
+"answer": "puoi"
+},
+{
+"id": "p13",
+"cat": "prova",
+"sec": "C",
+"type": "selfcheck",
+"prompt": "I want to swim.",
+"sub": "Write it in Italian.",
+"answer": "Voglio nuotare."
+},
+{
+"id": "p14",
+"cat": "prova",
+"sec": "C",
+"type": "selfcheck",
+"prompt": "Do you have to study?",
+"sub": "Write it in Italian.",
+"answer": "Devi studiare?"
+},
+{
+"id": "p15",
+"cat": "prova",
+"sec": "C",
+"type": "selfcheck",
+"prompt": "I can dance.",
+"sub": "Write it in Italian.",
+"answer": "Posso ballare."
+},
+{
+"id": "p16",
+"cat": "prova",
+"sec": "C",
+"type": "selfcheck",
+"prompt": "Can you sing?",
+"sub": "Write it in Italian.",
+"answer": "Puoi cantare?"
+},
+{
+"id": "p17",
+"cat": "prova",
+"sec": "C",
+"type": "selfcheck",
+"prompt": "I don’t want to eat.",
+"sub": "Write it in Italian.",
+"answer": "Non voglio mangiare."
+},
+{
+"id": "p18",
+"cat": "prova",
+"sec": "C",
+"type": "selfcheck",
+"prompt": "I would like to visit Rome.",
+"sub": "Write it in Italian.",
+"answer": "Vorrei visitare Roma."
+},
+{
+"id": "p19",
+"cat": "prova",
+"sec": "D",
+"type": "selfcheck",
+"prompt": "Do you want to come to the movies?",
+"sub": "Write it in Italian.",
+"answer": "Vuoi venire al cinema?"
+},
+{
+"id": "p20",
+"cat": "prova",
+"sec": "D",
+"type": "selfcheck",
+"prompt": "Yes! I would like to come!",
+"sub": "Write it in Italian.",
+"answer": "Sì! Vorrei venire!"
+},
+{
+"id": "p21",
+"cat": "prova",
+"sec": "D",
+"type": "selfcheck",
+"prompt": "I’m sorry, I can’t.",
+"sub": "Write it in Italian.",
+"answer": "Mi dispiace, non posso."
+},
+{
+"id": "p22",
+"cat": "prova",
+"sec": "D",
+"type": "selfcheck",
+"prompt": "I have to study.",
+"sub": "Write it in Italian.",
+"answer": "Devo studiare."
+},
+{
+"id": "p23",
+"cat": "prova",
+"sec": "D",
+"type": "selfcheck",
+"prompt": "Can you come on Saturday?",
+"sub": "Write it in Italian.",
+"answer": "Puoi venire sabato?"
+},
+{
+"id": "p24",
+"cat": "prova",
+"sec": "D",
+"type": "selfcheck",
+"prompt": "Okay. See you Saturday!",
+"sub": "Write it in Italian.",
+"answer": "Va bene. A sabato!"
+}
+], CAT: { are: '-ARE: IO E TU', vdp: 'VOGLIO, DEVO, POSSO', inf: '+ INFINITO', inv: 'INVITI' },
+        order: ['are', 'vdp', 'inf', 'inv', 'mixed', 'prova'], catOrder: ['are', 'vdp', 'inf', 'inv'], ord: ['are', 'vdp', 'inf', 'inv', 'mixed'],
+        eyebrow: 'ITALIANO 2 \u00b7 UNIT\u00c0 2', title: '-ARE E VOGLIO, DEVO, POSSO', short: 'UNIT\u00c0 2 \u00b7 GRAMMATICA', tab: '-are \u00b7 voglio, devo, posso', tabSub: 'UNIT\u00c0 2 \u00b7 GRAMMATICA', noTab: true, fc: [{"id": "are", "title": "Verbi in -are", "cards": [["parlare", "to speak"], ["nuotare", "to swim"], ["ballare", "to dance"], ["cantare", "to sing"], ["giocare", "to play"], ["mangiare", "to eat"], ["studiare", "to study"], ["guardare", "to watch"], ["ascoltare", "to listen"], ["suonare", "to play (music)"], ["camminare", "to walk"], ["visitare", "to visit"], ["comprare", "to buy"], ["aiutare", "to help"], ["pescare", "to fish"], ["lavorare", "to work"]]}, {"id": "forme", "title": "Voglio, devo, posso", "cards": [["voglio", "I want"], ["vuoi", "you want"], ["devo", "I have to"], ["devi", "you have to"], ["posso", "I can"], ["puoi", "you can"], ["vorrei", "I would like"], ["Posso andare in bagno?", "May I go to the bathroom?"]]}, {"id": "chat", "title": "Le parole delle chat", "cards": [["stasera", "tonight"], ["domani", "tomorrow"], ["perché", "why / because"], ["con me", "with me"], ["con te", "with you"], ["il biglietto", "the ticket"], ["il museo", "the museum"], ["comprare", "to buy"], ["mi dispiace", "I’m sorry"], ["la verifica", "the test"], ["va bene", "okay"], ["A sabato!", "See you Saturday!"], ["Vuoi venire…?", "Do you want to come…?"], ["Sì! Vorrei venire!", "Yes! I would like to come!"]]}], pops: [{"id": "iotu", "cats": ["are"], "t": "io -O · tu -I", "b": "parlo = I speak\nparli = you speak", "x": "Cut -are. Add the ending."}, {"id": "inf", "cats": ["vdp", "inf", "inv"], "re": "\\b(voglio|vuoi|devo|devi|posso|puoi|vorrei)\\s+\\w+(are|ere|ire)\\b", "t": "Verb 2 never changes", "b": "voglio + nuotare", "x": "Voglio nuotare ✓ · Voglio nuoto ✗"}, {"id": "vorrei", "cats": ["vdp", "inf", "inv"], "re": "vorrei|would like", "t": "vorrei = I would like", "b": "A polite chunk. Learn it whole.", "x": "Vorrei un gelato."}, {"id": "io", "cats": ["inf", "inv"], "t": "io is optional", "b": "The verb already says who.", "x": "Voglio = Io voglio"}, {"id": "non", "cats": ["inf", "inv"], "re": "\\bnon\\b", "t": "NON goes first", "b": "non + verb", "x": "Non posso."}],
+        secn: { A: '-are: io e tu', B: 'Voglio, devo, posso', C: '+ infinito', D: 'Inviti' },
+        badges: { permission_trap: ['Vorrei!', 'Say yes with Vorrei 3 times.'], the_musts: ['Devo', 'Get every dovere form right.'], the_wants: ['Voglio', 'Get every volere form right.'], the_cans: ['Posso', 'Get every potere form right.'], perfect_blank: ['Io e tu', '10 io / tu forms right in a row.'] } }
 };
-var BT_UNIT_ORDER = ['ea', 'u2'];
-var BT_UNIT_SOON = [['Unit\u00e0 2 \u00b7 -are e volere, dovere, potere', 'PRESTO']];
+var BT_UNIT_ORDER = ['ea', 'u2', 'u3'];
+var BT_UNIT_SOON = [['Unit\u00e0 1 \u00b7 le feste e la famiglia', 'PRESTO']];
 var BT_UNIT_KEYS = ["lesson", "profU", "badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
 var BT_GLOBAL_BADGES = ['centone', 'un_sacco', 'tre_di_fila', 'fiamma_oro', 'giro_italia'];
 var BT_UNIT = 'ea', MODES = BT_UNITS.ea.MODES, QUESTION_BANK = BT_UNITS.ea.QB;
@@ -7096,7 +8733,7 @@ class Component extends DCLogic {
       extra.badges = b; extra.newBadges = nb;
   }
   lsData() { return BT_LESSONS[BT_UNIT] || null; }
-  lsTip(it, given, ans) { var D = this.lsData(); if (it && it.tip) return it.tip; if (D && D.tips === 'vocab') return 'vocab'; return lsTipKey(given, ans); }
+  lsTip(it, given, ans) { var D = this.lsData(); if (it && it.tip) return it.tip; if (D && D.tips === 'vocab') return 'vocab'; if (D && D.tips === 'are') return /(vogli|vuo|vuol|dev|poss|puo|può|vorrei)/i.test(ans || '') ? 'vdp' : 'iotu'; return lsTipKey(given, ans); }
   lsState() {
     var L = this.state.lesson;
     if (L && L.v === 1) return L;
@@ -7359,7 +8996,7 @@ class Component extends DCLogic {
     result.lsBubble = bubble;
     if (view === 'fine') result.lsEyebrow = 'Lezione finita · ' + D.title;
     result.lsKicker = G((it && it.kicker) || st.kicker);
-    ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla'].forEach(function (t) { result['ls' + t] = false; });
+    ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla', 'Text'].forEach(function (t) { result['ls' + t] = false; });
     result.lsHasOggi = false; result.lsHasPrompt = false; result.lsPrompt = ''; result.lsSub = '';
     var tip = o.tipKey ? LS_TIPS[o.tipKey] : null;
     result.lsHasMsg = !!o.msg; result.lsMsg = o.msg || '';
@@ -7482,6 +9119,22 @@ class Component extends DCLogic {
       result.lsVerbOk = o.vDone; result.lsVerbOkText = G(it.verbOk || (it.verb + ': imperfetto giusto')) + (o.pay ? '  +' + o.pay + ' BC' : '');
       result.lsBad = false; result.lsCanRetry = false;
       result.lsCanNext = o.st === 'ok';
+    }
+    if (view === 'stop' && ty === 'text') {   // la chat del giorno: one message at a time; help fades translate -> words -> none
+      result.lsText = true;
+      var sh = Math.max(1, o.shown || 1), lines = it.lines, help = it.help || 'none', tw = help === 'words' ? (it.words || {}) : {};
+      result.lsTxName = it.who[0]; result.lsTxAv = it.who[0].charAt(0);
+      result.lsTxHelp = help === 'translate' ? 'Tap a message for English' : help === 'words' ? 'Tap the dotted words' : 'On your own!';
+      result.lsTxMsgs = lines.slice(0, sh).map(function (ln, q) {
+        var mine = ln[0] === 1, open = help === 'translate' && o.tapLine === q;
+        return { cls: 'ls-ph-m ' + (mine ? 'me' : 'them') + (help === 'translate' ? ' tap' : '') + (q === sh - 1 ? ' pop' : ''), hasEn: open, en: ln[2],
+          tap: function () { if (help !== 'translate') return; var o2 = self.lsCopy().o; o2.tapLine = o2.tapLine === q ? -1 : q; self.sfx('tap'); self.setState({ lsIt: o2 }); },
+          parts: lsTxParts(G(ln[1]), tw).map(function (pp) { return { t: pp.t, cls: pp.w ? 'ls-ph-w' : '', tap: function () { if (!pp.w) return; var o2 = self.lsCopy().o; o2.gloss = pp.w; self.sfx('tap'); self.setState({ lsIt: o2 }); } }; }) };
+      });
+      result.lsTxTyping = sh < lines.length; result.lsTxMore = sh < lines.length;
+      result.lsTxNextH = function () { var o2 = self.lsCopy().o; o2.shown = Math.min(lines.length, (o2.shown || 1) + 1); o2.gloss = ''; self.sfx('tap'); self.setState({ lsIt: o2 }); };
+      result.lsTxHasGloss = !!o.gloss; result.lsTxGloss = o.gloss ? o.gloss + ' = ' + tw[o.gloss] : '';
+      result.lsCanNext = sh >= lines.length; result.lsNextLabel = i + 1 < items.length ? 'Ho capito! Avanti' : 'Finisci la tappa';
     }
     if (view === 'stop' && ty === 'parla') {
       result.lsParla = true;
@@ -8257,6 +9910,6 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010100" defer></script>
-<script src="../assets/bohsave.js?v=202610010100" defer></script>
+<script src="../assets/flashcards.js?v=202610010152" defer></script>
+<script src="../assets/bohsave.js?v=202610010152" defer></script>
 </body></html>

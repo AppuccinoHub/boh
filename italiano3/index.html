@@ -239,6 +239,24 @@
 .prof-act.danger b{color:var(--error-text)}
 .prof-act:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .prof-msg{padding:10px 12px;border-radius:12px;background:var(--success-bg);color:var(--success-text);font-weight:800;font-size:14px}
+.ls-phone{display:flex;flex-direction:column;border-radius:26px;overflow:hidden;background:#F4F1F6;border:8px solid #141014;max-width:420px;width:100%;margin:0 auto;color:#2B2430}
+.ls-ph-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid #E3D8DC}
+.ls-ph-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;background:#E88A6C}
+.ls-ph-who{display:flex;flex-direction:column;line-height:1.1}.ls-ph-who small{color:#1E8C4A;font-weight:700;font-size:12px}
+.ls-ph-help{margin-left:auto;font-size:11.5px;font-weight:800;color:#6A4C93;text-align:right;max-width:44%}
+.ls-ph-msgs{display:flex;flex-direction:column;gap:8px;padding:14px 12px;min-height:200px}
+.ls-ph-m{max-width:80%;padding:10px 14px;border-radius:20px;font-size:18px;font-weight:600;line-height:1.3;display:flex;flex-direction:column;gap:4px}
+.ls-ph-m.them{align-self:flex-start;background:#fff;border-bottom-left-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.ls-ph-m.me{align-self:flex-end;background:#2F6FDB;color:#fff;border-bottom-right-radius:6px}
+.ls-ph-m.tap{cursor:pointer}.ls-ph-m.pop{animation:popIn .25s ease-out}
+.ls-ph-en{font-size:14px;font-weight:700;opacity:.85;border-top:1px dashed currentColor;padding-top:4px}
+.ls-ph-w{border-bottom:3px dotted currentColor;cursor:pointer}
+.ls-ph-dots{align-self:flex-start;background:#fff;border-radius:20px;padding:12px 16px;display:flex;gap:5px}
+.ls-ph-dots i{width:8px;height:8px;border-radius:50%;background:#B7A8B8;animation:lsDot 1s infinite}.ls-ph-dots i:nth-child(2){animation-delay:.15s}.ls-ph-dots i:nth-child(3){animation-delay:.3s}
+@keyframes lsDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.ls-ph-gloss{margin:0 12px 10px;padding:10px 12px;border-radius:12px;background:#141014;color:#fff;font-weight:800;font-size:15px;text-align:center}
+.ls-ph-next{all:unset;box-sizing:border-box;cursor:pointer;margin:0 12px 12px;padding:14px;border-radius:999px;background:#C1654F;color:#fff;text-align:center;font-weight:800;font-size:17px}
+.ls-ph-next:focus-visible,.ls-ph-m.tap:focus-visible{outline:3px solid #6A4C93;outline-offset:2px}
 .ls-fc{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 16px;border-radius:18px;background:var(--option-default-bg);border:2px dashed var(--primary-bg);text-align:center}
 .ls-fc-n{font-size:14px;font-weight:800;color:var(--text-muted)}
 .ls-fc-go{all:unset;box-sizing:border-box;cursor:pointer;width:100%;max-width:360px;padding:18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:900;font-size:19px}
@@ -391,6 +409,10 @@
   .ls-uses{grid-template-columns:1fr}
   .ls-chart{font-size:13.5px}
   .lc{padding:5px 5px}
+  .ls-chart,.ls-chart.c3,.ls-chart.c4{grid-template-columns:42px repeat(var(--lsn,4),minmax(0,1fr))}
+  .ls-chart.c3{--lsn:2}.ls-chart.c4{--lsn:3}
+  .lc{overflow-wrap:normal;word-break:keep-all}
+  .lc.h{font-size:9.5px;letter-spacing:0;padding:5px 3px}
   .ls-sent{font-size:19px}
   .ls-stats b{font-size:22px}
 }
@@ -1289,6 +1311,16 @@
                   </sc-if>
                   <sc-if value="{{lsFreeStep}}" hint-placeholder-val="{{false}}"><div class="ls-free"><sc-for list="{{lsFreePart}}" as="p" hint-placeholder-count="1"><input class="{{p.cls}}" type="text" autocomplete="off" spellcheck="false" value="{{p.val}}" onInput="{{p.onInput}}" onKeyDown="{{lsKey}}" aria-label="{{p.aria}}" placeholder="{{lsFreePh}}"></sc-for></div></sc-if>
                   <sc-if value="{{lsMe}}" hint-placeholder-val="{{false}}"><div class="ls-cb me">{{lsMeText}}</div><div class="ls-cb boh">{{lsBohReply}}</div></sc-if>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{lsText}}" hint-placeholder-val="{{false}}">
+                <div class="ls-phone">
+                  <div class="ls-ph-bar"><span class="ls-ph-av" aria-hidden="true">{{lsTxAv}}</span><span class="ls-ph-who"><b>{{lsTxName}}</b><small>online</small></span><span class="ls-ph-help">{{lsTxHelp}}</span></div>
+                  <div class="ls-ph-msgs" aria-live="polite"><sc-for list="{{lsTxMsgs}}" as="m" hint-placeholder-count="3"><div class="{{m.cls}}" onClick="{{m.tap}}"><span><sc-for list="{{m.parts}}" as="pp" hint-placeholder-count="2"><span class="{{pp.cls}}" onClick="{{pp.tap}}">{{pp.t}}</span></sc-for></span><sc-if value="{{m.hasEn}}" hint-placeholder-val="{{false}}"><small class="ls-ph-en">{{m.en}}</small></sc-if></div></sc-for>
+                    <sc-if value="{{lsTxTyping}}" hint-placeholder-val="{{false}}"><div class="ls-ph-dots" aria-label="typing"><i></i><i></i><i></i></div></sc-if></div>
+                  <sc-if value="{{lsTxHasGloss}}" hint-placeholder-val="{{false}}"><div class="ls-ph-gloss" role="status">{{lsTxGloss}}</div></sc-if>
+                  <sc-if value="{{lsTxMore}}" hint-placeholder-val="{{false}}"><button class="ls-ph-next" onClick="{{lsTxNextH}}">Avanti &rsaquo;</button></sc-if>
                 </div>
               </sc-if>
 
@@ -2578,6 +2610,8 @@ var LS_TIPS = {
   fare:     ['Fare → FAC-', 'fare → facevo, faceva, facevamo… Fava is a bean!'],
   cera:     ['C’era o c’erano?', 'One thing → c’era. Many things → c’erano.'],
   essere:   ['Essere è ribelle', 'ero, eri, era, eravamo, eravate, erano.'],
+  iotu:     ['io -o · tu -i', 'Cut -are. io nuoto · tu nuoti. giocare → giochi · mangiare → mangi.'],
+  vdp:      ['Voglio · devo · posso', 'voglio / vuoi · devo / devi · posso / puoi. Verb 2 stays the same: voglio nuotare.'],
   vocab:    ['Rileggi la parola', 'Many words look like English (tennis, ciclismo, nuotare = swim). Say it out loud and try again.'],
   generic:  ['Guarda la tabella', 'Find the verb in the chart and add the heartbeat: vo · vi · va · vamo · vate · vano.']
 };
@@ -2608,6 +2642,20 @@ function lsHasWord(text, verb) {
   var ws = lsNorm(text).split(' '), v = lsNorm(verb);
   for (var i = 0; i < ws.length; i++) if (ws[i] === v || stripAccents(ws[i]) === stripAccents(v) || (ws[i].length >= 4 && btTypoOk(ws[i], v))) return true;
   return false;
+}
+function lsTxParts(line, words) {   // split a chat line into plain text + tappable new words (longest match first)
+  var keys = Object.keys(words || {}).sort(function (a, b) { return b.length - a.length; }), out = [], buf = '', low = String(line).toLowerCase(), i = 0;
+  while (i < line.length) {
+    var hit = null;
+    if (i === 0 || /[\s¿¡"“(]/.test(line.charAt(i - 1))) for (var k = 0; k < keys.length; k++) {
+      var kk = keys[k].toLowerCase();
+      if (low.substr(i, kk.length) === kk && !/[a-zà-ù]/i.test(line.charAt(i + kk.length) || '')) { hit = keys[k]; break; }
+    }
+    if (hit) { if (buf) out.push({ t: buf, w: '' }); buf = ''; out.push({ t: line.substr(i, hit.length), w: hit }); i += hit.length; }
+    else { buf += line.charAt(i); i++; }
+  }
+  if (buf) out.push({ t: buf, w: '' });
+  return out;
 }
 function lsTipKey(given, answer) {
   var g = lsNorm(given), a = lsNorm(answer);
@@ -12217,7 +12265,7 @@ class Component extends DCLogic {
       extra.badges = b; extra.newBadges = nb;
   }
   lsData() { return BT_LESSONS[BT_UNIT] || null; }
-  lsTip(it, given, ans) { var D = this.lsData(); if (it && it.tip) return it.tip; if (D && D.tips === 'vocab') return 'vocab'; return lsTipKey(given, ans); }
+  lsTip(it, given, ans) { var D = this.lsData(); if (it && it.tip) return it.tip; if (D && D.tips === 'vocab') return 'vocab'; if (D && D.tips === 'are') return /(vogli|vuo|vuol|dev|poss|puo|può|vorrei)/i.test(ans || '') ? 'vdp' : 'iotu'; return lsTipKey(given, ans); }
   lsState() {
     var L = this.state.lesson;
     if (L && L.v === 1) return L;
@@ -12480,7 +12528,7 @@ class Component extends DCLogic {
     result.lsBubble = bubble;
     if (view === 'fine') result.lsEyebrow = 'Lezione finita · ' + D.title;
     result.lsKicker = G((it && it.kicker) || st.kicker);
-    ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla'].forEach(function (t) { result['ls' + t] = false; });
+    ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla', 'Text'].forEach(function (t) { result['ls' + t] = false; });
     result.lsHasOggi = false; result.lsHasPrompt = false; result.lsPrompt = ''; result.lsSub = '';
     var tip = o.tipKey ? LS_TIPS[o.tipKey] : null;
     result.lsHasMsg = !!o.msg; result.lsMsg = o.msg || '';
@@ -12603,6 +12651,22 @@ class Component extends DCLogic {
       result.lsVerbOk = o.vDone; result.lsVerbOkText = G(it.verbOk || (it.verb + ': imperfetto giusto')) + (o.pay ? '  +' + o.pay + ' BC' : '');
       result.lsBad = false; result.lsCanRetry = false;
       result.lsCanNext = o.st === 'ok';
+    }
+    if (view === 'stop' && ty === 'text') {   // la chat del giorno: one message at a time; help fades translate -> words -> none
+      result.lsText = true;
+      var sh = Math.max(1, o.shown || 1), lines = it.lines, help = it.help || 'none', tw = help === 'words' ? (it.words || {}) : {};
+      result.lsTxName = it.who[0]; result.lsTxAv = it.who[0].charAt(0);
+      result.lsTxHelp = help === 'translate' ? 'Tap a message for English' : help === 'words' ? 'Tap the dotted words' : 'On your own!';
+      result.lsTxMsgs = lines.slice(0, sh).map(function (ln, q) {
+        var mine = ln[0] === 1, open = help === 'translate' && o.tapLine === q;
+        return { cls: 'ls-ph-m ' + (mine ? 'me' : 'them') + (help === 'translate' ? ' tap' : '') + (q === sh - 1 ? ' pop' : ''), hasEn: open, en: ln[2],
+          tap: function () { if (help !== 'translate') return; var o2 = self.lsCopy().o; o2.tapLine = o2.tapLine === q ? -1 : q; self.sfx('tap'); self.setState({ lsIt: o2 }); },
+          parts: lsTxParts(G(ln[1]), tw).map(function (pp) { return { t: pp.t, cls: pp.w ? 'ls-ph-w' : '', tap: function () { if (!pp.w) return; var o2 = self.lsCopy().o; o2.gloss = pp.w; self.sfx('tap'); self.setState({ lsIt: o2 }); } }; }) };
+      });
+      result.lsTxTyping = sh < lines.length; result.lsTxMore = sh < lines.length;
+      result.lsTxNextH = function () { var o2 = self.lsCopy().o; o2.shown = Math.min(lines.length, (o2.shown || 1) + 1); o2.gloss = ''; self.sfx('tap'); self.setState({ lsIt: o2 }); };
+      result.lsTxHasGloss = !!o.gloss; result.lsTxGloss = o.gloss ? o.gloss + ' = ' + tw[o.gloss] : '';
+      result.lsCanNext = sh >= lines.length; result.lsNextLabel = i + 1 < items.length ? 'Ho capito! Avanti' : 'Finisci la tappa';
     }
     if (view === 'stop' && ty === 'parla') {
       result.lsParla = true;
@@ -13378,6 +13442,6 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010100" defer></script>
-<script src="../assets/bohsave.js?v=202610010100" defer></script>
+<script src="../assets/flashcards.js?v=202610010152" defer></script>
+<script src="../assets/bohsave.js?v=202610010152" defer></script>
 </body></html>
