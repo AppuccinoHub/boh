@@ -1,0 +1,147 @@
+{
+  "levels": {
+    "1": "Italiano 1",
+    "2": "Italiano 2",
+    "3": "Italiano 3",
+    "4": "Italiano 4",
+    "ap": "AP Italian"
+  },
+  "tasks": [
+    {
+      "id": "l1-presenta", "level": "1", "unit": "Ripasso · Essere o avere", "type": "essay", "kind": "formative", "bc": 50,
+      "title": "Presenta te e un amico",
+      "prompt": "Write 6 sentences in Italian about you and a friend. Use essere AND avere at least 3 times each.",
+      "frames": ["Io sono…", "Ho…", "Il mio amico / La mia amica è…", "Lui / Lei ha…", "Noi siamo…", "Noi abbiamo…"],
+      "minWords": 30,
+      "vocab": ["essere", "avere", "sono", "sei", "è", "siamo", "siete", "ho", "hai", "ha", "abbiamo", "avete", "hanno", "cane", "gatto", "animale", "domestico", "simpatico", "simpatica", "bravo", "brava", "gentile", "studente", "studentessa", "amico", "amica", "anni", "fame", "sete", "freddo", "caldo", "sonno", "paura", "stanco", "stanca"]
+    },
+    {
+      "id": "l1-domande", "level": "1", "unit": "Ripasso · Essere o avere", "type": "questions", "kind": "formative", "bc": 40,
+      "title": "Rispondi alle domande",
+      "prompt": "Answer each question in a full Italian sentence.",
+      "questions": ["Come ti chiami?", "Quanti anni hai?", "Hai un animale domestico?", "Come sei? (tre aggettivi)", "Chi è il tuo migliore amico / la tua migliore amica?"],
+      "minWords": 20,
+      "vocab": ["mi", "chiamo", "sono", "ho", "anni", "un", "una", "cane", "gatto", "non", "è", "simpatico", "simpatica", "bravo", "brava", "gentile", "amico", "amica", "migliore", "mio", "mia"]
+    },
+    {
+      "id": "l1-dialogo", "level": "1", "unit": "Ripasso · Essere o avere", "type": "dialogue", "kind": "formative", "bc": 60,
+      "title": "Due nuovi amici",
+      "prompt": "Write a dialogue (at least 6 lines) between two new friends meeting for the first time. Start each line with the speaker's name.",
+      "frames": ["Ciao! Sono…", "Hai…?", "Sì, ho… / No, non ho…", "Quanti anni hai?", "Sei…?"],
+      "minWords": 35,
+      "vocab": ["ciao", "sono", "sei", "è", "ho", "hai", "ha", "anni", "sì", "no", "non", "come", "quanti", "un", "una", "cane", "gatto", "piacere"]
+    },
+    {
+      "id": "l2-weekend", "level": "2", "unit": "Il tempo libero", "type": "essay", "kind": "formative", "bc": 60,
+      "title": "Il mio tempo libero",
+      "prompt": "Write 6–8 sentences about what you like to do in your free time: sports, weather, seasons. Say what you do and when.",
+      "frames": ["Mi piace…", "Il sabato io…", "D'estate…", "Quando fa freddo…", "Non mi piace…"],
+      "minWords": 40,
+      "vocab": ["mi", "piace", "il", "la", "calcio", "pallavolo", "nuotare", "ballare", "cantare", "camminare", "giocare", "suonare", "squadra", "partita", "estate", "inverno", "primavera", "autunno", "fa", "caldo", "freddo", "piove", "nevica", "sabato", "domenica", "gennaio", "luglio"]
+    },
+    {
+      "id": "l2-invito", "level": "2", "unit": "-are · voglio, devo, posso", "type": "dialogue", "kind": "summative", "bc": 100,
+      "title": "Un invito",
+      "prompt": "Write a text-message dialogue (at least 8 lines): one friend invites the other, the other says what they want, must, or can do. Use voglio / devo / posso + infinitive at least 4 times.",
+      "frames": ["Vuoi venire…?", "Sì! Vorrei venire!", "Mi dispiace, devo…", "Posso…?", "A sabato!"],
+      "minWords": 50,
+      "vocab": ["voglio", "vuoi", "vuole", "devo", "devi", "deve", "posso", "puoi", "può", "vorrei", "venire", "andare", "studiare", "comprare", "il", "biglietto", "museo", "stasera", "domani", "perché", "con", "me", "te", "va", "bene", "mi", "dispiace", "verifica"]
+    },
+    {
+      "id": "l2-domande", "level": "2", "unit": "Il tempo libero", "type": "questions", "kind": "formative", "bc": 40,
+      "title": "Domande sul tempo libero",
+      "prompt": "Answer each question in a full Italian sentence.",
+      "questions": ["Che cosa ti piace fare nel tempo libero?", "Che sport ti piace?", "Che tempo fa oggi?", "Qual è il tuo mese preferito? Perché?"],
+      "minWords": 20,
+      "vocab": ["mi", "piace", "il", "la", "sport", "calcio", "oggi", "fa", "caldo", "freddo", "mese", "preferito", "perché"]
+    },
+    {
+      "id": "l3-piccolo", "level": "3", "unit": "L'imperfetto", "type": "story", "kind": "summative", "bc": 120,
+      "title": "Da piccolo/a",
+      "prompt": "Write a short story (8–10 sentences) about what you used to do and how things were when you were little. Use the imperfetto. Include at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito).",
+      "frames": ["Da piccolo/a io…", "Ogni estate…", "Di solito…", "C'era…", "Mia nonna… sempre", "Era…"],
+      "minWords": 70,
+      "vocab": ["ero", "eri", "era", "eravamo", "erano", "avevo", "aveva", "avevamo", "giocavo", "giocava", "mangiavo", "andavo", "andava", "facevo", "faceva", "c'era", "c'erano", "sempre", "spesso", "di", "solito", "ogni", "giorno", "estate", "piccolo", "piccola", "nonna", "nonno", "casa", "scuola"]
+    },
+    {
+      "id": "l3-nonna", "level": "3", "unit": "L'imperfetto", "type": "dialogue", "kind": "formative", "bc": 80,
+      "title": "Intervista a un nonno o una nonna",
+      "prompt": "Write an interview (at least 8 lines). A student asks a grandparent what life was like when they were young. Use the imperfetto in questions and answers.",
+      "frames": ["Com'era la vita…?", "Che cosa facevi…?", "Dove abitavi…?", "Allora…", "Mi ricordo…"],
+      "minWords": 60,
+      "vocab": ["era", "ero", "eri", "facevi", "facevo", "abitavi", "abitavo", "giocavi", "giocavo", "c'era", "c'erano", "allora", "vita", "giovane", "quando", "mi", "ricordo", "sempre", "spesso", "nonno", "nonna"]
+    },
+    {
+      "id": "l3-domande", "level": "3", "unit": "L'imperfetto", "type": "questions", "kind": "formative", "bc": 40,
+      "title": "Domande sull'infanzia",
+      "prompt": "Answer each question in a full Italian sentence using the imperfetto.",
+      "questions": ["Dove abitavi quando eri piccolo/a?", "Che cosa facevi ogni estate?", "Com'era la tua scuola elementare?", "Chi era il tuo migliore amico / la tua migliore amica?"],
+      "minWords": 25,
+      "vocab": ["abitavo", "ero", "facevo", "era", "ogni", "estate", "scuola", "elementare", "amico", "amica"]
+    },
+    {
+      "id": "l4-routine", "level": "4", "unit": "Verbi riflessivi · presente", "type": "essay", "kind": "formative", "bc": 100,
+      "title": "La mia giornata",
+      "prompt": "Describe your day from waking up to going to bed (8–10 sentences). Use at least 6 reflexive verbs. Say the times.",
+      "frames": ["Di solito mi sveglio alle…", "Mi alzo…", "Mi lavo…", "Mi vesto…", "Dopo la scuola mi riposo…", "La sera mi addormento…"],
+      "minWords": 70,
+      "vocab": ["mi", "ti", "si", "ci", "vi", "svegliarsi", "sveglio", "alzo", "lavo", "vesto", "preparo", "sento", "diverto", "annoio", "arrabbio", "siedo", "addormento", "riposo", "pettino", "alle", "presto", "tardi", "poi", "dopo", "prima", "di", "solito"]
+    },
+    {
+      "id": "l4-reciproci", "level": "4", "unit": "Verbi reciproci", "type": "dialogue", "kind": "formative", "bc": 100,
+      "title": "Ci vediamo?",
+      "prompt": "Write a dialogue (at least 8 lines) between two friends who see, call, write and meet each other. Use at least 4 reciprocal verbs with ci or si.",
+      "frames": ["Ci vediamo…?", "Ci telefoniamo…", "Ci scriviamo…", "Ci incontriamo…", "Si salutano…"],
+      "minWords": 60,
+      "vocab": ["ci", "si", "vediamo", "vedono", "telefoniamo", "scriviamo", "incontriamo", "abbracciamo", "salutiamo", "capiamo", "aiutiamo", "ogni", "sabato", "domani", "stasera", "dopo", "scuola"]
+    },
+    {
+      "id": "l4-ieri", "level": "4", "unit": "Passato prossimo · riflessivi", "type": "story", "kind": "summative", "bc": 150,
+      "title": "Ieri",
+      "prompt": "Tell the story of yesterday (10 sentences). Use the passato prossimo of reflexive verbs. Remember: essere + the participle agrees with the subject.",
+      "frames": ["Ieri mi sono svegliato/a…", "Mi sono alzato/a…", "Poi mi sono…", "Io e un amico ci siamo…", "Alla fine mi sono addormentato/a…"],
+      "minWords": 80,
+      "vocab": ["sono", "è", "siamo", "svegliato", "svegliata", "alzato", "alzata", "lavato", "lavata", "vestito", "vestita", "divertito", "divertita", "annoiato", "annoiata", "arrabbiato", "arrabbiata", "addormentato", "addormentata", "incontrati", "incontrate", "visti", "viste", "ieri", "poi", "dopo", "alla", "fine", "mi", "ci"]
+    },
+    {
+      "id": "l4-imperfetto", "level": "4", "unit": "Imperfetto · riflessivi", "type": "story", "kind": "formative", "bc": 120,
+      "title": "Quando ero piccolo/a",
+      "prompt": "Write about your habits as a child using reflexive verbs in the imperfetto (8 sentences). Then add one story: 'mentre mi lavavo, è suonato il telefono…'",
+      "frames": ["Da piccolo/a mi svegliavo…", "Ogni sabato ci vedevamo…", "Mentre mi lavavo…", "Mi divertivo…", "Mi annoiavo…"],
+      "minWords": 70,
+      "vocab": ["svegliavo", "alzavo", "lavavo", "vestivo", "divertivo", "annoiavo", "arrabbiavo", "addormentavo", "vedevamo", "mentre", "è", "suonato", "sempre", "ogni", "spesso", "mi", "ci"]
+    },
+    {
+      "id": "l4-comandi", "level": "4", "unit": "Comandi con i riflessivi", "type": "dialogue", "kind": "formative", "bc": 100,
+      "title": "Consigli e comandi",
+      "prompt": "Write a dialogue (at least 8 lines) where a parent, coach or teacher gives commands to a student, and the student answers. Use at least 5 reflexive commands (tu, Lei, voi or noi).",
+      "frames": ["Alzati!", "Non ti preoccupare! / Non preoccuparti!", "Si accomodi!", "Sedetevi!", "Divertiamoci!"],
+      "minWords": 60,
+      "vocab": ["alzati", "lavati", "vestiti", "svegliati", "siediti", "preoccuparti", "preoccupare", "non", "ti", "si", "accomodi", "sedetevi", "alzatevi", "divertiamoci", "sbrigati", "calmati", "rilassati", "tranquillo", "tranquilla"]
+    },
+    {
+      "id": "l4-futuro", "level": "4", "unit": "Il futuro", "type": "essay", "kind": "summative", "bc": 150,
+      "title": "Il mio futuro",
+      "prompt": "What do you want to do in the future? Write 10 sentences. Use voglio + infinitive AND the future tense, with reflexive verbs where you can (mi laureerò, ci sposeremo, mi trasferirò…).",
+      "frames": ["Da grande voglio…", "Un giorno mi laureerò…", "Mi trasferirò a…", "Tra dieci anni…", "Mi sposerò? / Ci incontreremo…"],
+      "minWords": 90,
+      "vocab": ["voglio", "vorrei", "sarò", "avrò", "farò", "andrò", "mi", "ti", "ci", "laureerò", "sposerò", "trasferirò", "divertirò", "sentirò", "laureare", "sposare", "trasferire", "tra", "anni", "un", "giorno", "da", "grande", "lavorare", "viaggiare", "università"]
+    },
+    {
+      "id": "ap-lettera", "level": "ap", "unit": "Comunicazione scritta", "type": "essay", "kind": "formative", "bc": 150,
+      "title": "Una lettera informale",
+      "prompt": "Write an informal email or letter (at least 120 words) to a friend in Italy. Tell about recent events (passato prossimo, imperfetto), ask three questions, and make a plan for the future.",
+      "frames": ["Caro / Cara…,", "Come stai? Io…", "La settimana scorsa…", "Mi piacerebbe…", "Scrivimi presto! Un abbraccio,"],
+      "minWords": 120,
+      "vocab": []
+    },
+    {
+      "id": "ap-saggio", "level": "ap", "unit": "Saggio persuasivo", "type": "essay", "kind": "summative", "bc": 200,
+      "title": "Saggio persuasivo",
+      "prompt": "Write a persuasive essay (at least 180 words) on a topic from this unit. State your position, give two reasons with examples, address one objection, and conclude.",
+      "frames": ["Secondo me…", "In primo luogo…", "Inoltre…", "Alcuni pensano che… ma…", "In conclusione…"],
+      "minWords": 180,
+      "vocab": []
+    }
+  ]
+}

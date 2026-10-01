@@ -1321,6 +1321,7 @@
 
         <sc-if value="{{hasLesson}}" hint-placeholder-val="{{false}}"><h2 class="lp-rip display">Ripasso libero <span>extra practice, one step at a time</span></h2></sc-if>
         <sc-if value="{{hasFc}}" hint-placeholder-val="{{false}}"><button class="fc-home" onClick="{{fcHomeH}}"><span class="fc-ic" aria-hidden="true">&#127183;</span><span class="fc-tx"><b>Flashcards</b><small>{{fcSub}}</small></span><span class="fc-go">&rsaquo;</span></button></sc-if>
+        <a class="fc-home" href="../scrivi/?l=1" style="text-decoration:none;color:inherit"><span class="fc-ic" aria-hidden="true">&#9997;&#65039;</span><span class="fc-tx"><b>Scrivi &middot; Consegna</b><small>Stories, dialogues, essays: write it, hand it in</small></span><span class="fc-go">&rsaquo;</span></a>
         <div class="mode-list" style="display:flex;flex-direction:column;gap:12px;">
           <sc-for list="{{modeList}}" as="m" hint-placeholder-count="5">
             <button onClick="{{m.pick}}" class="{{m.cls}}" style="{{m.style}}">

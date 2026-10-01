@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Scrivi e consegna</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{color-scheme:light}
+[data-theme="light"]{--bg:#EFE6E8;--surface:#fff;--card-border:#DDD0D5;--text:#2B2430;--muted:#6B5F68;--faint:#948892;--accent:#6A4C93;--primary:#C1654F;--primary-text:#fff;--ok-bg:#E6F5EC;--ok:#2F7D4F;--bad-bg:#FBEAE7;--bad:#B5473C;--warn-bg:#FBEEDD;--warn:#8A5A12;--field:#F5EFEF}
+[data-theme="dark"]{color-scheme:dark;--bg:#1C1520;--surface:#251C2A;--card-border:#362A3D;--text:#F2EAF0;--muted:#B7A8B8;--faint:#8A7A8C;--accent:#B79AE0;--primary:#E88A6C;--primary-text:#241318;--ok-bg:rgba(124,217,160,.14);--ok:#7CD9A0;--bad-bg:rgba(240,120,100,.16);--bad:#F59A8D;--warn-bg:rgba(230,170,80,.15);--warn:#F0C27A;--field:#1C1520}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 Manrope,system-ui,-apple-system,sans-serif;min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 60px}
+.top{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:14px}
+.back{display:inline-flex;padding:8px 14px;border-radius:999px;font-weight:800;font-size:14px;color:inherit;text-decoration:none;border:1.5px solid var(--card-border);background:var(--surface)}
+.eyebrow{font:700 13px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+h1{font:800 34px/1.05 "Bricolage Grotesque",sans-serif;margin:6px 0 4px}
+h2{font:800 22px/1.15 "Bricolage Grotesque",sans-serif;margin:0}
+p{margin:0}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:2px solid var(--card-border);border-radius:18px;padding:16px;margin:12px 0}
+.tasks{display:flex;flex-direction:column;gap:10px}
+.task{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:16px;background:var(--surface);border:2px solid var(--card-border)}
+.task:hover{border-color:var(--accent)}
+.task:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.task b{font:800 18px/1.2 "Bricolage Grotesque",sans-serif}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.pill{font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--field);color:var(--muted);border:1px solid var(--card-border)}
+.pill.sum{background:var(--warn-bg);color:var(--warn);border-color:transparent}
+.pill.for{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.pill.done{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+label.f{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--faint);text-transform:uppercase;margin:12px 0 4px}
+input[type=text]{width:100%;padding:11px 12px;border-radius:12px;border:2px solid var(--card-border);background:var(--field);color:var(--text);font:700 16px Manrope,sans-serif}
+textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px solid var(--card-border);background:var(--field);color:var(--text);font:600 17px/1.55 Manrope,sans-serif;resize:vertical}
+.q{margin-top:10px}
+.q b{display:block;margin-bottom:4px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{all:unset;cursor:pointer;padding:6px 11px;border-radius:999px;font-weight:700;font-size:14px;background:var(--field);border:1.5px solid var(--card-border);color:var(--text)}
+.chip.acc{min-width:34px;text-align:center;font-weight:800}
+.bar{height:10px;border-radius:99px;background:var(--field);border:1px solid var(--card-border);overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:var(--primary);width:0;transition:width .2s}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;padding:14px 22px;border-radius:14px;background:var(--primary);color:var(--primary-text);font:800 17px "Bricolage Grotesque",sans-serif;text-align:center}
+.btn.ghost{background:var(--surface);color:var(--text);border:2px solid var(--card-border)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.notice{padding:10px 12px;border-radius:12px;font-weight:700;font-size:14px;margin-top:10px}
+.notice.bad{background:var(--bad-bg);color:var(--bad)}
+.notice.ok{background:var(--ok-bg);color:var(--ok)}
+.notice.warn{background:var(--warn-bg);color:var(--warn)}
+.code{font:600 12px/1.4 ui-monospace,Menlo,Consolas,monospace;min-height:120px}
+.stat{font-size:13px;color:var(--faint);margin-top:6px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--bad);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:50;max-width:92vw;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+[hidden]{display:none!important}
+.sig{margin-top:30px;text-align:center;font-size:11px;font-weight:700;color:var(--faint);letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="sig">Created by Assunta Scotto 2026</div>
+<script>
+(function () {
+  var LEVEL_KEYS = { '1': 'bohItaliano1_v2', '2': 'bohItaliano2_v2', '3': 'bohItaliano3_v2', '4': 'bohItaliano4_v2', 'ap': 'bohAP_v2' };
+  var SALT = 'boh-consegna-v1';
+  var app = document.getElementById('app'), TASKS = null, LV = {};
+  var qs = new URLSearchParams(location.search), level = qs.get('l') || '3', taskId = qs.get('t') || '';
+  try { var th = localStorage.getItem('boh_theme'); document.documentElement.setAttribute('data-theme', th === 'dark' || (!th && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'); } catch (e) {}
+  function lsGet(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function words(t) { return (String(t).match(/[A-Za-zÀ-ÿ'’]+/g) || []).length; }
+  function b64u(buf) { var s = '', a = new Uint8Array(buf); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); }
+  async function sign(body) { var h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SALT + '.' + body)); return hex(h).slice(0, 16); }
+  async function pack(obj) {
+    var json = new TextEncoder().encode(JSON.stringify(obj)), bytes = json, tag = 'j';
+    if (window.CompressionStream) {
+      var cs = new CompressionStream('gzip'), w = cs.writable.getWriter(); w.write(json); w.close();
+      bytes = new Uint8Array(await new Response(cs.readable).arrayBuffer()); tag = 'z';
+    }
+    var body = tag + b64u(bytes);
+    return 'BOH1.' + body + '.' + (await sign(body));
+  }
+
+  function bohName() { var p = lsGet('boh_profile_v1', {}); return p.bohName || ''; }
+  var DR = lsGet('boh_scrivi_drafts_v1', {}), DONE = lsGet('boh_consegne_v1', {});
+  function saveDr() { lsSet('boh_scrivi_drafts_v1', DR); }
+
+  function home() {
+    var list = TASKS.filter(function (t) { return t.level === level; });
+    var h = '<div class="top"><a class="back" href="../">← Livelli</a><span class="pill">' + esc(LV[level] || level) + '</span></div>' +
+      '<div class="eyebrow">Scrivi · Consegna</div><h1>Scrivi in italiano</h1>' +
+      '<p class="muted">Pick a task, write it yourself, then hand it in. Boh counts what you type, not what you paste.</p><div class="tasks" style="margin-top:14px">';
+    list.forEach(function (t) {
+      var d = DONE[t.id];
+      h += '<button class="task" data-t="' + t.id + '"><span class="eyebrow">' + esc(t.unit) + '</span><b>' + esc(t.title) + '</b><span class="muted" style="font-size:14px">' + esc(t.prompt.slice(0, 120)) + (t.prompt.length > 120 ? '…' : '') + '</span>' +
+        '<span class="pills"><span class="pill ' + (t.kind === 'summative' ? 'sum' : 'for') + '">' + (t.kind === 'summative' ? 'Summativa' : 'Formativa') + '</span><span class="pill">' + typeLabel(t.type) + '</span><span class="pill">min ' + t.minWords + ' parole</span><span class="pill">+' + t.bc + ' BC</span>' + (d ? '<span class="pill done">✓ consegnata</span>' : (DR[t.id] ? '<span class="pill">bozza salvata</span>' : '')) + '</span></button>';
+    });
+    if (!list.length) h += '<div class="card muted">No writing tasks for this level yet.</div>';
+    app.innerHTML = h + '</div>';
+    app.querySelectorAll('.task').forEach(function (b) { b.onclick = function () { open(b.getAttribute('data-t')); }; });
+    history.replaceState(null, '', '?l=' + level);
+  }
+  function typeLabel(t) { return { essay: 'Tema', story: 'Racconto', dialogue: 'Dialogo', questions: 'Domande' }[t] || t; }
+
+  function open(id) {
+    var t = TASKS.find(function (x) { return x.id === id; }); if (!t) return home();
+    history.replaceState(null, '', '?l=' + level + '&t=' + id);
+    var parts = t.type === 'questions' ? t.questions.map(function (q) { return { label: q, text: '' }; }) : [{ label: '', text: '' }];
+    var d = DR[id] || { parts: parts, st: newStats() };
+    if (d.parts.length !== parts.length) d = { parts: parts, st: newStats() };
+    DR[id] = d; var st = d.st;
+    var name = lsGet('boh_scrivi_name', '');
+    var h = '<div class="top"><button class="back" id="bk" style="all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;font-weight:800;font-size:14px;border:1.5px solid var(--card-border);background:var(--surface)">← Compiti</button><span class="pill ' + (t.kind === 'summative' ? 'sum' : 'for') + '">' + (t.kind === 'summative' ? 'Summativa' : 'Formativa') + '</span></div>' +
+      '<div class="eyebrow">' + esc(t.unit) + ' · ' + typeLabel(t.type) + '</div><h1>' + esc(t.title) + '</h1><p>' + esc(t.prompt) + '</p>';
+    if (t.frames && t.frames.length) h += '<div class="chips" aria-label="Frasi per iniziare">' + t.frames.map(function (f, i) { return '<button class="chip" data-f="' + i + '">' + esc(f) + '</button>'; }).join('') + '</div>';
+    h += '<div class="chips" aria-label="Lettere accentate">' + 'à è é ì ò ù À È É'.split(' ').map(function (c) { return '<button class="chip acc" data-a="' + c + '">' + c + '</button>'; }).join('') + '</div>';
+    parts.forEach(function (p, i) {
+      h += '<div class="q">' + (p.label ? '<b>' + esc(p.label) + '</b>' : '') + '<textarea data-i="' + i + '" lang="it" spellcheck="false" autocomplete="off" autocorrect="off" aria-label="' + esc(p.label || 'Scrivi qui') + '" placeholder="' + (p.label ? 'La tua risposta…' : 'Scrivi qui. Write it yourself: no copy and paste.') + '">' + esc(d.parts[i].text) + '</textarea></div>';
+    });
+    h += '<div class="card"><div class="row"><b id="wc"></b><span class="muted" id="sv" style="font-size:13px"></span></div><div class="bar"><i id="pb"></i></div><div class="stat">Boh sees: typing time, copy and paste, and when you leave this page.</div></div>' +
+      '<label class="f" for="nm">Il tuo nome vero · your real name</label><input id="nm" type="text" maxlength="40" value="' + esc(name) + '" autocomplete="name" placeholder="Nome e cognome">' +
+      '<div class="row" style="margin-top:16px"><button class="btn ghost" id="bk2">Salva e esci</button><button class="btn" id="go">Consegna</button></div><div id="msg"></div>';
+    app.innerHTML = h;
+    var tas = app.querySelectorAll('textarea'), last = Date.now(), lens = []; tas.forEach(function (ta, i) { lens[i] = ta.value.length; });
+    function total() { var s = 0; tas.forEach(function (ta) { s += words(ta.value); }); return s; }
+    function upd() {
+      var n = total(); app.querySelector('#wc').textContent = n + ' / ' + t.minWords + ' parole';
+      app.querySelector('#pb').style.width = Math.min(100, Math.round(n / t.minWords * 100)) + '%';
+    }
+    function flush() { tas.forEach(function (ta, i) { d.parts[i].text = ta.value; }); d.st.words = total(); saveDr(); app.querySelector('#sv').textContent = 'Salvato'; }
+    function tick() { var now = Date.now(); if (now - last < 8000) st.activeMs += now - last; last = now; if (!st.first) st.first = new Date().toISOString(); }
+    function toast(m) { var el = document.createElement('div'); el.className = 'toast'; el.textContent = m; document.body.appendChild(el); setTimeout(function () { el.remove(); }, 3200); }
+    tas.forEach(function (ta, i) {
+      ta.addEventListener('paste', function (e) { e.preventDefault(); st.paste++; st.log.push(['paste', Math.round((Date.now() - (Date.parse(st.first) || Date.now())) / 1000)]); flush(); toast('Boh non accetta copia-incolla. Scrivi tu!'); });
+      ta.addEventListener('drop', function (e) { e.preventDefault(); st.drop++; flush(); toast('Boh non accetta il trascinamento. Scrivi tu!'); });
+      ta.addEventListener('dragover', function (e) { e.preventDefault(); });
+      ta.addEventListener('beforeinput', function (e) {
+        if (/^insertFrom(Paste|Drop|Yank|PasteAsQuotation)$/.test(e.inputType || '')) { e.preventDefault(); st.paste++; flush(); toast('Boh non accetta copia-incolla. Scrivi tu!'); }
+      });
+      ta.addEventListener('keydown', function () { tick(); st.keys++; });
+      ta.addEventListener('input', function (e) {
+        tick(); var dl = ta.value.length - lens[i]; lens[i] = ta.value.length;
+        if (dl > 25) { st.jumps++; st.maxJump = Math.max(st.maxJump, dl); st.log.push(['jump', dl]); }
+        if (dl < 0) st.dels += -dl;
+        upd(); flush();
+      });
+    });
+    function insert(ta, text) { var s = ta.selectionStart || ta.value.length, e2 = ta.selectionEnd || s; ta.value = ta.value.slice(0, s) + text + ta.value.slice(e2); ta.selectionStart = ta.selectionEnd = s + text.length; lens[Array.prototype.indexOf.call(tas, ta)] = ta.value.length; ta.focus(); upd(); flush(); }
+    var cur = tas[0]; tas.forEach(function (ta) { ta.addEventListener('focus', function () { cur = ta; }); });
+    app.querySelectorAll('[data-f]').forEach(function (b) { b.onclick = function () { st.chips++; insert(cur, t.frames[+b.getAttribute('data-f')].replace(/…$/, '') + ' '); }; });
+    app.querySelectorAll('[data-a]').forEach(function (b) { b.onclick = function () { st.accents++; insert(cur, b.getAttribute('data-a')); }; });
+    function away(on) { var now = Date.now(); if (on && !st._away) st._away = now; if (!on && st._away) { var s = now - st._away; st._away = 0; if (s > 1500) { st.leaves++; st.awayMs += s; st.log.push(['away', Math.round(s / 1000)]); flush(); } } }
+    window.onblur = function () { away(true); }; window.onfocus = function () { away(false); };
+    document.onvisibilitychange = function () { away(document.hidden); };
+    var t0 = Date.now(); st.sessions++; flush();
+    upd();
+    app.querySelector('#bk').onclick = app.querySelector('#bk2').onclick = function () { st.openMs += Date.now() - t0; flush(); window.onblur = window.onfocus = null; home(); };
+    app.querySelector('#go').onclick = async function () {
+      var msg = app.querySelector('#msg'), nm = app.querySelector('#nm').value.trim();
+      if (nm.length < 2) { msg.innerHTML = '<div class="notice bad">Scrivi il tuo nome vero prima di consegnare.</div>'; app.querySelector('#nm').focus(); return; }
+      if (total() < 5) { msg.innerHTML = '<div class="notice bad">Scrivi almeno qualche frase prima di consegnare.</div>'; return; }
+      lsSet('boh_scrivi_name', nm); st.openMs += Date.now() - t0; away(false); flush();
+      var payload = { v: 1, l: level, t: t.id, title: t.title, kind: t.kind, unit: t.unit, type: t.type, minWords: t.minWords, name: nm, boh: bohName(), words: total(),
+        parts: d.parts.map(function (p) { return { q: p.label, a: p.text }; }),
+        st: { keys: st.keys, paste: st.paste, drop: st.drop, jumps: st.jumps, maxJump: st.maxJump, dels: st.dels, chips: st.chips, accents: st.accents, activeMs: st.activeMs, openMs: st.openMs, leaves: st.leaves, awayMs: st.awayMs, sessions: st.sessions, log: st.log.slice(0, 40) },
+        first: st.first, at: new Date().toISOString(), tz: new Date().getTimezoneOffset() };
+      var code = await pack(payload);
+      var first = !DONE[t.id]; if (first) { DONE[t.id] = { at: payload.at, code: code.slice(0, 20) }; lsSet('boh_consegne_v1', DONE); award(t.bc); }
+      done(t, code, first);
+    };
+  }
+  function newStats() { return { keys: 0, paste: 0, drop: 0, jumps: 0, maxJump: 0, dels: 0, chips: 0, accents: 0, activeMs: 0, openMs: 0, leaves: 0, awayMs: 0, sessions: 0, first: '', words: 0, log: [] }; }
+  function award(n) {
+    try {
+      var k = LEVEL_KEYS[level], s = lsGet(k, null); if (!s) return;
+      if (typeof s.cashi === 'number') { s.cashi += n; s.lifetime = (s.lifetime || 0) + n; } else if (typeof s.bc === 'number') { s.bc += n; }
+      lsSet(k, s);
+    } catch (e) {}
+  }
+  function done(t, code, first) {
+    var h = '<div class="top"><a class="back" href="?l=' + level + '">← Compiti</a></div><div class="eyebrow">Consegna</div><h1>Fatto! Hand it in.</h1>' +
+      (first ? '<div class="notice ok">+' + t.bc + ' BC aggiunti al tuo portafoglio.</div>' : '<div class="notice warn">Hai già consegnato questo compito: nessun BC nuovo, ma il codice è aggiornato.</div>') +
+      '<div class="card"><b>1. Copia il codice</b><textarea class="code" id="cd" readonly>' + esc(code) + '</textarea><div class="row" style="margin-top:10px"><button class="btn" id="cp">Copia il codice</button><button class="btn ghost" id="dl">Scarica il file .txt</button></div><div id="cm"></div></div>' +
+      '<div class="card"><b>2. Mettilo in Google Classroom</b><p class="muted">Open the assignment, tap <b>Add or create → Doc</b> (or attach the .txt file), paste the code, then <b>Turn in</b>. Your teacher reads it in Boh.</p></div>';
+    app.innerHTML = h;
+    app.querySelector('#cp').onclick = function () { var ta = app.querySelector('#cd'); ta.select(); try { navigator.clipboard.writeText(code); } catch (e) { document.execCommand('copy'); } app.querySelector('#cm').innerHTML = '<div class="notice ok">Copiato!</div>'; };
+    app.querySelector('#dl').onclick = function () { var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([code], { type: 'text/plain' })); a.download = 'boh-' + t.id + '.txt'; a.click(); };
+  }
+
+  fetch('../assets/tasks.json').then(function (r) { return r.json(); }).then(function (j) { TASKS = j.tasks; LV = j.levels; if (taskId) open(taskId); else home(); })
+    .catch(function () { app.innerHTML = '<div class="card">Non riesco a caricare i compiti. Riprova più tardi.</div>'; });
+})();
+</script>
+</body>
+</html>
