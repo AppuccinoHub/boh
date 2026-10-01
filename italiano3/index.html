@@ -771,6 +771,10 @@
 .home-tiles>button>div:last-child{text-align:center!important;align-items:center}
 .home-tiles>button:hover .ht-art{transform:scale(1.04) rotate(-1deg)}
 @media (prefers-reduced-motion:reduce){.ht-art{transition:none}}
+.continua{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:10px;padding:16px 20px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font:800 19px/1.2 "Bricolage Grotesque",system-ui,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.14)}
+.continua:focus-visible{outline:3px solid var(--accent-strong);outline-offset:3px}
+.continua span:last-child{font-size:28px;line-height:1}
+.unit-tab.soon{display:none!important}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
 <title>Boh. Italiano 3</title>
@@ -1247,6 +1251,7 @@
           <div class="hero-eyebrow display" style="font-size:13px;letter-spacing:.16em;color:var(--accent-strong);font-weight:700;">{{unitEyebrow}}</div>
           <h1 class="hero-title display" style="margin:0;font-size:32px;line-height:1.12;font-weight:800;">{{unitTitle}}</h1>
           <p class="home-lede" style="margin:0;color:var(--text-muted);font-size:15px;line-height:1.55;">{{homeLede}}</p>
+          <button class="continua" onClick="{{continuaH}}"><span>{{continuaLabel}}</span><span aria-hidden="true">&rsaquo;</span></button>
         </div>
 
         <div class="unit-tabs" role="group" aria-label="Unit&agrave;"><sc-for list="{{unitTabs}}" as="ut" hint-placeholder-count="4"><button onClick="{{ut.pick}}" aria-pressed="{{ut.on}}" class="{{ut.cls}}"><b>{{ut.label}}</b><span>{{ut.sub}}</span></button></sc-for></div>
@@ -13411,6 +13416,9 @@ class Component extends DCLogic {
     result.hasRefund = !!s.refundNote; result.refundNote = s.refundNote || '';
     result.refundOkHandler = function () { self.sfx('tap'); self.setState({ refundNote: '' }); };
     this.lsVals(s, result);
+    var _cf = modeList.filter(function (m) { return m.featured; })[0];
+    result.continuaH = result.hasLesson && result.lsGoH ? result.lsGoH : (_cf ? _cf.pick : function () { self.sfx('tap'); });
+    result.continuaLabel = result.hasLesson && result.lsGoLabel ? result.lsGoLabel : (_cf ? 'Continua: ' + _cf.label.replace(/^\d+ \u00b7 /, '') : 'Ripassa un giro');
     this.profVals(s, result);
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
@@ -13920,9 +13928,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010602" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010602" defer></script>
-<script src="../assets/gloss.js?v=202610010602" defer></script>
+<script src="../assets/flashcards.js?v=202610010611" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010611" defer></script>
+<script src="../assets/gloss.js?v=202610010611" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -13963,5 +13971,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010602" defer></script>
+<script src="../assets/bohsave.js?v=202610010611" defer></script>
 </body></html>
