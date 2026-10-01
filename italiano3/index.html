@@ -1834,6 +1834,31 @@
               <h2 class="display tc-title">Tutto insieme</h2>
               <div class="tab-scroll"><table class="tab-t"><thead><tr><th></th><th>volere</th><th>dovere</th><th>potere</th></tr></thead><tbody><tr><th>io</th><td>voglio</td><td>devo</td><td>posso</td></tr><tr><th>tu</th><td>vuoi</td><td>devi</td><td>puoi</td></tr><tr><th>lui/lei</th><td>vuole</td><td>deve</td><td>può</td></tr><tr><th>noi</th><td>vogliamo</td><td>dobbiamo</td><td>possiamo</td></tr><tr><th>voi</th><td>volete</td><td>dovete</td><td>potete</td></tr><tr><th>loro</th><td>vogliono</td><td>devono</td><td>possono</td></tr></tbody></table></div><p class="tc-line">+ the next verb in the infinitive: Devo <b>studiare</b>.</p>
             </sc-if>
+            <sc-if value="{{tp0}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128339;</div>
+              <h2 class="display tc-title">Oggi o ieri?</h2>
+              <p class="tc-big"><b>oggi</b> &middot; adesso &middot; ogni giorno &rarr; <b>presente</b><br><b>ieri</b> &middot; due giorni fa &middot; la settimana scorsa &rarr; <b>passato prossimo</b></p><p class="tc-line">Oggi <b>mangio</b>. Ieri <b>ho mangiato</b>.</p>
+            </sc-if>
+            <sc-if value="{{tp1}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#127829;</div>
+              <h2 class="display tc-title">AVERE + participio</h2>
+              <div class="tc-chant tc-sm"><span><b>ho mangiato</b>io</span><span><b>hai mangiato</b>tu</span><span><b>ha mangiato</b>lui/lei</span><span><b>abbiamo mangiato</b>noi</span><span><b>avete mangiato</b>voi</span><span><b>hanno mangiato</b>loro</span></div><p class="tc-line">-are &rarr; <b>-ato</b> &middot; -ere &rarr; <b>-uto</b> &middot; -ire &rarr; <b>-ito</b></p>
+            </sc-if>
+            <sc-if value="{{tp2}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128642;</div>
+              <h2 class="display tc-title">ESSERE + participio</h2>
+              <div class="tc-chant tc-sm"><span><b>sono andato/a</b>io</span><span><b>sei andato/a</b>tu</span><span><b>&egrave; andato/a</b>lui/lei</span><span><b>siamo andati/e</b>noi</span><span><b>siete andati/e</b>voi</span><span><b>sono andati/e</b>loro</span></div><p class="tc-line">andare, uscire, arrivare, tornare, partire &middot; the participle <b>agrees</b>.</p>
+            </sc-if>
+            <sc-if value="{{tp3}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128161;</div>
+              <h2 class="display tc-title">Participi irregolari</h2>
+              <div class="tc-chips"><span>fare &rarr; fatto</span><span>vedere &rarr; visto</span><span>leggere &rarr; letto</span><span>scrivere &rarr; scritto</span><span>prendere &rarr; preso</span><span>dire &rarr; detto</span></div><p class="tc-line">Ieri ho <b>fatto</b> i compiti e ho <b>letto</b> un libro.</p>
+            </sc-if>
+            <sc-if value="{{tp4}}" hint-placeholder-val="{{false}}">
+              <div class="tc-emo" aria-hidden="true">&#128203;</div>
+              <h2 class="display tc-title">Tutto insieme</h2>
+              <div class="tab-scroll"><table class="tab-t"><thead><tr><th></th><th>presente</th><th>passato prossimo</th></tr></thead><tbody><tr><th>io</th><td>mangio</td><td>ho mangiato</td></tr><tr><th>tu</th><td>mangi</td><td>hai mangiato</td></tr><tr><th>lui/lei</th><td>mangia</td><td>ha mangiato</td></tr><tr><th>noi</th><td>mangiamo</td><td>abbiamo mangiato</td></tr><tr><th>io</th><td>vado</td><td>sono andato/a</td></tr><tr><th>noi</th><td>andiamo</td><td>siamo andati/e</td></tr></tbody></table></div><p class="tc-line">Oggi = presente. Ieri = <b>ho / sono</b> + participio.</p>
+            </sc-if>
           </div>
           <sc-if value="{{tabHasQ}}" hint-placeholder-val="{{false}}">
             <div class="tc-q">
@@ -2603,7 +2628,7 @@ function btTipTimer(key, ms, fn) {   // one read-then-go timer at a time
   BT_TIP.id = setTimeout(function () { BT_TIP.key = null; try { fn(); } catch (e) {} }, ms);
 }
 function btTipMs(text) { var n = String(text || '').split(/\s+/).filter(Boolean).length; return Math.max(4500, Math.min(9000, 2000 + 280 * n)); }
-function btTrick(q, wrong) { return BT_UNIT === 'vdp' ? btTrickVdp(q, wrong) : btTrickImp(q, wrong); }
+function btTrick(q, wrong) { return BT_UNIT === 'vdp' ? btTrickVdp(q, wrong) : (BT_UNIT === 'pp' ? btTrickPp(q, wrong) : btTrickImp(q, wrong)); }
 function btTrickImp(q, wrong) {
   if (!q) return null;
   var cat = q.cat || '';
@@ -2643,10 +2668,38 @@ var BT_TAB_Q = [
   { q: 'Da piccola ___ a calcio ogni sabato.', o: ['ho giocato', 'giocavo'], a: 1, ok: 'Sì! ogni sabato = habit' },
   { q: 'Mentre ___ la TV, è suonato il telefono.', o: ['guardavo', 'ho guardato'], a: 0, ok: 'Sì! the TV = background' }
 ];
-var BT_TAB_N = 8; // 7 idea cards + "Tutto insieme"
+var BT_TAB_N_UNUSED = 8; // 7 idea cards + "Tutto insieme"
 var BT_TRICK_CARD = { pp: 6, presente: 0, persona: 1, are: 0, ere: 0, ire: 0, essere: 2, irr: 3, cera: 4, meteo: 5, stati: 5, quando: 5 };
-function btTrickKey(tr) { for (var k in BT_TRICKS) if (BT_TRICKS[k] === tr) return k; for (var k2 in BT_TRICKS_VDP) if (BT_TRICKS_VDP[k2] === tr) return k2; return 'quando'; }
-function btTabQ() { return BT_UNIT === 'vdp' ? BT_TAB_Q_VDP : BT_TAB_Q; }
+function btTrickKey(tr) { for (var k in BT_TRICKS) if (BT_TRICKS[k] === tr) return k; for (var kp in BT_TRICKS_PP) if (BT_TRICKS_PP[kp] === tr) return kp; for (var k2 in BT_TRICKS_VDP) if (BT_TRICKS_VDP[k2] === tr) return k2; return 'quando'; }
+
+var BT_TRICKS_PP = {
+  pp_tempo:  ['Oggi o ieri?', 'Look at the time word first. oggi · adesso · ogni giorno · di solito \u2192 presente. ieri · ieri sera · due giorni fa · la settimana scorsa \u2192 passato prossimo.'],
+  pp_avere:  ['Avere + participio', 'ho / hai / ha / abbiamo / avete / hanno + mangiato. -are \u2192 -ato, -ere \u2192 -uto, -ire \u2192 -ito.'],
+  pp_essere: ['Andare, uscire, arrivare, tornare \u2192 ESSERE', 'Going and coming verbs use essere and agree: Marco \u00e8 andato, Sara \u00e8 andata, noi siamo andati.'],
+  pp_irr:    ['Participi irregolari', 'fare \u2192 fatto · vedere \u2192 visto · leggere \u2192 letto · scrivere \u2192 scritto · prendere \u2192 preso · dire \u2192 detto.']
+};
+var BT_TRICK_CARD_PP = { pp_tempo: 0, pp_avere: 1, pp_essere: 2, pp_irr: 3 };
+var BT_TAB_Q_PP = [
+  { q: 'Ieri sera noi ___ la pizza.', o: ['mangiamo', 'abbiamo mangiato'], a: 1, ok: 'S\u00ec! Ieri = passato prossimo' },
+  { q: 'io + mangiare (ieri) \u2192 ?', o: ['ho mangiato', 'sono mangiato'], a: 0, ok: 'S\u00ec! mangiare uses avere' },
+  { q: 'Ieri Marco ___ a Roma.', o: ['ha andato', '\u00e8 andato'], a: 1, ok: 'S\u00ec! andare uses essere' },
+  { q: 'Ieri io ___ un film. (vedere)', o: ['ho visto', 'ho vedito'], a: 0, ok: 'S\u00ec! vedere \u2192 visto' }
+];
+function btTabN() { return BT_UNIT === 'pp' ? 5 : 8; }
+function btTrickCardMap() { return BT_UNIT === 'vdp' ? BT_TRICK_CARD_VDP : (BT_UNIT === 'pp' ? BT_TRICK_CARD_PP : BT_TRICK_CARD); }
+function btTrickPp(q, wrong) {
+  if (!q) return null;
+  var cat = q.cat || '';
+  if (cat === 'vocab' || cat === 'dialetti') return null;
+  var right = q.answer || '';
+  if (q.options) for (var i = 0; i < q.options.length; i++) if (q.options[i].correct) right = q.options[i].label;
+  var r = btNorm(right), w = btNorm(wrong);
+  if (/\b(fatto|visto|letto|scritto|preso|detto)\b/.test(r)) return BT_TRICKS_PP.pp_irr;
+  if (/\b(sono|sei|\u00e8|siamo|siete) [a-z\u00e0-\u00f9']+(o|a|i|e)\b/.test(r) && /(ato|ata|ati|ate|uto|uta|uti|ute|ito|ita|iti|ite)\b/.test(r) && !/\b(ho|hai|ha|abbiamo|avete|hanno) /.test(r)) return BT_TRICKS_PP.pp_essere;
+  if (/\b(ho|hai|ha|abbiamo|avete|hanno) [a-z\u00e0-\u00f9']+(ato|uto|ito)\b/.test(r)) return BT_TRICKS_PP.pp_avere;
+  return BT_TRICKS_PP.pp_tempo;
+}
+function btTabQ() { return BT_UNIT === 'vdp' ? BT_TAB_Q_VDP : (BT_UNIT === 'pp' ? BT_TAB_Q_PP : BT_TAB_Q); }
 
 var BT_TRICKS_VDP = {
   verbo:    ['Want, must o can?', 'volere = want · dovere = have to / must · potere = can / may. Say it in English first, then pick the verb.'],
@@ -13407,15 +13460,15 @@ class Component extends DCLogic {
     try { var _nm = String(s.bohName || 'BOH').toUpperCase().replace(/[^A-Z0-9\u00C0-\u00DD ]/g, '').slice(0, 12) || 'BOH'; var _rs = document.documentElement.style; _rs.setProperty('--bohname', JSON.stringify(_nm)); _rs.setProperty('--nmk', Math.min(1, 8 / _nm.length).toFixed(2)); } catch (e) {}
     result.tabOpen = !!s.tabOpen;
     (function () {
-      var i = Math.max(0, Math.min(BT_TAB_N - 1, s.tabCard || 0)), done = s.tabDone || [];
-      for (var c = 0; c < BT_TAB_N; c++) { result['tc' + c] = BT_UNIT !== 'vdp' && c === i; result['tv' + c] = BT_UNIT === 'vdp' && c === i; }
-      result.tabDots = []; for (var d = 0; d < BT_TAB_N; d++) (function (d) {
+      var i = Math.max(0, Math.min(btTabN() - 1, s.tabCard || 0)), done = s.tabDone || [];
+      for (var c = 0; c < btTabN(); c++) { result['tc' + c] = BT_UNIT !== 'vdp' && BT_UNIT !== 'pp' && c === i; result['tv' + c] = BT_UNIT === 'vdp' && c === i; result['tp' + c] = BT_UNIT === 'pp' && c === i; }
+      result.tabDots = []; for (var d = 0; d < btTabN(); d++) (function (d) {
         result.tabDots.push({ cls: 'tc-dot' + (d === i ? ' on' : '') + (done.indexOf(d) !== -1 ? ' done' : ''), label: 'Card ' + (d + 1), go: function () { self.setState({ tabCard: d, tabAns: null }); } });
       })(d);
-      result.tabPosLabel = 'Card ' + (i + 1) + ' of ' + BT_TAB_N;
+      result.tabPosLabel = 'Card ' + (i + 1) + ' of ' + btTabN();
       result.tabPrevDis = i === 0 ? 'true' : null;
-      result.tabNextLabel = i === BT_TAB_N - 1 ? 'Ho capito! Torna al gioco' : 'Avanti →';
-      var go = function (n) { if (n < 0) return; if (n >= BT_TAB_N) { self.setState({ tabOpen: false }); return; } self.sfx('tap'); self.setState({ tabCard: n, tabAns: null, tabReveal: false }); };
+      result.tabNextLabel = i === btTabN() - 1 ? 'Ho capito! Torna al gioco' : 'Avanti →';
+      var go = function (n) { if (n < 0) return; if (n >= btTabN()) { self.setState({ tabOpen: false }); return; } self.sfx('tap'); self.setState({ tabCard: n, tabAns: null, tabReveal: false }); };
       result.tabPrev = function () { go(i - 1); };
       result.tabNext = function () { go(i + 1); };
       result.tabTouchStart = function (e) { try { self.__tx = e.changedTouches[0].clientX; self.__ty = e.changedTouches[0].clientY; } catch (er) {} };
@@ -13690,7 +13743,7 @@ class Component extends DCLogic {
         result.hasTrickRev = !!tr && !!s.revealed && !s.lastOk;
         result.trickTitle = tr ? tr[0] : ''; result.trickBody = tr ? tr[1] : '';
         result.hasTabella = true;
-        var tcard = tr ? ((BT_UNIT === 'vdp' ? BT_TRICK_CARD_VDP : BT_TRICK_CARD)[btTrickKey(tr)] || 0) : 0;
+        var tcard = tr ? (btTrickCardMap()[btTrickKey(tr)] || 0) : 0;
         result.openTabTrick = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: tcard, tabAns: null, tabReveal: false }); };
       })();
 
@@ -13930,7 +13983,7 @@ class Component extends DCLogic {
         }
         var tr = worst ? btTrick(worst, '') : null;
         tab = tab && !!tr;   // no trick card for this kind of question (vocabulary, pronouns): review the words instead
-        var tcard = tr ? (tr[2] != null ? tr[2] : ((BT_UNIT === 'vdp' ? BT_TRICK_CARD_VDP : BT_TRICK_CARD)[btTrickKey(tr)] || 0)) : 0;
+        var tcard = tr ? (tr[2] != null ? tr[2] : (btTrickCardMap()[btTrickKey(tr)] || 0)) : 0;
         result.hlRipasso = n === 2;
         result.hlRipWords = !tab;
         result.hlRipText = tab ? 'Read this card: “' + tr[0] + '”.' : 'Say each one out loud. Twice.';
@@ -13979,9 +14032,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610012326" defer></script>
-<script src="../assets/gloss-dict.js?v=202610012326" defer></script>
-<script src="../assets/gloss.js?v=202610012326" defer></script>
+<script src="../assets/flashcards.js?v=202610012343" defer></script>
+<script src="../assets/gloss-dict.js?v=202610012343" defer></script>
+<script src="../assets/gloss.js?v=202610012343" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14022,5 +14075,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610012326" defer></script>
+<script src="../assets/bohsave.js?v=202610012343" defer></script>
 </body></html>
