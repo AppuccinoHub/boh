@@ -90,6 +90,17 @@
 .pc-chip{all:unset;cursor:pointer;padding:6px 11px;border-radius:999px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-size:13px;font-weight:700}
 .pc-chip:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .pc-chip-h{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--text-faint-2);width:100%}
+.pcx{position:relative;container-type:inline-size;border-radius:16px;border:3px solid #E9B824;background:#F7EFDE;overflow:hidden;box-sizing:border-box}
+.pcx i{position:absolute;display:block;pointer-events:none;background-image:url(../assets/boutique/cartolina.webp);background-repeat:no-repeat}
+.pcx-tl{left:4px;top:2px;width:215px;height:64px;background-size:600px auto;background-position:0 0}
+.pcx-tr{right:4px;top:6px;width:86px;height:64px;background-size:600px auto;background-position:-495px -27px}
+.pcx-bt{left:0;right:0;bottom:0;aspect-ratio:2000/227;background-size:100% auto;background-position:center bottom}
+.pcx-body{position:relative;padding:74px 16px 13cqw;min-height:190px}
+.gp-card textarea.pcx-ta{display:block;width:100%;box-sizing:border-box;min-height:190px;border:0;outline:0;resize:vertical;background:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(90,70,40,.22) 25px 26px) local;color:#2B2118;font:700 20px/26px Caveat,cursive,inherit;padding:0;border-radius:0}
+.gp-card textarea.pcx-ta::placeholder{color:rgba(60,45,25,.45)}
+.gp-card textarea.pcx-ta:focus-visible{outline:3px solid var(--accent-strong);outline-offset:4px;border-radius:4px}
+.pcx-msg{white-space:pre-wrap;overflow-wrap:anywhere;font:700 20px/26px Caveat,cursive,inherit;color:#2B2118;background:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(90,70,40,.22) 25px 26px)}
+.pcx-pm{position:absolute;right:68px;top:12px;width:60px;height:60px;border:2px solid rgba(40,30,100,.5);border-radius:50%;display:grid;place-items:center;text-align:center;font:800 8.5px/1.2 Manrope,system-ui,sans-serif;letter-spacing:.04em;color:rgba(40,30,100,.6);transform:rotate(-14deg);text-transform:uppercase;padding:4px;box-sizing:border-box}
 .gp-post .gp-eye{font-family:inherit;color:#8A6A2A;font-size:11px}
 .gp-stamp{position:absolute;right:10px;top:10px;width:40px;transform:rotate(12deg)}
 .dl.tee-tee_tricolore-m{background:url(../assets/boutique/wear/tee_tee_tricolore_m.webp) 0 0/100% 100% no-repeat}
@@ -2050,14 +2061,14 @@
                 <label for="gpCard" style="display:flex;flex-direction:column;gap:6px;">
                   <span style="font-size:13px;font-weight:800;">{{tsPrompt}}</span>
                   <sc-for list="{{tsChips}}" as="g" hint-placeholder-count="2"><div class="pc-chips"><span class="pc-chip-h">{{g.head}}</span><sc-for list="{{g.items}}" as="c" hint-placeholder-count="3"><button type="button" class="pc-chip" onClick="{{c.pick}}">{{c.t}}</button></sc-for></div></sc-for>
-                  <textarea id="gpCard" rows="8" maxlength="1500" onInput="{{onTripCard}}" placeholder="{{tsPlace}}">{{tsCard}}</textarea>
+                  <div class="pcx"><i class="pcx-tl"></i><i class="pcx-tr"></i><i class="pcx-bt"></i><div class="pcx-body"><textarea id="gpCard" class="pcx-ta" rows="8" maxlength="1500" onInput="{{onTripCard}}" placeholder="{{tsPlace}}">{{tsCard}}</textarea></div></div>
                   <span class="gp-count-sm">{{tsCount}}</span>
                 </label>
                 <label for="gpPin" class="bt-pinrow"><span>PIN della Prof</span><input id="gpPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" value="{{tripPin}}" onInput="{{onTripPin}}" placeholder="&bull;&bull;&bull;&bull;"></label>
                 <button class="gp-btn" onClick="{{stampHandler}}">Timbra il passaporto &#10003;</button>
               </sc-if>
               <sc-if value="{{tsStamped}}" hint-placeholder-val="{{false}}">
-                <div class="pc"><div class="pc-front" style="{{tsFront}}"><span class="pc-greet">Saluti da {{tsCityU}}</span></div><div class="pc-back"><div class="pc-msg">{{tsCard}}</div><div class="pc-side"><div class="pc-stampbox"><img src="../assets/boutique/pin_ok.webp" alt="Timbrato"></div><div class="pc-pm">{{tsCityU}}<br>{{tsStampDay}}</div><div class="pc-addr"><i></i><i></i><i></i></div></div></div></div>
+                <div class="pc"><div class="pc-front" style="{{tsFront}}"><span class="pc-greet">Saluti da {{tsCityU}}</span></div><div class="pcx"><i class="pcx-tl"></i><i class="pcx-tr"></i><i class="pcx-bt"></i><div class="pcx-pm">{{tsCityU}}<br>{{tsStampDay}}</div><div class="pcx-body pcx-msg">{{tsCard}}</div></div></div>
               </sc-if>
               <sc-if value="{{tsSoon}}" hint-placeholder-val="{{false}}"><span style="font-size:14px;color:var(--text-muted);">Presto! A new destination is coming.</span></sc-if>
               <sc-if value="{{hasTripMsg}}" hint-placeholder-val="{{false}}"><div class="{{tripMsgCls}}">{{tripMsg}}</div></sc-if>
