@@ -1557,7 +1557,7 @@
             </sc-if>
             <sc-if value="{{canRetry}}" hint-placeholder-val="{{false}}">
               <button onClick="{{retryHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Now you try it &mdash; go again</button>
-              <div style="font-size:13px;color:var(--text-muted);text-align:center;">You only earn cashi when you get it right yourself.</div>
+              <div style="font-size:13px;color:var(--text-muted);text-align:center;">You only earn Boh Cashi when you get it right yourself.</div>
             </sc-if>
             <sc-if value="{{noRetry}}" hint-placeholder-val="{{true}}">
               <button onClick="{{continueHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Continue</button>
@@ -1893,7 +1893,7 @@
           <div class="rb2"><button onClick="{{saveQuitHandler}}" class="rbb ghost">&#128190; Save &amp; quit</button><button onClick="{{changeModeHandler}}" class="rbb ghost">&#9776; Change activity</button></div>
         </div>
       <sc-if value="{{outOfHearts}}" hint-placeholder-val="{{false}}">
-        <div style="padding:12px 14px;border-radius:14px;background:var(--error-bg);border:2px solid var(--error-border);font-size:14.5px;font-weight:700;color:var(--error-text);">Out of hearts — the round stopped early. Your cashi are safe, but this one doesn&rsquo;t count as passed. Run it again.</div>
+        <div style="padding:12px 14px;border-radius:14px;background:var(--error-bg);border:2px solid var(--error-border);font-size:14.5px;font-weight:700;color:var(--error-text);">Out of hearts — the round stopped early. Your Boh Cashi are safe, but this one doesn&rsquo;t count as passed. Run it again.</div>
       </sc-if>
       <sc-if value="{{hasFailNote}}" hint-placeholder-val="{{false}}">
         <div style="padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px dashed var(--card-border);font-size:14px;font-weight:700;color:var(--text-muted);">{{failNote}}</div>
@@ -2199,7 +2199,7 @@
           <button onClick="{{restartHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);">Restart round</button>
           <button onClick="{{settingsHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);">Settings</button>
           <button onClick="{{quitHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text-muted);font-weight:800;font-size:15px;border:2px dashed var(--card-border);">Save &amp; quit to menu</button>
-          <div style="font-size:12.5px;color:var(--text-faint);text-align:center;">Your cashi are always saved. You can resume this round from the home screen.</div>
+          <div style="font-size:12.5px;color:var(--text-faint);text-align:center;">Your Boh Cashi are always saved. You can resume this round from the home screen.</div>
         </sc-if>
 
         <sc-if value="{{ovSettings}}" hint-placeholder-val="{{false}}">
@@ -2240,7 +2240,7 @@
 
         <sc-if value="{{ovReset}}" hint-placeholder-val="{{false}}">
           <div class="display" style="font-size:26px;font-weight:800;">Reset everything?</div>
-          <div style="font-size:14.5px;line-height:1.5;color:var(--text-muted);">This deletes everything saved on this device. &ldquo;Keep my Boh&rdquo; clears cashi, locker, badges, streak and unlocked levels. &ldquo;Start completely over&rdquo; also deletes your Boh and its name, and takes you back to the very first screen &mdash; use this before handing the game to someone else. It can&rsquo;t be undone.</div>
+          <div style="font-size:14.5px;line-height:1.5;color:var(--text-muted);">This deletes everything saved on this device. &ldquo;Keep my Boh&rdquo; clears Boh Cashi, locker, badges, streak and unlocked levels. &ldquo;Start completely over&rdquo; also deletes your Boh and its name, and takes you back to the very first screen &mdash; use this before handing the game to someone else. It can&rsquo;t be undone.</div>
           <label for="rsIn" style="display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:800;">Type RESET to unlock the buttons<input id="rsIn" class="rs-in" type="text" autocomplete="off" autocapitalize="characters" value="{{resetTyped}}" onInput="{{onResetTyped}}" placeholder="RESET"></label>
           <sc-if value="{{resetOk}}" hint-placeholder-val="{{false}}">
           <button onClick="{{doResetHandler}}" style="padding:16px;border-radius:14px;background:var(--error-border);color:#fff;font-weight:800;font-size:16px;border:none;">Reset my progress (keep my Boh)</button>
@@ -2532,7 +2532,7 @@ var HAIRS = [['dark', '#4A2A1C', 'dark brown'], ['black', '#1C1719', 'black'], [
 var CARDS = {
   card_cashi: { title: 'Cashi', text: 'Italian teens say cashi for money: English “cash” plus an Italian plural. It spread through Italian rap. Fare i cashi = to make money.' },
   card_rap:   { title: 'Geolier', text: 'Neapolitan rapper Geolier (Emanuele Palumbo, from Secondigliano) raps entirely in napoletano. He finished 2nd at Sanremo 2024 with “I p’ me, tu p’ te” — io per me, tu per te.' },
-  card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = €5 · un deca = €10 · una piotta = €100 · un sacco = €1,000. Careful: venti sacchi = €20,000!' }
+  card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = 5 BC · un deca = 10 BC · una piotta = 100 BC · un sacco = 1,000 BC. Careful: venti sacchi = 20,000 BC!' }
 };
 
 var BT_TRICKS = {
@@ -12090,7 +12090,7 @@ class Component extends DCLogic {
     if (id === 'ripara') {
       var ids = this.mistakeIds();
       if (!ids.length) { this.setState({ shopMsg: 'Niente da riparare \u2014 you have no mistakes right now.' }); return; }
-      if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough cashi \u2014 ' + (it.price - s.cashi) + ' BC more to go.' }); return; }
+      if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough Boh Cashi \u2014 ' + (it.price - s.cashi) + ' BC more to go.' }); return; }
       var gone = ids[0];
       this.sfx('buy');
       this.setState({ cashi: s.cashi - it.price,
@@ -12130,7 +12130,7 @@ class Component extends DCLogic {
       return;
     }
     if (it.source !== 'shop' || s.inventory.indexOf(id) !== -1) return;
-    if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough cashi yet \u2014 ' + (it.price - s.cashi) + ' BC more to go. Go answer some questions!' }); return; }
+    if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough Boh Cashi yet \u2014 ' + (it.price - s.cashi) + ' BC more to go. Go answer some questions!' }); return; }
     this.sfx('buy');
     var eq = Object.assign({}, s.equipped || {});
     if (SLOT[id]) eq[SLOT[id]] = id;
@@ -13414,7 +13414,7 @@ class Component extends DCLogic {
     result.isLocker = s.screen === 'locker';
     result.isPacco = s.screen === 'pacco';
     result.walletText = String(s.cashi);
-    result.walletLabel = s.cashi + ' euro in cashi';
+    result.walletLabel = s.cashi + ' Boh Cashi';
     result.hasEarnToast = s.lastEarn > 0 && s.screen === 'play';
     result.earnToast = '+' + s.lastEarn + ' BC';
     result.hasPending = (pend.sacchi + pend.centoni) > 0 && (s.screen === 'home' || s.screen === 'summary');
@@ -13918,9 +13918,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010504" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010504" defer></script>
-<script src="../assets/gloss.js?v=202610010504" defer></script>
+<script src="../assets/flashcards.js?v=202610010524" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010524" defer></script>
+<script src="../assets/gloss.js?v=202610010524" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -13961,5 +13961,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010504" defer></script>
+<script src="../assets/bohsave.js?v=202610010524" defer></script>
 </body></html>

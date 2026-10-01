@@ -797,7 +797,7 @@
           <button onClick="{{mistakesHandler}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border);">
             <div style="display:flex;flex-direction:column;gap:3px;text-align:left;">
               <span class="display" style="font-size:19px;font-weight:800;color:var(--error-text);">Fix my mistakes</span>
-              <span style="font-size:13px;color:var(--text-muted);">Cards you missed before. Fixing one pays &euro;3.</span>
+              <span style="font-size:13px;color:var(--text-muted);">Cards you missed before. Fixing one pays 3 BC.</span>
             </div>
             <span style="font-size:13px;font-weight:800;color:var(--error-text);white-space:nowrap;">{{mistakesCount}}</span>
           </button>
@@ -1057,7 +1057,7 @@
             </sc-if>
             <sc-if value="{{canRetry}}" hint-placeholder-val="{{false}}">
               <button onClick="{{retryHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Now you try it &mdash; go again</button>
-              <div style="font-size:13px;color:var(--text-muted);text-align:center;">You only earn cashi when you get it right yourself.</div>
+              <div style="font-size:13px;color:var(--text-muted);text-align:center;">You only earn Boh Cashi when you get it right yourself.</div>
             </sc-if>
             <sc-if value="{{noRetry}}" hint-placeholder-val="{{true}}">
               <button onClick="{{continueHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Continue</button>
@@ -1145,7 +1145,7 @@
           <div class="rb2"><button onClick="{{saveQuitHandler}}" class="rbb ghost">&#128190; Save &amp; quit</button><button onClick="{{changeModeHandler}}" class="rbb ghost">&#9776; Change activity</button></div>
         </div>
       <sc-if value="{{outOfHearts}}" hint-placeholder-val="{{false}}">
-        <div style="padding:12px 14px;border-radius:14px;background:var(--error-bg);border:2px solid var(--error-border);font-size:14.5px;font-weight:700;color:var(--error-text);">Out of hearts — the round stopped early. Your cashi are safe, but this one doesn&rsquo;t count as passed. Run it again.</div>
+        <div style="padding:12px 14px;border-radius:14px;background:var(--error-bg);border:2px solid var(--error-border);font-size:14.5px;font-weight:700;color:var(--error-text);">Out of hearts — the round stopped early. Your Boh Cashi are safe, but this one doesn&rsquo;t count as passed. Run it again.</div>
       </sc-if>
       <sc-if value="{{hasFailNote}}" hint-placeholder-val="{{false}}">
         <div style="padding:12px 14px;border-radius:14px;background:var(--card-bg);border:2px dashed var(--card-border);font-size:14px;font-weight:700;color:var(--text-muted);">{{failNote}}</div>
@@ -1213,11 +1213,11 @@
           <div style="display:flex;align-items:flex-end;gap:12px;">
             <div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
             <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:6px;">
-              <h2 class="display" style="margin:0;font-size:34px;font-weight:800;">Il Negozio</h2>
+              <h2 class="display" style="margin:0;font-size:34px;font-weight:800;">La Boh-tique</h2>
               <span style="font-size:14px;font-weight:700;color:var(--text-muted);">{{shopGreeting}}</span>
             </div>
           </div>
-          <p style="margin:0;font-size:14px;color:var(--text-muted);">Spend your cashi on style. The best stuff can&rsquo;t be bought &mdash; it only comes from a Pacco Boh.</p>
+          <p style="margin:0;font-size:14px;color:var(--text-muted);">Spend your Boh Cashi on style. The best stuff can&rsquo;t be bought &mdash; it only comes from a Pacco Boh.</p>
         </div>
         <sc-if value="{{hasShopMsg}}" hint-placeholder-val="{{false}}">
           <div class="toast" style="font-size:14px;font-weight:800;padding:10px 14px;border-radius:12px;background:var(--success-bg);color:var(--success-text);">{{shopMsg}}</div>
@@ -1272,7 +1272,7 @@
           </sc-for>
         </sc-if>
         <sc-if value="{{noCards}}" hint-placeholder-val="{{true}}">
-          <div style="font-size:13px;color:var(--text-faint);">Earn your first centone (&euro;100) to unlock your first culture card.</div>
+          <div style="font-size:13px;color:var(--text-faint);">Earn your first centone (100 BC) to unlock your first culture card.</div>
         </sc-if>
 
         <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);padding-top:6px;">BADGES</div>
@@ -1384,7 +1384,7 @@
           <button onClick="{{restartHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);">Restart round</button>
           <button onClick="{{settingsHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);">Settings</button>
           <button onClick="{{quitHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text-muted);font-weight:800;font-size:15px;border:2px dashed var(--card-border);">Save &amp; quit to menu</button>
-          <div style="font-size:12.5px;color:var(--text-faint);text-align:center;">Your cashi are always saved. You can resume this round from the home screen.</div>
+          <div style="font-size:12.5px;color:var(--text-faint);text-align:center;">Your Boh Cashi are always saved. You can resume this round from the home screen.</div>
         </sc-if>
 
         <sc-if value="{{ovSettings}}" hint-placeholder-val="{{false}}">
@@ -1409,7 +1409,7 @@
 
         <sc-if value="{{ovReset}}" hint-placeholder-val="{{false}}">
           <div class="display" style="font-size:26px;font-weight:800;">Reset everything?</div>
-          <div style="font-size:14.5px;line-height:1.5;color:var(--text-muted);">This deletes everything saved on this device. &ldquo;Keep my Boh&rdquo; clears cashi, locker, badges, streak and unlocked levels. &ldquo;Start completely over&rdquo; also deletes your Boh and its name, and takes you back to the very first screen &mdash; use this before handing the game to someone else. It can&rsquo;t be undone.</div>
+          <div style="font-size:14.5px;line-height:1.5;color:var(--text-muted);">This deletes everything saved on this device. &ldquo;Keep my Boh&rdquo; clears Boh Cashi, locker, badges, streak and unlocked levels. &ldquo;Start completely over&rdquo; also deletes your Boh and its name, and takes you back to the very first screen &mdash; use this before handing the game to someone else. It can&rsquo;t be undone.</div>
           <button onClick="{{doResetHandler}}" style="padding:16px;border-radius:14px;background:var(--error-border);color:#fff;font-weight:800;font-size:16px;border:none;">Reset my progress (keep my Boh)</button>
           <button onClick="{{doResetAllHandler}}" style="padding:16px;border-radius:14px;background:transparent;color:var(--error-text);font-weight:800;font-size:15px;border:2px solid var(--error-border);">Start completely over (new Boh too)</button>
           <button onClick="{{settingsHandler}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);">Cancel</button>
@@ -1452,10 +1452,10 @@
           <div style="display:flex;flex-direction:column;gap:12px;font-size:14.5px;line-height:1.5;">
             <div><b>1. Pick a mode.</b> Mixed Review is the whole test. Each card takes a few seconds.</div>
             <div><b>2. Essere or Avere cards have two steps.</b> First pick the verb (essere = is/am/are, avere = the &ldquo;haves&rdquo;). Get it right and you pick the correct form &mdash; just like the blank on the test.</div>
-            <div><b>3. Harder cards pay more.</b> Picking a pronoun &euro;1 &middot; a verb form &euro;2 &middot; choosing the verb and its form &euro;3&ndash;4 &middot; writing a whole sentence from memory &euro;6. Use the word help and the same sentence pays &euro;2 &mdash; help always costs you. Fixing a card you got wrong pays its value <b>+ &euro;2</b>.</div>
-            <div><b>Finishing a round pays too</b>, and the hard ones pay a lot more: most rungs &euro;5, Essere-or-Avere and the words &euro;8, sentences &euro;12, the test simulation &euro;20, La Prova &euro;30. You only get the full bonus if you pass. Wrong answers never cost you anything.</div>
-            <div><b>4. Every &euro;100 = un centone.</b> Each one opens a <b>Pacco Boh</b> with a surprise prize. Some are amazing. Some are&hellip; a sock.</div>
-            <div><b>5. Spend cashi in Il Negozio</b> and show off your collection in your locker. The best stuff only comes from a Pacco Boh.</div>
+            <div><b>3. Harder cards pay more.</b> Picking a pronoun 1 BC &middot; a verb form 2 BC &middot; choosing the verb and its form 3 BC&ndash;4 &middot; writing a whole sentence from memory 6 BC. Use the word help and the same sentence pays 2 BC &mdash; help always costs you. Fixing a card you got wrong pays its value <b>+ 2 BC</b>.</div>
+            <div><b>Finishing a round pays too</b>, and the hard ones pay a lot more: most rungs 5, BC Essere-or-Avere and the words 8, BC sentences 12, BC the test simulation 20, BC La Prova 30 BC. You only get the full bonus if you pass. Wrong answers never cost you anything.</div>
+            <div><b>4. Every 100 BC = un centone.</b> Each one opens a <b>Pacco Boh</b> with a surprise prize. Some are amazing. Some are&hellip; a sock.</div>
+            <div><b>5. Spend Boh Cashi in the Boh-tique</b> and show off your collection in your locker. The best stuff only comes from a Pacco Boh.</div>
             <div><b>Tip:</b> &ldquo;Fix my mistakes&rdquo; pays the most &mdash; and it&rsquo;s what actually raises your test score.</div>
             <div style="font-size:12.5px;color:var(--text-faint);">Each card pays once per day. Your progress is saved on this device.</div>
           </div>
@@ -1670,7 +1670,7 @@ var ITEMS = [
   { id: 'occhiali_firmati', it: 'Gli occhiali firmati',  en: 'Designer sunglasses', rarity: 'EPICO', source: 'shop', price: 120, slot: 'face', desc: 'Gold frames. Milano energy.' },
   { id: 'corona_oro',     it: 'La corona d’oro',         en: 'Gold crown',        rarity: 'ASSURDO', source: 'shop', price: 150, slot: 'head', desc: 'Nobody made you king. You just bought it.' },
   { id: 'mantello',       it: 'Il mantello tricolore',   en: 'Italian flag cape', rarity: 'ASSURDO', source: 'shop', price: 200, slot: 'cape', desc: 'Verde, bianco, rosso. Wind machine not included.' },
-  { id: 'aura',           it: 'L’aura leggendaria',      en: 'Legendary aura',    rarity: 'ASSURDO', source: 'shop', price: 300, slot: 'aura', desc: 'You glow now. €300 of glow.' },
+  { id: 'aura',           it: 'L’aura leggendaria',      en: 'Legendary aura',    rarity: 'ASSURDO', source: 'shop', price: 300, slot: 'aura', desc: 'You glow now. 300 BC of glow.' },
   { id: 'cucchiaio',      it: 'Il cucchiaio di legno',  en: 'Wooden spoon',      rarity: 'ASSURDO', source: 'pacco', secret: true, desc: 'Looks useless… for now.' }
 ];
 
@@ -1761,11 +1761,11 @@ var HAIRS = [['dark', '#4A2A1C', 'dark brown'], ['black', '#1C1719', 'black'], [
 var CARDS = {
   card_cashi: { title: 'Cashi', text: 'Italian teens say cashi for money: English “cash” plus an Italian plural. It spread through Italian rap. Fare i cashi = to make money.' },
   card_rap:   { title: 'Geolier', text: 'Neapolitan rapper Geolier (Emanuele Palumbo, from Secondigliano) raps entirely in napoletano. He finished 2nd at Sanremo 2024 with “I p’ me, tu p’ te” — io per me, tu per te.' },
-  card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = €5 · un deca = €10 · una piotta = €100 · un sacco = €1,000. Careful: venti sacchi = €20,000!' }
+  card_roma:  { title: 'I soldi a Roma', text: 'Roman slang for money: uno scudo = 5 BC · un deca = 10 BC · una piotta = 100 BC · un sacco = 1,000 BC. Careful: venti sacchi = 20,000 BC!' }
 };
 var BB_PRICE = 5;
 var BADGES = [
-  { id: 'centone',       name: 'Un Centone',          desc: 'Earn €100 in cashi.' },
+  { id: 'centone',       name: 'Un Centone',          desc: 'Earn 100 BC in cashi.' },
   { id: 'age_trap',      name: 'Age Trap Survivor',   desc: 'Get “Io ___ quattordici anni” fully right 3 times.' },
   { id: 'the_haves',     name: 'The Haves',           desc: 'Get all six AVERE forms right.' },
   { id: 'the_bes',       name: 'The Is/Am/Are’s', desc: 'Get all six ESSERE forms right.' },
@@ -1773,7 +1773,7 @@ var BADGES = [
   { id: 'comeback',      name: 'Comeback',            desc: 'Get one right after missing 3 in a row.' },
   { id: 'lo_zoo',        name: 'Lo Zoo',              desc: 'All 7 animals right in one session.' },
   { id: 'tre_di_fila',   name: '3 giorni di fila',    desc: 'Practice 3 days in a row.' },
-  { id: 'un_sacco',      name: 'Un Sacco',            desc: 'Earn €1,000 in cashi. Roman money.' }
+  { id: 'un_sacco',      name: 'Un Sacco',            desc: 'Earn 1,000 BC in cashi. Roman money.' }
 ];
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 55: 'cinque deca e uno scudo', 60: 'sei deca', 70: 'sette deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
@@ -2716,7 +2716,7 @@ class Component extends DCLogic {
     if (id === 'ripara') {
       var ids = this.mistakeIds();
       if (!ids.length) { this.setState({ shopMsg: 'Niente da riparare \u2014 you have no mistakes right now.' }); return; }
-      if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough cashi \u2014 \u20ac' + (it.price - s.cashi) + ' more to go.' }); return; }
+      if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough Boh Cashi \u2014 \u20ac' + (it.price - s.cashi) + ' more to go.' }); return; }
       var gone = ids[0];
       this.sfx('buy');
       this.setState({ cashi: s.cashi - it.price,
@@ -2726,7 +2726,7 @@ class Component extends DCLogic {
       return;
     }
     if (it.source !== 'shop' || s.inventory.indexOf(id) !== -1) return;
-    if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough cashi yet \u2014 \u20ac' + (it.price - s.cashi) + ' more to go. Go answer some questions!' }); return; }
+    if (s.cashi < it.price) { this.setState({ shopMsg: 'Not enough Boh Cashi yet \u2014 \u20ac' + (it.price - s.cashi) + ' more to go. Go answer some questions!' }); return; }
     this.sfx('buy');
     var eq = Object.assign({}, s.equipped || {});
     if (SLOT[id]) eq[SLOT[id]] = id;
@@ -3352,12 +3352,12 @@ class Component extends DCLogic {
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
     result.isPacco = s.screen === 'pacco';
-    result.walletText = '€ ' + s.cashi;
-    result.walletLabel = s.cashi + ' euro in cashi';
+    result.walletText = s.cashi + ' BC';
+    result.walletLabel = s.cashi + ' Boh Cashi';
     result.hasEarnToast = s.lastEarn > 0 && s.screen === 'play';
-    result.earnToast = '+€' + s.lastEarn;
+    result.earnToast = '+' + s.lastEarn + ' BC';
     result.hasPending = (pend.sacchi + pend.centoni) > 0 && (s.screen === 'home' || s.screen === 'summary');
-    result.pendingTitle = pend.sacchi > 0 ? 'UN SACCO! €1,000 earned!' : 'HAI FATTO UN CENTONE!';
+    result.pendingTitle = pend.sacchi > 0 ? 'UN SACCO! 1,000 BC earned!' : 'HAI FATTO UN CENTONE!';
     result.pendingSub = (pend.sacchi + pend.centoni) <= 1 ? '1 Pacco Boh to open' : (pend.sacchi + pend.centoni) + ' Pacchi Boh to open';
     result.openPaccoHandler = function () { self.openPacco(); };
     result.goShopHandler = function () { self.goScreen('shop'); };
@@ -3372,7 +3372,7 @@ class Component extends DCLogic {
       result.hasShopMsg = !!s.shopMsg;
       result.shopMsg = s.shopMsg;
       result.dollLayers = dollLayersFor(s.bohBase, withLook(s));
-      // Cheapest first. Adding the kits put eight €45-70 tiles at the top of
+      // Cheapest first. Adding the kits put eight 45 BC-70 tiles at the top of
       // the shop, so a student opening it with no cashi saw a whole screen of
       // things they could not buy and assumed the shop had shrunk. Leading with
       // what they can actually afford also makes the expensive kits read as
@@ -3393,7 +3393,7 @@ class Component extends DCLogic {
         var wearing = have && fits && (s.equipped || {})[SLOT[it.id]] === it.id;
         if (have && !wearing) btn = 'margin-top:4px;width:100%;padding:10px;border-radius:12px;font-weight:800;font-size:13.5px;cursor:pointer;background:transparent;color:' + (fits ? 'var(--text);border:2px solid var(--primary-bg);' : 'var(--text-faint);border:2px dashed var(--card-border);');
         return { id: it.id, it: it.it, en: it.en, rarity: it.rarity, rarityColor: RARITY[it.rarity].color, cls: 'ic i-' + it.id,
-                 priceText: have ? (wearing ? 'Wearing now' : 'Yours') : (PRICE_WORD[it.price] ? PRICE_WORD[it.price] + ' · €' + it.price : '€' + it.price),
+                 priceText: have ? (wearing ? 'Wearing now' : 'Yours') : (PRICE_WORD[it.price] ? PRICE_WORD[it.price] + ' · ' + it.price + ' BC' : it.price + ' BC'),
                  btnText: !have ? 'Buy' : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
                  act: function () { if (have) self.wearItem(it.id); else self.buyItem(it.id); } };
       });
@@ -3441,7 +3441,7 @@ class Component extends DCLogic {
         result.pWearNote = (s.bohName || 'Boh') + ' is wearing it now. Swap it anytime in your locker.';
       } else {
         result.pRarity = 'RIMBORSO'; result.pRarityColor = '#6B7280'; result.pCls = 'icbig j-pacco';
-        result.pIt = 'Hai tutto!'; result.pEn = 'You already own everything.'; result.pDesc = 'Here’s un deca (€10) back instead.';
+        result.pIt = 'Hai tutto!'; result.pEn = 'You already own everything.'; result.pDesc = 'Here’s un deca (10 BC) back instead.';
       }
       result.pFaceCls = 'bf ' + (pit && pit.id === 'calzino' ? FACES[s.bohBase || 'm'].boh : FACES[s.bohBase || 'm'].happy);
       result.pReaction = pit && pit.id === 'calzino' ? (s.bohName || 'Boh') + ': \u201cBoh.\u201d' : (s.bohName || 'Boh') + ': \u201cMa dai!\u201d';
@@ -3773,9 +3773,9 @@ var BT_FC = [{"id": "i1:pron", "title": "I pronomi", "cards": [["io", "I"], ["tu
 function btFcDecks() { return BT_FC; }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010331" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010331" defer></script>
-<script src="../assets/gloss.js?v=202610010331" defer></script>
+<script src="../assets/flashcards.js?v=202610010524" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010524" defer></script>
+<script src="../assets/gloss.js?v=202610010524" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -3816,5 +3816,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010331" defer></script>
+<script src="../assets/bohsave.js?v=202610010524" defer></script>
 </body></html>
