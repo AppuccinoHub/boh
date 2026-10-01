@@ -180,8 +180,9 @@
         var d = new Date(), stamp = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
         var txt = 'Boh · save file\nBoh: ' + (bundle.name || '') + '\nLevels: ' + levelsIn(bundle.d).join(', ') + '\nSaved: ' + d.toLocaleString() +
           '\nTo load: open appuccinohub.github.io/boh → Carica il mio Boh → choose this file.\n\n' + code + '\n';
-        var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = 'Boh-' + nm + '-' + stamp + '.txt';
-        document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+        // The file lives inside the link itself (about 1 KB), so it never expires: "Save as…", Google Drive and "Try again" all work.
+        var a = document.createElement('a'); a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(txt); a.download = 'Boh-' + nm + '-' + stamp + '.txt';
+        document.body.appendChild(a); a.click(); setTimeout(function () { a.remove(); }, 1500);
         $('#bs-out').innerHTML = '<div class="bs-shot" role="alert"><b>📂 PUT THE FILE IN YOUR GOOGLE DRIVE</b>Open Files → Downloads → drag it to My Drive.</div>' +
           '<div class="bs-msg ok">Saved: ' + esc(levelsIn(bundle.d).join(', ') || 'your Boh') + '.</div>';
       });
