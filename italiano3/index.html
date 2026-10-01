@@ -307,6 +307,8 @@
 .ls-use{display:flex;flex-direction:column;gap:3px;padding:10px;border-radius:12px;background:var(--option-default-bg);font-size:14px}
 .ls-it{font-weight:700}
 .ls-en{font-size:12.5px;color:var(--text-muted)}
+.ls-say{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:4px 0 10px;padding:12px 18px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px}
+.ls-say:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-chart{display:grid;grid-template-columns:minmax(64px,.8fr) repeat(4,minmax(0,1fr));border:1px solid var(--card-border);border-radius:12px;overflow:hidden;font-size:15px}
 .lc{padding:6px 8px;border-bottom:1px solid var(--card-border);font-weight:600;overflow-wrap:anywhere}
 .lc b{color:var(--accent-strong)}
@@ -331,6 +333,7 @@
 .ls-oggi{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:18px;font-weight:700}
 .ls-tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--catTag-bg);color:var(--catTag-text)}
 .ls-prompt{font-size:22px;font-weight:800;line-height:1.3}
+.ls-subl{margin-top:-6px;font-size:15px;font-weight:700;color:var(--text-muted)}
 .ls-opts{display:flex;flex-direction:column;gap:8px}
 .ls-opts.row{flex-direction:row;flex-wrap:wrap}
 .ls-opt{all:unset;box-sizing:border-box;cursor:pointer;padding:14px 16px;min-height:50px;border-radius:14px;background:var(--option-default-bg);border:2px solid var(--option-default-border);font-weight:800;font-size:17px;color:var(--text)}
@@ -401,7 +404,7 @@
 .ls-stats span{font-size:13px;font-weight:700;color:var(--text-muted)}
 .ls-worst{all:unset;box-sizing:border-box;cursor:pointer;align-self:stretch;display:flex;flex-direction:column;gap:3px;padding:12px 16px;border-radius:14px;background:var(--catTag-bg);color:var(--catTag-text);font-size:14.5px;font-weight:700}
 @media (max-width:700px){
-  .ls-stage{flex-direction:column;gap:10px}
+  .ls-stage{flex-direction:column;gap:10px;align-items:stretch}
   .ls-boh{position:static;width:100%;flex-direction:row-reverse;align-items:center;justify-content:flex-end}
   .ls-bubble{flex:1;align-self:center;font-size:20px}
   .doll.ls-doll{width:56px;height:146px}
@@ -434,6 +437,7 @@
 .hl-next{all:unset;box-sizing:border-box;cursor:pointer;width:100%;text-align:center;padding:20px 18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 .hl-next:focus-visible,.hl-btn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .hl-card{display:flex;flex-direction:column;gap:8px;padding:16px 18px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);font-size:15px;line-height:1.45}
+.hl-card.hl-m{border-color:var(--success-border,#3a9a5b)}
 .hl-card.hl-v{border-color:var(--primary-bg)}
 .hl-card.hl-n{border-color:var(--accent-strong);border-style:dashed}
 .hl-card.hl-p{background:var(--error-bg);border-color:var(--error-border)}
@@ -1280,8 +1284,10 @@
 
               <sc-if value="{{lsHasOggi}}" hint-placeholder-val="{{false}}"><div class="ls-oggi"><span class="ls-tag">Oggi</span><span>{{lsOggi}}</span></div></sc-if>
               <sc-if value="{{lsHasPrompt}}" hint-placeholder-val="{{false}}"><div class="ls-prompt display">{{lsPrompt}}</div></sc-if>
+              <sc-if value="{{lsHasSub}}" hint-placeholder-val="{{false}}"><div class="ls-subl">{{lsSub}}</div></sc-if>
 
               <sc-if value="{{lsMc}}" hint-placeholder-val="{{false}}">
+                <sc-if value="{{lsHasSay}}" hint-placeholder-val="{{false}}"><button class="ls-say" onClick="{{lsSayH}}">&#128266; Ascolta di nuovo</button></sc-if>
                 <div class="ls-opts"><sc-for list="{{lsOpts}}" as="op" hint-placeholder-count="3"><button class="{{op.cls}}" onClick="{{op.pick}}" disabled="{{op.dis}}">{{op.t}}</button></sc-for></div>
               </sc-if>
 
@@ -1569,6 +1575,7 @@
         <sc-if value="{{hlClose}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">So close!</b><p>{{hlGapText}}</p><p class="hl-s">Try <b>Fix my mistakes</b> first.</p></div></sc-if>
         <sc-if value="{{hlRipasso}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-v"><b class="hl-h">&#128214; Ripassa con Boh &middot; 1 min</b><p>{{hlRipText}}</p><sc-if value="{{hlRipWords}}" hint-placeholder-val="{{false}}"><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></sc-if><button onClick="{{hlRipH}}" class="hl-btn">{{hlRipBtn}}</button></div></sc-if>
         <sc-if value="{{hlNote}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-n"><b class="hl-h">&#9999;&#65039; Scrivi nel quaderno</b><p>Copy these <b>by hand</b>.</p><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div><button onClick="{{hlNoteH}}" class="hl-btn">{{hlNoteBtn}}</button></div></sc-if>
+        <sc-if value="{{hlMoveOn}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-m"><b class="hl-h">&#10145;&#65039; Keep going</b><p>Still tricky? That&rsquo;s OK. Move on: your missed words come back in the next rounds and in your flashcards.</p><button onClick="{{hlMoveH}}" class="hl-btn">{{hlMoveText}}</button></div></sc-if>
         <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h">&#9995; Chiedi alla Prof</b><p><b>Raise your hand. Show la Prof this screen.</b></p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
           <div class="rb2"><sc-if value="{{hasMistakes}}" hint-placeholder-val="{{false}}"><button onClick="{{mistakesHandler}}" class="rbb warn">Fix my mistakes ({{mistakesCount}})</button></sc-if><sc-if value="{{showPlayAgain}}" hint-placeholder-val="{{true}}"><button onClick="{{playAgainHandler}}" class="{{playAgainCls}}">&#128257; Play again</button></sc-if></div>
           <sc-if value="{{hlWait}}" hint-placeholder-val="{{false}}"><div class="hl-wait">Do the review first. Then Play again opens.</div></sc-if>
@@ -2451,7 +2458,7 @@ function btRefund(p) {
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 60: 'sei deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU', 'stuck', 'helpDone', 'mistakesFrom'];
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'skips', 'paccoMini', 'paccoGrande', 'vouchers', 'skippedRound', 'chainText', 'trips', 'scudi', 'scudoWeek', 'playDays', 'bentornato', 'fiammaMiles', 'tabDone', 'unit', 'units', 'provaTimes', 'lesson', 'profU', 'stuck', 'helpDone', 'mistakesFrom', 'carry', 'helped'];
 var BT_SHARED_KEYS = PERSIST_KEYS.filter(function (k) { return ["badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes", "lesson", "profU"].indexOf(k) === -1 && k !== 'unit' && k !== 'units'; });
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
@@ -2510,6 +2517,9 @@ function grLoose(q, x, y) {
   if (stripAccents(x) === stripAccents(y)) return true;
   if (typeof btTypoOk === 'function' ? btTypoOk(x, y) : grTypo(x, y)) return true;
   if (GR_H.indexOf(y) !== -1 && x === y.slice(1)) return true;
+  if (x.length === y.length && x.length >= 3 && !(typeof btLex === 'function' && btLex()[x])) {   // two letters swapped in a short word: moi -> mio
+    for (var t = 0; t < x.length - 1; t++) if (x !== y && x.slice(0, t) + x[t + 1] + x[t] + x.slice(t + 2) === y) return true;
+  }
   if (!grArtTested(q) && GR_ART.indexOf(x) !== -1 && GR_ART.indexOf(y) !== -1) return true;
   return false;
 }
@@ -2724,6 +2734,10 @@ function evalFrasi(q, text) {
     var said = prep(text, keep), want = prep(answers[i], keep);
     var r = scoreFrasi(q, said, want);
     if (r.ok) return r;
+    var sq = function (t) { return stripAccents(String(t).toLowerCase()).replace(/[^a-z]/g, ''); };
+    if (sq(text) && sq(text) === sq(answers[i])) {   // only a space in the wrong place
+      var rs = scoreFrasi(q, want, want); rs.accentNote = 'Counts! Watch the spaces: ' + answers[i]; return rs;
+    }
     if (!grArtTested(q) && noArt(want).length < want.length) {
       var r2 = scoreFrasi(q, noArt(said), noArt(want));
       if (r2.ok) { r2.accentNote = 'Counts! Watch the article: ' + answers[i]; r2.marks = said.map(function (w) { return { w: w, bad: false }; }); return r2; }
@@ -11865,7 +11879,7 @@ class Component extends DCLogic {
     var cap = MODES[modeKey].cap;
     if (cap) {
       var kept = [], byCat = {};
-      shuffleArr(items).forEach(function (q) {
+      btVocabFirst(modeKey, shuffleArr(items), this.state).forEach(function (q) {
         byCat[q.cat] = (byCat[q.cat] || 0) + 1;
         if (!cap[q.cat] || byCat[q.cat] <= cap[q.cat]) kept.push(q);
       });
@@ -11886,7 +11900,7 @@ class Component extends DCLogic {
       }
       return q;
     });
-    return items;
+    return btCarryIn(modeKey, items, this.state);
   }
 
   startMode(modeKey) {
@@ -12036,6 +12050,11 @@ class Component extends DCLogic {
         if ((out.passed || []).indexOf(md) !== -1) delete stk[sk];
         else if (out.failReason) { var pv = stk[sk] || { n: 0, best: 0 }; stk[sk] = { n: pv.n + 1, best: Math.max(pv.best || 0, Math.round(accC / accT * 100)) }; }
         out.stuck = stk; out.helpDone = false;
+        if ((st.carry || []).length && md !== 'prova') {   // carried cards answered right this round are done
+          var U = btUnitKey() + '|', missIds = (st.missed || []).map(function (m) { return m.id; }), inQ = {};
+          (st.queue || []).forEach(function (q) { inQ[q.id] = 1; });
+          out.carry = st.carry.filter(function (k) { if (k.indexOf(U) !== 0) return true; var id = k.slice(U.length); return !(inQ[id] && missIds.indexOf(id) === -1); });
+        }
       })(this.state);
       var cur = this.state;
       out.roundActive = false;
@@ -12272,8 +12291,50 @@ class Component extends DCLogic {
     return { v: 1, done: [], finished: false, earned: 0, typed: 0, fixes: 0, miss: {}, paidL: [] };
   }
   lsFrontier(L, D) { for (var i = 0; i < D.stops.length; i++) if ((L.done || []).indexOf(i) === -1) return i; return D.stops.length; }
-  lsFresh(k, i) {
-    var D = this.lsData(), st = D.stops[k], it = st.items[i] || null;
+  lsItems(k) { var s = this.state, D = this.lsData(); return s.lsDeck && s.lsDeckK === k && s.lsDeckU === BT_UNIT ? s.lsDeck : D.stops[k].items; }
+  lsDraw(k, L) {   // vocab stops: a fresh mix of practice cards every time, missed words more often, never the same word twice in a row
+    var D = this.lsData(), st = D.stops[k], dr = st.drill, B = D.bank;
+    if (!dr || !B) return null;
+    var miss = (L && L.vmiss) || {}, wt = function (id) { return 1 + 2 * Math.min(3, miss[id] || 0); };
+    var draw = function (ids, n) {
+      var out = [], pool = ids.slice();
+      while (out.length < n && ids.length) {
+        if (!pool.length) pool = ids.slice();
+        var tot = 0; pool.forEach(function (id) { tot += wt(id); });
+        var r = Math.random() * tot;
+        for (var q = 0; q < pool.length; q++) { r -= wt(pool[q]); if (r <= 0 || q === pool.length - 1) { out.push(pool.splice(q, 1)[0]); break; } }
+      }
+      return out;
+    };
+    var cards = [];
+    (dr.plan || []).forEach(function (p) {   // p = [forms, count, words?]
+      var lvl = [];
+      draw(p[2] ? p[2] : dr.words, p[1]).forEach(function (id) {
+        var opts = (B[id] || []).filter(function (c) { return p[0].indexOf(c.fm) !== -1; });
+        if (opts.length) lvl.push(JSON.parse(JSON.stringify(opts[Math.floor(Math.random() * opts.length)])));
+      });
+      cards = cards.concat(shuffleArr(lvl));
+    });
+    for (var a = 1; a < cards.length; a++) if (cards[a].w === cards[a - 1].w) {   // no word twice in a row
+      for (var b = a + 1; b < cards.length; b++) if (cards[b].w !== cards[a - 1].w && cards[b].w !== (cards[a + 1] || {}).w) { var x = cards[a]; cards[a] = cards[b]; cards[b] = x; break; }
+    }
+    var lead = st.items.slice(0, dr.lead || 0), tail = dr.tail ? st.items.slice(st.items.length - dr.tail) : [];
+    return lead.concat(cards).concat(tail);
+  }
+  lsRecycle(patch, it, L) {   // a missed card comes back 3 cards later (once); the word counts as missed for the next draw
+    var s = this.state;
+    if (!it || !it.w) return;
+    L.vmiss = L.vmiss || {}; L.vmiss[it.w] = (L.vmiss[it.w] || 0) + 1;
+    try { if (it.fw && typeof BohCards !== 'undefined' && BohCards.forget) BohCards.forget(it.fw[0], it.fw[1]); } catch (e) {}
+    if (it.again || !(s.lsDeck && s.lsDeckK === s.lsCur)) return;
+    var D = this.lsData(), dr = D.stops[s.lsCur].drill || {}, deck = (patch.lsDeck || s.lsDeck).slice();
+    var copy = JSON.parse(JSON.stringify(it)); copy.again = true; copy.kicker = '🔁 Ancora una volta · ' + String(it.kicker || '').replace(/^.*· /, '');
+    var pos = Math.min(s.lsI + 3, deck.length - (dr.tail || 0));
+    deck.splice(pos, 0, copy); patch.lsDeck = deck;
+  }
+  lsSayIt(delay) { var self = this; setTimeout(function () { try { var x = self.lsItem(); if (x.it && x.it.say && typeof BohCards !== 'undefined' && BohCards.say) BohCards.say(x.it.say); } catch (e) {} }, delay || 300); }
+  lsFresh(k, i, items) {
+    var D = this.lsData(), st = D.stops[k], it = (items || this.lsItems(k))[i] || null;
     var o = { st: 'ask', tries: 0, vals: [], tipKey: '', note: '', msg: '', pay: 0, placed: [], bank: [], sel: -1, vDone: false, vBad: [], vTries: 0, end: -1, free: false, freeTxt: '', checks: [false, false, false], optBad: [], opts: [], vOrder: [] };
     if (it && it.t === 'tiles') { var idx = []; for (var q = 0; q < it.tiles.length + it.traps.length; q++) idx.push(q); o.bank = shuffleArr(idx); }
     if (it && it.t === 'mc') o.opts = shuffleArr([it.answer].concat(it.traps));
@@ -12285,11 +12346,14 @@ class Component extends DCLogic {
     if (!D) return;
     var L = this.lsState(), fr = Math.max(this.lsFrontier(L, D), ((s.profU || {}).openTo) || 0);
     if (k > fr || k >= D.stops.length) { this.sfx('soft'); return; }
-    var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0), lsView: 'stop', lsStopEarn: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0 };
+    var deck = this.lsDraw(k, L);
+    var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0, deck || D.stops[k].items), lsView: 'stop', lsStopEarn: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0,
+                  lsDeck: deck, lsDeckK: deck ? k : -1, lsDeckU: BT_UNIT };
     var today = dayKey(0);
     if (s.lastPlay !== today) this.btDay(s, today, extra); else extra.fiammaNote = '';
     this.sfx('tap');
     this.setState(extra);
+    this.lsSayIt(400);
   }
   lsMoney(patch, pay) {
     if (!pay) return;
@@ -12309,7 +12373,7 @@ class Component extends DCLogic {
   }
   lsCopy() { return { o: JSON.parse(JSON.stringify(this.state.lsIt || {})), L: JSON.parse(JSON.stringify(this.lsState())) }; }
   lsMiss(L, key) { if (!key) return; L.miss = L.miss || {}; L.miss[key] = (L.miss[key] || 0) + 1; }
-  lsItem() { var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], it = st.items[s.lsI] || null; return { D: D, st: st, it: it, ty: it ? it.t : '' }; }
+  lsItem() { var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], it = this.lsItems(s.lsCur)[s.lsI] || null; return { D: D, st: st, it: it, ty: it ? it.t : '' }; }
   lsRight(o, L, typed) {
     var s = this.state, patch = {};
     o.st = 'ok';
@@ -12360,6 +12424,7 @@ class Component extends DCLogic {
       if (lsHasWord(o.freeTxt, it.verb)) { o.st = 'ok'; o.end = -1; L.typed = (L.typed || 0) + 1; this.sfx('good'); }
       else { o.msg = 'Usa il verbo che hai scelto: ' + it.verb + '.'; this.sfx('soft'); }
     }
+    if (o.tries >= 1 && o.st !== 'ok' && !o.recy) { o.recy = true; this.lsRecycle(patch, it, L); }
     patch.lsIt = o; patch.lesson = L;
     this.setState(patch);
   }
@@ -12369,7 +12434,8 @@ class Component extends DCLogic {
     if (o.st === 'ok' || o.optBad.indexOf(label) !== -1) return;
     o.sel = label;
     if (label === it.answer) { patch = this.lsRight(o, L, false); o.tipKey = ''; }
-    else { o.optBad.push(label); o.tries++; o.tipKey = this.lsTip(it, lsG(label, s.bohBase), lsG(it.answer, s.bohBase)); this.lsMiss(L, o.tipKey); o.st = 'wrong'; this.sfx('soft'); }
+    else { o.optBad.push(label); o.tries++; o.tipKey = this.lsTip(it, lsG(label, s.bohBase), lsG(it.answer, s.bohBase)); this.lsMiss(L, o.tipKey); o.st = 'wrong'; this.sfx('soft');
+      if (!o.recy) { o.recy = true; this.lsRecycle(patch, it, L); } }
     patch.lsIt = o; patch.lesson = L;
     this.setState(patch);
   }
@@ -12406,8 +12472,8 @@ class Component extends DCLogic {
   lsFree() { var o = this.lsCopy().o; if (!o.vDone || o.st === 'ok') return; o.free = true; o.msg = ''; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsCheckTog(k) { var o = this.lsCopy().o; o.checks[k] = !o.checks[k]; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsNext() {
-    var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], n = st.items.length;
-    if (s.lsI + 1 < n) { this.sfx('tap'); this.setState({ lsI: s.lsI + 1, lsIt: this.lsFresh(s.lsCur, s.lsI + 1) }); return; }
+    var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], n = this.lsItems(s.lsCur).length;
+    if (s.lsI + 1 < n) { this.sfx('tap'); this.setState({ lsI: s.lsI + 1, lsIt: this.lsFresh(s.lsCur, s.lsI + 1) }); this.lsSayIt(250); return; }
     var L = this.lsCopy().L, patch = {};
     if (L.done.indexOf(s.lsCur) === -1) L.done = L.done.concat([s.lsCur]);
     var pay = this.lsPay(L, 'S' + s.lsCur, 25), justDone = false;
@@ -12513,7 +12579,7 @@ class Component extends DCLogic {
     if (!result.isLesson) return;
 
     // ---------- the lesson screen ----------
-    var k = s.lsCur || 0, st = D.stops[k], items = st.items || null, i = s.lsI || 0, it = items ? items[i] : null, o = s.lsIt || this.lsFresh(k, i), view = s.lsView || 'stop', ty = it ? it.t : '';
+    var k = s.lsCur || 0, st = D.stops[k], items = this.lsItems(k) || null, i = s.lsI || 0, it = items ? items[i] : null, o = s.lsIt || this.lsFresh(k, i), view = s.lsView || 'stop', ty = it ? it.t : '';
     var G = function (t) { return lsG(t, base); };
     result.lsBars = D.stops.map(function (x, q) { return { cls: 'ls-bar' + (q === k ? ' cur' : L.done.indexOf(q) !== -1 ? ' done' : '') }; });
     result.lsEyebrow = 'Tappa ' + (k + 1) + ' di ' + N + ' · ' + st.label + (items ? ' · ' + (i + 1) + ' / ' + items.length : '');
@@ -12528,7 +12594,7 @@ class Component extends DCLogic {
     result.lsBubble = bubble;
     if (view === 'fine') result.lsEyebrow = 'Lezione finita · ' + D.title;
     result.lsKicker = G((it && it.kicker) || st.kicker);
-    ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla', 'Text'].forEach(function (t) { result['ls' + t] = false; });
+    ['Impara', 'Mc', 'Type', 'Tiles', 'Fix', 'Chat', 'Parla', 'Text', 'HasSay', 'HasSub'].forEach(function (t) { result['ls' + t] = false; });
     result.lsHasOggi = false; result.lsHasPrompt = false; result.lsPrompt = ''; result.lsSub = '';
     var tip = o.tipKey ? LS_TIPS[o.tipKey] : null;
     result.lsHasMsg = !!o.msg; result.lsMsg = o.msg || '';
@@ -12585,7 +12651,9 @@ class Component extends DCLogic {
       }
     }
     if (view === 'stop' && ty === 'mc') {
-      result.lsMc = true; result.lsHasOggi = !!it.oggi; result.lsOggi = G(it.oggi || ''); result.lsHasPrompt = true; result.lsPrompt = G(it.prompt); if (it.sub) result.lsKicker = it.sub;
+      result.lsHasSay = !!it.say; result.lsSayH = function () { self.sfx('tap'); try { BohCards.say(it.say); } catch (e) {} };
+      result.lsMc = true; result.lsHasOggi = !!it.oggi; result.lsOggi = G(it.oggi || ''); result.lsHasPrompt = true; result.lsPrompt = G(it.prompt);
+      if (it.sub && it.fm) { result.lsHasSub = true; result.lsSub = it.sub; } else if (it.sub) result.lsKicker = it.sub;
       result.lsOpts = o.opts.map(function (lab) {
         var right = o.st === 'ok' && lab === it.answer, bad = o.optBad.indexOf(lab) !== -1;
         return { t: G(lab), dis: lsD(bad || o.st === 'ok'), cls: 'ls-opt' + (right ? ' ok' : bad ? ' bad' : ''), pick: function () { self.lsPickMc(lab); } };
@@ -13420,6 +13488,23 @@ class Component extends DCLogic {
         result.hlNoteBtn = s.helpDone ? '✓ Written. Good!' : '✏️ I wrote it in my notebook';
         result.hlNoteH = function () { self.sfx('good'); self.setState({ helpDone: true }); };
         result.hlProf = n >= 4;
+        result.hlMoveOn = btIsVocab(md) && n >= 3 && !passedNow;
+        if (result.hlMoveOn) {
+          var nx2 = null;
+          for (var i3 = at + 1; i3 < order.length; i3++) { var k3 = order[i3]; if (MODES[k3] && (MODES[k3].needs === md || open(k3))) { nx2 = k3; break; } }
+          result.hlMoveText = nx2 ? 'Avanti con aiuto → ' + MODES[nx2].label : 'Avanti con aiuto';
+          result.hlMoveH = function () {
+            var t = self.state, U = btUnitKey(), car = (t.carry || []).slice();
+            (t.missed || []).forEach(function (m) {
+              if (!m.id) return; var key = U + '|' + m.id; if (car.indexOf(key) === -1) car.push(key);
+              for (var q = 0; q < QUESTION_BANK.length; q++) if (QUESTION_BANK[q].id === m.id) { btForget(QUESTION_BANK[q]); break; }
+            });
+            var p = (t.passed || []).indexOf(md) === -1 ? (t.passed || []).concat([md]) : t.passed;
+            var hp = (t.helped || []).concat([U + ':' + md]);
+            self.sfx('tap'); self.setState({ passed: p, helped: hp, carry: car.slice(-15) });
+            if (nx2) self.startMode(nx2); else self.backHome();
+          };
+        } else { result.hlMoveText = ''; result.hlMoveH = function () {}; }
         result.hlProfFacts = 'Round: ' + (MODES[md] ? MODES[md].label : '') + ' · Tries: ' + n + ' · Best: ' + (rec ? rec.best : 0) + '%';
         var gate = (n === 2 || n === 3) && !s.helpDone;
         result.showPlayAgain = !gate;
@@ -13442,9 +13527,37 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010211" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010211" defer></script>
-<script src="../assets/gloss.js?v=202610010211" defer></script>
+<script src="../assets/flashcards.js?v=202610010300" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010300" defer></script>
+<script src="../assets/gloss.js?v=202610010300" defer></script>
+<script>
+function btIsVocab(md) {   // vocab rounds get the move-on help
+  try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
+}
+function btUnitKey() { return typeof BT_UNIT === 'undefined' ? 'i1' : BT_UNIT; }
+function btVocabFirst(md, arr, s) {   // missed words first (up to half the round), then the rest
+  if (!btIsVocab(md)) return arr;
+  var hot = (s.missedEver || []).concat(s.missedNow || []), cap = MODES[md].total || 12, a = [], b = [];
+  arr.forEach(function (q) { if (hot.indexOf(q.id) !== -1 && a.length < Math.ceil(cap / 2)) a.push(q); else b.push(q); });
+  return a.concat(b);
+}
+function btCarryIn(md, items, s) {   // cards a student moved past with help come back in the next rounds
+  if (md === 'prova' || md === 'mistakes' || !(s.carry || []).length) return items;
+  var U = btUnitKey() + '|', have = {}, add = [];
+  items.forEach(function (q) { have[q.id] = 1; });
+  (s.carry || []).forEach(function (k) {
+    if (add.length >= 3 || k.indexOf(U) !== 0) return;
+    var id = k.slice(U.length);
+    if (have[id]) return;
+    for (var i = 0; i < QUESTION_BANK.length; i++) if (QUESTION_BANK[i].id === id) { add.push(QUESTION_BANK[i]); break; }
+  });
+  if (!add.length) return items;
+  var out = items.slice();
+  add.forEach(function (q, j) { out.splice(Math.min(out.length, 2 + j * 3), 0, q); });
+  return out;
+}
+function btForget(q) { try { if (q && q.fw && typeof BohCards !== 'undefined' && BohCards.forget) BohCards.forget(q.fw[0], q.fw[1]); } catch (e) {} }
+</script>
 <script>
 window.BohGlossOff = function () {   // hover English stays off in La Prova and on "what does it mean?" cards
   var g = window.__game, s = g && g.state; if (!s) return false;
@@ -13457,5 +13570,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010211" defer></script>
+<script src="../assets/bohsave.js?v=202610010300" defer></script>
 </body></html>

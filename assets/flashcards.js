@@ -157,5 +157,8 @@
   }
   function passed(id) { return !!get(id).passed; }
   function stats(id, n) { var g = get(id); return { known: Math.min(n || 1e9, g.known.length), passed: !!g.passed }; }
-  W.BohCards = { open: open, passed: passed, stats: stats, close: close };
+  function forget(ids, word) {   // a word the student missed in practice goes back into the "don't know yet" pile
+    [].concat(ids || []).forEach(function (id) { var g = get(id); var i = (g.known || []).indexOf(word); if (i !== -1) { g.known.splice(i, 1); put(id, g); } });
+  }
+  W.BohCards = { open: open, passed: passed, stats: stats, close: close, say: say, forget: forget };
 })(window);

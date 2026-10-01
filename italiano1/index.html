@@ -28,6 +28,7 @@
 .hl-next{all:unset;box-sizing:border-box;cursor:pointer;width:100%;text-align:center;padding:20px 18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 .hl-next:focus-visible,.hl-btn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .hl-card{display:flex;flex-direction:column;gap:8px;padding:16px 18px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);font-size:15px;line-height:1.45}
+.hl-card.hl-m{border-color:var(--success-border,#3a9a5b)}
 .hl-card.hl-v{border-color:var(--primary-bg)}
 .hl-card.hl-n{border-color:var(--accent-strong);border-style:dashed}
 .hl-card.hl-p{background:var(--error-bg);border-color:var(--error-border)}
@@ -1126,6 +1127,7 @@
         <sc-if value="{{hlClose}}" hint-placeholder-val="{{false}}"><div class="hl-card"><b class="hl-h">So close!</b><p>{{hlGapText}}</p><p class="hl-s">Try <b>Fix my mistakes</b> first.</p></div></sc-if>
         <sc-if value="{{hlRipasso}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-v"><b class="hl-h">&#128214; Ripassa con Boh &middot; 1 min</b><p>{{hlRipText}}</p><sc-if value="{{hlRipWords}}" hint-placeholder-val="{{false}}"><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></sc-if><button onClick="{{hlRipH}}" class="hl-btn">{{hlRipBtn}}</button></div></sc-if>
         <sc-if value="{{hlNote}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-n"><b class="hl-h">&#9999;&#65039; Scrivi nel quaderno</b><p>Copy these <b>by hand</b>.</p><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div><button onClick="{{hlNoteH}}" class="hl-btn">{{hlNoteBtn}}</button></div></sc-if>
+        <sc-if value="{{hlMoveOn}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-m"><b class="hl-h">&#10145;&#65039; Keep going</b><p>Still tricky? That&rsquo;s OK. Move on: your missed words come back in the next rounds and in your flashcards.</p><button onClick="{{hlMoveH}}" class="hl-btn">{{hlMoveText}}</button></div></sc-if>
         <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h">&#9995; Chiedi alla Prof</b><p><b>Raise your hand. Show la Prof this screen.</b></p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
           <div class="rb2"><sc-if value="{{hasMistakes}}" hint-placeholder-val="{{false}}"><button onClick="{{mistakesHandler}}" class="rbb warn">Fix my mistakes ({{mistakesCount}})</button></sc-if><sc-if value="{{showPlayAgain}}" hint-placeholder-val="{{true}}"><button onClick="{{playAgainHandler}}" class="{{playAgainCls}}">&#128257; Play again</button></sc-if></div>
           <sc-if value="{{hlWait}}" hint-placeholder-val="{{false}}"><div class="hl-wait">Do the review first. Then Play again opens.</div></sc-if>
@@ -1766,7 +1768,7 @@ var BADGES = [
 for (var _i = 0; _i < ITEMS.length; _i++) if (ITEMS[_i].slot) SLOT[ITEMS[_i].id] = ITEMS[_i].slot;
 var PRICE_WORD = { 5: 'uno scudo', 10: 'un deca', 15: 'un deca e uno scudo', 20: 'due deca', 25: 'due deca e uno scudo', 30: 'tre deca', 35: 'tre deca e uno scudo', 40: 'quattro deca', 45: 'quattro deca e uno scudo', 50: 'cinque deca', 55: 'cinque deca e uno scudo', 60: 'sei deca', 70: 'sette deca', 120: 'una piotta e due deca', 150: 'una piotta e mezza', 200: 'due piotte', 300: 'tre piotte' };
 var PERSIST_KEYS = ['cashi', 'lifetime', 'centoniOpened', 'sacchiOpened', 'inventory', 'badges', 'missedEver', 'lastPlay', 'diFila', 'ageTrap', 'formsHit', 'paid', 'paidDay', 'sound', 'reduceMotion', 'seenHelp', 'bohBase', 'bohName', 'bohSkin', 'bohHair', 'equipped', 'passed', 'frasiMastered', 'provaAttempt', 'provaFirst', 'provaBest', 'provaCard',
-  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'stuck', 'helpDone', 'mistakesFrom'];
+  'queue', 'qIndex', 'mode', 'roundActive', 'hearts', 'streak', 'bestStreak', 'correctSoFar', 'totalSoFar', 'catStats', 'missed', 'missedNow', 'sessionEarned', 'cardsPaid', 'eaRun', 'missRun', 'zooSession', 'stuck', 'helpDone', 'mistakesFrom', 'carry', 'helped'];
 var BLOCKED_NAMES = ['fuck', 'shit', 'bitch', 'dick', 'cazzo', 'merda', 'stronz', 'puttan', 'vaffa', 'troia', 'porn', 'sex', 'nigg', 'fag', 'hitler', 'nazi', 'cunt', 'slut', 'whore', 'culo', 'figa'];
 var FACES = { m: { boh: 'k0', happy: 'k1', wink: 'k2', whoa: 'k3' }, f: { boh: 'k4', happy: 'k5', wink: 'k5', whoa: 'k6' }, h: { boh: 'h k4', happy: 'h k5', wink: 'h k5', whoa: 'h k6' } };
 function cleanName(raw) { return (raw || '').replace(/[^A-Za-z0-9\u00C0-\u017F ]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
@@ -1823,6 +1825,9 @@ function grLoose(q, x, y) {
   if (stripAccents(x) === stripAccents(y)) return true;
   if (typeof btTypoOk === 'function' ? btTypoOk(x, y) : grTypo(x, y)) return true;
   if (GR_H.indexOf(y) !== -1 && x === y.slice(1)) return true;
+  if (x.length === y.length && x.length >= 3 && !(typeof btLex === 'function' && btLex()[x])) {   // two letters swapped in a short word: moi -> mio
+    for (var t = 0; t < x.length - 1; t++) if (x !== y && x.slice(0, t) + x[t + 1] + x[t] + x.slice(t + 2) === y) return true;
+  }
   if (!grArtTested(q) && GR_ART.indexOf(x) !== -1 && GR_ART.indexOf(y) !== -1) return true;
   return false;
 }
@@ -1909,6 +1914,10 @@ function evalFrasi(q, text) {
     var said = prep(text, keep), want = prep(answers[i], keep);
     var r = scoreFrasi(q, said, want);
     if (r.ok) return r;
+    var sq = function (t) { return stripAccents(String(t).toLowerCase()).replace(/[^a-z]/g, ''); };
+    if (sq(text) && sq(text) === sq(answers[i])) {   // only a space in the wrong place
+      var rs = scoreFrasi(q, want, want); rs.accentNote = 'Counts! Watch the spaces: ' + answers[i]; return rs;
+    }
     if (!grArtTested(q) && noArt(want).length < want.length) {
       var r2 = scoreFrasi(q, noArt(said), noArt(want));
       if (r2.ok) { r2.accentNote = 'Counts! Watch the article: ' + answers[i]; r2.marks = said.map(function (w) { return { w: w, bad: false }; }); return r2; }
@@ -2748,7 +2757,7 @@ class Component extends DCLogic {
     var cap = MODES[modeKey].cap;
     if (cap) {
       var kept = [], byCat = {};
-      shuffleArr(items).forEach(function (q) {
+      btVocabFirst(modeKey, shuffleArr(items), this.state).forEach(function (q) {
         byCat[q.cat] = (byCat[q.cat] || 0) + 1;
         if (!cap[q.cat] || byCat[q.cat] <= cap[q.cat]) kept.push(q);
       });
@@ -2769,7 +2778,7 @@ class Component extends DCLogic {
       }
       return q;
     });
-    return items;
+    return btCarryIn(modeKey, items, this.state);
   }
 
   startMode(modeKey) {
@@ -2923,6 +2932,11 @@ class Component extends DCLogic {
         if ((out.passed || []).indexOf(md) !== -1) delete stk[sk];
         else if (out.failReason) { var pv = stk[sk] || { n: 0, best: 0 }; stk[sk] = { n: pv.n + 1, best: Math.max(pv.best || 0, Math.round(accC / accT * 100)) }; }
         out.stuck = stk; out.helpDone = false;
+        if ((st.carry || []).length && md !== 'prova') {   // carried cards answered right this round are done
+          var U = btUnitKey() + '|', missIds = (st.missed || []).map(function (m) { return m.id; }), inQ = {};
+          (st.queue || []).forEach(function (q) { inQ[q.id] = 1; });
+          out.carry = st.carry.filter(function (k) { if (k.indexOf(U) !== 0) return true; var id = k.slice(U.length); return !(inQ[id] && missIds.indexOf(id) === -1); });
+        }
       })(this.state);
       var cur = this.state;
       out.roundActive = false;
@@ -3710,6 +3724,23 @@ class Component extends DCLogic {
         result.hlNoteBtn = s.helpDone ? '✓ Written. Good!' : '✏️ I wrote it in my notebook';
         result.hlNoteH = function () { self.sfx('good'); self.setState({ helpDone: true }); };
         result.hlProf = n >= 4;
+        result.hlMoveOn = btIsVocab(md) && n >= 3 && !passedNow;
+        if (result.hlMoveOn) {
+          var nx2 = null;
+          for (var i3 = at + 1; i3 < order.length; i3++) { var k3 = order[i3]; if (MODES[k3] && (MODES[k3].needs === md || open(k3))) { nx2 = k3; break; } }
+          result.hlMoveText = nx2 ? 'Avanti con aiuto → ' + MODES[nx2].label : 'Avanti con aiuto';
+          result.hlMoveH = function () {
+            var t = self.state, U = btUnitKey(), car = (t.carry || []).slice();
+            (t.missed || []).forEach(function (m) {
+              if (!m.id) return; var key = U + '|' + m.id; if (car.indexOf(key) === -1) car.push(key);
+              for (var q = 0; q < QUESTION_BANK.length; q++) if (QUESTION_BANK[q].id === m.id) { btForget(QUESTION_BANK[q]); break; }
+            });
+            var p = (t.passed || []).indexOf(md) === -1 ? (t.passed || []).concat([md]) : t.passed;
+            var hp = (t.helped || []).concat([U + ':' + md]);
+            self.sfx('tap'); self.setState({ passed: p, helped: hp, carry: car.slice(-15) });
+            if (nx2) self.startMode(nx2); else self.backHome();
+          };
+        } else { result.hlMoveText = ''; result.hlMoveH = function () {}; }
         result.hlProfFacts = 'Round: ' + (MODES[md] ? MODES[md].label : '') + ' · Tries: ' + n + ' · Best: ' + (rec ? rec.best : 0) + '%';
         var gate = (n === 2 || n === 3) && !s.helpDone;
         result.showPlayAgain = !gate;
@@ -3732,9 +3763,37 @@ var BT_FC = [{"id": "i1:pron", "title": "I pronomi", "cards": [["io", "I"], ["tu
 function btFcDecks() { return BT_FC; }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010211" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010211" defer></script>
-<script src="../assets/gloss.js?v=202610010211" defer></script>
+<script src="../assets/flashcards.js?v=202610010300" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010300" defer></script>
+<script src="../assets/gloss.js?v=202610010300" defer></script>
+<script>
+function btIsVocab(md) {   // vocab rounds get the move-on help
+  try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
+}
+function btUnitKey() { return typeof BT_UNIT === 'undefined' ? 'i1' : BT_UNIT; }
+function btVocabFirst(md, arr, s) {   // missed words first (up to half the round), then the rest
+  if (!btIsVocab(md)) return arr;
+  var hot = (s.missedEver || []).concat(s.missedNow || []), cap = MODES[md].total || 12, a = [], b = [];
+  arr.forEach(function (q) { if (hot.indexOf(q.id) !== -1 && a.length < Math.ceil(cap / 2)) a.push(q); else b.push(q); });
+  return a.concat(b);
+}
+function btCarryIn(md, items, s) {   // cards a student moved past with help come back in the next rounds
+  if (md === 'prova' || md === 'mistakes' || !(s.carry || []).length) return items;
+  var U = btUnitKey() + '|', have = {}, add = [];
+  items.forEach(function (q) { have[q.id] = 1; });
+  (s.carry || []).forEach(function (k) {
+    if (add.length >= 3 || k.indexOf(U) !== 0) return;
+    var id = k.slice(U.length);
+    if (have[id]) return;
+    for (var i = 0; i < QUESTION_BANK.length; i++) if (QUESTION_BANK[i].id === id) { add.push(QUESTION_BANK[i]); break; }
+  });
+  if (!add.length) return items;
+  var out = items.slice();
+  add.forEach(function (q, j) { out.splice(Math.min(out.length, 2 + j * 3), 0, q); });
+  return out;
+}
+function btForget(q) { try { if (q && q.fw && typeof BohCards !== 'undefined' && BohCards.forget) BohCards.forget(q.fw[0], q.fw[1]); } catch (e) {} }
+</script>
 <script>
 window.BohGlossOff = function () {   // hover English stays off in La Prova and on "what does it mean?" cards
   var g = window.__game, s = g && g.state; if (!s) return false;
@@ -3747,5 +3806,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010211" defer></script>
+<script src="../assets/bohsave.js?v=202610010300" defer></script>
 </body></html>

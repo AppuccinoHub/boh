@@ -76,7 +76,7 @@
           k += key(toks[j].w);
         }
         if (!ok) continue;
-        if (D[k] && !(n === 1 && eng && CLASH[k]) && !(n === 1 && k.length < 2 && 'eaèoi'.indexOf(k) < 0)) { hit = n; en = D[k]; break; }
+        if (D[k] && !(eng && (n === 1 || CLASH[k])) && !(n === 1 && k.length < 2 && 'eaèoi'.indexOf(k) < 0)) { hit = n; en = D[k]; break; }
       }
       if (hit) { push(node, toks[i].s, toks[i + hit - 1].e, en); i += hit; } else i++;
     }
