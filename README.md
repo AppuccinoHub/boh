@@ -12,6 +12,7 @@ An Italian-language learning game. Students customize their own Boh, learn Itali
 | Italiano 2 | `/italiano2/` |
 | Italiano 3 | `/italiano3/` |
 | Italiano 4 | `/italiano4/` |
+| Aiutami (mi / ti game, inside Italiano 4) | `/aiutami/` |
 
 ---
 
