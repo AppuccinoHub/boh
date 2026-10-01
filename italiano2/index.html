@@ -468,6 +468,11 @@
 .fc-home{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;background:var(--card-bg);border:2px solid var(--primary-bg);margin-bottom:12px}
 .fc-home .fc-ic{font-size:30px;line-height:1}.fc-home .fc-tx{display:flex;flex-direction:column;gap:2px;flex:1}.fc-home b{font-size:18px;font-weight:800}.fc-home small{font-size:13px;font-weight:700;color:var(--text-muted)}
 .fc-home .fc-go{font-size:28px;font-weight:800;color:var(--primary-bg)}.fc-home:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.ht-art{display:block;width:100%;max-width:160px;height:auto;aspect-ratio:1/1;margin:0 auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18));transition:transform .15s}
+.home-tiles>button{align-items:center!important}
+.home-tiles>button>div:last-child{text-align:center!important;align-items:center}
+.home-tiles>button:hover .ht-art{transform:scale(1.04) rotate(-1deg)}
+@media (prefers-reduced-motion:reduce){.ht-art{transition:none}}
 .look{--essere-bg:var(--volere-bg);--essere-border:var(--volere-border);--essere-text:var(--volere-text);--avere-bg:var(--potere-bg);--avere-border:var(--potere-border);--avere-text:var(--potere-text)}
 .boh-home:hover{background:color-mix(in srgb,currentColor 16%,transparent)}body:has(.look[data-screen]:not([data-screen="home"])) .boh-home{display:none}.boh-home:focus-visible{outline:3px solid #E88A6C;outline-offset:2px}</style>
 
@@ -665,6 +670,8 @@
       .home-pacco { padding: 9px 12px !important; gap: 10px !important; }
       .home-tiles { gap: 8px !important; }
       .home-tiles > button { padding: 8px 12px !important; gap: 5px !important; flex-direction: row !important; align-items: center !important; }
+      .home-tiles .ht-art { width: 92px !important; max-width: 92px !important; margin: 0 !important; }
+      .home-tiles > button > div:last-child { text-align: left !important; align-items: flex-start !important; }
       .mode-list { gap: 7px !important; }
       .mode-list > button { padding: 9px 14px !important; }
       .mode-label { font-size: 17px !important; }
@@ -695,6 +702,9 @@
       .home-tiles { gap: 8px !important; }
       .home-tiles > button { padding: 7px 10px !important; gap: 8px !important; flex-direction: row !important; align-items: center !important; }
       .home-tiles .ic { zoom: .6; }
+      .home-tiles .ht-art { width: 46px !important; max-width: 46px !important; margin: 0 !important; }
+      .home-tiles > button { padding: 7px 8px !important; gap: 6px !important; }
+      .home-tiles > button > div:last-child { text-align: left !important; align-items: flex-start !important; }
       .home-tiles > button > div { min-width: 0 !important; overflow: hidden !important; }
       .home-tiles .display { font-size: 14px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .mode-list { gap: 6px !important; }
@@ -974,11 +984,11 @@
 
         <div class="home-tiles" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
           <button onClick="{{goShopHandler}}" style="all:unset;cursor:pointer;box-sizing:border-box;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 14px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);">
-            <div class="ic i-sneakers_rosse"></div>
+            <img class="ht-art" src="../assets/tiles/boh-tique.webp" srcset="../assets/tiles/boh-tique-sm.webp 128w, ../assets/tiles/boh-tique.webp 320w" sizes="(max-width: 700px) 64px, 160px" width="160" height="160" alt="" decoding="async">
             <div style="display:flex;flex-direction:column;text-align:left;"><span class="display" style="font-size:17px;font-weight:800;">Boh-tique</span><span style="font-size:12px;color:var(--text-faint-2);">Shop</span></div>
           </button>
           <button onClick="{{goLockerHandler}}" style="all:unset;cursor:pointer;box-sizing:border-box;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 14px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);">
-            <div class="ic i-zaino"></div>
+            <img class="ht-art" src="../assets/tiles/armadietto.webp" srcset="../assets/tiles/armadietto-sm.webp 128w, ../assets/tiles/armadietto.webp 320w" sizes="(max-width: 700px) 64px, 160px" width="160" height="160" alt="" decoding="async">
             <div style="display:flex;flex-direction:column;text-align:left;"><span class="display" style="font-size:17px;font-weight:800;">L&rsquo;armadietto</span><span style="font-size:12px;color:var(--text-faint-2);">{{lockerCount}}</span></div>
           </button>
         </div>
@@ -10078,9 +10088,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010300" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010300" defer></script>
-<script src="../assets/gloss.js?v=202610010300" defer></script>
+<script src="../assets/flashcards.js?v=202610010321" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010321" defer></script>
+<script src="../assets/gloss.js?v=202610010321" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -10121,5 +10131,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010300" defer></script>
+<script src="../assets/bohsave.js?v=202610010321" defer></script>
 </body></html>
