@@ -3773,9 +3773,9 @@ var BT_FC = [{"id": "i1:pron", "title": "I pronomi", "cards": [["io", "I"], ["tu
 function btFcDecks() { return BT_FC; }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010321" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010321" defer></script>
-<script src="../assets/gloss.js?v=202610010321" defer></script>
+<script src="../assets/flashcards.js?v=202610010331" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010331" defer></script>
+<script src="../assets/gloss.js?v=202610010331" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -3816,5 +3816,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010321" defer></script>
+<script src="../assets/bohsave.js?v=202610010331" defer></script>
 </body></html>

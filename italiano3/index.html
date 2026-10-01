@@ -437,6 +437,17 @@
 .hl-next{all:unset;box-sizing:border-box;cursor:pointer;width:100%;text-align:center;padding:20px 18px;border-radius:16px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 .hl-next:focus-visible,.hl-btn:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .hl-card{display:flex;flex-direction:column;gap:8px;padding:16px 18px;border-radius:16px;background:var(--card-bg);border:2px solid var(--card-border);font-size:15px;line-height:1.45}
+.tip-box{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:14px;background:var(--card-bg);border:2px solid #E0B040;color:var(--text);font-size:15px;line-height:1.45;animation:tipIn .25s ease-out}
+.tip-box b{font-size:16px;font-weight:800;color:var(--accent-strong)}
+.tip-box.ok b{color:var(--success-text)}
+.tip-bar{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;height:26px;margin-top:4px;border-radius:999px;background:var(--option-default-bg);overflow:hidden}
+.tip-bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#E0B040;opacity:.55;animation-name:tipFill;animation-timing-function:linear;animation-fill-mode:forwards}
+.tip-bar.held i{animation-play-state:paused;opacity:.3}
+.tip-bar em{position:relative;display:block;text-align:center;font-style:normal;font-size:12.5px;font-weight:800;line-height:26px;color:var(--text-muted)}
+.tip-bar:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+@keyframes tipFill{from{width:0}to{width:100%}}
+@keyframes tipIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tip-box{animation:none}}
 .hl-card.hl-m{border-color:var(--success-border,#3a9a5b)}
 .hl-card.hl-v{border-color:var(--primary-bg)}
 .hl-card.hl-n{border-color:var(--accent-strong);border-style:dashed}
@@ -1234,6 +1245,7 @@
             <sc-if value="{{hasWhy}}" hint-placeholder-val="{{false}}">
               <div style="font-size:13.5px;color:var(--why-text);line-height:1.5;padding:12px 14px;background:var(--why-bg);border-radius:12px;">{{whyText}}</div>
             </sc-if>
+            <sc-if value="{{hasTipBox}}" hint-placeholder-val="{{false}}"><div class="{{tipCls}}" role="status"><b>&#128161; {{tipHead}}{{tipT}}</b><span>{{tipB}}</span><sc-if value="{{tipAuto}}" hint-placeholder-val="{{false}}"><button class="{{tipBarCls}}" onClick="{{tipHoldH}}"><i style="animation-duration:{{tipSecs}}"></i><em>{{tipHoldText}}</em></button></sc-if></div></sc-if>
             <sc-if value="{{hasTrickRev}}" hint-placeholder-val="{{false}}">
               <div class="bb-trick"><b>&#128161; {{trickTitle}}</b><span>{{trickBody}}</span><button onClick="{{openTabTrick}}" class="bb-ghost" style="margin-top:6px;">&#128203; Vedi La Tabella</button></div>
             </sc-if>
@@ -1351,6 +1363,7 @@
               <sc-if value="{{lsBad}}" hint-placeholder-val="{{false}}"><div class="ls-bad" role="status"><span>{{lsBadText}}</span><div class="ls-tip"><b>{{lsTipT}}</b> {{lsTipB}}</div></div></sc-if>
               <sc-if value="{{lsShown}}" hint-placeholder-val="{{false}}"><div class="ls-shown" role="status">La risposta: <b>{{lsAnswer}}</b></div></sc-if>
               <sc-if value="{{lsHasWhy}}" hint-placeholder-val="{{false}}"><div class="ls-why"><b>Perché?</b> {{lsWhy}}</div></sc-if>
+              <sc-if value="{{lsHasTrick}}" hint-placeholder-val="{{false}}"><div class="tip-box ok" role="status"><b>&#128161; {{lsTrT}}</b><span>{{lsTrB}}</span><button class="{{lsTrBarCls}}" onClick="{{lsTrHoldH}}"><i style="animation-duration:{{lsTrSecs}}"></i><em>{{lsTrHoldText}}</em></button></div></sc-if>
               <sc-if value="{{lsNoLoss}}" hint-placeholder-val="{{false}}"><div class="ls-noloss">Nessun cuore perso. Getting it right on the next try still counts.</div></sc-if>
 
               <div class="ls-actions">
@@ -2254,6 +2267,15 @@ function btDiff(w, r) {
   for (var i = 0; i < Math.max(a.length, b.length); i++) if (a[i] !== b[i]) return [a.slice(i, i + 2).join(' '), b[i] || '', a[i] || ''];
   return [w, r, w];
 }
+
+var BT_TIP = { key: null, id: 0 };
+function btTipTimer(key, ms, fn) {   // one read-then-go timer at a time
+  if (!key) { clearTimeout(BT_TIP.id); BT_TIP.key = null; return; }
+  if (BT_TIP.key === key) return;
+  clearTimeout(BT_TIP.id); BT_TIP.key = key;
+  BT_TIP.id = setTimeout(function () { BT_TIP.key = null; try { fn(); } catch (e) {} }, ms);
+}
+function btTipMs(text) { var n = String(text || '').split(/\s+/).filter(Boolean).length; return Math.max(4500, Math.min(9000, 2000 + 280 * n)); }
 function btTrick(q, wrong) { return BT_UNIT === 'vdp' ? btTrickVdp(q, wrong) : btTrickImp(q, wrong); }
 function btTrickImp(q, wrong) {
   if (!q) return null;
@@ -12622,6 +12644,29 @@ class Component extends DCLogic {
     result.lsCanCheck = false; result.lsCanRetry = o.st === 'wrong' && ty !== 'mc' && ty !== 'chat';
     result.lsCanNext = o.st === 'ok' || o.st === 'shown';
     result.lsNextLabel = items && i + 1 < items.length ? 'Avanti' : 'Finisci la tappa';
+    (function () {   // 💡 Trucco after every answer + read, then go on
+      var tk = it && it.trick && view === 'stop' && ty !== 'chat' ? it.trick : null;
+      if (tk && o.st === 'wrong') {
+        var pk = ty === 'mc' && o.optBad.length ? o.optBad[o.optBad.length - 1] : '';
+        var wt = ty === 'mc' && it.wrongTips ? (it.wrongTips[pk] || ['Look again', 'Read it one more time, then pick again.']) : tk;
+        result.lsBad = true; result.lsTipT = '💡 ' + wt[0]; result.lsTipB = wt[1];
+      }
+      var done = o.st === 'ok' || o.st === 'shown';
+      result.lsHasTrick = !!tk && done;
+      if (result.lsHasTrick) result.lsHasWhy = false;   // the tip box says it
+      result.lsTrT = tk ? tk[0] : ''; result.lsTrB = tk ? tk[1] : '';
+      var key = 'l|' + BT_UNIT + '|' + k + '|' + i + '|' + (items ? items.length : 0);
+      var ms = btTipMs((result.lsHasWhy ? result.lsWhy : '') + ' ' + result.lsTrB), held = s.tipHold === key;
+      result.lsTrSecs = (ms / 1000).toFixed(1) + 's';
+      result.lsTrBarCls = 'tip-bar' + (held ? ' held' : '');
+      result.lsTrHoldText = held ? '⏸ Paused · tap Avanti when you’re ready' : 'Next card in a moment · tap to pause';
+      result.lsTrHoldH = function () { self.sfx('tap'); btTipTimer(null); self.setState({ tipHold: key }); };
+      if (result.lsHasTrick && !held) btTipTimer(key, ms, function () {
+        var t = self.state, it2 = (self.lsItems(t.lsCur) || [])[t.lsI];
+        if (t.screen === 'lesson' && t.lsView === 'stop' && t.tipHold !== key && ('l|' + BT_UNIT + '|' + t.lsCur + '|' + t.lsI + '|' + (self.lsItems(t.lsCur) || []).length) === key && t.lsIt && (t.lsIt.st === 'ok' || t.lsIt.st === 'shown')) self.lsNext();
+      });
+      else if (!result.lsHasTrick && BT_TIP.key && BT_TIP.key.indexOf('l|') === 0) btTipTimer(null);
+    })();
     result.lsCheckH = function () { self.lsCheck(); };
     result.lsRetryH = function () { self.lsRetry(); };
     result.lsNextH = function () { self.lsNext(); };
@@ -13415,6 +13460,32 @@ class Component extends DCLogic {
       result.fcSub = k + ' / ' + n + ' words known \u00b7 ' + decks.length + (decks.length === 1 ? ' deck' : ' decks');
       result.fcHomeH = function () { self.sfx('tap'); BohCards.open({ decks: decks, pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); }, onClose: function () { self.setState({}); } }); };
     })();
+    (function () {   // 💡 Trucco after every answer + read, then go on
+      var qq = s.screen === 'play' && s.queue ? s.queue[s.qIndex] : null;
+      var tk = qq && qq.trick && s.mode !== 'prova' ? qq.trick : null;
+      if (tk && s.bbPending) {
+        var pk = ''; if (qq.options) for (var z = 0; z < qq.options.length; z++) if (qq.options[z].id === s.bbPick) pk = qq.options[z].label;
+        var wt = qq.wrongTips ? (qq.wrongTips[pk] || ['Look again', 'Read it one more time, then pick again.']) : tk;
+        result.hasTrick = true; result.trickTitle = wt[0]; result.trickBody = wt[1];
+      }
+      result.hasTipBox = !!tk && !!result.showContinue;
+      if (result.hasTipBox && qq.fw) result.hasWhy = false;   // vocab: the tip already says what it means
+      result.tipT = tk ? tk[0] : ''; result.tipB = tk ? tk[1] : '';
+      result.tipCls = 'tip-box' + (s.lastOk ? ' ok' : '');
+      result.tipHead = s.lastOk ? '✓ Giusto! · ' : '';
+      var key = 'r|' + s.mode + '|' + s.qIndex + '|' + (s.totalSoFar || 0) + '|' + (s.queue || []).length;
+      var ms = btTipMs((result.hasWhy ? result.whyText : '') + ' ' + result.tipB), held = s.tipHold === key;
+      result.tipAuto = result.hasTipBox && !result.canFix;
+      result.tipSecs = (ms / 1000).toFixed(1) + 's';
+      result.tipBarCls = 'tip-bar' + (held ? ' held' : '');
+      result.tipHoldText = held ? '⏸ Paused · tap Continue when you’re ready' : 'Next card in a moment · tap to pause';
+      result.tipHoldH = function () { self.sfx('tap'); btTipTimer(null); self.setState({ tipHold: key }); };
+      if (result.tipAuto && !held) btTipTimer(key, ms, function () {
+        var t = self.state;
+        if (t.screen === 'play' && t.revealed && t.tipHold !== key && ('r|' + t.mode + '|' + t.qIndex + '|' + (t.totalSoFar || 0) + '|' + (t.queue || []).length) === key) self.nextCard();
+      });
+      else if (!result.hasTipBox && BT_TIP.key && BT_TIP.key.indexOf('r|') === 0) btTipTimer(null);
+    })();
     if (s.screen === 'summary') {
       var pct2 = s.totalSoFar ? Math.round((s.correctSoFar / s.totalSoFar) * 100) : 0;
       var catOrder = BT_UNITS[BT_UNIT].catOrder.concat(CART_KEYS.map(function (k) { return 'cart_' + k; }));
@@ -13537,9 +13608,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010321" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010321" defer></script>
-<script src="../assets/gloss.js?v=202610010321" defer></script>
+<script src="../assets/flashcards.js?v=202610010331" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010331" defer></script>
+<script src="../assets/gloss.js?v=202610010331" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -13580,5 +13651,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010321" defer></script>
+<script src="../assets/bohsave.js?v=202610010331" defer></script>
 </body></html>
