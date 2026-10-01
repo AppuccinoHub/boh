@@ -3732,6 +3732,20 @@ var BT_FC = [{"id": "i1:pron", "title": "I pronomi", "cards": [["io", "I"], ["tu
 function btFcDecks() { return BT_FC; }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010152" defer></script>
-<script src="../assets/bohsave.js?v=202610010152" defer></script>
+<script src="../assets/flashcards.js?v=202610010211" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010211" defer></script>
+<script src="../assets/gloss.js?v=202610010211" defer></script>
+<script>
+window.BohGlossOff = function () {   // hover English stays off in La Prova and on "what does it mean?" cards
+  var g = window.__game, s = g && g.state; if (!s) return false;
+  if (s.screen === 'play') {
+    if (s.mode === 'prova') return true;
+    var q = (s.queue || [])[s.qIndex];
+    if (q && /mean\?|vuol dire/i.test((q.prompt || '') + ' ' + (q.sub || ''))) return true;
+  }
+  var c = document.querySelector('.ls-card');
+  return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
+};
+</script>
+<script src="../assets/bohsave.js?v=202610010211" defer></script>
 </body></html>
