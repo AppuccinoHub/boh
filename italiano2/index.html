@@ -92,15 +92,15 @@
 .pc-chip-h{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--text-faint-2);width:100%}
 .pcx{position:relative;container-type:inline-size;border-radius:16px;border:3px solid #E9B824;background:#F7EFDE;overflow:hidden;box-sizing:border-box}
 .pcx i{position:absolute;display:block;pointer-events:none;background-image:url(../assets/boutique/cartolina.webp);background-repeat:no-repeat}
-.pcx-tl{left:4px;top:2px;width:215px;height:64px;background-size:600px auto;background-position:0 0}
-.pcx-tr{right:4px;top:6px;width:86px;height:64px;background-size:600px auto;background-position:-495px -27px}
-.pcx-bt{left:0;right:0;bottom:0;aspect-ratio:2000/227;background-size:100% auto;background-position:center bottom}
+.pcx-tl{left:12px;top:24px;width:180px;height:30px;background-size:600px auto;background-position:-15px -29px;-webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-composite:intersect}
+.pcx-tr{right:12px;top:14px;width:84px;height:56px;background-size:600px auto;background-position:-497px -30px;-webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-composite:intersect}
+.pcx-bt{left:-3%;right:-3%;bottom:-9px;aspect-ratio:2000/227;background-size:100% auto;background-position:center bottom}
 .pcx-body{position:relative;padding:74px 16px 13cqw;min-height:190px}
 .gp-card textarea.pcx-ta{display:block;width:100%;box-sizing:border-box;min-height:190px;border:0;outline:0;resize:vertical;background:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(90,70,40,.22) 25px 26px) local;color:#2B2118;font:700 20px/26px Caveat,cursive,inherit;padding:0;border-radius:0}
 .gp-card textarea.pcx-ta::placeholder{color:rgba(60,45,25,.45)}
 .gp-card textarea.pcx-ta:focus-visible{outline:3px solid var(--accent-strong);outline-offset:4px;border-radius:4px}
-.pcx-msg{white-space:pre-wrap;overflow-wrap:anywhere;font:700 20px/26px Caveat,cursive,inherit;color:#2B2118;background:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(90,70,40,.22) 25px 26px)}
-.pcx-pm{position:absolute;right:68px;top:12px;width:60px;height:60px;border:2px solid rgba(40,30,100,.5);border-radius:50%;display:grid;place-items:center;text-align:center;font:800 8.5px/1.2 Manrope,system-ui,sans-serif;letter-spacing:.04em;color:rgba(40,30,100,.6);transform:rotate(-14deg);text-transform:uppercase;padding:4px;box-sizing:border-box}
+.pcx-msg{white-space:pre-wrap;overflow-wrap:anywhere;font:700 20px/26px Caveat,cursive,inherit;color:#2B2118;background:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(90,70,40,.22) 25px 26px) 0 22px}
+.pcx-pm{position:absolute;right:76px;top:12px;width:50px;height:50px;border:2px solid rgba(40,30,100,.5);border-radius:50%;display:grid;place-items:center;text-align:center;font:800 8.5px/1.2 Manrope,system-ui,sans-serif;letter-spacing:.04em;color:rgba(40,30,100,.6);transform:rotate(-14deg);text-transform:uppercase;padding:4px;box-sizing:border-box}
 .gp-post .gp-eye{font-family:inherit;color:#8A6A2A;font-size:11px}
 .gp-stamp{position:absolute;right:10px;top:10px;width:40px;transform:rotate(12deg)}
 .dl.tee-tee_tricolore-m{background:url(../assets/boutique/wear/tee_tee_tricolore_m.webp) 0 0/100% 100% no-repeat}
@@ -11401,7 +11401,7 @@ class Component extends DCLogic {
       result.tsCount = Math.min(ok, BT_CARDN) + '/' + BT_CARDN + ' frasi' + (ok >= BT_CARDN ? ' ✓' : '');
       result.tsReady = ok >= BT_CARDN;
       result.tsPrompt = 'Scrivi la cartolina · almeno ' + BT_CARDN + ' frasi, in qualsiasi tempo che conosci';
-      result.tsPlace = BT_LVL <= 3 ? 'Cara Nonna,\nSono a ' + (T ? T.city : '...') + '. Fa caldo. Mi piace molto.\nBaci,' : 'Scrivi qui la tua cartolina...';
+      result.tsPlace = BT_LVL <= 3 ? '(esempio) Cara Nonna,\nSono a ' + (T ? T.city : '...') + '. Fa caldo. Mi piace molto.\nBaci,' : 'Scrivi qui la tua cartolina...';
       result.tsCityU = T ? T.city : ''; result.tsStampDay = t && t.stampDay ? t.stampDay.slice(8, 10) + '.' + t.stampDay.slice(5, 7) + '.' + t.stampDay.slice(2, 4) : '';
       result.tsFront = T ? 'background-image:url(../assets/boutique/viaggio_' + sel + '.webp);' : '';
       result.tsChips = T ? btChipSets(T.city).map(function (g) { return { head: g[0], items: g[1].map(function (c) { return { t: c, pick: function () { var cur = (self.state.trips || []).filter(function (x) { return x.k === sel; })[0]; var v = ((cur && cur.card) || ''); v = v + (v && !/[\s\n]$/.test(v) ? ' ' : '') + c + (/,$/.test(c) ? '\n' : ' '); self.sfx('tap'); self.setState({ trips: (self.state.trips || []).map(function (x) { return x.k === sel ? Object.assign({}, x, { card: v.slice(0, 1500) }) : x; }), tripMsg: '' }); } }; }) }; }) : [];
