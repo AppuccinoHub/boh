@@ -74,6 +74,22 @@
 .gp-card textarea:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .gp-count-sm{font-size:12px;font-weight:800;color:var(--text-faint-2)}
 .gp-post{position:relative;display:flex;flex-direction:column;gap:6px;padding:14px 60px 14px 14px;border-radius:12px;background:#FBF3E0;color:#3A2A10;border:2px solid #C9A227;font-family:Caveat,cursive,inherit;font-size:19px}
+.gp-post{display:none}
+.pc{display:flex;flex-direction:column;gap:10px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.18))}
+.pc-front{position:relative;aspect-ratio:3/2;border-radius:6px;border:7px solid #fff;background:#d8c9a8 center/cover no-repeat;box-sizing:border-box}
+.pc-greet{position:absolute;left:8px;bottom:8px;padding:2px 10px;background:rgba(255,255,255,.88);color:#B3261E;font:700 22px/1.1 Caveat,cursive;border-radius:4px;transform:rotate(-2deg)}
+.pc-back{display:grid;grid-template-columns:1fr 112px;gap:0;min-height:170px;background:#FBF6EA;background-image:repeating-linear-gradient(to bottom,transparent 0 25px,rgba(60,40,10,.10) 25px 26px);color:#2B2118;border-radius:6px;border:1px solid #D9CDB0;box-sizing:border-box;overflow:hidden}
+.pc-msg{padding:10px 12px 10px 14px;font:700 19px/26px Caveat,cursive,inherit;white-space:pre-wrap;overflow-wrap:anywhere;border-right:2px dashed #B8A87F}
+.pc-side{position:relative;padding:8px 8px 10px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end}
+.pc-stampbox{width:46px;height:56px;border:2px dashed #B8A87F;display:grid;place-items:center;background:#fff7}
+.pc-stampbox img{width:36px;transform:rotate(8deg)}
+.pc-pm{position:absolute;right:42px;top:24px;width:62px;height:62px;border:2px solid rgba(40,30,100,.55);border-radius:50%;display:grid;place-items:center;text-align:center;font:800 9px/1.15 Manrope,system-ui,sans-serif;letter-spacing:.04em;color:rgba(40,30,100,.65);transform:rotate(-14deg);text-transform:uppercase;padding:4px;box-sizing:border-box}
+.pc-addr{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:60px}
+.pc-addr i{display:block;border-bottom:1.5px solid #8B7A55}
+.pc-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pc-chip{all:unset;cursor:pointer;padding:6px 11px;border-radius:999px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-size:13px;font-weight:700}
+.pc-chip:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
+.pc-chip-h{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--text-faint-2);width:100%}
 .gp-post .gp-eye{font-family:inherit;color:#8A6A2A;font-size:11px}
 .gp-stamp{position:absolute;right:10px;top:10px;width:40px;transform:rotate(12deg)}
 .dl.tee-tee_tricolore-m{background:url(../assets/boutique/wear/tee_tee_tricolore_m.webp) 0 0/100% 100% no-repeat}
@@ -2032,15 +2048,16 @@
               <sc-if value="{{tsBooked}}" hint-placeholder-val="{{false}}">
                 <div class="gp-pass"><span class="gp-eye">CARTA D&rsquo;IMBARCO</span><span class="bt-code">{{tsCode}}</span><span style="font-size:12px;color:var(--text-faint-2);">{{tsDay}}</span></div>
                 <label for="gpCard" style="display:flex;flex-direction:column;gap:6px;">
-                  <span style="font-size:13px;font-weight:800;">Scrivi la cartolina: 3 frasi all&rsquo;imperfetto</span>
-                  <textarea id="gpCard" rows="4" maxlength="600" onInput="{{onTripCard}}" placeholder="Ogni mattina prendevo un cappuccino. Faceva caldo. Il mare era blu&hellip;">{{tsCard}}</textarea>
+                  <span style="font-size:13px;font-weight:800;">{{tsPrompt}}</span>
+                  <sc-for list="{{tsChips}}" as="g" hint-placeholder-count="2"><div class="pc-chips"><span class="pc-chip-h">{{g.head}}</span><sc-for list="{{g.items}}" as="c" hint-placeholder-count="3"><button type="button" class="pc-chip" onClick="{{c.pick}}">{{c.t}}</button></sc-for></div></sc-for>
+                  <textarea id="gpCard" rows="8" maxlength="1500" onInput="{{onTripCard}}" placeholder="{{tsPlace}}">{{tsCard}}</textarea>
                   <span class="gp-count-sm">{{tsCount}}</span>
                 </label>
                 <label for="gpPin" class="bt-pinrow"><span>PIN della Prof</span><input id="gpPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" value="{{tripPin}}" onInput="{{onTripPin}}" placeholder="&bull;&bull;&bull;&bull;"></label>
                 <button class="gp-btn" onClick="{{stampHandler}}">Timbra il passaporto &#10003;</button>
               </sc-if>
               <sc-if value="{{tsStamped}}" hint-placeholder-val="{{false}}">
-                <div class="gp-post"><span class="gp-eye">CARTOLINA &middot; {{tsDay}}</span><p style="margin:0;white-space:pre-wrap;">{{tsCard}}</p><img src="../assets/boutique/pin_ok.webp" alt="Timbrato" class="gp-stamp"></div>
+                <div class="pc"><div class="pc-front" style="{{tsFront}}"><span class="pc-greet">Saluti da {{tsCityU}}</span></div><div class="pc-back"><div class="pc-msg">{{tsCard}}</div><div class="pc-side"><div class="pc-stampbox"><img src="../assets/boutique/pin_ok.webp" alt="Timbrato"></div><div class="pc-pm">{{tsCityU}}<br>{{tsStampDay}}</div><div class="pc-addr"><i></i><i></i><i></i></div></div></div></div>
               </sc-if>
               <sc-if value="{{tsSoon}}" hint-placeholder-val="{{false}}"><span style="font-size:14px;color:var(--text-muted);">Presto! A new destination is coming.</span></sc-if>
               <sc-if value="{{hasTripMsg}}" hint-placeholder-val="{{false}}"><div class="{{tripMsgCls}}">{{tripMsg}}</div></sc-if>
@@ -2735,7 +2752,18 @@ function btSentences(t) {
   return String(t || '').split(/[.!?\n]+/).map(function (x) { return x.trim(); })
     .filter(function (x) { return x.split(/\s+/).length >= 2; });
 }
-function btCardOk(t) { return btSentences(t.replace(/’/g, "'")).filter(function (x) { return BT_IMPF.test(x); }).length; }
+var BT_LVL = (function () { var m = /Italiano(\d)/.exec(STORAGE_KEY); return m ? +m[1] : (/AP/.test(STORAGE_KEY) ? 5 : 3); })();
+var BT_CARDN = { 1: 5, 2: 5, 3: 5, 4: 8, 5: 10 }[BT_LVL] || 5;
+function btCardOk(t) { return btSentences(String(t || '').replace(/\u2019/g, "'")).filter(function (x) { return !/,$/.test(x); }).length; }
+function btChipSets(city) {
+  var open_ = ['Cara Nonna,', 'Cari mamma e pap\u00e0,', 'Ciao Prof!'], close_ = ['Baci,', 'A presto!', 'Ciao, ciao!'];
+  var body = ['Sono a ' + city + '.', 'Fa caldo.', 'Il posto \u00e8 bellissimo.', 'Mi piace molto.', 'Mangio la pizza.', 'Vedo tante persone.', 'Mi piacciono i monumenti.'];
+  if (BT_LVL <= 3) return [['Per cominciare', open_], ['Dentro la cartolina', body], ['Per finire', close_]];
+  if (BT_LVL === 4) return [['Per cominciare', ['Ciao da ' + city + '!', 'Caro/Cara ...,', 'Cari tutti,']], ['Per finire', ['Un abbraccio,', 'A presto!', 'Ti scrivo presto,']]];
+  return [['Per cominciare', ['Carissimo/a ...,', 'Ti scrivo da ' + city + ', dove tutto \u00e8 incredibile.', 'Spero che tu stia bene.']],
+          ['Per collegare le idee', ['Da un lato..., dall\u2019altro...', 'Mi ha colpito che...', 'Sebbene...,', 'Se potessi, resterei qui...', 'Non vedo l\u2019ora di...', 'Ti consiglio vivamente di...', 'Vale la pena di...']],
+          ['Per finire', ['Con affetto,', 'Un caro saluto,', 'Ti abbraccio forte,']]];
+}
 var BT_TEE_ITEMS = [{"id": "tee_tricolore", "it": "La maglia tricolore", "en": "Tricolor stripe tee", "rarity": "RARO", "source": "shop", "price": 400, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_tricolore.webp", "slot": "top", "btTee": true}, {"id": "tee_cornicello", "it": "La maglia del cornicello", "en": "Lucky-horn tee", "rarity": "COMUNE", "source": "shop", "price": 200, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_cornicello.webp", "slot": "top", "btTee": true}, {"id": "tee_stivale", "it": "La maglia dello Stivale", "en": "Lo Stivale = the Boot, Italy\u2019s nickname", "rarity": "COMUNE", "source": "shop", "price": 200, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_stivale.webp", "slot": "top", "btTee": true}, {"id": "tee_carnevale", "it": "La maglia di Carnevale", "en": "Venetian mask tee", "rarity": "COMUNE", "source": "shop", "price": 250, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_carnevale.webp", "slot": "top", "btTee": true}, {"id": "tee_limoni", "it": "La maglia ai limoni", "en": "Amalfi lemons tee", "rarity": "COMUNE", "source": "shop", "price": 180, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_limoni.webp", "slot": "top", "btTee": true}, {"id": "tee_cuore", "it": "Il cuore tricolore", "en": "Tricolor heart tee", "rarity": "COMUNE", "source": "shop", "price": 150, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_cuore.webp", "slot": "top", "btTee": true}, {"id": "tee_moka", "it": "La maglia della moka", "en": "Moka pot tee", "rarity": "COMUNE", "source": "shop", "price": 200, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_moka.webp", "slot": "top", "btTee": true}, {"id": "tee_pasta", "it": "Farfalle e penne", "en": "All-over pasta print", "rarity": "RARO", "source": "shop", "price": 400, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_pasta.webp", "slot": "top", "btTee": true}, {"id": "ls_verde", "it": "La maglia verde", "en": "Long sleeves, tricolor cuffs \u00b7 long sleeves on the hijab Boh, a tee on the others", "rarity": "RARO", "source": "shop", "price": 300, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_ls_verde.webp", "slot": "top", "btTee": true}, {"id": "ls_stivale_oro", "it": "Lo Stivale d\u2019oro", "en": "Long sleeves, gold Italy outline \u00b7 long sleeves on the hijab Boh, a tee on the others", "rarity": "RARO", "source": "shop", "price": 350, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_ls_stivale_oro.webp", "slot": "top", "btTee": true}, {"id": "ls_cornicello", "it": "Il cornicello blu", "en": "Long sleeves, tiny cornicello \u00b7 long sleeves on the hijab Boh, a tee on the others", "rarity": "RARO", "source": "shop", "price": 300, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_ls_cornicello.webp", "slot": "top", "btTee": true}, {"id": "ls_limoni", "it": "Limoni a maniche lunghe", "en": "Long sleeves, lemon border \u00b7 long sleeves on the hijab Boh, a tee on the others", "rarity": "RARO", "source": "shop", "price": 350, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_ls_limoni.webp", "slot": "top", "btTee": true}, {"id": "tee_retro", "it": "La maglia retr\u00f2", "en": "Retro V-neck jersey", "rarity": "RARO", "source": "shop", "price": 400, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_retro.webp", "slot": "top", "btTee": true}, {"id": "tee_pizza", "it": "La maglia della pizza", "en": "Margherita slice tee", "rarity": "COMUNE", "source": "shop", "price": 180, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_pizza.webp", "slot": "top", "btTee": true}, {"id": "tee_gondola", "it": "La maglia della gondola", "en": "Venice gondola tee", "rarity": "COMUNE", "source": "shop", "price": 200, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_gondola.webp", "slot": "top", "btTee": true}, {"id": "tee_colosseo", "it": "La maglia del Colosseo", "en": "Colosseum and laurel tee", "rarity": "COMUNE", "source": "shop", "price": 220, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_colosseo.webp", "slot": "top", "btTee": true}, {"id": "tee_prof", "it": "La maglia della Prof", "en": "Wear la Prof. The ultimate flex.", "rarity": "ASSURDO", "source": "shop", "price": 1500, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_prof.webp", "slot": "top", "btTee": true}, {"id": "tee_boh", "it": "La maglia BOH?", "en": "Boh? = who knows?", "rarity": "EPICO", "source": "shop", "price": 600, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_boh.webp", "slot": "top", "btTee": true}, {"id": "tee_ihs", "it": "Italian Honor Society", "en": "Gold laurel and tricolor", "rarity": "EPICO", "source": "shop", "price": 800, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_ihs.webp", "slot": "top", "btTee": true}, {"id": "tee_raga", "it": "Boh-ngiorno raga\u2019!", "en": "Raga\u2019 = ragazzi, how teens say \u201cguys\u201d", "rarity": "EPICO", "source": "shop", "price": 600, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_raga.webp", "slot": "top", "btTee": true}, {"id": "tee_ue", "it": "U\u00e8! Cosa fai?", "en": "\u2026Boh!! The whole word, in one shirt", "rarity": "EPICO", "source": "shop", "price": 900, "sec": "drip", "emo": "", "img": "../assets/boutique/wear/icon_tee_ue.webp", "slot": "top", "btTee": true}];
 var BT_TEES = {};
 BT_TEE_ITEMS.forEach(function (t) { BT_TEES[t.id] = true; BT_NEW.push(t); ALLOW_ON_H.push(t.id); });
@@ -12164,7 +12192,7 @@ class Component extends DCLogic {
     var self = this, s = this.state, k = s.tripSel, pin = (s.tripPin || '').trim();
     var tr = (s.trips || []).filter(function (t) { return t.k === k; })[0];
     if (!tr || tr.stamped) return;
-    if (btCardOk(tr.card) < 3) { this.setState({ tripMsg: 'First write your cartolina: 3 sentences, each with a verb in the imperfetto.' }); return; }
+    if (btCardOk(tr.card) < BT_CARDN) { this.setState({ tripMsg: 'First finish your cartolina: at least ' + BT_CARDN + ' sentences, in any tense you know.' }); return; }
     btSha(pin).then(function (h) {
       if (h !== BT_PIN) { self.setState({ tripMsg: 'Wrong PIN. Only la Prof can stamp your Passaporto.' }); return; }
       var ts = (self.state.trips || []).map(function (t) { return t.k === k ? Object.assign({}, t, { stamped: true, stampDay: new Date().toISOString().slice(0, 10) }) : t; });
@@ -13340,14 +13368,19 @@ class Component extends DCLogic {
       result.tsDay = t ? (t.stamped ? 'Timbrato ' + (t.stampDay || '') : 'Prenotato ' + t.day) : '';
       result.tsCard = t ? t.card : '';
       var ok = t ? btCardOk(t.card) : 0;
-      result.tsCount = Math.min(ok, 3) + '/3 frasi all’imperfetto';
-      result.tsReady = ok >= 3;
+      result.tsCount = Math.min(ok, BT_CARDN) + '/' + BT_CARDN + ' frasi' + (ok >= BT_CARDN ? ' ✓' : '');
+      result.tsReady = ok >= BT_CARDN;
+      result.tsPrompt = 'Scrivi la cartolina · almeno ' + BT_CARDN + ' frasi, in qualsiasi tempo che conosci';
+      result.tsPlace = BT_LVL <= 3 ? 'Cara Nonna,\nSono a ' + (T ? T.city : '...') + '. Fa caldo. Mi piace molto.\nBaci,' : 'Scrivi qui la tua cartolina...';
+      result.tsCityU = T ? T.city : ''; result.tsStampDay = t && t.stampDay ? t.stampDay.slice(8, 10) + '.' + t.stampDay.slice(5, 7) + '.' + t.stampDay.slice(2, 4) : '';
+      result.tsFront = T ? 'background-image:url(../assets/boutique/viaggio_' + sel + '.webp);' : '';
+      result.tsChips = T ? btChipSets(T.city).map(function (g) { return { head: g[0], items: g[1].map(function (c) { return { t: c, pick: function () { var cur = (self.state.trips || []).filter(function (x) { return x.k === sel; })[0]; var v = ((cur && cur.card) || ''); v = v + (v && !/[\s\n]$/.test(v) ? ' ' : '') + c + (/,$/.test(c) ? '\n' : ' '); self.sfx('tap'); self.setState({ trips: (self.state.trips || []).map(function (x) { return x.k === sel ? Object.assign({}, x, { card: v.slice(0, 1500) }) : x; }), tripMsg: '' }); } }; }) }; }) : [];
       result.tsCart = T ? ((s.passed || []).indexOf('cart_' + sel) === -1 ? 'Gioca la Cartolina da ' + T.city + ' · 3× BC' : '✓ Cartolina fatta · replay') : '';
       result.tsPlayCart = function () { if (T) self.startMode('cart_' + sel); };
       result.tsGoShop = function () { self.sfx('tap'); self.setState({ screen: 'shop', shopTab: 'viaggi', shopMsg: '' }); };
       result.tsNeed = T && !t ? (s.cashi >= T.price ? 'You can book it now!' : (T.price - s.cashi).toLocaleString('it-IT') + ' BC to go') : '';
       result.onTripCard = function (e) {
-        var v = (e && e.target ? e.target.value : '').slice(0, 600);
+        var v = (e && e.target ? e.target.value : '').slice(0, 1500);
         self.setState({ trips: (self.state.trips || []).map(function (x) { return x.k === sel ? Object.assign({}, x, { card: v }) : x; }), tripMsg: '' });
       };
       result.tripPin = s.tripPin || '';
