@@ -106,17 +106,18 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
   function open(id) {
     var t = TASKS.find(function (x) { return x.id === id; }); if (!t) return home();
     history.replaceState(null, '', '?l=' + level + '&t=' + id);
-    var parts = t.type === 'questions' ? t.questions.map(function (q) { return { label: q, text: '' }; }) : [{ label: '', text: '' }];
+    var parts = t.paragraphs ? t.paragraphs.map(function (pg) { return { label: pg.label, hint: pg.hint, frames: pg.frames, text: '' }; }) : (t.type === 'questions' ? t.questions.map(function (q) { return { label: q, text: '' }; }) : [{ label: '', text: '' }]);
     var d = DR[id] || { parts: parts, st: newStats() };
     if (d.parts.length !== parts.length) d = { parts: parts, st: newStats() };
     DR[id] = d; var st = d.st;
     var name = lsGet('boh_scrivi_name', '');
     var h = '<div class="top"><button class="back" id="bk" style="all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;font-weight:800;font-size:14px;border:1.5px solid var(--card-border);background:var(--surface)">← Compiti</button><span class="pill ' + (t.kind === 'summative' ? 'sum' : 'for') + '">' + (t.kind === 'summative' ? 'Summativa' : 'Formativa') + '</span></div>' +
       '<div class="eyebrow">' + esc(t.unit) + ' · ' + typeLabel(t.type) + '</div><h1>' + esc(t.title) + '</h1><p>' + esc(t.prompt) + '</p>';
-    if (t.frames && t.frames.length) h += '<div class="chips" aria-label="Frasi per iniziare">' + t.frames.map(function (f, i) { return '<button class="chip" data-f="' + i + '">' + esc(f) + '</button>'; }).join('') + '</div>';
+    if (t.theme) h += '<div class="card" style="border-width:2px"><div class="eyebrow">Il tema · The prompt</div><b style="font-size:19px;line-height:1.35;display:block;margin:4px 0">' + esc(t.theme) + '</b><span class="muted" style="font-size:14px">' + esc(t.themeEn || '') + '</span></div>';
+    if (!t.paragraphs && t.frames && t.frames.length) h += '<div class="chips" aria-label="Frasi per iniziare">' + t.frames.map(function (f, i) { return '<button class="chip" data-f="' + i + '">' + esc(f) + '</button>'; }).join('') + '</div>';
     h += '<div class="chips" aria-label="Lettere accentate">' + 'à è é ì ò ù À È É'.split(' ').map(function (c) { return '<button class="chip acc" data-a="' + c + '">' + c + '</button>'; }).join('') + '</div>';
     parts.forEach(function (p, i) {
-      h += '<div class="q">' + (p.label ? '<b>' + esc(p.label) + '</b>' : '') + '<textarea data-i="' + i + '" lang="it" spellcheck="false" autocomplete="off" autocorrect="off" aria-label="' + esc(p.label || 'Scrivi qui') + '" placeholder="' + (p.label ? 'La tua risposta…' : 'Scrivi qui. Write it yourself: no copy and paste.') + '">' + esc(d.parts[i].text) + '</textarea></div>';
+      h += '<div class="q">' + (p.label ? '<b>' + (t.paragraphs ? (i + 1) + '. ' : '') + esc(p.label) + '</b>' : '') + (p.hint ? '<span class="muted" style="font-size:13.5px;display:block;margin:2px 0 6px">' + esc(p.hint) + '</span>' : '') + (p.frames ? '<div class="chips" aria-label="Frasi utili">' + p.frames.map(function (f, j) { return '<button class="chip" data-pf="' + i + ':' + j + '">' + esc(f) + '</button>'; }).join('') + '</div>' : '') + '<textarea data-i="' + i + '" lang="it" spellcheck="false" autocomplete="off" autocorrect="off" aria-label="' + esc(p.label || 'Scrivi qui') + '" placeholder="' + (p.label ? 'La tua risposta…' : 'Scrivi qui. Write it yourself: no copy and paste.') + '">' + esc(d.parts[i].text) + '</textarea></div>';
     });
     h += '<div class="card"><div class="row"><b id="wc"></b><span class="muted" id="sv" style="font-size:13px"></span></div><div class="bar"><i id="pb"></i></div><div class="stat">Boh sees: typing time, copy and paste, and when you leave this page.</div></div>' +
       '<label class="f" for="nm">Il tuo nome vero · your real name</label><input id="nm" type="text" maxlength="40" value="' + esc(name) + '" autocomplete="name" placeholder="Nome e cognome">' +
@@ -149,6 +150,7 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
     function insert(ta, text) { var s = ta.selectionStart || ta.value.length, e2 = ta.selectionEnd || s; ta.value = ta.value.slice(0, s) + text + ta.value.slice(e2); ta.selectionStart = ta.selectionEnd = s + text.length; lens[Array.prototype.indexOf.call(tas, ta)] = ta.value.length; ta.focus(); upd(); flush(); }
     var cur = tas[0]; tas.forEach(function (ta) { ta.addEventListener('focus', function () { cur = ta; }); });
     app.querySelectorAll('[data-f]').forEach(function (b) { b.onclick = function () { st.chips++; insert(cur, t.frames[+b.getAttribute('data-f')].replace(/…$/, '') + ' '); }; });
+    app.querySelectorAll('[data-pf]').forEach(function (b) { b.onclick = function () { var ij = b.getAttribute('data-pf').split(':'); st.chips++; insert(tas[+ij[0]], parts[+ij[0]].frames[+ij[1]].replace(/…$/, '') + ' '); }; });
     app.querySelectorAll('[data-a]').forEach(function (b) { b.onclick = function () { st.accents++; insert(cur, b.getAttribute('data-a')); }; });
     function away(on) { var now = Date.now(); if (on && !st._away) st._away = now; if (!on && st._away) { var s = now - st._away; st._away = 0; if (s > 1500) { st.leaves++; st.awayMs += s; st.log.push(['away', Math.round(s / 1000)]); flush(); } } }
     window.onblur = function () { away(true); }; window.onfocus = function () { away(false); };

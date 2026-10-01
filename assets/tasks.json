@@ -667,25 +667,6 @@
       "vocab": []
     },
     {
-      "id": "ap-saggio",
-      "level": "ap",
-      "unit": "Saggio persuasivo",
-      "type": "essay",
-      "kind": "summative",
-      "bc": 200,
-      "title": "Saggio persuasivo",
-      "prompt": "Write a persuasive essay (at least 180 words) on a topic from this unit. State your position, give two reasons with examples, address one objection, and conclude.",
-      "frames": [
-        "Secondo me…",
-        "In primo luogo…",
-        "Inoltre…",
-        "Alcuni pensano che… ma…",
-        "In conclusione…"
-      ],
-      "minWords": 180,
-      "vocab": []
-    },
-    {
       "id": "ap-trapassato",
       "level": "ap",
       "unit": "Il trapassato prossimo",
@@ -880,100 +861,424 @@
       ]
     },
     {
-      "id": "ap-opinione",
+      "id": "ap-saggio-1",
       "level": "ap",
-      "unit": "Il congiuntivo presente",
+      "unit": "1 · Famiglie e comunità",
       "type": "essay",
       "kind": "summative",
       "bc": 200,
-      "title": "Penso che…",
-      "prompt": "Write a short opinion essay (at least 150 words) on a topic from this unit. Give your opinion, state a hope, and say what you want others to do. Use at least six congiuntivo forms after penso che, credo che, spero che, voglio che, è importante che.",
-      "frames": [
-        "Penso che… sia…",
-        "Credo che sia importante che…",
-        "Spero che…",
-        "Voglio che…",
-        "Secondo me…, però…"
+      "title": "La famiglia oggi",
+      "theme": "La famiglia è ancora il centro della società italiana? Difendi la tua posizione con esempi.",
+      "themeEn": "Is the family still the center of Italian society? Defend your position with examples.",
+      "prompt": "Saggio persuasivo in 5 paragrafi (min. 200 parole). Read the theme above, then write one paragraph at a time. Click a phrase to add it, then finish the sentence yourself.",
+      "paragraphs": [
+        {
+          "label": "Introduzione: presenta il tema e la tua tesi",
+          "hint": "Say what the topic is and take a clear position.",
+          "frames": [
+            "Oggi si discute molto di…",
+            "Una volta la famiglia era…, ma oggi…",
+            "In questo saggio sostengo che…",
+            "Il nucleo familiare è cambiato perché…",
+            "Secondo me, la famiglia resta…"
+          ]
+        },
+        {
+          "label": "Primo argomento",
+          "hint": "Give a reason and a concrete example.",
+          "frames": [
+            "Il legame familiare è molto forte perché…",
+            "I nonni badano ai nipoti quando…",
+            "Riunirsi attorno alla tavola significa…",
+            "Un esempio è il pranzo della domenica, quando…",
+            "Mia nonna raccontava che, prima…, la famiglia si era…"
+          ]
+        },
+        {
+          "label": "Secondo argomento",
+          "hint": "Give a second reason. A different example.",
+          "frames": [
+            "La comunità locale organizza…",
+            "La solidarietà tra vicini aiuta…",
+            "Ad esempio, la Sagra del Tartufo di Alba…",
+            "Fare volontariato permette di…",
+            "Il senso di appartenenza si rafforza quando…"
+          ]
+        },
+        {
+          "label": "Obiezione e risposta",
+          "hint": "Give the other side, then answer it.",
+          "frames": [
+            "Alcuni pensano che i giovani…",
+            "È vero che gli affitti sono alti e il lavoro è precario, ma…",
+            "Si potrebbe sostenere che la famiglia monoparentale…",
+            "Tuttavia, questo non significa che…",
+            "Dall’altro lato, bisogna ammettere che…"
+          ]
+        },
+        {
+          "label": "Conclusione",
+          "hint": "Sum up and look ahead.",
+          "frames": [
+            "In conclusione, sono convinto/a che…",
+            "Per tutte queste ragioni…",
+            "Vale la pena sottolineare che…",
+            "In definitiva, la famiglia…",
+            "Spero che in futuro…"
+          ]
+        }
       ],
-      "minWords": 150,
-      "vocab": [
-        "abbia",
-        "abbiamo",
-        "abbiano",
-        "abbiate",
-        "andiamo",
-        "andiate",
-        "cerchi",
-        "cerchiamo",
-        "cerchiate",
-        "cerchino",
-        "debba",
-        "debbano",
-        "dica",
-        "dicano",
-        "diciamo",
-        "diciate",
-        "dobbiamo",
-        "dobbiate",
-        "esca",
-        "escano",
-        "faccia",
-        "facciamo",
-        "facciano",
-        "facciate",
-        "finiamo",
-        "finiate",
-        "finisca",
-        "finiscano",
-        "mangi",
-        "mangiamo",
-        "mangiate",
-        "mangino",
-        "parli",
-        "parliamo",
-        "parliate",
-        "parlino",
-        "parta",
-        "partano",
-        "partiamo",
-        "partiate",
-        "possa",
-        "possano",
-        "possiamo",
-        "possiate",
-        "sappia",
-        "sappiamo",
-        "sappiano",
-        "sappiate",
-        "scriva",
-        "scrivano",
-        "scriviamo",
-        "scriviate",
-        "sia",
-        "siamo",
-        "siano",
-        "siate",
-        "usciamo",
-        "usciate",
-        "vada",
-        "vadano",
-        "venga",
-        "vengano",
-        "veniamo",
-        "veniate",
-        "voglia",
-        "vogliamo",
-        "vogliano",
-        "vogliate",
-        "che",
-        "penso",
-        "credo",
-        "spero",
-        "voglio",
-        "importante",
-        "secondo",
-        "me"
-      ]
+      "minWords": 200
+    },
+    {
+      "id": "ap-saggio-2",
+      "level": "ap",
+      "unit": "2 · Lingua e cultura",
+      "type": "essay",
+      "kind": "summative",
+      "bc": 200,
+      "title": "Il dialetto",
+      "theme": "Il dialetto è una ricchezza da proteggere o un ostacolo alla lingua comune? Scegli una posizione.",
+      "themeEn": "Is dialect a richness to protect or an obstacle to the common language? Choose a position.",
+      "prompt": "Saggio persuasivo in 5 paragrafi (min. 200 parole). Read the theme above, then write one paragraph at a time. Click a phrase to add it, then finish the sentence yourself.",
+      "paragraphs": [
+        {
+          "label": "Introduzione: presenta il tema e la tua tesi",
+          "hint": "Say what the topic is and take a clear position.",
+          "frames": [
+            "Il dialetto è parte dell’identità di…",
+            "Penso che la lingua sia…",
+            "In questo saggio sostengo che…",
+            "Nel 1861 la maggior parte degli italiani…",
+            "A mio avviso, il dialetto…"
+          ]
+        },
+        {
+          "label": "Primo argomento",
+          "hint": "Give a reason and a concrete example.",
+          "frames": [
+            "È importante che i giovani…",
+            "L’identità linguistica si forma…",
+            "Il bilinguismo è una ricchezza perché…",
+            "Un esempio è il napoletano, che…",
+            "Voglio che le tradizioni locali…"
+          ]
+        },
+        {
+          "label": "Secondo argomento",
+          "hint": "Give a second reason. A different example.",
+          "frames": [
+            "Le feste, come il Carnevale di Venezia…",
+            "Tramandare le tradizioni significa…",
+            "Un altro motivo è che la lingua minoritaria…",
+            "Spero che le scuole…",
+            "È innegabile che la cultura…"
+          ]
+        },
+        {
+          "label": "Obiezione e risposta",
+          "hint": "Give the other side, then answer it.",
+          "frames": [
+            "Alcuni temono che gli anglicismi…",
+            "Si potrebbe sostenere che il dialetto sia…",
+            "Da un lato…, dall’altro lato…",
+            "Dubito che la lingua standard…",
+            "Tuttavia, non credo che…"
+          ]
+        },
+        {
+          "label": "Conclusione",
+          "hint": "Sum up and look ahead.",
+          "frames": [
+            "In conclusione, credo che…",
+            "Per tutte queste ragioni…",
+            "Vale la pena sottolineare che…",
+            "Spero che nel futuro…",
+            "Bisogna che tutti noi…"
+          ]
+        }
+      ],
+      "minWords": 200
+    },
+    {
+      "id": "ap-saggio-3",
+      "level": "ap",
+      "unit": "3 · Arte e creatività",
+      "type": "essay",
+      "kind": "summative",
+      "bc": 200,
+      "title": "Arte e moda italiane",
+      "theme": "L’arte e la moda italiane sono un patrimonio da proteggere o un’industria da far crescere? Spiega perché.",
+      "themeEn": "Are Italian art and fashion a heritage to protect or an industry to grow? Explain why.",
+      "prompt": "Saggio persuasivo in 5 paragrafi (min. 200 parole). Read the theme above, then write one paragraph at a time. Click a phrase to add it, then finish the sentence yourself.",
+      "paragraphs": [
+        {
+          "label": "Introduzione: presenta il tema e la tua tesi",
+          "hint": "Say what the topic is and take a clear position.",
+          "frames": [
+            "Quando si pensa all’Italia, si pensa subito a…",
+            "Il patrimonio artistico italiano è…",
+            "In questo saggio sosterrei che…",
+            "Vorrei dimostrare che…",
+            "A mio avviso, l’arte dovrebbe…"
+          ]
+        },
+        {
+          "label": "Primo argomento",
+          "hint": "Give a reason and a concrete example.",
+          "frames": [
+            "Un capolavoro come la cupola del Duomo…",
+            "Se potessi restaurare…, lo farei perché…",
+            "I musei dovrebbero…",
+            "Un esempio è il Rinascimento, quando…",
+            "Il patrimonio va protetto perché…"
+          ]
+        },
+        {
+          "label": "Secondo argomento",
+          "hint": "Give a second reason. A different example.",
+          "frames": [
+            "La moda italiana è famosa per i tessuti e per l’artigianato…",
+            "Uno stilista potrebbe…",
+            "Un abito fatto a mano costerebbe…",
+            "L’industria creativa darebbe lavoro a…",
+            "Ad esempio, la sfilata di Milano…"
+          ]
+        },
+        {
+          "label": "Obiezione e risposta",
+          "hint": "Give the other side, then answer it.",
+          "frames": [
+            "Alcuni direbbero che l’arte…",
+            "Sarebbe giusto, ma…",
+            "Si potrebbe obiettare che il design…",
+            "Tuttavia, non sarebbe corretto…",
+            "Dall’altro lato, la creatività…"
+          ]
+        },
+        {
+          "label": "Conclusione",
+          "hint": "Sum up and look ahead.",
+          "frames": [
+            "In conclusione, credo che l’arte e la moda…",
+            "Per queste ragioni, il governo dovrebbe…",
+            "Vale la pena sottolineare che…",
+            "Mi piacerebbe che…",
+            "In definitiva, la bellezza…"
+          ]
+        }
+      ],
+      "minWords": 200
+    },
+    {
+      "id": "ap-saggio-4",
+      "level": "ap",
+      "unit": "4 · Scienza e tecnologia",
+      "type": "essay",
+      "kind": "summative",
+      "bc": 200,
+      "title": "La tecnologia e il futuro",
+      "theme": "La tecnologia migliorerà o peggiorerà la nostra vita nei prossimi vent’anni? Sostieni la tua opinione.",
+      "themeEn": "Will technology improve or worsen our lives over the next twenty years? Support your opinion.",
+      "prompt": "Saggio persuasivo in 5 paragrafi (min. 200 parole). Read the theme above, then write one paragraph at a time. Click a phrase to add it, then finish the sentence yourself.",
+      "paragraphs": [
+        {
+          "label": "Introduzione: presenta il tema e la tua tesi",
+          "hint": "Say what the topic is and take a clear position.",
+          "frames": [
+            "Nei prossimi anni la tecnologia…",
+            "Sono convinto/a che il futuro…",
+            "In questo saggio dimostrerò che…",
+            "L’innovazione cambierà…",
+            "A mio avviso, il progresso…"
+          ]
+        },
+        {
+          "label": "Primo argomento",
+          "hint": "Give a reason and a concrete example.",
+          "frames": [
+            "Gli scienziati scopriranno…",
+            "L’intelligenza artificiale aiuterà i medici a…",
+            "Il vantaggio principale sarà…",
+            "Ad esempio, un vaccino o una cura…",
+            "La ricerca migliorerà la salute perché…"
+          ]
+        },
+        {
+          "label": "Secondo argomento",
+          "hint": "Give a second reason. A different example.",
+          "frames": [
+            "I social network e lo smartphone permetteranno di…",
+            "La videochiamata renderà…",
+            "Un altro vantaggio sarà la velocità…",
+            "La rete collegherà…",
+            "Un esempio è la scuola, dove…"
+          ]
+        },
+        {
+          "label": "Obiezione e risposta",
+          "hint": "Give the other side, then answer it.",
+          "frames": [
+            "Alcuni temono che i robot…",
+            "Il rischio più grande sarà…",
+            "È vero che la privacy…, ma…",
+            "Il divario digitale peggiorerà se…",
+            "Tuttavia, non credo che…"
+          ]
+        },
+        {
+          "label": "Conclusione",
+          "hint": "Sum up and look ahead.",
+          "frames": [
+            "In conclusione, il futuro sarà…",
+            "Per tutte queste ragioni, la tecnologia…",
+            "Vale la pena sottolineare che…",
+            "Spero che gli scienziati…",
+            "In definitiva, la responsabilità sarà…"
+          ]
+        }
+      ],
+      "minWords": 200
+    },
+    {
+      "id": "ap-saggio-5",
+      "level": "ap",
+      "unit": "5 · Vita contemporanea",
+      "type": "essay",
+      "kind": "summative",
+      "bc": 200,
+      "title": "Cosa serve a un giovane",
+      "theme": "Per un giovane, che cosa è più importante oggi: studiare, fare sport o viaggiare? Dai consigli e difendi la tua scelta.",
+      "themeEn": "For a young person, what matters most today: studying, playing sports or traveling? Give advice and defend your choice.",
+      "prompt": "Saggio persuasivo in 5 paragrafi (min. 200 parole). Read the theme above, then write one paragraph at a time. Click a phrase to add it, then finish the sentence yourself.",
+      "paragraphs": [
+        {
+          "label": "Introduzione: presenta il tema e la tua tesi",
+          "hint": "Say what the topic is and take a clear position.",
+          "frames": [
+            "Oggi i giovani devono scegliere tra…",
+            "Secondo me, la cosa più importante è…",
+            "In questo saggio consiglio di…",
+            "L’istruzione, lo sport e il viaggio…",
+            "Se vuoi stare bene, studia…"
+          ]
+        },
+        {
+          "label": "Primo argomento",
+          "hint": "Give a reason and a concrete example.",
+          "frames": [
+            "Studia ogni giorno perché…",
+            "Prendi un buon voto per…",
+            "Un esempio è l’esame, quando…",
+            "Cerca un tirocinio per…",
+            "Scrivi un buon curriculum perché…"
+          ]
+        },
+        {
+          "label": "Secondo argomento",
+          "hint": "Give a second reason. A different example.",
+          "frames": [
+            "Pratica uno sport perché…",
+            "Mangia sano e fai colazione perché…",
+            "Una squadra insegna a…",
+            "Riposati la sera perché…",
+            "Non saltare i pasti, perché…"
+          ]
+        },
+        {
+          "label": "Obiezione e risposta",
+          "hint": "Give the other side, then answer it.",
+          "frames": [
+            "Alcuni dicono che viaggiare costa troppo…",
+            "È vero che il biglietto e l’albergo…, ma…",
+            "Non pensare che…",
+            "Prenota in anticipo e così…",
+            "Tuttavia, non dimenticare che…"
+          ]
+        },
+        {
+          "label": "Conclusione",
+          "hint": "Sum up and look ahead.",
+          "frames": [
+            "In conclusione, il mio consiglio è…",
+            "Per tutte queste ragioni, ragazzi…",
+            "Vale la pena sottolineare che…",
+            "Ricordate sempre che…",
+            "In definitiva, una vita equilibrata…"
+          ]
+        }
+      ],
+      "minWords": 200
+    },
+    {
+      "id": "ap-saggio-6",
+      "level": "ap",
+      "unit": "6 · Contesti globali",
+      "type": "essay",
+      "kind": "summative",
+      "bc": 200,
+      "title": "Il clima e le scelte",
+      "theme": "Il cambiamento climatico richiede l’azione dei governi o quella dei cittadini? Racconta che cosa è cambiato e che cosa si deve fare.",
+      "themeEn": "Does climate change require action by governments or by citizens? Tell what has changed and what must be done.",
+      "prompt": "Saggio persuasivo in 5 paragrafi (min. 200 parole). Read the theme above, then write one paragraph at a time. Click a phrase to add it, then finish the sentence yourself.",
+      "paragraphs": [
+        {
+          "label": "Introduzione: presenta il tema e la tua tesi",
+          "hint": "Say what the topic is and take a clear position.",
+          "frames": [
+            "Il cambiamento climatico è una sfida…",
+            "Quando ero piccolo/a…, ma oggi…",
+            "In questo saggio sostengo che…",
+            "Negli ultimi decenni è successo che…",
+            "A mio avviso, la responsabilità…"
+          ]
+        },
+        {
+          "label": "Primo argomento",
+          "hint": "Give a reason and a concrete example.",
+          "frames": [
+            "Il governo ha approvato una legge che…",
+            "La pianificazione urbana richiede…",
+            "Una strategia a lungo termine…",
+            "Il trasporto pubblico riduce…",
+            "Ad esempio, in molte città…"
+          ]
+        },
+        {
+          "label": "Secondo argomento",
+          "hint": "Give a second reason. A different example.",
+          "frames": [
+            "Ogni cittadino può…",
+            "Il riciclaggio aiuta…",
+            "Non bisogna sprecare…",
+            "La bicicletta e il treno…",
+            "Ad esempio, quando andavo a scuola…"
+          ]
+        },
+        {
+          "label": "Obiezione e risposta",
+          "hint": "Give the other side, then answer it.",
+          "frames": [
+            "Alcuni pensano che una persona sola…",
+            "È vero che l’inquinamento era altissimo, ma…",
+            "Mentre i governi aspettavano…",
+            "Si potrebbe sostenere che l’economia…",
+            "Tuttavia, non è giusto che…"
+          ]
+        },
+        {
+          "label": "Conclusione",
+          "hint": "Sum up and look ahead.",
+          "frames": [
+            "In conclusione, credo che…",
+            "Per tutte queste ragioni…",
+            "Vale la pena sottolineare che…",
+            "La sostenibilità è…",
+            "In definitiva, il futuro dipende…"
+          ]
+        }
+      ],
+      "minWords": 200
     }
   ]
 }
