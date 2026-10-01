@@ -4201,10 +4201,14 @@ class Component extends DCLogic {
 
   nextCard() {
     var nextIndex = this.state.qIndex + 1;
-    if (nextIndex < this.state.queue.length && nextIndex % BREAK_EVERY === 0 && this.state.mode !== 'prova' && !this._inBreak && this._brkAt !== this.state.mode + ':' + nextIndex) {
-      var self = this; this._inBreak = true; this._brkAt = this.state.mode + ':' + nextIndex;
-      bohBreak(Math.floor(Math.random() * 2), function (won) { self._inBreak = false; if (won) self.setState({ cashi: self.state.cashi + 5, lifetime: self.state.lifetime + 5, sessionEarned: self.state.sessionEarned + 5 }); self.nextCard(); });
-      return;
+    if (this.state.mode !== 'prova' && !this._inBreak) {
+      if (!this._skipInc) this._since = (this._since || 0) + 1;
+      this._skipInc = false;
+      if (this._since >= BREAK_EVERY) {
+        var self = this; this._inBreak = true; this._since = 0; this._skipInc = true;
+        bohBreak(Math.floor(Math.random() * 2), function (won) { self._inBreak = false; if (won) self.setState({ cashi: self.state.cashi + 5, lifetime: self.state.lifetime + 5, sessionEarned: self.state.sessionEarned + 5 }); self.nextCard(); });
+        return;
+      }
     }
     if (nextIndex >= this.state.queue.length) {
       this.setState(this.finish({ screen: 'summary', lastEarn: 0 }));
@@ -5573,9 +5577,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610010937" defer></script>
-<script src="../assets/gloss-dict.js?v=202610010937" defer></script>
-<script src="../assets/gloss.js?v=202610010937" defer></script>
+<script src="../assets/flashcards.js?v=202610010950" defer></script>
+<script src="../assets/gloss-dict.js?v=202610010950" defer></script>
+<script src="../assets/gloss.js?v=202610010950" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5616,5 +5620,5 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610010937" defer></script>
+<script src="../assets/bohsave.js?v=202610010950" defer></script>
 </body></html>
