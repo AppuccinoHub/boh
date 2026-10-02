@@ -1319,8 +1319,9 @@
     stats: function (id) {
       var u = UNITS[id], o = null; if (!u) return { done: 0, of: 7 };
       try { o = JSON.parse(localStorage.getItem('boh_rt_' + id) || 'null'); } catch (e) {}
-      var n = 0; if (o && o.done) for (var i = 1; i <= 7; i++) if (o.done[i]) n++;
-      return { done: n, of: 7 };
+      var n = 0, sl = [], nx = 0; if (o && o.done) for (var i = 1; i <= 7; i++) if (o.done[i]) n++;
+      for (var k = 1; k <= 7; k++) { var dn = !!(o && o.done && o.done[k]); sl.push({ n: k, name: STAGE_NAMES[k], min: STAGE_MIN[k], done: dn }); if (!dn && !nx) nx = k; }
+      return { done: n, of: 7, stages: sl, next: nx };
     },
     open: function (id, opts) {
       if (root) R.close(true);
@@ -1338,6 +1339,7 @@
       clockIv = setInterval(function () { var c = root && root.querySelector('#brt-clock'); if (c) c.textContent = clockText(); }, 20000);
       Say.init(function () { if (root && V.screen === 'hub') render(); });
       render();
+      if (O.stage) { try { ACT.stage({ getAttribute: function () { return String(O.stage); } }); } catch (e) {} }   // open straight at a stage (from the home screen's stage list)
     },
     close: function (quiet) {
       Say.stop(); clearTimeout(pauseTm); if (run6) { run6.stopped = true; run6 = null; } if (storyRun) { storyRun.stop(); storyRun = null; }

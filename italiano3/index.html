@@ -13505,12 +13505,13 @@ class Component extends DCLogic {
     result.isImp = BT_UNIT === 'imp'; result.isVdp = BT_UNIT === 'vdp';
     result.unitTabs = (function (tabs) {
       if (typeof BohRoutine !== 'undefined' && BohRoutine.units && BohRoutine.units.qep) {
-        var rs = BohRoutine.stats('qep'), qu = BohRoutine.units.qep;
-        var openQ = function () { self.sfx('tap'); BohRoutine.open('qep', { boh: { name: s.bohName, base: s.bohBase },
+        var rs = BohRoutine.stats('qep'), qu = BohRoutine.units.qep, cur = window.__bohQepCur ? window.__bohQepCur(s) : false;
+        var openQ = function (stg) { self.sfx('tap'); BohRoutine.open('qep', { stage: (typeof stg === 'number' ? stg : 0), boh: { name: s.bohName, base: s.bohBase },
           pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); },
           onClose: function () { self.setState({}); } }); };
         window.__bohQep = openQ;
-        tabs.splice(1, 0, { label: qu.tab, sub: rs.done ? (rs.done + ' / 7 \u00b7 ' + qu.tabSub) : qu.tabSub, on: 'false', cls: 'unit-tab', pick: openQ });
+        tabs.splice(1, 0, { label: qu.tab, sub: rs.done ? (rs.done + ' / 7 \u00b7 ' + qu.tabSub) : qu.tabSub, on: cur ? 'true' : 'false', cls: 'unit-tab', pick: function () { if (self.state.qepOff) self.setState({ qepOff: false }); openQ(); } });
+        tabs.forEach(function (t, i) { if (i === 1 || /soon/.test(t.cls)) return; var o0 = t.pick; if (cur) t.on = 'false'; t.pick = function () { self.setState({ qepOff: true }); o0(); }; });
       }
       return tabs;
     })(BT_UNIT_ORDER.map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
@@ -13525,6 +13526,7 @@ class Component extends DCLogic {
     var _cf = modeList.filter(function (m) { return m.featured; })[0];
     result.continuaH = result.hasLesson && result.lsGoH ? result.lsGoH : (_cf ? _cf.pick : function () { self.sfx('tap'); });
     result.continuaLabel = result.hasLesson && result.lsGoLabel ? result.lsGoLabel : (_cf ? 'Continua: ' + _cf.label.replace(/^\d+ \u00b7 /, '') : 'Ripassa un giro');
+    if (s.screen === 'home' && window.__bohQepHome) { try { window.__bohQepHome(s, result, self); } catch (e) {} }
     this.profVals(s, result);
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
@@ -14037,11 +14039,11 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610021532" defer></script>
-<script src="../assets/routine.js?v=202610021532" defer></script>
-<script src="../assets/routine-qep.js?v=202610021532" defer></script>
-<script src="../assets/gloss-dict.js?v=202610021532" defer></script>
-<script src="../assets/gloss.js?v=202610021532" defer></script>
+<script src="../assets/flashcards.js?v=202610021542" defer></script>
+<script src="../assets/routine.js?v=202610021542" defer></script>
+<script src="../assets/routine-qep.js?v=202610021542" defer></script>
+<script src="../assets/gloss-dict.js?v=202610021542" defer></script>
+<script src="../assets/gloss.js?v=202610021542" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14089,7 +14091,39 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   clearInterval(iv); window.__bohQep();
 }, 200); } catch (e) {} })();
 </script>
-<script src="../assets/snake.js?v=202610021532" defer></script>
-<script src="../assets/bohvoice.js?v=202610021532" defer></script>
-<script src="../assets/bohsave.js?v=202610021532" defer></script>
+<script src="../assets/snake.js?v=202610021542" defer></script>
+<script src="../assets/bohvoice.js?v=202610021542" defer></script>
+<style>.lp-prova.qep-hide{display:none}</style>
+<script>
+/* bohQepCur: the unit is the selected tab until finished */
+window.__bohQepCur = function (s) { try { if (!window.BohRoutine || !BohRoutine.units.qep) return false; return !s.qepOff && BohRoutine.stats('qep').done < 7; } catch (e) { return false; } };
+window.__bohQepHome = function (s, r, self) {
+  if (!window.__bohQepCur(s) || typeof window.__bohQep !== 'function') return;
+  var st = BohRoutine.stats('qep'), qu = BohRoutine.units.qep, nx = st.next || 1, go = window.__bohQep;
+  r.unitEyebrow = 'ITALIANO 3 \u00b7 ASCOLTA E PARLA'; r.unitTitle = 'Quando ero piccolo/a';
+  r.homeLede = 'Tell the story of you as a little kid. Listen, match, write and speak. Your progress and Boh Cashi are saved.';
+  r.continuaLabel = st.done ? 'Continua: ' + st.stages[nx - 1].name : 'Comincia: Ascolta';
+  r.continuaH = function () { if (st.done) go(nx); else go(); };
+  r.hasLesson = true; r.lsTitle = qu.title;
+  r.lsPath = st.stages.map(function (x) { var d = x.done, c = x.n === nx; return { n: d ? '\u2713' : String(x.n), label: x.name, min: x.min + ' min', dis: null, cls: 'lp-stop' + (d ? ' is-done' : c ? ' is-cur' : ' is-open'), aria: 'Stage ' + x.n + ': ' + x.name + (d ? ', done' : ''), pick: function () { go(x.n); } }; });
+  r.lsPathSub = st.done ? st.done + ' of 7 stages done \u00b7 pick up where you left off' : 'About 45 to 60 minutes \u00b7 stages 1 to 3 need no partner';
+  r.lsGoLabel = r.continuaLabel; r.lsGoH = r.continuaH;
+  r.lsProvaCls = 'lp-prova qep-hide'; r.lsProvaH = function () {}; r.lsProvaDis = 'true'; r.lsProvaDone = ''; r.lsProvaSub = '';
+};
+</script>
+<script>
+/* bohQepAuto: kids land on the Quando ero piccolo/a unit until they have finished it (once per visit) */
+(function () { try { var n = 0, iv = setInterval(function () {
+  var g = window.__game; if (++n > 600) { clearInterval(iv); return; }
+  if (!g || !g.state || !window.__bohQep || typeof BohRoutine === 'undefined') return;
+  var st = g.state; if (!st.bohBase) return;
+  if (st.qepOff) { try { g.setState({ qepOff: false }); } catch (e) {} }
+  if (st.screen !== 'home') { clearInterval(iv); return; }
+  if (st.overlay || document.querySelector('.brt-ov, .bcards-ov, .bsn-ov')) { if (n > 150) clearInterval(iv); return; }
+  clearInterval(iv);
+  var rs = BohRoutine.stats('qep'); if (rs && rs.done >= 7) return;
+  window.__bohQep();
+}, 200); } catch (e) {} })();
+</script>
+<script src="../assets/bohsave.js?v=202610021542" defer></script>
 </body></html>
