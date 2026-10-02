@@ -192,6 +192,14 @@
     return { stop: function () { stopped = true; Say.stop(); } };
   };
   function say(t, slow) { Say.say(t, { slow: !!slow }); }
+  /* after a correct answer: say the sentence, then move on by itself (the Next button still works; a tap on it cancels this) */
+  var advTok = null;
+  function autoAdvance(text, fn) {
+    var tok = advTok = {}, fired = false;
+    function go2() { if (fired || advTok !== tok || !root) return; fired = true; advTok = null; try { fn(); } catch (e) {} }
+    Say.say(text, { done: function () { setTimeout(go2, 900); } });
+    setTimeout(go2, 4500);
+  }
 
   /* ---------------------------------------------------------------- look */
   var CSS = '' +
@@ -530,7 +538,8 @@
     for (i = 0; i < n; i++) kinds.push(i < nAud ? 'aud' : ((i - nAud) % 2 === 0 ? 'it2en' : 'en2it'));
     kinds = shuffle(kinds);
     return fids.map(function (fid, k) {
-      var others = shuffle(U.frames.map(function (f) { return f.id; }).filter(function (x) { return x !== fid; })).slice(0, 3);
+      var seenPic = {}, others = []; seenPic[modelSentence(FR(fid)).pic] = 1;   // four DIFFERENT pictures, so the answer is never ambiguous without English
+      shuffle(U.frames.map(function (f) { return f.id; }).filter(function (x) { return x !== fid; })).forEach(function (x) { var pc = modelSentence(FR(x)).pic; if (others.length < 3 && !seenPic[pc]) { seenPic[pc] = 1; others.push(x); } });
       return { fid: fid, kind: kinds[k], opts: shuffle([fid].concat(others)) };
     });
   }
@@ -562,14 +571,14 @@
     if (!V.ab || V.ab.i !== p.i) V.ab = { i: p.i, wrong: [], solved: false };
     var it = p.items[p.i], f = FR(it.fid), m = modelSentence(f), ab = V.ab, n = p.items.length;
     var h = stageHead(2);
-    h += '<div class="brt-row"><span class="brt-note"><b>Match ' + (p.i + 1) + ' of ' + n + '</b></span><span class="brt-grow"></span>' + enBtn() + '</div>';
+    h += '<div class="brt-row"><span class="brt-note"><b>Match ' + (p.i + 1) + ' of ' + n + '</b></span></div>';
     if (it.kind === 'aud') {
       h += '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Listen. Tap the picture that matches.</b><div class="brt-row" style="justify-content:center">' + sayBtns(m.it) + '</div>' +
         '<p class="brt-note">There is no Italian written here on purpose. Tap 🔊 as many times as you like.</p></div>';
     } else if (it.kind === 'it2en') {
-      h += '<div class="brt-card vio"><b>What does it mean?</b><div class="brt-sent">' + esc(m.it) + '</div><div class="brt-row">' + sayBtns(m.it) + '</div></div>';
+      h += '<div class="brt-card vio"><b>Which picture matches this sentence?</b><div class="brt-sent">' + esc(m.it) + '</div><div class="brt-row">' + sayBtns(m.it) + '</div></div>';
     } else {
-      h += '<div class="brt-card vio"><b>Which Italian sentence matches?</b><div class="brt-sent">' + P(m.pic, 'p') + ' ' + esc(m.en) + '</div></div>';
+      h += '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Which Italian sentence matches the picture?</b><div class="brt-pic">' + P(f.cue, 'p') + ' ' + P(m.pic, 'p') + '</div></div>';
     }
     h += '<div class="brt-opts">';
     it.opts.forEach(function (fid) {
@@ -577,7 +586,7 @@
       if (bad) cls += ' try'; if (good) cls += ' ok'; else if (ab.solved) cls += ' off';
       var inner;
       if (it.kind === 'en2it') inner = '<span>' + esc(gm.it) + '</span>' + (good ? '' : '');
-      else inner = P(gm.pic, 'p') + '<small>' + esc(it.kind === 'aud' || it.kind === 'it2en' ? gm.en : '') + '</small>' + (ab.solved && it.kind === 'aud' ? '<span>' + esc(gm.it) + '</span>' : '');
+      else inner = P(g.cue, 'p') + ' ' + P(gm.pic, 'p') + (ab.solved && good && it.kind === 'aud' ? '<span>' + esc(gm.it) + '</span>' : '');
       h += '<button class="' + cls + '" data-a="abpick" data-f="' + fid + '"' + (bad || ab.solved ? ' aria-disabled="true"' : '') + '>' + inner + '</button>';
     });
     h += '</div>';
@@ -586,18 +595,21 @@
       h += '<div class="brt-card try" role="status"><b>Not that one. Listen again and try another.</b><p>Hint: the sentence begins with “' + esc(hint) + '”.</p></div>';
     }
     if (ab.solved) {
-      h += '<div class="brt-card ok" role="status"><b>✓ ' + esc(m.it) + '</b><div class="brt-en">' + esc(m.en) + '</div></div>' +
+      h += '<div class="brt-card ok" role="status"><b>✓ ' + esc(m.it) + '</b></div>' +
         '<button class="brt-b go" data-a="abnext" data-focus="1">' + (p.i + 1 >= n ? 'Finish matching ▶' : 'Next ▶') + '</button>';
     }
     return h;
   }
   ACT.abpick = function (el) {
     var it = itemNow(), ab = V.ab, fid = el.getAttribute('data-f'); if (!it || ab.solved) return;
-    if (fid === it.fid) { ab.solved = true; render(); say(modelSentence(FR(it.fid)).it); }
+    if (fid === it.fid) {
+      ab.solved = true; render(); var at = S.pos.s2.i;
+      autoAdvance(modelSentence(FR(it.fid)).it, function () { if (V.screen === 's2' && S.pos.s2.phase === 'abbina' && S.pos.s2.i === at && V.ab && V.ab.solved) ACT.abnext(); });
+    }
     else { ab.wrong.push(fid); render(); }
   };
   ACT.abnext = function () {
-    var p = S.pos.s2; p.i++;
+    advTok = null; var p = S.pos.s2; p.i++;
     if (p.i >= p.items.length) { S.abbina = true; p.phase = hasPicks() ? 'menu' : 'pickframes'; p.i = 0; p.items = []; save(); if (hasPicks()) { stageDone(2); } render(); return; }
     save(); render(); autoplayItem();
   };
@@ -1090,7 +1102,7 @@
     h += '<div class="brt-card vio"><h3>Say it from memory</h3><p>Look at the picture. Say the whole sentence out loud. Then tap to hear it and check yourself. <b>No score</b>: this is just for you.</p></div>' +
       '<div class="brt-row"><span class="brt-note"><b>' + (p.ri + 1) + ' of ' + order.length + '</b></span></div>' +
       '<div class="brt-card" style="align-items:center;text-align:center"><div class="brt-pic">' + P(f.cue, 'p') + ' ' + P(cs.pic, 'p') + '</div>' +
-      '<div class="brt-en" style="font-size:19px">' + esc(cs.typed ? '(your own words)' : cs.en) + '</div>';
+      (cs.typed ? '<div class="brt-en">(your own words)</div>' : '');
     if (p.shown) h += '<div class="brt-card ok" style="width:100%"><div class="brt-row" style="justify-content:center"><div class="brt-big">' + esc(cs.it) + '</div></div><div class="brt-row" style="justify-content:center">' + sayBtns(cs.it) + '</div></div>';
     else h += '<button class="brt-b go" data-a="recallshow">🔊 I said it. Now let me hear it</button>';
     h += '</div>';
@@ -1171,11 +1183,11 @@
     if (r.phase === 'match') {
       var fid = r.items[r.i], sn = sentenceFor(fid), opts = r.opts && r.opts.i === r.i ? r.opts.list : null;
       if (!opts) { var oth = shuffle(picked().map(function (f) { return f.id; }).filter(function (x) { return x !== fid; })).slice(0, 3); opts = shuffle([fid].concat(oth)); r.opts = { i: r.i, list: opts }; }
-      h += '<div class="brt-row"><span class="brt-note"><b>Part 1 · Listen and match ' + (r.i + 1) + ' of ' + r.items.length + '</b></span><span class="brt-grow"></span>' + enBtn() + '</div>' +
+      h += '<div class="brt-row"><span class="brt-note"><b>Part 1 · Listen and match ' + (r.i + 1) + ' of ' + r.items.length + '</b></span></div>' +
         '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Listen. Tap the picture that matches.</b><div class="brt-row" style="justify-content:center">' + sayBtns(sn.it) + '</div></div><div class="brt-opts">';
       opts.forEach(function (id) {
         var g = sentenceFor(id), gf = FR(id), bad = r.wrong.indexOf(id) !== -1, good = r.solved && id === fid;
-        h += '<button class="brt-opt' + (bad ? ' try' : '') + (good ? ' ok' : (r.solved ? ' off' : '')) + '" data-a="rppick" data-f="' + id + '"' + (bad || r.solved ? ' aria-disabled="true"' : '') + '>' + P(gf.cue, 'p') + ' ' + P(g.pic, 'p') + '<small>' + esc(g.typed ? '(your own words)' : g.en) + '</small>' + (r.solved && good ? '<span>' + esc(g.it) + '</span>' : '') + '</button>';
+        h += '<button class="brt-opt' + (bad ? ' try' : '') + (good ? ' ok' : (r.solved ? ' off' : '')) + '" data-a="rppick" data-f="' + id + '"' + (bad || r.solved ? ' aria-disabled="true"' : '') + '>' + P(gf.cue, 'p') + ' ' + P(g.pic, 'p') + (r.solved && good ? '<span>' + esc(g.it) + '</span>' : '') + '</button>';
       });
       h += '</div>';
       if (r.wrong.length && !r.solved) h += '<div class="brt-card try" role="status"><b>Not that one. Listen again and try another.</b></div>';
@@ -1184,7 +1196,7 @@
     }
     var fid2 = r.recall[r.ri], sn2 = sentenceFor(fid2), f2 = FR(fid2);
     h += '<div class="brt-card vio"><h3>Part 2 · Say it from memory</h3><p>Look at the picture, say the sentence, then tap to hear it. No score.</p></div><div class="brt-row"><span class="brt-note"><b>' + (r.ri + 1) + ' of ' + r.recall.length + '</b></span></div>' +
-      '<div class="brt-card" style="align-items:center;text-align:center"><div class="brt-pic">' + P(f2.cue, 'p') + ' ' + P(sn2.pic, 'p') + '</div><div class="brt-en" style="font-size:19px">' + esc(sn2.typed ? '(your own words)' : sn2.en) + '</div>' +
+      '<div class="brt-card" style="align-items:center;text-align:center"><div class="brt-pic">' + P(f2.cue, 'p') + ' ' + P(sn2.pic, 'p') + '</div>' + (sn2.typed ? '<div class="brt-en">(your own words)</div>' : '') +
       (r.shown ? '<div class="brt-card ok" style="width:100%"><div class="brt-big">' + esc(sn2.it) + '</div><div class="brt-row" style="justify-content:center">' + sayBtns(sn2.it) + '</div></div>' : '<button class="brt-b go" data-a="rpshow">🔊 I said it. Now let me hear it</button>') + '</div>';
     if (r.shown) h += '<button class="brt-b go" data-a="rpdone" data-focus="1">' + (r.ri + 1 >= r.recall.length ? 'Finish Ripasso ✓' : 'Next ▶') + '</button>';
     return h;
@@ -1192,10 +1204,13 @@
   ACT.ripasso = function () { V.rp = null; go('ripasso'); var r = V.rp; if (r && r.items) say(sentenceFor(r.items[0]).it); };
   ACT.rppick = function (el) {
     var r = V.rp, fid = el.getAttribute('data-f'); if (!r || r.solved) return;
-    if (fid === r.items[r.i]) { r.solved = true; render(); say(sentenceFor(fid).it); } else { r.wrong.push(fid); render(); }
+    if (fid === r.items[r.i]) {
+      r.solved = true; render(); var at = r.i;
+      autoAdvance(sentenceFor(fid).it, function () { if (V.screen === 'ripasso' && V.rp === r && r.solved && r.phase === 'match' && r.i === at) ACT.rpnext(); });
+    } else { r.wrong.push(fid); render(); }
   };
   ACT.rpnext = function () {
-    var r = V.rp; r.i++; r.wrong = []; r.solved = false;
+    advTok = null; var r = V.rp; r.i++; r.wrong = []; r.solved = false;
     if (r.i >= r.items.length) { r.phase = 'recall'; render(); return; }
     render(); say(sentenceFor(r.items[r.i]).it);
   };
