@@ -13503,8 +13503,18 @@ class Component extends DCLogic {
     var UNI = BT_UNITS[BT_UNIT];
     result.unitEyebrow = UNI.eyebrow; result.unitTitle = UNI.title; result.unitShort = UNI.short;
     result.isImp = BT_UNIT === 'imp'; result.isVdp = BT_UNIT === 'vdp';
-    result.unitTabs = BT_UNIT_ORDER.map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
-      .concat(BT_UNIT_SOON.map(function (x) { return { label: x[0], sub: x[1], on: 'false', cls: 'unit-tab soon', pick: function () { self.sfx('soft'); } }; }));
+    result.unitTabs = (function (tabs) {
+      if (typeof BohRoutine !== 'undefined' && BohRoutine.units && BohRoutine.units.qep) {
+        var rs = BohRoutine.stats('qep'), qu = BohRoutine.units.qep;
+        var openQ = function () { self.sfx('tap'); BohRoutine.open('qep', { boh: { name: s.bohName, base: s.bohBase },
+          pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); },
+          onClose: function () { self.setState({}); } }); };
+        window.__bohQep = openQ;
+        tabs.splice(1, 0, { label: qu.tab, sub: rs.done ? (rs.done + ' / 7 \u00b7 ' + qu.tabSub) : qu.tabSub, on: 'false', cls: 'unit-tab', pick: openQ });
+      }
+      return tabs;
+    })(BT_UNIT_ORDER.map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
+      .concat(BT_UNIT_SOON.map(function (x) { return { label: x[0], sub: x[1], on: 'false', cls: 'unit-tab soon', pick: function () { self.sfx('soft'); } }; })));
     result.resetTyped = s.resetTyped || '';
     result.resetOk = (s.resetTyped || '').trim().toUpperCase() === 'RESET';
     result.resetLocked = !result.resetOk;
@@ -14027,9 +14037,11 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610020323" defer></script>
-<script src="../assets/gloss-dict.js?v=202610020323" defer></script>
-<script src="../assets/gloss.js?v=202610020323" defer></script>
+<script src="../assets/flashcards.js?v=202610020639" defer></script>
+<script src="../assets/routine.js?v=202610020639" defer></script>
+<script src="../assets/routine-qep.js?v=202610020639" defer></script>
+<script src="../assets/gloss-dict.js?v=202610020639" defer></script>
+<script src="../assets/gloss.js?v=202610020639" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14070,5 +14082,12 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/bohsave.js?v=202610020323" defer></script>
+<script>
+(function () { try { if (!/[?&]unit=qep\b/.test(location.search)) return; var n = 0, iv = setInterval(function () {
+  var g = window.__game; if (++n > 75) { clearInterval(iv); return; }
+  if (!g || !g.state || !g.state.bohBase || g.state.overlay || !window.__bohQep || typeof BohRoutine === 'undefined') return;
+  clearInterval(iv); window.__bohQep();
+}, 200); } catch (e) {} })();
+</script>
+<script src="../assets/bohsave.js?v=202610020639" defer></script>
 </body></html>
