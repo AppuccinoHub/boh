@@ -52,3 +52,6 @@ U.append(dict(
 ))
 
 ```
+
+## Also removed (Unità 3 · Imperfetto o passato prossimo?)
+The vocabulary example for "di solito" was `Di solito mi alzavo alle sette.` / `Usually I got up at seven.` It is now `Di solito mangiavo alle sette.` / `Usually I ate at seven.` (in `it4_units.py`, unit `r6`). It feeds the vocab, listening and speaking cards.

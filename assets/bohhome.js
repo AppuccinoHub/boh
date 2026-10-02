@@ -62,7 +62,7 @@
       (mid ? '<div class="bhm-warn"><b>⚠️ ' + (rnd ? 'Un round a metà NON si salva.' : 'Una tappa a metà NON si salva.') + '</b><br>Se esci adesso, ' + (rnd ? 'questo round ricomincia da capo' : 'questa tappa ricomincia da capo') + '. <span>(If you leave now, you start this ' + (rnd ? 'round' : 'stop') + ' over.)</span></div>' +
         '<div class="bhm-ok">✓ Salvato: i round e le tappe già finiti, i Boh Cashi e i premi.</div>'
           : '<div class="bhm-ok">✓ Il tuo lavoro è salvato su questo computer.</div>') +
-      '<button class="bhm-b go" data-a="home">🏠 Vai a livello' + (mid ? ' (esco lo stesso)' : '') + '<small>Scegli Italiano 1 · 2 · 3 · 4 · AP</small></button>' +
+      '<button class="bhm-b go" data-a="home">🏠 Cambia livello' + (mid ? ' (esco lo stesso)' : '') + '<small>Scegli Italiano 1 · 2 · 3 · 4 · AP</small></button>' +
       '<button class="bhm-b save" data-a="save">💾 Ho finito per oggi<small>Prendi il codice di salvataggio</small></button>' +
       '<p>Finito per oggi? Copia il codice e tienilo al sicuro (foto, Drive, email a te). La prossima volta: <b>Carica il mio Boh</b>.</p>' +
       '<button class="bhm-b stay" data-a="stay">Resta qui</button></div>';
