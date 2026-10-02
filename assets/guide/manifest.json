@@ -130,7 +130,7 @@
     "intro",
     "italian-gesture"
    ],
-   "bangle": "garbled",
+   "bangle": "blank",
    "eye": "ok",
    "hoops": true,
    "file": "body/b-beckon.webp",
@@ -175,7 +175,7 @@
     "italian-gesture",
     "encourage"
    ],
-   "bangle": "garbled",
+   "bangle": "blank",
    "eye": "ok",
    "hoops": true,
    "file": "body/b-fist-forza.webp",
@@ -205,7 +205,7 @@
     "wrong",
     "firm"
    ],
-   "bangle": "garbled",
+   "bangle": "blank",
    "eye": "weak",
    "hoops": true,
    "file": "body/b-arms-crossed.webp",
@@ -235,7 +235,7 @@
     "italian-gesture",
     "secret"
    ],
-   "bangle": "garbled",
+   "bangle": "blank",
    "eye": "ok",
    "hoops": true,
    "file": "body/b-shh-wink.webp",
@@ -251,12 +251,12 @@
     "listening"
    ],
    "bangle": "blank",
-   "eye": "weak",
+   "eye": "ok",
    "hoops": false,
    "file": "body/b-listen.webp",
-   "w": 322,
+   "w": 334,
    "h": 560,
-   "source": "helper_1"
+   "source": "helper2"
   },
   {
    "id": "b-mic",
@@ -267,12 +267,12 @@
     "record"
    ],
    "bangle": "blank",
-   "eye": "weak",
+   "eye": "ok",
    "hoops": false,
    "file": "body/b-mic.webp",
-   "w": 289,
+   "w": 296,
    "h": 560,
-   "source": "helper_2"
+   "source": "helper2"
   },
   {
    "id": "b-tablet",
@@ -327,12 +327,12 @@
     "instructions"
    ],
    "bangle": "blank",
-   "eye": "weak",
+   "eye": "ok",
    "hoops": false,
    "file": "body/b-point-side.webp",
-   "w": 374,
+   "w": 420,
    "h": 560,
-   "source": "helper_6"
+   "source": "helper2"
   },
   {
    "id": "b-finger-up",
@@ -342,12 +342,12 @@
     "tip"
    ],
    "bangle": "blank",
-   "eye": "missing",
+   "eye": "ok",
    "hoops": false,
    "file": "body/b-finger-up.webp",
-   "w": 287,
+   "w": 305,
    "h": 560,
-   "source": "helper_7"
+   "source": "helper2"
   },
   {
    "id": "b-wave",
