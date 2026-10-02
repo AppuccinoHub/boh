@@ -29,6 +29,22 @@
     win: 'Bravissimo! Hai riempito tutto! · You filled the whole board!'
   };
 
+  /* ---------------------------------------------------------------- BOH POSES (images live in assets/snake/; each moment = one pose + one Italian line + its English) */
+  var SRC = (document.currentScript && document.currentScript.src) || '';
+  var POSEDIR = SRC.replace(/[^\/]*$/, '') + 'snake/', POSEQ = (SRC.match(/\?.*$/) || [''])[0];
+  var POSES = {
+    start:  { img: 'boh-pizza',   it: 'Buon appetito! Gioca!',            en: 'Enjoy! Let’s play!' },
+    paused: { img: 'boh-calm',    it: 'Con calma… respira!',              en: 'Take it easy… breathe!' },
+    over:   { img: 'boh-kiss',    it: 'Perfetto! Ritorniamo a lavoro!',   en: 'Perfect! Back to work!' },
+    zero:   { img: 'boh-boh',     it: 'Riprova?',                         en: 'Try again?' },
+    record: { img: 'boh-one',     it: 'Numero uno! Nuovo record!',        en: 'Number one! New record!' },
+    won:    { img: 'boh-kiss',    it: 'Bravissimo! Hai riempito tutto!',  en: 'You filled the whole board!' },
+    nudge:  { img: 'boh-point',   it: 'Pausa finita! Torniamo a Boh!',    en: 'Break over! Back to Boh!' },
+    bye:    { img: 'boh-walk',    it: 'Andiamo!',                         en: 'Let’s go!' }
+  };
+  function poseImg(k) { return '<img class="bsn-pose" alt="" decoding="async" src="' + POSEDIR + POSES[k].img + '.webp' + POSEQ + '" onerror="this.style.display=\'none\'">'; }
+  function poseText(k) { return '<h3>' + esc(POSES[k].it) + '</h3><p>' + esc(POSES[k].en) + '</p>'; }
+
   /* ---------------------------------------------------------------- FOODS (emoji + the Italian word, shown quietly when eaten) */
   var FOODS = [
     ['🍕', 'la pizza'], ['🍦', 'il gelato'], ['🍝', 'la pasta'], ['🍪', 'i biscotti'], ['🍬', 'le caramelle'],
@@ -219,10 +235,11 @@
     '.bsn-ov button.go{background:#e8845f;color:#fff}.bsn-ov button.ghost{background:#3b2a25;color:#fbf3ec}' +
     '.bsn-hud{width:100%;max-width:560px;display:flex;justify-content:space-between;gap:8px;padding:0 14px 8px;box-sizing:border-box;font-size:14px;min-height:22px}.bsn-hud b{color:#ffd166}' +
     '.bsn-wrap{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.45);line-height:0}' +
-    '.bsn-card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(35,24,21,.82);text-align:center;padding:18px;line-height:1.35}.bsn-card h3{margin:0;font-size:26px}.bsn-card p{margin:0;font-size:14px;opacity:.9}' +
+    '.bsn-card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(35,24,21,.88);text-align:center;padding:12px;line-height:1.3}.bsn-card h3{margin:0;font-size:21px}.bsn-card p{margin:0;font-size:14px;opacity:.9}.bsn-card .bsn-sc{font-weight:700;color:#ffd166;opacity:1}' +
+    '.bsn-pose{display:block;flex:0 1 auto;min-height:0;max-height:52%;width:auto;max-width:80%;object-fit:contain;animation:bsnpop .35s ease-out}@keyframes bsnpop{from{transform:scale(.88);opacity:0}to{transform:none;opacity:1}}@media (prefers-reduced-motion:reduce){.bsn-pose{animation:none}}' +
     '.bsn-opts{width:100%;max-width:560px;display:flex;flex-direction:column;gap:6px;padding:10px 14px;box-sizing:border-box;font-size:13px}.bsn-opts label{display:flex;gap:8px;align-items:center;cursor:pointer}.bsn-opts input{width:20px;height:20px}' +
     '.bsn-pad{display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,56px);gap:6px;margin:8px 0}.bsn-pad button{padding:0;font-size:22px}' +
-    '.bsn-nudge{position:absolute;top:56px;left:50%;transform:translateX(-50%);background:#ffd166;color:#231815;padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:2;max-width:92%;text-align:center;line-height:1.3}';
+    '.bsn-nudge{position:fixed;top:56px;right:max(6px,calc(50% - 286px));display:flex;align-items:flex-start;gap:4px;z-index:5;max-width:96%;cursor:pointer}.bsn-nudge .bsn-pose{height:150px;max-height:none;max-width:none;width:auto}.bsn-say{background:#ffd166;color:#231815;border-radius:14px;padding:10px 12px;font-size:14px;max-width:190px;margin-top:46px;line-height:1.3}.bsn-say span{font-weight:400;font-size:13px}';
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function size() { var w = Math.min(W.innerWidth - 28, 520), h = W.innerHeight - (('ontouchstart' in W) ? 330 : 250); var s = Math.max(180, Math.min(w, h)); cell = Math.floor(s / N); }
@@ -258,11 +275,21 @@
   function panel() {
     var c = root && root.querySelector('#bsn-card'); if (!c || !G) return;
     if (G.state === 'playing') { c.style.display = 'none'; return; }
-    c.style.display = 'flex'; var h = '';
-    if (G.state === 'ready') h = '<h3>' + esc(TXT.title) + '</h3><p>' + esc(TXT.sub) + '</p><button class="go" data-a="play" id="bsn-primary">' + esc(TXT.play) + '</button>';
-    else if (G.state === 'paused') h = '<h3>' + esc(TXT.paused) + '</h3><button class="go" data-a="resume" id="bsn-primary">' + esc(TXT.resume) + '</button>';
-    else h = '<h3>' + esc(G.won ? '🏆' : TXT.over) + '</h3><p>' + esc(G.won ? TXT.win : TXT.ate + ': ' + G.eaten + (G.newBest && G.eaten > 0 ? ' · 🎉 ' + TXT.best + '!' : '')) + '</p><button class="go" data-a="play" id="bsn-primary">' + esc(TXT.again) + '</button>';
+    c.style.display = 'flex'; var h = '', score = '<p class="bsn-sc">' + esc(TXT.ate + ': ' + (G.eaten || 0)) + '</p>';
+    if (G.state === 'ready') h = poseImg('start') + poseText('start') + '<button class="go" data-a="play" id="bsn-primary">' + esc(TXT.play) + '</button>';
+    else if (G.state === 'paused') h = poseImg('paused') + poseText('paused') + '<button class="go" data-a="resume" id="bsn-primary">' + esc(TXT.resume) + '</button>';
+    else {
+      var k = G.won ? 'won' : (G.eaten === 0 ? 'zero' : (G.newBest ? 'record' : 'over'));
+      h = poseImg(k) + poseText(k) + (G.eaten > 0 ? score : '') + '<button class="go" data-a="play" id="bsn-primary">' + esc(TXT.again) + '</button>';
+    }
     c.innerHTML = h; var p = c.querySelector('#bsn-primary'); if (p) { try { p.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  var bye = false;
+  function farewell() {
+    if (!root || bye) return; bye = true;
+    if (G) { clearTimeout(G.tick); G.state = 'bye'; } Audio.pause();
+    var c = root.querySelector('#bsn-card'); if (c) { c.style.display = 'flex'; c.innerHTML = poseImg('bye') + poseText('bye'); }
+    timers.push(setTimeout(close, 1100));
   }
   function onClick(e) {
     var d = e.target.closest('[data-d]');
@@ -270,10 +297,10 @@
     var a = e.target.closest('[data-a]'); if (!a) return; var v = a.getAttribute('data-a');
     if (v === 'play') start(); else if (v === 'resume') resume(); else if (v === 'pause') { if (G.state === 'playing') pauseGame(); else if (G.state === 'paused') resume(); }
     else if (v === 'mute') { lsSet(K_MUTE, Audio.muted() ? '0' : '1'); muteLabel(); }
-    else if (v === 'back') close();
+    else if (v === 'back') farewell();
   }
   function onKey(e) {
-    if (!root) return; var k = e.key, map = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0], W: [0, -1], S: [0, 1], A: [-1, 0], D: [1, 0] };
+    if (!root || bye) return; var k = e.key, map = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0], W: [0, -1], S: [0, 1], A: [-1, 0], D: [1, 0] };
     if (map[k]) { e.preventDefault(); turn(map[k][0], map[k][1]); return; }
     if (k === ' ' || k === 'p' || k === 'P') { if (document.activeElement && document.activeElement.tagName === 'BUTTON' && k === ' ') return; e.preventDefault(); if (!G) return; if (G.state === 'playing') pauseGame(); else if (G.state === 'paused') resume(); else start(); }
     else if (k === 'Escape') { e.preventDefault(); close(); }
@@ -283,17 +310,20 @@
 
   function open(opts) {
     if (root) return; bohInfo = (opts && opts.boh) || null; onCloseCb = opts && opts.onClose;
-    newGame(); build(); panel(); hud(); draw(); openedAt = Date.now(); nudged = false;
+    bye = false; newGame(); build(); panel(); hud(); draw(); openedAt = Date.now(); nudged = false;
+    ['boh-pizza', 'boh-kiss'].forEach(function (n) { try { (new Image()).src = POSEDIR + n + '.webp' + POSEQ; } catch (e) {} });
     document.addEventListener('keydown', onKey); document.addEventListener('visibilitychange', onVis);
     try { W.BohSnake._ovf = document.body.style.overflow; document.body.style.overflow = 'hidden'; } catch (e) {}
     timers.push(setInterval(function () {
       if (!root || nudged || Date.now() - openedAt < 300000) return; nudged = true;
-      var n = document.createElement('div'); n.className = 'bsn-nudge'; n.setAttribute('role', 'status'); n.textContent = TXT.nudge; root.appendChild(n);
-      setTimeout(function () { n.remove(); }, 9000);
+      var n = document.createElement('div'); n.className = 'bsn-nudge'; n.setAttribute('role', 'status');
+      n.innerHTML = '<div class="bsn-say"><b>' + esc(POSES.nudge.it) + '</b><br><span>' + esc(POSES.nudge.en) + '</span></div>' + poseImg('nudge');
+      n.addEventListener('click', function () { n.remove(); }); root.appendChild(n);
+      setTimeout(function () { n.remove(); }, 12000);
     }, 5000));
   }
   function close() {
-    if (!root) return; if (G) clearTimeout(G.tick); timers.forEach(clearInterval); timers = [];
+    if (!root) return; if (G) clearTimeout(G.tick); timers.forEach(function (t) { clearInterval(t); clearTimeout(t); }); timers = [];
     Audio.stop(); document.removeEventListener('keydown', onKey); document.removeEventListener('visibilitychange', onVis);
     root.remove(); root = null; canvas = null; g2 = null; G = null;
     try { document.body.style.overflow = W.BohSnake._ovf || ''; } catch (e) {}
