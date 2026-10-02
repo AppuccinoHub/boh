@@ -23,7 +23,7 @@
   function key() { return 'boh_rt_' + U.id; }
   function fresh() {
     return { v: 1, name: '', end: '', en: false, done: {}, paid: {}, abbina: false, picks: [], ends: {}, pos: {},
-      links: { r1: '', dialogo: '', r2: '' }, phone: { r1: false, dialogo: false, r2: false },
+      links: { r1: '', dialogo: '', r2: '' }, rec: {}, vocOpen: {}, phone: { r1: false, dialogo: false, r2: false },
       dlg: { mode: '', seat: -1, round: 0, rounds: [false, false, false], commons: [], asked: 0 },
       lad: { pick: [], L: {}, heard: false, recall: false }, ex: {}, rip: { count: 0, days: [false, false, false] },
       breakOffered: false, soundOk: null, timer: { mins: 0, start: 0 } };
@@ -35,7 +35,7 @@
     if (o && typeof o === 'object') for (var k in o) f[k] = o[k];
     // fill any missing sub-objects (older saves)
     var d = fresh();
-    ['links', 'phone', 'dlg', 'lad', 'rip', 'timer', 'done', 'paid', 'ends', 'pos', 'ex'].forEach(function (k) { if (!f[k] || typeof f[k] !== 'object') f[k] = d[k]; });
+    ['links', 'rec', 'vocOpen', 'phone', 'dlg', 'lad', 'rip', 'timer', 'done', 'paid', 'ends', 'pos', 'ex'].forEach(function (k) { if (!f[k] || typeof f[k] !== 'object') f[k] = d[k]; });
     return f;
   }
   function save() { try { localStorage.setItem(key(), JSON.stringify(S)); } catch (e) {} }
@@ -294,6 +294,7 @@
     var box = root.querySelector('.brt');
     box.className = 'brt' + (dark() ? ' dark' : '');
     box.innerHTML = html;
+    mountRecs();
     root.scrollTop = 0;
     var f = box.querySelector('[data-focus]'); if (f) { try { f.focus(); } catch (e) {} }
   }
@@ -328,8 +329,8 @@
   /* ---------------------------------------------------------------- shared pieces */
   function sayBtns(it, extraAttr) {   // speaker + turtle for any Italian text
     var t = esc(it);
-    return '<button class="brt-say" data-a="say" data-t="' + t + '" aria-label="Hear it">🔊</button>' +
-           '<button class="brt-say slow" data-a="sayslow" data-t="' + t + '" aria-label="Hear it slowly">🐢</button>';
+    return '<button class="brt-say" data-a="say" data-t="' + t + '" aria-label="Hear it"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></svg></button>' +
+           '<button class="brt-say slow" data-a="sayslow" data-t="' + t + '" aria-label="Hear it slowly"><svg viewBox="0 0 28 24" width="28" height="24" aria-hidden="true" fill="currentColor"><path d="M4 16c0-6 4.5-10 10-10s10 4 10 10z"/><ellipse cx="25" cy="13" rx="3" ry="2.6"/><rect x="6" y="16" width="4" height="5" rx="2"/><rect x="17" y="16" width="4" height="5" rx="2"/><path d="M2 16.5l3-1v2z"/></svg></button>';
   }
   ACT.say = function (el) { say(el.getAttribute('data-t'), false); };
   ACT.sayslow = function (el) { say(el.getAttribute('data-t'), true); };
@@ -370,18 +371,35 @@
   function vocarooBox(k, label) {
     var link = S.links[k] || '', ph = !!S.phone[k];
     var odd = link && !/voca/i.test(link);
-    return '<div class="brt-card vio"><h3>🎙️ ' + esc(label) + '</h3>' +
-      '<a class="b brt-b vio" href="' + esc(U.vocaroo) + '" target="_blank" rel="noopener" data-a="vocaroo">🎙️ Record on Vocaroo (opens a new tab)</a>' +
+    var canRec = typeof BohRecorder !== 'undefined';
+    var open = !canRec || S.vocOpen[k];
+    return (canRec ? '<div data-brec="' + k + '" data-label="' + esc(label) + '"></div>' : '') +
+      '<details class="brt-card vio" id="brt-voc-' + k + '"' + (open ? ' open' : '') + '><summary><b>' + (canRec ? 'Recording not working? Use Vocaroo instead' : esc(label)) + '</b></summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">' +
+      '<a class="brt-b vio" style="display:flex;min-height:52px;padding:12px 18px;border-radius:16px;text-decoration:none;background:var(--vio);color:#fff" href="' + esc(U.vocaroo) + '" target="_blank" rel="noopener" data-a="vocaroo">Open vocaroo.com to record (new tab)</a>' +
+      '<p class="brt-note">The address is <b>vocaroo.com</b>. If the button does not open, type that address in a new tab.</p>' +
       '<ol class="brt-steps"><li>Record: press the red button and read your sentences.</li><li>Press <b>Save</b> (then <b>Done</b> if it asks).</li><li>Copy the link, come back to this tab, and paste it below.</li></ol>' +
       '<label class="brt-note" for="brt-link-' + k + '">Paste your Vocaroo link here</label>' +
-      '<input id="brt-link-' + k + '" class="brt-in" type="url" inputmode="url" autocomplete="off" placeholder="https://voca.ro/..." value="' + esc(link) + '" data-in="link" data-k="' + k + '">' +
+      '<input id="brt-link-' + k + '" class="brt-in" type="url" inputmode="url" autocomplete="off" placeholder="Paste it here. It starts with voca.ro" value="' + esc(link) + '" data-in="link" data-k="' + k + '">' +
       (odd ? '<p class="brt-note">That does not look like a Vocaroo link, but you can still go on.</p>' : '') +
-      '<label class="brt-chk"><input type="checkbox" data-in="phone" data-k="' + k + '"' + (ph ? ' checked' : '') + '> I recorded on my phone</label>' +
-      '<p class="brt-note">Your teacher listens to your recording. The game does not score how you sound.</p></div>';
+      '<p class="brt-note"><b>Last step, if nothing works:</b> tell your teacher, then tick this box.</p>' +
+      '<label class="brt-chk"><input type="checkbox" data-in="phone" data-k="' + k + '"' + (ph ? ' checked' : '') + '> I recorded it another way and my teacher knows</label>' +
+      '<p class="brt-note">Your teacher listens to your recording. The game does not score how you sound.</p></div></details>';
+  }
+  var recMounts = [];
+  function mountRecs() {
+    recMounts.forEach(function (m) { try { m.destroy(); } catch (e) {} }); recMounts = [];
+    if (typeof BohRecorder === 'undefined') return;
+    var els = root.querySelectorAll('[data-brec]');
+    for (var i = 0; i < els.length; i++) (function (el) {
+      var k = el.getAttribute('data-brec');
+      recMounts.push(BohRecorder.mount(el, { key: 'rt_' + U.id + '_' + k, label: el.getAttribute('data-label'), maxSec: 60, name: S.name,
+        onChange: function (h) { S.rec[k] = !!h; save(); var b = root.querySelector('[data-needrec]'); if (b) syncRec(b); },
+        onEscalate: function () { S.vocOpen[k] = true; save(); var d = root.querySelector('#brt-voc-' + k); if (d) d.open = true; } }));
+    })(els[i]);
   }
   ACT.link = function (el) { S.links[el.getAttribute('data-k')] = el.value.trim(); save(); var b = root.querySelector('[data-needrec]'); if (b) syncRec(b); };
   ACT.phone = function (el) { S.phone[el.getAttribute('data-k')] = !!el.checked; save(); var b = root.querySelector('[data-needrec]'); if (b) syncRec(b); };
-  function recOk(k) { return !!(S.links[k] || S.phone[k]); }
+  function recOk(k) { return !!(S.links[k] || S.phone[k] || (typeof BohRecorder !== 'undefined' && BohRecorder.has('rt_' + U.id + '_' + k))); }
   function syncRec(b) { var ok = recOk(b.getAttribute('data-needrec')); b.setAttribute('aria-disabled', ok ? 'false' : 'true'); b.classList.toggle('go', ok); b.classList.toggle('ghost', !ok); }
   ACT.vocaroo = function () { /* the link opens in its own tab; nothing else to do */ };
 
@@ -692,30 +710,37 @@
   ACT.afterA = function () { var n = V.ret; V.ret = null; if (n && n >= 3) { go('s' + n); } else go('s3'); };
 
   /* ================================================================ STAGE 3 · SCRIVI (Accuracy) */
-  function w3() { var p = S.pos.s3; if (!p.order || p.order.length !== S.picks.length) { p.order = S.picks.slice(); p.i = 0; p.round = 1; } return p; }
+  function w3() { var p = S.pos.s3; if (!p.order || (!p.extra && p.order.length !== S.picks.length)) { p.order = S.picks.slice(); p.i = 0; p.round = 1; p.again = []; p.extra = false; } if (!p.again) p.again = []; return p; }
+  function again3(fid) { var p = S.pos.s3; if (!p.extra && p.again.indexOf(fid) === -1) p.again.push(fid); }
+  function hint2(it) {   // the first word or two; every other word is a blank
+    var m = it.match(/^(.*?)([.?!]*)$/), words = m[1].split(' '), keep = words.length > 3 ? 2 : 1;
+    return words.map(function (w, k) { return k < keep ? w : '___'; }).join(' ') + m[2];
+  }
   SCREENS.s3 = function () {
     var p = sP('s3', { round: 1, i: 0 }); w3();
-    if (!V.w || V.w.round !== p.round || V.w.i !== p.i) V.w = { round: p.round, i: p.i, tries: 0, solved: false, text: '', note: '', peek: false };
+    if (!V.w || V.w.round !== p.round || V.w.i !== p.i || V.w.extra !== !!p.extra) V.w = { round: p.round, i: p.i, extra: !!p.extra, tries: 0, solved: false, text: '', note: '', peek: false, help: 0 };
     var w = V.w, fid = p.order[p.i], sn = sentenceFor(fid), f = FR(fid), n = p.order.length;
     var h = stageHead(3);
-    h += '<div class="brt-row"><span class="brt-note"><b>Round ' + p.round + ' of 2 · sentence ' + (p.i + 1) + ' of ' + n + '</b></span><span class="brt-grow"></span>' + enBtn() + '</div>';
-    if (p.round === 1) {
-      h += '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Type this sentence.</b><div class="brt-pic">' + P(sn.pic, 'p') + '</div><div class="brt-big">' + esc(sn.it) + '</div><div class="brt-row" style="justify-content:center">' + sayBtns(sn.it) + '</div>' + (S.en && !sn.typed ? '<div class="brt-en">' + esc(sn.en) + '</div>' : '') + '</div>';
-    } else {
-      h += '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Listen. Type what you hear.</b><div class="brt-row" style="justify-content:center">' + sayBtns(sn.it) + '</div>' + (S.en && !sn.typed ? '<div class="brt-pic">' + P(sn.pic, 'p') + '</div><div class="brt-en">' + esc(sn.en) + '</div>' : '') + '<p class="brt-note">It is only spoken this time. The turtle 🐢 says it slowly.</p></div>';
-    }
+    h += '<div class="brt-row"><span class="brt-note"><b>' + (p.extra ? 'Once more, the ones that were hard' : 'Round ' + p.round + ' of 2') + ' · sentence ' + (p.i + 1) + ' of ' + n + '</b></span></div>';
+    h += '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Listen. Type what you hear.</b><div class="brt-row" style="justify-content:center">' + sayBtns(sn.it) + '</div>';
+    if (w.help >= 1) h += '<div class="brt-pic">' + P(sn.pic, 'p') + '</div>' + (!sn.typed ? '<div class="brt-en">' + esc(sn.en) + '</div>' : '');
+    if (w.help >= 2 && !w.solved) h += '<div class="brt-big" aria-label="The first words">' + esc(hint2(sn.it)) + '</div>';
+    h += '<p class="brt-note">It is only spoken. Press the speaker as many times as you want. The turtle says it slowly.</p></div>';
     h += '<input class="brt-in" id="brt-w" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type here" value="' + esc(w.text) + '" data-in="wtext" data-enter="wcheck"' + (w.solved ? ' readonly' : ' data-focus="1"') + '>';
     h += '<p class="brt-note">Missing accents, capital letters and tiny typing slips are fine.</p>';
     if (w.note && !w.solved) h += '<div class="brt-card try" role="status">' + w.note + '</div>';
     if (w.solved) {
       var spell = !w.peek && spellingNote(w.text, sn.it);
-      h += '<div class="brt-card ' + (w.peek ? 'try' : 'ok') + '" role="status"><b>' + (w.peek ? 'Here it is:' : '✓ Yes!') + ' ' + esc(sn.it) + '</b>' + (spell ? '<div class="brt-en">Correct spelling: <b>' + esc(sn.it) + '</b> (a tiny slip is fine.)</div>' : '') + '</div>' +
-        '<button class="brt-b go" data-a="wnext" data-focus="1">' + (p.i + 1 >= n && p.round === 2 ? 'Finish Scrivi ▶' : (p.i + 1 >= n ? 'On to round 2 ▶' : 'Next ▶')) + '</button>';
+      h += '<div class="brt-card ' + (w.peek ? 'try' : 'ok') + '" role="status"><b>' + (w.peek ? 'Here it is:' : 'Yes!') + ' ' + esc(sn.it) + '</b>' + (spell ? '<div class="brt-en">Correct spelling: <b>' + esc(sn.it) + '</b> (a tiny slip is fine.)</div>' : '') + '</div>' +
+        '<button class="brt-b go" data-a="wnext" data-focus="1">' + (p.i + 1 >= n && (p.round === 2 || p.extra) && !(p.round === 2 && !p.extra && p.again.length) ? 'Finish Scrivi' : (p.i + 1 >= n ? (p.round === 1 ? 'On to round 2' : 'One more try at the hard ones') : 'Next')) + '</button>';
     } else {
-      h += '<div class="brt-row"><button class="brt-b go" data-a="wcheck">Check ✓</button>' + (w.tries >= 2 ? '<button class="brt-b ghost" data-a="wshow">Show me</button>' : '') + '</div>';
+      h += '<div class="brt-row"><button class="brt-b go" data-a="wcheck">Check</button>' +
+        (w.help < 2 ? '<button class="brt-b ghost" data-a="whelp">' + (w.help === 0 ? 'Help: English' : 'More help: first words') + '</button>' : '') +
+        (w.tries >= 2 ? '<button class="brt-b ghost" data-a="wshow">Show me</button>' : '') + '</div>';
     }
     return h;
   };
+  ACT.whelp = function () { var w = V.w, p = S.pos.s3; if (!w || w.solved || w.help >= 2) return; var inp = root.querySelector('#brt-w'); if (inp) w.text = inp.value; w.help++; if (w.help >= 2) again3(p.order[p.i]); save(); render(); var i2 = root.querySelector('#brt-w'); if (i2) { try { i2.focus(); i2.setSelectionRange(i2.value.length, i2.value.length); } catch (e) {} } };
   ACT.wtext = function (el) { if (V.w) V.w.text = el.value; };
   ACT.wcheck = function () {
     var p = S.pos.s3, w = V.w, fid = p.order[p.i], sn = sentenceFor(fid); if (!w || w.solved) return;
@@ -728,19 +753,20 @@
     if (j.empty) w.note = 'Type the sentence, then press Check.';
     else if (j.count) w.note = '<b>Not quite.</b> The sentence has ' + words.length + ' words. Count yours and try again.';
     else if (j.endBad) w.note = '<b>So close!</b> Check the <b>last letter</b> of word ' + (j.bad + 1) + '. The ending is the part that matters.';
-    else if (p.round === 1) w.note = '<b>Not quite.</b> Look again at word ' + (j.bad + 1) + ' and try once more.';
-    else w.note = '<b>Not quite.</b> Listen again (the turtle 🐢 is slow). Word ' + (j.bad + 1) + ' begins with “' + esc(words[j.bad].slice(0, 2)) + '”.';
+    else w.note = '<b>Not quite.</b> Listen again (the turtle button is slow). Word ' + (j.bad + 1) + ' begins with “' + esc(words[j.bad].slice(0, 2)) + '”.';
     render(); var i2 = root.querySelector('#brt-w'); if (i2) { try { i2.focus(); i2.setSelectionRange(i2.value.length, i2.value.length); } catch (e) {} }
   };
-  ACT.wshow = function () { var p = S.pos.s3, w = V.w, sn = sentenceFor(p.order[p.i]); w.solved = true; w.peek = true; render(); say(sn.it); };
+  ACT.wshow = function () { var p = S.pos.s3, w = V.w, sn = sentenceFor(p.order[p.i]); again3(p.order[p.i]); w.solved = true; w.peek = true; render(); say(sn.it); };
   ACT.wnext = function () {
     var p = S.pos.s3; p.i++;
     if (p.i >= p.order.length) {
-      if (p.round === 1) { p.round = 2; p.i = 0; p.order = shuffle(p.order); save(); V.w = null; render(); say(sentenceFor(p.order[0]).it); return; }
-      stageDone(3); S.pos.s3 = { round: 1, i: 0, order: S.picks.slice() }; V.w = null; save(); go('hub'); return;
+      if (p.round === 1 && !p.extra) { p.round = 2; p.i = 0; p.order = shuffle(S.picks.slice()); save(); V.w = null; render(); say(sentenceFor(p.order[0]).it); return; }
+      if (!p.extra && p.again.length) { p.extra = true; p.i = 0; p.order = p.again.slice(); save(); V.w = null; render(); say(sentenceFor(p.order[0]).it); return; }
+      stageDone(3); S.pos.s3 = { round: 1, i: 0, order: S.picks.slice(), again: [], extra: false }; V.w = null; save(); go('hub'); return;
     }
-    save(); V.w = null; render(); if (p.round === 2) say(sentenceFor(p.order[p.i]).it);
+    save(); V.w = null; render(); say(sentenceFor(p.order[p.i]).it);
   };
+
 
   /* ================================================================ STAGE 4 · REGISTRA 1 */
   function mySentencesList(withPic) {
@@ -1151,7 +1177,7 @@
       });
       h += '</div><div class="brt-row">' + enBtn() + '</div>';
     }
-    function lkrow(k, label) { var v = S.links[k]; return '<div class="brt-li"><span class="brt-pic" style="font-size:26px">🎙️</span><div class="tx"><b>' + label + '</b><div class="brt-note" style="word-break:break-all">' + (v ? esc(v) : (S.phone[k] ? 'Recorded on phone' : 'Not recorded yet')) + '</div></div></div>'; }
+    function lkrow(k, label) { var v = S.links[k]; return '<div class="brt-li"><span class="brt-pic" style="font-size:20px;font-weight:900">REC</span><div class="tx"><b>' + label + '</b><div class="brt-note" style="word-break:break-all">' + (v ? esc(v) : (S.phone[k] ? 'Recorded on phone' : 'Not recorded yet')) + '</div></div></div>'; }
     h += '<div class="brt-list">' + lkrow('r1', 'Registra 1') + lkrow('dialogo', 'Dialogo') + lkrow('r2', 'Registra 2') + '</div>';
     if (S.dlg.commons.length) h += commonsHtml();
     var txt = copyText();
