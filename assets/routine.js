@@ -401,14 +401,15 @@
   };
   ACT.soundyes = function () { S.soundOk = true; V.sound = ''; save(); render(); };
   ACT.soundno = function () { V.sound = 'help'; render(); };
+  ACT.voicepick = function () { if (W.BohVoice) W.BohVoice.openPicker(); };
   function soundBlock() {
     if (Say.none || V.sound === 'none') {
       return '<div class="brt-card try" role="status"><b>This computer has no Italian voice.</b><p>You can keep going: read the Italian and tap English whenever you need it. The game will stay quiet. Tell your teacher so she can check the sound settings.</p></div>';
     }
     if (V.sound === 'playing') return '<div class="brt-card vio" role="status">🔊 Listening…</div>';
-    if (V.sound === 'ask') return '<div class="brt-card vio"><b>Did you hear “Ciao!”?</b><div class="brt-row"><button class="brt-b ok" data-a="soundyes">Yes, I heard it</button><button class="brt-b ghost" data-a="soundno">No</button></div></div>';
-    if (V.sound === 'help') return '<div class="brt-card try"><b>No sound? Try these.</b><ol class="brt-steps"><li>Turn the Chromebook volume up and make sure it is not muted.</li><li>Look at the browser tab: if there is a speaker with a line through it, unmute the tab.</li><li>Plug in headphones if you have them.</li></ol><div class="brt-row"><button class="brt-b go" data-a="soundtest">🔊 Test again</button><button class="brt-b ghost" data-a="soundyes">Go on without sound</button></div></div>';
-    if (S.soundOk) return '<div class="brt-row"><span class="brt-note">✓ Sound works.</span><button class="brt-b ghost" data-a="soundtest">🔊 Test again</button></div>';
+    if (V.sound === 'ask') return '<div class="brt-card vio"><b>Did you hear “Ciao!”?</b><div class="brt-row"><button class="brt-b ok" data-a="soundyes">Yes, I heard it</button><button class="brt-b ghost" data-a="soundno">No</button><button class="brt-b ghost" data-a="voicepick">🤖 It sounds like a robot</button></div></div>';
+    if (V.sound === 'help') return '<div class="brt-card try"><b>No sound? Try these.</b><ol class="brt-steps"><li>Turn the Chromebook volume up and make sure it is not muted.</li><li>Look at the browser tab: if there is a speaker with a line through it, unmute the tab.</li><li>Plug in headphones if you have them.</li></ol><div class="brt-row"><button class="brt-b go" data-a="soundtest">🔊 Test again</button><button class="brt-b ghost" data-a="voicepick">🤖 Choose another voice</button><button class="brt-b ghost" data-a="soundyes">Go on without sound</button></div></div>';
+    if (S.soundOk) return '<div class="brt-row"><span class="brt-note">✓ Sound works.</span><button class="brt-b ghost" data-a="soundtest">🔊 Test again</button><button class="brt-b ghost" data-a="voicepick">🔊 Change voice</button></div>';
     return '<button class="brt-b go" data-a="soundtest">🔊 Tap to test your sound</button>';
   }
   var STAGE_HELP = [
