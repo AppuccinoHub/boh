@@ -9747,6 +9747,7 @@ var BT_UNIT_ORDER = ['ea', 'u2', 'u3'];
 var BT_UNIT_SOON = [['Unit\u00e0 1 \u00b7 le feste e la famiglia', 'PRESTO']];
 var BT_UNIT_KEYS = ["lesson", "profU", "badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
 var BT_GLOBAL_BADGES = ['centone', 'un_sacco', 'tre_di_fila', 'fiamma_oro', 'giro_italia'];
+Object.keys(BT_UNITS).forEach(function (u) { var m = BT_UNITS[u].MODES; for (var k in m) if (m[k]) m[k].needs = null; }); /*boh-open-all*/
 var BT_UNIT = 'ea', MODES = BT_UNITS.ea.MODES, QUESTION_BANK = BT_UNITS.ea.QB;
 function btAddCart(M, C) {
   var CITY = { pisa: 'Pisa', verona: 'Verona', milano: 'Milano', trevi: 'Fontana di Trevi', roma: 'Roma', firenze: 'Firenze', venezia: 'Venezia',
@@ -10785,7 +10786,7 @@ class Component extends DCLogic {
     var s = this.state, D = this.lsData();
     if (!D) return;
     var L = this.lsState(), fr = Math.max(this.lsFrontier(L, D), ((s.profU || {}).openTo) || 0);
-    if (k > fr || k >= D.stops.length) { this.sfx('soft'); return; }
+    if (k >= D.stops.length) { this.sfx('soft'); return; }
     var deck = this.lsDraw(k, L);
     var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0, deck || D.stops[k].items), lsView: 'stop', lsStopEarn: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0,
                   lsDeck: deck, lsDeckK: deck ? k : -1, lsDeckU: BT_UNIT };
@@ -10998,7 +10999,7 @@ class Component extends DCLogic {
     var L = this.lsState(), PU = s.profU || {}, fr = this.lsFrontier(L, D), frP = Math.max(fr, PU.openTo || 0), N = D.stops.length;
     result.lsTitle = D.title;
     result.lsPath = D.stops.map(function (st, k) {
-      var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = k > frP;
+      var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = false;
       return { n: done ? '✓' : String(k + 1), label: st.label, min: st.min + ' min', dis: lsD(lock),
                cls: 'lp-stop' + (done ? ' is-done' : cur ? ' is-cur' : lock ? ' is-lock' : ' is-open'),
                aria: 'Tappa ' + (k + 1) + ': ' + st.label + (done ? ', fatta' : lock ? ', bloccata' : ''),
@@ -11009,7 +11010,7 @@ class Component extends DCLogic {
       : 'About ' + D.minutes + ' minutes · then La Prova';
     result.lsGoLabel = L.finished ? 'Ripassa dall’inizio' : fr === 0 ? 'Comincia: ' + D.stops[0].label : 'Continua: ' + D.stops[fr].label;
     result.lsGoH = function () { self.lsStart(L.finished ? 0 : fr); };
-    var provaOpen = L.finished || !!PU.prova || (s.passed || []).indexOf('mixed') !== -1 || (s.passed || []).indexOf('prova') !== -1;
+    var provaOpen = true || !!PU.prova || (s.passed || []).indexOf('mixed') !== -1 || (s.passed || []).indexOf('prova') !== -1;
     var pn = Date.now(), pt = btProvaLeft(s.provaTimes, pn), left = 3 - pt.length;
     result.lsProvaCls = 'lp-prova' + (provaOpen && left > 0 ? ' is-open' : ' is-lock');
     result.lsProvaSub = !provaOpen ? 'Opens after stop ' + N + '.' : left > 0 ? 'Graded · ' + left + ' of 3 tries left this hour' : 'Tries used up. Next try at ' + btClock(Math.min.apply(null, pt) + 3600000) + '.';
@@ -12035,9 +12036,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610021542" defer></script>
-<script src="../assets/gloss-dict.js?v=202610021542" defer></script>
-<script src="../assets/gloss.js?v=202610021542" defer></script>
+<script src="../assets/flashcards.js?v=202610021606" defer></script>
+<script src="../assets/gloss-dict.js?v=202610021606" defer></script>
+<script src="../assets/gloss.js?v=202610021606" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -12078,7 +12079,7 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610021542" defer></script>
-<script src="../assets/bohvoice.js?v=202610021542" defer></script>
-<script src="../assets/bohsave.js?v=202610021542" defer></script>
+<script src="../assets/snake.js" defer></script>
+<script src="../assets/bohvoice.js" defer></script>
+<script src="../assets/bohsave.js?v=202610021606" defer></script>
 </body></html>
