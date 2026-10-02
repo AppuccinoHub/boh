@@ -339,9 +339,11 @@
       '<button class="brt-x" data-a="close" aria-label="Close and go back to the game">✕</button></div>';
   }
   /* a picture is an emoji, or "img:path" if a real image file is used instead (swap them one at a time, nothing else changes) */
+  /* pictures are re-fetched whenever the game is re-published: they borrow this script's own ?v= stamp */
+  var QV = ''; try { QV = ((document.currentScript && document.currentScript.src) || '').match(/\?v=\d+/)[0]; } catch (e) {}
   function P(pic, cls) {
     pic = String(pic || '');
-    if (pic.indexOf('img:') === 0) return '<img class="brt-img" src="' + esc(pic.slice(4)) + '" alt="" decoding="async" draggable="false">';
+    if (pic.indexOf('img:') === 0) return '<img class="brt-img" src="' + esc(pic.slice(4)) + QV + '" alt="" decoding="async" draggable="false">';
     return '<span class="' + (cls || 'p') + '" aria-hidden="true">' + esc(pic) + '</span>';
   }
   var STAGE_NAMES = ['', 'Ascolta', 'Abbina', 'Scrivi', 'Registra 1', 'Dialogo', 'Ascolta e ripeti + Registra 2', 'Costruisci'];
