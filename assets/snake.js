@@ -43,7 +43,8 @@
     bye:    { img: 'boh-walk',    it: 'Andiamo!',                         en: 'Let’s go!' }
   };
   function poseImg(k) { return '<img class="bsn-pose" alt="" decoding="async" src="' + POSEDIR + POSES[k].img + '.webp' + POSEQ + '" onerror="this.style.display=\'none\'">'; }
-  function poseText(k) { return '<h3>' + esc(POSES[k].it) + '</h3><p>' + esc(POSES[k].en) + '</p>'; }
+  /* the English shows when you hover (computer) or tap/focus (Chromebook, phone) the Italian line */
+  function poseText(k) { return '<div class="bsn-tx" tabindex="0" role="note" aria-label="' + esc(POSES[k].it + ' — ' + POSES[k].en) + '"><h3>' + esc(POSES[k].it) + '</h3><p class="bsn-en">' + esc(POSES[k].en) + '</p></div>'; }
 
   /* ---------------------------------------------------------------- FOODS (emoji + the Italian word, shown quietly when eaten) */
   var FOODS = [
@@ -235,11 +236,11 @@
     '.bsn-ov button.go{background:#e8845f;color:#fff}.bsn-ov button.ghost{background:#3b2a25;color:#fbf3ec}' +
     '.bsn-hud{width:100%;max-width:560px;display:flex;justify-content:space-between;gap:8px;padding:0 14px 8px;box-sizing:border-box;font-size:14px;min-height:22px}.bsn-hud b{color:#ffd166}' +
     '.bsn-wrap{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.45);line-height:0}' +
-    '.bsn-card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(35,24,21,.88);text-align:center;padding:12px;line-height:1.3}.bsn-card h3{margin:0;font-size:21px}.bsn-card p{margin:0;font-size:14px;opacity:.9}.bsn-card .bsn-sc{font-weight:700;color:#ffd166;opacity:1}' +
+    '.bsn-card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(35,24,21,.88);text-align:center;padding:12px;line-height:1.3}.bsn-card h3{margin:0;font-size:21px}.bsn-card p{margin:0;font-size:14px;opacity:.9}.bsn-tx{cursor:help;outline:none;border-radius:8px;padding:2px 6px}.bsn-tx h3{border-bottom:1px dotted rgba(251,243,236,.55);display:inline-block}.bsn-en{opacity:0!important;transition:opacity .15s;min-height:1.3em}.bsn-tx:hover .bsn-en,.bsn-tx:focus .bsn-en,.bsn-tx.on .bsn-en,.bsn-say:hover .bsn-en,.bsn-say.on .bsn-en{opacity:.95!important}.bsn-card .bsn-sc{font-weight:700;color:#ffd166;opacity:1}' +
     '.bsn-pose{display:block;flex:0 1 auto;min-height:0;max-height:52%;width:auto;max-width:80%;object-fit:contain;animation:bsnpop .35s ease-out}@keyframes bsnpop{from{transform:scale(.88);opacity:0}to{transform:none;opacity:1}}@media (prefers-reduced-motion:reduce){.bsn-pose{animation:none}}' +
     '.bsn-opts{width:100%;max-width:560px;display:flex;flex-direction:column;gap:6px;padding:10px 14px;box-sizing:border-box;font-size:13px}.bsn-opts label{display:flex;gap:8px;align-items:center;cursor:pointer}.bsn-opts input{width:20px;height:20px}' +
     '.bsn-pad{display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,56px);gap:6px;margin:8px 0}.bsn-pad button{padding:0;font-size:22px}' +
-    '.bsn-nudge{position:fixed;top:56px;right:max(6px,calc(50% - 286px));display:flex;align-items:flex-start;gap:4px;z-index:5;max-width:96%;cursor:pointer}.bsn-nudge .bsn-pose{height:150px;max-height:none;max-width:none;width:auto}.bsn-say{background:#ffd166;color:#231815;border-radius:14px;padding:10px 12px;font-size:14px;max-width:190px;margin-top:46px;line-height:1.3}.bsn-say span{font-weight:400;font-size:13px}';
+    '.bsn-nudge{position:fixed;top:56px;right:max(6px,calc(50% - 286px));display:flex;align-items:flex-start;gap:4px;z-index:5;max-width:96%;cursor:pointer}.bsn-nudge .bsn-pose{height:150px;max-height:none;max-width:none;width:auto}.bsn-say{background:#ffd166;color:#231815;border-radius:14px;padding:10px 12px;font-size:14px;max-width:190px;margin-top:46px;line-height:1.3}.bsn-say span{font-weight:400;font-size:13px;opacity:0}.bsn-say:focus .bsn-en{opacity:.95!important}';
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function size() { var w = Math.min(W.innerWidth - 28, 520), h = W.innerHeight - (('ontouchstart' in W) ? 330 : 250); var s = Math.max(180, Math.min(w, h)); cell = Math.floor(s / N); }
@@ -294,6 +295,7 @@
   function onClick(e) {
     var d = e.target.closest('[data-d]');
     if (d) { var m = { u: [0, -1], d: [0, 1], l: [-1, 0], r: [1, 0] }[d.getAttribute('data-d')]; turn(m[0], m[1]); return; }
+    var tx = e.target.closest('.bsn-tx'); if (tx) { tx.classList.toggle('on'); return; }
     var a = e.target.closest('[data-a]'); if (!a) return; var v = a.getAttribute('data-a');
     if (v === 'play') start(); else if (v === 'resume') resume(); else if (v === 'pause') { if (G.state === 'playing') pauseGame(); else if (G.state === 'paused') resume(); }
     else if (v === 'mute') { lsSet(K_MUTE, Audio.muted() ? '0' : '1'); muteLabel(); }
@@ -317,8 +319,8 @@
     timers.push(setInterval(function () {
       if (!root || nudged || Date.now() - openedAt < 300000) return; nudged = true;
       var n = document.createElement('div'); n.className = 'bsn-nudge'; n.setAttribute('role', 'status');
-      n.innerHTML = '<div class="bsn-say"><b>' + esc(POSES.nudge.it) + '</b><br><span>' + esc(POSES.nudge.en) + '</span></div>' + poseImg('nudge');
-      n.addEventListener('click', function () { n.remove(); }); root.appendChild(n);
+      n.innerHTML = '<div class="bsn-say" tabindex="0"><b>' + esc(POSES.nudge.it) + '</b><br><span class="bsn-en">' + esc(POSES.nudge.en) + '</span></div>' + poseImg('nudge');
+      n.addEventListener('click', function (ev) { var sy = n.querySelector('.bsn-say'); if (ev.target.closest('.bsn-say') && !sy.classList.contains('on')) { sy.classList.add('on'); return; } n.remove(); }); root.appendChild(n);
       setTimeout(function () { n.remove(); }, 12000);
     }, 5000));
   }
