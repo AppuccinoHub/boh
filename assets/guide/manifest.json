@@ -1,0 +1,862 @@
+{
+ "name": "Prof. Lo So",
+ "set": "proloso-v1",
+ "note": "Swappable guide set. A different teacher replaces the images in body/ and head/ and edits this file; the game reads only manifest.json. Art is never mirrored.",
+ "poses": [
+  {
+   "id": "b-cheer-fist",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-cheer-fist.webp",
+   "w": 291,
+   "h": 560,
+   "source": "celebrate_1"
+  },
+  {
+   "id": "b-jump-joy",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-jump-joy.webp",
+   "w": 412,
+   "h": 560,
+   "source": "celebrate_2"
+  },
+  {
+   "id": "b-clap",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-clap.webp",
+   "w": 302,
+   "h": 560,
+   "source": "celebrate_3"
+  },
+  {
+   "id": "b-hands-heart",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-hands-heart.webp",
+   "w": 274,
+   "h": 560,
+   "source": "celebrate_4"
+  },
+  {
+   "id": "b-high-five",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-high-five.webp",
+   "w": 351,
+   "h": 560,
+   "source": "celebrate_5"
+  },
+  {
+   "id": "b-point-you",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-point-you.webp",
+   "w": 315,
+   "h": 560,
+   "source": "celebrate_6"
+  },
+  {
+   "id": "b-thumbs-up-wink",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "closed",
+   "hoops": false,
+   "file": "body/b-thumbs-up-wink.webp",
+   "w": 313,
+   "h": 560,
+   "source": "celebrate_7"
+  },
+  {
+   "id": "b-fists-yay",
+   "kind": "body",
+   "mood": [
+    "right",
+    "celebrate"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-fists-yay.webp",
+   "w": 371,
+   "h": 560,
+   "source": "celebrate_8"
+  },
+  {
+   "id": "b-beckon",
+   "kind": "body",
+   "mood": [
+    "intro",
+    "italian-gesture"
+   ],
+   "bangle": "garbled",
+   "eye": "ok",
+   "hoops": true,
+   "file": "body/b-beckon.webp",
+   "w": 250,
+   "h": 560,
+   "source": "gesture_1"
+  },
+  {
+   "id": "b-please",
+   "kind": "body",
+   "mood": [
+    "italian-gesture",
+    "retry"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": true,
+   "file": "body/b-please.webp",
+   "w": 234,
+   "h": 560,
+   "source": "gesture_2"
+  },
+  {
+   "id": "b-cheeky-what",
+   "kind": "body",
+   "mood": [
+    "italian-gesture",
+    "wrong"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": true,
+   "file": "body/b-cheeky-what.webp",
+   "w": 281,
+   "h": 560,
+   "source": "gesture_3"
+  },
+  {
+   "id": "b-fist-forza",
+   "kind": "body",
+   "mood": [
+    "italian-gesture",
+    "encourage"
+   ],
+   "bangle": "garbled",
+   "eye": "ok",
+   "hoops": true,
+   "file": "body/b-fist-forza.webp",
+   "w": 218,
+   "h": 560,
+   "source": "gesture_4"
+  },
+  {
+   "id": "b-facepalm-laugh",
+   "kind": "body",
+   "mood": [
+    "wrong",
+    "funny"
+   ],
+   "bangle": "blank",
+   "eye": "closed",
+   "hoops": true,
+   "file": "body/b-facepalm-laugh.webp",
+   "w": 259,
+   "h": 560,
+   "source": "gesture_5"
+  },
+  {
+   "id": "b-arms-crossed",
+   "kind": "body",
+   "mood": [
+    "wrong",
+    "firm"
+   ],
+   "bangle": "garbled",
+   "eye": "weak",
+   "hoops": true,
+   "file": "body/b-arms-crossed.webp",
+   "w": 250,
+   "h": 560,
+   "source": "gesture_6"
+  },
+  {
+   "id": "b-open-hands",
+   "kind": "body",
+   "mood": [
+    "italian-gesture",
+    "boh"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": true,
+   "file": "body/b-open-hands.webp",
+   "w": 265,
+   "h": 560,
+   "source": "gesture_7"
+  },
+  {
+   "id": "b-shh-wink",
+   "kind": "body",
+   "mood": [
+    "italian-gesture",
+    "secret"
+   ],
+   "bangle": "garbled",
+   "eye": "ok",
+   "hoops": true,
+   "file": "body/b-shh-wink.webp",
+   "w": 214,
+   "h": 560,
+   "source": "gesture_8"
+  },
+  {
+   "id": "b-listen",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "listening"
+   ],
+   "bangle": "blank",
+   "eye": "weak",
+   "hoops": false,
+   "file": "body/b-listen.webp",
+   "w": 322,
+   "h": 560,
+   "source": "helper_1"
+  },
+  {
+   "id": "b-mic",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "speaking",
+    "record"
+   ],
+   "bangle": "blank",
+   "eye": "weak",
+   "hoops": false,
+   "file": "body/b-mic.webp",
+   "w": 289,
+   "h": 560,
+   "source": "helper_2"
+  },
+  {
+   "id": "b-tablet",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "instructions"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-tablet.webp",
+   "w": 312,
+   "h": 560,
+   "source": "helper_3"
+  },
+  {
+   "id": "b-present",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "intro"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-present.webp",
+   "w": 367,
+   "h": 560,
+   "source": "helper_4"
+  },
+  {
+   "id": "b-think",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "tip"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-think.webp",
+   "w": 320,
+   "h": 560,
+   "source": "helper_5"
+  },
+  {
+   "id": "b-point-side",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "instructions"
+   ],
+   "bangle": "blank",
+   "eye": "weak",
+   "hoops": false,
+   "file": "body/b-point-side.webp",
+   "w": 374,
+   "h": 560,
+   "source": "helper_6"
+  },
+  {
+   "id": "b-finger-up",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "tip"
+   ],
+   "bangle": "blank",
+   "eye": "missing",
+   "hoops": false,
+   "file": "body/b-finger-up.webp",
+   "w": 287,
+   "h": 560,
+   "source": "helper_7"
+  },
+  {
+   "id": "b-wave",
+   "kind": "body",
+   "mood": [
+    "helper",
+    "intro",
+    "hello"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-wave.webp",
+   "w": 302,
+   "h": 560,
+   "source": "helper_8"
+  },
+  {
+   "id": "h-hoops-smile",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": true,
+   "file": "head/h-hoops-smile.webp",
+   "w": 348,
+   "h": 420,
+   "source": "headsA_1"
+  },
+  {
+   "id": "h-hoops-wink",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": true,
+   "file": "head/h-hoops-wink.webp",
+   "w": 325,
+   "h": 420,
+   "source": "headsA_2"
+  },
+  {
+   "id": "h-hoops-oh",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": true,
+   "file": "head/h-hoops-oh.webp",
+   "w": 336,
+   "h": 420,
+   "source": "headsA_3"
+  },
+  {
+   "id": "h-hoops-proud",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": true,
+   "file": "head/h-hoops-proud.webp",
+   "w": 334,
+   "h": 420,
+   "source": "headsA_4"
+  },
+  {
+   "id": "h-hoops-laugh-hair",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "legible",
+   "eye": "closed",
+   "hoops": true,
+   "file": "head/h-hoops-laugh-hair.webp",
+   "w": 347,
+   "h": 420,
+   "source": "headsA_5"
+  },
+  {
+   "id": "h-hoops-think-finger",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "legible",
+   "eye": "ok",
+   "hoops": true,
+   "file": "head/h-hoops-think-finger.webp",
+   "w": 322,
+   "h": 420,
+   "source": "headsA_6"
+  },
+  {
+   "id": "h-hoops-content",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "closed",
+   "hoops": true,
+   "file": "head/h-hoops-content.webp",
+   "w": 332,
+   "h": 420,
+   "source": "headsA_7"
+  },
+  {
+   "id": "h-hoops-wow-cheeks",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "legible",
+   "eye": "ok",
+   "hoops": true,
+   "file": "head/h-hoops-wow-cheeks.webp",
+   "w": 328,
+   "h": 420,
+   "source": "headsA_8"
+  },
+  {
+   "id": "h-smile",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-smile.webp",
+   "w": 355,
+   "h": 420,
+   "source": "headsB_1"
+  },
+  {
+   "id": "h-wink",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-wink.webp",
+   "w": 350,
+   "h": 420,
+   "source": "headsB_2"
+  },
+  {
+   "id": "h-oh",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-oh.webp",
+   "w": 340,
+   "h": 420,
+   "source": "headsB_3"
+  },
+  {
+   "id": "h-proud",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-proud.webp",
+   "w": 340,
+   "h": 420,
+   "source": "headsB_4"
+  },
+  {
+   "id": "h-laugh-hair",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "closed",
+   "hoops": false,
+   "file": "head/h-laugh-hair.webp",
+   "w": 356,
+   "h": 420,
+   "source": "headsB_5"
+  },
+  {
+   "id": "h-think-finger",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-think-finger.webp",
+   "w": 348,
+   "h": 420,
+   "source": "headsB_6"
+  },
+  {
+   "id": "h-content",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "closed",
+   "hoops": false,
+   "file": "head/h-content.webp",
+   "w": 341,
+   "h": 420,
+   "source": "headsB_7"
+  },
+  {
+   "id": "h-wow-cheeks",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-wow-cheeks.webp",
+   "w": 341,
+   "h": 420,
+   "source": "headsB_8"
+  },
+  {
+   "id": "h-hmm",
+   "kind": "head",
+   "mood": [
+    "retry",
+    "wrong"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-hmm.webp",
+   "w": 344,
+   "h": 420,
+   "source": "headsC_1"
+  },
+  {
+   "id": "h-side-eye",
+   "kind": "head",
+   "mood": [
+    "retry",
+    "wrong"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-side-eye.webp",
+   "w": 338,
+   "h": 420,
+   "source": "headsC_2"
+  },
+  {
+   "id": "h-worried",
+   "kind": "head",
+   "mood": [
+    "retry",
+    "wrong"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-worried.webp",
+   "w": 336,
+   "h": 420,
+   "source": "headsC_3"
+  },
+  {
+   "id": "h-hand-forehead",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "funny"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-hand-forehead.webp",
+   "w": 346,
+   "h": 420,
+   "source": "headsC_4"
+  },
+  {
+   "id": "h-smirk",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "funny"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-smirk.webp",
+   "w": 348,
+   "h": 420,
+   "source": "headsC_5"
+  },
+  {
+   "id": "h-eyes-closed",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "funny"
+   ],
+   "bangle": "hidden",
+   "eye": "closed",
+   "hoops": false,
+   "file": "head/h-eyes-closed.webp",
+   "w": 340,
+   "h": 420,
+   "source": "headsC_6"
+  },
+  {
+   "id": "h-sideways",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-sideways.webp",
+   "w": 337,
+   "h": 420,
+   "source": "headsC_7"
+  },
+  {
+   "id": "h-thumbs-up",
+   "kind": "head",
+   "mood": [
+    "right"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-thumbs-up.webp",
+   "w": 346,
+   "h": 420,
+   "source": "headsC_8"
+  },
+  {
+   "id": "h-shock",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "retry"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-shock.webp",
+   "w": 389,
+   "h": 420,
+   "source": "headsD_1"
+  },
+  {
+   "id": "h-over-shoulder",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "retry"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-over-shoulder.webp",
+   "w": 339,
+   "h": 420,
+   "source": "headsD_2"
+  },
+  {
+   "id": "h-wait-finger",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "retry"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-wait-finger.webp",
+   "w": 339,
+   "h": 420,
+   "source": "headsD_3"
+  },
+  {
+   "id": "h-shrug-unsure",
+   "kind": "head",
+   "mood": [
+    "wrong",
+    "retry"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-shrug-unsure.webp",
+   "w": 370,
+   "h": 420,
+   "source": "headsD_4"
+  },
+  {
+   "id": "h-wince",
+   "kind": "head",
+   "mood": [
+    "idle",
+    "wrong"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-wince.webp",
+   "w": 361,
+   "h": 420,
+   "source": "headsD_5"
+  },
+  {
+   "id": "h-side-smirk",
+   "kind": "head",
+   "mood": [
+    "idle",
+    "wrong"
+   ],
+   "bangle": "hidden",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-side-smirk.webp",
+   "w": 336,
+   "h": 420,
+   "source": "headsD_6"
+  },
+  {
+   "id": "h-yawn",
+   "kind": "head",
+   "mood": [
+    "idle",
+    "wrong"
+   ],
+   "bangle": "blank",
+   "eye": "closed",
+   "hoops": false,
+   "file": "head/h-yawn.webp",
+   "w": 341,
+   "h": 420,
+   "source": "headsD_7"
+  },
+  {
+   "id": "h-bored",
+   "kind": "head",
+   "mood": [
+    "idle",
+    "wrong"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "head/h-bored.webp",
+   "w": 378,
+   "h": 420,
+   "source": "headsD_8"
+  },
+  {
+   "id": "b-master",
+   "kind": "body",
+   "mood": [
+    "idle",
+    "default"
+   ],
+   "bangle": "legible-mixed-case",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-master.webp",
+   "w": 242,
+   "h": 560,
+   "source": "master_1"
+  },
+  {
+   "id": "b-basta",
+   "kind": "body",
+   "mood": [
+    "tired",
+    "stuck",
+    "tip"
+   ],
+   "bangle": "blank",
+   "eye": "ok",
+   "hoops": false,
+   "file": "body/b-basta.webp",
+   "w": 275,
+   "h": 560,
+   "source": "basta_1"
+  }
+ ]
+}
