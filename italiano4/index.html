@@ -2532,18 +2532,8 @@
         </sc-if>
 
         <sc-if value="{{ovHelp}}" hint-placeholder-val="{{false}}">
-          <div style="font-size:12px;color:var(--text-faint);text-align:center;">Boh &middot; Italiano 4 &mdash; created by Assunta Scotto</div>
-          <div class="display" style="font-size:28px;font-weight:800;">How to play</div>
-          <div style="display:flex;flex-direction:column;gap:12px;font-size:14.5px;line-height:1.5;">
-            <div><b>1. Pick a mode.</b> Mixed Review is the whole test. Each card takes a few seconds.</div>
-            <sc-if value="{{isImp}}" hint-placeholder-val="{{true}}"><div><b>2. The imperfetto = what you <i>used to</i> do.</b> Da piccolo/a, di solito, ogni estate, sempre &rarr; imperfetto. Take the infinitive, drop <b>-re</b>, add <b>-vo, -vi, -va, -vamo, -vate, -vano</b>: gioca-re &rarr; gioca<b>vo</b>. <b>Essere</b> is the big irregular: ero, eri, era&hellip; <b>Fare, bere, dire</b> use their old Latin stems: <b>face</b>vo, <b>beve</b>vo, <b>dice</b>vo. Weather and age are always imperfetto: <i>Pioveva. Avevo 7 anni.</i></div></sc-if><sc-if value="{{isVdp}}" hint-placeholder-val="{{false}}"><div><b>2. Volere-Dovere-Potere cards have two steps.</b> First pick the verb (volere = want, dovere = have to, potere = can / may). Get it right and you pick the correct form &mdash; just like the blank on the test.</div></sc-if>
-            <div><b>3. Earn Boh Cashi.</b> Correct answer 5&ndash;30 BC (harder cards pay more) &middot; fixing an old mistake 15 BC &middot; finishing a round 25 BC. Wrong answers never cost you anything.</div>
-            <div><b>4. Every 500 BC = un centone.</b> Each one opens a <b>Pacco Boh</b> with a surprise prize. Some are amazing. Some are&hellip; a sock.</div>
-            <div><b>5. Spend Boh Cashi in Scotto&rsquo;s Boh-tique</b> and show off your collection in your locker. The best stuff only comes from a Pacco Boh.</div>
-            <div><b>Tip:</b> &ldquo;Fix my mistakes&rdquo; pays the most &mdash; and it&rsquo;s what actually raises your test score.</div>
-            <div style="font-size:12.5px;color:var(--text-faint);">Each card pays once per day. Your progress is saved on this device.</div>
-          </div>
-          <button onClick="{{closeOverlayHandler}}" style="padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Let&rsquo;s go</button>
+          <div style="font-size:12px;color:var(--text-faint);text-align:center;">Boh &middot; Italiano 4 &mdash; created by Assunta Scotto</div><div class="display" style="font-size:28px;font-weight:800;">Come si gioca</div><div style="display:flex;gap:12px;align-items:center"><img src="../assets/guide/head/h-smile.webp" alt="" style="width:64px;height:auto;flex:none"><div style="font-size:17px;font-weight:800;line-height:1.3">Solo tre cose!</div></div><div style="display:flex;flex-direction:column;gap:14px"><div style="display:flex;gap:12px;align-items:center"><div style="flex:none;width:34px;height:34px;border-radius:50%;background:var(--primary-bg);color:var(--primary-text);display:grid;place-items:center;font-weight:800">1</div><div style="font-size:17px;line-height:1.35;font-weight:700">Scegli una modalit&agrave;. Rispondi alle carte.</div></div><div style="display:flex;gap:12px;align-items:center"><div style="flex:none;width:34px;height:34px;border-radius:50%;background:var(--primary-bg);color:var(--primary-text);display:grid;place-items:center;font-weight:800">2</div><div style="font-size:17px;line-height:1.35;font-weight:700">Guadagna Boh Cashi.</div></div><div style="display:flex;gap:12px;align-items:center"><div style="flex:none;width:34px;height:34px;border-radius:50%;background:var(--primary-bg);color:var(--primary-text);display:grid;place-items:center;font-weight:800">3</div><div style="font-size:17px;line-height:1.35;font-weight:700">Ogni 500 = un Pacco Boh.</div></div></div>
+          <button onClick="{{closeOverlayHandler}}" style="padding:16px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Andiamo!</button>
         </sc-if>
 
       </div>
@@ -3638,7 +3628,7 @@ class Component extends DCLogic {
           patch.unit = BT_UNIT;
           patch.screen = 'home';
           if (!patch.bohBase) { patch.overlay = 'creator'; patch.draftBase = 'm'; patch.draftSkin = 'medium'; patch.draftHair = 'dark'; patch.skinTouched = false; patch.nameDraft = ''; }
-          else if (!saved.seenHelp) patch.overlay = 'help';
+          else if (!saved.seenHelp) patch.overlay = null;
           else patch.overlay = null;
           btRefund(patch);
           this.setState(patch);
@@ -3792,7 +3782,7 @@ class Component extends DCLogic {
     var eqKeep = {};
     var eqNow = s.equipped || {};
     for (var slk in eqNow) if (slotAllowed(s.draftBase, eqNow[slk])) eqKeep[slk] = eqNow[slk];
-    this.setState({ equipped: eqKeep, bohBase: s.draftBase, bohSkin: s.draftSkin || 'medium', bohHair: s.draftHair || 'dark', bohName: name, nameError: '', overlay: s.seenHelp ? null : 'help' });
+    this.setState({ equipped: eqKeep, bohBase: s.draftBase, bohSkin: s.draftSkin || 'medium', bohHair: s.draftHair || 'dark', bohName: name, nameError: '', overlay: null });
   }
 
   restartRound() {
@@ -5808,9 +5798,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610022324" defer></script>
-<script src="../assets/gloss-dict.js?v=202610022324" defer></script>
-<script src="../assets/gloss.js?v=202610022324" defer></script>
+<script src="../assets/flashcards.js?v=202610022340" defer></script>
+<script src="../assets/gloss-dict.js?v=202610022340" defer></script>
+<script src="../assets/gloss.js?v=202610022340" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5851,9 +5841,9 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610022324" defer></script>
-<script src="../assets/bohvoice.js?v=202610022324" defer></script>
-<script src="../assets/bohhome.js?v=202610022324" defer></script>
-<script src="../assets/wipe.js?v=202610022324"></script>
-<script src="../assets/bohsave.js?v=202610022324" defer></script>
+<script src="../assets/snake.js?v=202610022340" defer></script>
+<script src="../assets/bohvoice.js?v=202610022340" defer></script>
+<script src="../assets/bohhome.js?v=202610022340" defer></script>
+<script src="../assets/wipe.js?v=202610022340"></script>
+<script src="../assets/bohsave.js?v=202610022340" defer></script>
 </body></html>
