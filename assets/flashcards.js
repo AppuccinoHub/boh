@@ -24,6 +24,7 @@
     '.bfc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}' +
     '.bfc-b{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:16px 10px;border-radius:16px;font-weight:900;font-size:17px}' +
     '.bfc-b.again{background:var(--againbg);color:var(--again);border:2px solid var(--again)}.bfc-b.know{background:var(--okbg);color:var(--ok);border:2px solid var(--ok)}' +
+    '.bfc-back{padding:12px 10px;font-size:15px}.bfc-b[disabled]{opacity:.35;cursor:default}' +
     '.bfc-b.go{background:var(--acc);color:#fff}.bfc-b.ghost{background:var(--soft);color:var(--ink)}' +
     '.bfc-small{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.bfc-l{all:unset;cursor:pointer;font-weight:800;font-size:13.5px;color:var(--mut);text-decoration:underline;text-underline-offset:3px}' +
     '.bfc-list{display:flex;flex-direction:column;gap:8px}.bfc-deck{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;background:var(--soft);border:2px solid var(--line);font-weight:800}' +
@@ -77,7 +78,7 @@
   function start(deck) {
     var g = get(deck.id), known = g.known || [];
     var left = shuffle(deck.cards.filter(function (c) { return known.indexOf(c[0]) === -1; }));
-    st = { deck: deck, left: left, flip: false, en: !!g.enFirst, earned: 0 };
+    st = { deck: deck, left: left, flip: false, en: !!g.enFirst, earned: 0, hist: [] };
     if (!left.length) return done();
     card();
   }
@@ -92,6 +93,7 @@
       '<div class="bfc-f"><span class="bfc-lab">' + (st.en ? 'English' : 'Italiano') + '</span><span class="bfc-w">' + esc(front) + '</span><span class="bfc-tap">Tap to flip</span></div>' +
       '<div class="bfc-f b"><span class="bfc-lab">' + (st.en ? 'Italiano' : 'English') + '</span><span class="bfc-w">' + esc(back) + '</span></div></div></div>' +
       '<div class="bfc-row"><button class="bfc-b again">&#8635; Ancora</button><button class="bfc-b know">&#10003; Lo so</button></div>' +
+      '<div class="bfc-row" style="grid-template-columns:1fr"><button class="bfc-b ghost bfc-back" data-a="back"' + (st.hist.length ? '' : ' disabled') + '>&#8592; Indietro</button></div>' +
       (st.earned ? '<div class="bfc-pay">+' + st.earned + ' BC</div>' : '') +
       '<div class="bfc-small"><button class="bfc-l" data-a="dir">&#8644; ' + (st.en ? 'Italian first' : 'English first') + '</button>' +
       (opts.decks.length > 1 ? '<button class="bfc-l" data-a="decks">All decks</button>' : '') + '<button class="bfc-l" data-a="reset">Start over</button></div>';
@@ -103,6 +105,7 @@
     box().querySelector('.again').onclick = function () { answer(false); };
     box().querySelector('.know').onclick = function () { answer(true); };
     box().querySelector('[data-a="dir"]').onclick = function () { st.en = !st.en; var gg = get(d.id); gg.enFirst = st.en; put(d.id, gg); st.flip = false; card(); };
+    box().querySelector('[data-a="back"]').onclick = goBack;
     var dk = box().querySelector('[data-a="decks"]'); if (dk) dk.onclick = pick;
     box().querySelector('[data-a="reset"]').onclick = function () { var gg = get(d.id); gg.known = []; put(d.id, gg); start(d); };
     var x0 = null, y0 = null;
@@ -119,18 +122,28 @@
   }
   function answer(knows) {
     var d = st.deck, c = st.left.shift(), g = get(d.id);
+    st.hist.push({ c: c, knew: !!knows, wasKnown: g.known.indexOf(c[0]) !== -1 });
     if (knows) { if (g.known.indexOf(c[0]) === -1) g.known.push(c[0]); put(d.id, g); st.earned += payOnce(d.id, c[0]); }
     else { var at = Math.min(st.left.length, 3 + Math.floor(Math.random() * 3)); st.left.splice(at, 0, c); }
     st.flip = false;
     if (!st.left.length) return done();
     card();
   }
+  function goBack() {   // undo the last answer: the card comes back on top, and a "Lo so" is taken back
+    if (!st || !st.hist || !st.hist.length) return;
+    var h = st.hist.pop(), d = st.deck, g = get(d.id);
+    if (h.knew) { if (!h.wasKnown) { var i = g.known.indexOf(h.c[0]); if (i !== -1) g.known.splice(i, 1); put(d.id, g); } }
+    else { for (var j = 0; j < st.left.length; j++) if (st.left[j] === h.c) { st.left.splice(j, 1); break; } }
+    st.left.unshift(h.c); st.flip = false; card();
+  }
   function done() {
     var d = st.deck, n = d.cards.length;
     var g = get(d.id); if (!g.passed) { g.passed = true; put(d.id, g); if (opts.onPass) try { opts.onPass(d.id); } catch (e) {} }
     box().innerHTML = top(d.title) + '<div class="bfc-done"><span style="font-size:48px">&#127881;</span><b>Tutto fatto!</b><span>' + n + ' / ' + n + ' known' + (st.earned ? ' &middot; +' + st.earned + ' BC' : '') + '</span></div>' +
+      (st.hist && st.hist.length ? '<div class="bfc-row" style="grid-template-columns:1fr"><button class="bfc-b ghost" data-a="back">&#8592; Indietro</button></div>' : '') +
       '<div class="bfc-row"><button class="bfc-b ghost" data-a="reset">&#8635; Start over</button><button class="bfc-b go" data-a="close">' + (opts.decks.length > 1 ? 'All decks' : 'Fatto') + '</button></div>';
     wireTop();
+    var bk = box().querySelector('[data-a="back"]'); if (bk) bk.onclick = goBack;
     box().querySelector('[data-a="reset"]').onclick = function () { var gg = get(d.id); gg.known = []; put(d.id, gg); start(d); };
     box().querySelector('[data-a="close"]').onclick = function () { if (opts.decks.length > 1) pick(); else close(); };
   }
@@ -147,6 +160,7 @@
       if (!ov) return;
       if (e.key === 'Escape') { e.preventDefault(); close(); return; }
       if (!st || !box().querySelector('.bfc-card')) return;
+      if (e.key === 'Backspace') { e.preventDefault(); goBack(); return; }
       if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); box().querySelector('.bfc-card').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); answer(true); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); answer(false); }
