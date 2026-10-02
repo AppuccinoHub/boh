@@ -22,8 +22,9 @@
       '<div class="saverow"><button type="button" class="saveb" data-bohsave="save">&#128190; Salva il mio Boh</button>' +
       '<button type="button" class="saveb alt" data-bohsave="load">&#128194; Carica il mio Boh</button></div>' +
       '<p class="small">Changing Chromebooks? Salva il mio Boh makes one file. Put it in your Google Drive, then Carica il mio Boh on the new Chromebook.</p>' +
-      '<div><button type="button" class="linkb" id="meEdit">Cambia il look</button></div>';
+      '<div><button type="button" class="linkb" id="meEdit">Cambia il look</button> <button type="button" class="linkb" id="meWipe">Not me? Start over</button></div>';
     document.getElementById('meEdit').onclick = function () { make(p); };
+    document.getElementById('meWipe').onclick = function () { if (window.BohWipe) BohWipe.confirm(); };
   }
 
   function make(p) {
