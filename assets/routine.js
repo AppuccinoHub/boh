@@ -233,6 +233,7 @@
     '.brt-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:520px){.brt-opts{grid-template-columns:1fr}}' +
     '.brt-opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:84px;padding:12px;border-radius:18px;border:3px solid var(--line);background:var(--bg);font-weight:800;font-size:16.5px;text-align:center}' +
     '.brt-opt .p{font-size:36px;line-height:1}.brt-opt small{font-size:13px;color:var(--mut);font-weight:700}' +
+    '.brt-img{height:1.2em;width:auto;max-width:1.8em;object-fit:contain;vertical-align:middle;-webkit-user-drag:none;user-select:none}.brt-pic .brt-img{height:2.3em;max-width:3.6em}.brt-opt .brt-img{height:84px;max-width:128px}.brt-li>.brt-img{height:56px;max-width:84px;flex:0 0 auto}button .brt-img{height:44px;max-width:68px}' +
     '.brt-opt.try{border-color:var(--try);background:var(--trybg);opacity:.6}.brt-opt.ok{border-color:var(--ok);background:var(--okbg)}.brt-opt.off{opacity:.5}' +
     '.brt-chip{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);font-weight:800;font-size:16px}' +
     '.brt-chip .p{font-size:22px}.brt-chip small{display:block;font-size:12px;color:var(--mut);font-weight:700}' +
@@ -340,7 +341,7 @@
   /* a picture is an emoji, or "img:path" if a real image file is used instead (swap them one at a time, nothing else changes) */
   function P(pic, cls) {
     pic = String(pic || '');
-    if (pic.indexOf('img:') === 0) return '<img class="' + (cls || 'p') + '" src="' + esc(pic.slice(4)) + '" alt="" style="width:1.2em;height:1.2em;object-fit:contain;vertical-align:middle">';
+    if (pic.indexOf('img:') === 0) return '<img class="brt-img" src="' + esc(pic.slice(4)) + '" alt="" decoding="async" draggable="false">';
     return '<span class="' + (cls || 'p') + '" aria-hidden="true">' + esc(pic) + '</span>';
   }
   var STAGE_NAMES = ['', 'Ascolta', 'Abbina', 'Scrivi', 'Registra 1', 'Dialogo', 'Ascolta e ripeti + Registra 2', 'Costruisci'];
