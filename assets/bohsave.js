@@ -89,9 +89,9 @@
   // ---- UI ----
   var CSS = [
     '.bs-ov{position:fixed;inset:0;z-index:99999;background:rgba(20,14,24,.62);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 16px}',
-    '.bs{--bs-bg:#FFFFFF;--bs-2:#F5EFEF;--bs-line:#DDD0D5;--bs-ink:#2B2430;--bs-mut:#6B5F68;--bs-acc:#C1654F;--bs-on:#FFFFFF;--bs-vio:#6A4C93;--bs-vsoft:#EDE6F5;--bs-ok:#1E7F4A;--bs-oksoft:#DDF1E5;--bs-bad:#B3261E;--bs-badsoft:#F8E0DC;',
+    '.bs{--bs-bg:#FFFFFF;--bs-2:#EFECE7;--bs-line:#DAD7D0;--bs-ink:#0E2A5B;--bs-mut:#46566E;--bs-acc:#1A5CDF;--bs-on:#FFFFFF;--bs-vio:#1A5CDF;--bs-vsoft:#E2EBFB;--bs-ok:#235B1E;--bs-oksoft:#DCF8D9;--bs-bad:#AC3031;--bs-badsoft:#FBE4E3;',
     'width:100%;max-width:520px;box-sizing:border-box;background:var(--bs-bg);color:var(--bs-ink);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:14px;font:15px/1.45 Manrope,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.35)}',
-    '.bs.dark{--bs-bg:#251C2A;--bs-2:#2E2533;--bs-line:#3D3243;--bs-ink:#F2EAF0;--bs-mut:#C0B2C1;--bs-acc:#E88A6C;--bs-on:#241318;--bs-vio:#B79AE0;--bs-vsoft:#3A2E4A;--bs-ok:#7FD4A0;--bs-oksoft:#1F3A2B;--bs-bad:#FF9D8F;--bs-badsoft:#4A2323}',
+    '.bs.dark{--bs-bg:#151E2E;--bs-2:#1C2738;--bs-line:#2C384D;--bs-ink:#E6ECF2;--bs-mut:#AAB5C4;--bs-acc:#7FAEE9;--bs-on:#0A121F;--bs-vio:#97C1F7;--bs-vsoft:#1C2B45;--bs-ok:#94E28B;--bs-oksoft:#1A2F17;--bs-bad:#ED8C84;--bs-badsoft:#4A2323}',
     '.bs *{box-sizing:border-box}',
     '.bs h2{margin:0;font:800 26px/1.1 "Bricolage Grotesque",system-ui,sans-serif}',
     '.bs p{margin:0}',

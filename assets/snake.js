@@ -245,7 +245,7 @@
   }
 
   /* ---------------------------------------------------------------- overlay UI */
-  var CSS = '.bsn-fab{position:fixed;left:12px;bottom:calc(12px + var(--hostbar,0px));z-index:40;border:0;border-radius:999px;padding:10px 16px;font:700 15px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;background:#6b4a8a;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;display:none;min-height:44px}' +
+  var CSS = '.bsn-fab{position:fixed;left:12px;bottom:calc(12px + var(--hostbar,0px));z-index:40;border:0;border-radius:999px;padding:10px 16px;font:700 15px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;background:#1A5CDF;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;display:none;min-height:44px}' +
     '.bsn-fab:hover{filter:brightness(1.1)}.bsn-fab:focus-visible,.bsn-ov button:focus-visible{outline:3px solid #ffd166;outline-offset:2px}' +
     '.bsn-ov{position:fixed;inset:0;z-index:100000;background:#231815;color:#fbf3ec;display:flex;flex-direction:column;align-items:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow:auto;-webkit-user-select:none;user-select:none;touch-action:pan-y}.bsn-ov canvas{touch-action:none}' +
     '.bsn-top{width:100%;max-width:560px;display:flex;align-items:center;gap:8px;padding:10px 14px 4px;box-sizing:border-box}.bsn-top h2{margin:0;font-size:19px;flex:1;white-space:nowrap}.bsn-bigback{width:100%;margin-bottom:4px}' +

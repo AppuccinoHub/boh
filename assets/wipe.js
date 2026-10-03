@@ -45,7 +45,7 @@
       '<p style="margin:0;font-size:16px;line-height:1.4">This deletes <b>everything</b> saved here, in <b>every level</b>: your Boh and its name, your closet, your badges and all your progress.</p>' +
       '<p style="margin:0;font-size:18px;font-weight:800;color:#fff;background:#B3261E;border-radius:14px;padding:10px 14px">You will lose all your Boh Cashi' + (n ? ': ' + n.toLocaleString('it-IT') + ' Boh Cashi.' : '.') + '</p>' +
       '<p style="margin:0;font-size:15px;color:var(--muted,#6B5F68)">It cannot be undone. Want to keep your Boh? Save it first, then come back.</p>' +
-      '<button type="button" id="bw-save" style="' + btn + 'border:0;background:var(--accent,#C1654F);color:#fff">Save my Boh first</button>' +
+      '<button type="button" id="bw-save" style="' + btn + 'border:0;background:var(--primary-bg,#1A5CDF);color:var(--primary-text,#fff)">Save my Boh first</button>' +
       '<label for="bw-in" style="font-weight:800;font-size:15px">Type RESET to unlock the delete button</label>' +
       '<input id="bw-in" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="RESET" style="width:100%;padding:14px 16px;border-radius:14px;border:3px solid var(--line,#E3D8DC);background:var(--bg,#fff);color:inherit;font-family:inherit;font-weight:800;font-size:19px">' +
       '<button type="button" id="bw-go" disabled style="' + btn + 'border:0;background:#B3261E;color:#fff;opacity:.4">Delete everything</button>' +

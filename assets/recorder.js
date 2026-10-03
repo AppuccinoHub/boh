@@ -41,13 +41,13 @@
   }
 
   var css = '' +
-    '.brec{border:3px solid var(--vio,#6A4C93);background:var(--viobg,#EFE8F7);border-radius:18px;padding:16px;margin:12px 0;color:var(--ink,#2B2430)}' +
+    '.brec{border:3px solid var(--vio,#1A5CDF);background:var(--viobg,#E2EBFB);border-radius:18px;padding:16px;margin:12px 0;color:var(--ink,#0E2A5B)}' +
     '.brec h3{margin:0 0 6px;font-size:20px}.brec p{margin:6px 0;line-height:1.4}' +
     '.brec .brec-note{font-size:15px;color:var(--mut,#6B5F68);font-weight:700}' +
     '.brec .brec-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}' +
-    '.brec button,.brec a.brec-b{min-height:52px;padding:12px 20px;border-radius:999px;border:0;font-family:inherit;font-weight:900;font-size:17px;line-height:1.1;cursor:pointer;background:var(--vio,#6A4C93);color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}' +
-    '.brec button.rec{background:#C62828}.brec button.ghost,.brec a.ghost{background:var(--bg,#fff);color:var(--ink,#2B2430);border:2px solid var(--line,#E3D8DC)}' +
-    '.brec button:focus-visible,.brec a:focus-visible{outline:3px solid var(--ink,#2B2430);outline-offset:2px}' +
+    '.brec button,.brec a.brec-b{min-height:52px;padding:12px 20px;border-radius:999px;border:0;font-family:inherit;font-weight:900;font-size:17px;line-height:1.1;cursor:pointer;background:var(--vio,#1A5CDF);color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}' +
+    '.brec button.rec{background:#C62828}.brec button.ghost,.brec a.ghost{background:var(--bg,#fff);color:var(--ink,#0E2A5B);border:2px solid var(--line,#E3D8DC)}' +
+    '.brec button:focus-visible,.brec a:focus-visible{outline:3px solid var(--ink,#0E2A5B);outline-offset:2px}' +
     '.brec-meter{height:16px;border-radius:9px;background:var(--bg,#fff);border:2px solid var(--line,#E3D8DC);overflow:hidden;margin-top:10px}' +
     '.brec-meter i{display:block;height:100%;width:0;background:#2E9E5B;transition:width .08s}' +
     '.brec-time{font-family:inherit;font-weight:900;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}' +

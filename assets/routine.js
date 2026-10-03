@@ -204,9 +204,9 @@
   /* ---------------------------------------------------------------- look */
   var CSS = '' +
     '.brt-ov{position:fixed;inset:0;z-index:9998;overflow:auto;-webkit-overflow-scrolling:touch;background:rgba(20,16,24,.72);backdrop-filter:blur(4px);font:16px/1.4 Manrope,system-ui,-apple-system,sans-serif;display:flex;align-items:flex-start;justify-content:center;padding:14px}' +
-    '.brt{--bg:#fff;--ink:#2B2430;--mut:#6B5F68;--line:#E3D8DC;--soft:#F5EFEF;--acc:#C1654F;--ok:#1E8C4A;--okbg:#E3F4EA;--try:#B7802A;--trybg:#FBF0DD;--vio:#6A4C93;--viobg:#EFE8F7;' +
+    '.brt{--bg:#FFFFFF;--ink:#0E2A5B;--mut:#46566E;--line:#DAD7D0;--soft:#EFECE7;--acc:#1A5CDF;--on:#FFFFFF;--ok:#235B1E;--okbg:#DCF8D9;--try:#273D62;--trybg:#E5ECF5;--vio:#1A5CDF;--viobg:#E2EBFB;' +
     'width:min(760px,100%);display:flex;flex-direction:column;gap:14px;padding:18px 18px 22px;border-radius:26px;background:var(--bg);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.4);margin:auto}' +
-    '.brt.dark{--bg:#251C2A;--ink:#F2EAF0;--mut:#B7A8B8;--line:#3A2E40;--soft:#2F2535;--acc:#E88A6C;--ok:#6BD49A;--okbg:#1E3528;--try:#E0AA55;--trybg:#3A2E1C;--vio:#B79AE0;--viobg:#352B45}' +
+    '.brt.dark{--bg:#151E2E;--ink:#E6ECF2;--mut:#AAB5C4;--line:#2C384D;--soft:#1C2738;--acc:#7FAEE9;--on:#0A121F;--ok:#94E28B;--okbg:#1A2F17;--try:#C1D2EC;--trybg:#1F2C3F;--vio:#97C1F7;--viobg:#1C2B45}' +
     '.brt *{box-sizing:border-box}' +
     '.brt h2{margin:0;font:800 22px/1.15 "Bricolage Grotesque",system-ui,sans-serif}.brt h3{margin:0;font:800 17px/1.2 "Bricolage Grotesque",system-ui,sans-serif}.brt p{margin:0}' +
     ':where(.brt) button,:where(.brt) a.b{all:unset;box-sizing:border-box;cursor:pointer;-webkit-tap-highlight-color:transparent}' +
@@ -216,7 +216,7 @@
     '.brt-eye{font:800 11px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}' +
     '.brt-bar{height:9px;border-radius:9px;background:var(--soft);overflow:hidden}.brt-bar i{display:block;height:100%;background:var(--ok);border-radius:9px;transition:width .3s}' +
     '.brt-b{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 18px;border-radius:16px;font-weight:900;font-size:16px;text-align:center}' +
-    '.brt-b.go{background:var(--acc);color:#fff}.brt-b.ghost{background:var(--soft);color:var(--ink)}.brt-b.ok{background:var(--okbg);color:var(--ok);border:2px solid var(--ok)}.brt-b.vio{background:var(--vio);color:#fff}' +
+    '.brt-b.go{background:var(--acc);color:var(--on)}.brt-b.ghost{background:var(--soft);color:var(--ink)}.brt-b.ok{background:var(--okbg);color:var(--ok);border:2px solid var(--ok)}.brt-b.vio{background:var(--vio);color:var(--on)}' +
     '.brt-b[aria-disabled="true"],.brt-b:disabled{opacity:.45;cursor:default}' +
     '.brt-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.brt-grow{flex:1 1 150px}' +
     '.brt-card{border:2px solid var(--line);border-radius:20px;padding:14px 16px;background:var(--soft);display:flex;flex-direction:column;gap:10px}' +
@@ -245,7 +245,7 @@
     '.brt-steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-weight:500}' +
     '.brt-toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:10000;padding:12px 20px;border-radius:999px;background:#1E8C4A;color:#fff;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.35)}' +
     '.brt-list{display:flex;flex-direction:column;gap:8px}.brt-li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:var(--bg);border:2px solid var(--line)}' +
-    '.brt-li .tx{flex:1;min-width:0}.brt-tab{padding:10px 16px;border-radius:999px;border:2px solid var(--line);background:var(--bg);font-weight:900}.brt-tab[aria-pressed="true"]{background:var(--vio);color:#fff;border-color:var(--vio)}' +
+    '.brt-li .tx{flex:1;min-width:0}.brt-tab{padding:10px 16px;border-radius:999px;border:2px solid var(--line);background:var(--bg);font-weight:900}.brt-tab[aria-pressed="true"]{background:var(--vio);color:var(--on);border-color:var(--vio)}' +
     '.brt-mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}@media(max-width:520px){.brt-mem{grid-template-columns:repeat(3,1fr)}}' +
     '.brt-mc{min-height:76px;border-radius:16px;border:3px solid var(--line);background:var(--soft);display:grid;place-items:center;font-weight:900;font-size:15.5px;text-align:center;padding:6px}' +
     '.brt-mc.up{background:var(--bg);border-color:var(--vio)}.brt-mc.ok{background:var(--okbg);border-color:var(--ok)}.brt-mc .p{font-size:34px}' +
@@ -375,7 +375,7 @@
     var open = !canRec || S.vocOpen[k];
     return (canRec ? '<div data-brec="' + k + '" data-label="' + esc(label) + '"></div>' : '') +
       '<details class="brt-card vio" id="brt-voc-' + k + '"' + (open ? ' open' : '') + '><summary><b>' + (canRec ? 'Recording not working? Use Vocaroo instead' : esc(label)) + '</b></summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">' +
-      '<a class="brt-b vio" style="display:flex;min-height:52px;padding:12px 18px;border-radius:16px;text-decoration:none;background:var(--vio);color:#fff" href="' + esc(U.vocaroo) + '" target="_blank" rel="noopener" data-a="vocaroo">Open vocaroo.com to record (new tab)</a>' +
+      '<a class="brt-b vio" style="display:flex;min-height:52px;padding:12px 18px;border-radius:16px;text-decoration:none;background:var(--vio);color:var(--on)" href="' + esc(U.vocaroo) + '" target="_blank" rel="noopener" data-a="vocaroo">Open vocaroo.com to record (new tab)</a>' +
       '<p class="brt-note">The address is <b>vocaroo.com</b>. If the button does not open, type that address in a new tab.</p>' +
       '<ol class="brt-steps"><li>Record: press the red button and read your sentences.</li><li>Press <b>Save</b> (then <b>Done</b> if it asks).</li><li>Copy the link, come back to this tab, and paste it below.</li></ol>' +
       '<label class="brt-note" for="brt-link-' + k + '">Paste your Vocaroo link here</label>' +
