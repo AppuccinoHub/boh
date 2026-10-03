@@ -19,181 +19,23 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://appuccinohub.github.io/boh/assets/boh-share.png">
 <link rel="icon" href="assets/bc.svg">
-<link rel="stylesheet" href="assets/bohlook.css?v=202610030036">
+<link rel="stylesheet" href="assets/bohlook.css?v=202610030104">
 <script>try{var t=localStorage.getItem("boh_theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@500;700;800&family=Caveat:wght@700&display=swap">
-<style>
-/* Layout: game hub — hero with the Bohs, then one card per level (like the level-select screen in the games). */
-:root{
-  --bg:#1C1520;--surface:#251C2A;--surface-2:#2A2130;--line:#362A3D;
-  --ink:#F2EAF0;--muted:#B7A8B8;
-  --accent:#E88A6C;--on-accent:#241318;--violet:#B79AE0;--gold:#E0AA55;
-  --it-g:#1E8C4A;--it-r:#D23A2F;
-  --glow:0 0 0 1px var(--line),0 18px 40px rgba(0,0,0,.35);
-  --display:"Bricolage Grotesque",system-ui,sans-serif;
-  --body:Manrope,system-ui,-apple-system,sans-serif;
-  color-scheme:dark;
-}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
-  --bg:#EFE6E8;--surface:#FFFFFF;--surface-2:#F5EFEF;--line:#DDD0D5;
-  --ink:#2B2430;--muted:#6B5F68;--accent:#C1654F;--on-accent:#FFFFFF;--violet:#6A4C93;--gold:#B7802A;
-  --glow:0 0 0 1px var(--line),0 12px 28px rgba(43,36,48,.10);color-scheme:light}}
-:root[data-theme="light"]{
-  --bg:#EFE6E8;--surface:#FFFFFF;--surface-2:#F5EFEF;--line:#DDD0D5;
-  --ink:#2B2430;--muted:#6B5F68;--accent:#C1654F;--on-accent:#FFFFFF;--violet:#6A4C93;--gold:#B7802A;
-  --glow:0 0 0 1px var(--line),0 12px 28px rgba(43,36,48,.10);color-scheme:light}
-*{box-sizing:border-box}
-html,body{min-height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);
-  background-image:radial-gradient(900px 420px at 85% -10%,color-mix(in srgb,var(--violet) 22%,transparent),transparent 70%),
-                   radial-gradient(700px 380px at -10% 110%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%);
-  background-attachment:fixed}
-main{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:22px 28px;display:grid;gap:26px}
-h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}
-p{margin:0}
-
-/* top bar: small wordmark */
-.top{position:relative;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 20px;border-radius:22px;background:var(--surface);box-shadow:var(--glow)}
-.top h1{font-size:44px;font-weight:800;line-height:.9}
-h1 .dot{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-radius:3px;background:linear-gradient(90deg,var(--it-g) 0 33.3%,#fff 33.3% 66.6%,var(--it-r) 66.6%);box-shadow:0 0 0 2px var(--ink)}
-.slogan{font-family:Caveat,cursive;font-size:26px;line-height:1;color:var(--accent)}
-.top .themeb{position:static;margin-left:auto}
-
-/* il tuo Boh: the front door */
-.me-card{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:24px 28px;border-radius:28px;background:var(--surface);box-shadow:var(--glow)}
-.me-doll{display:flex;justify-content:center;align-items:flex-end;min-width:170px;padding:8px 10px 0;border-radius:22px;background:radial-gradient(closest-side,color-mix(in srgb,var(--violet) 22%,transparent),transparent)}
-.me-doll .doll{width:170px;height:442px}
-.me-copy{display:grid;gap:12px;min-width:0}
-.eyebrow{font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
-.me-copy h2{font-size:clamp(34px,5vw,52px);font-weight:800;line-height:1}
-.me-copy p{color:var(--muted);max-width:52ch}
-.wallet{display:inline-flex;align-items:center;gap:8px;width:fit-content;padding:8px 16px 8px 12px;border-radius:999px;background:#141014;color:#fff;border:1.5px solid #C9A04E;box-shadow:0 0 14px rgba(201,160,78,.35);font:800 20px var(--display);font-variant-numeric:tabular-nums}
-.wallet img{height:20px}
-.wallet small{font:700 13px var(--body);opacity:.8}
-.saverow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.saveb{cursor:pointer;min-height:52px;padding:0 22px;border-radius:999px;border:0;background:var(--accent);color:var(--on-accent);font:800 17px var(--body)}
-.saveb.alt{background:transparent;color:var(--ink);border:2px solid var(--accent)}
-.linkb{cursor:pointer;border:0;background:none;color:var(--muted);font:800 14px var(--body);text-decoration:underline;text-underline-offset:3px;padding:8px 4px}
-.linkb:hover{color:var(--ink)}
-.saveb:focus-visible,.linkb:focus-visible,.pick:focus-visible,.sw:focus-visible,.pill:focus-visible,.name-in:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
-.small{font-size:13.5px;color:var(--muted)}
-/* creator */
-.mk{display:grid;gap:14px}
-.mk .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.mk .lab{font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);min-width:64px}
-.pick{cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 12px 8px;border-radius:18px;border:3px solid transparent;background:var(--surface-2);color:var(--ink);font:800 15px var(--body)}
-.pick .bbs{width:58px;height:151px;background-size:232px 232px}
-.pick .bbs.f,.pick .bbs.h{background-position:-58px 0}
-.pick[aria-pressed="true"]{border-color:var(--accent)}
-.pill{cursor:pointer;min-width:64px;padding:8px 16px;border-radius:999px;border:3px solid transparent;background:var(--surface-2);color:var(--ink);font:800 15px var(--body)}
-.pill[aria-pressed="true"]{border-color:var(--accent)}
-.sw{cursor:pointer;width:38px;height:38px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 2px var(--line)}
-.sw[aria-pressed="true"]{box-shadow:0 0 0 3px var(--accent)}
-.name-in{width:min(320px,100%);min-height:50px;padding:0 16px;border-radius:14px;border:2px solid var(--line);background:var(--surface-2);color:var(--ink);font:800 20px var(--display)}
-.err{color:#E5484D;font-weight:800;font-size:14px;min-height:1em}
-/* levels */
-.sech{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.sech h2{font-size:24px}
-.sech span{color:var(--muted);font-size:14px}
-.levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-.lvl{position:relative;display:flex;flex-direction:column;gap:6px;min-height:220px;padding:18px 18px 16px;border-radius:22px;background:var(--surface);box-shadow:var(--glow);color:inherit;text-decoration:none;overflow:hidden;transition:transform .15s,box-shadow .15s}
-.lvl::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--c)}
-.lvl:hover{transform:translateY(-3px);box-shadow:0 0 0 2px var(--c),0 18px 40px rgba(0,0,0,.3)}
-.lvl:focus-visible{outline:3px solid var(--c);outline-offset:3px}
-.lvl .n{font:800 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
-.lvl h3{font-size:30px;font-weight:800;line-height:1}
-.lvl .topic{color:var(--muted);font-size:15px}
-.lvl .act{align-self:flex-start;margin:2px 0 4px;padding:3px 10px;border-radius:999px;background:var(--c);color:var(--on-c);font:800 12px/1.3 var(--body);letter-spacing:.02em}
-.actnote{margin:2px 2px 0;color:var(--muted);font-size:13px}
-.bck{display:none}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .bcw{display:none}:root:not([data-theme="dark"]) .bck{display:inline}}
-:root[data-theme="light"] .bcw{display:none}:root[data-theme="light"] .bck{display:inline}
-.go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 14px;border-radius:14px;background:var(--c);color:var(--on-c);font:800 15px var(--body)}
-.newtag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--c);color:var(--on-c);font-size:10px;letter-spacing:.1em;vertical-align:1px}
-.lvl .sub{align-self:center;white-space:nowrap;font-size:12.5px;font-weight:700;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
-.lvl .sub:hover{color:var(--ink)}
-a.go{text-decoration:none}
-a.go:focus-visible,.lvl .sub:focus-visible{outline:3px solid var(--c);outline-offset:2px}
-.lvl.soon{cursor:default;opacity:.72}
-.lvl.soon:hover{transform:none;box-shadow:var(--glow)}
-.lvl.soon .go{background:var(--surface-2);color:var(--muted)}
-.lock{position:absolute;top:16px;right:16px;font:800 11px var(--body);letter-spacing:.12em;padding:4px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
-
-.themeb{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);font:800 14px var(--body);cursor:pointer}
-.themeb:hover{border-color:var(--accent)}
-.themeb:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.tip{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:18px;padding:14px 18px;box-shadow:var(--glow);font-size:15px}
-.tip b{color:var(--accent)}
-footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 22px}
-
-@media (max-width:700px){
-  .me-card{grid-template-columns:1fr;justify-items:center;text-align:center;padding:20px 16px;gap:14px}
-  .me-copy{justify-items:center}
-  .me-doll{min-width:0}
-  .me-doll .doll{width:120px;height:312px}
-  .mk .row{justify-content:center}
-  .top h1{font-size:36px}.slogan{font-size:22px}
-  .lvl{min-height:0}
-}
-</style>
+<link rel="stylesheet" href="assets/front.css?v=202610030104">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Boh">
 <meta name="application-name" content="Boh">
-<meta name="theme-color" content="#E88A6C">
+<meta name="theme-color" content="#FFE9C9">
 </head>
 <body>
-<main>
-  <header class="top">
-    <h1>Boh<span class="dot" aria-label="."></span></h1>
-    <span class="slogan">Non sa niente. Per ora.</span>
-    <button class="themeb" id="themeBtn" type="button" aria-label="Switch light or dark">&#9790; Scuro</button>
-  </header>
-
-  <section class="me-card" id="me" aria-label="Il tuo Boh" aria-live="polite">
-    <div class="me-doll" id="meDoll"><img src="assets/boh-m.webp" alt="" style="height:300px;width:auto"></div>
-    <div class="me-copy" id="meCopy"></div>
-  </section>
-
-  <section style="display:grid;gap:14px">
-    <div class="sech"><h2>Scegli il tuo livello</h2><span>Your Boh plays every level.</span></div>
-    <nav class="levels" aria-label="Levels">
-      <a class="lvl" href="italiano1/" data-key="bohItaliano1_v2" style="--c:#6FB7A0;--on-c:#10231D">
-        <span class="n">Livello 1</span><h3>Italiano 1</h3><span class="act">Novice Low to Mid</span><p class="topic">Words, phrases and first short sentences</p>
-        <span class="go">Gioca &rarr;</span></a>
-      <a class="lvl" href="italiano2/" data-key="bohItaliano2_v2" style="--c:#E0AA55;--on-c:#2A1C08">
-        <span class="n">Livello 2</span><h3>Italiano 2</h3><span class="act">Novice Mid to High</span><p class="topic">Simple sentences about everyday life</p>
-        <span class="go">Gioca &rarr;</span></a>
-      <a class="lvl" href="italiano3/" data-key="bohItaliano3_v2" style="--c:#E88A6C;--on-c:#241318">
-        <span class="n">Livello 3 <span class="newtag">Nuovo</span></span><h3>Italiano 3</h3><span class="act">Novice High to Intermediate Low</span><p class="topic">Questions, answers and simple past and present</p>
-        <span class="go">Gioca &rarr;</span></a>
-      <a class="lvl" href="italiano4/" data-key="bohItaliano4_v2" style="--c:#B79AE0;--on-c:#1C1520">
-        <span class="n">Livello 4</span><h3>Italiano 4</h3><span class="act">Intermediate Low to Mid</span><p class="topic">Connected sentences about the past, present and future</p>
-        <span class="go">Gioca &rarr;</span></a>
-      <a class="lvl" href="ap/" data-key="bohAP_v2" style="--c:#8FA3C8;--on-c:#111827">
-        <span class="n">AP <span class="newtag">Nuovo</span></span><h3>AP Italiano</h3><span class="act">Intermediate Mid to High</span><p class="topic">Hearing, reading and speaking in full paragraphs</p>
-        <span class="go">Gioca &rarr;</span></a>
-    </nav>
-    <p class="actnote">Levels follow the ACTFL proficiency ranges. They show what each level aims for, not a grade.</p>
-  </section>
-
-</main>
-<footer>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved</footer>
-<script>
-(function(){
-  var root=document.documentElement,btn=document.getElementById('themeBtn');
-  function cur(){return root.dataset.theme||((window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark')}
-  function label(){btn.textContent=cur()==='dark'?'☀ Chiaro':'☾ Scuro';btn.setAttribute('aria-label',cur()==='dark'?'Switch to light':'Switch to dark')}
-  label();
-  btn.onclick=function(){var n=cur()==='dark'?'light':'dark';root.dataset.theme=n;try{localStorage.setItem('boh_theme',n)}catch(e){}label()};
-})();
-</script>
-<script src="assets/bohlook.js?v=202610030036"></script>
-<script src="assets/wipe.js?v=202610030036"></script>
-<script src="assets/front.js?v=202610030036"></script>
-<script src="assets/gloss-dict.js?v=202610030036" defer></script>
-<script src="assets/gloss.js?v=202610030036" defer></script>
-<script src="assets/bohsave.js?v=202610030036" defer></script>
+<div id="shell"><div id="stage" role="main" aria-live="polite"></div></div>
+<noscript><p style="position:fixed;inset:0;display:grid;place-items:center;margin:0;padding:24px;text-align:center;font:700 20px system-ui;background:#FFE9C9;color:#0E2A5B">Boh needs JavaScript. Turn it on in your browser and reload.</p></noscript>
+<script src="assets/bohlook.js?v=202610030104"></script>
+<script src="assets/wipe.js?v=202610030104"></script>
+<script src="assets/front.js?v=202610030104"></script>
+<script src="assets/gloss-dict.js?v=202610030104" defer></script>
+<script src="assets/gloss.js?v=202610030104" defer></script>
+<script src="assets/bohsave.js?v=202610030104" defer></script>
 </body>
 </html>
