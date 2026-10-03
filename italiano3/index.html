@@ -2337,6 +2337,7 @@
             <div class="prof-acts"><sc-for list="{{profActions}}" as="a" hint-placeholder-count="5"><button class="{{a.cls}}" onClick="{{a.go}}" disabled="{{a.dis}}"><b>{{a.t}}</b><span>{{a.sub}}</span></button></sc-for></div>
           </sc-if>
           <sc-if value="{{hasProfMsg}}" hint-placeholder-val="{{false}}"><div class="prof-msg" role="status">{{profMsg}}</div></sc-if>
+          <a href="../teacher/" style="display:block;text-align:center;text-decoration:none;padding:14px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:15px;">Prof panel &middot; unlock levels and units</a>
           <button onClick="{{profDoneH}}" style="padding:14px;border-radius:14px;background:transparent;color:var(--text);font-weight:800;font-size:15px;border:2px solid var(--card-border);cursor:pointer;">Fatto</button>
         </sc-if>
 
@@ -11757,7 +11758,6 @@ var BT_UNIT_ORDER = ['vdp', 'imp', 'pp', 'pi'];
 var BT_UNIT_SOON = [['Il futuro', 'PRESTO']];
 var BT_UNIT_KEYS = ["lesson", "profU", "badges", "missedEver", "ageTrap", "formsHit", "paid", "paidDay", "passed", "frasiMastered", "provaAttempt", "provaFirst", "provaBest", "provaCard", "provaLog", "provaStart", "queue", "qIndex", "mode", "roundActive", "hearts", "streak", "bestStreak", "correctSoFar", "totalSoFar", "catStats", "missed", "missedNow", "sessionEarned", "cardsPaid", "eaRun", "missRun", "zooSession", "skippedRound", "tabDone", "provaTimes"];
 var BT_GLOBAL_BADGES = ['centone', 'un_sacco', 'tre_di_fila', 'fiamma_oro', 'giro_italia'];
-Object.keys(BT_UNITS).forEach(function (u) { var m = BT_UNITS[u].MODES; for (var k in m) if (m[k]) m[k].needs = null; }); /*boh-open-all*/
 var BT_UNIT = 'imp', MODES = BT_UNITS.imp.MODES, QUESTION_BANK = BT_UNITS.imp.QB;
 function btAddCart(M, C) {
   var CITY = { pisa: 'Pisa', verona: 'Verona', milano: 'Milano', trevi: 'Fontana di Trevi', roma: 'Roma', firenze: 'Firenze', venezia: 'Venezia',
@@ -12804,7 +12804,7 @@ class Component extends DCLogic {
     var s = this.state, D = this.lsData();
     if (!D) return;
     var L = this.lsState(), fr = Math.max(this.lsFrontier(L, D), ((s.profU || {}).openTo) || 0);
-    if (k >= D.stops.length) { this.sfx('soft'); return; }
+    if (k > fr || k >= D.stops.length) { this.sfx('soft'); return; }
     var deck = this.lsDraw(k, L);
     var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0, deck || D.stops[k].items), lsView: 'stop', lsStopEarn: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0,
                   lsDeck: deck, lsDeckK: deck ? k : -1, lsDeckU: BT_UNIT };
@@ -13017,7 +13017,7 @@ class Component extends DCLogic {
     var L = this.lsState(), PU = s.profU || {}, fr = this.lsFrontier(L, D), frP = Math.max(fr, PU.openTo || 0), N = D.stops.length;
     result.lsTitle = D.title;
     result.lsPath = D.stops.map(function (st, k) {
-      var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = false;
+      var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = k > frP;
       return { n: done ? '✓' : String(k + 1), label: st.label, min: st.min + ' min', dis: lsD(lock),
                cls: 'lp-stop' + (done ? ' is-done' : cur ? ' is-cur' : lock ? ' is-lock' : ' is-open'),
                aria: 'Tappa ' + (k + 1) + ': ' + st.label + (done ? ', fatta' : lock ? ', bloccata' : ''),
@@ -13028,7 +13028,7 @@ class Component extends DCLogic {
       : 'About ' + D.minutes + ' minutes · then La Prova';
     result.lsGoLabel = L.finished ? 'Ripassa dall’inizio' : fr === 0 ? 'Comincia: ' + D.stops[0].label : 'Continua: ' + D.stops[fr].label;
     result.lsGoH = function () { self.lsStart(L.finished ? 0 : fr); };
-    var provaOpen = true || !!PU.prova || (s.passed || []).indexOf('mixed') !== -1 || (s.passed || []).indexOf('prova') !== -1;
+    var provaOpen = L.finished || !!PU.prova || (s.passed || []).indexOf('mixed') !== -1 || (s.passed || []).indexOf('prova') !== -1;
     var pn = Date.now(), pt = btProvaLeft(s.provaTimes, pn), left = 3 - pt.length;
     result.lsProvaCls = 'lp-prova' + (provaOpen && left > 0 ? ' is-open' : ' is-lock');
     result.lsProvaSub = !provaOpen ? 'Opens after stop ' + N + '.' : left > 0 ? 'Graded · ' + left + ' of 3 tries left this hour' : 'Tries used up. Next try at ' + btClock(Math.min.apply(null, pt) + 3600000) + '.';
@@ -14074,12 +14074,12 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610030147" defer></script>
-<script src="../assets/recorder.js?v=202610030147" defer></script>
-<script src="../assets/routine.js?v=202610030147" defer></script>
-<script src="../assets/routine-qep.js?v=202610030147" defer></script>
-<script src="../assets/gloss-dict.js?v=202610030147" defer></script>
-<script src="../assets/gloss.js?v=202610030147" defer></script>
+<script src="../assets/flashcards.js?v=202610030654" defer></script>
+<script src="../assets/recorder.js?v=202610030654" defer></script>
+<script src="../assets/routine.js?v=202610030654" defer></script>
+<script src="../assets/routine-qep.js?v=202610030654" defer></script>
+<script src="../assets/gloss-dict.js?v=202610030654" defer></script>
+<script src="../assets/gloss.js?v=202610030654" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14159,11 +14159,26 @@ window.__bohQepHome = function (s, r, self) {
   window.__bohQep();
 }, 200); } catch (e) {} })();
 </script>
-<script src="../assets/snake.js?v=202610030147" defer></script>
-<script src="../assets/bohvoice.js?v=202610030147" defer></script>
-<script src="../assets/bohhome.js?v=202610030147" defer></script>
-<script src="../assets/wipe.js?v=202610030147"></script>
-<script src="../assets/scorecard.js?v=202610030147"></script>
-<script src="../assets/bohsave.js?v=202610030147" defer></script>
+<script src="../assets/snake.js?v=202610030654" defer></script>
+<script src="../assets/bohvoice.js?v=202610030654" defer></script>
+<script src="../assets/bohhome.js?v=202610030654" defer></script>
+<script src="../assets/wipe.js?v=202610030654"></script>
+<script src="../assets/scorecard.js?v=202610030654"></script>
+<script src="../assets/bohsave.js?v=202610030654" defer></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
+<script>/* Boh Prof unlocks */(function(){try{
+var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
+function rd(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function full(u,p,cur){var M=(window.BT_UNITS[u]||{}).MODES||{},keys=Object.keys(M).filter(function(k){return M[k]&&k!=='prova'});var L=(window.BT_LESSONS||{})[u],n=L&&L.stops?L.stops.length:0;
+ var mo=(cur.modes||[]).slice();keys.forEach(function(k){if(mo.indexOf(k)<0)mo.push(k)});if(p&&mo.indexOf('prova')<0)mo.push('prova');
+ return{openTo:Math.max(cur.openTo||0,Math.max(0,n-1)),prova:!!cur.prova||!!p,modes:mo}}
+function run(g){var G=rd('boh_unlocks_v1'),U=G&&G.l&&G.l[lv]&&G.l[lv].units;if(!U)return;var A=rd('boh_unl_applied_v1')||{},mine=A[lv]||{};
+ var s=g.state,units=JSON.parse(JSON.stringify(s.units||{})),patch={},ch=false;
+ for(var u in U){if(!window.BT_UNITS||!window.BT_UNITS[u])continue;var e=U[u];if((mine[u]||0)>=e.t)continue;mine[u]=e.t;ch=true;
+  var cur=(u===window.BT_UNIT)?(s.profU||{}):((units[u]||{}).profU||{});
+  var pu=e.a?full(u,e.p,cur):{openTo:0,prova:false,modes:[]};
+  if(u===window.BT_UNIT)patch.profU=pu;else{units[u]=units[u]||{};units[u].profU=pu}}
+ if(ch){patch.units=units;g.setState(patch);A[lv]=mine;try{localStorage.setItem('boh_unl_applied_v1',JSON.stringify(A))}catch(e){}}}
+var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase){clearInterval(t);run(g)}else if(++n>80)clearInterval(t)},150);
+}catch(e){}})();</script>
 </body></html>

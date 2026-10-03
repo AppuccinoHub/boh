@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Boh. Prof panel</title><meta name="robots" content="noindex">
+<!-- Boh · created by Assunta Scotto, 2026. All rights reserved. Not for redistribution. -->
+<link rel="icon" href="../assets/bc.svg">
+<style>
+:root{--bg:#FFF4E8;--card:#fff;--ink:#2A1F1B;--mut:#6F5E56;--line:#D9C9BC;--acc:#C1654F;--accOn:#fff;--ok:#17803F;--tint:#FBE9DA}
+@media (prefers-color-scheme:dark){:root{--bg:#1F1519;--card:#2A1F25;--ink:#F4E9EC;--mut:#BFAEB5;--line:#4A3A42;--acc:#E88A6C;--accOn:#241318;--ok:#6FD39A;--tint:#3A2A31}}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:16px 16px 120px}
+.w{max-width:760px;margin:0 auto}h1{font-size:26px;margin:6px 0 2px}h2{font-size:17px;margin:0}.mut{color:var(--mut);font-size:14px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+button,input{font:inherit;color:inherit}
+.btn{border:0;border-radius:14px;padding:13px 16px;font-weight:800;cursor:pointer;background:var(--acc);color:var(--accOn);min-height:48px}
+.btn.o{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn:focus-visible,input:focus-visible,.row:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+input.pin{width:100%;padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);font-size:20px;letter-spacing:.3em;margin:10px 0}
+.row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;padding:10px 6px;cursor:pointer;border-radius:12px;min-height:48px}
+.bx{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;font-weight:900;font-size:16px;color:var(--accOn);background:var(--bg)}
+.row[aria-checked=true] .bx{background:var(--acc);border-color:var(--acc)}.row[aria-checked=mixed] .bx{background:var(--tint);border-color:var(--acc);color:var(--acc)}
+.lv{border-top:1px solid var(--line);margin-top:6px}.lv:first-child{border-top:0;margin-top:0}
+.us{margin:0 0 6px 22px;padding-left:10px;border-left:3px solid var(--line)}.us .row{min-height:44px}.sub{font-size:13px;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.chip{padding:10px 14px;border-radius:999px;border:2px solid var(--line);background:var(--card);font-weight:800;cursor:pointer;min-height:44px}
+.chip[aria-pressed=true]{border-color:var(--acc);background:var(--tint)}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--card);border-top:2px solid var(--line)}.bar .w{display:flex;gap:10px;align-items:center}
+.msg{font-weight:800;color:var(--ok)}.err{font-weight:800;color:#B3261E}.hide{display:none}
+.tag{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--tint);color:var(--ink);margin-left:6px}
+</style></head><body><div class="w">
+<h1>Prof panel</h1><div class="mut">Unlocks stay on this device and travel inside the student&rsquo;s save code.</div>
+<div id="gate" class="card"><h2>Prof code</h2><input id="pin" class="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="Prof code" placeholder="&bull;&bull;&bull;&bull;"><button id="go" class="btn" type="button">Enter</button> <span id="gerr" class="err" role="alert"></span></div>
+<div id="main" class="hide">
+ <div class="card"><h2>Quick: this device&rsquo;s class</h2><div class="mut">Pick the class. I open every level below it, so students can pick a quick review.</div><div class="chips" id="cls"></div></div>
+ <div class="card"><h2>Pick exactly what opens</h2><div class="mut">Tick levels, units or both. Unticked and applied means locked again (what the student earned stays).</div>
+  <div style="margin-top:8px"><button class="row" id="prova" role="checkbox" aria-checked="false"><span class="bx"></span><span><b>Also open La Prova</b><div class="sub">The graded test. Leave off for review days.</div></span></button></div>
+  <div id="tree"></div></div>
+</div></div>
+<div class="bar hide" id="bar"><div class="w"><button class="btn" id="apply" type="button">Apply to this device</button><button class="btn o" id="clr" type="button">Untick all</button><span id="note" class="msg" role="status"></span></div></div>
+<script src="../assets/areas.js?v=202610030654"></script>
+<script>
+(function(){
+'use strict';
+var PIN_HASH='1b0fa6c4c967f1c21f9c23ecc41ef8a27528a7be52b29d65d47123f5ac18d5be', KEY='boh_unlocks_v1', LV=window.BohAreas.levels;
+function $(i){return document.getElementById(i)}
+function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')})}
+function read(){try{var g=JSON.parse(localStorage.getItem(KEY)||'null');return g&&g.l?g:{v:1,l:{}}}catch(e){return{v:1,l:{}}}}
+var G=read(), sel={}, prova=false, dirty=false;
+function init(){ LV.forEach(function(l){ sel[l.id]={}; l.units.forEach(function(u){ var e=((G.l[l.id]||{}).units||{})[u.id]; sel[l.id][u.id]=!!(e&&e.a); if(e&&e.a&&e.p)prova=true; }); }); }
+function lvState(l){var n=0;l.units.forEach(function(u){if(sel[l.id][u.id])n++});return n===0?'false':n===l.units.length?'true':'mixed'}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function render(){
+  $('prova').setAttribute('aria-checked',prova?'true':'false'); $('prova').querySelector('.bx').textContent=prova?'✓':'';
+  var h='';
+  LV.forEach(function(l){
+    var st=lvState(l), cnt=l.units.filter(function(u){return sel[l.id][u.id]}).length;
+    h+='<div class="lv"><button class="row" role="checkbox" aria-checked="'+st+'" data-l="'+l.id+'"><span class="bx">'+(st==='true'?'✓':st==='mixed'?'‒':'')+'</span><span><b>'+esc(l.label)+'</b><span class="tag">'+cnt+' of '+l.units.length+' units</span><div class="sub">Every activity in the ticked units</div></span></button><div class="us">';
+    l.units.forEach(function(u){ var on=sel[l.id][u.id];
+      h+='<button class="row" role="checkbox" aria-checked="'+(on?'true':'false')+'" data-l="'+l.id+'" data-u="'+u.id+'"><span class="bx">'+(on?'✓':'')+'</span><span>'+esc(u.tab)+'<div class="sub">'+(u.stops?u.stops+' stops, ':'')+u.modes.length+' practice rounds</div></span></button>'; });
+    h+='</div></div>'; });
+  $('tree').innerHTML=h;
+  var c='';['Italiano 1','Italiano 2','Italiano 3','Italiano 4','AP Italiano'].forEach(function(n,i){ c+='<button class="chip" type="button" data-cls="'+i+'">'+n+(i?'':'')+'</button>'});
+  $('cls').innerHTML=c;
+}
+function mark(){dirty=true;$('note').textContent='';$('note').className='msg'}
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-l],[data-cls],#prova');
+  if(!b)return;
+  if(b.id==='prova'){prova=!prova;mark();render();return}
+  if(b.hasAttribute('data-cls')){ var k=+b.getAttribute('data-cls'); LV.forEach(function(l,i){ l.units.forEach(function(u){ sel[l.id][u.id]= i<k; }); }); mark(); render(); $('note').textContent=k?('Ticked every level below '+LV[k].label+'. Press Apply.'):'Italiano 1 has no level below it.'; return; }
+  var l=b.getAttribute('data-l'), u=b.getAttribute('data-u');
+  if(u){sel[l][u]=!sel[l][u]} else { var lev=LV.filter(function(x){return x.id===l})[0], all=lvState(lev)==='true'; lev.units.forEach(function(x){sel[l][x.id]=!all}); }
+  mark(); render();
+});
+$('clr').addEventListener('click',function(){LV.forEach(function(l){l.units.forEach(function(u){sel[l.id][u.id]=false})});mark();render()});
+$('apply').addEventListener('click',function(){
+  var now=Date.now(), n=0; G=read();
+  LV.forEach(function(l){ var cur=(G.l[l.id]=G.l[l.id]||{units:{}}).units=G.l[l.id].units||{};
+    l.units.forEach(function(u){ var old=cur[u.id], on=!!sel[l.id][u.id], p=on&&prova?1:0;
+      if(!old&&!on)return;
+      if(old&&!!old.a===on&&(old.p||0)===p)return;
+      cur[u.id]={a:on?1:0,p:p,t:now}; n++; }); });
+  try{ localStorage.setItem(KEY,JSON.stringify(G)); $('note').className='msg'; $('note').textContent=n?('Saved. '+n+' unit'+(n===1?'':'s')+' changed. Open a level to see it.'):'Nothing changed.'; dirty=false; }
+  catch(e){ $('note').className='err'; $('note').textContent='This browser would not save. Try Chrome, not a private window.'; }
+});
+function enter(){ var v=$('pin').value.trim(); if(!v)return; sha(v).then(function(h){ if(h!==PIN_HASH){$('gerr').textContent='Wrong code.';$('pin').value='';return}
+  try{sessionStorage.setItem('boh_prof_ok','1')}catch(e){} open_(); }); }
+function open_(){ $('gate').classList.add('hide'); $('main').classList.remove('hide'); $('bar').classList.remove('hide'); init(); render(); }
+$('go').addEventListener('click',enter); $('pin').addEventListener('keydown',function(e){if(e.key==='Enter')enter()});
+try{ if(sessionStorage.getItem('boh_prof_ok')==='1') open_(); else $('pin').focus(); }catch(e){}
+})();
+</script></body></html>

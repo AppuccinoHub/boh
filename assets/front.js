@@ -77,6 +77,7 @@
         o += btn('fp', p ? 'boh' : 'look', 'left:24px;right:24px;top:690px;height:60px;font-size:20px;animation:ffade .6s both;animation-delay:' + dl(2600) + 'ms', p ? 'Continue as ' + nm16(nameOf(p)) + ' ' + ARW : 'Start my Boh ' + ARW);
         o += btn('fs', 'load', 'left:24px;right:24px;top:762px;height:56px;font-size:18px;animation:ffade .6s both;animation-delay:' + dl(2700) + 'ms', 'I already have a Boh');
         o += box('left:0;right:0;top:826px;text-align:center;font:600 10.5px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
+        o += '<a class="flnk" href="teacher/" style="right:6px;width:44px;top:820px;font-size:12px;font-weight:600">Prof</a>';
       } else {
         o += box('left:0;right:0;top:34px;text-align:center;font:800 15px system-ui;letter-spacing:.16em;color:#4F5E80;animation:ffade .6s both', 'THE ITALIAN LEARNING GAME');
         o += img(A + 'boh.webp', 'left:150px;top:84px;width:200px;animation-delay:' + dl(100) + 'ms', 'fpop .5s both');
@@ -90,6 +91,7 @@
         o += btn('fp', p ? 'boh' : 'look', 'left:360px;top:596px;width:' + (p ? 340 : 300) + 'px;height:76px;font-size:26px;animation:ffade .6s both;animation-delay:' + dl(2700) + 'ms', p ? 'Continue as ' + nm16(nameOf(p)) + ' ' + ARW : 'Start my Boh ' + ARW);
         o += btn('fs', 'load', 'left:' + (p ? 716 : 676) + 'px;top:596px;width:306px;height:76px;font-size:22px;animation:ffade .6s both;animation-delay:' + dl(2800) + 'ms', 'I already have a Boh');
         o += box('left:0;right:0;top:728px;text-align:center;font:600 13px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
+        o += '<a class="flnk" href="teacher/" style="right:30px;width:60px;top:724px;font-size:14px;font-weight:600">Prof</a>';
       }
     }
     if (name === 'look') {
@@ -170,6 +172,7 @@
         if (last) o += '<button type="button" class="flnk" data-go="hub" style="left:24px;width:167px;top:730px;font-size:16px">Other levels</button>';
         o += '<button type="button" class="flnk" data-go="wipe" style="' + (last ? 'left:199px;width:167px' : 'left:24px;right:24px') + ';top:730px;font-size:16px">' + 'Start over</button>';
         o += box('left:0;right:0;top:812px;text-align:center;font:600 10.5px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026');
+        o += '<a class="flnk" href="teacher/" style="right:6px;width:44px;top:806px;font-size:12px;font-weight:600">Prof</a>';
       } else {
         o += dollBox(pp, 610, 50, 70, 330);
         o += box('left:470px;right:300px;top:28px;font:900 40px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;animation:ffade .5s both;animation-delay:' + dl(150) + 'ms', head);
@@ -191,6 +194,7 @@
         o += btn('fs', 'load', 'left:' + (bx + bi * (bw + 12)) + 'px;width:' + (bi === 3 ? 200 : bw) + 'px;top:590px;height:56px;font-size:19px', 'Load a Boh');
         o += '<button type="button" class="flnk" data-go="wipe" style="left:470px;width:240px;top:664px;font-size:16px;text-align:left">' + (fresh ? 'Start over' : 'Not ' + nm + '? Start over') + '</button>';
         o += box('left:470px;right:60px;top:704px;font:600 12.5px/1.4 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
+        o += '<a class="flnk" href="teacher/" style="right:30px;width:60px;top:706px;font-size:14px;font-weight:600">Prof</a>';
       }
     }
     if (name === 'hub') {
