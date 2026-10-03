@@ -954,6 +954,30 @@
     .bf.k4{background-position:-176px -176px}
     .bf.k5{background-position:-264px -176px}
     .bf.k6{background-position:-176px -264px}
+
+    /* Prof. Lo So reaction head */
+    .pr{width:84px;height:94px;flex:none;background:center bottom/contain no-repeat}
+    .pr-smile{background-image:url(../assets/guide/react/smile.webp)}
+    .pr-proud{background-image:url(../assets/guide/react/proud.webp)}
+    .pr-thumbs-up{background-image:url(../assets/guide/react/thumbs-up.webp)}
+    .pr-wink{background-image:url(../assets/guide/react/wink.webp)}
+    .pr-content{background-image:url(../assets/guide/react/content.webp)}
+    .pr-laugh-hair{background-image:url(../assets/guide/react/laugh-hair.webp)}
+    .pr-wow-cheeks{background-image:url(../assets/guide/react/wow-cheeks.webp)}
+    .pr-hmm{background-image:url(../assets/guide/react/hmm.webp)}
+    .pr-wince{background-image:url(../assets/guide/react/wince.webp)}
+    .pr-worried{background-image:url(../assets/guide/react/worried.webp)}
+    .pr-shrug-unsure{background-image:url(../assets/guide/react/shrug-unsure.webp)}
+    .pr-hand-forehead{background-image:url(../assets/guide/react/hand-forehead.webp)}
+    .pr-oh{background-image:url(../assets/guide/react/oh.webp)}
+    .pr-shock{background-image:url(../assets/guide/react/shock.webp)}
+
+    /* La Prova row: light-on-orange text, readable at every size */
+    .mode-row.is-pbg .mode-label,.mode-row.is-pbg .mode-sub,.mode-row.is-pbg .mode-count{color:var(--primary-text)!important}
+    .mode-row.is-pbg .mode-count{opacity:.9}
+    .mode-row.is-pbg .mode-badge{background:var(--primary-text)!important;color:var(--primary-bg)!important}
+    .mode-row.is-pbg .mode-sub{display:block!important}
+    [data-theme="light"] .mode-row.is-pbg{background:color-mix(in srgb,var(--primary-bg) 78%,#000)!important}
     .look{--skin:none;--hair:none;--hijc:none;--hskin:none}
     .sk-light{--hskin:var(--lk-hb-skin-light);--skin:var(--lk-skin-light)}
     .sk-fair{--hskin:var(--lk-hb-skin-fair);--skin:var(--lk-skin-fair)}
@@ -1365,10 +1389,10 @@
                 <div style="display:flex;align-items:center;gap:8px;">
                   <span class="mode-label display" style="font-size:19px;font-weight:800;color:var(--text);">{{m.done}}{{m.label}}</span>
                   <sc-if value="{{m.featured}}" hint-placeholder-val="{{false}}">
-                    <span style="font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--badge-text);background:var(--badge-bg);padding:3px 8px;border-radius:999px;">NEXT UP</span>
+                    <span class="mode-badge" style="font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--badge-text);background:var(--badge-bg);padding:3px 8px;border-radius:999px;">NEXT UP</span>
                   </sc-if>
                 </div>
-                <span style="font-size:12px;font-weight:700;color:var(--text-faint);white-space:nowrap;">{{m.count}}</span>
+                <span class="mode-count" style="font-size:12px;font-weight:700;color:var(--text-faint);white-space:nowrap;">{{m.count}}</span>
               </div>
               <span class="mode-sub" style="font-size:13px;color:var(--text-faint-2);text-align:left;">{{m.sub}}</span>
             </button>
@@ -1567,7 +1591,7 @@
         <sc-if value="{{showContinue}}" hint-placeholder-val="{{false}}">
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div class="pop" style="display:flex;align-items:center;gap:10px;">
-              <div class="{{reactFaceCls}}"></div>
+              <div class="{{reactFaceCls}}" role="img" aria-label="Prof. Lo So"></div>
               <div style="position:relative;padding:10px 14px;border-radius:16px;background:var(--why-bg);font-size:16px;font-weight:800;">{{reactLine}}</div>
             </div>
             <sc-if value="{{hasWhy}}" hint-placeholder-val="{{false}}">
@@ -13239,7 +13263,7 @@ class Component extends DCLogic {
           count: locked ? 'LOCKED' : countForMode(key) + ' domande',
           featured: !locked && (s.passed || []).indexOf(key) === -1 && (!MODES[key].needs || (s.passed || []).indexOf(MODES[key].needs) !== -1),
           done: (s.passed || []).indexOf(key) !== -1 ? '\u2713 ' : '',
-          cls: 'mode-row' + (locked ? ' is-locked' : '') +
+          cls: 'mode-row' + (locked ? ' is-locked' : '') + (key === 'prova' && !locked ? ' is-pbg' : '') +
                ((s.passed || []).indexOf(key) !== -1 ? ' is-done' : '') +
                ((!locked && (s.passed || []).indexOf(key) === -1 &&
                  (!MODES[key].needs || (s.passed || []).indexOf(MODES[key].needs) !== -1)) ? ' is-next' : ''),
@@ -13727,7 +13751,12 @@ class Component extends DCLogic {
       var goodLines = ['S\u00ec! Esatto.', ((s.bohBase || 'm') !== 'm' ? 'Brava!' : 'Bravo!') + ' +cashi', 'Ovvio. Too easy.', 'Perfetto!', 'Boh? No. SO.'];
       var badLines = ['Eh? Close\u2026', 'Mah\u2026 not quite.', 'Boh. Let\u2019s fix it.', 'Whoa \u2014 almost!'];
       var pick = (s.qIndex + s.totalSoFar) % 5;
-      result.reactFaceCls = 'bf ' + (lastRight ? (pick % 2 ? fb.happy : fb.wink) : (pick % 2 ? fb.whoa : fb.boh));
+      (function () {
+        var R = ['smile', 'proud', 'thumbs-up', 'wink', 'content'], BIG = ['laugh-hair', 'wow-cheeks'], W = ['hmm', 'wince', 'worried', 'shrug-unsure', 'hand-forehead'], WH = ['oh', 'shock'];
+        if (!window.__profPre) { window.__profPre = 1; try { R.concat(BIG, W, WH).forEach(function (n) { (new Image()).src = '../assets/guide/react/' + n + '.webp'; }); } catch (e) {} }
+        var list = lastRight ? ((s.streak >= 5 && s.streak % 5 === 0) ? BIG : R) : ((pick % 4) === 3 ? WH : W);
+        result.reactFaceCls = 'pr pr-' + list[(s.qIndex + s.totalSoFar) % list.length];
+      })();
       result.reactLine = lastRight ? goodLines[pick % goodLines.length] : badLines[pick % badLines.length];
       result.progressText = (s.qIndex + 1) + ' / ' + total;
       result.progressPct = pct;
@@ -14043,12 +14072,12 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610030105" defer></script>
-<script src="../assets/recorder.js?v=202610030105" defer></script>
-<script src="../assets/routine.js?v=202610030105" defer></script>
-<script src="../assets/routine-qep.js?v=202610030105" defer></script>
-<script src="../assets/gloss-dict.js?v=202610030105" defer></script>
-<script src="../assets/gloss.js?v=202610030105" defer></script>
+<script src="../assets/flashcards.js?v=202610030131" defer></script>
+<script src="../assets/recorder.js?v=202610030131" defer></script>
+<script src="../assets/routine.js?v=202610030131" defer></script>
+<script src="../assets/routine-qep.js?v=202610030131" defer></script>
+<script src="../assets/gloss-dict.js?v=202610030131" defer></script>
+<script src="../assets/gloss.js?v=202610030131" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14128,10 +14157,10 @@ window.__bohQepHome = function (s, r, self) {
   window.__bohQep();
 }, 200); } catch (e) {} })();
 </script>
-<script src="../assets/snake.js?v=202610030105" defer></script>
-<script src="../assets/bohvoice.js?v=202610030105" defer></script>
-<script src="../assets/bohhome.js?v=202610030105" defer></script>
-<script src="../assets/wipe.js?v=202610030105"></script>
-<script src="../assets/scorecard.js?v=202610030105"></script>
-<script src="../assets/bohsave.js?v=202610030105" defer></script>
+<script src="../assets/snake.js?v=202610030131" defer></script>
+<script src="../assets/bohvoice.js?v=202610030131" defer></script>
+<script src="../assets/bohhome.js?v=202610030131" defer></script>
+<script src="../assets/wipe.js?v=202610030131"></script>
+<script src="../assets/scorecard.js?v=202610030131"></script>
+<script src="../assets/bohsave.js?v=202610030131" defer></script>
 </body></html>
