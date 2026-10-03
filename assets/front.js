@@ -14,9 +14,20 @@
   function fmt(n) { return (n || 0).toLocaleString('it-IT'); }
   var reduce = false; try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 
-  var ORDER = ['land', 'look', 'name', 'welcome', 'hub'];
-  var S = { scr: null, P: get(), d: null, fresh: false, wide: false, k: 1, g: Math.random() < 0.5 ? 'girl' : 'boy' };
+  /* the opening screen alternates girl / boy on every visit (never the same one twice in a row) */
+  function nextGender() {
+    var g = Math.random() < 0.5 ? 'girl' : 'boy';
+    try { var l = localStorage.getItem('boh_land_g'); if (l === 'girl' || l === 'boy') g = l === 'girl' ? 'boy' : 'girl'; localStorage.setItem('boh_land_g', g); } catch (e) {}
+    return g;
+  }
+  var ORDER = ['land', 'look', 'name', 'boh', 'hub'];
+  var S = { scr: null, P: get(), d: null, fresh: false, wide: false, k: 1, g: nextGender(), last: null, next: null };
   var cur = null;
+  var LASTKEY = 'boh_last_level_v1';
+  function lvlByHref(h) { for (var i = 0; i < LEVELS.length; i++) if (LEVELS[i].href === h) return LEVELS[i]; return null; }
+  function getLast() { try { return lvlByHref(localStorage.getItem(LASTKEY) || ''); } catch (e) { return null; } }
+  function setLast(h) { try { if (lvlByHref(h)) localStorage.setItem(LASTKEY, h); } catch (e) {} }
+  function getNext() { var m = /[?&]next=(italiano[1-4]|ap)(?:[\/&#]|$)/.exec(location.search); return m ? m[1] + '/' : null; }
 
   var ARW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var BK = '<svg viewBox="0 0 24 24" width="55%" height="55%" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="#0E2A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -44,6 +55,8 @@
     var bc = typeof p.cashi === 'number' ? p.cashi : 0;
     return '<div class="fwal" style="' + css + ';font-size:' + fs + 'px"><img src="assets/bc-white.svg" alt="">' + fmt(bc) + ' <small>Boh Cashi</small></div>';
   }
+  function abtn(cls, href, css, label, lvl) { return '<a class="fbtn ' + cls + '" href="' + href + '"' + (lvl ? ' data-lvl="' + lvl + '"' : '') + ' style="' + css + '">' + label + '</a>'; }
+  function nm16(n) { return '<span style="display:inline-block;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + n + '</span>'; }
   function nameOf(p) { return esc((p && p.bohName) || 'Boh'); }
 
   /* ---------- screens ---------- */
@@ -61,7 +74,7 @@
         o += box('left:0;right:0;top:552px;text-align:center;font:800 19px/1.3 system-ui;white-space:nowrap;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(2300) + 'ms',
           'Learn Italian. Earn Boh Cashi <img src="assets/bc-black.svg" alt="BC" style="height:28px;vertical-align:-8px">.<br>Build a Boh like no other.');
         o += box('left:0;right:0;top:628px;text-align:center;font:600 14px system-ui;color:#4F5E80;animation:ffade .6s both;animation-delay:' + dl(2450) + 'ms', 'Boh is Italian for &ldquo;I don&rsquo;t know.&rdquo;');
-        o += btn('fp', 'look', 'left:24px;right:24px;top:690px;height:60px;font-size:20px;animation:ffade .6s both;animation-delay:' + dl(2600) + 'ms', 'Start my Boh ' + ARW);
+        o += btn('fp', p ? 'boh' : 'look', 'left:24px;right:24px;top:690px;height:60px;font-size:20px;animation:ffade .6s both;animation-delay:' + dl(2600) + 'ms', p ? 'Continue as ' + nm16(nameOf(p)) + ' ' + ARW : 'Start my Boh ' + ARW);
         o += btn('fs', 'load', 'left:24px;right:24px;top:762px;height:56px;font-size:18px;animation:ffade .6s both;animation-delay:' + dl(2700) + 'ms', 'I already have a Boh');
         o += box('left:0;right:0;top:826px;text-align:center;font:600 10.5px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
       } else {
@@ -74,8 +87,8 @@
         o += box('left:300px;right:300px;top:410px;text-align:center;font:800 30px/1.3 system-ui;white-space:nowrap;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(2400) + 'ms',
           'Learn Italian. Earn Boh Cashi <img src="assets/bc-black.svg" alt="BC" style="height:40px;vertical-align:-11px">.<br>Build a Boh like no other.');
         o += box('left:300px;right:300px;top:530px;text-align:center;font:600 20px system-ui;color:#4F5E80;animation:ffade .6s both;animation-delay:' + dl(2550) + 'ms', 'Boh is Italian for &ldquo;I don&rsquo;t know.&rdquo;');
-        o += btn('fp', 'look', 'left:378px;top:596px;width:285px;height:76px;font-size:26px;animation:ffade .6s both;animation-delay:' + dl(2700) + 'ms', 'Start my Boh ' + ARW);
-        o += btn('fs', 'load', 'left:682px;top:596px;width:306px;height:76px;font-size:22px;animation:ffade .6s both;animation-delay:' + dl(2800) + 'ms', 'I already have a Boh');
+        o += btn('fp', p ? 'boh' : 'look', 'left:360px;top:596px;width:' + (p ? 340 : 300) + 'px;height:76px;font-size:26px;animation:ffade .6s both;animation-delay:' + dl(2700) + 'ms', p ? 'Continue as ' + nm16(nameOf(p)) + ' ' + ARW : 'Start my Boh ' + ARW);
+        o += btn('fs', 'load', 'left:' + (p ? 716 : 676) + 'px;top:596px;width:306px;height:76px;font-size:22px;animation:ffade .6s both;animation-delay:' + dl(2800) + 'ms', 'I already have a Boh');
         o += box('left:0;right:0;top:728px;text-align:center;font:600 13px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
       }
     }
@@ -89,7 +102,7 @@
       };
       var dp = draftProfile();
       if (P) {
-        o += back(S.P ? 'hub' : 'land', 'left:12px;top:14px;width:44px;height:44px');
+        o += back(S.P ? 'boh' : 'land', 'left:12px;top:14px;width:44px;height:44px');
         o += box('left:24px;right:24px;top:62px;text-align:center;font:900 30px/1.1 system-ui;color:#0E2A5B', S.P ? 'Change your look' : 'Make your Boh');
         o += box('left:0;right:0;top:102px;text-align:center;font:600 14px system-ui;color:#4F5E80', 'Pick a look. You can change it later.');
         o += dollBox(dp, 296, 0, 138, 390);
@@ -102,7 +115,7 @@
         if (d.base !== 'h') { o += '<div class="flab" style="left:24px;top:' + (y + 10) + 'px;font-size:12px">Hair</div>' + swatches(L.HAIRS, d.hair, 'hair', 100, y, 38, 46); }
         o += btn('fp', 'name', 'left:24px;right:24px;top:690px;height:60px;font-size:20px', 'Next ' + ARW);
       } else {
-        o += back(S.P ? 'hub' : 'land', 'left:24px;top:22px;width:56px;height:56px');
+        o += back(S.P ? 'boh' : 'land', 'left:24px;top:22px;width:56px;height:56px');
         o += dollBox(dp, 580, 260, 90, 300);
         o += box('left:640px;right:60px;top:80px;font:900 46px/1.1 system-ui;color:#0E2A5B', S.P ? 'Change your look' : 'Make your Boh');
         o += box('left:640px;right:60px;top:140px;font:600 20px system-ui;color:#4F5E80', 'Pick a look. You can change it later.');
@@ -137,63 +150,71 @@
         o += btn('fp', 'save', 'left:700px;top:450px;width:300px;height:76px;font-size:26px', lab + ' ' + ARW, ' id="fgo"');
       }
     }
-    if (name === 'welcome') {
-      var pp = S.P || {}, nm = nameOf(pp);
-      var head = S.fresh ? 'Welcome, ' + nm + '!' : 'Hi, ' + nm + '!';
-      var sub = S.fresh ? 'Your Boh is ready. Next: choose your level.' : 'Ready to keep going?';
-      var cta = S.fresh ? 'Choose my level' : 'Continue';
+    if (name === 'hub' && S.wide) name = 'boh';
+    if (name === 'boh') {
+      var pp = S.P || {}, nm = nameOf(pp), fresh = S.fresh, last = fresh ? null : S.last;
+      var head = fresh ? 'Welcome, ' + nm + '!' : 'Hi, ' + nm + '!';
       if (P) {
-        if (!S.fresh) o += box('left:0;right:0;top:26px;text-align:center;font:800 12px system-ui;letter-spacing:.14em;color:#4F5E80', 'WELCOME BACK');
-        o += dollBox(pp, 440, 0, 54, 390);
-        o += box('left:20px;right:20px;top:512px;text-align:center;font:900 30px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;animation:ffade .5s both;animation-delay:' + dl(200) + 'ms', head);
-        o += box('left:0;right:0;top:556px;text-align:center;font:600 15px system-ui;color:#4F5E80', sub);
-        if (!S.fresh) o += '<div class="fa" style="left:0;right:0;top:600px;display:flex;justify-content:center">' + walletHTML(pp, 'position:static', 20) + '</div>';
-        o += btn('fp', 'hub', 'left:24px;right:24px;top:690px;height:60px;font-size:20px', cta + ' ' + ARW);
-        if (!S.fresh) o += '<button type="button" class="flnk" data-go="wipe" style="left:24px;right:24px;top:766px;font-size:15px">Not ' + nm + '? Start over</button>';
+        o += dollBox(pp, 430, 0, 50, 390);
+        if (!fresh) o += walletHTML(pp, 'right:16px;top:18px', 15);
+        o += box('left:20px;right:20px;top:488px;text-align:center;font:900 30px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;animation:ffade .5s both;animation-delay:' + dl(150) + 'ms', head);
+        o += box('left:0;right:0;top:530px;text-align:center;font:600 15px system-ui;color:#4F5E80', fresh ? 'Your Boh is ready. Next: choose your level.' : (last ? 'Ready to keep going?' : 'Pick a level to start.'));
+        if (last) o += abtn('fp', last.href, 'left:24px;right:24px;top:578px;height:62px;font-size:20px', 'Continue ' + esc(last.t) + ' ' + ARW, last.href);
+        else o += btn('fp', 'hub', 'left:24px;right:24px;top:578px;height:62px;font-size:20px', 'Choose my level ' + ARW);
+        if (last) {
+          o += btn('fs', 'edit', 'left:24px;width:167px;top:656px;height:54px;font-size:17px', 'Change look');
+          o += abtn('fs', last.href + '?go=shop', 'left:199px;width:167px;top:656px;height:54px;font-size:17px', 'Boh-tique', last.href);
+        } else {
+          o += btn('fs', 'edit', 'left:24px;right:24px;top:656px;height:54px;font-size:17px', 'Change look');
+        }
+        if (last) o += '<button type="button" class="flnk" data-go="hub" style="left:24px;width:167px;top:730px;font-size:16px">Other levels</button>';
+        o += '<button type="button" class="flnk" data-go="wipe" style="' + (last ? 'left:199px;width:167px' : 'left:24px;right:24px') + ';top:730px;font-size:16px">' + 'Start over</button>';
+        o += box('left:0;right:0;top:812px;text-align:center;font:600 10.5px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026');
       } else {
-        o += dollBox(pp, 640, 280, 40, 300);
-        if (!S.fresh) o += box('left:700px;top:130px;font:800 15px system-ui;letter-spacing:.16em;color:#4F5E80', 'WELCOME BACK');
-        o += box('left:700px;right:60px;top:170px;font:900 54px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap', head);
-        o += box('left:700px;right:60px;top:250px;font:600 22px system-ui;color:#4F5E80', sub);
-        if (!S.fresh) o += walletHTML(pp, 'left:700px;top:310px', 26);
-        o += btn('fp', 'hub', 'left:700px;top:400px;width:340px;height:76px;font-size:26px', cta + ' ' + ARW);
-        if (!S.fresh) o += '<button type="button" class="flnk" data-go="wipe" style="left:700px;top:500px;width:340px;font-size:18px">Not ' + nm + '? Start over</button>';
+        o += dollBox(pp, 610, 50, 70, 330);
+        o += box('left:470px;right:300px;top:28px;font:900 40px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;animation:ffade .5s both;animation-delay:' + dl(150) + 'ms', head);
+        if (!fresh) o += walletHTML(pp, 'right:60px;top:26px', 22);
+        o += box('left:470px;right:60px;top:84px;font:600 19px system-ui;color:#4F5E80', fresh ? 'Your Boh is ready. Choose your level.' : (last ? 'Pick a level, or keep going where you left off.' : 'Pick a level to start.'));
+        LEVELS.forEach(function (v, i) {
+          var isLast = !!last && last.href === v.href;
+          o += '<a class="flv" href="' + v.href + '" data-lvl="' + v.href + '" style="--c:' + v.c + ';--on-c:' + v.on + ';left:470px;width:836px;top:' + (128 + i * 88) + 'px;height:78px;' + (isLast ? 'border-color:' + v.c + ';box-shadow:0 0 0 3px ' + v.c + '55' : '') + '" aria-label="Play ' + esc(v.t) + '. ' + esc(v.act) + '. ' + esc(v.topic) + '">' +
+            '<span class="bar"></span><span style="display:flex;align-items:center;gap:16px;padding:8px 16px 8px 18px;flex:1;min-width:0">' +
+            '<span style="width:170px;flex:none"><h3 style="font-size:27px">' + esc(v.t) + '</h3>' + (isLast ? '<span class="act" style="font-size:12px;margin-top:4px">Continue here</span>' : '') + '</span>' +
+            '<span style="display:flex;flex-direction:column;gap:5px;flex:1;min-width:0"><span><span class="act" style="font-size:14px">' + esc(v.act) + '</span></span><p style="font-size:16px">' + esc(v.topic) + '</p></span>' +
+            '<span class="go" style="width:52px;height:52px">' + ARW + '</span></span></a>';
+        });
+        var bx = 470, bw = last ? 200 : 270;
+        o += btn('fs', 'edit', 'left:' + bx + 'px;width:' + bw + 'px;top:590px;height:56px;font-size:19px', 'Change look');
+        var bi = 1;
+        if (last) { o += abtn('fs', last.href + '?go=shop', 'left:' + (bx + bi * (bw + 12)) + 'px;width:' + bw + 'px;top:590px;height:56px;font-size:19px', 'Boh-tique', last.href); bi++; }
+        o += btn('fs', 'save', 'left:' + (bx + bi * (bw + 12)) + 'px;width:' + bw + 'px;top:590px;height:56px;font-size:19px', 'Save my Boh'); bi++;
+        o += btn('fs', 'load', 'left:' + (bx + bi * (bw + 12)) + 'px;width:' + (bi === 3 ? 200 : bw) + 'px;top:590px;height:56px;font-size:19px', 'Load a Boh');
+        o += '<button type="button" class="flnk" data-go="wipe" style="left:470px;width:240px;top:664px;font-size:16px;text-align:left">' + (fresh ? 'Start over' : 'Not ' + nm + '? Start over') + '</button>';
+        o += box('left:470px;right:60px;top:704px;font:600 12.5px/1.4 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
       }
     }
     if (name === 'hub') {
-      var hp = S.P || {}, hn = nameOf(hp);
-      var lvl = function (v, css, wideCard) {
-        return '<a class="flv' + (wideCard ? ' col' : '') + '" href="' + v.href + '" style="--c:' + v.c + ';--on-c:' + v.on + ';' + css + '" aria-label="Play ' + esc(v.t) + '. ' + esc(v.act) + '. ' + esc(v.topic) + '">' +
-          '<span class="bar"></span><span style="display:flex;' + (wideCard ? 'flex-direction:column;gap:10px;padding:18px 18px 16px;flex:1;min-width:0' : 'align-items:center;gap:10px;padding:8px 12px 8px 14px;flex:1;min-width:0') + '">' +
-          '<span style="display:flex;flex-direction:column;gap:' + (wideCard ? '10' : '3') + 'px;flex:1;min-width:0">' +
-          '<h3 style="font-size:' + (wideCard ? 28 : 20) + 'px">' + esc(v.t) + '</h3>' +
-          '<span><span class="act" style="font-size:' + (wideCard ? 13 : 11.5) + 'px">' + esc(v.act) + '</span></span>' +
-          '<p style="font-size:' + (wideCard ? 16 : 12) + 'px">' + esc(v.topic) + '</p></span>' +
-          '<span class="go" style="width:' + (wideCard ? 56 : 40) + 'px;height:' + (wideCard ? 56 : 40) + 'px;' + (wideCard ? 'align-self:flex-start' : '') + '">' + ARW + '</span></span></a>';
+      var hp = S.P || {}, hn = nameOf(hp), hl = S.last;
+      var lvl = function (v, css) {
+        return '<a class="flv" href="' + v.href + '" data-lvl="' + v.href + '" style="--c:' + v.c + ';--on-c:' + v.on + ';' + css + '" aria-label="Play ' + esc(v.t) + '. ' + esc(v.act) + '. ' + esc(v.topic) + '">' +
+          '<span class="bar"></span><span style="display:flex;align-items:center;gap:10px;padding:8px 12px 8px 14px;flex:1;min-width:0">' +
+          '<span style="display:flex;flex-direction:column;gap:3px;flex:1;min-width:0">' +
+          '<h3 style="font-size:20px">' + esc(v.t) + '</h3>' +
+          '<span><span class="act" style="font-size:11.5px">' + esc(v.act) + '</span></span>' +
+          '<p style="font-size:12px">' + esc(v.topic) + '</p></span>' +
+          '<span class="go" style="width:40px;height:40px">' + ARW + '</span></span></a>';
       };
-      if (P) {
-        o += box('left:20px;right:170px;top:24px;font:900 24px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap', 'Hi, ' + hn + '!');
-        o += walletHTML(hp, 'right:16px;top:20px', 15);
-        o += box('left:20px;right:20px;top:78px;font:900 28px/1.1 system-ui;color:#0E2A5B', 'Choose your level');
-        o += box('left:20px;right:20px;top:116px;font:600 14px system-ui;color:#4F5E80', 'Your Boh plays every level.');
-        LEVELS.forEach(function (v, i) { o += lvl(v, 'left:16px;right:16px;top:' + (150 + i * 110) + 'px;height:100px', false); });
-        o += btn('fs', 'save', 'left:16px;width:176px;top:704px;height:48px;font-size:16px', 'Save my Boh');
-        o += btn('fs', 'load', 'left:198px;width:176px;top:704px;height:48px;font-size:16px', 'Load a Boh');
-        o += '<button type="button" class="flnk" data-go="edit" style="left:20px;width:170px;top:762px;font-size:15px">Change look</button>';
-        o += '<button type="button" class="flnk" data-go="wipe" style="left:200px;width:170px;top:762px;font-size:15px">Start over</button>';
-        o += box('left:16px;right:16px;top:798px;text-align:center;font:600 11px/1.35 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026');
-      } else {
-        o += box('left:60px;right:420px;top:28px;font:900 34px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap', 'Hi, ' + hn + '!');
-        o += walletHTML(hp, 'right:60px;top:26px', 22);
-        o += box('left:60px;right:60px;top:100px;font:900 42px/1.1 system-ui;color:#0E2A5B', 'Choose your level');
-        o += box('left:60px;right:60px;top:156px;font:600 18px system-ui;color:#4F5E80', 'Your Boh plays every level.');
-        LEVELS.forEach(function (v, i) { o += lvl(v, 'left:' + (60 + i * 252) + 'px;width:238px;top:206px;height:290px', true); });
-        o += btn('fs', 'save', 'left:60px;width:240px;top:540px;height:60px;font-size:20px', 'Save my Boh');
-        o += btn('fs', 'load', 'left:312px;width:240px;top:540px;height:60px;font-size:20px', 'Load a Boh');
-        o += '<button type="button" class="flnk" data-go="edit" style="left:600px;width:180px;top:558px;font-size:18px">Change look</button>';
-        o += '<button type="button" class="flnk" data-go="wipe" style="left:790px;width:180px;top:558px;font-size:18px">Start over</button>';
-        o += box('left:60px;right:60px;top:690px;text-align:left;font:600 13px/1.4 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
-      }
+      o += back('boh', 'left:12px;top:14px;width:44px;height:44px');
+      o += box('left:66px;right:170px;top:24px;font:900 24px/1.1 system-ui;color:#0E2A5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap', 'Hi, ' + hn + '!');
+      o += walletHTML(hp, 'right:16px;top:20px', 15);
+      o += box('left:20px;right:20px;top:78px;font:900 28px/1.1 system-ui;color:#0E2A5B', 'Choose your level');
+      o += box('left:20px;right:20px;top:116px;font:600 14px system-ui;color:#4F5E80', 'Your Boh plays every level.');
+      LEVELS.forEach(function (v, i) { o += lvl(v, 'left:16px;right:16px;top:' + (150 + i * 110) + 'px;height:100px'); });
+      o += btn('fs', 'save', 'left:16px;width:176px;top:704px;height:48px;font-size:16px', 'Save my Boh');
+      o += btn('fs', 'load', 'left:198px;width:176px;top:704px;height:48px;font-size:16px', 'Load a Boh');
+      o += '<button type="button" class="flnk" data-go="edit" style="left:20px;width:170px;top:762px;font-size:15px">Change look</button>';
+      o += '<button type="button" class="flnk" data-go="wipe" style="left:200px;width:170px;top:762px;font-size:15px">Start over</button>';
+      o += box('left:16px;right:16px;top:798px;text-align:center;font:600 11px/1.35 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026');
     }
     return o;
   }
@@ -265,7 +286,8 @@
     q.bohBase = d.base; q.bohSkin = d.skin; q.bohHair = d.hair; q.bohName = name; q.equipped = keep; q._t = Date.now();
     var wasNew = !S.P;
     put(q); S.P = get() || q; S.d = null; S.fresh = wasNew;
-    show(wasNew ? 'welcome' : 'hub', 1);
+    if (wasNew && S.next) { setLast(S.next); location.href = S.next; return; }
+    show('boh', 1);
   }
   function doGo(t) {
     if (t === 'look') return startMake(false);
@@ -275,7 +297,7 @@
     if (t === 'save') { if (window.BohSave && BohSave.open) BohSave.open('save'); return; }
     if (t === 'load') { if (window.BohSave && BohSave.open) BohSave.open('load'); return; }
     if (t === 'wipe') { if (window.BohWipe) BohWipe.confirm(); return; }
-    if (t === 'hub' && S.scr === 'look') return show('hub', -1);
+    if (t === 'boh') return show('boh', S.scr === 'look' || S.scr === 'hub' ? -1 : 1);
     if (t === 'hub') return show('hub', 1);
     if (t === 'land') return show('land', -1);
   }
@@ -286,6 +308,7 @@
       if ((c = e.target.closest('[data-hij]'))) { var on = c.getAttribute('data-hij') === '1'; d.base = on ? 'h' : 'f'; if (on && !d.skinTouched) d.skin = 'olive'; redraw(); return; }
       if ((c = e.target.closest('[data-skin]'))) { d.skin = c.getAttribute('data-skin'); d.skinTouched = true; redraw(); return; }
       if ((c = e.target.closest('[data-hair]'))) { d.hair = c.getAttribute('data-hair'); redraw(); return; }
+      if ((c = e.target.closest('a[data-lvl]'))) { setLast(c.getAttribute('data-lvl')); return; }
       c = e.target.closest('[data-go]'); if (!c) return;
       if (c.id === 'fgo' || c.getAttribute('data-go') === 'save') { if (S.scr === 'name') { saveBoh(); return; } }
       var t = c.getAttribute('data-go');
@@ -301,8 +324,9 @@
   }
 
   window.addEventListener('resize', function () { var ch = fit(); if (ch && cur) redraw(); });
-  window.addEventListener('pageshow', function (e) { if (e.persisted) { S.P = get(); if (S.scr === 'hub' && !S.P) { S.scr = 'land'; } if (cur) redraw(); } });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) { S.P = get(); S.last = getLast(); if (!S.P && (S.scr === 'hub' || S.scr === 'boh')) { S.scr = 'land'; } if (cur) redraw(); } });
   fit();
-  S.scr = S.P ? 'welcome' : 'land';
+  S.last = getLast(); S.next = S.P ? null : getNext();
+  S.scr = 'land';
   cur = mount(S.scr, null); bind(cur);
 })();

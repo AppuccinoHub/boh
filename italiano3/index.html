@@ -1,4 +1,6 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.pv-dl{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;padding:12px 16px;border-radius:16px;background:#D9472B;color:#fff;font-weight:800;font-size:18px;line-height:1.15;text-align:center}.pv-dl small{font-weight:600;font-size:12.5px;opacity:.9}.pv-dl:disabled{opacity:.6;cursor:default}.pv-dl:focus-visible{outline:3px solid #2A1F1B;outline-offset:3px}</style><link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<!doctype html><html><head>
+<script>/* Boh front-door guard */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var pr=JSON.parse(localStorage.getItem('boh_profile_v1')||'null');if(pr&&pr.bohBase&&pr.bohName)return;var sv=JSON.parse(localStorage.getItem('bohItaliano3_v2')||'null');if(sv&&sv.bohBase)return;location.replace('../?next='+m[1]);}catch(e){}})();</script>
+<meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.pv-dl{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;padding:12px 16px;border-radius:16px;background:#D9472B;color:#fff;font-weight:800;font-size:18px;line-height:1.15;text-align:center}.pv-dl small{font-weight:600;font-size:12.5px;opacity:.9}.pv-dl:disabled{opacity:.6;cursor:default}.pv-dl:focus-visible{outline:3px solid #2A1F1B;outline-offset:3px}</style><link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Boh · Italiano 3">
 <meta name="application-name" content="Boh · Italiano 3">
@@ -14072,12 +14074,12 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610030131" defer></script>
-<script src="../assets/recorder.js?v=202610030131" defer></script>
-<script src="../assets/routine.js?v=202610030131" defer></script>
-<script src="../assets/routine-qep.js?v=202610030131" defer></script>
-<script src="../assets/gloss-dict.js?v=202610030131" defer></script>
-<script src="../assets/gloss.js?v=202610030131" defer></script>
+<script src="../assets/flashcards.js?v=202610030147" defer></script>
+<script src="../assets/recorder.js?v=202610030147" defer></script>
+<script src="../assets/routine.js?v=202610030147" defer></script>
+<script src="../assets/routine-qep.js?v=202610030147" defer></script>
+<script src="../assets/gloss-dict.js?v=202610030147" defer></script>
+<script src="../assets/gloss.js?v=202610030147" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14157,10 +14159,11 @@ window.__bohQepHome = function (s, r, self) {
   window.__bohQep();
 }, 200); } catch (e) {} })();
 </script>
-<script src="../assets/snake.js?v=202610030131" defer></script>
-<script src="../assets/bohvoice.js?v=202610030131" defer></script>
-<script src="../assets/bohhome.js?v=202610030131" defer></script>
-<script src="../assets/wipe.js?v=202610030131"></script>
-<script src="../assets/scorecard.js?v=202610030131"></script>
-<script src="../assets/bohsave.js?v=202610030131" defer></script>
+<script src="../assets/snake.js?v=202610030147" defer></script>
+<script src="../assets/bohvoice.js?v=202610030147" defer></script>
+<script src="../assets/bohhome.js?v=202610030147" defer></script>
+<script src="../assets/wipe.js?v=202610030147"></script>
+<script src="../assets/scorecard.js?v=202610030147"></script>
+<script src="../assets/bohsave.js?v=202610030147" defer></script>
+<script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 </body></html>

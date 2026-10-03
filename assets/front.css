@@ -6,7 +6,7 @@ body{background:#FFE9C9;overflow:hidden;font-family:system-ui,-apple-system,"Seg
 #stage{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden}
 .fscr{position:absolute;inset:0;will-change:transform,opacity}
 .fa{position:absolute}
-.fbtn{position:absolute;border:0;border-radius:999px;font-family:inherit;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.fbtn{box-sizing:border-box;position:absolute;border:0;border-radius:999px;font-family:inherit;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;text-decoration:none;white-space:nowrap}
 .fbtn svg{width:1.1em;height:1.1em;flex:none}
 .fp{background:#10BFBF;color:#fff;box-shadow:0 5px 0 #0A9A9A}
 .fp:active{transform:translateY(3px);box-shadow:0 2px 0 #0A9A9A}
