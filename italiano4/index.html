@@ -5799,9 +5799,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610030104" defer></script>
-<script src="../assets/gloss-dict.js?v=202610030104" defer></script>
-<script src="../assets/gloss.js?v=202610030104" defer></script>
+<script src="../assets/flashcards.js?v=202610030105" defer></script>
+<script src="../assets/gloss-dict.js?v=202610030105" defer></script>
+<script src="../assets/gloss.js?v=202610030105" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5842,10 +5842,10 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610030104" defer></script>
-<script src="../assets/bohvoice.js?v=202610030104" defer></script>
-<script src="../assets/bohhome.js?v=202610030104" defer></script>
-<script src="../assets/wipe.js?v=202610030104"></script>
-<script src="../assets/scorecard.js?v=202610030104"></script>
-<script src="../assets/bohsave.js?v=202610030104" defer></script>
+<script src="../assets/snake.js?v=202610030105" defer></script>
+<script src="../assets/bohvoice.js?v=202610030105" defer></script>
+<script src="../assets/bohhome.js?v=202610030105" defer></script>
+<script src="../assets/wipe.js?v=202610030105"></script>
+<script src="../assets/scorecard.js?v=202610030105"></script>
+<script src="../assets/bohsave.js?v=202610030105" defer></script>
 </body></html>
