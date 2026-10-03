@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.pv-dl{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;padding:12px 16px;border-radius:16px;background:#D9472B;color:#fff;font-weight:800;font-size:18px;line-height:1.15;text-align:center}.pv-dl small{font-weight:600;font-size:12.5px;opacity:.9}.pv-dl:disabled{opacity:.6;cursor:default}.pv-dl:focus-visible{outline:3px solid #2A1F1B;outline-offset:3px}</style><link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Boh · Italiano 1">
 <meta name="application-name" content="Boh · Italiano 1">
@@ -1897,14 +1897,15 @@
     </sc-if>
     <sc-if value="{{isProva}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px;">
-        <div class="pv-shot" role="alert"><b>&#128248; FAI UNO SCREENSHOT DEL TUO VOTO</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press <kbd>Ctrl</kbd> + <kbd>Show windows &#9645;&#9647;</kbd></span></div>
+        <div class="pv-shot" role="alert"><b>TAKE A SCREENSHOT OF YOUR GRADE</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press <kbd>Ctrl</kbd> + <kbd>Show windows &#9645;&#9647;</kbd></span></div>
+        <button type="button" class="pv-dl" data-pvdl>Download my score</button>
         <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:var(--card-bg);border:3px solid var(--primary-bg);">
           <div style="display:flex;align-items:center;gap:14px;">
             <div class="doll dS idle" style="flex-shrink:0;"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
             <div style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1;">
-              <span style="font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--accent-strong);white-space:nowrap;">LA PROVA &middot; {{unitShort}}</span>
-              <span class="display" style="font-size:26px;font-weight:800;line-height:1.05;word-break:break-word;">{{pvName}}</span>
-              <span style="font-size:12.5px;color:var(--text-muted);white-space:nowrap;">{{pvDate}} &middot; {{pvMins}} &middot; {{pvAttempt}}</span>
+              <span style="font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--accent-strong);white-space:normal;">LA PROVA &middot; {{unitShort}}</span>
+              <span class="display" style="font-size:18px;font-weight:800;line-height:1.1;overflow-wrap:anywhere;">{{pvName}}</span>
+              <span style="font-size:12.5px;color:var(--text-muted);white-space:normal;">{{pvDate}} &middot; {{pvMins}} &middot; {{pvAttempt}}</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;">
               <span class="display" style="font-size:44px;font-weight:800;line-height:1;color:var(--primary-bg);">{{pvPct}}</span>
@@ -1923,7 +1924,7 @@
             <span style="font-size:12px;color:var(--text-faint);">First attempt: {{pvFirst}} &middot; Best: {{pvBest}}</span>
             <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;font-weight:800;letter-spacing:.08em;color:var(--accent-strong);">{{pvCode}}</span>
           </div>
-          <div class="pv-save" data-bohsave-code="Salva il tuo Boh: Settings → 💾 Salva / Carica">Salva il tuo Boh: Settings &rarr; &#128190; Salva / Carica</div>
+          <div class="pv-save" data-bohsave-code="Save your Boh: Settings → Save / Load">Save your Boh: Settings &rarr; Save / Load</div>
           <div style="font-size:11px;color:var(--text-faint);text-align:center;">Created by Assunta Scotto</div>
         </div>
 
@@ -1940,11 +1941,11 @@
           </div>
         </sc-if>
         <sc-if value="{{pvPerfect}}" hint-placeholder-val="{{false}}">
-          <div style="padding:14px;border-radius:14px;background:var(--success-bg);border:2px solid var(--success-border);color:var(--success-text);font-weight:800;text-align:center;">Tutto giusto. Niente da studiare.</div>
+          <div style="padding:14px;border-radius:14px;background:var(--success-bg);border:2px solid var(--success-border);color:var(--success-text);font-weight:800;text-align:center;">All correct. Nothing to study.</div>
         </sc-if>
 
         <sc-if value="{{pvNoAsk}}" hint-placeholder-val="{{true}}"><div class="rb"><sc-if value="{{pvHasNext}}" hint-placeholder-val="{{false}}"><button onClick="{{pvNextHandler}}" class="hl-next">&#9654; {{pvNextText}}</button></sc-if><div class="rb2"><button onClick="{{pvQuitHandler}}" class="rbb ghost">&#128190; Save &amp; quit</button><button onClick="{{pvLeaveHandler}}" class="rbb ghost">&#9776; Back to the menu</button></div></div></sc-if>
-        <sc-if value="{{pvAsk}}" hint-placeholder-val="{{false}}"><div class="pv-ask" role="alertdialog" aria-label="Screenshot check"><b>Hai fatto lo screenshot del tuo voto?</b><span>Make sure it&rsquo;s in your Google Classroom before you leave this card.</span><div class="pv-ask-row"><button onClick="{{pvNotYetHandler}}" class="pv-ask-no">Non ancora</button><button onClick="{{pvYesHandler}}" class="pv-ask-yes">S&igrave;, fatto!</button></div></div></sc-if>
+        <sc-if value="{{pvAsk}}" hint-placeholder-val="{{false}}"><div class="pv-ask" role="alertdialog" aria-label="Screenshot check"><b>Did you take a screenshot of your grade?</b><span>Make sure it&rsquo;s in your Google Classroom before you leave this card.</span><div class="pv-ask-row"><button onClick="{{pvNotYetHandler}}" class="pv-ask-no">Not yet</button><button onClick="{{pvYesHandler}}" class="pv-ask-yes">Yes, done!</button></div></div></sc-if>
       </div>
     </sc-if>
 
@@ -4933,8 +4934,8 @@ class Component extends DCLogic {
         return { prompt: m.prompt, given: m.given || '(left blank)', want: m.want };
       });
       result.pvHasMissed = pc.missed.length > 0;
-      result.pvSplit = pc.firsts !== undefined ? pc.firsts + ' al primo colpo · ' + pc.seconds + ' corretti (½ punto) · ' + pc.missed.length + ' sbagliati' : '';
-      result.pvPerfect = pc.missed.length === 0;
+      result.pvSplit = pc.firsts !== undefined ? pc.firsts + ' first try · ' + pc.seconds + ' fixed (half point) · ' + pc.missed.length + ' missed' : '';
+      try { window.BohScoreCard = { name: result.pvName, date: result.pvDate, mins: result.pvMins, attempt: result.pvAttempt, pct: result.pvPct, score: result.pvScore, first: result.pvFirst, best: result.pvBest, code: result.pvCode, secs: result.pvSections }; } catch (e) {} result.pvPerfect = pc.missed.length === 0;
     }
     (function () {
       var trips = s.trips || [], byK = {};
@@ -5050,7 +5051,7 @@ class Component extends DCLogic {
     result.closeTabHandler = function () { self.sfx('soft'); self.setState({ tabOpen: false }); };
     result.showTabBtn = s.mode !== 'prova' && btHasTab(); result.showTabHud = btHasTab();
     var UNI = BT_UNITS[BT_UNIT];
-    result.unitEyebrow = UNI.eyebrow; result.unitTitle = UNI.title; result.unitShort = UNI.short;
+    result.unitEyebrow = UNI.eyebrow; result.unitTitle = UNI.title; result.unitShort = UNI.short; try { if (window.BohScoreCard) window.BohScoreCard.unit = UNI.short; } catch (e) {}
     result.isImp = BT_UNIT === 'imp'; result.isVdp = BT_UNIT === 'vdp';
     result.unitTabs = BT_UNIT_ORDER.map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
       .concat(BT_UNIT_SOON.map(function (x) { return { label: x[0], sub: x[1], on: 'false', cls: 'unit-tab soon', pick: function () { self.sfx('soft'); } }; }));
@@ -5573,9 +5574,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610022340" defer></script>
-<script src="../assets/gloss-dict.js?v=202610022340" defer></script>
-<script src="../assets/gloss.js?v=202610022340" defer></script>
+<script src="../assets/flashcards.js?v=202610030036" defer></script>
+<script src="../assets/gloss-dict.js?v=202610030036" defer></script>
+<script src="../assets/gloss.js?v=202610030036" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5616,9 +5617,10 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610022340" defer></script>
-<script src="../assets/bohvoice.js?v=202610022340" defer></script>
-<script src="../assets/bohhome.js?v=202610022340" defer></script>
-<script src="../assets/wipe.js?v=202610022340"></script>
-<script src="../assets/bohsave.js?v=202610022340" defer></script>
+<script src="../assets/snake.js?v=202610030036" defer></script>
+<script src="../assets/bohvoice.js?v=202610030036" defer></script>
+<script src="../assets/bohhome.js?v=202610030036" defer></script>
+<script src="../assets/wipe.js?v=202610030036"></script>
+<script src="../assets/scorecard.js?v=202610030036"></script>
+<script src="../assets/bohsave.js?v=202610030036" defer></script>
 </body></html>
