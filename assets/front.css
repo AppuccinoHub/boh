@@ -8,8 +8,8 @@ body{background:#FFE9C9;overflow:hidden;font-family:system-ui,-apple-system,"Seg
 .fa{position:absolute}
 .fbtn{box-sizing:border-box;position:absolute;border:0;border-radius:999px;font-family:inherit;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;text-decoration:none;white-space:nowrap}
 .fbtn svg{width:1.1em;height:1.1em;flex:none}
-.fp{background:#10BFBF;color:#fff;box-shadow:0 5px 0 #0A9A9A}
-.fp:active{transform:translateY(3px);box-shadow:0 2px 0 #0A9A9A}
+.fp{background:#1A5CDF;color:#fff;box-shadow:0 5px 0 #0E2A5B}
+.fp:active{transform:translateY(3px);box-shadow:0 2px 0 #0E2A5B}
 .fs{background:#fff;color:#0E2A5B;border:3px solid #BFE3EA}
 .foff{background:#BFE3E5;color:#fff;cursor:default;box-shadow:none}
 .fink{color:#0E2A5B}
