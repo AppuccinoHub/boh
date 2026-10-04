@@ -1344,6 +1344,7 @@
       <div class="home-grid" style="display:flex;flex-direction:column;gap:20px;">
       <div class="home-col" style="display:flex;flex-direction:column;gap:20px;min-width:0;">
         <div class="home-hero" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+          <a class="oggi" href="../in-classe/"><span class="oggi-x"><span class="oggi-k">Today</span><b class="oggi-t">Today&rsquo;s lesson</b><span class="oggi-d">Start here.</span></span><span class="oggi-go" aria-hidden="true">&rsaquo;</span></a>
           <div class="hero-eyebrow display" style="font-size:13px;letter-spacing:.16em;color:var(--accent-strong);font-weight:700;">{{unitEyebrow}}</div>
           <h1 class="hero-title display" style="margin:0;font-size:32px;line-height:1.12;font-weight:800;">{{unitTitle}}</h1>
           <p class="home-lede" style="margin:0;color:var(--text-muted);font-size:15px;line-height:1.55;">{{homeLede}}</p>
@@ -12107,9 +12108,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610040640" defer></script>
-<script src="../assets/gloss-dict.js?v=202610040640" defer></script>
-<script src="../assets/gloss.js?v=202610040640" defer></script>
+<script src="../assets/flashcards.js?v=202610041205" defer></script>
+<script src="../assets/gloss-dict.js?v=202610041205" defer></script>
+<script src="../assets/gloss.js?v=202610041205" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -12150,12 +12151,12 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610040640" defer></script>
-<script src="../assets/bohvoice.js?v=202610040640" defer></script>
-<script src="../assets/bohhome.js?v=202610040640" defer></script>
-<script src="../assets/wipe.js?v=202610040640"></script>
-<script src="../assets/scorecard.js?v=202610040640"></script>
-<script src="../assets/bohsave.js?v=202610040640" defer></script>
+<script src="../assets/snake.js?v=202610041205" defer></script>
+<script src="../assets/bohvoice.js?v=202610041205" defer></script>
+<script src="../assets/bohhome.js?v=202610041205" defer></script>
+<script src="../assets/wipe.js?v=202610041205"></script>
+<script src="../assets/scorecard.js?v=202610041205"></script>
+<script src="../assets/bohsave.js?v=202610041205" defer></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
 var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
@@ -12192,4 +12193,24 @@ var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohB
 .bt-continue{position:sticky;bottom:10px;z-index:6;box-shadow:0 0 0 8px var(--bg),0 8px 18px rgba(0,0,0,.18)}
 /* /boh-color-v1 */
 </style>
+<style>/* boh-today-v1 */
+.oggi{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;border:3px solid var(--pop);background:var(--pop-tint);color:var(--text);text-decoration:none}
+.oggi[hidden]{display:none}
+.oggi-x{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.oggi-k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pop)}
+[data-theme="dark"] .oggi-k{color:var(--text)}
+.oggi-t{font-size:18px;font-weight:800;line-height:1.2}
+.oggi-d{font-size:13px;font-weight:700;color:var(--text-muted)}
+.oggi-go{flex:none;font-size:28px;font-weight:800;color:var(--pop);line-height:1}
+/* /boh-today-v1 */</style>
+<script src="../assets/today.js?v=202610041205"></script>
+<script>/* Boh today bar */(function(){try{
+var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
+function fill(){var t=(window.BohToday||{})[lv],els=document.querySelectorAll('.oggi');
+ for(var i=0;i<els.length;i++){var a=els[i];if(!t){a.hidden=true;continue}
+  var d=0;try{var s=JSON.parse(localStorage.getItem('boh_lz_'+t.id+'_v1')||'null');if(s&&s.done)for(var k in s.done)if(s.done[k])d++}catch(e){}
+  var sig=t.url+'|'+d;if(a.getAttribute('data-sig')===sig)continue;a.setAttribute('data-sig',sig);a.href=t.url;a.hidden=false;
+  a.querySelector('.oggi-k').textContent='Today \u00b7 '+t.date;a.querySelector('.oggi-t').textContent=t.title;
+  a.querySelector('.oggi-d').textContent=d>=t.total?'All '+t.total+' parts done':(d?d+' of '+t.total+' parts done. Keep going.':'Start here.');}}
+fill();setInterval(fill,600);}catch(e){}})();</script>
 </body></html>
