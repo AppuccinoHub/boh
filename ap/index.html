@@ -632,6 +632,12 @@
 .ls-it{font-weight:700}
 .ls-en{font-size:12.5px;color:var(--text-muted)}
 .ls-say{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:4px 0 10px;padding:12px 18px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px}
+.ls-nosnd{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:0 0 10px;padding:8px 4px;color:var(--text-muted,#555);font-size:14px;text-decoration:underline}
+.ls-readit{display:flex;gap:10px;align-items:baseline;margin:0 0 10px;padding:10px 14px;border-radius:12px;background:var(--surface-2,#f3efe6);font-weight:700}
+.ls-help{display:flex;flex-direction:column;gap:6px;margin:0 0 12px;padding:12px;border-radius:14px;border:2px solid var(--primary-bg)}
+.ls-help-t{font-weight:800}.ls-help-m{font-size:14px}
+.ls-hb{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border-radius:10px;background:var(--surface-2,#f3efe6);font-weight:600}
+.ls-hb:focus-visible,.ls-nosnd:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-say:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-chart{display:grid;grid-template-columns:minmax(64px,.8fr) repeat(4,minmax(0,1fr));border:1px solid var(--card-border);border-radius:12px;overflow:hidden;font-size:15px}
 .lc{padding:6px 8px;border-bottom:1px solid var(--card-border);font-weight:600;overflow-wrap:anywhere}
@@ -1705,7 +1711,18 @@
               <sc-if value="{{lsHasSub}}" hint-placeholder-val="{{false}}"><div class="ls-subl">{{lsSub}}</div></sc-if>
 
               <sc-if value="{{lsMc}}" hint-placeholder-val="{{false}}">
-                <sc-if value="{{lsHasSay}}" hint-placeholder-val="{{false}}"><button class="ls-say" onClick="{{lsSayH}}">&#128266; Ascolta di nuovo</button></sc-if>
+                <sc-if value="{{lsHasSay}}" hint-placeholder-val="{{false}}"><button class="ls-say" onClick="{{lsSayH}}">{{lsSayLbl}}</button></sc-if>
+                <sc-if value="{{lsHasRead}}" hint-placeholder-val="{{false}}"><div class="ls-readit"><span class="ls-tag">Read it</span><span>{{lsReadText}}</span></div></sc-if>
+                <sc-if value="{{lsHasNoSndBtn}}" hint-placeholder-val="{{false}}"><button class="ls-nosnd" onClick="{{lsNoSndH}}">No sound?</button></sc-if>
+                <sc-if value="{{lsNoSndOn}}" hint-placeholder-val="{{false}}"><div class="ls-help" role="group" aria-label="No sound help">
+                  <div class="ls-help-t">No sound? Try these, in order:</div>
+                  <button class="ls-hb" onClick="{{lsAgainH}}"><b>A.</b> Try again</button>
+                  <button class="ls-hb" onClick="{{lsVoicesH}}"><b>B.</b> Voices and help</button>
+                  <button class="ls-hb" onClick="{{lsReadH}}"><b>C.</b> Read it instead</button>
+                  <button class="ls-hb" onClick="{{lsTellH}}">Tell Prof. Lo So</button>
+                  <button class="ls-hb" onClick="{{lsSkipH}}">Skip for now (does not count against you)</button>
+                  <div class="ls-help-m">{{lsToldMsg}}</div><div class="ls-help-m">{{lsToldNote}}</div>
+                </div></sc-if>
                 <div class="ls-opts"><sc-for list="{{lsOpts}}" as="op" hint-placeholder-count="3"><button class="{{op.cls}}" onClick="{{op.pick}}" disabled="{{op.dis}}">{{op.t}}</button></sc-for></div>
               </sc-if>
 
@@ -4848,6 +4865,17 @@ class Component extends DCLogic {
     patch.lsIt = o; patch.lesson = L;
     this.setState(patch);
   }
+  /* boh-listen-v1: listen-only items + "No sound?" ladder (try again / voices / tell Prof / skip / read instead) */
+  lsNoSnd() { var o = this.lsCopy().o; o.nosnd = !o.nosnd; this.sfx('tap'); this.setState({ lsIt: o }); }
+  lsReadIt() { var o = this.lsCopy().o; o.read = true; o.nosnd = false; this.sfx('tap'); this.setState({ lsIt: o }); }
+  lsVoicesH() { this.sfx('tap'); try { BohVoice.openPicker(); } catch (e) {} }
+  lsTellProf() {
+    var s = this.state, x = this.lsItem(), o = this.lsCopy().o, D = x.D, st = D && D.stops[s.lsCur];
+    var note = 'Boh sound problem: I could not hear the audio in "' + ((st && st.label) || 'a lesson') + '" (question ' + (s.lsI + 1) + '). I am skipping it for now. - ' + ((s.profile && s.profile.name) || (s.name) || 'a student');
+    try { navigator.clipboard.writeText(note); o.told = 'copied'; } catch (e) { o.told = 'manual'; }
+    o.note2 = note; this.sfx('good'); this.setState({ lsIt: o });
+  }
+  lsSkipListen() { var L = this.lsCopy().L; L.skipped = (L.skipped || 0) + 1; this.setState({ lesson: L }); this.lsNext(); }
   lsRetry() { var o = this.lsCopy().o; o.st = 'ask'; o.msg = ''; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsPickMc(label) {
     var s = this.state, x = this.lsItem(), it = x.it, c = this.lsCopy(), o = c.o, L = c.L, patch = {};
@@ -5109,6 +5137,13 @@ class Component extends DCLogic {
     if (view === 'stop' && ty === 'mc') {
       result.lsHasSay = !!it.say; result.lsSayH = function () { self.sfx('tap'); try { BohCards.say(it.say); } catch (e) {} };
       result.lsMc = true; result.lsHasOggi = !!it.oggi; result.lsOggi = G(it.oggi || ''); result.lsHasPrompt = true; result.lsPrompt = G(it.prompt);
+      result.lsListen = !!it.listen; result.lsNoSndOn = !!it.listen && !!o.nosnd; result.lsSayLbl = it.listen ? '🔊 Ascolta' : '🔊 Ascolta di nuovo';
+      result.lsHasRead = !!it.listen && !!o.read; result.lsReadText = it.listen ? G(it.say) : '';
+      result.lsHasNoSndBtn = !!it.listen && !o.read; result.lsNoSndH = function () { self.lsNoSnd(); };
+      result.lsReadH = function () { self.lsReadIt(); }; result.lsVoicesH = function () { self.lsVoicesH(); };
+      result.lsTellH = function () { self.lsTellProf(); }; result.lsSkipH = function () { self.lsSkipListen(); }; result.lsAgainH = function () { self.sfx('tap'); try { BohCards.say(it.say); } catch (e) {} };
+      result.lsToldMsg = o.told === 'copied' ? 'Copied! Paste it into Google Classroom for Prof. Lo So.' : (o.told ? 'Copy this note for Prof. Lo So:' : '');
+      result.lsToldNote = o.told === 'manual' ? (o.note2 || '') : '';
       if (it.sub && it.fm) { result.lsHasSub = true; result.lsSub = it.sub; } else if (it.sub) result.lsKicker = it.sub;
       result.lsOpts = o.opts.map(function (lab) {
         var right = o.st === 'ok' && lab === it.answer, bad = o.optBad.indexOf(lab) !== -1;
@@ -6038,9 +6073,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610042154" defer></script>
-<script src="../assets/gloss-dict.js?v=202610042154" defer></script>
-<script src="../assets/gloss.js?v=202610042154" defer></script>
+<script src="../assets/flashcards.js?v=202610042210" defer></script>
+<script src="../assets/gloss-dict.js?v=202610042210" defer></script>
+<script src="../assets/gloss.js?v=202610042210" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -6081,12 +6116,12 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610042154" defer></script>
-<script src="../assets/bohvoice.js?v=202610042154" defer></script>
-<script src="../assets/bohhome.js?v=202610042154" defer></script>
-<script src="../assets/wipe.js?v=202610042154"></script>
-<script src="../assets/scorecard.js?v=202610042154"></script>
-<script src="../assets/bohsave.js?v=202610042154" defer></script>
+<script src="../assets/snake.js?v=202610042210" defer></script>
+<script src="../assets/bohvoice.js?v=202610042210" defer></script>
+<script src="../assets/bohhome.js?v=202610042210" defer></script>
+<script src="../assets/wipe.js?v=202610042210"></script>
+<script src="../assets/scorecard.js?v=202610042210"></script>
+<script src="../assets/bohsave.js?v=202610042210" defer></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
 var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
