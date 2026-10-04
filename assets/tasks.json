@@ -145,7 +145,7 @@
     {
       "id": "l2-weekend",
       "level": "2",
-      "unit": "Il tempo libero",
+      "unit": "Page 2 · free time",
       "type": "essay",
       "kind": "formative",
       "bc": 60,
@@ -192,7 +192,7 @@
     {
       "id": "l2-invito",
       "level": "2",
-      "unit": "-are · voglio, devo, posso",
+      "unit": "Page 3 · can, want, must",
       "type": "dialogue",
       "kind": "summative",
       "bc": 100,
@@ -240,7 +240,7 @@
     {
       "id": "l2-domande",
       "level": "2",
-      "unit": "Il tempo libero",
+      "unit": "Page 2 · free time",
       "type": "questions",
       "kind": "formative",
       "bc": 40,
