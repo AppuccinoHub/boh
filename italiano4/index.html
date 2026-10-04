@@ -18,6 +18,7 @@
 .bb-buy small{font-size:12.5px;font-weight:700;opacity:.9}
 .bb-row{display:flex;gap:8px;flex-wrap:wrap}
 .bb-ghost{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 140px;text-align:center;padding:12px;border-radius:12px;border:2px solid var(--card-border);background:var(--card-bg);color:var(--text);font-weight:800;font-size:14px}
+.bb-trick .bb-ghost{flex:0 0 auto;min-height:44px}  /* tip-box button: was 140px tall in a column */
 .bb-buy:focus-visible,.bb-ghost:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .bb-note{font-size:13.5px;font-weight:800;color:var(--accent-strong);text-align:center}
 
@@ -1458,12 +1459,12 @@
     </sc-if>
 
     <sc-if value="{{isPlay}}" hint-placeholder-val="{{false}}">
-      <div style="display:flex;flex-direction:column;gap:16px;flex:1;">
+      <div class="play-col" style="display:flex;flex-direction:column;gap:16px;flex:1;">
         <sc-if value="{{hasFiammaNote}}" hint-placeholder-val="{{false}}"><div class="bt-fiamma" role="status">{{fiammaNote}}</div></sc-if>
-        <div style="width:100%;height:5px;background:var(--progress-track);border-radius:999px;overflow:hidden;">
+        <div class="pc-prog" style="width:100%;height:5px;background:var(--progress-track);border-radius:999px;overflow:hidden;">
           <div style="width:{{progressPct}}%;height:100%;background:var(--progress-fill);border-radius:999px;transition:width .3s ease;"></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="pc-meta" style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--catTag-text);background:var(--catTag-bg);padding:4px 10px;border-radius:999px;">{{catTag}}</span>
           <div style="display:flex;align-items:center;gap:14px;">
             <div style="display:flex;align-items:center;gap:5px;">
@@ -1505,7 +1506,7 @@
         </div>
 
         <sc-if value="{{isChoice}}" hint-placeholder-val="{{false}}">
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
+          <div class="opt-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
             <sc-for list="{{options}}" as="o" hint-placeholder-count="4">
               <button onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
             </sc-for>
@@ -1530,11 +1531,11 @@
         </sc-if>
 
         <sc-if value="{{isBinary}}" hint-placeholder-val="{{false}}">
-          <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="ea-wrap" style="display:flex;flex-direction:column;gap:12px;">
             <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);">{{step1Label}}</div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="ea-rows" style="display:flex;flex-direction:column;gap:10px;">
               <sc-for list="{{vdpOptions}}" as="vo" hint-placeholder-count="3">
-                <div style="display:flex;gap:10px;align-items:stretch;">
+                <div class="ea-row" style="display:flex;gap:10px;align-items:stretch;">
                   <button onClick="{{vo.pick}}" style="{{vo.style}}min-width:112px;">{{vo.label}}</button>
                   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 12px;border-radius:12px;background:{{vo.capBg}};border:1px solid {{vo.capBorder}};color:{{vo.capText}};font-size:14.5px;font-weight:800;line-height:1.3;">{{vo.cap1}}<br><span style="font-size:12px;font-weight:600;">{{vo.cap2}}</span></div>
                 </div>
@@ -1542,10 +1543,10 @@
             </div>
 
             <sc-if value="{{showFormStep}}" hint-placeholder-val="{{false}}">
-              <div style="display:flex;flex-direction:column;gap:10px;padding-top:6px;">
+              <div class="ea-step2" style="display:flex;flex-direction:column;gap:10px;padding-top:6px;">
                 <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--success-text);">STEP 2 &middot; RIGHT VERB! NOW THE FORM</div>
                 <div style="font-size:16px;font-weight:700;">{{formPrompt}}</div>
-                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
+                <div class="opt-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
                   <sc-for list="{{formOptions}}" as="fo" hint-placeholder-count="2">
                     <button onClick="{{fo.pick}}" style="{{fo.style}}">{{fo.label}}</button>
                   </sc-for>
@@ -1556,7 +1557,7 @@
         </sc-if>
 
         <sc-if value="{{isSelfcheck}}" hint-placeholder-val="{{false}}">
-          <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="sc-wrap" style="display:flex;flex-direction:column;gap:12px;">
             <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--accent-strong);">{{frasiHow}}</div>
             <sc-if value="{{hasFrasiAgain}}" hint-placeholder-val="{{false}}">
               <div style="font-size:14px;font-weight:700;color:var(--text-muted);">{{frasiAgain}}</div>
@@ -1599,7 +1600,7 @@
               </sc-if>
             </sc-if>
             <sc-if value="{{frDone}}" hint-placeholder-val="{{false}}">
-              <div style="display:flex;flex-direction:column;gap:8px;padding:14px 16px;border-radius:14px;background:var(--{{frBox}}-bg);border:2px solid var(--{{frBox}}-border);">
+              <div class="fr-done" style="display:flex;flex-direction:column;gap:8px;padding:14px 16px;border-radius:14px;background:var(--{{frBox}}-bg);border:2px solid var(--{{frBox}}-border);">
                 <div style="font-size:17px;font-weight:800;color:var(--{{frBox}}-text);">{{frVerdict}}</div>
                 <sc-if value="{{hasMarks}}" hint-placeholder-val="{{false}}">
                   <div style="font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--text-faint-2);">YOUR SENTENCE</div>
@@ -1632,7 +1633,7 @@
           <button onClick="{{skipHandler}}" class="bt-skip">&#9197; Salta questa domanda &middot; {{skipsLeft}} left</button>
         </sc-if>
         <sc-if value="{{showContinue}}" hint-placeholder-val="{{false}}">
-          <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="fb-dock" style="display:flex;flex-direction:column;gap:10px;">
             <div class="pop" style="display:flex;align-items:center;gap:10px;">
               <div class="{{reactFaceCls}}" role="img" aria-label="Prof. Lo So"></div>
               <div style="position:relative;padding:10px 14px;border-radius:16px;background:var(--why-bg);font-size:16px;font-weight:800;">{{reactLine}}</div>
@@ -1663,6 +1664,7 @@
                 </div>
               </sc-if>
             </sc-if>
+            <sc-if value="{{okAuto}}" hint-placeholder-val="{{false}}"><button class="{{tipBarCls}} okbar" onClick="{{tipHoldH}}"><i style="animation-duration:{{tipSecs}}"></i><em>{{tipHoldText}}</em></button></sc-if>
             <sc-if value="{{canRetry}}" hint-placeholder-val="{{false}}">
               <button onClick="{{retryHandler}}" style="width:100%;padding:18px;border-radius:14px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;border:none;">Now you try it &mdash; go again</button>
               <div style="font-size:13px;color:var(--text-muted);text-align:center;">You only earn Boh Cashi when you get it right yourself.</div>
@@ -4898,6 +4900,10 @@ class Component extends DCLogic {
         var t = self.state, it2 = (self.lsItems(t.lsCur) || [])[t.lsI];
         if (t.screen === 'lesson' && t.lsView === 'stop' && t.tipHold !== key && ('l|' + BT_UNIT + '|' + t.lsCur + '|' + t.lsI + '|' + (self.lsItems(t.lsCur) || []).length) === key && t.lsIt && (t.lsIt.st === 'ok' || t.lsIt.st === 'shown')) self.lsNext();
       });
+      else if (!result.lsHasTrick && view === 'stop' && ty !== 'chat' && o.st === 'ok' && !held) btTipTimer(key, Math.max(3000, result.lsHasWhy ? btTipMs(result.lsWhy) : 0), function () {   /* boh-lesson-auto-v1 */
+        var t = self.state;
+        if (t.screen === 'lesson' && t.lsView === 'stop' && t.tipHold !== key && ('l|' + BT_UNIT + '|' + t.lsCur + '|' + t.lsI + '|' + (self.lsItems(t.lsCur) || []).length) === key && t.lsIt && t.lsIt.st === 'ok') self.lsNext();
+      });
       else if (!result.lsHasTrick && BT_TIP.key && BT_TIP.key.indexOf('l|') === 0) btTipTimer(null);
     })();
     result.lsCheckH = function () { self.lsCheck(); };
@@ -5734,17 +5740,19 @@ class Component extends DCLogic {
       result.tipCls = 'tip-box' + (s.lastOk ? ' ok' : '');
       result.tipHead = s.lastOk ? '✓ Giusto! · ' : '';
       var key = 'r|' + s.mode + '|' + s.qIndex + '|' + (s.totalSoFar || 0) + '|' + (s.queue || []).length;
-      var ms = btTipMs((result.hasWhy ? result.whyText : '') + ' ' + result.tipB), held = s.tipHold === key;
+      var okNow = !!result.showContinue && !!lastRight && !result.canFix && !s.canRetry;   /* boh-fit-v1: a correct answer goes on by itself after 3 seconds */
+      var ms = okNow ? 3000 : btTipMs((result.hasWhy ? result.whyText : '') + ' ' + result.tipB), held = s.tipHold === key;
       result.tipAuto = result.hasTipBox && !result.canFix;
+      result.okAuto = okNow && !result.hasTipBox;
       result.tipSecs = (ms / 1000).toFixed(1) + 's';
       result.tipBarCls = 'tip-bar' + (held ? ' held' : '');
       result.tipHoldText = held ? '⏸ Paused · tap Continue when you’re ready' : 'Next card in a moment · tap to pause';
       result.tipHoldH = function () { self.sfx('tap'); btTipTimer(null); self.setState({ tipHold: key }); };
-      if (result.tipAuto && !held) btTipTimer(key, ms, function () {
+      if ((result.tipAuto || result.okAuto) && !held) btTipTimer(key, ms, function () {
         var t = self.state;
         if (t.screen === 'play' && t.revealed && t.tipHold !== key && ('r|' + t.mode + '|' + t.qIndex + '|' + (t.totalSoFar || 0) + '|' + (t.queue || []).length) === key) self.nextCard();
       });
-      else if (!result.hasTipBox && BT_TIP.key && BT_TIP.key.indexOf('r|') === 0) btTipTimer(null);
+      else if (!result.hasTipBox && !result.okAuto && BT_TIP.key && BT_TIP.key.indexOf('r|') === 0) btTipTimer(null);
     })();
     if (s.screen === 'summary') {
       var pct2 = s.totalSoFar ? Math.round((s.correctSoFar / s.totalSoFar) * 100) : 0;
@@ -5869,9 +5877,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610041547" defer></script>
-<script src="../assets/gloss-dict.js?v=202610041547" defer></script>
-<script src="../assets/gloss.js?v=202610041547" defer></script>
+<script src="../assets/flashcards.js?v=202610042012" defer></script>
+<script src="../assets/gloss-dict.js?v=202610042012" defer></script>
+<script src="../assets/gloss.js?v=202610042012" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -5912,12 +5920,12 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610041547" defer></script>
-<script src="../assets/bohvoice.js?v=202610041547" defer></script>
-<script src="../assets/bohhome.js?v=202610041547" defer></script>
-<script src="../assets/wipe.js?v=202610041547"></script>
-<script src="../assets/scorecard.js?v=202610041547"></script>
-<script src="../assets/bohsave.js?v=202610041547" defer></script>
+<script src="../assets/snake.js?v=202610042012" defer></script>
+<script src="../assets/bohvoice.js?v=202610042012" defer></script>
+<script src="../assets/bohhome.js?v=202610042012" defer></script>
+<script src="../assets/wipe.js?v=202610042012"></script>
+<script src="../assets/scorecard.js?v=202610042012"></script>
+<script src="../assets/bohsave.js?v=202610042012" defer></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
 var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
@@ -5954,4 +5962,141 @@ var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohB
 .bt-continue{position:sticky;bottom:10px;z-index:6;box-shadow:0 0 0 8px var(--bg),0 8px 18px rgba(0,0,0,.18)}
 /* /boh-color-v1 */
 </style>
+<style>/* boh-lsfit-v1 */
+@media (max-height:780px){
+.wrap:has(.ls){padding-top:8px!important;padding-bottom:8px!important}
+.ls{gap:6px!important}
+.ls-card{gap:8px!important;padding:12px 16px!important}
+.ls-opts{gap:6px!important}
+.ls-opt{padding:8px 14px!important;min-height:40px!important;font-size:16px!important}
+.ls-opt.sm{min-height:38px!important;padding:6px 12px!important}
+.ls-ok,.ls-why,.ls-msg,.ls-bad,.ls-shown{padding:8px 12px!important}
+.ls-btn,.ls-btn2{min-height:42px!important}
+.ls-prompt{font-size:20px!important}
+.ls-noloss{display:none}
+}
+@media (max-width:700px) and (max-height:780px){
+.doll.ls-doll{display:none!important}
+.ls-boh{flex-direction:row!important}
+.ls-bubble{font-size:18px!important;padding:6px 12px!important}
+.ls-stage{gap:6px!important}
+}
+@media (max-height:480px){
+.ls-kick,.ls-oggi{display:none}
+.ls-top{display:none}
+}
+/* /boh-lsfit-v1 */</style>
+<script>/* boh-lsfit-v1: last-resort scale for lesson stops */(function(){try{
+var pend=0,T=[];
+function fit(){pend=0;var col=document.querySelector('.ls');if(!col)return;col.style.zoom='';
+ var se=document.scrollingElement;function over(){return se.scrollHeight-innerHeight}
+ if(over()<=1)return;
+ var lo=.62,hi=1;col.style.zoom=lo;if(over()>1)return;
+ for(var i=0;i<6;i++){var mid=(lo+hi)/2;col.style.zoom=mid.toFixed(3);if(over()>1)hi=mid;else lo=mid}
+ col.style.zoom=lo.toFixed(3)}
+function later(){if(pend)return;pend=requestAnimationFrame(function(){fit();T.forEach(clearTimeout);T=[setTimeout(fit,150),setTimeout(fit,500)]})}
+function go(){var app=document.getElementById('app');if(!app)return;new MutationObserver(later).observe(app,{childList:true,subtree:true,characterData:true});later()}
+addEventListener('resize',later);addEventListener('orientationchange',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+}catch(e){}})();</script>
+<style>/* boh-fit-v2 */
+.play-col .okbar{margin-top:2px}
+/* no sign-in strip on this site, so the 76px reserved at the bottom of every page is given back */
+:root{--hostbar:0px!important}
+/* the tip appeared twice after a wrong answer: keep one card, and under it only the See-the-table button */
+.play-col .tip-box + .bb-trick{padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+.play-col .tip-box + .bb-trick > b,.play-col .tip-box + .bb-trick > span{display:none!important}
+.play-col .sc-wrap:has(.fr-done) > :not(.fr-done){display:none!important}
+.play-col:has(.ea-step2) .ea-rows,.play-col:has(.fb-dock) .ea-rows{display:grid!important;grid-template-columns:1fr 1fr;gap:8px!important}
+.play-col:has(.ea-step2) .ea-row > div,.play-col:has(.fb-dock) .ea-row > div{display:none!important}
+.play-col:has(.ea-step2) .ea-row button,.play-col:has(.fb-dock) .ea-row button{min-width:0!important;min-height:38px!important;padding:6px 10px!important;font-size:16px!important}
+.play-col:has(.ea-step2) .ea-wrap > div:first-child,.play-col:has(.fb-dock) .ea-wrap > div:first-child{display:none!important}
+@media (max-height:820px){
+.wrap:has(.play-col){padding-top:10px!important;padding-bottom:10px!important}
+.wrap:has(.play-col){gap:6px!important}
+@media (max-height:480px){.wrap:has(.play-col) > :first-child{zoom:.8}}
+.play-col{gap:8px!important}
+.play-col .bt-fiamma{padding:6px 12px!important;font-size:12.5px!important}
+.play-col .play-mid{min-height:0!important;gap:6px!important}
+.play-col .play-prompt{font-size:25px!important;line-height:1.2!important}
+.play-col .opt-grid{gap:8px!important}
+.play-col .opt-grid button{padding:10px 10px!important;min-height:46px!important;font-size:18px!important}
+.play-col .ea-wrap,.play-col .sc-wrap{gap:8px!important}
+.play-col .fb-dock{gap:8px!important}
+.play-col .fb-dock .pr{width:50px!important;height:56px!important}
+.play-col .fb-dock .pop{gap:8px!important}
+.play-col .fb-dock .pop > div:last-child{padding:6px 12px!important;font-size:15px!important}
+.play-col .fb-dock > div[style*="padding:14px 16px"],.play-col .fr-done{padding:8px 12px!important;gap:3px!important}
+.play-col .fb-dock .tip-box,.play-col .fb-dock .bb-trick,.play-col .bb-box .bb-trick{padding:8px 12px!important;gap:3px!important;font-size:14.5px!important}
+.play-col .fb-dock .bt-continue{padding:12px!important}
+.play-col .bb-box{padding:10px 12px!important;gap:6px!important}
+.play-col .sc-wrap input{padding:11px 12px!important;font-size:17px!important}
+.play-col .sc-wrap button[aria-label^="Add"]{min-height:38px!important;min-width:38px!important;font-size:16px!important}
+.play-col .sc-wrap button[style*="padding:16px"]{padding:11px!important}
+.play-col .sc-wrap button[style*="dashed"]{padding:7px!important}
+.play-col .ea-step2{gap:6px!important;padding-top:2px!important}
+.play-col .ea-step2 > div[style*="font-size:16px"]{font-size:14.5px!important}
+.play-col .ea-step2 .opt-grid button{min-height:40px!important}
+.play-col .bb-buy{padding:8px 12px!important}
+}
+@media (max-height:680px){
+.play-col{gap:6px!important}
+.play-col .play-prompt{font-size:22px!important}
+.play-col .opt-grid button{padding:7px 8px!important;min-height:40px!important;font-size:16.5px!important}
+.play-col .fb-dock .pr{width:40px!important;height:46px!important}
+.play-col .fb-dock .pop > div:last-child{font-size:14px!important;padding:4px 10px!important}
+.play-col .fb-dock > div[style*="padding:14px 16px"],.play-col .fr-done{padding:6px 10px!important}
+.play-col .fb-dock .bt-continue{padding:9px!important}
+.play-col .bb-buy small{display:none!important}
+}
+@media (max-height:470px) and (orientation:landscape){
+[data-screen="play"] .wrap{max-width:none!important;padding:6px 16px!important}
+.play-col{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;row-gap:6px;align-content:start}
+.play-col > .bt-fiamma{display:none!important}
+.play-col > *{grid-column:1}
+.play-col > .pc-prog,.play-col > .pc-meta{grid-column:1 / -1}
+.play-col > .fb-dock,.play-col > .bb-box,.play-col > .bb-note{grid-column:2;grid-row:3 / span 8;align-self:start}
+.play-col .play-prompt{font-size:20px!important}
+.play-col .opt-grid button{min-height:34px!important;font-size:15.5px!important;padding:4px 8px!important}
+.play-col .fb-dock .pr{width:34px!important;height:40px!important}
+.play-col .fb-dock .bt-continue{padding:7px!important}
+.play-col .tip-bar{height:22px!important}
+.play-col .tip-bar em{line-height:22px!important}
+.play-col .fb-dock{gap:4px!important}
+.play-col .fb-dock .pop{gap:6px!important}
+.play-col .fb-dock .pop > div:last-child{font-size:13px!important;padding:3px 8px!important}
+.play-col .fb-dock .tip-box,.play-col .fb-dock .bb-trick,.play-col .bb-box .bb-trick{padding:5px 10px!important;font-size:13px!important;gap:2px!important}
+.play-col .fb-dock .bb-ghost{min-height:32px!important;padding:5px!important;margin-top:2px!important;font-size:13px!important}
+.play-col .fb-dock > div[style*="padding:14px 16px"],.play-col .fr-done{padding:5px 10px!important;gap:1px!important}
+.play-col .fb-dock div[style*="font-size:17px"],.play-col .fr-done div[style*="font-size:17px"]{font-size:15px!important}
+.play-col .fb-dock div[style*="font-size:14px"],.play-col .fr-done div[style*="font-size:14px"]{font-size:12.5px!important;line-height:1.3!important}
+.play-col .fb-dock .display,.play-col .fr-done .display{font-size:16px!important}
+.play-col .fb-dock div[style*="letter-spacing:.08em"],.play-col .fr-done div[style*="letter-spacing:.08em"]{display:none!important}
+.play-col .bb-box{padding:6px 10px!important;gap:4px!important}
+.play-col .bb-head{font-size:15px!important}
+.play-col .bb-row{gap:6px!important}
+.play-col .bb-row .bb-ghost{min-height:30px!important}
+.play-col .ea-wrap{gap:4px!important}
+.play-col .sc-wrap input{padding:7px 10px!important;font-size:16px!important}
+.play-col .sc-wrap button[aria-label^="Add"]{min-height:30px!important;min-width:32px!important;font-size:15px!important}
+.play-col .sc-wrap button[style*="padding:16px"]{padding:7px!important}
+.play-col .sc-wrap button[style*="dashed"]{padding:4px!important;font-size:12.5px!important}
+.play-col .sc-wrap label{font-size:12px!important}
+.play-col:has(.ea-step2) .ea-row button,.play-col:has(.fb-dock) .ea-row button{min-height:32px!important;font-size:15px!important}
+.play-col .ea-wrap > div > div{gap:6px!important}
+}
+/* /boh-fit-v2 */</style>
+<script>/* boh-fit-v2: last-resort scale so a long answer still fits without scrolling */(function(){try{
+var pend=0;
+function fit(){pend=0;var col=document.querySelector('.play-col');if(!col)return;col.style.zoom='';
+ var se=document.scrollingElement;function over(){return se.scrollHeight-innerHeight}
+ if(over()<=1)return;
+ var lo=innerHeight<=480?.55:.62,hi=1;col.style.zoom=lo;if(over()>1)return;
+ for(var i=0;i<6;i++){var mid=(lo+hi)/2;col.style.zoom=mid.toFixed(3);if(over()>1)hi=mid;else lo=mid}
+ col.style.zoom=lo.toFixed(3)}
+var T=[];function later(){if(pend)return;pend=requestAnimationFrame(function(){fit();T.forEach(clearTimeout);T=[setTimeout(fit,150),setTimeout(fit,500)]})}
+function go(){var app=document.getElementById('app');if(!app)return;new MutationObserver(later).observe(app,{childList:true,subtree:true,characterData:true});later()}
+addEventListener('resize',later);addEventListener('orientationchange',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+}catch(e){}})();</script>
 </body></html>

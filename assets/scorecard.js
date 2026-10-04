@@ -99,12 +99,54 @@
       cv.toBlob(function (b) {
         btn.disabled = false; btn.innerHTML = busy;
         if (!b) { flash(btn, esc(main(T('fail')))); return; }
-        var url = URL.createObjectURL(b), a = D.createElement('a');
-        a.href = url; a.download = name; a.style.display = 'none';
-        D.body.appendChild(a); a.click();
-        setTimeout(function () { try { D.body.removeChild(a); URL.revokeObjectURL(url); } catch (e) {} }, 4000);
+        showCard(cv, b, name);
       }, 'image/png');
     });
+  }
+
+  /* The card always opens on screen, so a student can save it three ways even if the browser blocks the automatic download:
+     the Save button (share sheet on phones, download on a laptop), press-and-hold on the picture, or a screenshot. */
+  function showCard(cv, b, name) {
+    var old = D.getElementById('bohsc-ov'); if (old) old.remove();
+    var url = ''; try { url = URL.createObjectURL(b); } catch (e) { url = cv.toDataURL('image/png'); }
+    var ov = D.createElement('div'); ov.id = 'bohsc-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Your score card');
+    ov.style.cssText = 'position:fixed;inset:0;z-index:2147483000;background:rgba(14,26,40,.82);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;overflow:auto';
+    ov.innerHTML = '<div style="background:#fff;color:#0E2A5B;border-radius:18px;padding:14px;max-width:520px;width:100%;max-height:100%;display:flex;flex-direction:column;gap:10px;box-sizing:border-box;font-family:system-ui,sans-serif">'
+      + '<img alt="Your score card" src="' + url + '" style="width:100%;height:auto;max-height:55vh;object-fit:contain;border-radius:12px;border:1px solid #ddd;-webkit-touch-callout:default;user-select:auto">'
+      + '<div style="font-size:14px;font-weight:700;line-height:1.35">Tap Save. If nothing saves, press and hold the picture and choose Save Image, or take a screenshot.</div>'
+      + '<div style="display:flex;gap:8px;flex-wrap:wrap"><button data-sc="save" style="flex:1;min-height:48px;border:0;border-radius:999px;background:#1A5FE0;color:#fff;font-weight:800;font-size:16px;cursor:pointer">Save my score card</button>'
+      + '<button data-sc="copy" style="min-height:48px;padding:0 16px;border:2px solid #1A5FE0;border-radius:999px;background:#fff;color:#1A5FE0;font-weight:800;font-size:16px;cursor:pointer">Copy as text</button>'
+      + '<button data-sc="close" style="min-height:48px;padding:0 20px;border:2px solid #1A5FE0;border-radius:999px;background:#fff;color:#1A5FE0;font-weight:800;font-size:16px;cursor:pointer">Close</button></div>'
+      + '<div data-sc="msg" role="status" style="font-size:13px;font-weight:700;min-height:16px"></div></div>';
+    D.body.appendChild(ov);
+    var msg = ov.querySelector('[data-sc=msg]');
+    function close() { try { ov.remove(); URL.revokeObjectURL(url); } catch (e) {} D.removeEventListener('keydown', onKey, true); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    D.addEventListener('keydown', onKey, true);
+    function viaDownload() {
+      var a = D.createElement('a'); a.href = url; a.download = name; a.style.display = 'none';
+      D.body.appendChild(a); a.click(); setTimeout(function () { try { a.remove(); } catch (e) {} }, 1000);
+      msg.textContent = 'If it did not save, press and hold the picture and choose Save Image.';
+    }
+    ov.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target.closest('[data-sc]') : null;
+      if (e.target === ov) { close(); return; }
+      if (!t) return;
+      if (t.getAttribute('data-sc') === 'close') { close(); return; }
+      if (t.getAttribute('data-sc') === 'copy') {
+        var cc = W.BohScoreCard || {}, txt = 'Boh · La Prova\n' + (cc.name || '') + '\nScore: ' + (cc.score || '') + '\n' + (cc.date || '') + ' · ' + (cc.mins || '') + ' · ' + (cc.attempt || '') + '\nCode: ' + (cc.code || '');
+        var done = function () { msg.textContent = 'Copied. Paste it into your Google Doc or Classroom (Ctrl + V).'; };
+        var raw = function () { var ta = D.createElement('textarea'); ta.value = txt; ta.readOnly = true; ta.rows = 5; ta.style.cssText = 'width:100%;box-sizing:border-box;font:14px monospace'; msg.textContent = 'Select all, copy, and paste it into your Google Doc.'; msg.appendChild(ta); ta.focus(); ta.select(); };
+        try { navigator.clipboard.writeText(txt).then(done, raw); } catch (er) { raw(); }
+        return;
+      }
+      if (t.getAttribute('data-sc') !== 'save') return;
+      var file = null; try { file = new File([b], name, { type: 'image/png' }); } catch (er) {}
+      if (file && navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
+        navigator.share({ files: [file], title: 'My Boh score card' }).then(function () { msg.textContent = 'Saved.'; }, function (er) { if (!er || er.name !== 'AbortError') viaDownload(); });
+      } else viaDownload();
+    });
+    var sb = ov.querySelector('[data-sc=save]'); if (sb && sb.focus) sb.focus();
   }
   function esc(t) { return String(t).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
 

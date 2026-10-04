@@ -6,7 +6,7 @@
 <style>
 :root{--bg:#FFF4E8;--card:#fff;--ink:#2A1F1B;--mut:#6F5E56;--line:#D9C9BC;--acc:#C1654F;--accOn:#fff;--ok:#17803F;--tint:#FBE9DA}
 @media (prefers-color-scheme:dark){:root{--bg:#1F1519;--card:#2A1F25;--ink:#F4E9EC;--mut:#BFAEB5;--line:#4A3A42;--acc:#E88A6C;--accOn:#241318;--ok:#6FD39A;--tint:#3A2A31}}
-*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:16px 16px 120px}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:16px max(16px,env(safe-area-inset-right)) 150px max(16px,env(safe-area-inset-left))}
 .w{max-width:760px;margin:0 auto}h1{font-size:26px;margin:6px 0 2px}h2{font-size:17px;margin:0}.mut{color:var(--mut);font-size:14px}
 .card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
 button,input{font:inherit;color:inherit}
@@ -21,20 +21,26 @@ input.pin{width:100%;padding:14px;border-radius:14px;border:2px solid var(--line
 .us{margin:0 0 6px 22px;padding-left:10px;border-left:3px solid var(--line)}.us .row{min-height:44px}.sub{font-size:13px;color:var(--mut)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.chip{padding:10px 14px;border-radius:999px;border:2px solid var(--line);background:var(--card);font-weight:800;cursor:pointer;min-height:44px}
 .chip[aria-pressed=true]{border-color:var(--acc);background:var(--tint)}
-.bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--card);border-top:2px solid var(--line)}.bar .w{display:flex;gap:10px;align-items:center}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px max(16px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:var(--card);border-top:2px solid var(--line)}.bar .w{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.bar .btn{flex:1 1 150px}.bar .msg,.bar .err{flex:1 1 100%;min-height:20px}
+/* back button + unlock everything (prof-panel-v2) */
+.back{display:inline-flex;align-items:center;gap:6px;min-height:48px;text-decoration:none;padding:10px 18px}
+.btn.big{width:100%;min-height:56px;font-size:18px}.btn.big.sure{background:#B3261E;color:#fff}
+#allmsg{margin-top:10px;min-height:22px}
 .msg{font-weight:800;color:var(--ok)}.err{font-weight:800;color:#B3261E}.hide{display:none}
 .tag{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--tint);color:var(--ink);margin-left:6px}
 </style></head><body><div class="w">
+<a class="btn o back" id="back" href="../" aria-label="Back to the page you came from">&lsaquo; Back</a>
 <h1>Prof panel</h1><div class="mut">Unlocks stay on this device and travel inside the student&rsquo;s save code.</div>
 <div id="gate" class="card"><h2>Prof code</h2><input id="pin" class="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="Prof code" placeholder="&bull;&bull;&bull;&bull;"><button id="go" class="btn" type="button">Enter</button> <span id="gerr" class="err" role="alert"></span></div>
 <div id="main" class="hide">
+ <div class="card"><h2>Unlock everything on this device</h2><div class="mut">Opens every unit in all five levels, AP included. La Prova (the graded test) stays on its own switch below.</div><div style="margin-top:12px"><button class="btn big" id="all" type="button">Unlock everything</button></div><div id="allmsg" class="msg" role="status"></div></div>
  <div class="card"><h2>Quick: this device&rsquo;s class</h2><div class="mut">Pick the class. I open every level below it, so students can pick a quick review.</div><div class="chips" id="cls"></div></div>
  <div class="card"><h2>Pick exactly what opens</h2><div class="mut">Tick levels, units or both. Unticked and applied means locked again (what the student earned stays).</div>
   <div style="margin-top:8px"><button class="row" id="prova" role="checkbox" aria-checked="false"><span class="bx"></span><span><b>Also open La Prova</b><div class="sub">The graded test. Leave off for review days.</div></span></button></div>
   <div id="tree"></div></div>
 </div></div>
 <div class="bar hide" id="bar"><div class="w"><button class="btn" id="apply" type="button">Apply to this device</button><button class="btn o" id="clr" type="button">Untick all</button><span id="note" class="msg" role="status"></span></div></div>
-<script src="../assets/areas.js?v=202610041547"></script>
+<script src="../assets/areas.js?v=202610042012"></script>
 <script>
 (function(){
 'use strict';
@@ -79,6 +85,22 @@ $('apply').addEventListener('click',function(){
       cur[u.id]={a:on?1:0,p:p,t:now}; n++; }); });
   try{ localStorage.setItem(KEY,JSON.stringify(G)); $('note').className='msg'; $('note').textContent=n?('Saved. '+n+' unit'+(n===1?'':'s')+' changed. Open a level to see it.'):'Nothing changed.'; dirty=false; }
   catch(e){ $('note').className='err'; $('note').textContent='This browser would not save. Try Chrome, not a private window.'; }
+});
+/* Back: return to the page she came from; with no earlier Boh page (typed link, home-screen app) go to the Boh start page */
+$('back').addEventListener('click',function(e){ var same=false; try{ var r=new URL(document.referrer); same=r.origin===location.origin&&r.pathname!==location.pathname; }catch(x){} if(same&&history.length>1){ e.preventDefault(); history.back(); } });
+/* Unlock everything: two taps (the second confirms), then it applies at once */
+var allTimer=0;
+function allReset(){ var b=$('all'); b.classList.remove('sure'); b.textContent='Unlock everything'; clearTimeout(allTimer); }
+$('all').addEventListener('click',function(){
+  var b=$('all');
+  if(!b.classList.contains('sure')){ b.classList.add('sure'); b.textContent='Tap again to unlock all levels'; $('allmsg').textContent=''; allTimer=setTimeout(allReset,6000); return; }
+  allReset();
+  LV.forEach(function(l){ l.units.forEach(function(u){ sel[l.id][u.id]=true; }); });
+  mark(); render(); $('apply').click();
+  var t=$('note').textContent, m=$('allmsg');
+  if(t.indexOf('Saved')===0){ m.className='msg'; m.textContent='Done. Every level is unlocked on this device.'; }
+  else if(t==='Nothing changed.'){ m.className='msg'; m.textContent='Every level was already unlocked.'; }
+  else { m.className='err'; m.textContent=t; }
 });
 function enter(){ var v=$('pin').value.trim(); if(!v)return; sha(v).then(function(h){ if(h!==PIN_HASH){$('gerr').textContent='Wrong code.';$('pin').value='';return}
   try{sessionStorage.setItem('boh_prof_ok','1')}catch(e){} open_(); }); }
