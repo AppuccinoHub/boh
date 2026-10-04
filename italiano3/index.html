@@ -14113,12 +14113,12 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610041307" defer></script>
-<script src="../assets/recorder.js?v=202610041307" defer></script>
-<script src="../assets/routine.js?v=202610041307" defer></script>
-<script src="../assets/routine-qep.js?v=202610041307" defer></script>
-<script src="../assets/gloss-dict.js?v=202610041307" defer></script>
-<script src="../assets/gloss.js?v=202610041307" defer></script>
+<script src="../assets/flashcards.js?v=202610041547" defer></script>
+<script src="../assets/recorder.js?v=202610041547" defer></script>
+<script src="../assets/routine.js?v=202610041547" defer></script>
+<script src="../assets/routine-qep.js?v=202610041547" defer></script>
+<script src="../assets/gloss-dict.js?v=202610041547" defer></script>
+<script src="../assets/gloss.js?v=202610041547" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -14198,12 +14198,12 @@ window.__bohQepHome = function (s, r, self) {
   window.__bohQep();
 }, 200); } catch (e) {} })();
 </script>
-<script src="../assets/snake.js?v=202610041307" defer></script>
-<script src="../assets/bohvoice.js?v=202610041307" defer></script>
-<script src="../assets/bohhome.js?v=202610041307" defer></script>
-<script src="../assets/wipe.js?v=202610041307"></script>
-<script src="../assets/scorecard.js?v=202610041307"></script>
-<script src="../assets/bohsave.js?v=202610041307" defer></script>
+<script src="../assets/snake.js?v=202610041547" defer></script>
+<script src="../assets/bohvoice.js?v=202610041547" defer></script>
+<script src="../assets/bohhome.js?v=202610041547" defer></script>
+<script src="../assets/wipe.js?v=202610041547"></script>
+<script src="../assets/scorecard.js?v=202610041547"></script>
+<script src="../assets/bohsave.js?v=202610041547" defer></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
 var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
