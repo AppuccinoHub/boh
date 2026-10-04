@@ -4,7 +4,7 @@
  "description": "Boh. Italian practice for Italiano 1, 2, 3, 4 and AP.",
  "start_url": "./",
  "scope": "./",
- "display": "browser",
+ "display": "standalone",
  "background_color": "#FBF3EC",
  "theme_color": "#E88A6C",
  "lang": "it",

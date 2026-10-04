@@ -9,7 +9,7 @@
 (function (W) {
   'use strict';
   if (W.BohLezione) return;
-  var LESSONS = {}, L = null, S = null, root = null, V = { name: 'map' }, tok = 0;
+  var LESSONS = {}, L = null, S = null, root = null, V = { name: 'map' }, tok = 0, lastWriteKey = null;
   var GUIDE = '../assets/guide/';
   var CHEER = ['thumbs-up-wink', 'clap', 'cheer-fist', 'fists-yay', 'hands-heart', 'high-five'];
   var GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
@@ -335,12 +335,31 @@
     return h;
   }
 
+  /* When the phone keyboard opens, the browser shrinks the visible area and scrolls the page, which pushes the top bar out of sight.
+     Fit the lesson to the visible area, keep the page scrolled to the top, and shrink Prof. Lo So (class lz-kb) so the box and buttons stay in view. */
+  function keyboardFit() {
+    var vv = W.visualViewport; if (!vv || !root) return;
+    var base = Math.max(W.innerHeight, vv.height);
+    function fit() {
+      base = Math.max(base, W.innerHeight);
+      var kb = vv.height < base - 150;
+      document.documentElement.classList.toggle('lz-kb', kb);
+      root.style.height = kb ? vv.height + 'px' : '';
+      if (kb) { W.scrollTo(0, 0); root.scrollTop = 0; }
+    }
+    vv.addEventListener('resize', fit);
+    vv.addEventListener('scroll', function () { if (document.documentElement.classList.contains('lz-kb')) W.scrollTo(0, 0); });
+  }
+
   /* ---------------------------------------------------------------- render + clicks */
   function render(keep) {
     var views = { map: vMap, pick: vPick, offer: vOffer, done: vDone, match: vMatch, write: vWrite, record: vRecord, build: vBuild, finish: vFinish };
     var el = document.getElementById('lz-in'), typed = el ? el.value : null;
+    /* keep what the student typed only while they stay on the same sentence; a new sentence starts with an empty box */
+    var wkey = V.name === 'write' ? V.si + ':' + V.i : null, sameItem = wkey !== null && wkey === lastWriteKey;
+    lastWriteKey = wkey;
     root.innerHTML = '<div class="lz">' + views[V.name]() + '</div>';
-    if (typed !== null && V.name === 'write') { var e2 = document.getElementById('lz-in'); if (e2 && !V.fb) e2.value = typed; }
+    if (typed !== null && sameItem) { var e2 = document.getElementById('lz-in'); if (e2 && !V.fb) e2.value = typed; }
     if (!keep && V.name === 'pick') pickAfterRender();
   }
   function onClick(ev) {
@@ -378,6 +397,7 @@
       try { var t = localStorage.getItem('boh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
       root.addEventListener('click', onClick);
       root.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' && ev.target && ev.target.id === 'lz-in') writeCheck(); });
+      keyboardFit();
       V = { name: 'map' }; render();
     },
     stats: function (id) { var l = LESSONS[id]; if (!l) return null; var s = null; try { s = JSON.parse(localStorage.getItem('boh_lz_' + id + '_v1') || 'null'); } catch (e) {} var d = 0; l.sections.forEach(function (x) { if (s && s.done && s.done[x.id]) d++; }); return { done: d, total: l.sections.length }; }
