@@ -24,7 +24,7 @@
 <body>
 <main>
   <h1>🔊 Boh Voice Check</h1>
-  <p class="mut">Open this page on a student Chromebook, tap Test on each voice, and send me a screenshot (or tap “Copy report” and paste it to me). Nothing is saved or sent.</p>
+  <p class="mut">Open this page on a student Chromebook, tap Test on each voice, and send a screenshot to Prof. Lo So (or tap “Copy report” and paste it into your message). Nothing is saved or sent.</p>
 
   <div class="card" id="dev"></div>
   <div id="verdict"></div>
@@ -39,7 +39,7 @@
 
   <div class="card">
     <button class="go" id="copy">Copy report</button>
-    <p class="mut">Then paste it into the chat with me.</p>
+    <p class="mut">Then paste it into a message to Prof. Lo So.</p>
     <textarea id="rep" readonly></textarea>
   </div>
 </main>
@@ -59,7 +59,7 @@
     else if (!it.length) v = '<div class="card warn"><b>No Italian voice found.</b> If this is a Chromebook and the voice list is still loading, wait 5 seconds and reload. Otherwise the game will be silent here.</div>';
     else if (BV.onlyRobotic()) v = '<div class="card warn"><b>Only a robotic Italian voice (eSpeak) is installed.</b> That is the “broken robot” sound. The game will use it because nothing else exists. The fix is real recorded audio, not a setting.</div>';
     else v = '<div class="card"><b>A natural Italian voice exists:</b> ' + esc(pick ? pick.name : '') + '. The game now picks it automatically.</div>';
-    $('verdict').innerHTML = v;
+    $('verdict').innerHTML = v + (BV && BV.helpHtml ? BV.helpHtml(!it.length || BV.onlyRobotic()) : '');
     var h = '';
     vs.forEach(function (x, i) {
       var isIt = /^it/i.test(x.lang || '');

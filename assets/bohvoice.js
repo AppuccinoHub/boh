@@ -70,6 +70,19 @@
   /* ---------------------------------------------------------------- the voice list (a small overlay) */
   var ov = null;
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  /* How to get an Italian voice. One text, used by the picker and by voices.html. Steps match Google's help pages (ChromeOS text-to-speech, Chrome Reading mode). */
+  function helpHtml(open) {
+    var li = 'margin:0 0 7px;line-height:1.45';
+    return '<details' + (open ? ' open' : '') + ' style="margin:10px 0 12px;border:2px solid #eadfd8;border-radius:12px;padding:10px 12px;font-size:14px;color:#231815">' +
+      '<summary style="cursor:pointer;font-weight:800;min-height:28px">No sound, or a robot voice? How to add Italian</summary>' +
+      '<ol style="margin:10px 0 0;padding-left:20px">' +
+      '<li style="' + li + '">Tap <b>Test</b> again. Check your volume, and that this tab is not muted.</li>' +
+      '<li style="' + li + '"><b>Chromebook:</b> click the clock at the bottom right, then <b>Settings</b>, <b>Accessibility</b>, <b>Text-to-speech</b>, <b>Text-to-speech voice settings</b>. Next to &ldquo;Chrome OS built-in text-to-speech extension&rdquo; choose <b>Settings</b>, then <b>Install</b> next to <b>Italian</b>. Come back and reload this page.</li>' +
+      '<li style="' + li + '"><b>Chrome:</b> click the <b>three dots</b> at the top right, next to your picture. Choose <b>More tools</b>, then <b>Reading mode</b>. Press <b>Play</b>, then <b>Settings</b>, then <b>Voice selection</b>. This may not change the game. If it does not, use the Chromebook steps above.</li>' +
+      '<li style="' + li + '">Still silent? Close Chrome, open it again and reload. Try headphones. Make sure Wi-Fi is on, because some voices download.</li>' +
+      '<li style="' + li + '">School Chromebooks can block new voices. Tell Prof. Lo So. You can keep going: read the Italian on the screen, or skip the listening part for now. It will not count against you.</li>' +
+      '</ol></details>';
+  }
   function closePicker() { if (ov) { ov.remove(); ov = null; } try { S && S.cancel(); } catch (e) {} }
   function openPicker() {
     if (ov) return;
@@ -81,8 +94,9 @@
       var h = '<div style="background:#fff;color:#231815;border-radius:18px;max-width:520px;width:100%;max-height:90vh;overflow:auto;padding:18px;box-sizing:border-box">' +
         '<div style="display:flex;align-items:center;gap:8px"><h2 style="margin:0;font-size:20px;flex:1">🔊 Voce · Voice</h2><button data-v="close" aria-label="Close" style="min-height:44px;min-width:44px;border:0;border-radius:12px;background:#f3e9e2;font-size:18px;cursor:pointer">✕</button></div>' +
         '<p style="margin:8px 0 10px;font-size:14px;color:#5b4a43">Tap <b>Test</b> to hear a voice. Choose the one that is easiest to understand.</p>';
-      if (!it.length) h += '<p style="background:#fff3cd;border-radius:10px;padding:10px;font-size:14px"><b>This computer has no Italian voice.</b> The game will stay quiet. Tell your teacher.</p>';
-      else if (noGood) h += '<p style="background:#fff3cd;border-radius:10px;padding:10px;font-size:14px"><b>This computer only has a robotic Italian voice.</b> It may be hard to understand. Read the Italian on the screen and tell your teacher.</p>';
+      if (!it.length) h += '<p style="background:#fff3cd;border-radius:10px;padding:10px;font-size:14px"><b>This computer has no Italian voice.</b> The game will stay quiet. Try the steps below, or tell Prof. Lo So.</p>';
+      else if (noGood) h += '<p style="background:#fff3cd;border-radius:10px;padding:10px;font-size:14px"><b>This computer only has a robotic Italian voice.</b> It may be hard to understand. Read the Italian on the screen, try the steps below, or tell Prof. Lo So.</p>';
+      h += helpHtml(!it.length || noGood);
       if (it.length) {
         h += '<label style="display:flex;gap:10px;align-items:center;padding:10px;border:2px solid ' + (!cur ? '#e8845f' : '#eadfd8') + ';border-radius:12px;margin-bottom:6px;cursor:pointer"><input type="radio" name="bv" value="" ' + (!cur ? 'checked' : '') + ' style="width:20px;height:20px"><span style="flex:1;font-size:15px"><b>Automatic</b> (best one)<br><span style="font-size:12px;color:#7a6860">' + esc(best ? best.name : '') + '</span></span><button data-v="test" data-u="' + esc(best ? best.voiceURI : '') + '" style="min-height:44px;padding:0 14px;border:0;border-radius:12px;background:#6b4a8a;color:#fff;font-weight:700;cursor:pointer">▶ Test</button></label>';
         it.forEach(function (v) {
@@ -111,7 +125,7 @@
   }
 
   W.BohVoice = {
-    pick: pick, auto: auto, list: italian, all: all, speak: speak, openPicker: openPicker, closePicker: closePicker,
+    pick: pick, auto: auto, list: italian, all: all, speak: speak, openPicker: openPicker, helpHtml: helpHtml, closePicker: closePicker,
     isRobotic: robotic, onlyRobotic: function () { var it = italian(); return !it.length || it.every(robotic); },
     cros: CROS, minRate: MINRATE, key: KEY
   };
