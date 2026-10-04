@@ -959,6 +959,29 @@
     .bf.k6{background-position:-176px -264px}
 
     /* Prof. Lo So reaction head */
+    /* prof-place-v1: Prof. Lo So on teaching cards, end of round, Chiedi alla Prof */
+    .tc-emo.tcp{font-size:0;width:170px;max-width:60%;height:128px;background:center bottom/contain no-repeat}
+    @media (max-height:700px){.tc-emo.tcp{height:92px}}
+    .tc-emo.tcp-think{background-image:url(../assets/guide/bust/think.webp)}
+    .tc-emo.tcp-finger-up{background-image:url(../assets/guide/bust/finger-up.webp)}
+    .tc-emo.tcp-present{background-image:url(../assets/guide/bust/present.webp)}
+    .tc-emo.tcp-tablet{background-image:url(../assets/guide/bust/tablet.webp)}
+    .tc-emo.tcp-point-side{background-image:url(../assets/guide/bust/point-side.webp)}
+    .tc-emo.tcp-shh-wink{background-image:url(../assets/guide/bust/shh-wink.webp)}
+    .tc-emo.tcp-open-hands{background-image:url(../assets/guide/bust/open-hands.webp)}
+    .tc-emo.tcp-beckon{background-image:url(../assets/guide/bust/beckon.webp)}
+    .ps{width:170px;height:180px;background:center bottom/contain no-repeat}
+    .ps-cheer-fist{background-image:url(../assets/guide/body/b-cheer-fist.webp)}
+    .ps-jump-joy{background-image:url(../assets/guide/body/b-jump-joy.webp)}
+    .ps-clap{background-image:url(../assets/guide/body/b-clap.webp)}
+    .ps-hands-heart{background-image:url(../assets/guide/body/b-hands-heart.webp)}
+    .ps-high-five{background-image:url(../assets/guide/body/b-high-five.webp)}
+    .ps-fists-yay{background-image:url(../assets/guide/body/b-fists-yay.webp)}
+    .ps-thumbs-up-wink{background-image:url(../assets/guide/body/b-thumbs-up-wink.webp)}
+    .ps-point-you{background-image:url(../assets/guide/body/b-point-you.webp)}
+    .ps-fist-forza{background-image:url(../assets/guide/body/b-fist-forza.webp)}
+    .ps-beckon{background-image:url(../assets/guide/body/b-beckon.webp)}
+    .hl-h .hl-pf{display:inline-block;width:40px;height:44px;vertical-align:middle;margin-right:8px;background:url(../assets/guide/react/smile.webp) center bottom/contain no-repeat}
     .pr{width:84px;height:94px;flex:none;background:center bottom/contain no-repeat}
     .pr-smile{background-image:url(../assets/guide/react/smile.webp)}
     .pr-proud{background-image:url(../assets/guide/react/proud.webp)}
@@ -1781,49 +1804,49 @@
           <div class="tab-top"><div class="tc-dots" aria-label="{{tabPosLabel}}"><sc-for list="{{tabDots}}" as="td" hint-placeholder-count="8"><button onClick="{{td.go}}" class="{{td.cls}}" aria-label="{{td.label}}"></button></sc-for></div><button onClick="{{closeTabHandler}}" class="tab-x" aria-label="Chiudi">&times;</button></div>
           <div class="tc-card">
             <sc-if value="{{tc0}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#9986;&#65039;</div>
+              <div class="tc-emo tcp tcp-think" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Taglia, tieni, aggiungi</h2>
               <p class="tc-line">Cut <b>-re</b>. Keep the vowel. Add the ending.</p><button onClick="{{tabRevealHandler}}" class="tc-verbs" aria-pressed="{{tabRevealOn}}"><span>parla<i class="tc-end {{tabRevCls}}">vo</i></span><span>legge<i class="tc-end {{tabRevCls}}">vo</i></span><span>dormi<i class="tc-end {{tabRevCls}}">vo</i></span><small>{{tabRevealTip}}</small></button>
               
             </sc-if>
             <sc-if value="{{tc1}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#127926;</div>
+              <div class="tc-emo tcp tcp-finger-up" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">VO &middot; VI &middot; VA</h2>
               <p class="tc-line">The ending tells <b>who</b>. Sing it!</p><div class="tc-chant"><span><b>VO</b>io</span><span><b>VI</b>tu</span><span><b>VA</b>lui/lei</span><span><b>VAMO</b>noi</span><span><b>VATE</b>voi</span><span><b>VANO</b>loro</span></div>
               
             </sc-if>
             <sc-if value="{{tc2}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#129464;</div>
+              <div class="tc-emo tcp tcp-present" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Essere &egrave; il ribelle</h2>
               <p class="tc-big">ero &middot; eri &middot; era<br>eravamo &middot; eravate &middot; erano</p><p class="tc-line">io <b>ERO</b> un <b>ERO</b>e &#129464;</p>
               
             </sc-if>
             <sc-if value="{{tc3}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128548;</div>
+              <div class="tc-emo tcp tcp-tablet" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">FACE &middot; BEVE &middot; DICE</h2>
               <p class="tc-big">fare &rarr; <b>face</b>vo<br>bere &rarr; <b>beve</b>vo<br>dire &rarr; <b>dice</b>vo</p><p class="tc-line">The 3 stubborn ones. Then regular endings.</p>
               
             </sc-if>
             <sc-if value="{{tc4}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128101;</div>
+              <div class="tc-emo tcp tcp-point-side" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">C&rsquo;era o c&rsquo;erano?</h2>
               <p class="tc-big">1 &rarr; <b>c&rsquo;era</b><br>2+ &rarr; <b>c&rsquo;erano</b></p><p class="tc-line">Look at the thing after it: c&rsquo;era <u>un</u> gatto &middot; c&rsquo;erano <u>tre</u> gatti.</p>
               
             </sc-if>
             <sc-if value="{{tc5}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128269;</div>
+              <div class="tc-emo tcp tcp-shh-wink" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Parole-indizio</h2>
               <p class="tc-line">See these? Think <b>imperfetto</b>.</p><div class="tc-chips"><span>sempre</span><span>di solito</span><span>ogni&hellip;</span><span>da piccolo/a</span><span>mentre</span><span>spesso</span></div><p class="tc-line">Also: weather &#9730;&#65039;, age &#127874;, time &#128339;, feelings &#128522;.</p>
               
             </sc-if>
             <sc-if value="{{tc6}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#127916;</div>
+              <div class="tc-emo tcp tcp-open-hands" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Sfondo o evento?</h2>
               <div class="tc-film"><div><b>Imperfetto</b><span>the set &middot; background</span></div><div><b>Passato prossimo</b><span>the action &middot; one time</span></div></div><p class="tc-line">Mentre <b>guardavo</b> la TV, <u>&egrave; suonato</u> il telefono.</p>
               
             </sc-if>
             <sc-if value="{{tc7}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128203;</div>
+              <div class="tc-emo tcp tcp-beckon" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Tutto insieme</h2>
               <div class="tab-scroll"><table class="tab-t">
                 <thead><tr><th></th><th>parlA-re</th><th>leggE-re</th><th>dormI-re</th></tr></thead>
@@ -1839,114 +1862,114 @@
               
             </sc-if>
             <sc-if value="{{tv0}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#129668;</div>
+              <div class="tc-emo tcp tcp-think" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Tre verbi magici</h2>
               <p class="tc-big">volere = <b>want</b><br>dovere = <b>have to</b><br>potere = <b>can / may</b></p><p class="tc-line">+ infinitive: Voglio <b>mangiare</b>.</p>
             </sc-if>
             <sc-if value="{{tv1}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128155;</div>
+              <div class="tc-emo tcp tcp-finger-up" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">VOLERE = want</h2>
               <div class="tc-chant tc-sm"><span><b>voglio</b>io</span><span><b>vuoi</b>tu</span><span><b>vuole</b>lui/lei</span><span><b>vogliamo</b>noi</span><span><b>volete</b>voi</span><span><b>vogliono</b>loro</span></div><p class="tc-line">io <b>voglio</b>: the GL sound, &ldquo;vol-yo&rdquo;.</p>
             </sc-if>
             <sc-if value="{{tv2}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128218;</div>
+              <div class="tc-emo tcp tcp-present" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">DOVERE = have to</h2>
               <div class="tc-chant tc-sm"><span><b>devo</b>io</span><span><b>devi</b>tu</span><span><b>deve</b>lui/lei</span><span><b>dobbiamo</b>noi</span><span><b>dovete</b>voi</span><span><b>devono</b>loro</span></div><p class="tc-line">noi <b>dobbiamo</b>: double B!</p>
             </sc-if>
             <sc-if value="{{tv3}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128170;</div>
+              <div class="tc-emo tcp tcp-tablet" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">POTERE = can / may</h2>
               <div class="tc-chant tc-sm"><span><b>posso</b>io</span><span><b>puoi</b>tu</span><span><b>può</b>lui/lei</span><span><b>possiamo</b>noi</span><span><b>potete</b>voi</span><span><b>possono</b>loro</span></div><p class="tc-line">lui/lei <b>pu&ograve;</b>: don&rsquo;t forget the accent!</p>
             </sc-if>
             <sc-if value="{{tv4}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#10133;</div>
+              <div class="tc-emo tcp tcp-point-side" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">+ infinito</h2>
               <p class="tc-big">Voglio <b>mangiare</b> &#9989;<br><s>Voglio mangio</s> &#10060;</p><p class="tc-line">The second verb never changes.</p>
             </sc-if>
             <sc-if value="{{tv5}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128587;</div>
+              <div class="tc-emo tcp tcp-shh-wink" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Posso?</h2>
               <p class="tc-big"><b>Posso</b> andare in bagno?</p><p class="tc-line">May I&hellip;? = <b>potere</b>. Voglio = I want (not polite with the Prof!).</p>
             </sc-if>
             <sc-if value="{{tv6}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128270;</div>
+              <div class="tc-emo tcp tcp-open-hands" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Chi? Guarda la fine</h2>
               <div class="tc-chips"><span>io -o</span><span>tu -i</span><span>lui/lei -e / &ograve;</span><span>noi -iamo</span><span>voi -ete</span><span>loro -ono</span></div><p class="tc-line">vogli<b>amo</b>, dobbi<b>amo</b>, possi<b>amo</b> &middot; vol<b>ete</b>, dov<b>ete</b>, pot<b>ete</b></p>
             </sc-if>
             <sc-if value="{{tv7}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128203;</div>
+              <div class="tc-emo tcp tcp-beckon" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Tutto insieme</h2>
               <div class="tab-scroll"><table class="tab-t"><thead><tr><th></th><th>volere</th><th>dovere</th><th>potere</th></tr></thead><tbody><tr><th>io</th><td>voglio</td><td>devo</td><td>posso</td></tr><tr><th>tu</th><td>vuoi</td><td>devi</td><td>puoi</td></tr><tr><th>lui/lei</th><td>vuole</td><td>deve</td><td>può</td></tr><tr><th>noi</th><td>vogliamo</td><td>dobbiamo</td><td>possiamo</td></tr><tr><th>voi</th><td>volete</td><td>dovete</td><td>potete</td></tr><tr><th>loro</th><td>vogliono</td><td>devono</td><td>possono</td></tr></tbody></table></div><p class="tc-line">+ the next verb in the infinitive: Devo <b>studiare</b>.</p>
             </sc-if>
             <sc-if value="{{te0}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#129300;</div>
+              <div class="tc-emo tcp tcp-think" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Is / am / are o have?</h2>
               <div class="tc-film"><div><b>ESSERE</b><span>is &middot; am &middot; are</span></div><div><b>AVERE</b><span>have &middot; has &middot; the &ldquo;haves&rdquo;</span></div></div><p class="tc-line">Say it in <b>English first</b>. &ldquo;I am&hellip;&rdquo; &rarr; essere. &ldquo;I have&hellip;&rdquo; &rarr; avere. Then check card 4: some &ldquo;I am&rdquo; sayings use avere.</p>
             </sc-if>
             <sc-if value="{{te1}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128587;</div>
+              <div class="tc-emo tcp tcp-finger-up" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">ESSERE = to be</h2>
               <div class="tc-chant tc-sm"><span><b>sono</b>io</span><span><b>sei</b>tu</span><span><b>&egrave;</b>lui/lei</span><span><b>siamo</b>noi</span><span><b>siete</b>voi</span><span><b>sono</b>loro</span></div><p class="tc-line"><b>sono</b> shows up twice: io sono, loro sono. <b>&egrave;</b> needs its accent: &egrave; = is, e = and.</p>
             </sc-if>
             <sc-if value="{{te2}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#127873;</div>
+              <div class="tc-emo tcp tcp-present" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">AVERE = to have</h2>
               <div class="tc-chant tc-sm"><span><b>ho</b>io</span><span><b>hai</b>tu</span><span><b>ha</b>lui/lei</span><span><b>abbiamo</b>noi</span><span><b>avete</b>voi</span><span><b>hanno</b>loro</span></div><p class="tc-line">The <b>H is silent</b>: ho sounds like &ldquo;o&rdquo;, hanno like &ldquo;anno&rdquo;. Noi <b>abbiamo</b> has a double B.</p>
             </sc-if>
             <sc-if value="{{te3}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#129371;</div>
+              <div class="tc-emo tcp tcp-tablet" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Italian HAS hunger</h2>
               <div class="tc-chips"><span>ho fame</span><span>ho sete</span><span>ho freddo</span><span>ho caldo</span><span>ho sonno</span><span>ho paura</span><span>ho ragione</span></div><p class="tc-line">English says <b>I am</b> hungry. Italian says <b>I have</b> hunger. Sono freddo = I am a cold person!</p>
             </sc-if>
             <sc-if value="{{te4}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#127874;</div>
+              <div class="tc-emo tcp tcp-point-side" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Quanti anni hai?</h2>
               <p class="tc-big">Ho quindici anni &#9989;<br><s>Sono quindici anni</s> &#10060;</p><p class="tc-line">Age = <b>avere + anni</b>. Always. You HAVE 15 years.</p>
             </sc-if>
             <sc-if value="{{te5}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128205;</div>
+              <div class="tc-emo tcp tcp-shh-wink" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Essere: who, what, where</h2>
               <p class="tc-big">Sono studente. <span style="font-size:.6em">(who)</span><br>&Egrave; simpatica. <span style="font-size:.6em">(what she&rsquo;s like)</span><br>Il gatto &egrave; in cucina. <span style="font-size:.6em">(where)</span></p><p class="tc-line">Who you are, what you are like, where something is &rarr; <b>essere</b>.</p>
             </sc-if>
             <sc-if value="{{te6}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128054;</div>
+              <div class="tc-emo tcp tcp-open-hands" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Avere: what you own</h2>
               <p class="tc-big">Ho <b>un</b> cane. Hai <b>un</b> gatto?<br>Lei ha <b>una</b> tartaruga.</p><p class="tc-line">A pet, a phone, friends: you HAVE them &rarr; <b>avere</b>. <b>un</b> for masculine words (un cane, un criceto), <b>una</b> for feminine words (una tartaruga).</p>
             </sc-if>
             <sc-if value="{{te7}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">&#128203;</div>
+              <div class="tc-emo tcp tcp-beckon" role="img" aria-label="Prof. Lo So"></div>
               <h2 class="display tc-title">Tutto insieme</h2>
               <div class="tab-scroll"><table class="tab-t"><thead><tr><th></th><th>essere</th><th>avere</th></tr></thead><tbody><tr><th>io</th><td>sono</td><td>ho</td></tr><tr><th>tu</th><td>sei</td><td>hai</td></tr><tr><th>lui/lei</th><td>&egrave;</td><td>ha</td></tr><tr><th>noi</th><td>siamo</td><td>abbiamo</td></tr><tr><th>voi</th><td>siete</td><td>avete</td></tr><tr><th>loro</th><td>sono</td><td>hanno</td></tr></tbody></table></div><p class="tc-line"><b>avere:</b> fame, sete, freddo, caldo, sonno, paura, anni &middot; <b>essere:</b> who, what, where</p>
             </sc-if>
             <sc-if value="{{tg_u2_0}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">👍</div><h2 class="display tc-title">Mi piace…</h2><p class="tc-big"><b>Mi piace</b> giocare a calcio.<br><b>Non mi piace</b> nuotare.</p><p class="tc-line">Mi piace + infinitive. Ti piace…? = Do you like…?</p>
+              <div class="tc-emo tcp tcp-think" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Mi piace…</h2><p class="tc-big"><b>Mi piace</b> giocare a calcio.<br><b>Non mi piace</b> nuotare.</p><p class="tc-line">Mi piace + infinitive. Ti piace…? = Do you like…?</p>
             </sc-if>
             <sc-if value="{{tg_u2_1}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">⚽</div><h2 class="display tc-title">Sport e passatempi</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th>italiano</th><th>English</th></tr></thead><tbody><tr><th>giocare a calcio</th><td>to play soccer</td></tr><tr><th>nuotare</th><td>to swim</td></tr><tr><th>ballare</th><td>to dance</td></tr><tr><th>cantare</th><td>to sing</td></tr><tr><th>guardare la TV</th><td>to watch TV</td></tr><tr><th>ascoltare musica</th><td>to listen to music</td></tr><tr><th>andare in bici</th><td>to ride a bike</td></tr><tr><th>andare al cinema</th><td>to go to the movies</td></tr></tbody></table></div><p class="tc-line">Say them aloud, then cover the English.</p>
+              <div class="tc-emo tcp tcp-finger-up" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Sport e passatempi</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th>italiano</th><th>English</th></tr></thead><tbody><tr><th>giocare a calcio</th><td>to play soccer</td></tr><tr><th>nuotare</th><td>to swim</td></tr><tr><th>ballare</th><td>to dance</td></tr><tr><th>cantare</th><td>to sing</td></tr><tr><th>guardare la TV</th><td>to watch TV</td></tr><tr><th>ascoltare musica</th><td>to listen to music</td></tr><tr><th>andare in bici</th><td>to ride a bike</td></tr><tr><th>andare al cinema</th><td>to go to the movies</td></tr></tbody></table></div><p class="tc-line">Say them aloud, then cover the English.</p>
             </sc-if>
             <sc-if value="{{tg_u2_2}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">☀️</div><h2 class="display tc-title">Che tempo fa?</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th>italiano</th><th>English</th></tr></thead><tbody><tr><th>Fa caldo.</th><td>It’s hot.</td></tr><tr><th>Fa freddo.</th><td>It’s cold.</td></tr><tr><th>Fa bel tempo.</th><td>The weather is nice.</td></tr><tr><th>C’è il sole.</th><td>It’s sunny.</td></tr><tr><th>C’è vento.</th><td>It’s windy.</td></tr><tr><th>Piove.</th><td>It’s raining.</td></tr><tr><th>Nevica.</th><td>It’s snowing.</td></tr><tr><th>È nuvoloso.</th><td>It’s cloudy.</td></tr></tbody></table></div><p class="tc-line">Fa + hot/cold/nice weather. C’è + sun/wind. Piove and nevica stand alone.</p>
+              <div class="tc-emo tcp tcp-present" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Che tempo fa?</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th>italiano</th><th>English</th></tr></thead><tbody><tr><th>Fa caldo.</th><td>It’s hot.</td></tr><tr><th>Fa freddo.</th><td>It’s cold.</td></tr><tr><th>Fa bel tempo.</th><td>The weather is nice.</td></tr><tr><th>C’è il sole.</th><td>It’s sunny.</td></tr><tr><th>C’è vento.</th><td>It’s windy.</td></tr><tr><th>Piove.</th><td>It’s raining.</td></tr><tr><th>Nevica.</th><td>It’s snowing.</td></tr><tr><th>È nuvoloso.</th><td>It’s cloudy.</td></tr></tbody></table></div><p class="tc-line">Fa + hot/cold/nice weather. C’è + sun/wind. Piove and nevica stand alone.</p>
             </sc-if>
             <sc-if value="{{tg_u2_3}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">📅</div><h2 class="display tc-title">Date e stagioni</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th>italiano</th><th>English</th></tr></thead><tbody><tr><th>la primavera</th><td>spring</td></tr><tr><th>l’estate</th><td>summer</td></tr><tr><th>l’autunno</th><td>fall</td></tr><tr><th>l’inverno</th><td>winter</td></tr><tr><th>maggio</th><td>May</td></tr><tr><th>giugno</th><td>June</td></tr><tr><th>settembre</th><td>September</td></tr><tr><th>dicembre</th><td>December</td></tr></tbody></table></div><p class="tc-line">Months are not capitalized in Italian: giugno, not Giugno.</p>
+              <div class="tc-emo tcp tcp-tablet" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Date e stagioni</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th>italiano</th><th>English</th></tr></thead><tbody><tr><th>la primavera</th><td>spring</td></tr><tr><th>l’estate</th><td>summer</td></tr><tr><th>l’autunno</th><td>fall</td></tr><tr><th>l’inverno</th><td>winter</td></tr><tr><th>maggio</th><td>May</td></tr><tr><th>giugno</th><td>June</td></tr><tr><th>settembre</th><td>September</td></tr><tr><th>dicembre</th><td>December</td></tr></tbody></table></div><p class="tc-line">Months are not capitalized in Italian: giugno, not Giugno.</p>
             </sc-if>
             <sc-if value="{{tg_u2_4}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">✍️</div><h2 class="display tc-title">Scrivi in italiano</h2><p class="tc-big"><b>Mi piace</b> ballare. <b>Fa caldo</b> oggi.<br><b>Mi piace</b> l’estate perché <b>fa caldo</b>.</p><p class="tc-line">Combine a like + a weather + a reason: perché.</p>
+              <div class="tc-emo tcp tcp-point-side" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Scrivi in italiano</h2><p class="tc-big"><b>Mi piace</b> ballare. <b>Fa caldo</b> oggi.<br><b>Mi piace</b> l’estate perché <b>fa caldo</b>.</p><p class="tc-line">Combine a like + a weather + a reason: perché.</p>
             </sc-if>
             <sc-if value="{{tg_u3_0}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">✂️</div><h2 class="display tc-title">-ARE: io -o · tu -i</h2><div class="tc-chant tc-sm"><span><b>parlo</b>io</span><span><b>parli</b>tu</span></div><p class="tc-line">Cut -are. Add -o for io, -i for tu: parl-o, parl-i.</p>
+              <div class="tc-emo tcp tcp-shh-wink" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">-ARE: io -o · tu -i</h2><div class="tc-chant tc-sm"><span><b>parlo</b>io</span><span><b>parli</b>tu</span></div><p class="tc-line">Cut -are. Add -o for io, -i for tu: parl-o, parl-i.</p>
             </sc-if>
             <sc-if value="{{tg_u3_1}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">🔎</div><h2 class="display tc-title">Attenzione: -iare e -care</h2><div class="tc-chips"><span>mangio, mangi</span><span>studio, studi</span><span>gioco, giochi</span><span>pesco, peschi</span></div><p class="tc-line">-iare: one i only (mangi). -care/-gare add an H for tu: giochi, peschi.</p>
+              <div class="tc-emo tcp tcp-open-hands" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Attenzione: -iare e -care</h2><div class="tc-chips"><span>mangio, mangi</span><span>studio, studi</span><span>gioco, giochi</span><span>pesco, peschi</span></div><p class="tc-line">-iare: one i only (mangi). -care/-gare add an H for tu: giochi, peschi.</p>
             </sc-if>
             <sc-if value="{{tg_u3_2}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">💪</div><h2 class="display tc-title">Voglio · devo · posso</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th></th><th>volere</th><th>dovere</th><th>potere</th></tr></thead><tbody><tr><th>io</th><td>voglio</td><td>devo</td><td>posso</td></tr><tr><th>tu</th><td>vuoi</td><td>devi</td><td>puoi</td></tr></tbody></table></div><p class="tc-line">want · have to · can. The next verb stays in the infinitive.</p>
+              <div class="tc-emo tcp tcp-beckon" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Voglio · devo · posso</h2><div class="tab-scroll"><table class="tab-t"><thead><tr><th></th><th>volere</th><th>dovere</th><th>potere</th></tr></thead><tbody><tr><th>io</th><td>voglio</td><td>devo</td><td>posso</td></tr><tr><th>tu</th><td>vuoi</td><td>devi</td><td>puoi</td></tr></tbody></table></div><p class="tc-line">want · have to · can. The next verb stays in the infinitive.</p>
             </sc-if>
             <sc-if value="{{tg_u3_3}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">➕</div><h2 class="display tc-title">+ infinito</h2><p class="tc-big">Voglio <b>mangiare</b> ✅<br><s>Voglio mangio</s> ❌</p><p class="tc-line">The second verb never changes.</p>
+              <div class="tc-emo tcp tcp-think" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">+ infinito</h2><p class="tc-big">Voglio <b>mangiare</b> ✅<br><s>Voglio mangio</s> ❌</p><p class="tc-line">The second verb never changes.</p>
             </sc-if>
             <sc-if value="{{tg_u3_4}}" hint-placeholder-val="{{false}}">
-              <div class="tc-emo" aria-hidden="true">💌</div><h2 class="display tc-title">Inviti</h2><p class="tc-big"><b>Vuoi venire</b> al cinema?<br>Sì! <b>Vorrei</b> venire!<br>Mi dispiace, <b>devo studiare</b>.</p><p class="tc-line">Vorrei = I would like (polite). Mi dispiace = I’m sorry.</p>
+              <div class="tc-emo tcp tcp-finger-up" role="img" aria-label="Prof. Lo So"></div><h2 class="display tc-title">Inviti</h2><p class="tc-big"><b>Vuoi venire</b> al cinema?<br>Sì! <b>Vorrei</b> venire!<br>Mi dispiace, <b>devo studiare</b>.</p><p class="tc-line">Vorrei = I would like (polite). Mi dispiace = I’m sorry.</p>
             </sc-if>
           </div>
           <sc-if value="{{tabHasQ}}" hint-placeholder-val="{{false}}">
@@ -2022,7 +2045,7 @@
     <sc-if value="{{isSummary}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:22px;padding-top:8px;">
         <div style="text-align:center;display:flex;flex-direction:column;gap:6px;">
-          <div class="{{summaryFaceCls}} pop" style="margin:0 auto;"></div>
+          <div class="{{summaryFaceCls}} pop" style="margin:0 auto;" role="img" aria-label="Prof. Lo So"></div>
           <div style="font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--text-faint);">SESSION COMPLETE</div>
           <div class="display" style="font-size:60px;font-weight:800;color:var(--primary-bg);line-height:1;">{{accuracyPct}}</div>
           <div style="font-size:15px;color:var(--text-muted);font-weight:600;">{{correctTotalText}}</div>
@@ -2037,7 +2060,7 @@
         <sc-if value="{{hlRipasso}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-v"><b class="hl-h">&#128214; Ripassa con Boh &middot; 1 min</b><p>{{hlRipText}}</p><sc-if value="{{hlRipWords}}" hint-placeholder-val="{{false}}"><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></sc-if><button onClick="{{hlRipH}}" class="hl-btn">{{hlRipBtn}}</button></div></sc-if>
         <sc-if value="{{hlNote}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-n"><b class="hl-h">&#9999;&#65039; Scrivi nel quaderno</b><p>Copy these <b>by hand</b>.</p><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div><button onClick="{{hlNoteH}}" class="hl-btn">{{hlNoteBtn}}</button></div></sc-if>
         <sc-if value="{{hlMoveOn}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-m"><b class="hl-h">&#10145;&#65039; Keep going</b><p>Still tricky? That&rsquo;s OK. Move on: your missed words come back in the next rounds and in your flashcards.</p><button onClick="{{hlMoveH}}" class="hl-btn">{{hlMoveText}}</button></div></sc-if>
-        <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h">&#9995; Chiedi alla Prof</b><p><b>Raise your hand. Show la Prof this screen.</b></p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
+        <sc-if value="{{hlProf}}" hint-placeholder-val="{{false}}"><div class="hl-card hl-p"><b class="hl-h"><i class="hl-pf" aria-hidden="true"></i>Chiedi alla Prof</b><p><b>Raise your hand. Show la Prof this screen.</b></p><div class="hl-facts">{{hlProfFacts}}</div><div class="hl-list"><sc-for list="{{hlItems}}" as="hi" hint-placeholder-count="3"><div><b>{{hi.p}}</b><span>{{hi.a}}</span></div></sc-for></div></div></sc-if>
           <div class="rb2"><sc-if value="{{hasMistakes}}" hint-placeholder-val="{{false}}"><button onClick="{{mistakesHandler}}" class="rbb warn">Fix my mistakes ({{mistakesCount}})</button></sc-if><sc-if value="{{showPlayAgain}}" hint-placeholder-val="{{true}}"><button onClick="{{playAgainHandler}}" class="{{playAgainCls}}">&#128257; Play again</button></sc-if></div>
           <sc-if value="{{hlWait}}" hint-placeholder-val="{{false}}"><div class="hl-wait">Do the review first. Then Play again opens.</div></sc-if>
           <div class="rb2"><button onClick="{{goShopHandler}}" class="rbb">&#128717;&#65039; Boh-tique</button><button onClick="{{goLockerHandler}}" class="rbb">&#128085; Locker</button></div>
@@ -11986,7 +12009,7 @@ class Component extends DCLogic {
       result.hasNextStep = !!nextKey && !s.outOfHearts;
       result.nextStepText = nextKey ? (pct2 >= 80 && s.mode === MODES[nextKey].needs ? 'Unlocked: ' + MODES[nextKey].label : 'Next up: ' + MODES[nextKey].label) : '';
       result.passText = pct2 >= 85 ? 'PASSED \u2713 85% or better' : 'Get 85% to unlock the next one';
-      result.summaryFaceCls = 'bf ' + (pct2 >= 80 ? FACES[s.bohBase || 'm'].happy : pct2 >= 50 ? FACES[s.bohBase || 'm'].wink : FACES[s.bohBase || 'm'].boh);
+      result.summaryFaceCls = (function () { var H = ['cheer-fist', 'jump-joy', 'clap', 'hands-heart', 'high-five', 'fists-yay'], M = ['thumbs-up-wink', 'point-you'], L = ['fist-forza', 'beckon'], k = (s.totalSoFar || 0) + (s.correctSoFar || 0), list = pct2 >= 80 ? H : pct2 >= 50 ? M : L; return 'ps ps-' + list[k % list.length]; })();
       result.correctTotalText = s.correctSoFar + ' out of ' + s.totalSoFar + ' correct';
       result.bestStreakText = 'Best streak: ' + s.bestStreak + ' di fila';
       result.sessionEarnedText = s.sessionEarned > 0
@@ -12084,9 +12107,9 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610031222" defer></script>
-<script src="../assets/gloss-dict.js?v=202610031222" defer></script>
-<script src="../assets/gloss.js?v=202610031222" defer></script>
+<script src="../assets/flashcards.js?v=202610040221" defer></script>
+<script src="../assets/gloss-dict.js?v=202610040221" defer></script>
+<script src="../assets/gloss.js?v=202610040221" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
@@ -12127,12 +12150,12 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
   return !!(c && /vuol dire|mean\?/i.test(c.textContent) && !c.querySelector('.ls-ok'));
 };
 </script>
-<script src="../assets/snake.js?v=202610031222" defer></script>
-<script src="../assets/bohvoice.js?v=202610031222" defer></script>
-<script src="../assets/bohhome.js?v=202610031222" defer></script>
-<script src="../assets/wipe.js?v=202610031222"></script>
-<script src="../assets/scorecard.js?v=202610031222"></script>
-<script src="../assets/bohsave.js?v=202610031222" defer></script>
+<script src="../assets/snake.js?v=202610040221" defer></script>
+<script src="../assets/bohvoice.js?v=202610040221" defer></script>
+<script src="../assets/bohhome.js?v=202610040221" defer></script>
+<script src="../assets/wipe.js?v=202610040221"></script>
+<script src="../assets/scorecard.js?v=202610040221"></script>
+<script src="../assets/bohsave.js?v=202610040221" defer></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
 var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
