@@ -1,0 +1,2799 @@
+{
+ "when": "2026-10-05 00:32",
+ "levels": {
+  "italiano1": {
+   "static": {
+    "bytes": 3512651,
+    "methods": {
+     "lsFresh": "6ca53917e1",
+     "lsCheck": "1e7703eef9",
+     "lsPickMc": "5e04f4fee2",
+     "lsNext": "dea56a7f4d",
+     "lsSayIt": "1109550d1e",
+     "lsRight": "c537539a07",
+     "lsWrong": "32aeaf4b1c",
+     "lsPay": "e61643b215",
+     "lsNoSnd": "fcfb19a863",
+     "lsReadIt": "329ec41b6b",
+     "lsTellProf": "800b7872e8",
+     "lsSkipListen": "b0585e43b1",
+     "lsVoicesH": "a87569afbc"
+    },
+    "css": {
+     ".ls-rec{": "25ebd4ee50",
+     ".ls-say{": "01afb13bd7",
+     ".ls-nosnd{": "a6679c73be",
+     ".ls-help{": "b6372b6ddf",
+     ".ls-hb{": "62251fa817",
+     ".ls-readit{": "bbadd328a7"
+    },
+    "assets": {
+     "flashcards.js": "?v=202610042210",
+     "gloss-dict.js": "?v=202610042210",
+     "gloss.js": "?v=202610042210",
+     "snake.js": "?v=202610042210",
+     "bohvoice.js": "?v=202610042210",
+     "bohhome.js": "?v=202610042210",
+     "wipe.js": "?v=202610042210",
+     "scorecard.js": "?v=202610042210",
+     "bohsave.js": "?v=202610042210"
+    },
+    "has_vocaroo_text": false,
+    "has_listen_flag": true,
+    "has_listen_v2": true,
+    "has_u1_hidden_unit": true,
+    "has_break": false,
+    "has_recorder": false,
+    "tokens": {}
+   },
+   "runtime": {
+    "chromebook": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "laptop": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "phone": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    }
+   },
+   "looks": {
+    "chromebook": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 1",
+     "h1": "ITALIANO 1 \u00b7 RIPASSO",
+     "buttons": 22,
+     "bodyText": 888
+    },
+    "laptop": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 1",
+     "h1": "ITALIANO 1 \u00b7 RIPASSO",
+     "buttons": 22,
+     "bodyText": 888
+    },
+    "phone": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 1",
+     "h1": "ITALIANO 1 \u00b7 RIPASSO",
+     "buttons": 22,
+     "bodyText": 842
+    }
+   },
+   "inventory": {
+    "unitOrder": [
+     "it1"
+    ],
+    "unitSoon": [],
+    "units": {
+     "it1": {
+      "tab": "Essere o avere",
+      "tabSub": "RIPASSO",
+      "title": "ESSERE O AVERE",
+      "eyebrow": "ITALIANO 1 \u00b7 RIPASSO",
+      "modes": [
+       "pron",
+       "pronfill",
+       "sort",
+       "conj",
+       "ea",
+       "vocab",
+       "agg",
+       "frasi",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 181,
+      "qTypes": {
+       "mc": 62,
+       "selfcheck": 61,
+       "binary": 58
+      },
+      "decks": 4,
+      "inOrder": true
+     },
+     "u1": {
+      "tab": "Unit 1",
+      "tabSub": "CIAO!",
+      "title": "How do I greet people and be polite?",
+      "eyebrow": "ITALIANO 1 \u00b7 UNIT 1",
+      "modes": [
+       "greet",
+       "mistakes"
+      ],
+      "questions": 8,
+      "qTypes": {
+       "mc": 8
+      },
+      "decks": 1,
+      "inOrder": false
+     }
+    },
+    "lessons": {
+     "u2": {
+      "title": "Unit\u00e0 2 \u00b7 Vocabolario",
+      "minutes": 50,
+      "tips": "vocab",
+      "stops": [
+       {
+        "key": "sport",
+        "label": "Sport e passatempi",
+        "min": 12,
+        "type": "",
+        "items": 14,
+        "kinds": {
+         "impara": 1,
+         "mc": 9,
+         "tiles": 2,
+         "type": 2
+        },
+        "say": 2,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "tempo",
+        "label": "Il tempo",
+        "min": 12,
+        "type": "",
+        "items": 14,
+        "kinds": {
+         "impara": 1,
+         "mc": 9,
+         "tiles": 2,
+         "type": 2
+        },
+        "say": 2,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "date",
+        "label": "Date e stagioni",
+        "min": 12,
+        "type": "",
+        "items": 14,
+        "kinds": {
+         "impara": 1,
+         "mc": 8,
+         "tiles": 3,
+         "type": 2
+        },
+        "say": 2,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "insieme",
+        "label": "Tutto insieme",
+        "min": 12,
+        "type": "",
+        "items": 13,
+        "kinds": {
+         "text": 1,
+         "mc": 6,
+         "tiles": 2,
+         "type": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Rispondi e parla",
+        "min": 12,
+        "type": "",
+        "items": 7,
+        "kinds": {
+         "mc": 6,
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": false
+     },
+     "u3": {
+      "title": "Unit\u00e0 2 \u00b7 -are e voglio, devo, posso",
+      "minutes": 60,
+      "tips": "are",
+      "stops": [
+       {
+        "key": "are",
+        "label": "Impara \u00b7 -are: io e tu",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 Io e tu",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "text": 1,
+         "type": 6,
+         "tiles": 3,
+         "chat": 2
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "vdp",
+        "label": "Impara \u00b7 Voglio, devo, posso",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "correggi",
+        "label": "Scrivi e correggi",
+        "min": 12,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "text": 1,
+         "type": 6,
+         "fix": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "invita",
+        "label": "Invita!",
+        "min": 12,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "text": 1,
+         "mc": 2,
+         "impara": 1,
+         "chat": 3,
+         "tiles": 3,
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": false
+     },
+     "u1": {
+      "title": "Unit 1 \u00b7 Ciao!",
+      "minutes": 7,
+      "tips": "vocab",
+      "stops": [
+       {
+        "key": "ciao",
+        "label": "Say hello and goodbye",
+        "min": 7,
+        "type": "",
+        "items": 15,
+        "kinds": {
+         "impara": 2,
+         "mc": 10,
+         "tiles": 2,
+         "parla": 1
+        },
+        "say": 3,
+        "listen": 3,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     }
+    },
+    "globals": {
+     "BohVoice": "object",
+     "BohRecorder": "undefined",
+     "BohRoutine": "undefined",
+     "BohCards": "object",
+     "BohScoreCard": "undefined"
+    },
+    "routineUnits": []
+   }
+  },
+  "italiano2": {
+   "static": {
+    "bytes": 3597785,
+    "methods": {
+     "lsFresh": "6ca53917e1",
+     "lsCheck": "1e7703eef9",
+     "lsPickMc": "5e04f4fee2",
+     "lsNext": "dea56a7f4d",
+     "lsSayIt": "1109550d1e",
+     "lsRight": "c537539a07",
+     "lsWrong": "32aeaf4b1c",
+     "lsPay": "e61643b215",
+     "lsNoSnd": "fcfb19a863",
+     "lsReadIt": "329ec41b6b",
+     "lsTellProf": "800b7872e8",
+     "lsSkipListen": "b0585e43b1",
+     "lsVoicesH": "a87569afbc"
+    },
+    "css": {
+     ".ls-rec{": "25ebd4ee50",
+     ".ls-say{": "01afb13bd7",
+     ".ls-nosnd{": "a6679c73be",
+     ".ls-help{": "b6372b6ddf",
+     ".ls-hb{": "62251fa817",
+     ".ls-readit{": "bbadd328a7"
+    },
+    "assets": {
+     "flashcards.js": "?v=202610042210",
+     "gloss-dict.js": "?v=202610042210",
+     "gloss.js": "?v=202610042210",
+     "snake.js": "?v=202610042210",
+     "bohvoice.js": "?v=202610042210",
+     "bohhome.js": "?v=202610042210",
+     "wipe.js": "?v=202610042210",
+     "scorecard.js": "?v=202610042210",
+     "bohsave.js": "?v=202610042210",
+     "today.js": "?v=202610042210"
+    },
+    "has_vocaroo_text": false,
+    "has_listen_flag": true,
+    "has_listen_v2": true,
+    "has_u1_hidden_unit": false,
+    "has_break": false,
+    "has_recorder": false,
+    "tokens": {}
+   },
+   "runtime": {
+    "chromebook": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "laptop": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "phone": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    }
+   },
+   "looks": {
+    "chromebook": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 2",
+     "h1": "ITALIANO 2 \u00b7 PAGE 3",
+     "buttons": 27,
+     "bodyText": 1213
+    },
+    "laptop": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 2",
+     "h1": "ITALIANO 2 \u00b7 PAGE 3",
+     "buttons": 27,
+     "bodyText": 1213
+    },
+    "phone": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 2",
+     "h1": "ITALIANO 2 \u00b7 PAGE 3",
+     "buttons": 27,
+     "bodyText": 1175
+    }
+   },
+   "inventory": {
+    "unitOrder": [
+     "ea",
+     "u2",
+     "u3"
+    ],
+    "unitSoon": [
+     "Unit\u00e0 1 \u00b7 le feste e la famiglia"
+    ],
+    "units": {
+     "ea": {
+      "tab": "Page 1",
+      "tabSub": "EARLIER LESSONS",
+      "title": "Who am I, and what do I have?",
+      "eyebrow": "ITALIANO 2 \u00b7 PAGE 1",
+      "modes": [
+       "pron",
+       "sort",
+       "conj",
+       "ea",
+       "vocab",
+       "frasi",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 142,
+      "qTypes": {
+       "mc": 40,
+       "binary": 62,
+       "selfcheck": 40
+      },
+      "decks": 4,
+      "inOrder": true
+     },
+     "u2": {
+      "tab": "Page 2",
+      "tabSub": "FREE TIME",
+      "title": "What do I do in my free time?",
+      "eyebrow": "ITALIANO 2 \u00b7 PAGE 2",
+      "modes": [
+       "v1",
+       "v2",
+       "v3",
+       "scrivi",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 138,
+      "qTypes": {
+       "mc": 76,
+       "selfcheck": 62
+      },
+      "decks": 6,
+      "inOrder": true
+     },
+     "u3": {
+      "tab": "Page 3",
+      "tabSub": "CAN, WANT, MUST",
+      "title": "What can I do, want to do, and have to do?",
+      "eyebrow": "ITALIANO 2 \u00b7 PAGE 3",
+      "modes": [
+       "are",
+       "vdp",
+       "inf",
+       "inv",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 87,
+      "qTypes": {
+       "mc": 45,
+       "selfcheck": 42
+      },
+      "decks": 3,
+      "inOrder": true
+     }
+    },
+    "lessons": {
+     "u2": {
+      "title": "Page 2 \u00b7 Il tempo libero",
+      "minutes": 50,
+      "tips": "vocab",
+      "stops": [
+       {
+        "key": "sport",
+        "label": "Sport e passatempi",
+        "min": 12,
+        "type": "",
+        "items": 14,
+        "kinds": {
+         "impara": 1,
+         "mc": 9,
+         "tiles": 2,
+         "type": 2
+        },
+        "say": 2,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "tempo",
+        "label": "Il tempo",
+        "min": 12,
+        "type": "",
+        "items": 14,
+        "kinds": {
+         "impara": 1,
+         "mc": 9,
+         "tiles": 2,
+         "type": 2
+        },
+        "say": 2,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "date",
+        "label": "Date e stagioni",
+        "min": 12,
+        "type": "",
+        "items": 14,
+        "kinds": {
+         "impara": 1,
+         "mc": 8,
+         "tiles": 3,
+         "type": 2
+        },
+        "say": 2,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "insieme",
+        "label": "Tutto insieme",
+        "min": 12,
+        "type": "",
+        "items": 13,
+        "kinds": {
+         "text": 1,
+         "mc": 6,
+         "tiles": 2,
+         "type": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Rispondi e parla",
+        "min": 12,
+        "type": "",
+        "items": 7,
+        "kinds": {
+         "mc": 6,
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "u3": {
+      "title": "Page 3 \u00b7 Posso, voglio, devo",
+      "minutes": 60,
+      "tips": "are",
+      "stops": [
+       {
+        "key": "are",
+        "label": "Learn \u00b7 What I do",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Write \u00b7 Me and you",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "text": 1,
+         "type": 6,
+         "tiles": 3,
+         "chat": 2
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "vdp",
+        "label": "Learn \u00b7 Want, must, can",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "correggi",
+        "label": "Write and fix",
+        "min": 12,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "text": 1,
+         "type": 6,
+         "fix": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "invita",
+        "label": "Invita!",
+        "min": 12,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "text": 1,
+         "mc": 2,
+         "impara": 1,
+         "chat": 3,
+         "tiles": 3,
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     }
+    },
+    "globals": {
+     "BohVoice": "object",
+     "BohRecorder": "undefined",
+     "BohRoutine": "undefined",
+     "BohCards": "object",
+     "BohScoreCard": "undefined"
+    },
+    "routineUnits": []
+   }
+  },
+  "italiano3": {
+   "static": {
+    "bytes": 3623772,
+    "methods": {
+     "lsFresh": "6ca53917e1",
+     "lsCheck": "1e7703eef9",
+     "lsPickMc": "5e04f4fee2",
+     "lsNext": "dea56a7f4d",
+     "lsSayIt": "1109550d1e",
+     "lsRight": "c537539a07",
+     "lsWrong": "32aeaf4b1c",
+     "lsPay": "e61643b215",
+     "lsNoSnd": "fcfb19a863",
+     "lsReadIt": "329ec41b6b",
+     "lsTellProf": "800b7872e8",
+     "lsSkipListen": "b0585e43b1",
+     "lsVoicesH": "a87569afbc"
+    },
+    "css": {
+     ".ls-rec{": "25ebd4ee50",
+     ".ls-say{": "01afb13bd7",
+     ".ls-nosnd{": "a6679c73be",
+     ".ls-help{": "b6372b6ddf",
+     ".ls-hb{": "62251fa817",
+     ".ls-readit{": "bbadd328a7"
+    },
+    "assets": {
+     "flashcards.js": "?v=202610042210",
+     "recorder.js": "?v=202610042210",
+     "routine.js": "?v=202610042210",
+     "routine-qep.js": "?v=202610042210",
+     "gloss-dict.js": "?v=202610042210",
+     "gloss.js": "?v=202610042210",
+     "recordit.js": "?v=202610042210",
+     "snake.js": "?v=202610042210",
+     "bohvoice.js": "?v=202610042210",
+     "bohhome.js": "?v=202610042210",
+     "wipe.js": "?v=202610042210",
+     "scorecard.js": "?v=202610042210",
+     "bohsave.js": "?v=202610042210"
+    },
+    "has_vocaroo_text": false,
+    "has_listen_flag": true,
+    "has_listen_v2": true,
+    "has_u1_hidden_unit": false,
+    "has_break": true,
+    "has_recorder": true,
+    "tokens": {}
+   },
+   "runtime": {
+    "chromebook": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "laptop": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "phone": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    }
+   },
+   "looks": {
+    "chromebook": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 3",
+     "h1": "ITALIANO 3 \u00b7 ASCOLTA E PARLA",
+     "buttons": 55,
+     "bodyText": 3364
+    },
+    "laptop": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 3",
+     "h1": "ITALIANO 3 \u00b7 ASCOLTA E PARLA",
+     "buttons": 55,
+     "bodyText": 3364
+    },
+    "phone": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 3",
+     "h1": "ITALIANO 3 \u00b7 ASCOLTA E PARLA",
+     "buttons": 55,
+     "bodyText": 3245
+    }
+   },
+   "inventory": {
+    "unitOrder": [
+     "vdp",
+     "imp",
+     "pp",
+     "pi"
+    ],
+    "unitSoon": [
+     "Il futuro"
+    ],
+    "units": {
+     "vdp": {
+      "tab": "Volere \u00b7 Dovere \u00b7 Potere",
+      "tabSub": "RIPASSO",
+      "title": "VOLERE \u00b7 DOVERE \u00b7 POTERE",
+      "eyebrow": "ITALIANO 3 \u00b7 RIPASSO",
+      "modes": [
+       "pron",
+       "sort",
+       "conj",
+       "vdp",
+       "frasi",
+       "mixed",
+       "prova",
+       "mistakes",
+       "cart_pisa",
+       "cart_verona",
+       "cart_milano",
+       "cart_trevi",
+       "cart_roma",
+       "cart_firenze",
+       "cart_venezia",
+       "cart_pompei",
+       "cart_capri",
+       "cart_amalfi",
+       "cart_napoli",
+       "cart_sicilia",
+       "cartoline"
+      ],
+      "questions": 169,
+      "qTypes": {
+       "mc": 92,
+       "binary": 33,
+       "selfcheck": 44
+      },
+      "decks": 1,
+      "inOrder": true
+     },
+     "imp": {
+      "tab": "L\u2019imperfetto",
+      "tabSub": "UNIT\u00c0 2",
+      "title": "L\u2019IMPERFETTO \u00b7 DA PICCOLO/A",
+      "eyebrow": "ITALIANO 3 \u00b7 UNIT\u00c0 2",
+      "modes": [
+       "vocab",
+       "pron",
+       "sort",
+       "conj",
+       "vdp",
+       "salute",
+       "frasi",
+       "mixed",
+       "prova",
+       "dialetti",
+       "mistakes",
+       "cart_pisa",
+       "cart_verona",
+       "cart_milano",
+       "cart_trevi",
+       "cart_roma",
+       "cart_firenze",
+       "cart_venezia",
+       "cart_pompei",
+       "cart_capri",
+       "cart_amalfi",
+       "cart_napoli",
+       "cart_sicilia",
+       "cartoline"
+      ],
+      "questions": 287,
+      "qTypes": {
+       "mc": 227,
+       "selfcheck": 60
+      },
+      "decks": 3,
+      "inOrder": true
+     },
+     "pp": {
+      "tab": "Presente o passato prossimo?",
+      "tabSub": "UNIT\u00c0 3",
+      "title": "PRESENTE O PASSATO PROSSIMO?",
+      "eyebrow": "ITALIANO 3 \u00b7 UNIT\u00c0 3",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 162,
+      "qTypes": {
+       "mc": 97,
+       "selfcheck": 65
+      },
+      "decks": 1,
+      "inOrder": true
+     },
+     "pi": {
+      "tab": "Passato prossimo o imperfetto?",
+      "tabSub": "UNIT\u00c0 4",
+      "title": "PASSATO PROSSIMO O IMPERFETTO?",
+      "eyebrow": "ITALIANO 3 \u00b7 UNIT\u00c0 4",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 177,
+      "qTypes": {
+       "mc": 109,
+       "selfcheck": 68
+      },
+      "decks": 1,
+      "inOrder": true
+     }
+    },
+    "lessons": {
+     "pp": {
+      "title": "Unit\u00e0 3 \u00b7 Presente o passato prossimo?",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Presente o passato prossimo?",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "pi": {
+      "title": "Unit\u00e0 4 \u00b7 Passato prossimo o imperfetto?",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Passato prossimo o imperfetto?",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "imp": {
+      "title": "L'imperfetto",
+      "minutes": 36,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara",
+        "min": 8,
+        "type": "",
+        "items": 7,
+        "kinds": {
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "completa",
+        "label": "Completa",
+        "min": 6,
+        "type": "type",
+        "items": 8,
+        "kinds": {
+         "type": 8
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "costruisci",
+        "label": "Costruisci",
+        "min": 5,
+        "type": "tiles",
+        "items": 6,
+        "kinds": {
+         "tiles": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "trasforma",
+        "label": "Trasforma e correggi",
+        "min": 9,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 6,
+         "fix": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "rispondi",
+        "label": "Rispondi a Boh",
+        "min": 3,
+        "type": "chat",
+        "items": 3,
+        "kinds": {
+         "chat": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 5,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     }
+    },
+    "globals": {
+     "BohVoice": "object",
+     "BohRecorder": "object",
+     "BohRoutine": "object",
+     "BohCards": "object",
+     "BohScoreCard": "undefined"
+    },
+    "routineUnits": [
+     "qep"
+    ]
+   }
+  },
+  "italiano4": {
+   "static": {
+    "bytes": 4349899,
+    "methods": {
+     "lsFresh": "6ca53917e1",
+     "lsCheck": "1e7703eef9",
+     "lsPickMc": "5e04f4fee2",
+     "lsNext": "dea56a7f4d",
+     "lsSayIt": "1109550d1e",
+     "lsRight": "c537539a07",
+     "lsWrong": "32aeaf4b1c",
+     "lsPay": "e61643b215",
+     "lsNoSnd": "fcfb19a863",
+     "lsReadIt": "329ec41b6b",
+     "lsTellProf": "800b7872e8",
+     "lsSkipListen": "b0585e43b1",
+     "lsVoicesH": "a87569afbc"
+    },
+    "css": {
+     ".ls-rec{": "25ebd4ee50",
+     ".ls-say{": "01afb13bd7",
+     ".ls-nosnd{": "a6679c73be",
+     ".ls-help{": "b6372b6ddf",
+     ".ls-hb{": "62251fa817",
+     ".ls-readit{": "bbadd328a7"
+    },
+    "assets": {
+     "flashcards.js": "?v=202610042210",
+     "gloss-dict.js": "?v=202610042210",
+     "gloss.js": "?v=202610042210",
+     "recorder.js": "?v=202610042210",
+     "recordit.js": "?v=202610042210",
+     "snake.js": "?v=202610042210",
+     "bohvoice.js": "?v=202610042210",
+     "bohhome.js": "?v=202610042210",
+     "wipe.js": "?v=202610042210",
+     "scorecard.js": "?v=202610042210",
+     "bohsave.js": "?v=202610042210"
+    },
+    "has_vocaroo_text": false,
+    "has_listen_flag": true,
+    "has_listen_v2": true,
+    "has_u1_hidden_unit": false,
+    "has_break": true,
+    "has_recorder": true,
+    "tokens": {}
+   },
+   "runtime": {
+    "chromebook": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "laptop": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "phone": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    }
+   },
+   "looks": {
+    "chromebook": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 4",
+     "h1": "ITALIANO 4 \u00b7 UNIT\u00c0 1",
+     "buttons": 34,
+     "bodyText": 1680
+    },
+    "laptop": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 4",
+     "h1": "ITALIANO 4 \u00b7 UNIT\u00c0 1",
+     "buttons": 34,
+     "bodyText": 1680
+    },
+    "phone": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. Italiano 4",
+     "h1": "ITALIANO 4 \u00b7 UNIT\u00c0 1",
+     "buttons": 34,
+     "bodyText": 1426
+    }
+   },
+   "inventory": {
+    "unitOrder": [
+     "r3",
+     "r4",
+     "r6",
+     "r7",
+     "r8",
+     "r1",
+     "r2",
+     "r5"
+    ],
+    "unitSoon": [],
+    "units": {
+     "r3": {
+      "tab": "L\u2019imperfetto",
+      "tabSub": "UNIT\u00c0 1",
+      "title": "L\u2019IMPERFETTO",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 1",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 712,
+      "qTypes": {
+       "mc": 356,
+       "selfcheck": 356
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "r4": {
+      "tab": "Il passato prossimo",
+      "tabSub": "UNIT\u00c0 2",
+      "title": "IL PASSATO PROSSIMO",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 2",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 280,
+      "qTypes": {
+       "mc": 148,
+       "selfcheck": 132
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "r6": {
+      "tab": "Imperfetto o passato prossimo?",
+      "tabSub": "UNIT\u00c0 3",
+      "title": "IMPERFETTO O PASSATO PROSSIMO?",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 3",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 143,
+      "qTypes": {
+       "mc": 82,
+       "selfcheck": 61
+      },
+      "decks": 1,
+      "inOrder": true
+     },
+     "r7": {
+      "tab": "L\u2019imperativo: gli ordini",
+      "tabSub": "UNIT\u00c0 4",
+      "title": "L\u2019IMPERATIVO",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 4",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 215,
+      "qTypes": {
+       "mc": 115,
+       "selfcheck": 100
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "r8": {
+      "tab": "Il futuro",
+      "tabSub": "UNIT\u00c0 5",
+      "title": "IL FUTURO",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 5",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 293,
+      "qTypes": {
+       "mc": 153,
+       "selfcheck": 140
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "r1": {
+      "tab": "I verbi riflessivi",
+      "tabSub": "UNIT\u00c0 6",
+      "title": "I VERBI RIFLESSIVI",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 6",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 275,
+      "qTypes": {
+       "mc": 143,
+       "selfcheck": 132
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "r2": {
+      "tab": "I verbi reciproci",
+      "tabSub": "UNIT\u00c0 7",
+      "title": "I VERBI RECIPROCI",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 7",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 169,
+      "qTypes": {
+       "mc": 89,
+       "selfcheck": 80
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "r5": {
+      "tab": "Riflessivi e reciproci al passato",
+      "tabSub": "UNIT\u00c0 8",
+      "title": "RIFLESSIVI E RECIPROCI AL PASSATO",
+      "eyebrow": "ITALIANO 4 \u00b7 UNIT\u00c0 8",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mixed",
+       "prova",
+       "mistakes"
+      ],
+      "questions": 308,
+      "qTypes": {
+       "mc": 161,
+       "selfcheck": 147
+      },
+      "decks": 2,
+      "inOrder": true
+     }
+    },
+    "lessons": {
+     "r3": {
+      "title": "Unit\u00e0 1 \u00b7 L\u2019imperfetto",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 L\u2019imperfetto",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r4": {
+      "title": "Unit\u00e0 2 \u00b7 Il passato prossimo",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Il passato prossimo",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "type": 8,
+         "tiles": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r6": {
+      "title": "Unit\u00e0 3 \u00b7 Imperfetto o passato prossimo?",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Imperfetto o passato prossimo?",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 10,
+        "kinds": {
+         "type": 7,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r7": {
+      "title": "Unit\u00e0 4 \u00b7 L\u2019imperativo: gli ordini",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 L\u2019imperativo: gli ordini",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r8": {
+      "title": "Unit\u00e0 5 \u00b7 Il futuro",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Il futuro",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "type": 8,
+         "tiles": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r1": {
+      "title": "Unit\u00e0 6 \u00b7 I verbi riflessivi",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 I verbi riflessivi",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "type": 8,
+         "tiles": 4
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r2": {
+      "title": "Unit\u00e0 7 \u00b7 I verbi reciproci",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 I verbi reciproci",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 9,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 2
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 10,
+        "kinds": {
+         "type": 7,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "r5": {
+      "title": "Unit\u00e0 8 \u00b7 Riflessivi e reciproci al passato",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Riflessivi e reciproci al passato",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 10,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     }
+    },
+    "globals": {
+     "BohVoice": "object",
+     "BohRecorder": "object",
+     "BohRoutine": "undefined",
+     "BohCards": "object",
+     "BohScoreCard": "undefined"
+    },
+    "routineUnits": []
+   }
+  },
+  "ap": {
+   "static": {
+    "bytes": 5107972,
+    "methods": {
+     "lsFresh": "6ca53917e1",
+     "lsCheck": "1e7703eef9",
+     "lsPickMc": "5e04f4fee2",
+     "lsNext": "dea56a7f4d",
+     "lsSayIt": "1109550d1e",
+     "lsRight": "c537539a07",
+     "lsWrong": "32aeaf4b1c",
+     "lsPay": "e61643b215",
+     "lsNoSnd": "fcfb19a863",
+     "lsReadIt": "329ec41b6b",
+     "lsTellProf": "800b7872e8",
+     "lsSkipListen": "b0585e43b1",
+     "lsVoicesH": "a87569afbc"
+    },
+    "css": {
+     ".ls-rec{": "25ebd4ee50",
+     ".ls-say{": "01afb13bd7",
+     ".ls-nosnd{": "a6679c73be",
+     ".ls-help{": "b6372b6ddf",
+     ".ls-hb{": "62251fa817",
+     ".ls-readit{": "bbadd328a7"
+    },
+    "assets": {
+     "flashcards.js": "?v=202610042210",
+     "gloss-dict.js": "?v=202610042210",
+     "gloss.js": "?v=202610042210",
+     "recorder.js": "?v=202610042210",
+     "recordit.js": "?v=202610042210",
+     "snake.js": "?v=202610042210",
+     "bohvoice.js": "?v=202610042210",
+     "bohhome.js": "?v=202610042210",
+     "wipe.js": "?v=202610042210",
+     "scorecard.js": "?v=202610042210",
+     "bohsave.js": "?v=202610042210"
+    },
+    "has_vocaroo_text": false,
+    "has_listen_flag": true,
+    "has_listen_v2": true,
+    "has_u1_hidden_unit": false,
+    "has_break": true,
+    "has_recorder": true,
+    "tokens": {}
+   },
+   "runtime": {
+    "chromebook": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "laptop": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    },
+    "phone": {
+     "game": "object",
+     "errors": [],
+     "console": []
+    }
+   },
+   "looks": {
+    "chromebook": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. AP Italiano",
+     "h1": "AP ITALIANO \u00b7 UNIT\u00c0 1",
+     "buttons": 35,
+     "bodyText": 1854
+    },
+    "laptop": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. AP Italiano",
+     "h1": "AP ITALIANO \u00b7 UNIT\u00c0 1",
+     "buttons": 35,
+     "bodyText": 1854
+    },
+    "phone": {
+     "bodyBg": "rgb(250, 249, 245)",
+     "bodyFont": "Manrope, system-ui, sans-serif",
+     "bodyColor": "rgb(20, 20, 19)",
+     "headFont": "\"Bricolage Grotesque\", Manrope, system-ui, sans-serif",
+     "headColor": "rgb(26, 92, 223)",
+     "btnBg": "rgb(26, 92, 223)",
+     "btnRadius": "16px",
+     "btnFont": "\"Bricolage Grotesque\", system-ui, sans-serif",
+     "overflowX": 0,
+     "title": "Boh. AP Italiano",
+     "h1": "AP ITALIANO \u00b7 UNIT\u00c0 1",
+     "buttons": 35,
+     "bodyText": 1402
+    }
+   },
+   "inventory": {
+    "unitOrder": [
+     "f1",
+     "u2",
+     "u3",
+     "u4",
+     "u5",
+     "u6"
+    ],
+    "unitSoon": [],
+    "units": {
+     "f1": {
+      "tab": "Famiglie e comunit\u00e0",
+      "tabSub": "UNIT\u00c0 1",
+      "title": "FAMIGLIE E COMUNIT\u00c0",
+      "eyebrow": "AP ITALIANO \u00b7 UNIT\u00c0 1",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mq",
+       "pr",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 558,
+      "qTypes": {
+       "mc": 373,
+       "selfcheck": 185
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "u2": {
+      "tab": "Lingua e cultura",
+      "tabSub": "UNIT\u00c0 2",
+      "title": "LINGUA E CULTURA",
+      "eyebrow": "AP ITALIANO \u00b7 UNIT\u00c0 2",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mq",
+       "pr",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 517,
+      "qTypes": {
+       "mc": 336,
+       "selfcheck": 181
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "u3": {
+      "tab": "Arte e creativit\u00e0",
+      "tabSub": "UNIT\u00c0 3",
+      "title": "ARTE E CREATIVIT\u00c0",
+      "eyebrow": "AP ITALIANO \u00b7 UNIT\u00c0 3",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mq",
+       "pr",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 637,
+      "qTypes": {
+       "mc": 448,
+       "selfcheck": 189
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "u4": {
+      "tab": "Scienza e tecnologia",
+      "tabSub": "UNIT\u00c0 4",
+      "title": "SCIENZA E TECNOLOGIA",
+      "eyebrow": "AP ITALIANO \u00b7 UNIT\u00c0 4",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mq",
+       "pr",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 550,
+      "qTypes": {
+       "mc": 367,
+       "selfcheck": 183
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "u5": {
+      "tab": "Vita contemporanea",
+      "tabSub": "UNIT\u00c0 5",
+      "title": "VITA CONTEMPORANEA",
+      "eyebrow": "AP ITALIANO \u00b7 UNIT\u00c0 5",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mq",
+       "pr",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 572,
+      "qTypes": {
+       "mc": 408,
+       "selfcheck": 164
+      },
+      "decks": 2,
+      "inOrder": true
+     },
+     "u6": {
+      "tab": "Contesti globali",
+      "tabSub": "UNIT\u00c0 6",
+      "title": "CONTESTI GLOBALI",
+      "eyebrow": "AP ITALIANO \u00b7 UNIT\u00c0 6",
+      "modes": [
+       "f",
+       "w",
+       "v",
+       "fr",
+       "q",
+       "l",
+       "sh",
+       "dx",
+       "mq",
+       "pr",
+       "mixed",
+       "prova",
+       "mistakes",
+       "tm"
+      ],
+      "questions": 457,
+      "qTypes": {
+       "mc": 342,
+       "selfcheck": 115
+      },
+      "decks": 1,
+      "inOrder": true
+     }
+    },
+    "lessons": {
+     "f1": {
+      "title": "Unit\u00e0 1 \u00b7 Famiglie e comunit\u00e0",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Famiglie e comunit\u00e0",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "u2": {
+      "title": "Unit\u00e0 2 \u00b7 Lingua e cultura",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Lingua e cultura",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "u3": {
+      "title": "Unit\u00e0 3 \u00b7 Arte e creativit\u00e0",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Arte e creativit\u00e0",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "u4": {
+      "title": "Unit\u00e0 4 \u00b7 Scienza e tecnologia",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Scienza e tecnologia",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "u5": {
+      "title": "Unit\u00e0 5 \u00b7 Vita contemporanea",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Vita contemporanea",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     },
+     "u6": {
+      "title": "Unit\u00e0 6 \u00b7 Contesti globali",
+      "minutes": 48,
+      "tips": null,
+      "stops": [
+       {
+        "key": "parole",
+        "label": "Parole \u00b7 vocabolario",
+        "min": 12,
+        "type": "",
+        "items": 12,
+        "kinds": {
+         "impara": 1,
+         "mc": 6,
+         "type": 5
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "impara",
+        "label": "Impara \u00b7 Contesti globali",
+        "min": 12,
+        "type": "",
+        "items": 8,
+        "kinds": {
+         "text": 1,
+         "impara": 1,
+         "mc": 6
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "scrivi",
+        "label": "Scrivi \u00b7 forme e frasi",
+        "min": 14,
+        "type": "",
+        "items": 11,
+        "kinds": {
+         "type": 8,
+         "tiles": 3
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 0
+       },
+       {
+        "key": "parla",
+        "label": "Parla",
+        "min": 10,
+        "type": "",
+        "items": 1,
+        "kinds": {
+         "parla": 1
+        },
+        "say": 0,
+        "listen": 0,
+        "parla": 1
+       }
+      ],
+      "reachable": true
+     }
+    },
+    "globals": {
+     "BohVoice": "object",
+     "BohRecorder": "object",
+     "BohRoutine": "undefined",
+     "BohCards": "object",
+     "BohScoreCard": "undefined"
+    },
+    "routineUnits": []
+   }
+  }
+ }
+}

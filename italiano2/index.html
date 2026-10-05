@@ -35,7 +35,7 @@ function dup(){var h=document.querySelector('.home-hero'),t=document.querySelect
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
 </head><body>
-<a class="boh-home" href="../" aria-label="Back to all levels">&larr; Livelli</a>
+<a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
 .bb-head span{display:block;font-size:13px;font-weight:700;color:var(--text-muted);margin-top:2px}
@@ -660,10 +660,10 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 .ls-en{font-size:12.5px;color:var(--text-muted)}
 .ls-say{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:4px 0 10px;padding:12px 18px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px}
 .ls-nosnd{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:0 0 10px;padding:8px 4px;color:var(--text-muted,#555);font-size:14px;text-decoration:underline}
-.ls-readit{display:flex;gap:10px;align-items:baseline;margin:0 0 10px;padding:10px 14px;border-radius:12px;background:var(--surface-2,#f3efe6);font-weight:700}
+.ls-readit{display:flex;gap:10px;align-items:baseline;margin:0 0 10px;padding:10px 14px;border-radius:12px;background:var(--option-default-bg);font-weight:700}
 .ls-help{display:flex;flex-direction:column;gap:6px;margin:0 0 12px;padding:12px;border-radius:14px;border:2px solid var(--primary-bg)}
 .ls-help-t{font-weight:800}.ls-help-m{font-size:14px}
-.ls-hb{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border-radius:10px;background:var(--surface-2,#f3efe6);font-weight:600}
+.ls-hb{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border-radius:10px;background:var(--option-default-bg);font-weight:600}
 .ls-hb:focus-visible,.ls-nosnd:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-say:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-chart{display:grid;grid-template-columns:minmax(64px,.8fr) repeat(4,minmax(0,1fr));border:1px solid var(--card-border);border-radius:12px;overflow:hidden;font-size:15px}
@@ -733,6 +733,8 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 .ls-check i{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--primary-bg);display:flex;align-items:center;justify-content:center}
 .ls-check.on i{background:var(--primary-bg)}
 .ls-check.on i::after{content:'';width:10px;height:5px;border-left:3px solid var(--primary-text);border-bottom:3px solid var(--primary-text);transform:rotate(-45deg) translate(1px,-1px)}
+.ls-rec{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:6px 0 2px;padding:12px 20px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;min-height:44px}
+.ls-rec:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-hint2{font-size:13px;font-weight:700;color:var(--text-faint-2)}
 .ls-msg{padding:10px 14px;border-radius:12px;background:var(--option-default-bg);font-weight:800;font-size:15px}
 .ls-ok{padding:12px 16px;border-radius:14px;background:var(--success-bg);color:var(--success-text);border:2px solid var(--success-border);font-weight:800;font-size:16px}
@@ -1796,6 +1798,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
               <sc-if value="{{lsParla}}" hint-placeholder-val="{{false}}">
                 <div class="ls-qs"><sc-for list="{{lsPrompts}}" as="q" hint-placeholder-count="3"><div class="ls-q"><b>{{q.q}}</b><span>{{q.s}}</span></div></sc-for></div>
                 <div class="ls-checks"><sc-for list="{{lsChecks}}" as="c" hint-placeholder-count="3"><button class="{{c.cls}}" role="checkbox" aria-checked="{{c.on}}" onClick="{{c.tog}}"><i aria-hidden="true"></i><span>{{c.t}}</span></button></sc-for></div>
+                <sc-if value="{{lsRecOn}}" hint-placeholder-val="{{false}}"><button class="ls-rec" onClick="{{lsRecH}}">{{lsRecLbl}}</button></sc-if>
                 <div class="ls-hint2">{{lsParlaHint}}</div>
               </sc-if>
 
@@ -10993,8 +10996,10 @@ class Component extends DCLogic {
   lsTellProf() {
     var s = this.state, x = this.lsItem(), o = this.lsCopy().o, D = x.D, st = D && D.stops[s.lsCur];
     var note = 'Boh sound problem: I could not hear the audio in "' + ((st && st.label) || 'a lesson') + '" (question ' + (s.lsI + 1) + '). I am skipping it for now. - ' + ((s.profile && s.profile.name) || (s.name) || 'a student');
-    try { navigator.clipboard.writeText(note); o.told = 'copied'; } catch (e) { o.told = 'manual'; }
-    o.note2 = note; this.sfx('good'); this.setState({ lsIt: o });
+    /* boh-listen-v2: only say "Copied" when the copy really worked; otherwise show the note to copy by hand */
+    var self = this; o.note2 = note; o.told = 'manual'; this.sfx('good'); this.setState({ lsIt: o });
+    var done = function (ok) { var o2 = self.lsCopy().o; o2.told = ok ? 'copied' : 'manual'; o2.note2 = note; self.setState({ lsIt: o2 }); };
+    try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(note).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
   }
   lsSkipListen() { var L = this.lsCopy().L; L.skipped = (L.skipped || 0) + 1; this.setState({ lesson: L }); this.lsNext(); }
   lsRetry() { var o = this.lsCopy().o; o.st = 'ask'; o.msg = ''; this.sfx('tap'); this.setState({ lsIt: o }); }
@@ -11346,6 +11351,15 @@ class Component extends DCLogic {
       result.lsCanNext = o.checks.every(function (x) { return x; });
       result.lsNextLabel = 'Fatto! Avanti';
       result.lsParlaHint = result.lsCanNext ? '' : 'Tick all three when you and your partner are done.';
+      /* boh-recordit-v1: the Record it box shows only in levels that load assets/recordit.js (Levels 3, 4, AP) */
+      result.lsRecOn = typeof BohRecordIt !== 'undefined';
+      if (result.lsRecOn) {
+        var rk = 'rec_' + BT_UNIT + '_' + ((D.stops[k] || {}).key || k), rd = BohRecordIt.done(rk), allTicked = result.lsCanNext;
+        result.lsRecLbl = rd ? 'Recording saved. Open it again' : 'Record it';
+        result.lsRecH = function () { self.sfx('tap'); BohRecordIt.open({ key: rk, label: 'Parla', prompts: it.prompts.map(function (p) { return p[0]; }), unit: D.title, stop: (D.stops[k] || {}).label, name: s.bohName, onClose: function () { self.setState({}); } }); };
+        result.lsCanNext = allTicked && rd;
+        result.lsParlaHint = !allTicked ? 'Tick all three when you and your partner are done.' : (rd ? '' : 'Last step: tap Record it.');
+      }
     }
     result.lsCheckDis = false;
 
@@ -11422,7 +11436,7 @@ class Component extends DCLogic {
       pvHasNext: !!pvNextU, pvNextText: pvNextU ? 'Next: ' + (BT_UNITS[pvNextU].tab || pvNextU) : '',
       pvNotYetHandler: function () { self.sfx('tap'); self.setState({ pvAsk: false }); },
       pvYesHandler: function () { var go = s.pvGo; self.setState({ pvAsk: false, pvGo: null });
-        if (go === 'next' && pvNextU) self.btSwitchUnit(pvNextU); else if (go === 'quit') setTimeout(function () { location.href = '../'; }, 150); else self.backHome(); },
+        if (go === 'next' && pvNextU) self.btSwitchUnit(pvNextU); else if (go === 'quit') setTimeout(function () { location.href = '../?levels=1'; }, 150); else self.backHome(); },
       showHomeIcon: s.screen !== 'home',
       canGoBack: false,
       bohName: s.bohName || 'Boh',
@@ -12116,7 +12130,7 @@ class Component extends DCLogic {
         result.nextLocked = !result.hasNextMode && !result.hasBackRound && !!nxAny && md !== 'mistakes' && !passedNow;
         result.nextLockedText = nxAny ? 'Next: ' + MODES[nxAny].label + ' \u00b7 get 85%' : '';
         result.playAgainCls = 'rbb' + (result.hasNextMode || result.hasBackRound ? '' : ' primary');
-        result.saveQuitHandler = function () { self.sfx('tap'); self.setState({ screen: 'home' }); setTimeout(function () { location.href = '../'; }, 150); };
+        result.saveQuitHandler = function () { self.sfx('tap'); self.setState({ screen: 'home' }); setTimeout(function () { location.href = '../?levels=1'; }, 150); };
         result.nextModeText = nx ? 'Next: ' + MODES[nx].label : '';
         result.nextModeHandler = function () { self.sfx('tap'); self.startMode(nx); };
         var rec = ((s.stuck || {})[BT_UNIT + ':' + md]) || null, n = rec && !passedNow && s.failReason ? rec.n : 0;

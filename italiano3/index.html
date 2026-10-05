@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <style>/* boh-sa-v1 */html{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}</style>
 </head><body>
-<a class="boh-home" href="../" aria-label="Back to all levels">&larr; Livelli</a>
+<a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
 .bb-head span{display:block;font-size:13px;font-weight:700;color:var(--text-muted);margin-top:2px}
@@ -633,10 +633,10 @@
 .ls-en{font-size:12.5px;color:var(--text-muted)}
 .ls-say{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:4px 0 10px;padding:12px 18px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px}
 .ls-nosnd{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:0 0 10px;padding:8px 4px;color:var(--text-muted,#555);font-size:14px;text-decoration:underline}
-.ls-readit{display:flex;gap:10px;align-items:baseline;margin:0 0 10px;padding:10px 14px;border-radius:12px;background:var(--surface-2,#f3efe6);font-weight:700}
+.ls-readit{display:flex;gap:10px;align-items:baseline;margin:0 0 10px;padding:10px 14px;border-radius:12px;background:var(--option-default-bg);font-weight:700}
 .ls-help{display:flex;flex-direction:column;gap:6px;margin:0 0 12px;padding:12px;border-radius:14px;border:2px solid var(--primary-bg)}
 .ls-help-t{font-weight:800}.ls-help-m{font-size:14px}
-.ls-hb{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border-radius:10px;background:var(--surface-2,#f3efe6);font-weight:600}
+.ls-hb{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border-radius:10px;background:var(--option-default-bg);font-weight:600}
 .ls-hb:focus-visible,.ls-nosnd:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-say:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-chart{display:grid;grid-template-columns:minmax(64px,.8fr) repeat(4,minmax(0,1fr));border:1px solid var(--card-border);border-radius:12px;overflow:hidden;font-size:15px}
@@ -706,6 +706,8 @@
 .ls-check i{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--primary-bg);display:flex;align-items:center;justify-content:center}
 .ls-check.on i{background:var(--primary-bg)}
 .ls-check.on i::after{content:'';width:10px;height:5px;border-left:3px solid var(--primary-text);border-bottom:3px solid var(--primary-text);transform:rotate(-45deg) translate(1px,-1px)}
+.ls-rec{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin:6px 0 2px;padding:12px 20px;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:16px;min-height:44px}
+.ls-rec:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-hint2{font-size:13px;font-weight:700;color:var(--text-faint-2)}
 .ls-msg{padding:10px 14px;border-radius:12px;background:var(--option-default-bg);font-weight:800;font-size:15px}
 .ls-ok{padding:12px 16px;border-radius:14px;background:var(--success-bg);color:var(--success-text);border:2px solid var(--success-border);font-weight:800;font-size:16px}
@@ -1767,6 +1769,7 @@
               <sc-if value="{{lsParla}}" hint-placeholder-val="{{false}}">
                 <div class="ls-qs"><sc-for list="{{lsPrompts}}" as="q" hint-placeholder-count="3"><div class="ls-q"><b>{{q.q}}</b><span>{{q.s}}</span></div></sc-for></div>
                 <div class="ls-checks"><sc-for list="{{lsChecks}}" as="c" hint-placeholder-count="3"><button class="{{c.cls}}" role="checkbox" aria-checked="{{c.on}}" onClick="{{c.tog}}"><i aria-hidden="true"></i><span>{{c.t}}</span></button></sc-for></div>
+                <sc-if value="{{lsRecOn}}" hint-placeholder-val="{{false}}"><button class="ls-rec" onClick="{{lsRecH}}">{{lsRecLbl}}</button></sc-if>
                 <div class="ls-hint2">{{lsParlaHint}}</div>
               </sc-if>
 
@@ -3174,6 +3177,49 @@ function lsTxParts(line, words) {   // split a chat line into plain text + tappa
   return out;
 }
 Object.assign(LS_TIPS, {"pp3a": ["Oggi o ieri?", "Look at the time word first. oggi · adesso · ogni giorno · di solito → presente. ieri · ieri sera · due giorni fa · la settimana scorsa → passato prossimo."], "pp3b": ["Passato prossimo = helper + participle", "ho / hai / ha / abbiamo… + mangiato. -are → -ato, -ere → -uto, -ire → -ito. Irregular: fatto, visto, letto, scritto, preso, detto."], "pp3c": ["Essere o avere?", "Going and coming (andare, uscire, arrivare, tornare, partire) use ESSERE and agree: Marco è andato, Sara è andata. Almost everything else uses AVERE."], "pi3a": ["Film o foto?", "Imperfetto is the film: how things were, what you used to do. Passato prossimo is the photo: one thing that happened and finished."], "pi3b": ["Parole-spia", "sempre · di solito · spesso · ogni giorno · da piccolo/a · mentre → imperfetto. ieri · una volta · all’improvviso · l’anno scorso · a un certo punto → passato prossimo."], "pi3c": ["Mentre… poi BAM!", "Mentre dormivo (background), il telefono ha suonato (event). The long action is imperfetto, the interruption is passato prossimo."]});
+/* boh-break-v1: pausa mini-games (same code as AP) */
+var BREAK_EVERY = 12;
+function bohBreak(game, done) {
+  var old = document.getElementById('bohBreak'); if (old) old.remove();
+  var el = document.createElement('div'); el.id = 'bohBreak';
+  el.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(20,16,40,.94);display:flex;align-items:center;justify-content:center;padding:16px;font-family:inherit;color:#fff;';
+  var box = document.createElement('div');
+  box.style.cssText = 'width:100%;max-width:440px;background:#2a2150;border-radius:22px;padding:22px 20px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.5);';
+  el.appendChild(box); document.body.appendChild(el);
+  var finished = false;
+  function btn(label, bg) { var b = document.createElement('button'); b.textContent = label; b.style.cssText = 'border:0;border-radius:14px;padding:12px 18px;font-size:16px;font-weight:800;cursor:pointer;margin:6px;background:' + (bg || '#ffd54a') + ';color:#241a4a;'; return b; }
+  function close(won) { if (finished) return; finished = true; clearInterval(timer); el.remove(); done(won); }
+  var timer = null;
+  function head(t, s) { box.innerHTML = '<div style="font-size:12px;font-weight:800;letter-spacing:.14em;opacity:.7;">PAUSA!</div><div style="font-size:24px;font-weight:900;margin:6px 0;">' + t + '</div><div style="opacity:.8;margin-bottom:12px;">' + s + '</div>'; }
+  function skipBtn() { var s = btn('Salta →', '#ffffff22'); s.style.color = '#fff'; s.style.fontSize = '13px'; s.onclick = function () { close(false); }; box.appendChild(s); }
+  function win(msg) { clearInterval(timer); box.innerHTML = '<div style="font-size:54px;">🎉</div><div style="font-size:22px;font-weight:900;margin:8px 0;">' + msg + '</div><div style="opacity:.85;margin-bottom:10px;">+5 Boh Cashi</div>'; var b = btn('Torniamo a studiare'); b.onclick = function () { close(true); }; box.appendChild(b); }
+  if (game === 0) {
+    var emo = ['🍝', '🍕', '🧀', '🍨', '☕', '🛵'], hits = 0, left = 20;
+    head('Acchiappa il cibo!', 'Tap the food 8 times in 20 seconds.');
+    var info = document.createElement('div'); info.style.cssText = 'font-weight:800;margin-bottom:6px;'; box.appendChild(info);
+    var arena = document.createElement('div'); arena.style.cssText = 'position:relative;height:210px;background:#1b1540;border-radius:16px;overflow:hidden;touch-action:manipulation;'; box.appendChild(arena);
+    var f = document.createElement('button'); f.style.cssText = 'position:absolute;font-size:44px;background:none;border:0;cursor:pointer;line-height:1;'; arena.appendChild(f);
+    function move() { f.textContent = emo[Math.floor(Math.random() * emo.length)]; f.style.left = Math.floor(Math.random() * (arena.clientWidth - 60)) + 'px'; f.style.top = Math.floor(Math.random() * 150) + 'px'; }
+    function show() { info.textContent = hits + ' / 8 · ' + left + 's'; }
+    f.onclick = function () { hits++; show(); if (hits >= 8) { win('Che velocità!'); } else move(); };
+    setTimeout(move, 0); show();
+    timer = setInterval(function () { left--; show(); if (left <= 0) win('Tempo! Bravissimi lo stesso.'); }, 1000);
+    arena.addEventListener('click', function (e) { if (e.target === arena) { left = Math.max(1, left - 1); show(); } });
+    skipBtn();
+  } else {
+    var R = [['la farfalla', 1, 'butterfly (and bow-tie pasta!)'], ['il blipo', 0, 'invented'], ['la pantofola', 1, 'slipper'], ['lo zorgone', 0, 'invented'], ['il gattopardo', 1, 'a real wild cat, and a famous novel'], ['la scarpetta', 1, 'little shoe, or bread for mopping the sauce'], ['il gnocchiccio', 0, 'invented'], ['il cavolfiore', 1, 'cauliflower'], ['la brumbola', 0, 'invented'], ['il tartufo', 1, 'truffle (or a chocolate ice cream)']];
+    R.sort(function () { return Math.random() - .5; }); R = R.slice(0, 5); var i = 0, ok = 0;
+    (function round() {
+      if (i >= R.length) { win(ok + ' su 5! Parola vera o inventata?'); return; }
+      head('Vera o inventata?', 'Is this a real Italian word? (' + (i + 1) + ' / 5)');
+      var w = document.createElement('div'); w.style.cssText = 'font-size:30px;font-weight:900;margin:10px 0 14px;'; w.textContent = R[i][0]; box.appendChild(w);
+      var a = btn('✅ Vera', '#7be0a0'), b = btn('🤪 Inventata', '#ff9bb0'); box.appendChild(a); box.appendChild(b);
+      function pick(v) { if (v === R[i][1]) ok++; var m = document.createElement('div'); m.style.cssText = 'margin-top:10px;font-weight:700;'; m.textContent = (v === R[i][1] ? '✓ ' : '✗ ') + R[i][0] + ' = ' + R[i][2]; box.appendChild(m); a.disabled = b.disabled = true; setTimeout(function () { i++; round(); }, 1300); }
+      a.onclick = function () { pick(1); }; b.onclick = function () { pick(0); };
+      skipBtn();
+    })();
+  }
+}
 function lsTipKey(given, answer) {
   var g = lsNorm(given), a = lsNorm(answer);
   if (/^(ho|hai|ha|abbiamo|avete|hanno|sono|sei|è|e|siamo|siete) [a-zà-ù]+(at|ut|it|tt|st)[oaie]\b/.test(g) || /^(ha|è) (fatto|piovuto|nevicato|stato)/.test(g)) return 'pp';
@@ -12743,6 +12789,15 @@ class Component extends DCLogic {
 
   nextCard() {
     var nextIndex = this.state.qIndex + 1;
+    if (this.state.mode !== 'prova' && !this._inBreak) {
+      if (!this._skipInc) this._since = (this._since || 0) + 1;
+      this._skipInc = false;
+      if (this._since >= BREAK_EVERY) {
+        var self = this; this._inBreak = true; this._since = 0; this._skipInc = true;
+        bohBreak(Math.floor(Math.random() * 2), function (won) { self._inBreak = false; if (won) self.setState({ cashi: self.state.cashi + 5, lifetime: self.state.lifetime + 5, sessionEarned: self.state.sessionEarned + 5 }); self.nextCard(); });
+        return;
+      }
+    }
     if (nextIndex >= this.state.queue.length) {
       this.setState(this.finish({ screen: 'summary', lastEarn: 0 }));
     } else {
@@ -12952,8 +13007,10 @@ class Component extends DCLogic {
   lsTellProf() {
     var s = this.state, x = this.lsItem(), o = this.lsCopy().o, D = x.D, st = D && D.stops[s.lsCur];
     var note = 'Boh sound problem: I could not hear the audio in "' + ((st && st.label) || 'a lesson') + '" (question ' + (s.lsI + 1) + '). I am skipping it for now. - ' + ((s.profile && s.profile.name) || (s.name) || 'a student');
-    try { navigator.clipboard.writeText(note); o.told = 'copied'; } catch (e) { o.told = 'manual'; }
-    o.note2 = note; this.sfx('good'); this.setState({ lsIt: o });
+    /* boh-listen-v2: only say "Copied" when the copy really worked; otherwise show the note to copy by hand */
+    var self = this; o.note2 = note; o.told = 'manual'; this.sfx('good'); this.setState({ lsIt: o });
+    var done = function (ok) { var o2 = self.lsCopy().o; o2.told = ok ? 'copied' : 'manual'; o2.note2 = note; self.setState({ lsIt: o2 }); };
+    try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(note).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
   }
   lsSkipListen() { var L = this.lsCopy().L; L.skipped = (L.skipped || 0) + 1; this.setState({ lesson: L }); this.lsNext(); }
   lsRetry() { var o = this.lsCopy().o; o.st = 'ask'; o.msg = ''; this.sfx('tap'); this.setState({ lsIt: o }); }
@@ -13000,6 +13057,15 @@ class Component extends DCLogic {
   lsFree() { var o = this.lsCopy().o; if (!o.vDone || o.st === 'ok') return; o.free = true; o.msg = ''; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsCheckTog(k) { var o = this.lsCopy().o; o.checks[k] = !o.checks[k]; this.sfx('tap'); this.setState({ lsIt: o }); }
   lsNext() {
+    if (!this._inBreak) {
+      if (!this._skipInc) this._since = (this._since || 0) + 1;
+      this._skipInc = false;
+      if (this._since >= BREAK_EVERY) {
+        var self = this; this._inBreak = true; this._since = 0; this._skipInc = true;
+        bohBreak(Math.floor(Math.random() * 2), function (won) { self._inBreak = false; if (won) self.setState({ cashi: self.state.cashi + 5, lifetime: self.state.lifetime + 5, sessionEarned: self.state.sessionEarned + 5 }); self.lsNext(); });
+        return;
+      }
+    }
     var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], n = this.lsItems(s.lsCur).length;
     if (s.lsI + 1 < n) { this.sfx('tap'); this.setState({ lsI: s.lsI + 1, lsIt: this.lsFresh(s.lsCur, s.lsI + 1) }); this.lsSayIt(250); return; }
     var L = this.lsCopy().L, patch = {};
@@ -13305,6 +13371,15 @@ class Component extends DCLogic {
       result.lsCanNext = o.checks.every(function (x) { return x; });
       result.lsNextLabel = 'Fatto! Avanti';
       result.lsParlaHint = result.lsCanNext ? '' : 'Tick all three when you and your partner are done.';
+      /* boh-recordit-v1: the Record it box shows only in levels that load assets/recordit.js (Levels 3, 4, AP) */
+      result.lsRecOn = typeof BohRecordIt !== 'undefined';
+      if (result.lsRecOn) {
+        var rk = 'rec_' + BT_UNIT + '_' + ((D.stops[k] || {}).key || k), rd = BohRecordIt.done(rk), allTicked = result.lsCanNext;
+        result.lsRecLbl = rd ? 'Recording saved. Open it again' : 'Record it';
+        result.lsRecH = function () { self.sfx('tap'); BohRecordIt.open({ key: rk, label: 'Parla', prompts: it.prompts.map(function (p) { return p[0]; }), unit: D.title, stop: (D.stops[k] || {}).label, name: s.bohName, onClose: function () { self.setState({}); } }); };
+        result.lsCanNext = allTicked && rd;
+        result.lsParlaHint = !allTicked ? 'Tick all three when you and your partner are done.' : (rd ? '' : 'Last step: tap Record it.');
+      }
     }
     result.lsCheckDis = false;
 
@@ -13381,7 +13456,7 @@ class Component extends DCLogic {
       pvHasNext: !!pvNextU, pvNextText: pvNextU ? 'Next: ' + (BT_UNITS[pvNextU].tab || pvNextU) : '',
       pvNotYetHandler: function () { self.sfx('tap'); self.setState({ pvAsk: false }); },
       pvYesHandler: function () { var go = s.pvGo; self.setState({ pvAsk: false, pvGo: null });
-        if (go === 'next' && pvNextU) self.btSwitchUnit(pvNextU); else if (go === 'quit') setTimeout(function () { location.href = '../'; }, 150); else self.backHome(); },
+        if (go === 'next' && pvNextU) self.btSwitchUnit(pvNextU); else if (go === 'quit') setTimeout(function () { location.href = '../?levels=1'; }, 150); else self.backHome(); },
       showHomeIcon: s.screen !== 'home',
       canGoBack: false,
       bohName: s.bohName || 'Boh',
@@ -14090,7 +14165,7 @@ class Component extends DCLogic {
         result.nextLocked = !result.hasNextMode && !result.hasBackRound && !!nxAny && md !== 'mistakes' && !passedNow;
         result.nextLockedText = nxAny ? 'Next: ' + MODES[nxAny].label + ' \u00b7 get 85%' : '';
         result.playAgainCls = 'rbb' + (result.hasNextMode || result.hasBackRound ? '' : ' primary');
-        result.saveQuitHandler = function () { self.sfx('tap'); self.setState({ screen: 'home' }); setTimeout(function () { location.href = '../'; }, 150); };
+        result.saveQuitHandler = function () { self.sfx('tap'); self.setState({ screen: 'home' }); setTimeout(function () { location.href = '../?levels=1'; }, 150); };
         result.nextModeText = nx ? 'Next: ' + MODES[nx].label : '';
         result.nextModeHandler = function () { self.sfx('tap'); self.startMode(nx); };
         var rec = ((s.stuck || {})[BT_UNIT + ':' + md]) || null, n = rec && !passedNow && s.failReason ? rec.n : 0;
@@ -14241,6 +14316,7 @@ window.__bohQepHome = function (s, r, self) {
   window.__bohQep();
 }, 200); } catch (e) {} })();
 </script>
+<script src="../assets/recordit.js?v=202610042210"></script>
 <script src="../assets/snake.js?v=202610042210" defer></script>
 <script src="../assets/bohvoice.js?v=202610042210" defer></script>
 <script src="../assets/bohhome.js?v=202610042210" defer></script>

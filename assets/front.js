@@ -331,6 +331,7 @@
   window.addEventListener('pageshow', function (e) { if (e.persisted) { S.P = get(); S.last = getLast(); if (!S.P && (S.scr === 'hub' || S.scr === 'boh')) { S.scr = 'land'; } if (cur) redraw(); } });
   fit();
   S.last = getLast(); S.next = S.P ? null : getNext();
-  S.scr = 'land';
+  /* boh-levels-v1: coming back from a level (?levels=1) with a saved Boh always lands on the level choices, never the opening screen */
+  S.scr = (S.P && /[?&]levels=1(?:&|#|$)/.test(location.search)) ? (S.wide ? 'boh' : 'hub') : 'land';
   cur = mount(S.scr, null); bind(cur);
 })();
