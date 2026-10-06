@@ -1686,7 +1686,7 @@
 
     <sc-if value="{{isLesson}}" hint-placeholder-val="{{false}}">
       <div class="ls">
-        <div class="ls-top"><span class="ls-eye">{{lsEyebrow}}</span><div class="ls-bars" aria-hidden="true"><sc-for list="{{lsBars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div></div>
+        <div class="ls-top"><span class="ls-eye">{{lsEyebrow}}</span><div class="ls-bars" aria-hidden="true"><sc-for list="{{lsBars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div><sc-if value="{{lsTabAny}}" hint-placeholder-val="{{true}}"><button type="button" class="ls-btn2" style="flex:none;min-height:40px;padding:0 12px;font-size:13px;" onClick="{{lsOpenTabH}}">La Tabella</button></sc-if></div>
         <sc-if value="{{hasLsFiamma}}" hint-placeholder-val="{{false}}"><div class="bt-fiamma" role="status">{{lsFiamma}}</div></sc-if>
         <div class="ls-stage">
           <div class="ls-boh">
@@ -1733,8 +1733,8 @@
               </sc-if>
 
               <sc-if value="{{lsTiles}}" hint-placeholder-val="{{false}}">
-                <div class="ls-slot"><sc-if value="{{lsSlotEmpty}}" hint-placeholder-val="{{true}}"><span class="ls-ph">Tocca le parole qui sotto…</span></sc-if><sc-for list="{{lsPlaced}}" as="t" hint-placeholder-count="0"><button class="{{t.cls}}" onClick="{{t.tap}}" disabled="{{t.dis}}">{{t.t}}</button></sc-for></div>
-                <sc-if value="{{lsHasBank}}" hint-placeholder-val="{{true}}"><div class="ls-bank"><sc-for list="{{lsBank}}" as="t" hint-placeholder-count="6"><button class="{{t.cls}}" onClick="{{t.tap}}" disabled="{{t.dis}}">{{t.t}}</button></sc-for></div></sc-if>
+                <div class="ls-slot"><sc-if value="{{lsSlotEmpty}}" hint-placeholder-val="{{true}}"><span class="ls-ph">Tocca le parole qui sotto…</span></sc-if><sc-for list="{{lsPlaced}}" as="t" hint-placeholder-count="0"><button class="{{t.cls}}" onClick="{{t.tap}}" disabled="{{t.dis}}">{{t.t}}<sc-if value="{{t.hasEn}}" hint-placeholder-val="{{false}}"><span style="display:block;font-size:11px;font-weight:600;line-height:1.15;opacity:.85;">{{t.en}}</span></sc-if></button></sc-for></div>
+                <sc-if value="{{lsHasBank}}" hint-placeholder-val="{{true}}"><div class="ls-bank"><sc-for list="{{lsBank}}" as="t" hint-placeholder-count="6"><button class="{{t.cls}}" onClick="{{t.tap}}" disabled="{{t.dis}}">{{t.t}}<sc-if value="{{t.hasEn}}" hint-placeholder-val="{{false}}"><span style="display:block;font-size:11px;font-weight:600;line-height:1.15;opacity:.85;">{{t.en}}</span></sc-if></button></sc-for></div></sc-if>
               </sc-if>
 
               <sc-if value="{{lsFix}}" hint-placeholder-val="{{false}}">
@@ -1783,6 +1783,7 @@
               <sc-if value="{{lsNoLoss}}" hint-placeholder-val="{{false}}"><div class="ls-noloss">Nessun cuore perso. Getting it right on the next try still counts.</div></sc-if>
 
               <div class="ls-actions">
+                <sc-if value="{{lsCanHelp}}" hint-placeholder-val="{{false}}"><button class="ls-btn2" onClick="{{lsHelpH}}" aria-pressed="{{lsHelpOn}}">{{lsHelpLbl}}</button></sc-if>
                 <sc-if value="{{lsCanTab}}" hint-placeholder-val="{{false}}"><button class="ls-btn2" onClick="{{lsTabH}}">Apri la Tabella</button></sc-if>
                 <sc-if value="{{lsCanCheck}}" hint-placeholder-val="{{false}}"><button class="ls-btn" onClick="{{lsCheckH}}">Controlla</button></sc-if>
                 <sc-if value="{{lsCanRetry}}" hint-placeholder-val="{{false}}"><button class="ls-btn" onClick="{{lsRetryH}}">Riprova</button></sc-if>
@@ -2121,16 +2122,8 @@
     <sc-if value="{{isShop}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;">
         <div class="bc-tabs" role="group" aria-label="Boh-tique and Armadietto"><button type="button" class="bc-tab on" aria-pressed="true">Boh-tique</button><button type="button" class="bc-tab" aria-pressed="false" onClick="{{goLockerHandler}}">Armadietto</button></div>
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <div style="display:flex;align-items:flex-end;gap:12px;">
-            <div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
-            <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:6px;">
-              <h2 class="display" style="margin:0;font-size:30px;font-weight:800;line-height:1.05;">Scotto&rsquo;s <span style="white-space:nowrap">Boh-tique</span></h2>
-              <span style="font-size:14px;font-weight:700;color:var(--text-muted);">{{shopGreeting}}</span>
-            </div>
-          </div>
-          <p style="margin:0;font-size:14px;color:var(--text-muted);">Learn it. Earn it. Spend it. <b>Sfoggialo.</b> EPICO unlocks when you pass every level of a unit; ASSURDO at 90% on a Prova.</p>
-        </div>
+        <div class="bs"><div class="{{stripLCls}}"><sc-if value="{{stripLOn}}" hint-placeholder-val="{{false}}"><div class="bs-ic" style="{{stripLImg}}" role="img" aria-label="{{stripLName}}"></div><button type="button" class="bs-x" onClick="{{stripLOff}}" aria-label="Put away {{stripLName}}">&times;</button></sc-if></div><div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div><div class="{{stripRCls}}"><sc-if value="{{stripROn}}" hint-placeholder-val="{{false}}"><div class="bs-ic" style="{{stripRImg}}" role="img" aria-label="{{stripRName}}"></div><button type="button" class="bs-x" onClick="{{stripROff}}" aria-label="Put away {{stripRName}}">&times;</button></sc-if></div><div class="bs-info"><h2 class="display" style="margin:0;font-size:20px;font-weight:800;line-height:1.05;">Scotto&rsquo;s <span style="white-space:nowrap">Boh-tique</span></h2><span style="font-size:13px;font-weight:700;color:var(--text-muted);">{{shopGreeting}}</span></div></div>
+        <p style="margin:0;font-size:13px;color:var(--text-muted);">Learn it. Earn it. Spend it. <b>Sfoggialo.</b> EPICO unlocks when you pass every level of a unit; ASSURDO at 90% on a Prova.</p>
         <sc-if value="{{hasShopMsg}}" hint-placeholder-val="{{false}}">
           <div class="toast" style="font-size:14px;font-weight:800;padding:10px 14px;border-radius:12px;background:var(--success-bg);color:var(--success-text);">{{shopMsg}}</div>
         </sc-if>
@@ -2154,30 +2147,25 @@
     <sc-if value="{{isLocker}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;">
         <div class="bc-tabs" role="group" aria-label="Boh-tique and Armadietto"><button type="button" class="bc-tab" aria-pressed="false" onClick="{{goShopHandler}}">Boh-tique</button><button type="button" class="bc-tab on" aria-pressed="true">Armadietto</button></div>
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
-            <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div></sc-if>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;max-width:100%;">
-              <h2 class="display" style="margin:0;font-size:30px;font-weight:800;line-height:1.05;overflow-wrap:anywhere;">L&rsquo;armadietto di {{bohName}}</h2>
-              <p style="margin:0;font-size:14px;color:var(--text-muted);">{{lockerCount}}.</p>
-              <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}"><p style="margin:0;font-size:14px;font-weight:700;color:var(--text);">Tap <b>Wear</b> to dress {{bohName}}.</p></sc-if>
-              <sc-if value="{{isWearingAny}}" hint-placeholder-val="{{false}}"><button onClick="{{undressHandler}}" style="all:unset;cursor:pointer;font-size:13px;font-weight:800;color:var(--accent-strong);">Take everything off</button></sc-if>
-            </div>
-          </div>
-        </div>
-        <sc-if value="{{lockerEmpty}}" hint-placeholder-val="{{false}}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0 16px;text-align:center;"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div><p class="display" style="margin:0;font-size:26px;font-weight:800;">Niente ancora.</p></div></sc-if>
+        <div class="bs"><div class="{{stripLCls}}"><sc-if value="{{stripLOn}}" hint-placeholder-val="{{false}}"><div class="bs-ic" style="{{stripLImg}}" role="img" aria-label="{{stripLName}}"></div><button type="button" class="bs-x" onClick="{{stripLOff}}" aria-label="Put away {{stripLName}}">&times;</button></sc-if></div><div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div><div class="{{stripRCls}}"><sc-if value="{{stripROn}}" hint-placeholder-val="{{false}}"><div class="bs-ic" style="{{stripRImg}}" role="img" aria-label="{{stripRName}}"></div><button type="button" class="bs-x" onClick="{{stripROff}}" aria-label="Put away {{stripRName}}">&times;</button></sc-if></div><div class="bs-info"><h2 class="display" style="margin:0;font-size:26px;font-weight:800;line-height:1.05;overflow-wrap:anywhere;">{{bohName}}</h2><span style="font-size:13px;color:var(--text-muted);">{{lockerCount}}</span><sc-if value="{{lockHintOn}}" hint-placeholder-val="{{true}}"><span style="font-size:12.5px;font-weight:700;">{{lockHint}}</span></sc-if><sc-if value="{{isWearingAny}}" hint-placeholder-val="{{false}}"><button onClick="{{undressHandler}}" style="all:unset;cursor:pointer;font-size:12.5px;font-weight:800;color:var(--accent-strong);min-height:32px;">Take everything off</button></sc-if></div></div>
+        <div class="lk-tabs" role="tablist" aria-label="Armadietto sections"><sc-for list="{{lkTabs}}" as="kt" hint-placeholder-count="4"><button type="button" role="tab" class="lk-tab" aria-selected="{{kt.on}}" onClick="{{kt.pick}}">{{kt.label}}</button></sc-for></div>
+        <sc-if value="{{lkG}}" hint-placeholder-val="{{false}}">
         <section class="gp" aria-label="Il mio Giro d&rsquo;Italia">
-          <div class="gp-head" role="button" tabindex="0" aria-expanded="{{gpOpen}}" onClick="{{gpToggle}}" onKeyDown="{{gpKey}}" style="cursor:pointer;">
-            <img src="../assets/boutique/passaporto.webp" alt="" class="gp-book">
-            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;">
-              <span class="gp-eye">IL MIO GIRO D&rsquo;ITALIA</span>
-              <b class="display gp-count">{{tripCount}}/12 citt&agrave;</b>
-              <span class="gp-sub">{{tripSub}}</span>
+          <div class="gp-closed">
+            <img src="../assets/boutique/mappa_italia.webp" alt="" class="gp-th">
+            <div style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1;">
+              <b class="display" style="font-size:20px;line-height:1.1;">Giro d&rsquo;Italia</b>
+              <span style="font-size:14px;font-weight:800;">{{tripCount}} of 12 stops</span>
+              <span class="gp-ph">{{gpPhrase}}</span>
+              <button type="button" class="gp-open" onClick="{{gpToggle}}">Open map</button>
             </div>
             <sc-if value="{{tripAll}}" hint-placeholder-val="{{false}}"><img src="../assets/boutique/medaglia.webp" alt="Giro d&rsquo;Italia completo" class="gp-medal"></sc-if>
-            <span aria-hidden="true" style="flex:none;font-size:22px;font-weight:800;padding-left:6px;">{{gpChev}}</span>
           </div>
-          <sc-if value="{{gpOpen}}" hint-placeholder-val="{{false}}"><div>
+        </section>
+        <sc-if value="{{gpOpen}}" hint-placeholder-val="{{false}}">
+          <div class="gp-sheet" role="dialog" aria-modal="true" aria-label="Il mio Giro d&rsquo;Italia">
+            <div class="gp-sbar"><b class="display" style="font-size:20px;">Il mio Giro d&rsquo;Italia &middot; {{tripCount}}/12</b><button type="button" class="gp-open" onClick="{{gpToggle}}">Close</button></div>
+            <div class="gp-sin"><span class="gp-sub">{{tripSub}}</span>
           <div class="gp-map">
             <sc-for list="{{tripPins}}" as="tp" hint-placeholder-count="15">
               <button class="{{tp.cls}}" style="{{tp.pos}}" onClick="{{tp.pick}}" aria-label="{{tp.label}}" aria-pressed="{{tp.on}}"><span class="gp-in" style="{{tp.img}}"></span><span class="gp-badge" style="{{tp.badge}}"></span></button>
@@ -2208,8 +2196,11 @@
               <sc-if value="{{hasTripMsg}}" hint-placeholder-val="{{false}}"><div class="{{tripMsgCls}}">{{tripMsg}}</div></sc-if>
             </div>
           </sc-if>
-          </div></sc-if>
-        </section>
+          
+            </div>
+          </div>
+        </sc-if>
+        </sc-if>
         <sc-if value="{{hasCatena}}" hint-placeholder-val="{{false}}">
           <div class="bt-chain">
             <div class="bt-chain-art" role="img" aria-label="La tua catena d&rsquo;oro: {{chainText}}"><span class="bt-chain-txt" style="{{chainFs}}">{{chainText}}</span></div>
@@ -2221,6 +2212,8 @@
           </div>
           <sc-if value="{{hasChainMsg}}" hint-placeholder-val="{{false}}"><div class="toast bt-vmsg bt-bad">{{chainMsg}}</div></sc-if>
         </sc-if>
+        <sc-if value="{{lkGrid}}" hint-placeholder-val="{{true}}">
+        <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}">
         <div class="bt-cat"><button class="bt-cat-btn" onClick="{{lockToggle}}" aria-expanded="{{lockExp}}"><span class="bt-cat-k">Categoria</span><b>{{lockLabel}}</b><i>&#9662;</i></button>
           <sc-if value="{{lockOpen}}" hint-placeholder-val="{{false}}"><div class="bt-cat-pan" role="group" aria-label="Locker categories"><sc-for list="{{lockTabs}}" as="lt" hint-placeholder-count="10"><button onClick="{{lt.pick}}" aria-pressed="{{lt.on}}" class="bt-cat-opt">{{lt.label}}</button></sc-for></div></sc-if></div>
         <div class="locker-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">
@@ -2234,7 +2227,11 @@
             </div>
           </sc-for>
         </div>
+        </sc-if>
+        <sc-if value="{{lockerEmpty}}" hint-placeholder-val="{{false}}"><p class="display" style="margin:8px 0 0;font-size:26px;font-weight:800;text-align:center;">Niente ancora.</p></sc-if>
+        </sc-if>
 
+        <sc-if value="{{lkP}}" hint-placeholder-val="{{false}}">
         <sc-if value="{{hasVouchers}}" hint-placeholder-val="{{false}}">
           <div style="font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-faint-2);padding-top:6px;">VITA VERA &middot; I TUOI VOUCHER</div>
           <label for="btPin" class="bt-pinrow"><span>PIN della Prof</span><input id="btPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" value="{{pinDraft}}" onInput="{{onPin}}" placeholder="&bull;&bull;&bull;&bull;"></label>
@@ -2269,6 +2266,7 @@
             </div>
           </sc-for>
         </div>
+        </sc-if>
       </div>
     </sc-if>
 
@@ -12373,7 +12371,7 @@ class Component extends DCLogic {
     this.sfx('buy');
     var eq = Object.assign({}, s.equipped || {});
     if (SLOT[id]) eq[SLOT[id]] = id;
-    this.setState({ cashi: s.cashi - it.price, inventory: s.inventory.concat([id]), equipped: eq, shopMsg: 'Comprato! ' + (s.bohName || 'Boh') + ' is wearing it now.' });
+    this.setState({ cashi: s.cashi - it.price, inventory: s.inventory.concat([id]), equipped: eq, shopMsg: 'Comprato! ' + (SLOT[id] ? (s.bohName || 'Boh') + ' is wearing it now.' : (window.BohCollect && BohCollect.is(id)) ? 'It is beside ' + (s.bohName || 'Boh') + ' now.' : 'It is yours.') });
   }
 
   wearItem(id) {
@@ -13207,6 +13205,8 @@ class Component extends DCLogic {
     result.lsAnswer = '';
     result.lsHasWhy = !!it && !!it.why && (o.st === 'ok' || o.st === 'shown');
     result.lsHasTab = btHasTab();
+    result.lsTabAny = btHasTab(); result.lsOpenTabH = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: 0, tabAns: null, tabReveal: false }); };
+    result.lsCanHelp = false; result.lsHelpOn = 'false'; result.lsHelpLbl = ''; result.lsHelpH = function () {};
     result.lsWhy = it && it.why ? G(it.why) : '';
     result.lsCanTab = btHasTab() && !!tip && o.tipKey !== 'vocab' && (o.st === 'wrong' || o.st === 'shown');
     result.lsTabH = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: LS_TIP_CARD[o.tipKey] || 0, tabAns: null, tabReveal: false }); };
@@ -13310,9 +13310,13 @@ class Component extends DCLogic {
     if (view === 'stop' && ty === 'tiles') {
       result.lsTiles = true; result.lsHasPrompt = true; result.lsPrompt = it.en;
       var all = it.tiles.concat(it.traps).map(G), fin = o.st === 'ok' || o.st === 'shown';
+      var tlHelp = !!o.help;   /* boh-tile-help-v1: after a miss, Need help? shows each bubble in English */
+      var tlEn = function (txt) { if (!tlHelp) return ''; try { var w = String(txt).replace(/[.,;:!?\u00bf\u00a1\u00ab\u00bb"\u201c\u201d]/g, '').trim().toLowerCase(); var TE = {"quando": "when", "ero": "I was", "piccolo": "little", "piccola": "little", "andavo": "I used to go", "al mare": "to the beach", "ogni estate": "every summer", "sono andato": "I went", "sono andata": "I went", "ero stato": "I had been", "ero stata": "I had been", "pioveva": "it was raining", "guardavo": "I used to watch", "la tv": "the TV", "ha piovuto": "it rained", "guardava": "he/she used to watch", "ogni inverno": "every winter", "nevicava": "it was snowing", "tanto": "a lot", "ha nevicato": "it snowed", "nevicavo": "I was snowing (wrong person)", "malato": "sick", "malata": "sick", "riposavo": "I used to rest", "riposava": "he/she used to rest", "sono stato": "I have been", "sono stata": "I have been", "io e mio nonno": "my grandpa and I", "andavamo": "we used to go", "andavano": "they used to go", "a pescare": "to go fishing", "siamo andati": "we went", "faceva": "it was (weather)", "un caldo pazzesco": "crazy hot", "e noi": "and we", "eravamo": "we were", "allo stadio": "at the stadium", "fava": "fava bean (not a verb)", "erano": "they were"}; var look = function (x) { return TE[x] || (window.BohGloss && BohGloss.lookup(x)) || GLOSS[x] || ''; }; var r = look(w); if (r) return r; var ps = w.split(/\s+/); if (ps.length < 2) return ''; var out = []; for (var z = 0; z < ps.length; z++) { var e = look(ps[z]); if (!e) return ''; out.push(e); } return out.join(' '); } catch (e) { return ''; } };
+      result.lsCanHelp = o.tries > 0 && !fin; result.lsHelpOn = tlHelp ? 'true' : 'false'; result.lsHelpLbl = tlHelp ? 'Hide English' : 'Need help? Show English';
+      result.lsHelpH = function () { self.sfx('tap'); var o2 = JSON.parse(JSON.stringify(self.state.lsIt)); o2.help = !o2.help; self.setState({ lsIt: o2 }); };
       var shownIdx = o.st === 'shown' ? it.tiles.map(function (t, q) { return q; }) : o.placed;
-      result.lsPlaced = shownIdx.map(function (q) { return { t: all[q], cls: 'ls-tile on' + (o.st === 'ok' || o.st === 'shown' ? ' ok' : ''), dis: lsD(fin), tap: function () { self.lsTile(q, true); } }; });
-      result.lsBank = o.bank.filter(function (q) { return o.placed.indexOf(q) === -1; }).map(function (q) { return { t: all[q], cls: 'ls-tile', dis: lsD(fin), tap: function () { self.lsTile(q, false); } }; });
+      result.lsPlaced = shownIdx.map(function (q) { return { t: all[q], hasEn: !!tlEn(all[q]), en: tlEn(all[q]), cls: 'ls-tile on' + (o.st === 'ok' || o.st === 'shown' ? ' ok' : ''), dis: lsD(fin), tap: function () { self.lsTile(q, true); } }; });
+      result.lsBank = o.bank.filter(function (q) { return o.placed.indexOf(q) === -1; }).map(function (q) { return { t: all[q], hasEn: !!tlEn(all[q]), en: tlEn(all[q]), cls: 'ls-tile', dis: lsD(fin), tap: function () { self.lsTile(q, false); } }; });
       result.lsHasBank = !fin; result.lsSlotEmpty = !shownIdx.length;
       result.lsCanCheck = o.st === 'ask';
       result.lsCanRetry = false;
@@ -13733,6 +13737,19 @@ class Component extends DCLogic {
     result.openPaccoHandler = function () { self.openPacco(); };
     result.goShopHandler = function () { self.goScreen('shop'); };
     result.goLockerHandler = function () { self.goScreen('locker'); };
+    (function () {
+      var sl = (window.BohCollect && BohCollect.list) ? BohCollect.list() : [];
+      var R = sl.length ? sl[sl.length - 1] : '', L = sl.length > 1 ? sl[sl.length - 2] : '';
+      var nm = function (id) { var it = id && itemById(id); return it ? it.it : ''; };
+      var im = function (id) { var it = id && itemById(id); return it && it.img ? 'background-image:url(' + it.img + ')' : ''; };
+      var off = function (id) { return function () { self.sfx('tap'); try { BohCollect.toggle(id); } catch (e) {} self.setState({}); }; };
+      result.stripLOn = !!L; result.stripROn = !!R;
+      result.stripLCls = L ? 'bs-slot f' : 'bs-slot'; result.stripRCls = R ? 'bs-slot f' : 'bs-slot';
+      result.stripLImg = im(L); result.stripRImg = im(R);
+      result.stripLName = nm(L); result.stripRName = nm(R);
+      result.stripLOff = off(L); result.stripROff = off(R);
+      if (s.screen === 'locker' && !result.dollLayers) result.dollLayers = dollLayersFor(s.bohBase, s.equipped);
+    })();
     var collectable = ITEMS.filter(btInLocker);
     result.lockerCount = ownedCount + ' collected';
     result.hasDayStreak = s.diFila > 0;
@@ -13778,6 +13795,14 @@ class Component extends DCLogic {
 
     if (s.screen === 'locker') {
       result.hasCatena = false;
+      var _lk = s.tripSel ? 'g' : (s.lkSec || 'v');
+      result.lkTabs = [['v', 'Vestiti'], ['o', 'Oggetti'], ['g', 'Giro'], ['p', 'Premi']].map(function (t) {
+        return { label: t[1], on: t[0] === _lk ? 'true' : 'false', pick: function () { self.sfx('tap'); self.setState({ lkSec: t[0], lockOpen: false, lockTab: 'tutto', gpOpen: false, tripSel: t[0] === 'g' ? self.state.tripSel : null }); } };
+      });
+      result.lkV = _lk === 'v'; result.lkO = _lk === 'o'; result.lkG = _lk === 'g'; result.lkP = _lk === 'p'; result.lkGrid = _lk === 'v' || _lk === 'o';
+      var _kindOk = function (it) { return _lk === 'o' ? !SLOT[it.id] : !!SLOT[it.id]; };
+      var _gn = result.tripCount || 0, _gw = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven'];
+      result.gpPhrase = _gn >= 12 ? 'You did the whole boot!' : _gn === 0 ? 'Take a trip through Italy!' : _gn === 6 ? 'Halfway through Italy!' : _gn === 11 ? 'One more city to go!' : _gw[_gn] + (_gn === 1 ? ' city' : ' cities') + ' down. Keep going!';
       result.gpOpen = !!s.gpOpen || !!s.tripSel; result.gpChev = result.gpOpen ? '\u25B4' : '\u25BE';
       result.gpToggle = function () { var o = !!self.state.gpOpen || !!self.state.tripSel; self.sfx('tap'); self.setState({ gpOpen: !o, tripSel: o ? null : self.state.tripSel }); };
       result.gpKey = function (e) { if (e && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); result.gpToggle(); } };
@@ -13803,12 +13828,12 @@ class Component extends DCLogic {
       result.voucherMsg = s.voucherMsg || '';
       result.hasVoucherMsg = !!s.voucherMsg;
       var _lt = s.lockTab || 'tutto';
-      var _lsecs = [['tutto', 'Tutto']].concat(BT_SECTIONS.filter(function (t) { return t[0] !== 'nuovo' && ITEMS.some(function (it) { return it.sec === t[0] && !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (s.inventory || []).indexOf(it.id) !== -1; }); }));
+      var _lsecs = [['tutto', 'Tutto']].concat(BT_SECTIONS.filter(function (t) { return t[0] !== 'nuovo' && ITEMS.some(function (it) { return it.sec === t[0] && _kindOk(it) && !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (s.inventory || []).indexOf(it.id) !== -1; }); }));
       if (!_lsecs.some(function (t) { return t[0] === _lt; })) _lt = 'tutto';
       result.lockTabs = _lsecs.map(function (t) { return { label: t[1], on: t[0] === _lt ? 'true' : 'false', pick: function () { self.sfx('tap'); self.setState({ lockTab: t[0], lockOpen: false }); } }; });
       result.lockLabel = (_lsecs.filter(function (t) { return t[0] === _lt; })[0] || ['', 'Tutto'])[1]; result.lockOpen = !!s.lockOpen; result.lockExp = s.lockOpen ? 'true' : 'false';
       result.lockToggle = function () { self.sfx('tap'); self.setState({ lockOpen: !self.state.lockOpen }); };
-      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (_lt === 'tutto' || it.sec === _lt) && owned.indexOf(it.id) !== -1; }).map(function (it) {
+      result.lockerItems = ITEMS.filter(function (it) { return _kindOk(it) && !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (_lt === 'tutto' || it.sec === _lt) && owned.indexOf(it.id) !== -1; }).map(function (it) {
         var have = owned.indexOf(it.id) !== -1;
         var hidden = !have && it.source === 'pacco';
         var fitsIt = slotAllowed(s.bohBase, it.id);
@@ -13828,7 +13853,9 @@ class Component extends DCLogic {
         return { cls: 'ic i-' + k, title: CARDS[k].title, text: CARDS[k].text };
       });
       result.hasCards = result.cardList.length > 0;
-      result.isWearingAny = Object.keys(s.equipped || {}).length > 0;
+      result.isWearingAny = _lk === 'v' && Object.keys(s.equipped || {}).length > 0;
+      result.lockHintOn = !result.lockerEmpty && (_lk === 'v' || _lk === 'o');
+      result.lockHint = _lk === 'o' ? 'Tap Show to put it beside ' + (s.bohName || 'Boh') + '.' : 'Tap Wear to dress ' + (s.bohName || 'Boh') + '.';
       result.undressHandler = function () { self.undress(); };
       result.noCards = !result.hasCards;
       result.badgeList = BADGES.map(function (b) {
@@ -14244,7 +14271,7 @@ window.addEventListener('load', function () { try { window.__game && window.__ga
 </script>
 <script src="../assets/flashcards.js?v=202610042210" defer></script>
 <script src="../assets/recorder.js?v=202610042210" defer></script>
-<script src="../assets/routine.js?v=202610042210" defer></script>
+<script src="../assets/routine.js?v=202610062200" defer></script>
 <script src="../assets/routine-qep.js?v=202610042210" defer></script>
 <script src="../assets/gloss-dict.js?v=202610042210" defer></script>
 <script src="../assets/gloss.js?v=202610042210" defer></script>
@@ -14330,7 +14357,7 @@ window.__bohQepHome = function (s, r, self) {
 <script src="../assets/recordit.js?v=202610042210"></script>
 <script src="../assets/snake.js?v=202610042210" defer></script>
 <script src="../assets/bohvoice.js?v=202610042210" defer></script>
-<script src="../assets/bohhome.js?v=202610042210" defer></script>
+<script src="../assets/bohhome.js?v=202610062100" defer></script>
 <script src="../assets/wipe.js?v=202610042210"></script>
 <script src="../assets/scorecard.js?v=202610042210"></script>
 <script src="../assets/bohsave.js?v=202610042210" defer></script>
@@ -14370,7 +14397,7 @@ fill();setInterval(fill,600);
 document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.oggi');if(!a)return;var t=(window.BohToday||{})[lv],g=window.__game;
  if(!t||!t.unit||!g||typeof g.btSwitchUnit!=='function')return;e.preventDefault();try{g.setState({qepOff:true});g.btSwitchUnit(t.unit)}catch(x){location.href=t.url}},true);
 }catch(e){}})();</script>
-<script src="../assets/collect.js?v=202610061400"></script>
+<script src="../assets/collect.js?v=202610062130"></script>
 <script src="../assets/prices.js?v=202610061500"></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* boh-stoplink-v1: ?stop=N opens that stop of the unit in ?unit=, never past the stop the student has reached */(function(){try{var q=/[?&]stop=(\d{1,2})(&|$)/.exec(location.search);if(!q)return;var want=+q[1]-1,n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay&&g.state.screen==='home'&&typeof g.lsStart==='function'){clearInterval(t);try{var D=g.lsData(),L=g.lsState();if(D&&D.stops&&D.stops.length){var fr=Math.max(g.lsFrontier(L,D),((g.state.profU||{}).openTo)||0);var k=Math.min(want,fr,D.stops.length-1);if(k>=0)g.lsStart(k)}}catch(e){}try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}catch(e){}})();</script>

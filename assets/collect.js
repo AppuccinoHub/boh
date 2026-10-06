@@ -57,6 +57,23 @@
       '#bc-toast{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;display:none;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:var(--success-bg,#e6f6ea);border:2px solid var(--success-text,#2e7d4f);color:var(--success-text,#14391f);font:700 14px system-ui,sans-serif}' +
       '#bc-toast.on{display:flex}#bc-toast img{width:36px;height:36px;object-fit:contain}#bc-toast span{flex:1}' +
       '#bc-toast button{min-height:44px;padding:0 10px;border:0;background:none;color:inherit;font:800 14px system-ui,sans-serif;text-decoration:underline;cursor:pointer}' +
+      '.bs{display:flex;align-items:center;gap:8px;padding:12px 14px;border-radius:20px;background:var(--card-bg,#fff);border:2px solid var(--card-border,#ddd)}' +
+      '.bs .doll{width:62px;height:161px;flex:none}' +
+      '.bs-slot{flex:none;position:relative;width:50px;height:50px;border-radius:12px;border:2px dashed var(--card-border,#ddd);display:flex;align-items:center;justify-content:center}' +
+      '.bs-slot.f{border:2px solid var(--card-border,#ddd);background:var(--card-bg,#fff);box-shadow:0 2px 6px rgba(0,0,0,.12)}' +
+      '.bs-ic{width:38px;height:38px;background-size:contain;background-position:center;background-repeat:no-repeat}' +
+      '.bs-x{position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:50%;border:2px solid var(--card-bg,#fff);background:var(--text,#1c2a4a);color:var(--bg,#fff);font:700 16px/1 system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}' +
+      '.bs-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-left:12px}' +
+      '.lk-tabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--card-border,#ebe5d8)}' +
+      '.lk-tab{flex:1;min-width:0;min-height:44px;border:0;border-radius:10px;background:transparent;color:var(--text,#1c2a4a);font:800 14px system-ui,sans-serif;cursor:pointer;padding:0 2px}' +
+      '.lk-tab[aria-selected="true"]{background:var(--card-bg,#fff);color:var(--accent-strong,#BC1E72);box-shadow:0 1px 4px rgba(0,0,0,.15)}' +
+      '.gp-closed{display:flex;align-items:center;gap:12px}' +
+      '.gp-th{width:92px;height:92px;object-fit:contain;flex:none}' +
+      '.gp-ph{font-size:13px;color:var(--text-muted,#5b6475)}' +
+      '.gp-open{align-self:flex-start;min-height:44px;padding:0 18px;border-radius:999px;border:0;background:var(--text,#1c2a4a);color:var(--bg,#fff);font:800 14px system-ui,sans-serif;cursor:pointer}' +
+      '.gp-sheet{position:fixed;inset:0;z-index:48;background:var(--bg,#f6f2ea);overflow-y:auto;padding:0 14px 28px;-webkit-overflow-scrolling:touch}' +
+      '.gp-sbar{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) 0 10px;background:var(--bg,#f6f2ea)}' +
+      '.gp-sin{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:12px}' +
       '@media (min-width:900px){#bc-toast{max-width:420px;left:50%;right:auto;transform:translateX(-50%)}}';
     document.head.appendChild(css);
 
@@ -67,7 +84,7 @@
     function mount() { document.body.appendChild(layer); document.body.appendChild(bar); document.body.appendChild(toast); }
     if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
 
-    function refresh() { var g = window.__game; try { if (g && g.state && g.state.screen === 'locker') g.setState({}); } catch (e) {} tick(); }
+    function refresh() { var g = window.__game; try { if (g && g.state && (g.state.screen === 'locker' || g.state.screen === 'shop')) g.setState({}); } catch (e) {} tick(); }
     function say(id) {
       var it = build()[id]; if (!it) return;
       toast.innerHTML = '<img alt="" src="' + it.img + '"><span></span><button type="button">Put away</button>';
@@ -124,7 +141,7 @@
       if (lastInv === null) lastInv = have.length;
       else if (have.length > lastInv) {              // something new was bought or won: it goes beside Boh right away
         var cand = have[have.length - 1];
-        if (build()[cand] && (s.screen === 'shop' || s.screen === 'pacco')) { turnOn(cand); say(cand); }
+        if (build()[cand] && (s.screen === 'shop' || s.screen === 'pacco')) { turnOn(cand); say(cand); try { g.setState({}); } catch (e) {} }
         lastInv = have.length;
       } else if (have.length < lastInv) lastInv = have.length;
       place(on());

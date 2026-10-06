@@ -435,7 +435,7 @@
   var STAGE_HELP = [
     '', 'Hear a short story about a kid, then all 14 model sentences. No score. No teacher needed.',
     'Match what you hear to pictures, then choose your own 10 sentences. No teacher needed.',
-    'Type your 10 sentences: first with the words in front of you, then only from what you hear. Typos are fine.',
+    'Listen and type your 10 sentences, one time each. Typos are fine.',
     'Read your 10 sentences aloud and record them on Vocaroo.',
     'Pair work: ask and answer questions about when you were little. You need a partner.',
     'Listen to your sentences, repeat them, and record again on Vocaroo.',
@@ -721,7 +721,7 @@
     if (!V.w || V.w.round !== p.round || V.w.i !== p.i || V.w.extra !== !!p.extra) V.w = { round: p.round, i: p.i, extra: !!p.extra, tries: 0, solved: false, text: '', note: '', peek: false, help: 0 };
     var w = V.w, fid = p.order[p.i], sn = sentenceFor(fid), f = FR(fid), n = p.order.length;
     var h = stageHead(3);
-    h += '<div class="brt-row"><span class="brt-note"><b>' + (p.extra ? 'Once more, the ones that were hard' : 'Round ' + p.round + ' of 2') + ' · sentence ' + (p.i + 1) + ' of ' + n + '</b></span></div>';
+    h += '<div class="brt-row"><span class="brt-note"><b>' + 'Sentence ' + (p.i + 1) + ' of ' + n + '</b></span></div>';
     h += '<div class="brt-card vio" style="align-items:center;text-align:center"><b>Listen. Type what you hear.</b><div class="brt-row" style="justify-content:center">' + sayBtns(sn.it) + '</div>';
     if (w.help >= 1) h += '<div class="brt-pic">' + P(sn.pic, 'p') + '</div>' + (!sn.typed ? '<div class="brt-en">' + esc(sn.en) + '</div>' : '');
     if (w.help >= 2 && !w.solved) h += '<div class="brt-big" aria-label="The first words">' + esc(hint2(sn.it)) + '</div>';
@@ -732,7 +732,7 @@
     if (w.solved) {
       var spell = !w.peek && spellingNote(w.text, sn.it);
       h += '<div class="brt-card ' + (w.peek ? 'try' : 'ok') + '" role="status"><b>' + (w.peek ? 'Here it is:' : 'Yes!') + ' ' + esc(sn.it) + '</b>' + (spell ? '<div class="brt-en">Correct spelling: <b>' + esc(sn.it) + '</b> (a tiny slip is fine.)</div>' : '') + '</div>' +
-        '<button class="brt-b go" data-a="wnext" data-focus="1">' + (p.i + 1 >= n && (p.round === 2 || p.extra) && !(p.round === 2 && !p.extra && p.again.length) ? 'Finish Scrivi' : (p.i + 1 >= n ? (p.round === 1 ? 'On to round 2' : 'One more try at the hard ones') : 'Next')) + '</button>';
+        '<button class="brt-b go" data-a="wnext" data-focus="1">' + (p.i + 1 >= n ? 'Finish Scrivi' : 'Next') + '</button>';
     } else {
       h += '<div class="brt-row"><button class="brt-b go" data-a="wcheck">Check</button>' +
         (w.help < 2 ? '<button class="brt-b ghost" data-a="whelp">' + (w.help === 0 ? 'Help: English' : 'More help: first words') + '</button>' : '') +
@@ -760,8 +760,7 @@
   ACT.wnext = function () {
     var p = S.pos.s3; p.i++;
     if (p.i >= p.order.length) {
-      if (p.round === 1 && !p.extra) { p.round = 2; p.i = 0; p.order = shuffle(S.picks.slice()); save(); V.w = null; render(); say(sentenceFor(p.order[0]).it); return; }
-      if (!p.extra && p.again.length) { p.extra = true; p.i = 0; p.order = p.again.slice(); save(); V.w = null; render(); say(sentenceFor(p.order[0]).it); return; }
+      /* boh-scrivi-10-v1: one pass of 10 sentences, never a second round or a hard-ones pass */
       stageDone(3); S.pos.s3 = { round: 1, i: 0, order: S.picks.slice(), again: [], extra: false }; V.w = null; save(); go('hub'); return;
     }
     save(); V.w = null; render(); say(sentenceFor(p.order[p.i]).it);

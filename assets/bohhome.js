@@ -79,7 +79,7 @@
 
   function goHome() {
     var b = ov && ov.querySelector('.bhm-b.go'); if (b) { b.disabled = true; b.innerHTML = CHECK + ' ' + T('flash'); }
-    setTimeout(function () { location.href = HOME; }, 180);   // the pages save after every answer; this just gives the last save a moment
+    setTimeout(function () { location.href = HOME + '?levels=1'; }, 180);   // always the all-levels page (never the opening screen)   // the pages save after every answer; this just gives the last save a moment
   }
   function openSave() {
     close();
