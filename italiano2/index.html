@@ -2232,7 +2232,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
         </div>
         <sc-if value="{{lockerEmpty}}" hint-placeholder-val="{{false}}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0 16px;text-align:center;"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div><p class="display" style="margin:0;font-size:26px;font-weight:800;">Niente ancora.</p></div></sc-if>
         <section class="gp" aria-label="Il mio Giro d&rsquo;Italia">
-          <div class="gp-head">
+          <div class="gp-head" role="button" tabindex="0" aria-expanded="{{gpOpen}}" onClick="{{gpToggle}}" onKeyDown="{{gpKey}}" style="cursor:pointer;">
             <img src="../assets/boutique/passaporto.webp" alt="" class="gp-book">
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;">
               <span class="gp-eye">IL MIO GIRO D&rsquo;ITALIA</span>
@@ -2240,7 +2240,9 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
               <span class="gp-sub">{{tripSub}}</span>
             </div>
             <sc-if value="{{tripAll}}" hint-placeholder-val="{{false}}"><img src="../assets/boutique/medaglia.webp" alt="Giro d&rsquo;Italia completo" class="gp-medal"></sc-if>
+            <span aria-hidden="true" style="flex:none;font-size:22px;font-weight:800;padding-left:6px;">{{gpChev}}</span>
           </div>
+          <sc-if value="{{gpOpen}}" hint-placeholder-val="{{false}}"><div>
           <div class="gp-map">
             <sc-for list="{{tripPins}}" as="tp" hint-placeholder-count="15">
               <button class="{{tp.cls}}" style="{{tp.pos}}" onClick="{{tp.pick}}" aria-label="{{tp.label}}" aria-pressed="{{tp.on}}"><span class="gp-in" style="{{tp.img}}"></span><span class="gp-badge" style="{{tp.badge}}"></span></button>
@@ -2271,6 +2273,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
               <sc-if value="{{hasTripMsg}}" hint-placeholder-val="{{false}}"><div class="{{tripMsgCls}}">{{tripMsg}}</div></sc-if>
             </div>
           </sc-if>
+          </div></sc-if>
         </section>
         <sc-if value="{{hasCatena}}" hint-placeholder-val="{{false}}">
           <div class="bt-chain">
@@ -11742,6 +11745,9 @@ class Component extends DCLogic {
 
     if (s.screen === 'locker') {
       result.hasCatena = false;
+      result.gpOpen = !!s.gpOpen || !!s.tripSel; result.gpChev = result.gpOpen ? '\u25B4' : '\u25BE';
+      result.gpToggle = function () { var o = !!self.state.gpOpen || !!self.state.tripSel; self.sfx('tap'); self.setState({ gpOpen: !o, tripSel: o ? null : self.state.tripSel }); };
+      result.gpKey = function (e) { if (e && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); result.gpToggle(); } };
       result.chainText = (s.chainText !== undefined && s.chainText !== null) ? s.chainText : (s.bohName || 'BOH');
       result.onChain = function (e) {
         var t = (e && e.target ? e.target.value : '').replace(/[<>]/g, '').slice(0, 12);
@@ -12250,6 +12256,7 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
 <script src="../assets/scorecard.js?v=202610042210"></script>
 <script src="../assets/bohsave.js?v=202610042210" defer></script>
 <script src="../assets/collect.js?v=202610061400"></script>
+<script src="../assets/prices.js?v=202610061500"></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* boh-stoplink-v1: ?stop=N opens that stop of the unit in ?unit=, never past the stop the student has reached */(function(){try{var q=/[?&]stop=(\d{1,2})(&|$)/.exec(location.search);if(!q)return;var want=+q[1]-1,n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay&&g.state.screen==='home'&&typeof g.lsStart==='function'){clearInterval(t);try{var D=g.lsData(),L=g.lsState();if(D&&D.stops&&D.stops.length){var fr=Math.max(g.lsFrontier(L,D),((g.state.profU||{}).openTo)||0);var k=Math.min(want,fr,D.stops.length-1);if(k>=0)g.lsStart(k)}}catch(e){}try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
