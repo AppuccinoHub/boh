@@ -62,7 +62,11 @@
       '.bs-slot{flex:none;position:relative;width:50px;height:50px;border-radius:12px;border:2px dashed var(--card-border,#ddd);display:flex;align-items:center;justify-content:center}' +
       '.bs-slot.f{border:2px solid var(--card-border,#ddd);background:var(--card-bg,#fff);box-shadow:0 2px 6px rgba(0,0,0,.12)}' +
       '.bs-ic{width:38px;height:38px;background-size:contain;background-position:center;background-repeat:no-repeat}' +
-      '.bs-x{position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:50%;border:2px solid var(--card-bg,#fff);background:var(--text,#1c2a4a);color:var(--bg,#fff);font:700 16px/1 system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}' +
+      '.bs-slot.f{cursor:pointer}' +
+      '.bs-x{position:absolute;top:calc(100% + 8px);left:0;display:none;white-space:nowrap;min-height:40px;padding:0 14px;border-radius:12px;border:2px solid var(--primary-bg,#1A5CDF);background:var(--card-bg,#fff);color:var(--accent-strong,#1A5CDF);font:800 14px system-ui,sans-serif;cursor:pointer;z-index:6;box-shadow:0 3px 8px rgba(0,0,0,.18)}' +
+      '.bs-slot.sel .bs-x{display:block}' +
+      '.bs-slot.sel{border-color:var(--pop,#BC1E72)}' +
+      '.bs-slot + .doll + .bs-slot .bs-x{left:auto;right:0}' +
       '.bs-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-left:12px}' +
       '.lk-tabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--card-border,#ebe5d8)}' +
       '.lk-tab{flex:1;min-width:0;min-height:44px;border:0;border-radius:10px;background:transparent;color:var(--text,#1c2a4a);font:800 14px system-ui,sans-serif;cursor:pointer;padding:0 2px}' +
@@ -148,6 +152,22 @@
       barOn(s);
     }
     setInterval(tick, 400);
+    /* boh-slot-tap-v1: tap an item beside Boh to show a small "Put away" label under it (no X on top of the item) */
+    function slotOf(e) { var n = e.target; while (n && n !== document) { if (n.classList && n.classList.contains('bs-slot')) return n; n = n.parentNode; } return null; }
+    var selIdx = -1;   /* the page redraws often; remember which slot is open and put the label back after each redraw */
+    function idxOf(sl) { return [].indexOf.call(document.querySelectorAll('.bs-slot'), sl); }
+    function selClear(except) { if (!except) selIdx = -1; [].slice.call(document.querySelectorAll('.bs-slot.sel')).forEach(function (x) { if (x !== except) { x.classList.remove('sel'); x.setAttribute('aria-expanded', 'false'); } }); }
+    function selToggle(sl) { var on = !sl.classList.contains('sel'); selClear(sl); sl.classList.toggle('sel', on); sl.setAttribute('aria-expanded', on ? 'true' : 'false'); selIdx = on ? idxOf(sl) : -1; }
+    document.addEventListener('click', function (e) {
+      var sl = slotOf(e);
+      if (sl && sl.classList.contains('f') && !(e.target.closest && e.target.closest('.bs-x'))) { selToggle(sl); return; }
+      if (!(e.target.closest && e.target.closest('.bs-x'))) selClear(null);
+    }, true);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') selClear(null);
+      if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.classList && e.target.classList.contains('bs-slot') && e.target.classList.contains('f')) { e.preventDefault(); selToggle(e.target); }
+    }, true);
+    setInterval(function () { [].slice.call(document.querySelectorAll('.bs-slot')).forEach(function (x) { var f = x.classList.contains('f'); if (f && x.getAttribute('role') !== 'button') { x.setAttribute('role', 'button'); x.setAttribute('tabindex', '0'); x.setAttribute('aria-expanded', 'false'); x.setAttribute('aria-label', 'Item beside Boh. Tap for Put away.'); } if (!f && x.getAttribute('role')) { x.removeAttribute('role'); x.removeAttribute('tabindex'); x.removeAttribute('aria-label'); x.classList.remove('sel'); } }); if (selIdx >= 0) { var all = document.querySelectorAll('.bs-slot'), cs = all[selIdx]; if (cs && cs.classList.contains('f')) { if (!cs.classList.contains('sel')) { cs.classList.add('sel'); cs.setAttribute('aria-expanded', 'true'); } } else selIdx = -1; } }, 120);
     window.addEventListener('scroll', function () { barOn(((window.__game || {}).state) || {}); }, { passive: true });
     window.addEventListener('resize', function () { lastKey = ''; });
   } catch (e) {}
