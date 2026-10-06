@@ -1684,7 +1684,7 @@
 
     <sc-if value="{{isLesson}}" hint-placeholder-val="{{false}}">
       <div class="ls">
-        <div class="ls-top"><span class="ls-eye">{{lsEyebrow}}</span><div class="ls-bars" aria-hidden="true"><sc-for list="{{lsBars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div></div>
+        <div class="ls-top"><span class="ls-eye">{{lsEyebrow}}</span><div class="ls-bars" aria-hidden="true"><sc-for list="{{lsBars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div><sc-if value="{{lsTabAny}}" hint-placeholder-val="{{true}}"><button type="button" class="ls-btn2" style="flex:none;min-height:40px;padding:0 12px;font-size:13px;" onClick="{{lsOpenTabH}}">La Tabella</button></sc-if></div>
         <sc-if value="{{hasLsFiamma}}" hint-placeholder-val="{{false}}"><div class="bt-fiamma" role="status">{{lsFiamma}}</div></sc-if>
         <div class="ls-stage">
           <div class="ls-boh">
@@ -2998,7 +2998,7 @@ function progressDefaults() {
            paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, returnScreen: 'home', shopMsg: '',
            glossWord: '', glossMean: '', lastTyped: '', fixing: false,
            paidDay: null, cardsPaid: 0, overlay: null, overlayBack: null, equipped: {}, frasiMastered: [], passed: [],
-           provaLog: [], provaStart: 0, provaAttempt: 0, provaFirst: null, provaBest: null, provaCard: null };
+           provaLog: [], provaStart: 0, provaAttempt: 0, provaFirst: null, provaBest: null, provaCard: null, provaTab: false };
 }
 
 
@@ -3706,6 +3706,7 @@ class Component extends DCLogic {
       first: s.provaFirst === null || s.provaFirst === undefined ? pct : s.provaFirst,
       best: Math.max(pct, s.provaBest === null || s.provaBest === undefined ? 0 : s.provaBest)
     };
+    card.tab = !!s.provaTab;
     card.code = provaCode(card, log);
     var patch = { provaLog: log, provaAttempt: attempt, provaCard: card,
                   provaFirst: card.first, provaBest: card.best,
@@ -3992,7 +3993,7 @@ class Component extends DCLogic {
     extra.roundActive = true;
     this.setState(extra);
     if (modeKey === 'mistakes' && this.state.mode && this.state.mode !== 'mistakes' && this.state.mode !== 'prova') this.setState({ mistakesFrom: this.state.mode });
-    if (modeKey === 'prova') this.setState({ provaLog: [], provaStart: Date.now() });
+    if (modeKey === 'prova') this.setState({ provaLog: [], provaStart: Date.now(), provaTab: false });
     this.setState({
       screen: 'play',
       mode: modeKey,
@@ -4690,6 +4691,7 @@ class Component extends DCLogic {
     result.lsAnswer = '';
     result.lsHasWhy = !!it && !!it.why && (o.st === 'ok' || o.st === 'shown');
     result.lsHasTab = btHasTab();
+    result.lsTabAny = btHasTab(); result.lsOpenTabH = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: 0, tabAns: null, tabReveal: false }); };
     result.lsWhy = it && it.why ? G(it.why) : '';
     result.lsCanTab = btHasTab() && !!tip && o.tipKey !== 'vocab' && (o.st === 'wrong' || o.st === 'shown');
     result.lsTabH = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: LS_TIP_CARD[o.tipKey] || 0, tabAns: null, tabReveal: false }); };
@@ -5060,7 +5062,8 @@ class Component extends DCLogic {
       });
       result.pvHasMissed = pc.missed.length > 0;
       result.pvSplit = pc.firsts !== undefined ? pc.firsts + ' first try · ' + pc.seconds + ' fixed (half point) · ' + pc.missed.length + ' missed' : '';
-      try { window.BohScoreCard = { name: result.pvName, date: result.pvDate, mins: result.pvMins, attempt: result.pvAttempt, pct: result.pvPct, score: result.pvScore, first: result.pvFirst, best: result.pvBest, code: result.pvCode, secs: result.pvSections }; } catch (e) {} result.pvPerfect = pc.missed.length === 0;
+      if (pc.tab) result.pvSplit += (result.pvSplit ? ' \u00b7 ' : '') + 'Tabella opened';
+      try { window.BohScoreCard = { name: result.pvName, date: result.pvDate, mins: result.pvMins, attempt: result.pvAttempt, pct: result.pvPct, score: result.pvScore, first: result.pvFirst, best: result.pvBest, code: result.pvCode, tab: !!pc.tab, secs: result.pvSections }; } catch (e) {} result.pvPerfect = pc.missed.length === 0;
     }
     (function () {
       var trips = s.trips || [], byK = {};
@@ -5129,6 +5132,7 @@ class Component extends DCLogic {
     })();
     try { var _nm = String(s.bohName || 'BOH').toUpperCase().replace(/[^A-Z0-9\u00C0-\u00DD ]/g, '').slice(0, 12) || 'BOH'; var _rs = document.documentElement.style; _rs.setProperty('--bohname', JSON.stringify(_nm)); _rs.setProperty('--nmk', Math.min(1, 8 / _nm.length).toFixed(2)); } catch (e) {}
     result.tabOpen = !!s.tabOpen;
+    if (s.tabOpen && s.mode === 'prova') s.provaTab = true;   /* boh-tab-prova-v1: remember it was opened during La Prova */
     (function () {
       var i = Math.max(0, Math.min(BT_TAB_N - 1, s.tabCard || 0)), done = s.tabDone || [];
       for (var c = 0; c < BT_TAB_N; c++) { result['tc' + c] = BT_UNIT !== 'vdp' && BT_UNIT !== 'it1' && c === i; result['tv' + c] = BT_UNIT === 'vdp' && c === i; result['te' + c] = BT_UNIT === 'it1' && c === i; }
@@ -5174,7 +5178,7 @@ class Component extends DCLogic {
     })();
     result.openTabHandler = function () { self.sfx('tap'); self.setState({ tabOpen: true, tabCard: 0, tabAns: null, tabReveal: false }); };
     result.closeTabHandler = function () { self.sfx('soft'); self.setState({ tabOpen: false }); };
-    result.showTabBtn = s.mode !== 'prova' && btHasTab(); result.showTabHud = btHasTab();
+    result.showTabBtn = btHasTab(); result.showTabHud = btHasTab();
     var UNI = BT_UNITS[BT_UNIT];
     result.unitEyebrow = UNI.eyebrow; result.unitTitle = UNI.title; result.unitShort = UNI.short; try { if (window.BohScoreCard) window.BohScoreCard.unit = UNI.short; } catch (e) {}
     result.isImp = BT_UNIT === 'imp'; result.isVdp = BT_UNIT === 'vdp';
@@ -5780,9 +5784,9 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
 <script src="../assets/bohvoice.js?v=202610042210" defer></script>
 <script src="../assets/bohhome.js?v=202610062100" defer></script>
 <script src="../assets/wipe.js?v=202610042210"></script>
-<script src="../assets/scorecard.js?v=202610042210"></script>
+<script src="../assets/scorecard.js?v=202610062330"></script>
 <script src="../assets/bohsave.js?v=202610042210" defer></script>
-<script src="../assets/collect.js?v=202610062130"></script>
+<script src="../assets/backnav.js?v=202610062300"></script><script src="../assets/collect.js?v=202610062130"></script>
 <script src="../assets/prices.js?v=202610061500"></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* boh-stoplink-v1: ?stop=N opens that stop of the unit in ?unit=, never past the stop the student has reached */(function(){try{var q=/[?&]stop=(\d{1,2})(&|$)/.exec(location.search);if(!q)return;var want=+q[1]-1,n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay&&g.state.screen==='home'&&typeof g.lsStart==='function'){clearInterval(t);try{var D=g.lsData(),L=g.lsState();if(D&&D.stops&&D.stops.length){var fr=Math.max(g.lsFrontier(L,D),((g.state.profU||{}).openTo)||0);var k=Math.min(want,fr,D.stops.length-1);if(k>=0)g.lsStart(k)}}catch(e){}try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}catch(e){}})();</script>

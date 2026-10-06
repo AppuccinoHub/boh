@@ -74,7 +74,7 @@
     /* footer line */
     x.strokeStyle = '#D9C9BC'; x.lineWidth = 4; x.setLineDash([14, 12]); x.beginPath(); x.moveTo(90, y); x.lineTo(W2 - 90, y); x.stroke(); x.setLineDash([]);
     y += 60; x.fillStyle = '#6F5E56'; x.textAlign = 'left'; x.font = '700 32px ' + FONT;
-    x.fillText(fit(x, c.date + '  ·  ' + c.mins + '  ·  ' + c.attempt, 900), 90, y);
+    x.fillText(fit(x, c.date + '  ·  ' + c.mins + '  ·  ' + c.attempt + (c.tab ? '  ·  Tabella opened' : ''), 900), 90, y);
     y += 52; x.fillText(main(T('first')) + ': ' + (c.first || '') + '   ' + main(T('best')) + ': ' + (c.best || ''), 90, y);
     y += 80; x.fillStyle = '#D9472B'; x.font = '900 56px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
     x.fillText(main(T('code')) + '  ' + (c.code || ''), 90, y);
