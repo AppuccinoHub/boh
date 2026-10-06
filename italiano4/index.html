@@ -1433,6 +1433,7 @@
         <sc-if value="{{hasLesson}}" hint-placeholder-val="{{false}}"><h2 class="lp-rip display">Ripasso libero <span>extra practice, one step at a time</span></h2></sc-if>
         <sc-if value="{{hasFc}}" hint-placeholder-val="{{false}}"><button class="fc-home" onClick="{{fcHomeH}}"><span class="fc-ic" aria-hidden="true">&#127183;</span><span class="fc-tx"><b>Flashcards</b><small>{{fcSub}}</small></span><span class="fc-go">&rsaquo;</span></button></sc-if>
         <a class="fc-home" href="../scrivi/?l=4" style="text-decoration:none;color:inherit"><span class="fc-ic" aria-hidden="true">&#9997;&#65039;</span><span class="fc-tx"><b>Scrivi &middot; Consegna</b><small>Stories, dialogues, essays: write it, hand it in</small></span><span class="fc-go">&rsaquo;</span></a>
+        <sc-if value="{{hasRipeti}}" hint-placeholder-val="{{false}}"><button class="fc-home" onClick="{{ripetiH}}"><span class="fc-ic" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg></span><span class="fc-tx"><b>Ascolta e ripeti</b><small>Hear each sentence 3 times, say it, then pick the meaning</small></span><span class="fc-go">&rsaquo;</span></button></sc-if>
         <a class="fc-home" href="../aiutami/" style="text-decoration:none;color:inherit"><span class="fc-ic" aria-hidden="true">&#128591;</span><span class="fc-tx"><b>Aiutami &middot; Mi o Ti?</b><small>The mi / ti game: help Boh, earn Boh Cashi</small></span><span class="fc-go">&rsaquo;</span></a>
         <div class="mode-list" style="display:flex;flex-direction:column;gap:12px;">
           <sc-for list="{{modeList}}" as="m" hint-placeholder-count="5">
@@ -5862,6 +5863,12 @@ class Component extends DCLogic {
       result.hasPop = !!hit; result.popT = hit ? hit.t : ''; result.popB = hit ? hit.b : ''; result.popX = hit ? (hit.x || '') : '';
       result.popOkH = function () { self.sfx('tap'); self.setState({ popSeen: (s.popSeen || []).concat([hit.id]), popAt: s.qIndex }); };
     })();
+    (function () {   /* boh-ripeti-v1: Ascolta e ripeti, the L'imperfetto sentences heard three times (Italian 4 only) */
+      var ph = [];
+      try { (BT_UNITS[BT_UNIT].QB || []).forEach(function (q) { if (q.cat === 'sh' && q.say && q.why) { var m = String(q.why).split(' = '); if (m.length > 1) ph.push({ it: q.say, en: m.slice(1).join(' = ') }); } }); } catch (e) {}
+      result.hasRipeti = s.screen === 'home' && BT_UNIT === 'r3' && ph.length >= 3 && typeof BohRepeat !== 'undefined';
+      result.ripetiH = function () { self.sfx('tap'); BohRepeat.open({ title: 'Ascolta e ripeti', phrases: ph, count: 8, onClose: function () { self.setState({}); } }); };
+    })();
     (function () {   // 🃏 Flashcards on the home screen
       var decks = typeof btFcDecks === 'function' ? btFcDecks() : [];
       result.hasFc = s.screen === 'home' && decks.length > 0 && typeof BohCards !== 'undefined';
@@ -6072,7 +6079,7 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
 <script src="../assets/wipe.js?v=202610042210"></script>
 <script src="../assets/scorecard.js?v=202610062330"></script>
 <script src="../assets/bohsave.js?v=202610042210" defer></script>
-<script src="../assets/backnav.js?v=202610062300"></script><script src="../assets/paccopop.js?v=202610062420" defer></script><script src="../assets/collect.js?v=202610062410"></script>
+<script src="../assets/backnav.js?v=202610062300"></script><script src="../assets/paccopop.js?v=202610062420" defer></script><script src="../assets/ascoltaripeti.js?v=202610062430" defer></script><script src="../assets/collect.js?v=202610062410"></script>
 <script src="../assets/prices.js?v=202610061500"></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* boh-stoplink-v1: ?stop=N opens that stop of the unit in ?unit=, never past the stop the student has reached */(function(){try{var q=/[?&]stop=(\d{1,2})(&|$)/.exec(location.search);if(!q)return;var want=+q[1]-1,n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay&&g.state.screen==='home'&&typeof g.lsStart==='function'){clearInterval(t);try{var D=g.lsData(),L=g.lsState();if(D&&D.stops&&D.stops.length){var fr=Math.max(g.lsFrontier(L,D),((g.state.profU||{}).openTo)||0);var k=Math.min(want,fr,D.stops.length-1);if(k>=0)g.lsStart(k)}}catch(e){}try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}catch(e){}})();</script>
