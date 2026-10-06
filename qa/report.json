@@ -1,9 +1,9 @@
 {
- "when": "2026-10-05 00:32",
+ "when": "2026-10-06 02:49",
  "levels": {
   "italiano1": {
    "static": {
-    "bytes": 3512651,
+    "bytes": 3513403,
     "methods": {
      "lsFresh": "6ca53917e1",
      "lsCheck": "1e7703eef9",
@@ -371,7 +371,7 @@
   },
   "italiano2": {
    "static": {
-    "bytes": 3597785,
+    "bytes": 3598537,
     "methods": {
      "lsFresh": "6ca53917e1",
      "lsCheck": "1e7703eef9",
@@ -746,7 +746,7 @@
   },
   "italiano3": {
    "static": {
-    "bytes": 3623772,
+    "bytes": 3624524,
     "methods": {
      "lsFresh": "6ca53917e1",
      "lsCheck": "1e7703eef9",
@@ -1233,7 +1233,7 @@
   },
   "italiano4": {
    "static": {
-    "bytes": 4349899,
+    "bytes": 4350651,
     "methods": {
      "lsFresh": "6ca53917e1",
      "lsCheck": "1e7703eef9",
@@ -2098,7 +2098,7 @@
   },
   "ap": {
    "static": {
-    "bytes": 5107972,
+    "bytes": 5108724,
     "methods": {
      "lsFresh": "6ca53917e1",
      "lsCheck": "1e7703eef9",

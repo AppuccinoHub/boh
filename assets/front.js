@@ -169,8 +169,9 @@
         } else {
           o += btn('fs', 'edit', 'left:24px;right:24px;top:656px;height:54px;font-size:17px', 'Change look');
         }
-        if (last) o += '<button type="button" class="flnk" data-go="hub" style="left:24px;width:167px;top:730px;font-size:16px">Other levels</button>';
-        o += '<button type="button" class="flnk" data-go="wipe" style="' + (last ? 'left:199px;width:167px' : 'left:24px;right:24px') + ';top:730px;font-size:16px">' + 'Start over</button>';
+        if (last) o += '<button type="button" class="flnk" data-go="hub" style="left:12px;width:118px;top:730px;font-size:16px">Other levels</button>';
+        o += '<button type="button" class="flnk" data-go="share" style="' + (last ? 'left:136px;width:118px' : 'left:24px;width:167px') + ';top:730px;font-size:16px">Share Boh</button>';
+        o += '<button type="button" class="flnk" data-go="wipe" style="' + (last ? 'left:260px;width:118px' : 'left:199px;width:167px') + ';top:730px;font-size:16px">' + 'Start over</button>';
         o += box('left:0;right:0;top:812px;text-align:center;font:600 10.5px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026');
         o += '<a class="flnk" href="teacher/" style="right:6px;width:44px;top:806px;font-size:12px;font-weight:600">Prof</a>';
       } else {
@@ -193,6 +194,7 @@
         o += btn('fs', 'save', 'left:' + (bx + bi * (bw + 12)) + 'px;width:' + bw + 'px;top:590px;height:56px;font-size:19px', 'Save my Boh'); bi++;
         o += btn('fs', 'load', 'left:' + (bx + bi * (bw + 12)) + 'px;width:' + (bi === 3 ? 200 : bw) + 'px;top:590px;height:56px;font-size:19px', 'Load a Boh');
         o += '<button type="button" class="flnk" data-go="wipe" style="left:470px;width:240px;top:664px;font-size:16px;text-align:left">' + (fresh ? 'Start over' : 'Not ' + nm + '? Start over') + '</button>';
+        o += '<button type="button" class="flnk" data-go="share" style="left:730px;width:160px;top:664px;font-size:16px">Share Boh</button>';
         o += box('left:470px;right:60px;top:704px;font:600 12.5px/1.4 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
         o += '<a class="flnk" href="teacher/" style="right:30px;width:60px;top:706px;font-size:14px;font-weight:600">Prof</a>';
       }
@@ -216,8 +218,9 @@
       LEVELS.forEach(function (v, i) { o += lvl(v, 'left:16px;right:16px;top:' + (150 + i * 110) + 'px;height:100px'); });
       o += btn('fs', 'save', 'left:16px;width:176px;top:704px;height:48px;font-size:16px', 'Save my Boh');
       o += btn('fs', 'load', 'left:198px;width:176px;top:704px;height:48px;font-size:16px', 'Load a Boh');
-      o += '<button type="button" class="flnk" data-go="edit" style="left:20px;width:170px;top:762px;font-size:15px">Change look</button>';
-      o += '<button type="button" class="flnk" data-go="wipe" style="left:200px;width:170px;top:762px;font-size:15px">Start over</button>';
+      o += '<button type="button" class="flnk" data-go="edit" style="left:12px;width:118px;top:762px;font-size:15px">Change look</button>';
+      o += '<button type="button" class="flnk" data-go="share" style="left:136px;width:118px;top:762px;font-size:15px">Share Boh</button>';
+      o += '<button type="button" class="flnk" data-go="wipe" style="left:260px;width:118px;top:762px;font-size:15px">Start over</button>';
       o += box('left:16px;right:16px;top:798px;text-align:center;font:600 11px/1.35 system-ui;color:#4F5E80', 'Levels follow the ACTFL ranges. They show what each level aims for, not a grade.<br>Created by Assunta Scotto &middot; &copy; 2026');
     }
     return o;
@@ -301,6 +304,7 @@
     if (t === 'save') { if (window.BohSave && BohSave.open) BohSave.open('save'); return; }
     if (t === 'load') { if (window.BohSave && BohSave.open) BohSave.open('load'); return; }
     if (t === 'wipe') { if (window.BohWipe) BohWipe.confirm(); return; }
+    if (t === 'share') { if (window.BohShare) BohShare.share(BohShare.BASE, 'Boh: the Italian learning game', 'Learn Italian. Earn Boh Cashi. Build a Boh like no other.'); return; }
     if (t === 'boh') return show('boh', S.scr === 'look' || S.scr === 'hub' ? -1 : 1);
     if (t === 'hub') return show('hub', 1);
     if (t === 'land') return show('land', -1);
