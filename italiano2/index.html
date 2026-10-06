@@ -2185,6 +2185,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 
     <sc-if value="{{isShop}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="bc-tabs" role="group" aria-label="Boh-tique and Armadietto"><button type="button" class="bc-tab on" aria-pressed="true">Boh-tique</button><button type="button" class="bc-tab" aria-pressed="false" onClick="{{goLockerHandler}}">Armadietto</button></div>
         <div style="display:flex;flex-direction:column;gap:4px;">
           <div style="display:flex;align-items:flex-end;gap:12px;">
             <div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
@@ -2217,17 +2218,19 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 
     <sc-if value="{{isLocker}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="bc-tabs" role="group" aria-label="Boh-tique and Armadietto"><button type="button" class="bc-tab" aria-pressed="false" onClick="{{goShopHandler}}">Boh-tique</button><button type="button" class="bc-tab on" aria-pressed="true">Armadietto</button></div>
         <div style="display:flex;flex-direction:column;gap:4px;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
-            <div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
+            <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div></sc-if>
             <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;max-width:100%;">
               <h2 class="display" style="margin:0;font-size:30px;font-weight:800;line-height:1.05;overflow-wrap:anywhere;">L&rsquo;armadietto di {{bohName}}</h2>
-              <p style="margin:0;font-size:14px;color:var(--text-muted);">{{lockerCount}}. Dark items are still out there.</p>
-              <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);">Tap <b>Wear</b> to dress {{bohName}}.</p>
+              <p style="margin:0;font-size:14px;color:var(--text-muted);">{{lockerCount}}.</p>
+              <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}"><p style="margin:0;font-size:14px;font-weight:700;color:var(--text);">Tap <b>Wear</b> to dress {{bohName}}.</p></sc-if>
               <sc-if value="{{isWearingAny}}" hint-placeholder-val="{{false}}"><button onClick="{{undressHandler}}" style="all:unset;cursor:pointer;font-size:13px;font-weight:800;color:var(--accent-strong);">Take everything off</button></sc-if>
             </div>
           </div>
         </div>
+        <sc-if value="{{lockerEmpty}}" hint-placeholder-val="{{false}}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0 16px;text-align:center;"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div><p class="display" style="margin:0;font-size:26px;font-weight:800;">Niente ancora.</p></div></sc-if>
         <section class="gp" aria-label="Il mio Giro d&rsquo;Italia">
           <div class="gp-head">
             <img src="../assets/boutique/passaporto.webp" alt="" class="gp-book">
@@ -11695,7 +11698,7 @@ class Component extends DCLogic {
     result.goShopHandler = function () { self.goScreen('shop'); };
     result.goLockerHandler = function () { self.goScreen('locker'); };
     var collectable = ITEMS.filter(btInLocker);
-    result.lockerCount = ownedCount + ' / ' + collectable.length + ' collected';
+    result.lockerCount = ownedCount + ' collected';
     result.hasDayStreak = s.diFila > 0;
     result.dayStreakText = s.diFila === 1 ? 'Day 1 — come back tomorrow to start a streak' : s.diFila + ' giorni di fila';
     result.streakText = s.streak + ' di fila';
@@ -11731,9 +11734,9 @@ class Component extends DCLogic {
         var owns = it.id === 'salta' ? ' \u00b7 you have ' + (s.skips || 0) : it.id === 'scudo' ? ' \u00b7 you have ' + (s.scudi || 0) : '';
         return { id: it.id, it: it.it, en: gate ? gate : it.en, rarity: it.rarity, rarityColor: RARITY[it.rarity].color,
                  cls: it.img ? 'ic bt-img' + (it.soon ? ' bt-soon' : '') : it.emo ? 'ic bt-emo' + (it.soon ? ' bt-soon' : '') : 'ic i-' + it.id, emo: it.emo || '', ico: it.img ? 'background-image:url(' + it.img + ')' : '',
-                 priceText: it.soon ? 'PRESTO \u00b7 ' + it.price.toLocaleString('it-IT') + ' BC' : have ? (wearing ? 'Wearing now' : 'Yours') : it.price.toLocaleString('it-IT') + ' BC' + owns,
-                 btnText: it.soon ? 'Presto' : gate ? 'Locked' : it.voucher ? 'Buy voucher' : it.pack ? 'Apri!' : !have ? (it.trip ? 'Prenota \u2708' : 'Buy') : it.trip ? 'Nel Passaporto' : !SLOT[it.id] ? 'Nel tuo armadietto' : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
-                 act: function () { if (have) { if (SLOT[it.id]) self.wearItem(it.id); else if (it.trip) self.openTrip(it.trip); } else self.buyItem(it.id); } };
+                 priceText: it.soon ? 'PRESTO \u00b7 ' + it.price.toLocaleString('it-IT') + ' BC' : have ? (wearing ? 'Wearing now' : (!SLOT[it.id] && window.BohCollect && BohCollect.on(it.id)) ? 'Beside Boh now' : 'Yours') : it.price.toLocaleString('it-IT') + ' BC' + owns,
+                 btnText: it.soon ? 'Presto' : gate ? 'Locked' : it.voucher ? 'Buy voucher' : it.pack ? 'Apri!' : !have ? (it.trip ? 'Prenota \u2708' : 'Buy') : it.trip ? 'Nel Passaporto' : !SLOT[it.id] ? ((window.BohCollect && BohCollect.is(it.id)) ? (BohCollect.on(it.id) ? 'Put away' : 'Show') : 'Nel tuo armadietto') : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
+                 act: function () { if (have) { if (SLOT[it.id]) self.wearItem(it.id); else if (it.trip) self.openTrip(it.trip); else if (window.BohCollect && BohCollect.is(it.id)) { BohCollect.toggle(it.id); self.setState({}); } } else self.buyItem(it.id); } };
       });
     }
 
@@ -11766,21 +11769,22 @@ class Component extends DCLogic {
       result.lockTabs = _lsecs.map(function (t) { return { label: t[1], on: t[0] === _lt ? 'true' : 'false', pick: function () { self.sfx('tap'); self.setState({ lockTab: t[0], lockOpen: false }); } }; });
       result.lockLabel = (_lsecs.filter(function (t) { return t[0] === _lt; })[0] || ['', 'Tutto'])[1]; result.lockOpen = !!s.lockOpen; result.lockExp = s.lockOpen ? 'true' : 'false';
       result.lockToggle = function () { self.sfx('tap'); self.setState({ lockOpen: !self.state.lockOpen }); };
-      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (_lt === 'tutto' || it.sec === _lt); }).map(function (it) {
+      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (_lt === 'tutto' || it.sec === _lt) && owned.indexOf(it.id) !== -1; }).map(function (it) {
         var have = owned.indexOf(it.id) !== -1;
         var hidden = !have && it.source === 'pacco';
         var fitsIt = slotAllowed(s.bohBase, it.id);
-        var wearingIt = have && fitsIt && (s.equipped || {})[SLOT[it.id]] === it.id;
+        var wearingIt = have && fitsIt && (SLOT[it.id] ? (s.equipped || {})[SLOT[it.id]] === it.id : !!(window.BohCollect && BohCollect.on(it.id)));
         return { cls: it.img ? 'ic bt-img' : it.emo ? 'ic bt-emo' : 'ic i-' + it.id, emo: it.img ? '' : (it.emo || ''), iconStyle: (it.img ? 'background-image:url(' + it.img + ');' : '') + (have ? '' : 'filter:grayscale(1) brightness(.35);opacity:.35;'),
                  it: hidden ? '???' : it.it, en: hidden ? (it.secret ? 'secret' : 'Pacco Boh only') : it.en,
                  rarity: it.rarity, rarityColor: RARITY[it.rarity].color,
                  border: have ? RARITY[it.rarity].color : 'var(--card-border)',
-                 have: have && !!SLOT[it.id] && fitsIt, pressed: wearingIt ? 'true' : 'false',
-                 btnText: wearingIt ? 'Take off' : 'Wear',
+                 have: have && (!!SLOT[it.id] || !!(window.BohCollect && BohCollect.is(it.id))) && fitsIt, pressed: wearingIt ? 'true' : 'false',
+                 btnText: (!SLOT[it.id] && window.BohCollect && BohCollect.is(it.id)) ? (wearingIt ? 'Put away' : 'Show') : (wearingIt ? 'Take off' : 'Wear'),
                  btnStyle: 'margin-top:4px;width:100%;padding:8px 4px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;' +
                    (wearingIt ? 'background:var(--primary-bg);color:var(--primary-text);border:2px solid var(--primary-bg);' : 'background:transparent;color:var(--text);border:2px solid var(--card-border);'),
-                 toggle: function () { self.wearItem(it.id); } };
+                 toggle: function () { if (!SLOT[it.id] && window.BohCollect && BohCollect.is(it.id)) { BohCollect.toggle(it.id); self.setState({}); } else self.wearItem(it.id); } };
       });
+      result.lockerEmpty = result.lockerItems.length === 0; result.lockerHasItems = !result.lockerEmpty;
       result.cardList = Object.keys(CARDS).filter(function (k) { return owned.indexOf(k) !== -1; }).map(function (k) {
         return { cls: 'ic i-' + k, title: CARDS[k].title, text: CARDS[k].text };
       });
@@ -12245,6 +12249,7 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
 <script src="../assets/wipe.js?v=202610042210"></script>
 <script src="../assets/scorecard.js?v=202610042210"></script>
 <script src="../assets/bohsave.js?v=202610042210" defer></script>
+<script src="../assets/collect.js?v=202610061400"></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* boh-stoplink-v1: ?stop=N opens that stop of the unit in ?unit=, never past the stop the student has reached */(function(){try{var q=/[?&]stop=(\d{1,2})(&|$)/.exec(location.search);if(!q)return;var want=+q[1]-1,n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay&&g.state.screen==='home'&&typeof g.lsStart==='function'){clearInterval(t);try{var D=g.lsData(),L=g.lsState();if(D&&D.stops&&D.stops.length){var fr=Math.max(g.lsFrontier(L,D),((g.state.profU||{}).openTo)||0);var k=Math.min(want,fr,D.stops.length-1);if(k>=0)g.lsStart(k)}}catch(e){}try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{

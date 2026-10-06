@@ -1354,6 +1354,7 @@
       <div class="home-grid" style="display:flex;flex-direction:column;gap:20px;">
       <div class="home-col" style="display:flex;flex-direction:column;gap:20px;min-width:0;">
         <div class="home-hero" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+          <a class="oggi" href="?unit=imp" hidden><span class="oggi-x"><span class="oggi-k">Today</span><b class="oggi-t"></b><span class="oggi-w"></span><span class="oggi-d"></span></span><span class="oggi-go" aria-hidden="true">&rsaquo;</span></a>
           <div class="hero-eyebrow display" style="font-size:13px;letter-spacing:.16em;color:var(--accent-strong);font-weight:700;">{{unitEyebrow}}</div>
           <h1 class="hero-title display" style="margin:0;font-size:32px;line-height:1.12;font-weight:800;">{{unitTitle}}</h1>
           <p class="home-lede" style="margin:0;color:var(--text-muted);font-size:15px;line-height:1.55;">{{homeLede}}</p>
@@ -2119,6 +2120,7 @@
 
     <sc-if value="{{isShop}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="bc-tabs" role="group" aria-label="Boh-tique and Armadietto"><button type="button" class="bc-tab on" aria-pressed="true">Boh-tique</button><button type="button" class="bc-tab" aria-pressed="false" onClick="{{goLockerHandler}}">Armadietto</button></div>
         <div style="display:flex;flex-direction:column;gap:4px;">
           <div style="display:flex;align-items:flex-end;gap:12px;">
             <div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
@@ -2151,17 +2153,19 @@
 
     <sc-if value="{{isLocker}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="bc-tabs" role="group" aria-label="Boh-tique and Armadietto"><button type="button" class="bc-tab" aria-pressed="false" onClick="{{goShopHandler}}">Boh-tique</button><button type="button" class="bc-tab on" aria-pressed="true">Armadietto</button></div>
         <div style="display:flex;flex-direction:column;gap:4px;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
-            <div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
+            <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div></sc-if>
             <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;max-width:100%;">
               <h2 class="display" style="margin:0;font-size:30px;font-weight:800;line-height:1.05;overflow-wrap:anywhere;">L&rsquo;armadietto di {{bohName}}</h2>
-              <p style="margin:0;font-size:14px;color:var(--text-muted);">{{lockerCount}}. Dark items are still out there.</p>
-              <p style="margin:0;font-size:14px;font-weight:700;color:var(--text);">Tap <b>Wear</b> to dress {{bohName}}.</p>
+              <p style="margin:0;font-size:14px;color:var(--text-muted);">{{lockerCount}}.</p>
+              <sc-if value="{{lockerHasItems}}" hint-placeholder-val="{{true}}"><p style="margin:0;font-size:14px;font-weight:700;color:var(--text);">Tap <b>Wear</b> to dress {{bohName}}.</p></sc-if>
               <sc-if value="{{isWearingAny}}" hint-placeholder-val="{{false}}"><button onClick="{{undressHandler}}" style="all:unset;cursor:pointer;font-size:13px;font-weight:800;color:var(--accent-strong);">Take everything off</button></sc-if>
             </div>
           </div>
         </div>
+        <sc-if value="{{lockerEmpty}}" hint-placeholder-val="{{false}}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0 16px;text-align:center;"><div class="doll dM idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div><p class="display" style="margin:0;font-size:26px;font-weight:800;">Niente ancora.</p></div></sc-if>
         <section class="gp" aria-label="Il mio Giro d&rsquo;Italia">
           <div class="gp-head">
             <img src="../assets/boutique/passaporto.webp" alt="" class="gp-book">
@@ -13727,7 +13731,7 @@ class Component extends DCLogic {
     result.goShopHandler = function () { self.goScreen('shop'); };
     result.goLockerHandler = function () { self.goScreen('locker'); };
     var collectable = ITEMS.filter(btInLocker);
-    result.lockerCount = ownedCount + ' / ' + collectable.length + ' collected';
+    result.lockerCount = ownedCount + ' collected';
     result.hasDayStreak = s.diFila > 0;
     result.dayStreakText = s.diFila === 1 ? 'Day 1 — come back tomorrow to start a streak' : s.diFila + ' giorni di fila';
     result.streakText = s.streak + ' di fila';
@@ -13763,9 +13767,9 @@ class Component extends DCLogic {
         var owns = it.id === 'salta' ? ' \u00b7 you have ' + (s.skips || 0) : it.id === 'scudo' ? ' \u00b7 you have ' + (s.scudi || 0) : '';
         return { id: it.id, it: it.it, en: gate ? gate : it.en, rarity: it.rarity, rarityColor: RARITY[it.rarity].color,
                  cls: it.img ? 'ic bt-img' + (it.soon ? ' bt-soon' : '') : it.emo ? 'ic bt-emo' + (it.soon ? ' bt-soon' : '') : 'ic i-' + it.id, emo: it.emo || '', ico: it.img ? 'background-image:url(' + it.img + ')' : '',
-                 priceText: it.soon ? 'PRESTO \u00b7 ' + it.price.toLocaleString('it-IT') + ' BC' : have ? (wearing ? 'Wearing now' : 'Yours') : it.price.toLocaleString('it-IT') + ' BC' + owns,
-                 btnText: it.soon ? 'Presto' : gate ? 'Locked' : it.voucher ? 'Buy voucher' : it.pack ? 'Apri!' : !have ? (it.trip ? 'Prenota \u2708' : 'Buy') : it.trip ? 'Nel Passaporto' : !SLOT[it.id] ? 'Nel tuo armadietto' : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
-                 act: function () { if (have) { if (SLOT[it.id]) self.wearItem(it.id); else if (it.trip) self.openTrip(it.trip); } else self.buyItem(it.id); } };
+                 priceText: it.soon ? 'PRESTO \u00b7 ' + it.price.toLocaleString('it-IT') + ' BC' : have ? (wearing ? 'Wearing now' : (!SLOT[it.id] && window.BohCollect && BohCollect.on(it.id)) ? 'Beside Boh now' : 'Yours') : it.price.toLocaleString('it-IT') + ' BC' + owns,
+                 btnText: it.soon ? 'Presto' : gate ? 'Locked' : it.voucher ? 'Buy voucher' : it.pack ? 'Apri!' : !have ? (it.trip ? 'Prenota \u2708' : 'Buy') : it.trip ? 'Nel Passaporto' : !SLOT[it.id] ? ((window.BohCollect && BohCollect.is(it.id)) ? (BohCollect.on(it.id) ? 'Put away' : 'Show') : 'Nel tuo armadietto') : !fits ? 'Not for this Boh' : wearing ? 'Take off' : 'Wear', btnStyle: btn,
+                 act: function () { if (have) { if (SLOT[it.id]) self.wearItem(it.id); else if (it.trip) self.openTrip(it.trip); else if (window.BohCollect && BohCollect.is(it.id)) { BohCollect.toggle(it.id); self.setState({}); } } else self.buyItem(it.id); } };
       });
     }
 
@@ -13798,21 +13802,22 @@ class Component extends DCLogic {
       result.lockTabs = _lsecs.map(function (t) { return { label: t[1], on: t[0] === _lt ? 'true' : 'false', pick: function () { self.sfx('tap'); self.setState({ lockTab: t[0], lockOpen: false }); } }; });
       result.lockLabel = (_lsecs.filter(function (t) { return t[0] === _lt; })[0] || ['', 'Tutto'])[1]; result.lockOpen = !!s.lockOpen; result.lockExp = s.lockOpen ? 'true' : 'false';
       result.lockToggle = function () { self.sfx('tap'); self.setState({ lockOpen: !self.state.lockOpen }); };
-      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (_lt === 'tutto' || it.sec === _lt); }).map(function (it) {
+      result.lockerItems = ITEMS.filter(function (it) { return !it.consumable && !it.soon && !it.voucher && !it.pack && !it.trip && (_lt === 'tutto' || it.sec === _lt) && owned.indexOf(it.id) !== -1; }).map(function (it) {
         var have = owned.indexOf(it.id) !== -1;
         var hidden = !have && it.source === 'pacco';
         var fitsIt = slotAllowed(s.bohBase, it.id);
-        var wearingIt = have && fitsIt && (s.equipped || {})[SLOT[it.id]] === it.id;
+        var wearingIt = have && fitsIt && (SLOT[it.id] ? (s.equipped || {})[SLOT[it.id]] === it.id : !!(window.BohCollect && BohCollect.on(it.id)));
         return { cls: it.img ? 'ic bt-img' : it.emo ? 'ic bt-emo' : 'ic i-' + it.id, emo: it.img ? '' : (it.emo || ''), iconStyle: (it.img ? 'background-image:url(' + it.img + ');' : '') + (have ? '' : 'filter:grayscale(1) brightness(.35);opacity:.35;'),
                  it: hidden ? '???' : it.it, en: hidden ? (it.secret ? 'secret' : 'Pacco Boh only') : it.en,
                  rarity: it.rarity, rarityColor: RARITY[it.rarity].color,
                  border: have ? RARITY[it.rarity].color : 'var(--card-border)',
-                 have: have && !!SLOT[it.id] && fitsIt, pressed: wearingIt ? 'true' : 'false',
-                 btnText: wearingIt ? 'Take off' : 'Wear',
+                 have: have && (!!SLOT[it.id] || !!(window.BohCollect && BohCollect.is(it.id))) && fitsIt, pressed: wearingIt ? 'true' : 'false',
+                 btnText: (!SLOT[it.id] && window.BohCollect && BohCollect.is(it.id)) ? (wearingIt ? 'Put away' : 'Show') : (wearingIt ? 'Take off' : 'Wear'),
                  btnStyle: 'margin-top:4px;width:100%;padding:8px 4px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;' +
                    (wearingIt ? 'background:var(--primary-bg);color:var(--primary-text);border:2px solid var(--primary-bg);' : 'background:transparent;color:var(--text);border:2px solid var(--card-border);'),
-                 toggle: function () { self.wearItem(it.id); } };
+                 toggle: function () { if (!SLOT[it.id] && window.BohCollect && BohCollect.is(it.id)) { BohCollect.toggle(it.id); self.setState({}); } else self.wearItem(it.id); } };
       });
+      result.lockerEmpty = result.lockerItems.length === 0; result.lockerHasItems = !result.lockerEmpty;
       result.cardList = Object.keys(CARDS).filter(function (k) { return owned.indexOf(k) !== -1; }).map(function (k) {
         return { cls: 'ic i-' + k, title: CARDS[k].title, text: CARDS[k].text };
       });
@@ -14323,6 +14328,43 @@ window.__bohQepHome = function (s, r, self) {
 <script src="../assets/wipe.js?v=202610042210"></script>
 <script src="../assets/scorecard.js?v=202610042210"></script>
 <script src="../assets/bohsave.js?v=202610042210" defer></script>
+<style>/* boh-today-v1 */
+.oggi{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;border:3px solid var(--pop);background:var(--pop-tint);color:var(--text);text-decoration:none}
+.oggi[hidden]{display:none}
+.oggi-x{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.oggi-k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pop)}
+[data-theme="dark"] .oggi-k{color:var(--text)}
+.oggi-t{font-size:18px;font-weight:800;line-height:1.2}
+.oggi-w{font-size:15px;font-weight:700;line-height:1.2}
+.oggi-w:empty{display:none}
+.oggi-d{font-size:13px;font-weight:700;color:var(--text-muted)}
+.oggi-go{flex:none;font-size:28px;font-weight:800;color:var(--pop);line-height:1}
+/* short screens (phone sideways, small phones): the home title is hidden, but the Today bar stays, smaller */
+@media (max-width:899px) and (max-height:660px){
+.home-hero{display:flex !important;margin-top:0 !important}
+.home-hero > :not(.oggi){display:none !important}
+.oggi{padding:6px 12px;border-width:2px}
+.oggi-d{display:none}
+.oggi-t{font-size:15px}
+.oggi-w{font-size:13px}
+.oggi-k{font-size:11px}
+}
+/* /boh-today-v1 */</style>
+<script src="../assets/today.js?v=202610061200"></script>
+<script>/* boh today bar (Level 3) */(function(){try{
+var lv='italiano3';
+function ymd(){var d=new Date(),m=d.getMonth()+1,x=d.getDate();return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(x<10?'0':'')+x}
+function fill(){var t=(window.BohToday||{})[lv],els=document.querySelectorAll('.oggi');
+ for(var i=0;i<els.length;i++){var a=els[i];if(!t||(t.until&&ymd()>t.until)){a.hidden=true;continue}
+  var sig=t.url+'|'+t.title;if(a.getAttribute('data-sig')===sig)continue;a.setAttribute('data-sig',sig);a.href=t.url;a.hidden=false;
+  a.querySelector('.oggi-k').textContent='Today \u00b7 '+t.date;a.querySelector('.oggi-t').textContent=t.title;
+  var w=a.querySelector('.oggi-w');if(w)w.textContent=t.words||'';
+  var d=a.querySelector('.oggi-d');if(d){d.textContent=t.note||'';d.hidden=!t.note}}}
+fill();setInterval(fill,600);
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.oggi');if(!a)return;var t=(window.BohToday||{})[lv],g=window.__game;
+ if(!t||!t.unit||!g||typeof g.btSwitchUnit!=='function')return;e.preventDefault();try{g.setState({qepOff:true});g.btSwitchUnit(t.unit)}catch(x){location.href=t.url}},true);
+}catch(e){}})();</script>
+<script src="../assets/collect.js?v=202610061400"></script>
 <script>/* Boh last level + shop shortcut */(function(){try{var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(m)localStorage.setItem('boh_last_level_v1',m[1]+'/');if(/[?&]go=shop(&|$)/.test(location.search)){var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay){clearInterval(t);g.setState({screen:'shop',shopTab:'nuovo',shopMsg:''});try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}}catch(e){}})();</script>
 <script>/* boh-stoplink-v1: ?stop=N opens that stop of the unit in ?unit=, never past the stop the student has reached */(function(){try{var q=/[?&]stop=(\d{1,2})(&|$)/.exec(location.search);if(!q)return;var want=+q[1]-1,n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohBase&&!g.state.overlay&&g.state.screen==='home'&&typeof g.lsStart==='function'){clearInterval(t);try{var D=g.lsData(),L=g.lsState();if(D&&D.stops&&D.stops.length){var fr=Math.max(g.lsFrontier(L,D),((g.state.profU||{}).openTo)||0);var k=Math.min(want,fr,D.stops.length-1);if(k>=0)g.lsStart(k)}}catch(e){}try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(++n>80)clearInterval(t)},150)}catch(e){}})();</script>
 <script>/* Boh Prof unlocks */(function(){try{
