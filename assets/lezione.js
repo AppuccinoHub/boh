@@ -39,12 +39,14 @@
   /* ---------------------------------------------------------------- saved state + the shared wallet */
   function key() { return 'boh_lz_' + L.id + '_v1'; }
   function load() {
-    var f = { v: 1, done: {}, paid: {}, ft: {}, links: {}, lu: '', earned: 0, att: 1, log: {}, best: 0 }, o = null;
+    var f = { v: 1, done: {}, paid: {}, ft: {}, links: {}, lu: '', earned: 0, att: 1, log: {}, best: 0, sb: {} }, o = null;
     try { o = JSON.parse(localStorage.getItem(key()) || 'null'); } catch (e) {}
     if (o && typeof o === 'object') for (var k in o) f[k] = o[k];
-    ['done', 'paid', 'ft', 'links', 'log'].forEach(function (k) { if (!f[k] || typeof f[k] !== 'object') f[k] = {}; });
+    ['done', 'paid', 'ft', 'links', 'log', 'sb'].forEach(function (k) { if (!f[k] || typeof f[k] !== 'object') f[k] = {}; });
     if (!(f.att >= 1 && f.att <= 4)) f.att = 1;
     if (!(f.best >= 0)) f.best = 0;
+    /* tries saved before per-activity bests existed: keep the best result each activity ever had */
+    for (var tk in f.log) { var ss = f.log[tk] && f.log[tk].secs; if (ss) for (var sid in ss) if (ss[sid] && ss[sid][0] > (f.sb[sid] || 0)) f.sb[sid] = ss[sid][0]; }
     return f;
   }
   function save() { try { localStorage.setItem(key(), JSON.stringify(S)); } catch (e) {} }
@@ -87,6 +89,8 @@
   function open_(i) { return i === 0 || !!S.done[L.sections[i - 1].id]; }
   function nextOpen() { for (var i = 0; i < L.sections.length; i++) if (!S.done[L.sections[i].id]) return i; return -1; }
   function allDone() { return nextOpen() === -1; }
+  /* after a retry some parts stay done, so "next" means the next part that is not done yet */
+  function nextTodo(i) { for (var j = i + 1; j < L.sections.length; j++) if (!S.done[L.sections[j].id]) return j; return -1; }
 
   function top(backAct, backLabel, title, sub) {
     return '<header class="lz-top"><button class="lz-back" data-act="' + backAct + '">&lsaquo; ' + esc(backLabel) + '</button>' +
@@ -187,17 +191,17 @@
   function secDone(i) {
     var s = L.sections[i], first = !S.done[s.id];
     S.done[s.id] = true; save();
-    V = { name: 'done', si: i, bc: 0 }; render();
+    var n = nextTodo(i);
+    V = { name: 'done', si: i, bc: 0, nx: n }; render();
     if (first) { V.bc = pay(s.id + ':bonus', L.bonus || 0); }
-    var n = i + 1 < L.sections.length ? i + 1 : -1;
-    later(3200, function () { if (n >= 0) startSec(n); else go({ name: 'finish' }); });
+    later(3200, function () { if (n >= 0) startSec(n); else go({ name: allDone() ? 'finish' : 'map' }); });
   }
   function vDone() {
-    var s = L.sections[V.si], n = V.si + 1 < L.sections.length ? L.sections[V.si + 1] : null;
+    var s = L.sections[V.si], n = V.nx >= 0 ? L.sections[V.nx] : null;
     return top('map', 'Parts', L.title, L.sub) +
       '<div class="lz-big"><div class="lz-bust" role="img" aria-label="Prof. Lo So" ' + bust(CHEER[V.si % CHEER.length]) + '></div>' +
       '<h2 class="dsp">' + esc(s.label) + ': done!</h2><p>' + (n ? 'Next: ' + esc(n.label) + '. It starts by itself.' : 'That was the last part.') + '</p></div>' +
-      '<div class="lz-row"><button class="lz-ghost" data-act="map">Parts</button><button class="lz-btn" data-act="' + (n ? 'keep' : 'finish') + '">' + (n ? 'Keep going &rsaquo;' : 'My progress page') + '</button></div>';
+      '<div class="lz-row"><button class="lz-ghost" data-act="map">Parts</button><button class="lz-btn" data-act="' + (n ? 'keep' : (allDone() ? 'finish' : 'map')) + '">' + (n ? 'Keep going &rsaquo;' : (allDone() ? 'My progress page' : 'Parts')) + '</button></div>';
   }
 
   /* ---------------------------------------------------------------- MATCH: listen, then match */
@@ -332,15 +336,20 @@
     if (s.type === 'match' && S.done[s.id] && !seen) return n; /* finished before first-try tracking existed: full credit */
     return r;
   }
+  /* best result this activity has had across every try (the current one counts if the activity is done) */
+  function secBest(s) { var c = S.done[s.id] ? secRight(s) : 0; return Math.max(c, S.sb[s.id] || 0); }
   function lessonScore() {
     var r = 0, n = 0, secs = {};
-    L.sections.forEach(function (s) { if (!scorable(s)) return; var a = secRight(s), b = secCount(s); secs[s.id] = [a, b]; r += a; n += b; });
+    L.sections.forEach(function (s) { if (!scorable(s)) return; var a = secBest(s), b = secCount(s); secs[s.id] = [a, b]; r += a; n += b; });
     return { r: r, n: n, pct: n ? Math.round(100 * r / n) : 0, secs: secs };
   }
+  /* the activities a retry would bring back: every scored activity that has never been 100% */
+  function retrySecs() { return L.sections.filter(function (s) { return scorable(s) && secBest(s) < secCount(s); }); }
   function recordTry() {
     if (!allDone() || S.log[S.att]) return;
-    var sc = lessonScore();
-    S.log[S.att] = { pct: sc.pct, t: Date.now(), secs: sc.secs };
+    var sc = lessonScore(), mine = {};
+    L.sections.forEach(function (s) { if (scorable(s)) { S.sb[s.id] = secBest(s); mine[s.id] = [secRight(s), secCount(s)]; } });
+    S.log[S.att] = { pct: sc.pct, t: Date.now(), secs: sc.secs, got: mine };
     S.best = Math.max(S.best || 0, sc.pct); save();
   }
   function checkCode(parts) {
@@ -366,9 +375,9 @@
     var sc = lessonScore(), best = S.best || 0, left = MAX_TRIES - S.att, locked = all && S.att >= MAX_TRIES, k;
     var rows = L.sections.map(function (s) {
       var v, cls;
-      if (!S.done[s.id]) { v = '&mdash;'; cls = 'dn'; }
+      if (!S.done[s.id] && !S.sb[s.id]) { v = '&mdash;'; cls = 'dn'; }
       else if (!scorable(s)) { v = 'Done'; cls = 'ok'; }
-      else { var a = secRight(s), b = secCount(s); v = a + ' / ' + b; cls = a === b ? 'ok' : 'dn'; }
+      else { var a = secBest(s), b = secCount(s); v = a + ' / ' + b; cls = a === b ? 'ok' : 'dn'; }
       return '<div class="' + cls + '">' + esc(s.label + (s.levelUp && S.lu === 'done' ? ' +' : '')) + '<span>' + v + '</span></div>';
     }).join('');
     var hist = []; for (k = 1; k <= MAX_TRIES; k++) if (S.log[k]) hist.push(S.log[k].pct + '%');
@@ -376,7 +385,7 @@
     h += '<div class="lz-card"><div class="lz-id"><div class="lz-bust" role="img" aria-label="Prof. Lo So" ' + (all ? body('jump-joy') : bust('fist-forza')) + '></div>' +
       '<div class="lz-idt"><h2 class="dsp">' + esc(name) + '</h2><p>' + esc(L.title + ': ' + L.sub) + '</p><p>' + esc(stamp(d)) + '</p></div>' +
       '<div class="lz-try"><span>Try</span><b>' + S.att + ' of ' + MAX_TRIES + '</b></div></div>';
-    if (all) h += '<div class="lz-sc"><b>' + sc.pct + '%</b><span>right the first time</span></div>';
+    if (all) h += '<div class="lz-sc"><b>' + sc.pct + '%</b><span>' + (S.att > 1 ? 'best of every try' : 'right the first time') + '</span></div>';
     else h += '<div class="lz-sc"><b>&mdash;</b><span>finish every part to get your grade</span></div>';
     if (best > 0) h += '<div class="lz-best">Your grade (best): ' + best + '%</div>';
     h += '<div class="lz-acts">' + rows + '</div>';
@@ -385,19 +394,33 @@
     if (all) h += '<div class="lz-code">Tries: ' + hist.join(' · ') + ' · Check code: ' + checkCode([name, L.id, S.att, sc.pct, best, JSON.stringify(sc.secs)]) + '</div>';
     h += '</div>';
     if (all) h += '<div class="lz-shot"><b>Take a screenshot of this screen</b> and upload it to Google Classroom.<br><span>' + esc(shotLine()) + '</span></div>';
-    if (all && !locked) h += '<div class="lz-row"><button class="lz-btn" data-act="retry">Try again (' + left + ' left)</button></div><div class="lz-note">Your best score is saved. A new try can only raise it.</div>';
+    var again = retrySecs().length;
+    if (all && !locked && again) h += '<div class="lz-row"><button class="lz-btn" data-act="retry">Redo ' + (again === 1 ? '1 activity' : again + ' activities') + ' (' + left + ' ' + (left === 1 ? 'try' : 'tries') + ' left)</button></div><div class="lz-note">Only the activities with a mistake come back. Your best score for each one is saved.</div>';
+    else if (all && !locked) h += '<div class="lz-lock">Perfect: every activity is 100%.</div>';
     else if (locked) h += '<div class="lz-lock">Final grade locked. Your best counts: ' + best + '%.</div>';
     else h += '<div class="lz-row"><button class="lz-btn" data-act="map">Keep working</button></div>';
     h += '<div class="lz-foot">Created by Assunta Scotto</div>';
     return h;
   }
   function vRetry() {
-    var n = S.att + 1;
+    var n = S.att + 1, list = retrySecs().map(function (s) { return esc(s.label); }).join(', ');
     return top('finish', 'Back', L.title, L.sub) +
-      '<div class="lz-card lz-ask"><h2 class="dsp">Start try ' + n + ' of ' + MAX_TRIES + '?</h2><p>Your answers reset so you can do it again. Your best score (' + (S.best || 0) + '%) stays. Boh Cashi are only paid once.</p></div>' +
+      '<div class="lz-card lz-ask"><h2 class="dsp">Start try ' + n + ' of ' + MAX_TRIES + '?</h2><p>Only these come back: <b>' + list + '</b>. The rest stay done. Each activity keeps its best score, so this can only raise your grade (now ' + (S.best || 0) + '%). Boh Cashi are only paid once.</p></div>' +
       '<div class="lz-row lz-col"><button class="lz-btn" data-act="retryyes">Yes, start try ' + n + '</button><button class="lz-ghost" data-act="finish">Not now</button></div>';
   }
-  function retryOk() { return allDone() && !!S.log[S.att] && S.att < MAX_TRIES; }
+  /* retry: bring back only the activities that were not 100%; everything else stays done */
+  function retryStart() {
+    var back = retrySecs();
+    S.sb = S.sb || {};
+    L.sections.forEach(function (s) { if (scorable(s)) S.sb[s.id] = secBest(s); });
+    back.forEach(function (s) {
+      S.done[s.id] = false;
+      for (var i = 0, n = secCount(s); i < n; i++) delete S.ft[s.id + ':' + i];
+    });
+    S.att++; save();
+    go({ name: 'map' });
+  }
+  function retryOk() { return allDone() && !!S.log[S.att] && S.att < MAX_TRIES && retrySecs().length > 0; }
 
   /* When the phone keyboard opens, the browser shrinks the visible area and scrolls the page, which pushes the top bar out of sight.
      Fit the lesson to the visible area, keep the page scrolled to the top, and shrink Prof. Lo So (class lz-kb) so the box and buttons stay in view. */
@@ -433,10 +456,10 @@
     else if (a === 'map') go({ name: 'map' });
     else if (a === 'finish') go({ name: 'finish' });
     else if (a === 'retry') { if (retryOk()) go({ name: 'retry' }); }
-    else if (a === 'retryyes') { if (retryOk()) { S.att++; S.done = {}; S.ft = {}; S.links = {}; S.lu = ''; save(); go({ name: 'map' }); } }
+    else if (a === 'retryyes') { if (retryOk()) retryStart(); }
     else if (a === 'sound') { if (!speak('Ciao! Posso andare in bagno?')) { b.textContent = 'No voice here'; } else if (!hasVoice()) b.textContent = 'No Italian voice'; }
     else if (a === 'sec') { if (open_(i)) startSec(i); }
-    else if (a === 'keep') { if (V.si + 1 < L.sections.length) startSec(V.si + 1); }
+    else if (a === 'keep') { if (V.nx >= 0) startSec(V.nx); }
     else if (a === 'opt') pickAnswer(k);
     else if (a === 'next') pickNext();
     else if (a === 'again') speak(pickCards()[V.q[V.i]].it);
