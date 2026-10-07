@@ -68,7 +68,7 @@
       var sl = function (css) {
         var q = typeof S.sp === 'number' ? S.sp : 50;
         return '<div class="fsl fa" role="slider" tabindex="0" aria-label="Slide from Boh, I don&rsquo;t know, to Lo so, I know" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(q) + '" aria-valuetext="' + (q > 50 ? 'Boh' : 'Lo so') + '" style="' + css + ';--p:' + q + '%">' +
-          '<img src="' + A + 's-' + g + '-shrug.webp" alt="" draggable="false">' +
+          '<img class="fsl-a" src="' + A + 's-' + g + '-shrug.webp" alt="" draggable="false" style="clip-path:inset(0 ' + (100 - q - 0.1) + '% 0 0)">' +
           '<img class="fsl-b" src="' + A + 's-' + g + (g === 'girl' ? '-earned-c' : '-earned') + '.webp" alt="" draggable="false" style="clip-path:inset(0 0 0 ' + q + '%)">' +
           '<i class="fsl-line"></i><i class="fsl-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div>';
       };
@@ -319,10 +319,10 @@
   }
   /* the opening slider: drag, tap or arrow keys; one gentle demo sweep so students see it moves */
   function bindSlider(el) {
-    var b = el.querySelector('.fsl-b'), down = false, raf = 0, tm = 0;
+    var b = el.querySelector('.fsl-b'), a0 = el.querySelector('.fsl-a'), down = false, raf = 0, tm = 0;
     function set(p) {
       p = Math.max(0, Math.min(100, p)); S.sp = p;
-      el.style.setProperty('--p', p + '%'); b.style.clipPath = 'inset(0 0 0 ' + p + '%)';
+      el.style.setProperty('--p', p + '%'); b.style.clipPath = 'inset(0 0 0 ' + p + '%)'; if (a0) a0.style.clipPath = 'inset(0 ' + (100 - p - 0.1) + '% 0 0)';
       el.setAttribute('aria-valuenow', Math.round(p)); el.setAttribute('aria-valuetext', p > 50 ? 'Boh' : 'Lo so');
     }
     function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; if (tm) clearTimeout(tm); tm = 0; }
