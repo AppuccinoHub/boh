@@ -1,0 +1,55 @@
+/* Boh · shared pieces, defined once, used by every level that loads this file.
+   1. English line (one style, switched by <html data-en="1">, set in bohui.js from assets/english.js)
+   2. Start card (one pink element on the home: the thing to look at)
+   3. Help chart label (English "Help chart" when English is on, "La Tabella" when it is off)
+   Blue = tap. Pink = the one thing to look at. The Help chart is never pink. */
+
+/* ---------- 1. English line ---------- */
+.en-only { display: none; }
+html[data-en="1"] .en-only { display: block; }
+html[data-en="1"] .en-only.inl { display: inline; }
+html[data-en="1"] .ls-en::before, html[data-en="1"] .ls-ph-en::before {
+  content: "EN"; display: inline-block; margin-right: 6px; padding: 1px 5px; border-radius: 5px;
+  font: 800 10px/1.4 Manrope, system-ui, sans-serif; letter-spacing: .08em; vertical-align: middle;
+  background: var(--card-border, #DAD7D0); color: var(--text, #0E2A5B);
+}
+/* English as big and dark as the Italian, on its own line */
+html[data-en="1"] .ls-en { display: block; font-size: inherit; font-weight: 700; color: var(--text, #0E2A5B); }
+html[data-en="1"] .ls-ph-en { font-size: inherit; font-weight: 700; opacity: 1; border-top: 0; padding-top: 2px; }
+html[data-en="1"] .ls-ph-m.me .ls-ph-en::before { background: rgba(255,255,255,.25); color: #fff; }
+
+/* ---------- 2. Start card ---------- */
+.start-card {
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 12px; row-gap: 10px; align-items: end;
+  margin-top: 10px; padding: 14px 14px 14px 10px; border-radius: 20px;
+  border: 3px solid var(--pop, #BC1E72); background: var(--pop-tint, #FEE5EE); color: var(--text, #0E2A5B);
+}
+.start-card .start-lo.tc-emo.tcp { width: 104px; max-width: none; height: 132px; align-self: end; grid-row: 1; grid-column: 1; }
+.start-body { grid-row: 1; grid-column: 2; display: flex; flex-direction: column; gap: 3px; min-width: 0; align-self: center; }
+.start-hi { font-size: 17px; font-weight: 800; line-height: 1.2; }
+.start-hi-en, .start-ken { font-size: 15px; font-weight: 700; line-height: 1.2; }
+.start-k { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--pop, #BC1E72); margin-top: 4px; }
+[data-theme="dark"] .start-k { color: var(--text, #E6ECF2); }
+.start-t { font-size: 18px; font-weight: 800; line-height: 1.2; }
+.start-w { font-size: 15px; font-weight: 700; line-height: 1.2; }
+.start-n { font-size: 13px; font-weight: 700; color: var(--text-muted, #46566E); }
+.start-go {
+  all: unset; box-sizing: border-box; cursor: pointer; grid-row: 2; grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 18px; border-radius: 16px;
+  background: var(--tap, #1A5CDF); color: #fff; font: 800 19px/1.2 "Bricolage Grotesque", system-ui, sans-serif;
+}
+.start-go small { font: 800 13px Manrope, system-ui, sans-serif; opacity: .9; }
+.start-go:focus-visible { outline: 3px solid var(--accent-strong, #1A5CDF); outline-offset: 3px; }
+@media (max-width: 899px) and (max-height: 660px) {
+  .start-card { grid-template-columns: 64px minmax(0, 1fr); padding: 8px 10px; border-width: 2px; row-gap: 6px; margin-top: 0; }
+  .start-card .start-lo.tc-emo.tcp { width: 64px; height: 80px; }
+  .start-n, .start-ken, .start-hi-en { display: none !important; }
+  .start-go { min-height: 44px; font-size: 17px; }
+}
+
+/* ---------- 3. Help chart label ---------- */
+.tl-en { display: none; }
+html[data-en="1"] .tl-en { display: inline; }
+html[data-en="1"] .tl-it { display: none; }
+.tc-playbtn.tl-btn { white-space: nowrap; width: auto; min-width: 38px; padding: 0 12px; gap: 6px; grid-auto-flow: column; font-size: 14px; font-weight: 800; color: var(--text, #0E2A5B); }
+.tc-playbtn.tl-btn .tl-ic { font-size: 19px; }

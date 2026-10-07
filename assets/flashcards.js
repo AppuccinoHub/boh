@@ -1,6 +1,6 @@
 /* Boh · flashcards — one deck design for every level (Italiano 1 → AP).
    BohCards.open({ decks: [{ id, title, cards: [[italian, english], ...] }], start: deckId?, onPass(deckId), pay(bc) })
-   Tap / Space / swipe up: flip. ✓ Lo so (→ / swipe right): the card leaves the deck. ↻ Ancora (← / swipe left): it comes back later.
+   Tap / Space / swipe up: flip. ✓ Lo so (→ / swipe right): the card leaves the deck. Non lo so (← / swipe left): it comes back later.
    Progress is kept on this device in localStorage 'boh_fc_<id>' (it rides along in the Boh save code). */
 (function (W) {
   if (W.BohCards) return;
@@ -29,6 +29,7 @@
     '.bfc-small{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.bfc-l{all:unset;cursor:pointer;font-weight:800;font-size:13.5px;color:var(--mut);text-decoration:underline;text-underline-offset:3px}' +
     '.bfc-list{display:flex;flex-direction:column;gap:8px}.bfc-deck{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;background:var(--soft);border:2px solid var(--line);font-weight:800}' +
     '.bfc-deck small{color:var(--mut);font-weight:700}.bfc-done{text-align:center;display:flex;flex-direction:column;gap:10px;padding:14px 0}.bfc-done b{font:900 34px "Bricolage Grotesque",system-ui,sans-serif}' +
+    '.bfc-en{display:none;font-size:12px;font-weight:700;margin-top:2px}html[data-en="1"] .bfc-en{display:block}' +
     '.bfc-pay{align-self:center;font-weight:800;font-size:14px;color:var(--ok)}' +
     '.bfc *:focus-visible{outline:3px solid var(--vio);outline-offset:2px}' +
     '@media (prefers-reduced-motion:reduce){.bfc-in{transition:none}}';
@@ -92,7 +93,7 @@
       '<button class="bfc-say" aria-label="Ascolta">&#128266;</button><div class="bfc-in">' +
       '<div class="bfc-f"><span class="bfc-lab">' + (st.en ? 'English' : 'Italiano') + '</span><span class="bfc-w">' + esc(front) + '</span><span class="bfc-tap">Tap to flip</span></div>' +
       '<div class="bfc-f b"><span class="bfc-lab">' + (st.en ? 'Italiano' : 'English') + '</span><span class="bfc-w">' + esc(back) + '</span></div></div></div>' +
-      '<div class="bfc-row"><button class="bfc-b again">&#8635; Ancora</button><button class="bfc-b know">&#10003; Lo so</button></div>' +
+      '<div class="bfc-row"><button class="bfc-b again">Non lo so<small class="bfc-en">I don\'t know it</small></button><button class="bfc-b know">&#10003; Lo so<small class="bfc-en">I know it</small></button></div>' +
       '<div class="bfc-row" style="grid-template-columns:1fr"><button class="bfc-b ghost bfc-back" data-a="back"' + (st.hist.length ? '' : ' disabled') + '>&#8592; Indietro</button></div>' +
       (st.earned ? '<div class="bfc-pay">+' + st.earned + ' BC</div>' : '') +
       '<div class="bfc-small"><button class="bfc-l" data-a="dir">&#8644; ' + (st.en ? 'Italian first' : 'English first') + '</button>' +
