@@ -64,10 +64,10 @@
     var P = !S.wide, o = '', g = S.g, p = S.P;
     var dl = function (ms) { return reduce ? 0 : ms; };
     if (name === 'land') {
-      /* opening screen: one slider, "Boh..." (shrug) to "Lo so!" (earned look). Drag, tap or use the arrow keys. */
+      /* opening screen: one slider, "Boh..." (shrug) to "Ci sto!" (earned look). Drag, tap or use the arrow keys. */
       var sl = function (css) {
         var q = typeof S.sp === 'number' ? S.sp : 50;
-        return '<div class="fsl fa" role="slider" tabindex="0" aria-label="Slide from Boh, I don&rsquo;t know, to Lo so, I know" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(q) + '" aria-valuetext="' + (q > 50 ? 'Boh' : 'Lo so') + '" style="' + css + ';--p:' + q + '%">' +
+        return '<div class="fsl fa" role="slider" tabindex="0" aria-label="Slide from Boh, I don&rsquo;t know, to Ci sto, I got this" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(q) + '" aria-valuetext="' + (q > 50 ? 'Boh' : 'Ci sto') + '" style="' + css + ';--p:' + q + '%">' +
           '<img class="fsl-a" src="' + A + 's-' + g + '-shrug-f.webp" alt="" draggable="false" style="clip-path:inset(0 ' + (100 - q - 0.1) + '% 0 0)">' +
           '<img class="fsl-b" src="' + A + 's-' + g + '-earned-f.webp" alt="" draggable="false" style="clip-path:inset(0 0 0 ' + q + '%)">' +
           '<i class="fsl-line"></i><i class="fsl-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div>';
@@ -75,27 +75,27 @@
       if (P) {
         o += box('left:0;right:0;top:20px;text-align:center;font:800 12px system-ui;letter-spacing:.14em;color:#4F5E80;animation:ffade .6s both', 'THE ITALIAN LEARNING GAME');
         o += img(A + 'boh.webp', 'left:135px;top:42px;width:120px;animation-delay:' + dl(100) + 'ms', 'fpop .5s both');
-        o += box('left:0;right:0;top:104px;text-align:center;font:900 32px/1.1 system-ui;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(300) + 'ms', 'Da boh a lo so!');
-        o += box('left:67px;top:158px;font:800 16px system-ui;color:#4F5E80', 'Boh&hellip;');
-        o += box('right:67px;top:158px;font:800 16px system-ui;color:#0E2A5B', 'Lo so!');
-        o += sl('left:67px;top:186px;width:256px;height:384px;animation:ffade .6s both;animation-delay:' + dl(450) + 'ms');
+        o += box('left:0;right:0;top:104px;text-align:center;font:900 32px/1.1 system-ui;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(300) + 'ms', 'Da boh&hellip; a ci sto!');
+        o += box('left:67px;top:146px;font:800 17px/1.15 system-ui;color:#4F5E80', 'Boh&hellip;<br><span data-nogloss style="font:700 13px system-ui">Eh??</span>');
+        o += box('right:67px;top:146px;text-align:right;font:800 17px/1.15 system-ui;color:#0E2A5B', 'Ci sto!<br><span data-nogloss style="font:700 13px system-ui">I got this</span>');
+        o += sl('left:67px;top:196px;width:249px;height:374px;animation:ffade .6s both;animation-delay:' + dl(450) + 'ms');
         o += box('left:0;right:0;top:582px;text-align:center;font:800 19px/1.3 system-ui;white-space:nowrap;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(700) + 'ms',
           'Learn Italian. Earn Boh Cashi <img src="assets/bc-black.svg" alt="BC" style="height:28px;vertical-align:-8px">.<br>Build a Boh like no other.');
-        o += box('left:0;right:0;top:648px;text-align:center;font:600 14px system-ui;color:#4F5E80;animation:ffade .6s both;animation-delay:' + dl(850) + 'ms', 'Boh is Italian for &ldquo;I don&rsquo;t know.&rdquo;');
+        o += box('left:0;right:0;top:648px;text-align:center;font:600 14px system-ui;color:#4F5E80;animation:ffade .6s both;animation-delay:' + dl(850) + 'ms', 'From &ldquo;I don&rsquo;t know&rdquo; to &ldquo;I got this.&rdquo;');
         o += btn('fp', p ? 'boh' : 'look', 'left:24px;right:24px;top:690px;height:60px;font-size:20px;animation:ffade .6s both;animation-delay:' + dl(1000) + 'ms', p ? 'Continue as ' + nm16(nameOf(p)) + ' ' + ARW : 'Start my Boh ' + ARW);
         o += btn('fs', 'load', 'left:24px;right:24px;top:762px;height:56px;font-size:18px;animation:ffade .6s both;animation-delay:' + dl(1100) + 'ms', 'I already have a Boh');
-        o += box('left:0;right:50px;top:826px;text-align:center;font:600 10.5px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
+        o += box('left:0;right:50px;top:826px;text-align:center;font:600 10px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
         o += '<a class="flnk" href="teacher/" style="right:6px;width:44px;top:820px;font-size:12px;font-weight:600">Prof</a>';
       } else {
         o += box('left:0;right:0;top:30px;text-align:center;font:800 15px system-ui;letter-spacing:.16em;color:#4F5E80;animation:ffade .6s both', 'THE ITALIAN LEARNING GAME');
-        o += box('left:150px;top:74px;font:800 20px system-ui;color:#4F5E80', 'Boh&hellip;');
-        o += box('left:150px;width:360px;top:74px;text-align:right;font:800 20px system-ui;color:#0E2A5B', 'Lo so!');
-        o += sl('left:150px;top:108px;width:360px;height:540px;animation:ffade .6s both;animation-delay:' + dl(450) + 'ms');
+        o += box('left:150px;top:58px;font:800 22px/1.15 system-ui;color:#4F5E80', 'Boh&hellip;<br><span data-nogloss style="font:700 15px system-ui">Eh??</span>');
+        o += box('left:150px;width:360px;top:58px;text-align:right;font:800 22px/1.15 system-ui;color:#0E2A5B', 'Ci sto!<br><span data-nogloss style="font:700 15px system-ui">I got this</span>');
+        o += sl('left:150px;top:116px;width:355px;height:532px;animation:ffade .6s both;animation-delay:' + dl(450) + 'ms');
         o += img(A + 'boh.webp', 'left:825px;top:80px;width:200px;animation-delay:' + dl(100) + 'ms', 'fpop .5s both');
-        o += box('left:600px;width:650px;top:200px;text-align:center;font:900 54px/1.1 system-ui;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(300) + 'ms', 'Da boh a lo so!');
+        o += box('left:600px;width:650px;top:200px;text-align:center;font:900 54px/1.1 system-ui;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(300) + 'ms', 'Da boh&hellip; a ci sto!');
         o += box('left:600px;width:650px;top:290px;text-align:center;font:800 30px/1.3 system-ui;white-space:nowrap;color:#0E2A5B;animation:ffade .6s both;animation-delay:' + dl(700) + 'ms',
           'Learn Italian. Earn Boh Cashi <img src="assets/bc-black.svg" alt="BC" style="height:40px;vertical-align:-11px">.<br>Build a Boh like no other.');
-        o += box('left:600px;width:650px;top:400px;text-align:center;font:600 20px system-ui;color:#4F5E80;animation:ffade .6s both;animation-delay:' + dl(850) + 'ms', 'Boh is Italian for &ldquo;I don&rsquo;t know.&rdquo;');
+        o += box('left:600px;width:650px;top:400px;text-align:center;font:600 20px system-ui;color:#4F5E80;animation:ffade .6s both;animation-delay:' + dl(850) + 'ms', 'From &ldquo;I don&rsquo;t know&rdquo; to &ldquo;I got this.&rdquo;');
         o += btn('fp', p ? 'boh' : 'look', 'left:600px;top:478px;width:' + (p ? 340 : 300) + 'px;height:76px;font-size:26px;animation:ffade .6s both;animation-delay:' + dl(1000) + 'ms', p ? 'Continue as ' + nm16(nameOf(p)) + ' ' + ARW : 'Start my Boh ' + ARW);
         o += btn('fs', 'load', 'left:' + (p ? 956 : 916) + 'px;top:478px;width:306px;height:76px;font-size:22px;animation:ffade .6s both;animation-delay:' + dl(1100) + 'ms', 'I already have a Boh');
         o += box('left:0;right:90px;top:728px;text-align:center;font:600 13px system-ui;color:#4F5E80', 'Created by Assunta Scotto &middot; &copy; 2026 &middot; All rights reserved');
@@ -324,7 +324,7 @@
     function set(p) {
       p = Math.max(0, Math.min(100, p)); S.sp = p;
       el.style.setProperty('--p', p + '%'); b.style.clipPath = 'inset(0 0 0 ' + p + '%)'; if (a0) a0.style.clipPath = 'inset(0 ' + (100 - p - 0.1) + '% 0 0)';
-      el.setAttribute('aria-valuenow', Math.round(p)); el.setAttribute('aria-valuetext', p > 50 ? 'Boh' : 'Lo so');
+      el.setAttribute('aria-valuenow', Math.round(p)); el.setAttribute('aria-valuetext', p > 50 ? 'Boh' : 'Ci sto');
     }
     function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; if (tm) clearTimeout(tm); tm = 0; }
     function at(e) { var r = el.getBoundingClientRect(); return r.width ? (e.clientX - r.left) / r.width * 100 : 50; }
