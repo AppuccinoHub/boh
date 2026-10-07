@@ -1,0 +1,62 @@
+/* Boh · front door (app-style pages). Created by Assunta Scotto, 2026. Not for redistribution.
+   One fixed-size stage per layout (phone 390x844, Chromebook 1366x768) is scaled to fit the screen, so no page ever scrolls. */
+html,body{height:100%;margin:0}
+body{background:#FFE9C9;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#12234A}
+#shell{position:fixed;inset:0;overflow:hidden;background:#FFE9C9 url(front/bg.jpg) center/cover no-repeat;-webkit-tap-highlight-color:transparent}
+#stage{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden}
+.fscr{position:absolute;inset:0;will-change:transform,opacity}
+.fa{position:absolute}
+.fbtn{box-sizing:border-box;position:absolute;border:0;border-radius:999px;font-family:inherit;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.fbtn svg{width:1.1em;height:1.1em;flex:none}
+.fp{background:#1A5CDF;color:#fff;box-shadow:0 5px 0 #0E2A5B}
+.fp:active{transform:translateY(3px);box-shadow:0 2px 0 #0E2A5B}
+.fs{background:#fff;color:#0E2A5B;border:3px solid #BFE3EA}
+.foff{background:#BFE3E5;color:#fff;cursor:default;box-shadow:none}
+.fink{color:#0E2A5B}
+.fmut{color:#4F5E80}
+.fback{position:absolute;border:0;border-radius:50%;background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 6px rgba(14,42,91,.15)}
+.flnk{position:absolute;text-align:center;font-family:inherit;font-weight:700;color:#4F5E80;text-decoration:underline;cursor:pointer;background:none;border:0}
+.fscr button:focus-visible,.fscr a:focus-visible,.fscr input:focus-visible{outline:4px solid #F28C28;outline-offset:3px}
+.finp{position:absolute;border-radius:20px;background:#fff;border:3px solid #BFE3EA;font-family:inherit;font-weight:700;color:#0E2A5B;padding:0 20px}
+.finp:focus{border-color:#10BFBF;outline:0}
+.ferr{position:absolute;font-weight:800;color:#B3261E;text-align:center}
+/* real dolls */
+.fdoll{position:absolute;display:flex;justify-content:center;align-items:flex-end}
+.fdoll .doll{flex:none}
+/* choices on the look screen */
+.fpill{border:3px solid transparent;border-radius:999px;background:#fff;color:#0E2A5B;font-family:inherit;font-weight:800;cursor:pointer;box-shadow:0 1px 0 #BFE3EA}
+.fpill[aria-pressed="true"]{border-color:#10BFBF;background:#E2F7F7}
+.flab{position:absolute;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#4F5E80}
+.fsw{position:absolute;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #BFE3EA;cursor:pointer;padding:0}
+.fsw[aria-pressed="true"]{box-shadow:0 0 0 4px #10BFBF}
+/* wallet */
+.fwal{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;border-radius:999px;background:#141014;color:#fff;border:1.5px solid #C9A04E;box-shadow:0 0 14px rgba(201,160,78,.35);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.fwal img{height:1.1em}
+.fwal small{font-weight:700;opacity:.8;font-size:.7em}
+/* level rows */
+.flv{position:absolute;display:flex;background:#fff;border:3px solid #E3EFF2;border-radius:22px;text-decoration:none;color:inherit;overflow:hidden;box-shadow:0 2px 0 #BFE3EA}
+.flv:active{transform:translateY(2px)}
+.flv:hover{border-color:var(--c)}
+.flv .bar{flex:none;width:12px;background:var(--c)}
+.flv .act{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--c);color:var(--on-c);font-weight:800;line-height:1.3}
+.flv h3{margin:0;font-weight:800;line-height:1.05;color:#0E2A5B}
+.flv p{margin:0;color:#4F5E80;font-weight:600;line-height:1.25}
+.flv .go{flex:none;display:grid;place-items:center;border-radius:50%;background:var(--c);color:var(--on-c)}
+.flv .go svg{width:55%;height:55%}
+.fpop{animation:fpop .5s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes fpop{from{opacity:0;transform:scale(.6) translateY(24px)}to{opacity:1;transform:none}}
+@keyframes frise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes ffade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fwipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fswipe{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(-14px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+@media (prefers-reduced-motion:reduce){#stage *{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}}
+
+.fdoll .doll{width:var(--dw);height:var(--dh)}
+
+/* opening slider: Boh... to Lo so! */
+.fsl{box-sizing:border-box;border-radius:28px;background:#FFF6EA;border:2px solid #EBCFC6;overflow:hidden;touch-action:none;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.fsl img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.fsl-line{position:absolute;top:0;bottom:0;left:var(--p,50%);width:3px;margin-left:-1.5px;background:#BC1E72}
+.fsl-knob{position:absolute;top:50%;left:var(--p,50%);width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#BC1E72;box-shadow:0 0 0 4px #fff,0 3px 10px rgba(14,42,91,.3);display:grid;place-items:center}
+.fsl-knob svg{width:26px;height:26px}
+.fsl:focus-visible{outline:4px solid #F28C28;outline-offset:3px}
