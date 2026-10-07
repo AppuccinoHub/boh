@@ -68,8 +68,8 @@
       var sl = function (css) {
         var q = typeof S.sp === 'number' ? S.sp : 50;
         return '<div class="fsl fa" role="slider" tabindex="0" aria-label="Slide from Boh, I don&rsquo;t know, to Lo so, I know" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(q) + '" aria-valuetext="' + (q > 50 ? 'Boh' : 'Lo so') + '" style="' + css + ';--p:' + q + '%">' +
-          '<img class="fsl-a" src="' + A + 's-' + g + '-shrug.webp" alt="" draggable="false" style="clip-path:inset(0 ' + (100 - q - 0.1) + '% 0 0)">' +
-          '<img class="fsl-b" src="' + A + 's-' + g + (g === 'girl' ? '-earned-c' : '-earned') + '.webp" alt="" draggable="false" style="clip-path:inset(0 0 0 ' + q + '%)">' +
+          '<img class="fsl-a" src="' + A + 's-' + g + (g === 'girl' ? '-shrug' : '-shrug-d') + '.webp" alt="" draggable="false" style="clip-path:inset(0 ' + (100 - q - 0.1) + '% 0 0)">' +
+          '<img class="fsl-b" src="' + A + 's-' + g + (g === 'girl' ? '-earned-c' : '-earned-d') + '.webp" alt="" draggable="false" style="clip-path:inset(0 0 0 ' + q + '%)">' +
           '<i class="fsl-line"></i><i class="fsl-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div>';
       };
       if (P) {
