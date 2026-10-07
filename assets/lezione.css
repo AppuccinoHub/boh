@@ -232,3 +232,7 @@ html.lz-kb .lz-q{min-height:0;font-size:18px}
 html.lz-kb .lz-fb{min-height:0;padding:6px 10px}
 html.lz-kb #lz{overflow:auto}
 @media (prefers-reduced-motion:reduce){.lz-bub.in,.lz-plus{animation:none}}
+
+/* Slow button: same shape as Hear it, outlined so there is still one filled button */
+.lz-hear.lz-slow{background:var(--card);color:var(--tap);border:2px solid var(--tap)}
+.lz-hear.lz-slow[disabled]{opacity:.45}

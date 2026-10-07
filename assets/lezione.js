@@ -67,11 +67,12 @@
 
   /* ---------------------------------------------------------------- the Italian voice */
   function hasVoice() { try { return !!(W.BohVoice && W.BohVoice.list().length); } catch (e) { return false; } }
-  function speak(text, onend) {
+  var SLOW_RATE = 0.65; /* the Slow button. Chromebooks and online voices cannot go below 0.7 (BohVoice raises it), so there Slow is 0.7 */
+  function speak(text, onend, rate) {
     try {
       if (!W.BohVoice) return false;
       var v = null; try { v = W.BohVoice.pick(); } catch (e) {}
-      var u = W.BohVoice.speak(text, { rate: 0.9, voice: v || undefined, onend: onend });
+      var u = W.BohVoice.speak(text, { rate: rate || 0.9, voice: v || undefined, onend: onend });
       return !!u;
     } catch (e) { return false; }
   }
@@ -135,7 +136,7 @@
     var h = top('map', 'Parts', s.label + (V.lu ? ' · Level up' : ''), s.en) + dots(V.q.length, V.i);
     var pose = V.phase === 'fb' ? (V.wasRight ? CHEER[(V.i + V.si) % CHEER.length] : 'finger-up') : say[0];
     h += stage(pose, V.phase === 'fb' ? (V.wasRight ? 'Sì! ' + bravo() + '!' : 'Not yet. Look at the pink.') : say[1]);
-    if (hear) h += '<div class="lz-q"><small>Listen</small>' + (hasVoice() ? '<button class="lz-hear" data-act="hear">Hear it</button>' : '<span>' + esc(c.it) + '</span>') + '</div>';
+    if (hear) h += '<div class="lz-q"><small>Listen</small>' + (hasVoice() ? '<button class="lz-hear" data-act="hear">Hear it</button><button class="lz-hear lz-slow" data-act="hearslow" aria-label="Hear it slowly">Slow</button>' : '<span>' + esc(c.it) + '</span>') + '</div>';
     else h += '<div class="lz-q"><small>How do you say</small><span>' + esc(c.en) + '</span></div>';
     h += '<div class="lz-opts' + (V.phase === 'say' ? ' wait' : '') + '">' + V.order.map(function (o, k) {
       var cls = '';
@@ -215,6 +216,7 @@
       h += '<button class="lz-tile en' + (V.ok[e] ? ' ok' : (V.bad === e ? ' no' : '')) + '" data-act="men" data-i="' + e + '"' + (V.ok[e] || V.phase === 'listen' ? ' disabled' : '') + '>' + (V.phase === 'listen' ? '&nbsp;' : esc(s.pairs[e][1])) + '</button>';
     });
     h += '</div><div class="lz-note">' + (V.phase === 'listen' ? 'Listening...' : 'Every tap says it out loud.') + '</div>';
+    if (hasVoice()) h += '<div class="lz-q"><button class="lz-hear lz-slow" data-act="mslow" aria-label="Hear the Italian you tapped, slowly"' + (V.phase !== 'match' || V.sel < 0 ? ' disabled' : '') + '>Slow</button></div>';
     return h;
   }
   function matchListen() {
@@ -241,7 +243,7 @@
   function vWrite() {
     var s = L.sections[V.si], it = s.items[V.i], voice = hasVoice(), h = top('map', 'Parts', s.label, s.en) + dots(s.items.length, V.i);
     h += stage(V.fb === 'ok' ? CHEER[V.i % CHEER.length] : (V.fb === 'show' ? 'finger-up' : s.say[0]), V.fb === 'ok' ? 'Sì! You wrote it.' : (V.fb === 'show' ? 'Here it is. Read it and say it.' : (V.tries ? 'Close. Listen again.' : s.say[1])));
-    h += '<div class="lz-q">' + (voice ? '<button class="lz-hear" data-act="whear">Hear it</button>' : '<small>Type it in Italian</small>') +
+    h += '<div class="lz-q">' + (voice ? '<button class="lz-hear" data-act="whear">Hear it</button><button class="lz-hear lz-slow" data-act="whearslow" aria-label="Hear it slowly">Slow</button>' : '<small>Type it in Italian</small>') +
       (V.help >= 1 || !voice ? '<span>' + esc(it.en) + '</span>' : '') + '</div>';
     h += '<input class="lz-in" id="lz-in" type="text" lang="it" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type here"' + (V.fb === 'ok' || V.fb === 'show' ? ' disabled' : '') + ' value="' + esc(V.typed || '') + '">';
     if (V.fb === 'ok' || V.fb === 'show') h += '<div class="lz-fb ' + (V.fb === 'ok' ? 'ok' : 'pop') + '"><button class="a" data-act="wagain">' + (V.fb === 'ok' ? '' : 'It’s: ') + esc(it.it) + '</button><span class="e">' + esc(it.en) + '</span></div>';
@@ -464,6 +466,9 @@
     else if (a === 'next') pickNext();
     else if (a === 'again') speak(pickCards()[V.q[V.i]].it);
     else if (a === 'hear') speak(pickCards()[V.q[V.i]].it);
+    else if (a === 'hearslow') speak(pickCards()[V.q[V.i]].it, null, SLOW_RATE);
+    else if (a === 'mslow') { if (V.phase === 'match' && V.sel >= 0) speak(L.sections[V.si].pairs[V.sel][0], null, SLOW_RATE); }
+    else if (a === 'whearslow') { speak(s.items[V.i].it, null, SLOW_RATE); var el2 = document.getElementById('lz-in'); if (el2) el2.focus(); }
     else if (a === 'luyes') { go({ name: 'pick', si: V.si, lu: true, q: range(s.levelUp.cards.length), i: 0, line: 0, phase: 'say', miss: {}, tries: {} }); }
     else if (a === 'luskip') { if (S.lu !== 'done') { S.lu = 'skipped'; save(); } secDone(V.si); }
     else if (a === 'mit') matchIt(i);
