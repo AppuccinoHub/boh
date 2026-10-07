@@ -39,10 +39,12 @@
   /* ---------------------------------------------------------------- saved state + the shared wallet */
   function key() { return 'boh_lz_' + L.id + '_v1'; }
   function load() {
-    var f = { v: 1, done: {}, paid: {}, ft: {}, links: {}, lu: '', earned: 0 }, o = null;
+    var f = { v: 1, done: {}, paid: {}, ft: {}, links: {}, lu: '', earned: 0, att: 1, log: {}, best: 0 }, o = null;
     try { o = JSON.parse(localStorage.getItem(key()) || 'null'); } catch (e) {}
     if (o && typeof o === 'object') for (var k in o) f[k] = o[k];
-    ['done', 'paid', 'ft', 'links'].forEach(function (k) { if (!f[k] || typeof f[k] !== 'object') f[k] = {}; });
+    ['done', 'paid', 'ft', 'links', 'log'].forEach(function (k) { if (!f[k] || typeof f[k] !== 'object') f[k] = {}; });
+    if (!(f.att >= 1 && f.att <= 4)) f.att = 1;
+    if (!(f.best >= 0)) f.best = 0;
     return f;
   }
   function save() { try { localStorage.setItem(key(), JSON.stringify(S)); } catch (e) {} }
@@ -225,9 +227,10 @@
     if (V.phase !== 'match' || V.sel < 0 || V.ok[e]) return;
     var s = L.sections[V.si];
     if (e === V.sel) {
+      var mk = s.id + ':' + e; if (S.ft[mk] === undefined) { S.ft[mk] = 1; save(); }
       V.ok[e] = true; V.sel = -1; V.bad = -1; render(true);
       if (Object.keys(V.ok).length === s.pairs.length) { pay(s.id + ':all', s.pay); later(1100, function () { secDone(V.si); }); }
-    } else { V.bad = e; render(true); later(600, function () { V.bad = -1; render(true); }); }
+    } else { var mk2 = s.id + ':' + V.sel; if (S.ft[mk2] === undefined) { S.ft[mk2] = 0; save(); } V.bad = e; render(true); later(600, function () { V.bad = -1; render(true); }); }
   }
 
   /* ---------------------------------------------------------------- WRITE: type what you hear */
@@ -318,22 +321,83 @@
     } else { V.bad = true; V.badK = k; render(true); later(500, function () { V.badK = -1; render(true); }); }
   }
 
-  /* ---------------------------------------------------------------- PROGRESS PAGE: the one to screenshot */
+  /* ---------------------------------------------------------------- GRADE: 4 tries (the first + 3 retries), the best one counts */
+  var MAX_TRIES = 4;
+  function scorable(s) { return s.type === 'pick' || s.type === 'match' || s.type === 'write' || s.type === 'build'; }
+  function secCount(s) { return s.type === 'pick' ? s.cards.length : (s.type === 'match' ? s.pairs.length : s.items.length); }
+  /* right the first time, counted per card. Level-up cards are optional and never count toward the grade. */
+  function secRight(s) {
+    var r = 0, n = secCount(s), seen = 0, i;
+    for (i = 0; i < n; i++) { var v = S.ft[s.id + ':' + i]; if (v !== undefined) seen++; if (v === 1) r++; }
+    if (s.type === 'match' && S.done[s.id] && !seen) return n; /* finished before first-try tracking existed: full credit */
+    return r;
+  }
+  function lessonScore() {
+    var r = 0, n = 0, secs = {};
+    L.sections.forEach(function (s) { if (!scorable(s)) return; var a = secRight(s), b = secCount(s); secs[s.id] = [a, b]; r += a; n += b; });
+    return { r: r, n: n, pct: n ? Math.round(100 * r / n) : 0, secs: secs };
+  }
+  function recordTry() {
+    if (!allDone() || S.log[S.att]) return;
+    var sc = lessonScore();
+    S.log[S.att] = { pct: sc.pct, t: Date.now(), secs: sc.secs };
+    S.best = Math.max(S.best || 0, sc.pct); save();
+  }
+  function checkCode(parts) {
+    var t = parts.join('|'), h1 = 0xdeadbeef, h2 = 0x41c6ce57, i, c;
+    for (i = 0; i < t.length; i++) { c = t.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    var u = (h1 >>> 0).toString(36).toUpperCase(); while (u.length < 6) u = '0' + u; u = u.slice(-6);
+    return u.slice(0, 3) + '-' + u.slice(3);
+  }
+  function stamp(d) { var m = d.getMinutes(); return dateIt(d) + ' · ' + d.getHours() + ':' + (m < 10 ? '0' : '') + m; }
+  function shotLine() {
+    var ua = (W.navigator && navigator.userAgent) || '';
+    if (/CrOS/.test(ua)) return 'Chromebook: Ctrl + Show windows key';
+    if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'iPhone or iPad: side button + volume up';
+    if (/Android/.test(ua)) return 'Android: power + volume down';
+    return 'Chromebook: Ctrl + Show windows key · iPhone: side button + volume up · Android: power + volume down';
+  }
+
+  /* ---------------------------------------------------------------- PROGRESS PAGE: the score card to screenshot */
   function vFinish() {
-    var p = profile(), name = (p && p.bohName) || 'Student', d = new Date(), all = allDone(), r = 0, n = 0, k;
-    for (k in S.ft) { n++; if (S.ft[k]) r++; }
-    var nd = L.sections.filter(function (s) { return S.done[s.id]; }).length;
+    var p = profile(), name = (p && p.bohName) || 'Student', d = new Date(), all = allDone();
+    recordTry();
+    var sc = lessonScore(), best = S.best || 0, left = MAX_TRIES - S.att, locked = all && S.att >= MAX_TRIES, k;
+    var rows = L.sections.map(function (s) {
+      var v, cls;
+      if (!S.done[s.id]) { v = '&mdash;'; cls = 'dn'; }
+      else if (!scorable(s)) { v = 'Done'; cls = 'ok'; }
+      else { var a = secRight(s), b = secCount(s); v = a + ' / ' + b; cls = a === b ? 'ok' : 'dn'; }
+      return '<div class="' + cls + '">' + esc(s.label + (s.levelUp && S.lu === 'done' ? ' +' : '')) + '<span>' + v + '</span></div>';
+    }).join('');
+    var hist = []; for (k = 1; k <= MAX_TRIES; k++) if (S.log[k]) hist.push(S.log[k].pct + '%');
     var h = top('map', 'Parts', L.title, L.sub);
     h += '<div class="lz-card"><div class="lz-id"><div class="lz-bust" role="img" aria-label="Prof. Lo So" ' + (all ? body('jump-joy') : bust('fist-forza')) + '></div>' +
-      '<div><h2 class="dsp">' + esc(name) + '</h2><p>' + esc(dateIt(d)) + '</p><p>' + esc(L.title + ': ' + L.sub) + '</p></div></div>';
-    h += '<div class="lz-stats"><div><b>' + nd + ' / ' + L.sections.length + '</b><span>parts done</span></div><div><b>' + r + ' / ' + n + '</b><span>right the first time</span></div><div><b>' + (S.earned || 0) + ' BC</b><span>earned here</span></div></div>';
-    h += '<div class="lz-ck">' + L.sections.map(function (s) { return '<div class="' + (S.done[s.id] ? 'y' : 'n') + '"><i></i>' + esc(s.label) + (s.levelUp && S.lu === 'done' ? ' + Level up' : '') + '</div>'; }).join('') + '</div>';
+      '<div class="lz-idt"><h2 class="dsp">' + esc(name) + '</h2><p>' + esc(L.title + ': ' + L.sub) + '</p><p>' + esc(stamp(d)) + '</p></div>' +
+      '<div class="lz-try"><span>Try</span><b>' + S.att + ' of ' + MAX_TRIES + '</b></div></div>';
+    if (all) h += '<div class="lz-sc"><b>' + sc.pct + '%</b><span>right the first time</span></div>';
+    else h += '<div class="lz-sc"><b>&mdash;</b><span>finish every part to get your grade</span></div>';
+    if (best > 0) h += '<div class="lz-best">Your grade (best): ' + best + '%</div>';
+    h += '<div class="lz-acts">' + rows + '</div>';
     var links = L.sections.filter(function (s) { return s.type === 'record' && S.links[s.id]; }).map(function (s) { return esc(s.label) + ': ' + (S.links[s.id] === 'other' ? 'recorded another way' : esc(S.links[s.id])); });
     if (links.length) h += '<div class="lz-links">' + links.join('<br>') + '</div>';
-    h += '</div><div class="lz-shot">Screenshot this page. Turn it in on Google Classroom.</div>';
-    h += '<div class="lz-row"><button class="lz-btn" data-act="map">' + (all ? 'Back to the parts' : 'Keep working') + '</button></div><div class="lz-foot">Created by Assunta Scotto</div>';
+    if (all) h += '<div class="lz-code">Tries: ' + hist.join(' · ') + ' · Check code: ' + checkCode([name, L.id, S.att, sc.pct, best, JSON.stringify(sc.secs)]) + '</div>';
+    h += '</div>';
+    if (all) h += '<div class="lz-shot"><b>Take a screenshot of this screen</b> and upload it to Google Classroom.<br><span>' + esc(shotLine()) + '</span></div>';
+    if (all && !locked) h += '<div class="lz-row"><button class="lz-btn" data-act="retry">Try again (' + left + ' left)</button></div><div class="lz-note">Your best score is saved. A new try can only raise it.</div>';
+    else if (locked) h += '<div class="lz-lock">Final grade locked. Your best counts: ' + best + '%.</div>';
+    else h += '<div class="lz-row"><button class="lz-btn" data-act="map">Keep working</button></div>';
+    h += '<div class="lz-foot">Created by Assunta Scotto</div>';
     return h;
   }
+  function vRetry() {
+    var n = S.att + 1;
+    return top('finish', 'Back', L.title, L.sub) +
+      '<div class="lz-card lz-ask"><h2 class="dsp">Start try ' + n + ' of ' + MAX_TRIES + '?</h2><p>Your answers reset so you can do it again. Your best score (' + (S.best || 0) + '%) stays. Boh Cashi are only paid once.</p></div>' +
+      '<div class="lz-row lz-col"><button class="lz-btn" data-act="retryyes">Yes, start try ' + n + '</button><button class="lz-ghost" data-act="finish">Not now</button></div>';
+  }
+  function retryOk() { return allDone() && !!S.log[S.att] && S.att < MAX_TRIES; }
 
   /* When the phone keyboard opens, the browser shrinks the visible area and scrolls the page, which pushes the top bar out of sight.
      Fit the lesson to the visible area, keep the page scrolled to the top, and shrink Prof. Lo So (class lz-kb) so the box and buttons stay in view. */
@@ -353,7 +417,7 @@
 
   /* ---------------------------------------------------------------- render + clicks */
   function render(keep) {
-    var views = { map: vMap, pick: vPick, offer: vOffer, done: vDone, match: vMatch, write: vWrite, record: vRecord, build: vBuild, finish: vFinish };
+    var views = { map: vMap, pick: vPick, offer: vOffer, done: vDone, match: vMatch, write: vWrite, record: vRecord, build: vBuild, finish: vFinish, retry: vRetry };
     var el = document.getElementById('lz-in'), typed = el ? el.value : null;
     /* keep what the student typed only while they stay on the same sentence; a new sentence starts with an empty box */
     var wkey = V.name === 'write' ? V.si + ':' + V.i : null, sameItem = wkey !== null && wkey === lastWriteKey;
@@ -368,6 +432,8 @@
     if (a === 'home') { W.location.href = '../' + (L.level || '') + '/'; }
     else if (a === 'map') go({ name: 'map' });
     else if (a === 'finish') go({ name: 'finish' });
+    else if (a === 'retry') { if (retryOk()) go({ name: 'retry' }); }
+    else if (a === 'retryyes') { if (retryOk()) { S.att++; S.done = {}; S.ft = {}; S.links = {}; S.lu = ''; save(); go({ name: 'map' }); } }
     else if (a === 'sound') { if (!speak('Ciao! Posso andare in bagno?')) { b.textContent = 'No voice here'; } else if (!hasVoice()) b.textContent = 'No Italian voice'; }
     else if (a === 'sec') { if (open_(i)) startSec(i); }
     else if (a === 'keep') { if (V.si + 1 < L.sections.length) startSec(V.si + 1); }
