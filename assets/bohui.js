@@ -27,7 +27,7 @@
 
   /* ---- 3. Warm-up ---- */
   function known(id) { var g = rd('boh_fc_' + id); return (g && g.known) || []; }
-  function deckById(U, id) { var d = (U.fc || []).filter(function (x) { return x.id === id; })[0]; return d || null; }
+  function deckById(U, id) { var d = (U.wfc || U.fc || []).filter(function (x) { return x.id === id; })[0]; return d || null; }
   function unknownOf(unit, U, ids, max) {   // cards from the core decks the student has not marked "Lo so"
     var out = [];
     ids.forEach(function (id) {
@@ -37,8 +37,24 @@
     });
     return out;
   }
+  function derive(unit, U) {   // a unit with no warm-up decks of its own: cut its vocabulary into decks of 3 words (the originals stay as they are)
+    try {
+      if (!U || U.warm) return;
+      var words = [], voc = (U.fc || []).filter(function (d) { return d.id === 'voc'; })[0];
+      if (voc) words = voc.cards.slice();
+      else if (!(U.fc && U.fc.length)) {
+        var L = (W.BT_LESSONS || {})[unit];
+        ((L && L.stops) || []).forEach(function (st) { (st.items || []).forEach(function (it) { if (it && it.groups) it.groups.forEach(function (g) { g[1].forEach(function (w) { words.push([w[0], w[1]]); }); }); }); });
+      }
+      if (!words.length) return;
+      var wfc = [], ids = [];
+      for (var i = 0; i < words.length; i += 3) { var id = 'w' + (i / 3 + 1); ids.push(id); wfc.push({ id: id, title: 'Parole ' + (i / 3 + 1) + ' \u00b7 ' + words.slice(i, i + 3).map(function (x) { return x[0]; }).join(' \u00b7 '), cards: words.slice(i, i + 3) }); }
+      U.wfc = wfc; U.warm = ids;
+    } catch (e) {}
+  }
   function warm(g, then) {
     var unit = W.BT_UNIT, U = (W.BT_UNITS || {})[unit];
+    derive(unit, U);
     if (!U || !U.warm || !U.warm.length || !W.BohCards) { then(); return; }
     var core = U.warm, all = rd('boh_fc_wu') || {}, rec = all[unit] || { n: 0, day: '' };
     if (rec.day === ymd()) { then(); return; }           // today's warm-up is done
@@ -86,6 +102,7 @@
     return T && !(T.until && ymd() > T.until) ? T : null;
   }
   function startVals(g, s, r) {
+    derive(W.BT_UNIT, (W.BT_UNITS || {})[W.BT_UNIT]);
     var T = todayEntry(), name = (r.bohName || '').trim(), qep = false;
     try { qep = typeof W.__bohQepCur === 'function' && !!W.__bohQepCur(s); } catch (e) {}
     r.startHi = 'Ciao' + (name ? ', ' + name : '') + '!';

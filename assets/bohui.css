@@ -53,3 +53,9 @@ html[data-en="1"] .tl-en { display: inline; }
 html[data-en="1"] .tl-it { display: none; }
 .tc-playbtn.tl-btn { white-space: nowrap; width: auto; min-width: 38px; padding: 0 12px; gap: 6px; grid-auto-flow: column; font-size: 14px; font-weight: 800; color: var(--text, #0E2A5B); }
 .tc-playbtn.tl-btn .tl-ic { font-size: 19px; }
+
+/* the Start card stays on short screens (phone sideways) when the rest of the hero is hidden */
+@media (max-width: 899px) and (max-height: 660px) {
+  .home-hero { display: flex !important; margin-top: 0 !important; }
+  .home-hero > :not(.start-card) { display: none !important; }
+}
