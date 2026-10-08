@@ -52,6 +52,17 @@
       U.wfc = wfc; U.warm = ids;
     } catch (e) {}
   }
+  function warmFrom(unit, ids) {   // warm-up decks of 3 words cut from the unit's existing decks (the originals stay as they are)
+    try {
+      var U = (W.BT_UNITS || {})[unit]; if (!U || U.warm) return;
+      var words = [];
+      ids.forEach(function (id) { var d = (U.fc || []).filter(function (x) { return x.id === id; })[0]; if (d) d.cards.forEach(function (c) { words.push(c); }); });
+      if (!words.length) return;
+      var wfc = [], out = [];
+      for (var i = 0; i < words.length; i += 3) { var id2 = 'w' + (i / 3 + 1); out.push(id2); wfc.push({ id: id2, title: 'Parole ' + (i / 3 + 1) + ' \u00b7 ' + words.slice(i, i + 3).map(function (x) { return x[0]; }).join(' \u00b7 '), cards: words.slice(i, i + 3) }); }
+      U.wfc = wfc; U.warm = out;
+    } catch (e) {}
+  }
   function warm(g, then) {
     var unit = W.BT_UNIT, U = (W.BT_UNITS || {})[unit];
     derive(unit, U);
@@ -112,6 +123,10 @@
     r.startT = T ? T.title : (qep && r.unitTitle ? r.unitTitle : String(r.continuaLabel || '').replace(/^(Comincia|Continua):\s*/, ''));
     r.startW = T && T.words ? T.words : '';
     r.startN = T && T.note ? T.note : '';
+    if (T && T.id && T.total) {   // an In classe lesson: show how many parts are done
+      var d = 0; try { var z = JSON.parse(localStorage.getItem('boh_lz_' + T.id + '_v1') || 'null'); if (z && z.done) for (var k in z.done) if (z.done[k]) d++; } catch (e) {}
+      r.startN = d >= T.total ? 'All ' + T.total + ' parts done' : d ? d + ' of ' + T.total + ' parts done. Keep going.' : 'Start here.';
+    }
     r.hasStartW = !!r.startW; r.hasStartN = !!r.startN;
     r.startH = function () {
       try { g.sfx && g.sfx('tap'); } catch (e) {}
@@ -125,5 +140,5 @@
     };
   }
 
-  W.BohUI = { en: en, startVals: startVals, warm: warm };
+  W.BohUI = { en: en, startVals: startVals, warm: warm, warmFrom: warmFrom };
 })(window);

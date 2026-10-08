@@ -34,7 +34,7 @@ function fill(){var b=document.querySelector('.pathbar');if(!b)return;
 function dup(){var h=document.querySelector('.home-hero'),t=document.querySelector('.hero-title'),o=document.querySelector('.oggi-t');
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
-</head><body>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610072300"><script src="../assets/english.js?v=202610072300"></script><script src="../assets/bohui.js?v=202610072300"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -1348,7 +1348,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
           <button onClick="{{pauseHandler}}" aria-label="Pause" style="all:unset;cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--icon-btn-bg);color:var(--icon-btn-text);border:1px solid var(--card-border);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.5"></rect><rect x="14" y="5" width="4" height="14" rx="1.5"></rect></svg>
           </button>
-          <sc-if value="{{showTabBtn}}" hint-placeholder-val="{{true}}"><button onClick="{{openTabHandler}}" aria-label="La Tabella" class="tc-playbtn">&#128203;</button></sc-if>
+          <sc-if value="{{showTabBtn}}" hint-placeholder-val="{{true}}"><button onClick="{{openTabHandler}}" aria-label="La Tabella (Help chart)" class="tc-playbtn tl-btn"><span class="tl-ic" aria-hidden="true">&#128203;</span><span class="tl-en">Help chart</span><span class="tl-it">La Tabella</span></button></sc-if>
         </sc-if>
         <sc-if value="{{showHomeBtn}}" hint-placeholder-val="{{false}}">
           <button onClick="{{backHandler}}" aria-label="Back" style="cursor:pointer;display:flex;align-items:center;gap:5px;padding:9px 14px;border-radius:999px;background:var(--icon-btn-bg);color:var(--icon-btn-text);border:1px solid var(--card-border);font-weight:800;font-size:14px;font-family:inherit;">
@@ -1382,12 +1382,23 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
       <div class="home-grid" style="display:flex;flex-direction:column;gap:20px;">
       <div class="home-col" style="display:flex;flex-direction:column;gap:20px;min-width:0;">
         <div class="home-hero" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
-          <a class="oggi" href="../in-classe/"><span class="oggi-x"><span class="oggi-k">Today &middot; luned&igrave; 5 ottobre</span><b class="oggi-t">What can I do, want to do, and have to do?</b><span class="oggi-w">(posso, voglio, devo)</span><span class="oggi-d">Start here.</span></span><span class="oggi-go" aria-hidden="true">&rsaquo;</span></a>
           <div class="hero-eyebrow display" style="font-size:13px;letter-spacing:.16em;color:var(--accent-strong);font-weight:700;">{{unitEyebrow}}</div>
           <h1 class="hero-title display" style="margin:0;font-size:32px;line-height:1.12;font-weight:800;">{{unitTitle}}</h1>
           <div class="hero-words display">{{unitWords}}</div>
           <p class="home-lede" style="margin:0;color:var(--text-muted);font-size:15px;line-height:1.55;">{{homeLede}}</p>
-          <button class="continua" onClick="{{continuaH}}"><span>{{continuaLabel}}</span><span aria-hidden="true">&rsaquo;</span></button>
+          <div class="start-card">
+            <div class="tc-emo tcp tcp-point-side start-lo" role="img" aria-label="Prof. Lo So"></div>
+            <div class="start-body">
+              <span class="start-hi">{{startHi}}</span>
+              <span class="start-hi-en en-only">{{startHiEn}}</span>
+              <span class="start-k">{{startK}}</span>
+              <span class="start-ken en-only">{{startKen}}</span>
+              <b class="start-t">{{startT}}</b>
+              <sc-if value="{{hasStartW}}" hint-placeholder-val="{{false}}"><span class="start-w">{{startW}}</span></sc-if>
+              <sc-if value="{{hasStartN}}" hint-placeholder-val="{{false}}"><span class="start-n">{{startN}}</span></sc-if>
+            </div>
+            <button class="start-go" onClick="{{startH}}"><span>Comincia</span><small class="en-only inl">Start</small></button>
+          </div>
         </div>
 
         <div class="pathbar" role="list" aria-label="Your path"><span class="pb-n" role="listitem">1</span><i class="pb-l"></i><span class="pb-n" role="listitem">2</span><i class="pb-l"></i><span class="pb-n" role="listitem">3</span><i class="pb-l"></i><span class="pb-n" role="listitem">4</span></div>
@@ -1408,7 +1419,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
           <sc-if value="{{hasRefund}}" hint-placeholder-val="{{false}}"><button class="hud-refund" onClick="{{refundOkHandler}}"><span>{{refundNote}}</span><b>OK</b></button></sc-if>
           <div class="hud-chip" title="La Fiamma: school days in a row"><span class="hud-big">&#128293; {{fiammaN}}</span><span class="hud-sm">{{fiammaLbl}} &middot; &#128737;&#65039; {{scudiN}}</span></div>
           <button class="hud-chip hud-btn" onClick="{{goPassHandler}}" aria-label="Il mio Giro d&rsquo;Italia"><img src="../assets/boutique/aereo.webp" alt="" class="hud-ico"><span class="hud-big">{{tripCount}}/12</span><span class="hud-sm">Giro d&rsquo;Italia</span></button>
-          <sc-if value="{{showTabHud}}" hint-placeholder-val="{{false}}"><button class="hud-chip hud-tab" onClick="{{openTabHandler}}">&#128203; La Tabella</button></sc-if>
+          <sc-if value="{{showTabHud}}" hint-placeholder-val="{{false}}"><button class="hud-chip hud-tab" onClick="{{openTabHandler}}">&#128203; <span class="tl-en">Help chart</span><span class="tl-it">La Tabella</span></button></sc-if>
           <sc-if value="{{hasBoost}}" hint-placeholder-val="{{false}}"><div class="hud-boost">{{boostText}}</div></sc-if>
         </div>
 
@@ -1446,7 +1457,6 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
             <ol class="lp-list">
               <sc-for list="{{lsPath}}" as="p" hint-placeholder-count="8"><li><button class="{{p.cls}}" onClick="{{p.pick}}" disabled="{{p.dis}}" aria-label="{{p.aria}}"><span class="lp-n">{{p.n}}</span><span class="lp-l">{{p.label}}</span><span class="lp-m">{{p.min}}</span></button></li></sc-for>
             </ol>
-            <button class="lp-go" onClick="{{lsGoH}}">{{lsGoLabel}}</button>
             <button class="{{lsProvaCls}}" onClick="{{lsProvaH}}" disabled="{{lsProvaDis}}"><span class="lp-pl display">{{lsProvaDone}}La Prova</span><span class="lp-ps">{{lsProvaSub}}</span></button>
           </section>
         </sc-if>
@@ -1557,7 +1567,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
             <button onClick="{{bbBuyHandler}}" class="bb-buy">&#128257; Ricompra &middot; {{bbPrice}} BC<small>Try again for full credit &middot; keep your heart</small></button>
             <div class="bb-row">
               <button onClick="{{bbShowHandler}}" class="bb-ghost">Mostrami la risposta</button>
-              <sc-if value="{{hasTabella}}" hint-placeholder-val="{{false}}"><button onClick="{{openTabTrick}}" class="bb-ghost">&#128203; La Tabella</button></sc-if>
+              <sc-if value="{{hasTabella}}" hint-placeholder-val="{{false}}"><button onClick="{{openTabTrick}}" class="bb-ghost">&#128203; <span class="tl-en">Help chart</span><span class="tl-it">La Tabella</span></button></sc-if>
             </div>
           </div>
         </sc-if>
@@ -1714,7 +1724,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 
     <sc-if value="{{isLesson}}" hint-placeholder-val="{{false}}">
       <div class="ls">
-        <div class="ls-top"><span class="ls-eye">{{lsEyebrow}}</span><div class="ls-bars" aria-hidden="true"><sc-for list="{{lsBars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div><sc-if value="{{lsTabAny}}" hint-placeholder-val="{{true}}"><button type="button" class="ls-btn2" style="flex:none;min-height:40px;padding:0 12px;font-size:13px;" onClick="{{lsOpenTabH}}">La Tabella</button></sc-if></div>
+        <div class="ls-top"><span class="ls-eye">{{lsEyebrow}}</span><div class="ls-bars" aria-hidden="true"><sc-for list="{{lsBars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div><sc-if value="{{lsTabAny}}" hint-placeholder-val="{{true}}"><button type="button" class="ls-btn2" style="flex:none;min-height:40px;padding:0 12px;font-size:13px;" onClick="{{lsOpenTabH}}"><span class="tl-en">Help chart</span><span class="tl-it">La Tabella</span></button></sc-if></div>
         <sc-if value="{{hasLsFiamma}}" hint-placeholder-val="{{false}}"><div class="bt-fiamma" role="status">{{lsFiamma}}</div></sc-if>
         <div class="ls-stage">
           <div class="ls-boh">
@@ -11687,6 +11697,7 @@ class Component extends DCLogic {
     var _cf = modeList.filter(function (m) { return m.featured; })[0];
     result.continuaH = result.hasLesson && result.lsGoH ? result.lsGoH : (_cf ? _cf.pick : function () { self.sfx('tap'); });
     result.continuaLabel = result.hasLesson && result.lsGoLabel ? result.lsGoLabel : (_cf ? 'Continua: ' + _cf.label.replace(/^\d+ \u00b7 /, '') : 'Ripassa un giro');
+    try { if (window.BohUI) window.BohUI.startVals(self, s, result); } catch (e) {}
     this.profVals(s, result);
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
@@ -12230,7 +12241,21 @@ if (typeof BT_UNITS !== 'undefined') { if (BT_UNITS.imp) BT_UNITS.imp.fc = [{"id
 function btFcDecks() { var u = (typeof BT_UNITS !== 'undefined' && BT_UNITS[BT_UNIT]) || {}; return (u.fc || []).map(function (d) { return { id: BT_UNIT + ':' + d.id, title: d.title, cards: d.cards }; }); }
 window.addEventListener('load', function () { try { window.__game && window.__game.setState({}); } catch (e) {} });
 </script>
-<script src="../assets/flashcards.js?v=202610042210" defer></script>
+<script>/* Boh · flashcards first, Level 2: Page 3 gets the io / tu / extras decks (3 words each); Pages 1 and 2 are cut into 3-word decks from their existing word lists */
+(function () { try {
+  if (typeof BT_UNITS === 'undefined' || !window.BohUI) return;
+  var CORE = [
+    { id: 'io',  title: 'Io \u00b7 devo \u00b7 posso \u00b7 voglio', cards: [['devo', 'I have to \u00b7 I need to'], ['posso', 'I can'], ['voglio', 'I want to']] },
+    { id: 'tu',  title: 'Tu \u00b7 devi \u00b7 puoi \u00b7 vuoi', cards: [['devi', 'you have to \u00b7 you need to'], ['puoi', 'you can'], ['vuoi', 'you want to']] },
+    { id: 'lui', title: 'Extra \u00b7 lui \u00b7 lei \u00b7 Lei', cards: [['deve', 'he / she / you (formal) has to \u00b7 needs to'], ['pu\u00f2', 'he / she / you (formal) can'], ['vuole', 'he / she / you (formal) wants to']] },
+    { id: 'noi', title: 'Extra \u00b7 noi', cards: [['dobbiamo', 'we have to \u00b7 we need to'], ['possiamo', 'we can'], ['vogliamo', 'we want to']] }
+  ];
+  if (BT_UNITS.u3) { BT_UNITS.u3.fc = CORE.concat(BT_UNITS.u3.fc || []); BT_UNITS.u3.warm = ['io', 'tu']; }
+  BohUI.warmFrom('ea', ['pron', 'forme', 'animali']);
+  BohUI.warmFrom('u2', ['top-sport', 'top-tempo', 'top-date']);
+} catch (e) {} })();
+</script>
+<script src="../assets/flashcards.js?v=202610072300" defer></script>
 <script src="../assets/gloss-dict.js?v=202610042210" defer></script>
 <script src="../assets/gloss.js?v=202610042210" defer></script>
 <script>
@@ -12332,7 +12357,7 @@ var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohB
 /* short screens (phone sideways, small phones): the home title is hidden, but the Today bar stays, smaller */
 @media (max-width:899px) and (max-height:660px){
 .home-hero{display:flex !important;margin-top:0 !important}
-.home-hero > :not(.oggi){display:none !important}
+.home-hero > :not(.start-card){display:none !important}
 .oggi{padding:6px 12px;border-width:2px}
 .oggi-d{display:none}
 .oggi-t{font-size:15px}
