@@ -7,7 +7,9 @@
    Created by Assunta Scotto, 2026. */
 (function (W) {
   if (W.BohUI) return;
+  var CH = 0;   // new words per warm-up deck: 3 (AP: 6, the teacher chose)
   var LV = (/\/(italiano[1-4]|ap)\//.exec(location.pathname) || [])[1] || '';
+  CH = LV === 'ap' ? 6 : 3;
   function ymd() { var d = new Date(), m = d.getMonth() + 1, x = d.getDate(); return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (x < 10 ? '0' : '') + x; }
   function rd(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
   function wr(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -48,7 +50,7 @@
       }
       if (!words.length) return;
       var wfc = [], ids = [];
-      for (var i = 0; i < words.length; i += 3) { var id = 'w' + (i / 3 + 1); ids.push(id); wfc.push({ id: id, title: 'Parole ' + (i / 3 + 1) + ' \u00b7 ' + words.slice(i, i + 3).map(function (x) { return x[0]; }).join(' \u00b7 '), cards: words.slice(i, i + 3) }); }
+      for (var i = 0; i < words.length; i += CH) { var id = 'w' + (i / CH + 1); ids.push(id); wfc.push({ id: id, title: 'Parole ' + (i / CH + 1) + ' \u00b7 ' + words.slice(i, i + CH).map(function (x) { return x[0]; }).join(' \u00b7 '), cards: words.slice(i, i + CH) }); }
       U.wfc = wfc; U.warm = ids;
     } catch (e) {}
   }
@@ -59,7 +61,7 @@
       ids.forEach(function (id) { var d = (U.fc || []).filter(function (x) { return x.id === id; })[0]; if (d) d.cards.forEach(function (c) { words.push(c); }); });
       if (!words.length) return;
       var wfc = [], out = [];
-      for (var i = 0; i < words.length; i += 3) { var id2 = 'w' + (i / 3 + 1); out.push(id2); wfc.push({ id: id2, title: 'Parole ' + (i / 3 + 1) + ' \u00b7 ' + words.slice(i, i + 3).map(function (x) { return x[0]; }).join(' \u00b7 '), cards: words.slice(i, i + 3) }); }
+      for (var i = 0; i < words.length; i += CH) { var id2 = 'w' + (i / CH + 1); out.push(id2); wfc.push({ id: id2, title: 'Parole ' + (i / CH + 1) + ' \u00b7 ' + words.slice(i, i + CH).map(function (x) { return x[0]; }).join(' \u00b7 '), cards: words.slice(i, i + CH) }); }
       U.wfc = wfc; U.warm = out;
     } catch (e) {}
   }
