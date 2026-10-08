@@ -118,7 +118,7 @@
     try { qep = typeof W.__bohQepCur === 'function' && !!W.__bohQepCur(s); } catch (e) {}
     r.startHi = 'Ciao' + (name ? ', ' + name : '') + '!';
     r.startHiEn = 'Hi' + (name ? ', ' + name : '') + '!';
-    r.startK = T ? 'Oggi · ' + T.date : 'Prossima tappa';
+    r.startK = T ? 'Oggi' : 'Prossima tappa';   // no date on the card unless the teacher asks for it
     r.startKen = T ? 'Today' : 'Next stop';
     r.startT = T ? T.title : (qep && r.unitTitle ? r.unitTitle : String(r.continuaLabel || '').replace(/^(Comincia|Continua):\s*/, ''));
     r.startW = T && T.words ? T.words : '';
