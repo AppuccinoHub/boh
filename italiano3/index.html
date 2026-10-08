@@ -13719,8 +13719,10 @@ class Component extends DCLogic {
           pay: function (bc) { var t = self.state; self.setState({ cashi: (t.cashi || 0) + bc, lifetime: (t.lifetime || 0) + bc }); },
           onClose: function () { self.setState({}); } }); };
         window.__bohQep = openQ;
-        tabs.splice(1, 0, { label: qu.tab, sub: rs.done ? (rs.done + ' / 7 \u00b7 ' + qu.tabSub) : qu.tabSub, on: cur ? 'true' : 'false', cls: 'unit-tab', pick: function () { if (self.state.qepOff) self.setState({ qepOff: false }); openQ(); } });
-        tabs.forEach(function (t, i) { if (i === 1 || /soon/.test(t.cls)) return; var o0 = t.pick; if (cur) t.on = 'false'; t.pick = function () { self.setState({ qepOff: true }); o0(); }; });
+        var qDone = typeof window.__bohQepDone === 'function' && window.__bohQepDone();
+        var qTab = { label: qu.tab, sub: qDone ? 'RIPASSO' : (rs.done ? (rs.done + ' / 7 \u00b7 ' + qu.tabSub) : qu.tabSub), on: cur ? 'true' : 'false', cls: 'unit-tab', pick: function () { if (self.state.qepOff) self.setState({ qepOff: false }); openQ(); } };
+        tabs.splice(qDone ? tabs.length : 1, 0, qTab);
+        tabs.forEach(function (t) { if (t === qTab || /soon/.test(t.cls)) return; var o0 = t.pick; if (cur) t.on = 'false'; t.pick = function () { self.setState({ qepOff: true }); o0(); }; });
       }
       return tabs;
     })(BT_UNIT_ORDER.map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
@@ -14358,7 +14360,8 @@ window.BohGlossOff = function () {   // hover English stays off in La Prova and 
 <style>.lp-prova.qep-hide{display:none}</style>
 <script>
 /* bohQepCur: the unit is the selected tab until finished */
-window.__bohQepCur = function (s) { try { if (!window.BohRoutine || !BohRoutine.units.qep) return false; return !s.qepOff && BohRoutine.stats('qep').done < 7; } catch (e) { return false; } };
+window.__bohQepDone = function () { try { return !!(window.BohDone && BohDone.italiano3 && BohDone.italiano3.qep); } catch (e) { return false; } };
+window.__bohQepCur = function (s) { try { if (!window.BohRoutine || !BohRoutine.units.qep) return false; if (window.__bohQepDone()) return false; return !s.qepOff && BohRoutine.stats('qep').done < 7; } catch (e) { return false; } };
 window.__bohQepHome = function (s, r, self) {
   if (!window.__bohQepCur(s) || typeof window.__bohQep !== 'function') return;
   var st = BohRoutine.stats('qep'), qu = BohRoutine.units.qep, nx = st.next || 1, go = window.__bohQep;
@@ -14379,6 +14382,7 @@ window.__bohQepHome = function (s, r, self) {
   var g = window.__game; if (++n > 600) { clearInterval(iv); return; }
   if (!g || !g.state || !window.__bohQep || typeof BohRoutine === 'undefined') return;
   var st = g.state; if (!st.bohBase) return;
+  if (window.__bohQepDone && window.__bohQepDone()) { clearInterval(iv); return; }
   if (st.qepOff) { try { g.setState({ qepOff: false }); } catch (e) {} }
   if (st.screen !== 'home') { clearInterval(iv); return; }
   if (st.overlay || document.querySelector('.brt-ov, .bcards-ov, .bsn-ov')) { if (n > 150) clearInterval(iv); return; }
@@ -14416,7 +14420,7 @@ window.__bohQepHome = function (s, r, self) {
 .oggi-k{font-size:11px}
 }
 /* /boh-today-v1 */</style>
-<script src="../assets/today.js?v=202610061200"></script>
+<script src="../assets/today.js?v=202610081200"></script>
 <script>/* boh today bar (Level 3) */(function(){try{
 var lv='italiano3';
 function ymd(){var d=new Date(),m=d.getMonth()+1,x=d.getDate();return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(x<10?'0':'')+x}
