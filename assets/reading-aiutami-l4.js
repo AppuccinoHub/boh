@@ -2,7 +2,7 @@
    Boh · Aiutami, Level 4: Chiamami (-mi / -ti) + a review of the future (Ripasso). A reading practice unit.
    THIS FILE IS THE WHOLE UNIT'S CONTENT. Edit words here; no other file needs to change.
    Source: the old aiutami/ page (letters, questions and answers copied unchanged; the -mi / -ti items now pick mi or ti).
-   Dropped from the old page: the Scrivi (scramble) and Parla! (partner) steps. UNTESTED by a teacher.
+   Scrivi (scramble), Parla! (partner) and the Prova di ripasso are copied from the old page too. UNTESTED by a teacher.
    Reading guide: see assets/reading-futuro-l3.js. Created by Assunta Scotto, 2026. Not for redistribution.
    ===================================================================== */
 BohReading.register({
@@ -17,8 +17,16 @@ BohReading.register({
   "q": 3,
   "m": 2,
   "r": 2,
+  "sc": 6,
+  "pa": 4,
   "letter": 10
  },
+ "paDefault": [
+  "Partner A is Boh and reads the problem: <b>\"{hook}\"</b>",
+  "Partner B reads the reply letter out loud, to Boh's face.",
+  "Boh answers: <b>\"Grazie! Hai ragione!\"</b> Then switch roles.",
+  "Challenge: add one new command of your own, with <b>-mi</b> or <b>-ti</b>."
+ ],
  "letters": [
   {
    "id": "esame",
@@ -132,6 +140,34 @@ BohReading.register({
      "tip": "Boh needs YOUR help, so the phone call comes to you → -mi."
     }
    ],
+   "sc": {
+    "parts": [
+     "Car{o|a} Boh,\n",
+     {
+      "a": "calmati",
+      "c": 1
+     },
+     "! Tu sei intelligente. Stasera ",
+     {
+      "a": "riposati"
+     },
+     " e non studiare fino alle due. Se hai domande, ",
+     {
+      "a": "chiamami"
+     },
+     "!"
+    ],
+    "bank": [
+     "calmati",
+     "riposati",
+     "chiamami",
+     "sbrigati",
+     "chiamati",
+     "calmami",
+     "aspettati"
+    ]
+   },
+   "scHint": "For each blank, ask: who gets the action? The action goes to me → -mi. Boh does it to {himself|herself} → -ti. Watch the traps: they are the same verb with the wrong ending.",
    "ruleTitle": "Regola: -mi o -ti?",
    "rule": "Take the <b>tu</b> command and attach the pronoun. It becomes one word.<br><b>-mi</b> = the action goes to ME: chiama + mi = <b>chiamami</b>, scrivi + mi = <b>scrivimi</b>.<br><b>-ti</b> = the person does it to {himself|herself}: calma + ti = <b>calmati</b>, alza + ti = <b>alzati</b>.<br>Ask yourself: <b>who gets the action?</b> Infinitive in -arsi / -ersi / -irsi → the command ends in <b>-ti</b>."
   },
@@ -247,6 +283,34 @@ BohReading.register({
      "tip": "Da sol{o|a} is the problem. The fix is going together (insieme), so Boh waits for YOU → -mi."
     }
    ],
+   "sc": {
+    "parts": [
+     "Car{o|a} Boh,\ndomani ",
+     {
+      "a": "svegliati"
+     },
+     " alle sei e mezza. ",
+     {
+      "a": "vestiti",
+      "c": 1
+     },
+     " e mangia la colazione. Poi ",
+     {
+      "a": "aspettami"
+     },
+     " alla fermata dell'autobus!"
+    ],
+    "bank": [
+     "svegliati",
+     "vestiti",
+     "aspettami",
+     "divertiti",
+     "svegliami",
+     "vestimi",
+     "aspettati"
+    ]
+   },
+   "scHint": "For each blank, ask: who gets the action? The action goes to me → -mi. Boh does it to {himself|herself} → -ti. Watch the traps: they are the same verb with the wrong ending.",
    "ruleTitle": "Regola: -mi o -ti?",
    "rule": "Take the <b>tu</b> command and attach the pronoun. It becomes one word.<br><b>-mi</b> = the action goes to ME: chiama + mi = <b>chiamami</b>, scrivi + mi = <b>scrivimi</b>.<br><b>-ti</b> = the person does it to {himself|herself}: calma + ti = <b>calmati</b>, alza + ti = <b>alzati</b>.<br>Ask yourself: <b>who gets the action?</b> Infinitive in -arsi / -ersi / -irsi → the command ends in <b>-ti</b>."
   },
@@ -362,6 +426,34 @@ BohReading.register({
      "tip": "Where do the photos go? To you → -mi."
     }
    ],
+   "sc": {
+    "parts": [
+     "Car{o|a} Boh,\nvai alla festa e ",
+     {
+      "a": "divertiti"
+     },
+     "! ",
+     {
+      "a": "mettiti",
+      "c": 1
+     },
+     " la mia giacca blu. Se sei sol{o|a}, ",
+     {
+      "a": "scrivimi"
+     },
+     "!"
+    ],
+    "bank": [
+     "divertiti",
+     "mettiti",
+     "scrivimi",
+     "svegliati",
+     "scriviti",
+     "mettimi",
+     "divertimi"
+    ]
+   },
+   "scHint": "For each blank, ask: who gets the action? The action goes to me → -mi. Boh does it to {himself|herself} → -ti. Watch the traps: they are the same verb with the wrong ending.",
    "ruleTitle": "Regola: -mi o -ti?",
    "rule": "Take the <b>tu</b> command and attach the pronoun. It becomes one word.<br><b>-mi</b> = the action goes to ME: chiama + mi = <b>chiamami</b>, scrivi + mi = <b>scrivimi</b>.<br><b>-ti</b> = the person does it to {himself|herself}: calma + ti = <b>calmati</b>, alza + ti = <b>alzati</b>.<br>Ask yourself: <b>who gets the action?</b> Infinitive in -arsi / -ersi / -irsi → the command ends in <b>-ti</b>."
   },
@@ -477,8 +569,200 @@ BohReading.register({
      "tip": "You are the one who can help, so the call comes to you → -mi."
     }
    ],
+   "sc": {
+    "parts": [
+     "Car{o|a} Boh,\n",
+     {
+      "a": "fermati",
+      "c": 1
+     },
+     " e ",
+     {
+      "a": "siediti"
+     },
+     " un momento. Poi ",
+     {
+      "a": "chiamami"
+     },
+     " dal telefono di un amico. Ti aiuto io!"
+    ],
+    "bank": [
+     "fermati",
+     "siediti",
+     "chiamami",
+     "alzati",
+     "chiamati",
+     "fermami",
+     "spiegati"
+    ]
+   },
+   "scHint": "For each blank, ask: who gets the action? The action goes to me → -mi. Boh does it to {himself|herself} → -ti. Watch the traps: they are the same verb with the wrong ending.",
    "ruleTitle": "Regola: -mi o -ti?",
    "rule": "Take the <b>tu</b> command and attach the pronoun. It becomes one word.<br><b>-mi</b> = the action goes to ME: chiama + mi = <b>chiamami</b>, scrivi + mi = <b>scrivimi</b>.<br><b>-ti</b> = the person does it to {himself|herself}: calma + ti = <b>calmati</b>, alza + ti = <b>alzati</b>.<br>Ask yourself: <b>who gets the action?</b> Infinitive in -arsi / -ersi / -irsi → the command ends in <b>-ti</b>."
+  },
+  {
+   "id": "prova1",
+   "title": "Prova di ripasso",
+   "bl": "Ripasso · 14 domande",
+   "review": true,
+   "mt": [
+    {
+     "pre": "La tua amica è molto stressata per il test. Rilassa",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 1,
+     "why": "Rilassati: lei rilassa sé stessa.",
+     "tip": "Who is stressed? Your friend. She does it to herself → -ti. Rilassarsi (-arsi) → rilassati."
+    },
+    {
+     "pre": "Parli con tuo fratello, ma lui guarda il telefono. Guarda",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 0,
+     "why": "Guardami: lui guarda me.",
+     "tip": "His eyes should go to YOU → -mi. MI = ME."
+    },
+    {
+     "pre": "Il tuo amico è lentissimo e il bus parte! Sbriga",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 1,
+     "why": "Sbrigati: lui si sbriga.",
+     "tip": "He has to hurry himself → -ti. Sbrigarsi (-arsi) → sbrigati."
+    },
+    {
+     "pre": "La tua amica è a Roma. Tu vuoi vedere le foto. Manda",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 0,
+     "why": "Mandami: le foto arrivano a me.",
+     "tip": "The photos travel to YOU → -mi."
+    },
+    {
+     "pre": "Sono le otto e tuo fratello è ancora a letto. Alza",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 1,
+     "why": "Alzati: lui alza sé stesso dal letto.",
+     "tip": "Alzarsi (-arsi) → alzati. He gets himself up."
+    },
+    {
+     "pre": "Il tuo migliore amico parte per un anno. Tu sei triste. Abbraccia",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 0,
+     "why": "Abbracciami: l'abbraccio arriva a me.",
+     "tip": "New verb, same rule: the hug comes to YOU → -mi."
+    },
+    {
+     "pre": "La tua amica è ancora in pigiama e la festa comincia! Vesti",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 1,
+     "why": "Vestiti: lei veste sé stessa.",
+     "tip": "She puts clothes on herself. Vestirsi (-irsi) → vestiti."
+    },
+    {
+     "pre": "Vai al cinema con un amico, ma sei in ritardo. Aspetta",
+     "post": "",
+     "o": [
+      "mi",
+      "ti"
+     ],
+     "a": 0,
+     "why": "Aspettami: lui aspetta me.",
+     "tip": "He waits for YOU → -mi. Aspettare has no -si."
+    }
+   ],
+   "rs": [
+    {
+     "b": "Il tuo amico non trova la strada per casa tua.",
+     "o": [
+      "Chiamami!",
+      "Chiamati!",
+      "Alzati!"
+     ],
+     "a": 0,
+     "why": "Chiamami: la telefonata arriva a me.",
+     "tip": "The call comes to YOU → -mi. Chiamati points the action back at him."
+    },
+    {
+     "b": "La tua amica è molto stressata.",
+     "o": [
+      "Rilassami!",
+      "Rilassati!",
+      "Sbrigati!"
+     ],
+     "a": 1,
+     "why": "Rilassati: lei rilassa sé stessa.",
+     "tip": "She is the stressed one → -ti."
+    },
+    {
+     "b": "Tuo fratello guarda il telefono mentre parli.",
+     "o": [
+      "Guardati!",
+      "Divertiti!",
+      "Guardami quando parlo!"
+     ],
+     "a": 2,
+     "why": "Guardami: lui guarda me.",
+     "tip": "His eyes should come to YOU → -mi."
+    },
+    {
+     "b": "Il film comincia fra due minuti!",
+     "o": [
+      "Sbrigati!",
+      "Riposati!",
+      "Sbrigami!"
+     ],
+     "a": 0,
+     "why": "Sbrigati: si sbriga lui.",
+     "tip": "No time! He hurries himself → -ti."
+    },
+    {
+     "b": "La tua amica parte per Roma domani.",
+     "o": [
+      "Siediti!",
+      "Mandami le foto!",
+      "Mandati le foto!"
+     ],
+     "a": 1,
+     "why": "Mandami: le foto arrivano a me.",
+     "tip": "The photos come to YOU → -mi."
+    },
+    {
+     "b": "Il tuo amico ha una brutta giornata.",
+     "o": [
+      "Siediti e parliamo.",
+      "Sbrigati!",
+      "Svegliami!"
+     ],
+     "a": 0,
+     "why": "Siediti: lui si siede.",
+     "tip": "Help him slow down: he sits himself down → -ti."
+    }
+   ]
   },
   {
    "id": "futuro1",
@@ -592,7 +876,41 @@ BohReading.register({
      "tip": "Boh asks with -rai (tu). You answer about yourself with -rò (io)."
     }
    ],
+   "sc": {
+    "parts": [
+     "Car{o|a} Boh,\nfra un anno ",
+     {
+      "a": "sarò"
+     },
+     " a New York. ",
+     {
+      "a": "lavorerò",
+      "c": 1
+     },
+     " in un ufficio e ",
+     {
+      "a": "abiterò"
+     },
+     " con mia sorella. In bocca al lupo!"
+    ],
+    "bank": [
+     "sarò",
+     "lavorerò",
+     "abiterò",
+     "sono",
+     "sarai",
+     "lavoro",
+     "abiterai"
+    ]
+   },
+   "pa": [
+    "Partner A asks: <b>Dove sarai fra un anno?</b>",
+    "Partner B answers with <b>sarò</b> + one more chunk: <i>Sarò all'università. Studierò...</i>",
+    "Switch roles.",
+    "Challenge: add <b>lavorerò</b> or <b>abiterò</b>."
+   ],
    "plan": false,
+   "scHint": "Telling your plan (io) → -rò. Asking a friend (tu) → -rai. A time in the future (fra un anno) → no present tense.",
    "ruleTitle": "Ripasso: il futuro",
    "rule": "Telling your plan (io) → <b>-rò</b>. Asking a friend (tu) → <b>-rai</b>.<br>-are verbs change a → e: lavorare → lavorer<b>ò</b>.<br>The short ones: sarò, avrò, farò, andrò, vivrò.<br>A time in the future (fra un anno) → no present tense."
   },
@@ -708,7 +1026,14 @@ BohReading.register({
      "tip": "Boh asks with -rai (tu). You answer about yourself with -rò (io)."
     }
    ],
+   "pa": [
+    "Partner A reads their plan: <b>Fra un anno... Fra cinque anni... Fra dieci anni...</b>",
+    "Partner B asks one follow-up question with <b>-rai</b>: <i>Dove vivrai? Cosa farai?</i>",
+    "Partner A answers with <b>-rò</b>. Then switch.",
+    "Challenge: say your plan without looking."
+   ],
    "plan": true,
+   "scHint": "Telling your plan (io) → -rò. Asking a friend (tu) → -rai. A time in the future (fra un anno) → no present tense.",
    "ruleTitle": "Ripasso: il futuro",
    "rule": "Telling your plan (io) → <b>-rò</b>. Asking a friend (tu) → <b>-rai</b>.<br>-are verbs change a → e: lavorare → lavorer<b>ò</b>.<br>The short ones: sarò, avrò, farò, andrò, vivrò.<br>A time in the future (fra un anno) → no present tense."
   }

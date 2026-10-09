@@ -1,4 +1,4 @@
-/* Boh · reading practice unit: one letter at a time, five short steps (Leggi, Capisci, Pratica, Rispondi, Regola).
+/* Boh · reading practice unit: one letter at a time, short steps (Leggi, Capisci, Pratica, Rispondi, then Scrivi and Parla! where a letter has them, then Regola).
    BohReading.register({...unit content...})   (the content lives in assets/reading-<id>.js)
    BohReading.start(id, element)
    Looks like every other Boh lesson: it uses assets/lezione.css (same colors, fonts, buttons, Prof. Lo So bubble).
@@ -14,7 +14,7 @@
   var UNITS = {}, U = null, S = null, root = null, V = { name: 'map' }, tok = 0;
   var GUIDE = '../assets/guide/';
   var CHEER = ['thumbs-up-wink', 'clap', 'cheer-fist', 'fists-yay', 'hands-heart', 'high-five'];
-  var STEPS = ['Leggi', 'Capisci', 'Pratica', 'Rispondi', 'Regola'];
+  var NAMES = { read: 'Leggi', q: 'Capisci', mt: 'Pratica', rs: 'Rispondi', sc: 'Scrivi', pa: 'Parla!', rule: 'Regola', plan: 'Il mio piano', score: 'Il voto' };
 
   /* ---------------------------------------------------------------- helpers */
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -97,7 +97,17 @@
   /* ---------------------------------------------------------------- state helpers */
   function open_(i) { return i === 0 || !!S.done[U.letters[i - 1].id]; }
   function doneCount() { var n = 0; U.letters.forEach(function (l) { if (S.done[l.id]) n++; }); return n; }
-  function stepCount(L) { return L.plan ? 6 : 5; } /* the plan letter has an optional sixth step */
+  /* the steps of one letter, in order; a letter shows only the steps it has data for. A review (L.review) is Pratica + Rispondi + the score. */
+  function flow(L) {
+    if (L.review) return ['mt', 'rs', 'score'];
+    var f = ['read', 'q', 'mt', 'rs'];
+    if (L.sc && L.sc.parts && L.sc.parts.length) f.push('sc');
+    if (L.pa || L.sc || U.paDefault) f.push('pa');
+    f.push('rule');
+    if (L.plan) f.push('plan');
+    return f;
+  }
+  function sn() { return flow(curL())[V.step]; }
 
   /* ---------------------------------------------------------------- map: the letters */
   function vMap() {
@@ -113,23 +123,24 @@
     return h + '<div class="lz-note">Tap a letter. Boh Cashi go into your wallet.</div>';
   }
 
-  /* ---------------------------------------------------------------- one letter, five steps */
+  /* ---------------------------------------------------------------- one letter, a few short steps */
   function curL() { return U.letters[V.li]; }
-  function startLetter(i) { go({ name: 'step', li: i, step: 0, i: 0, phase: 'ask', chose: null, order: null, reread: false, bad: {} }); }
+  function startLetter(i) { go({ name: 'step', li: i, step: 0, i: 0, phase: 'ask', chose: null, order: null, reread: false, bad: {}, first: 0, total: 0 }); }
   function stepTop() {
-    var L = curL();
-    return top('map', 'Letters', L.title, (V.step + 1) + ' · ' + (V.step < 5 ? STEPS[V.step] : 'Il mio piano')) + dots(stepCount(L), V.step);
+    var L = curL(), f = flow(L);
+    return top('map', 'Letters', L.title, (V.step + 1) + ' · ' + NAMES[f[V.step]]) + dots(f.length, V.step);
   }
-  function rereadBtn() { return '<button class="lz-ghost" data-act="reread">Rileggi la lettera</button>'; }
+  function rereadBtn(L) { return L.review ? '' : '<button class="lz-ghost" data-act="reread">Rileggi la lettera</button>'; }
+  function cap(t) { return t.charAt(0).toUpperCase() + t.slice(1); }
 
   function vStep() {
-    var L = curL(), h = '';
+    var L = curL(), h = '', n = sn();
     if (V.reread) {
       h += top('closeread', 'Back', L.title, 'Rileggi') + stage('present', 'Ecco la lettera.') + letterHtml(L);
       return h + '<button class="lz-btn" data-act="closeread">Torna alla domanda</button>';
     }
     h += stepTop();
-    if (V.step === 0) {
+    if (n === 'read') {
       h += stage('present', L.hook);
       h += letterHtml(L);
       h += '<div class="lz-note">Tap the dotted words to see what they mean.</div>';
@@ -139,20 +150,23 @@
       h += '<button class="lz-btn" data-act="next">Continua</button>';
       return h;
     }
-    if (V.step === 1) return h + vChoice({ q: L.q.t, small: 'Capisci', opts: L.q.o, a: L.q.a, tip: L.q.tip, why: gen(L.q.o[L.q.a]) , key: L.id + ':q', pay: U.pay.q, pose: 'think' });
-    if (V.step === 2) { var m = L.mt[V.i]; return h + vChoice({ q: null, pre: m.pre, post: m.post, small: 'Pratica ' + (V.i + 1) + ' / ' + L.mt.length, opts: m.o, a: m.a, tip: m.tip, why: m.why, key: L.id + ':m' + V.i, pay: U.pay.m, pose: 'finger-up' }); }
-    if (V.step === 3) { var r = L.rs[V.i]; return h + vChoice({ q: r.b, small: 'Rispondi ' + (V.i + 1) + ' / ' + L.rs.length, opts: r.o, a: r.a, tip: r.tip, why: r.why, key: L.id + ':r' + V.i, pay: U.pay.r, pose: 'listen', bubble: true }); }
-    if (V.step === 4) return h + vRule(L);
+    if (n === 'q') return h + vChoice(L, { q: L.q.t, small: 'Capisci', opts: L.q.o, a: L.q.a, tip: L.q.tip, why: L.q.o[L.q.a], key: L.id + ':q', pay: U.pay.q, pose: 'think' });
+    if (n === 'mt') { var m = L.mt[V.i]; return h + vChoice(L, { q: null, pre: m.pre, post: m.post, small: 'Pratica ' + (V.i + 1) + ' / ' + L.mt.length, opts: m.o, a: m.a, tip: m.tip, why: m.why, key: L.id + ':m' + V.i, pay: U.pay.m, pose: 'finger-up' }); }
+    if (n === 'rs') { var r = L.rs[V.i]; return h + vChoice(L, { q: r.b, small: 'Rispondi ' + (V.i + 1) + ' / ' + L.rs.length, opts: r.o, a: r.a, tip: r.tip, why: r.why, key: L.id + ':r' + V.i, pay: U.pay.r, pose: 'listen', bubble: true }); }
+    if (n === 'sc') return h + vScrivi(L);
+    if (n === 'pa') return h + vParla(L);
+    if (n === 'rule') return h + vRule(L);
+    if (n === 'score') return h + vScore(L);
     return h + vPlan(L);
   }
 
   /* one question with three answers, in the same style as every Boh lesson */
-  function vChoice(c) {
-    var L = curL();
+  function vChoice(L, c) {
+    var n = sn();
     if (!V.order || V.orderFor !== V.step + ':' + V.i) { V.order = shuffle(range(c.opts.length)); V.orderFor = V.step + ':' + V.i; V.bad = {}; V.phase = 'ask'; V.miss = 0; }
     var h = '';
     var pose = V.phase === 'fb' ? CHEER[(V.i + V.step) % CHEER.length] : (V.miss ? 'finger-up' : c.pose);
-    var line = V.phase === 'fb' ? 'Sì! ' + bravo() + '!' : (V.miss ? 'Not yet. Read the hint.' : (c.bubble ? c.q : (V.step === 1 ? 'Did you understand?' : 'Pick the chunk that fits.')));
+    var line = V.phase === 'fb' ? 'Sì! ' + bravo() + '!' : (V.miss ? 'Not yet. Read the hint.' : (c.bubble ? c.q : (n === 'q' ? 'Did you understand?' : 'Pick the chunk that fits.')));
     h += stage(pose, line);
     h += '<div class="lz-q"><small>' + esc(c.small) + '</small>' +
       (c.pre !== undefined ? '<span class="rd-sent">' + esc(gen(c.pre)) + ' <span class="rd-blank">' + (V.phase === 'fb' ? esc(gen(c.opts[c.a])) : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') + '</span> ' + esc(gen(c.post)) + '</span>' : (c.bubble ? '' : '<span>' + esc(gen(c.q)) + '</span>')) + '</div>';
@@ -165,7 +179,7 @@
     if (V.phase === 'fb') h += '<div class="lz-fb ok"><span class="a">' + esc(gen(c.opts[c.a])) + '</span><span class="m"><b>Remember:</b> ' + esc(gen(c.why)) + '</span><button class="lz-next" data-act="next">Avanti &rsaquo;</button></div>';
     else if (V.miss) h += '<div class="lz-fb pop"><span class="m"><b>Hint:</b> ' + esc(gen(c.tip)) + '</span></div>';
     else h += '<div class="lz-fb"></div>';
-    if (V.step >= 1 && V.step <= 3 && V.phase !== 'fb') h += rereadBtn();
+    if (V.phase !== 'fb') h += rereadBtn(L);
     V._c = c;
     return h;
   }
@@ -174,8 +188,67 @@
     var c = V._c;
     if (k === c.a) {
       var full = c.pay, amount = V.miss ? Math.max(1, Math.floor(full / 2)) : full;
+      V.total++; if (!V.miss) V.first++;
       V.phase = 'fb'; pay(c.key, amount); render();
     } else { V.bad[k] = true; V.miss = (V.miss || 0) + 1; render(); }
+  }
+
+  /* Scrivi: finish Boh's reply by tapping words from the bank into the blanks (a few words are traps) */
+  function blanksOf(L) { return L.sc.parts.filter(function (p) { return typeof p === 'object'; }); }
+  function vScrivi(L) {
+    var blanks = blanksOf(L);
+    if (!V.fill) { V.fill = blanks.map(function () { return null; }); V.sel = 0; V.bank = shuffle(L.sc.bank); V.checks = 0; V.fb = ''; V.scDone = false; }
+    var bi = -1, html = L.sc.parts.map(function (p) {
+      if (typeof p === 'string') return esc(gen(p)).replace(/\n/g, '<br>');
+      bi++; var f = V.fill[bi];
+      return '<button class="rd-blankbtn' + (f ? ' filled' : '') + (V.sel === bi && !V.scDone ? ' sel' : '') + (V.mark && V.mark[bi] ? ' ' + V.mark[bi] : '') + '" data-act="scblank" data-b="' + bi + '"' + (V.scDone ? ' disabled' : '') + '>' + (f ? esc(p.c ? cap(f) : f) : '?') + '</button>';
+    }).join('');
+    var h = stage(V.scDone ? 'clap' : 'tablet', V.scDone ? 'Perfetto! Boh loves your letter.' : 'Scrivimi una risposta!');
+    h += '<div class="lz-q"><small>Scrivi a Boh</small><span>Finish your reply</span></div>';
+    h += '<div class="lz-card rd-reply">' + html + '</div>';
+    h += '<div class="lz-row rd-bank">' + V.bank.map(function (w) { return '<button class="lz-ghost" data-act="scword" data-w="' + esc(w) + '"' + (V.fill.indexOf(w) >= 0 || V.scDone ? ' disabled' : '') + '>' + esc(w) + '</button>'; }).join('') + '</div>';
+    h += '<div class="lz-note">' + (V.bank.length - blanks.length) + ' words are traps. Tap a word to fill the pink blank. Tap a blank to clear it.</div>';
+    h += V.fb ? '<div class="lz-fb pop"><span class="m">' + V.fb + '</span></div>' : '<div class="lz-fb"></div>';
+    h += V.scDone ? '<button class="lz-btn" data-act="next">Avanti</button>' : '<button class="lz-btn" data-act="sccheck"' + (V.fill.indexOf(null) >= 0 ? ' disabled' : '') + '>Controlla</button>';
+    if (!V.scDone) h += rereadBtn(L);
+    return h;
+  }
+  function scWord(w) {
+    var L = curL(), i = V.fill[V.sel] == null ? V.sel : V.fill.indexOf(null);
+    if (i < 0 || V.scDone) return;
+    V.fill[i] = w; var nx = V.fill.indexOf(null); V.sel = nx < 0 ? i : nx; V.mark = null; V.fb = ''; render(true);
+  }
+  function scBlank(i) { if (V.scDone) return; V.fill[i] = null; V.sel = i; V.mark = null; V.fb = ''; render(true); }
+  function scCheck() {
+    var L = curL(), blanks = blanksOf(L), right = 0, mark = [];
+    V.checks++;
+    blanks.forEach(function (b, i) { var ok = V.fill[i] === b.a; if (ok) right++; mark[i] = ok ? 'ok' : 'no'; });
+    V.mark = mark;
+    if (right === blanks.length) {
+      V.scDone = true; V.fb = ''; V.total++; if (V.checks === 1) V.first++;
+      pay(L.id + ':sc', V.checks === 1 ? U.pay.sc : Math.max(1, Math.floor(U.pay.sc / 2)));
+      render(true);
+    } else {
+      V.fb = '<b>' + right + ' of ' + blanks.length + ' are right.</b> ' + esc(gen(L.scHint || U.scHint || 'Check each blank again. A few words are traps.'));
+      render(true);
+      var snap = V.checks;
+      setTimeout(function () { if (V.name !== 'step' || V.checks !== snap || V.scDone) return; blanks.forEach(function (b, i) { if (V.fill[i] !== b.a) V.fill[i] = null; }); V.sel = V.fill.indexOf(null); V.mark = null; render(true); }, 1400);
+    }
+  }
+
+  /* Parla!: say it out loud with a partner */
+  function planLine() {
+    return U.plan.map(function (p) { return S.plan[p.k] ? p.lbl.replace('...', '') + ' ' + S.plan[p.k] + '.' : ''; }).filter(Boolean).join(' ');
+  }
+  function vParla(L) {
+    var steps = L.pa || U.paDefault || ['Partner A reads the letter out loud.', 'Partner B answers Boh out loud.', 'Switch roles.'];
+    var text = L.plan ? planLine() : (L.sc ? L.sc.parts.map(function (p) { return typeof p === 'string' ? esc(gen(p)).replace(/\n/g, '<br>') : '<b>' + esc(p.c ? cap(p.a) : p.a) + '</b>'; }).join('') : '');
+    var h = stage('mic', 'Parlami! Voglio sentire la tua voce.');
+    h += '<div class="lz-q"><small>Parla!</small><span>Now say it out loud with a partner.</span></div>';
+    h += '<div class="lz-card rd-parla"><ol>' + steps.map(function (x) { return '<li>' + gen(x.replace('{hook}', esc(L.hook))) + '</li>'; }).join('') + '</ol>' + (text ? '<div class="rd-say">' + text + '</div>' : '') + '</div>';
+    h += '<button class="lz-btn" data-act="pafin">Abbiamo parlato!</button>';
+    h += rereadBtn(L);
+    return h;
   }
 
   function vRule(L) {
@@ -183,7 +256,17 @@
     h += '<div class="lz-card rd-rule"><h2 class="dsp">' + esc(L.ruleTitle) + '</h2><div>' + gen(L.rule) + '</div></div>';
     h += '<button class="lz-btn" data-act="next">' + (L.plan ? 'Il mio piano' : 'Finito') + '</button>';
     if (L.plan) h += '<button class="lz-ghost" data-act="finish">Salta il piano</button>';
-    h += rereadBtn();
+    h += rereadBtn(L);
+    return h;
+  }
+  /* the review: the score to screenshot */
+  function vScore(L) {
+    var p = profile(), d = new Date(), n = V.first, t = V.total;
+    var h = stage(n >= t - 2 ? 'master' : 'think', n >= t - 2 ? 'Sei pront' + (male() ? 'o' : 'a') + ' per il test!' : 'Continua a praticare!');
+    h += '<div class="lz-card rd-score"><div class="rd-shot" role="alert"><b>&#128248; FAI UNO SCREENSHOT DEL TUO VOTO</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press Ctrl + Show windows.</span></div>' +
+      '<div class="rd-who">' + esc((p && p.bohName) || '') + ' &middot; ' + esc(L.title) + ' &middot; ' + esc(d.toLocaleDateString()) + '</div>' +
+      '<h2 class="dsp">' + n + ' / ' + t + '</h2><div class="lz-note">al primo tentativo (first try)</div></div>';
+    h += '<button class="lz-btn" data-act="finish">Finito</button><button class="lz-ghost" data-act="retry">Riprova</button>';
     return h;
   }
   function vPlan(L) {
@@ -222,11 +305,11 @@
     if (!keep) root.scrollTop = 0;
   }
   function next() {
-    var L = curL();
-    if (V.step === 2 && V.phase === 'fb' && V.i + 1 < L.mt.length) { V.i++; V.order = null; return render(); }
-    if (V.step === 3 && V.phase === 'fb' && V.i + 1 < L.rs.length) { V.i++; V.order = null; return render(); }
-    if (V.step === 4 && !L.plan) return finishLetter();
-    V.step++; V.i = 0; V.order = null; V.phase = 'ask'; V.bad = {}; V.miss = 0; hush(); render();
+    var L = curL(), n = sn(), f = flow(L);
+    if (n === 'mt' && V.phase === 'fb' && V.i + 1 < L.mt.length) { V.i++; V.order = null; return render(); }
+    if (n === 'rs' && V.phase === 'fb' && V.i + 1 < L.rs.length) { V.i++; V.order = null; return render(); }
+    if (V.step + 1 >= f.length) return finishLetter();
+    V.step++; V.i = 0; V.order = null; V.phase = 'ask'; V.bad = {}; V.miss = 0; V.fill = null; V.mark = null; V.fb = ''; hush(); render();
   }
   function onClick(e) {
     var b = e.target.closest ? e.target.closest('[data-act]') : null;
@@ -253,6 +336,11 @@
       save(); render(true);
     }
     else if (a === 'finish') finishLetter();
+    else if (a === 'scblank') scBlank(+b.getAttribute('data-b'));
+    else if (a === 'scword') scWord(b.getAttribute('data-w'));
+    else if (a === 'sccheck') scCheck();
+    else if (a === 'pafin') { pay(curL().id + ':pa', U.pay.pa || 4); next(); }
+    else if (a === 'retry') startLetter(V.li);
   }
 
   W.BohReading = {
