@@ -1,0 +1,19 @@
+/* Boh · reading practice unit. Only what assets/lezione.css does not already have; every color comes from its tokens. */
+.rd-letter{border-radius:16px;border:2px solid var(--line);background:var(--card);padding:12px 14px;display:flex;flex-direction:column;gap:8px;font-size:17px;line-height:1.55;font-weight:600}
+.rd-letter p{margin:0}
+.rd-sign{color:var(--mut);font-weight:700;font-style:italic}
+.rd-w{all:unset;cursor:pointer;color:var(--tap);font-weight:800;border-bottom:2px dotted var(--tap);padding:1px 0}
+.rd-w:focus-visible{outline:3px solid var(--tag);outline-offset:2px}
+.rd-w.sel{background:var(--tag);border-radius:4px}
+.rd-tip{min-height:0;font-size:14.5px;font-weight:800;color:var(--tap-text);background:var(--tap);border-radius:10px;padding:0 12px;overflow:hidden;max-height:0;transition:max-height .15s}
+.rd-tip.on{max-height:90px;padding:7px 12px}
+.rd-listen{align-items:stretch}
+.rd-listen .lz-note{flex:1}
+.rd-sent{font-size:20px;line-height:1.4}
+.rd-blank{display:inline-block;min-width:76px;border-bottom:3px solid var(--pop);text-align:center;color:var(--ok-text);padding:0 4px}
+.rd-rule h2{margin:0 0 4px;font-size:20px}
+.rd-rule div{font-size:16px;line-height:1.5}
+.rd-plan{display:flex;flex-direction:column;gap:10px}
+.rd-plan .lz-card b{font-size:16px}
+.rd-map{grid-auto-flow:row}
+.rd-listen .lz-ghost{padding:10px 8px;white-space:nowrap}
