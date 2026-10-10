@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Boh. Test Boh</title><meta name="robots" content="noindex">
+<!-- Boh · created by Assunta Scotto, 2026. All rights reserved. Not for redistribution. -->
+<link rel="icon" href="../../assets/bc.svg">
+<style>
+:root{--t-bg:#FAF9F5;--t-card:#fff;--t-ink:#1F1B16;--t-mut:#5F574D;--t-line:#D8D0C3;--t-blue:#1A5CDF;--t-on:#fff;--t-warn:#B3261E;--t-warnbg:#FBE9E6;--t-ok:#17803F;--t-tint:#E8EFFD}
+@media (prefers-color-scheme:dark){:root{--t-bg:#17140F;--t-card:#221E18;--t-ink:#F4EFE6;--t-mut:#BDB3A3;--t-line:#463F34;--t-blue:#7AA7FF;--t-on:#0D1A33;--t-warn:#FF9A8F;--t-warnbg:#3A1E1B;--t-ok:#6FD39A;--t-tint:#1C2A47}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--t-bg);color:var(--t-ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:0 max(16px,env(safe-area-inset-right)) calc(92px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.app{max-width:560px;margin:0 auto}
+button{font:inherit;color:inherit}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:14px;min-height:52px;font-weight:800;cursor:pointer;background:var(--t-blue);color:var(--t-on);text-align:center;margin-top:10px}
+.btn.o{background:transparent;color:var(--t-ink);border:2px solid var(--t-line)}
+.btn.sm{display:inline-block;width:auto;min-height:44px;padding:10px 16px;margin:0}
+.btn:disabled{opacity:.45;cursor:default}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--t-blue);outline-offset:2px}
+.top{display:flex;align-items:center;gap:10px;padding:12px 0 6px;flex-wrap:wrap}
+.top a{color:var(--t-ink);font-weight:800;text-decoration:none;border:2px solid var(--t-line);border-radius:14px;padding:10px 14px;min-height:44px;display:inline-flex;align-items:center;background:var(--t-card)}
+.pill{background:var(--t-warnbg);color:var(--t-warn);border:2px solid var(--t-warn);border-radius:12px;padding:6px 10px;font-weight:800;font-size:13px}
+h1{font-size:24px;margin:8px 0 2px}h2{font-size:19px;margin:6px 0}
+.mut{color:var(--t-mut);font-size:14px}.msg{min-height:22px;font-weight:700;margin:8px 0 0}.msg.err{color:var(--t-warn)}.msg.ok{color:var(--t-ok)}
+.card{background:var(--t-card);border:2px solid var(--t-line);border-radius:18px;padding:14px;margin:12px 0}
+input.pin{width:100%;padding:14px;border-radius:14px;border:2px solid var(--t-line);background:var(--t-bg);color:var(--t-ink);font-size:22px;letter-spacing:.3em;margin:10px 0}
+.bal{display:flex;align-items:center;gap:8px;justify-content:center;font-weight:800;font-size:28px;margin:4px 0}.bal img{width:30px;height:30px}
+.stage{background:var(--t-card);border:2px solid var(--t-line);border-radius:18px;display:flex;justify-content:center;align-items:flex-end;padding:12px 8px;margin:8px 0}
+.dw{position:relative;flex:none}.dolx{position:absolute;left:0;top:0;transform-origin:0 0}
+.dolx .doll{width:150px;height:390px;position:relative}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.chip{border:2px solid var(--t-line);background:var(--t-card);border-radius:999px;padding:9px 14px;min-height:44px;font-weight:800;cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--t-blue);background:var(--t-tint)}
+.sw{width:44px;height:44px;border-radius:50%;border:3px solid var(--t-line);cursor:pointer;padding:0}
+.sw[aria-pressed=true]{border-color:var(--t-blue);box-shadow:0 0 0 2px var(--t-card) inset}
+.lbl{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--t-mut);margin:12px 0 2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.it{position:relative;background:var(--t-card);border:2px solid var(--t-line);border-radius:14px;padding:6px 4px 8px;text-align:center;font-size:12px;min-height:118px;cursor:pointer;width:100%}
+.it img{width:100%;height:64px;object-fit:contain;display:block}.it b{display:block;font-weight:800;margin-top:2px;line-height:1.2}
+.it[aria-pressed=true]{border-color:var(--t-blue);box-shadow:0 0 0 2px var(--t-blue) inset}
+.it.dim{opacity:.45}
+.r{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--t-mut)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--t-card);border-top:2px solid var(--t-line);padding:8px max(12px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));z-index:5}
+.nav .in{max-width:560px;margin:0 auto;display:flex;gap:8px}.nav button{flex:1;border:2px solid var(--t-line);background:transparent;border-radius:14px;min-height:48px;font-weight:800;cursor:pointer}
+.nav button[aria-current=page]{background:var(--t-blue);color:var(--t-on);border-color:var(--t-blue)}
+.fc{background:var(--t-card);border:2px solid var(--t-line);border-radius:18px;padding:12px;margin:10px 0}
+.fc h3{font-size:16px;margin:0}.fc .id{font:600 12px ui-monospace,Menlo,monospace;color:var(--t-mut);word-break:break-all}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.dbtn{background:var(--t-bg);border:2px solid var(--t-line);border-radius:12px;padding:6px 2px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:44px;width:100%}
+.dbtn[aria-pressed=true]{border-color:var(--t-warn);background:var(--t-warnbg)}
+.dbtn .cap{font-size:12px;font-weight:800}.dbtn .fixt{font-size:11px;font-weight:800;color:var(--t-warn);min-height:14px}
+.na{display:flex;align-items:center;justify-content:center;text-align:center;color:var(--t-mut);font-size:12px;font-weight:700;border:2px dashed var(--t-line);border-radius:12px;padding:6px;min-height:100px}
+.warnbox{background:var(--t-warnbg);border:2px solid var(--t-warn);color:var(--t-ink);border-radius:14px;padding:10px 12px;margin:10px 0;font-size:14px}
+.warnbox b{color:var(--t-warn)}.auto{color:var(--t-warn);font-weight:800;font-size:12px;margin-top:6px}
+.pager{display:flex;gap:8px;align-items:center;margin:8px 0}.pager .btn{margin:0}.pager span{flex:1;text-align:center;font-weight:800}
+.hide{display:none!important}.sr{position:absolute;left:-9999px}
+</style>
+<style id="game-css"></style>
+</head><body><div class="app" id="app" style="--bohname:&quot;BOH&quot;;--nmk:1">
+<span class="sr">Made by Assunta Scotto</span>
+<div class="top"><a href="../" id="back">&lsaquo; Prof panel</a><span class="pill">TEST BOH &middot; not a student save</span></div>
+
+<section id="gate"><h1>Test Boh</h1><p class="mut">Teacher only. Same Prof code as the Prof panel.</p>
+<div class="card"><input id="pin" class="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="Prof code" placeholder="&bull;&bull;&bull;&bull;"><button id="go" class="btn" type="button">Enter</button><div id="gerr" class="msg err" role="alert"></div></div></section>
+
+<section id="load" class="hide"><h1>Test Boh</h1><div class="card"><div id="loadmsg" class="msg" role="status">Reading the game&hellip;</div></div></section>
+
+<main id="view" class="hide"></main>
+</div>
+<nav class="nav hide" id="nav" aria-label="Test Boh sections"><div class="in">
+<button type="button" data-go="home">Home</button><button type="button" data-go="dress">Dress</button><button type="button" data-go="fit">Fit check</button></div></nav>
+
+<script>
+(function(){
+'use strict';
+/* Boh · Test Boh. Teacher-only practice Boh. Own save slot (boh_testboh_v1): never reads or writes a student save.
+   The catalog, the pieces and the wear rules are read out of ../../italiano4/index.html each time this page opens,
+   so a prize added to the game shows up here without touching this file. Created by Assunta Scotto, 2026. */
+var PIN_HASH='1b0fa6c4c967f1c21f9c23ecc41ef8a27528a7be52b29d65d47123f5ac18d5be';
+var GAME_URL='../../italiano4/index.html', KEY='boh_testboh_v1', PAGE=6, BC=99999;
+function $(i){return document.getElementById(i)}
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')})}
+
+/* ---------- own save ---------- */
+var S={v:1,base:'m',skin:'medium',hair:'dark',eq:{},fix:{}};
+function load(){try{var o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.v===1){S.base=(o.base==='f'||o.base==='h')?o.base:'m';S.skin=o.skin||'medium';S.hair=o.hair||'dark';S.eq=o.eq&&typeof o.eq==='object'?o.eq:{};S.fix=o.fix&&typeof o.fix==='object'?o.fix:{}}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+/* ---------- read the game ---------- */
+var G=null; /* {ITEMS,SLOT,...,dollLayersFor,slotAllowed} */
+function scanEnd(lines,i){
+  var depth=0,started=false,q=null,esc_=false,blk=false;
+  for(var j=i;j<lines.length;j++){
+    var L=lines[j];
+    for(var k=0;k<L.length;k++){
+      var c=L[k],n=L[k+1];
+      if(blk){if(c==='*'&&n==='/'){blk=false;k++}continue}
+      if(q){if(esc_)esc_=false;else if(c==='\\')esc_=true;else if(c===q)q=null;continue}
+      if(c==='/'&&n==='/')break;
+      if(c==='/'&&n==='*'){blk=true;k++;continue}
+      if(c==='"'||c==="'"||c==='`'){q=c;continue}
+      if(c==='{'||c==='['||c==='('){depth++;started=true}
+      else if(c==='}'||c===']'||c===')'){depth--}
+    }
+    if(!q&&!blk&&depth<=0&&(started||/;\s*(\/\/.*)?$/.test(L)))return j;
+  }
+  return -1;
+}
+function readGame(text){
+  var lines=text.split('\n'), segs=[], missing=[];
+  function find(re,from){for(var i=from||0;i<lines.length;i++)if(re.test(lines[i]))return i;return -1}
+  function one(re,label){var i=find(re);if(i<0){missing.push(label);return}var e=scanEnd(lines,i);if(e<0){missing.push(label+' (end)');return}segs.push([i,lines.slice(i,e+1).join('\n')])}
+  function range(reA,reB,label){var i=find(reA);if(i<0){missing.push(label);return}var e=find(reB,i+1);if(e<0){missing.push(label+' (end)');return}segs.push([i,lines.slice(i,e+1).join('\n')])}
+  ['ITEMS','SLOT','SLOT_ORDER','UNDER_SLOTS','BLOCKED_SLOTS','ALLOW_ON_H','WEAR_ORDER','HAIR_CUT','SKINS','HAIRS','BT_SEC_OF','BT_NEW','BT_TEE_ITEMS','BT_TEES','BT_PRIZE_ITEMS','BT_PW','BT_PCUT','BT_PFEET'].forEach(function(n){one(new RegExp('^var '+n+'\\s*='),n)});
+  one(/^BT_TEE_ITEMS\.forEach/,'BT_TEE_ITEMS.forEach'); one(/^BT_PRIZE_ITEMS\.forEach/,'BT_PRIZE_ITEMS.forEach'); one(/^\(function \(\) \{ for \(var b in BT_PCUT\)/,'BT_PCUT merge');
+  range(/^var BT_ECON/,/^\}\)\(\);\s*$/,'price and merge step'); range(/^var BT_KEEP_OLD/,/^\}\)\(\);\s*$/,'retire step');
+  one(/^for \(var _i = 0; _i < ITEMS\.length/,'slot step');
+  ['itemById','baseIdx','wearFrame','slotAllowed','dollLayersFor'].forEach(function(n){one(new RegExp('^function '+n+'\\('),'function '+n)});
+  if(missing.length)throw new Error('I could not find these parts in the game: '+missing.join(', ')+'. The game code was probably reorganised.');
+  segs.sort(function(a,b){return a[0]-b[0]});
+  var code=segs.map(function(s){return s[1]}).join('\n')+'\nreturn {ITEMS:ITEMS,SLOT:SLOT,SLOT_ORDER:SLOT_ORDER,UNDER_SLOTS:UNDER_SLOTS,SKINS:SKINS,HAIRS:HAIRS,BT_PW:BT_PW,BT_TEES:BT_TEES,dollLayersFor:dollLayersFor,slotAllowed:slotAllowed};';
+  var g=(new Function(code))();
+  if(!g.ITEMS||!g.ITEMS.length)throw new Error('The game item list came back empty.');
+  return g;
+}
+function readCss(text){
+  var blocks=[],re=/<style[^>]*>([\s\S]*?)<\/style>/g,m;
+  while((m=re.exec(text)))blocks.push(m[1]);
+  var sheet=new CSSStyleSheet();
+  sheet.replaceSync(blocks.join('\n').replace(/\.\.\/assets\//g,'../../assets/'));
+  var keepRe=/(^|[\s,>+~])\.(dl|doll)(?![\w-])|\.(sk|hr|hj)-[\w-]+/, out=[], vars=[];
+  for(var i=0;i<sheet.cssRules.length;i++){
+    var r=sheet.cssRules[i];
+    if(r.type!==1)continue;
+    if(r.selectorText===':root'){for(var k=0;k<r.style.length;k++){var p=r.style[k];if(p.indexOf('--')===0)vars.push(p+':'+r.style.getPropertyValue(p))}continue}
+    if(keepRe.test(r.selectorText)||(r.selectorText==='.look'&&/--skin/.test(r.cssText)))out.push(r.cssText);
+  }
+  if(!out.length)throw new Error('I could not find the Boh drawing styles in the game.');
+  $('game-css').textContent=':root{'+vars.join(';')+'}\n'+out.join('\n');
+}
+
+/* ---------- catalog helpers ---------- */
+var W=[]; /* wearable items */
+function slotOf(it){return G.SLOT[it.id]||it.slot||''}
+function prep(){
+  W=G.ITEMS.filter(function(it){return slotOf(it)&&it.id});
+  W.forEach(function(it){it._slot=slotOf(it)});
+}
+var GROUPS=[['Hats',['head']],['Looks',['outfit']],['Tops',['top']],['Bottoms',['bottom']],['Shoes',['feet']],['Scarves',['scarf','neck','velo']]];
+function groupOf(it){for(var i=0;i<GROUPS.length;i++)if(GROUPS[i][1].indexOf(it._slot)!==-1)return GROUPS[i][0];return 'More'}
+function groupNames(){var n=GROUPS.map(function(g){return g[0]});n.push('More');return n.filter(function(g){return W.some(function(it){return groupOf(it)===g})})}
+function imgSrc(it){return it.img?it.img.replace(/^\.\.\/assets\//,'../../assets/'):''}
+function baseName(b){return b==='m'?'Boh ♂':b==='f'?'Boh ♀':'Boh ♀ hijab version'}
+function fits(b,it){try{return !!G.slotAllowed(b,it.id)&&!(it.forBase&&it.forBase!==b)}catch(e){return false}}
+
+/* ---------- drawing ---------- */
+function lookCls(base,eq,skin,hair){return 'look '+((eq.hijab&&base==='h')?'hj-'+String(eq.hijab).replace('hijab_','')+' ':'')+'sk-'+(skin||'medium')+' hr-'+(hair||'dark')}
+function doll(base,eq,scale,skin,hair){
+  var layers=G.dollLayersFor(base,eq).map(function(l){return '<div class="'+esc(l.cls)+'"></div>'}).join('');
+  return '<div class="dw" style="width:'+Math.round(150*scale)+'px;height:'+Math.round(390*scale)+'px"><div class="dolx '+esc(lookCls(base,eq,skin,hair))+'" style="transform:scale('+scale+')"><div class="doll">'+layers+'</div></div></div>';
+}
+
+/* ---------- wearing (same rules as the game's wearItem) ---------- */
+function toggle(it,base,eq){
+  var sl=it._slot;
+  if(!fits(base,it))return {ok:false,msg:baseName(base)+' cannot wear that one.'};
+  if(eq[sl]===it.id){delete eq[sl];return {ok:true,msg:''}}
+  if(sl==='feet'&&eq.outfit)return {ok:false,msg:'That outfit already comes with its shoes. Take the outfit off first.'};
+  if(sl==='outfit'){delete eq.top;delete eq.bottom;delete eq.feet}
+  if(sl==='top'||sl==='bottom')delete eq.outfit;
+  eq[sl]=it.id;return {ok:true,msg:''};
+}
+
+/* ---------- screens ---------- */
+var screen='home', tab='', page=0, filter='all', big=false, msg={t:'',c:''};
+var auto={done:false,running:false,probs:{}};
+function setScreen(s){screen=s;msg={t:'',c:''};render();window.scrollTo(0,0)}
+function swatches(arr,cur,kind){return arr.map(function(a){return '<button type="button" class="sw" data-act="'+kind+'" data-v="'+esc(a[0])+'" style="background:'+esc(a[1])+'" aria-pressed="'+(cur===a[0])+'" aria-label="'+esc(a[2]||a[0])+'"></button>'}).join('')}
+function vHome(){
+  return '<div class="bal"><img src="../../assets/bc.svg" alt="">'+BC.toLocaleString('en-US')+' <span class="mut" style="font-size:14px">Boh Cashi, never runs out</span></div>'+
+  '<div class="stage">'+doll(S.base,S.eq,0.8,S.skin,S.hair)+'</div>'+
+  '<div class="seg" role="group" aria-label="Which Boh">'+['m','f','h'].map(function(b){return '<button type="button" class="chip" data-act="base" data-v="'+b+'" aria-pressed="'+(S.base===b)+'">'+esc(baseName(b))+'</button>'}).join('')+'</div>'+
+  '<div class="lbl">Skin</div><div class="seg">'+swatches(G.SKINS,S.skin,'skin')+'</div>'+
+  '<div class="lbl">Hair</div><div class="seg">'+swatches(G.HAIRS,S.hair,'hair')+'</div>'+
+  '<button class="btn" type="button" data-go="dress">Dress Boh</button>'+
+  '<button class="btn o" type="button" data-go="fit">Fit-check gallery</button>'+
+  '<button class="btn o" type="button" data-act="strip">Take everything off</button>'+
+  '<button class="btn o" type="button" data-act="reset">Reset Test Boh</button>'+
+  '<div class="msg '+msg.c+'" role="status">'+esc(msg.t)+'</div>'+
+  '<p class="mut">Everything the game sells or gives is yours here. Nothing you do changes a student save.</p>';
+}
+function vDress(){
+  var gs=groupNames(); if(gs.indexOf(tab)===-1)tab=gs[0]||'';
+  var items=W.filter(function(it){return groupOf(it)===tab});
+  return '<div class="stage" style="margin-top:4px">'+doll(S.base,S.eq,0.55,S.skin,S.hair)+'</div>'+
+  '<div class="seg" role="group" aria-label="Which Boh">'+['m','f','h'].map(function(b){return '<button type="button" class="chip" data-act="base" data-v="'+b+'" aria-pressed="'+(S.base===b)+'">'+esc(baseName(b))+'</button>'}).join('')+'</div>'+
+  '<div class="seg" role="group" aria-label="Type of item">'+gs.map(function(g){return '<button type="button" class="chip" data-act="tab" data-v="'+esc(g)+'" aria-pressed="'+(g===tab)+'">'+esc(g)+'</button>'}).join('')+'</div>'+
+  '<div class="msg '+msg.c+'" role="status">'+esc(msg.t)+'</div>'+
+  '<div class="grid">'+items.map(function(it){var on=S.eq[it._slot]===it.id,ok=fits(S.base,it);
+    return '<button type="button" class="it'+(ok?'':' dim')+'" data-act="wear" data-v="'+esc(it.id)+'" aria-pressed="'+on+'"'+(ok?'':' aria-disabled="true"')+'>'+(imgSrc(it)?'<img src="'+esc(imgSrc(it))+'" alt="" loading="lazy">':'<div style="height:64px"></div>')+'<b>'+esc(it.it||it.id)+'</b><i class="r">'+esc(it.rarity||'')+'</i></button>'}).join('')+'</div>'+
+  '<button class="btn o" type="button" data-act="strip">Take everything off</button>';
+}
+function sorted(){
+  var order=groupNames();
+  return W.slice().sort(function(a,b){var d=order.indexOf(groupOf(a))-order.indexOf(groupOf(b));return d||String(a.it||a.id).localeCompare(String(b.it||b.id))});
+}
+function fixCount(){return Object.keys(S.fix).length}
+function autoCount(){return Object.keys(auto.probs).length}
+function list(){
+  var all=sorted();
+  if(filter==='fix')all=all.filter(function(it){return ['m','f','h'].some(function(b){return S.fix[it.id+'|'+b]})});
+  if(filter==='auto')all=all.filter(function(it){return auto.probs[it.id]});
+  return all;
+}
+function vFit(){
+  var all=list(), pages=Math.max(1,Math.ceil(all.length/PAGE)); if(page>=pages)page=pages-1;
+  var cur=all.slice(page*PAGE,page*PAGE+PAGE);
+  var h='<h2>Fit check</h2><p class="mut">Every item on Boh, one by one. Screenshot a page. Tap a Boh that looks wrong to mark it <b>Needs fix</b>.</p>';
+  if(auto.running)h+='<div class="msg" role="status">Checking every picture&hellip;</div>';
+  else if(auto.done)h+=autoCount()?'<div class="warnbox"><b>'+autoCount()+' item'+(autoCount()===1?'':'s')+' failed the automatic check</b> (picture missing, not drawn, or art touching the picture&rsquo;s side edge, which usually means it is cut off). Filter &ldquo;Auto-flagged&rdquo; to see them. Some may be on purpose, so look at the picture. The check cannot see overlap with other clothes.</div>':'<div class="msg ok" role="status">Automatic check: every picture loads and none touches the side edge. Now check the fit by eye.</div>';
+  h+='<div class="seg" role="group" aria-label="Filter">'+[['all','All ('+W.length+')'],['fix','Needs fix ('+Object.keys(S.fix).length+')'],['auto','Auto-flagged ('+autoCount()+')']].map(function(f){return '<button type="button" class="chip" data-act="filter" data-v="'+f[0]+'" aria-pressed="'+(filter===f[0])+'">'+f[1]+'</button>'}).join('')+'<button type="button" class="chip" data-act="zoom" aria-pressed="'+big+'">Larger pictures</button></div>';
+  h+='<div class="pager"><button class="btn o sm" type="button" data-act="prev"'+(page?'':' disabled')+'>Back</button><span>Page '+(page+1)+' of '+pages+'</span><button class="btn sm" type="button" data-act="next"'+(page<pages-1?'':' disabled')+'>Next page</button></div>';
+  if(!cur.length)h+='<div class="card mut">Nothing here.</div>';
+  cur.forEach(function(it){
+    h+='<div class="fc"><h3>'+esc(it.it||it.id)+'</h3><div class="id">'+esc(it.id)+' &middot; '+esc(it._slot)+' &middot; '+esc(it.rarity||'')+'</div>';
+    h+='<div class="trio">'+['m','f','h'].map(function(b){
+      if(!fits(b,it))return '<div class="na">Not made for '+(b==='h'?'the hijab Boh':b==='m'?'Boh ♂':'Boh ♀')+'</div>';
+      var eq={};eq[it._slot]=it.id;var on=!!S.fix[it.id+'|'+b];
+      return '<button type="button" class="dbtn" data-act="flag" data-v="'+esc(it.id+'|'+b)+'" aria-pressed="'+on+'" aria-label="'+esc(baseName(b)+' wearing '+(it.it||it.id)+(on?', marked needs fix':''))+'">'+doll(b,eq,big?0.62:0.34,S.skin,S.hair)+'<span class="cap">'+(b==='h'?'hijab':b==='m'?'♂':'♀')+'</span><span class="fixt">'+(on?'NEEDS FIX':'')+'</span></button>';
+    }).join('')+'</div>';
+    if(auto.probs[it.id])h+='<div class="auto">Auto-check: '+esc(auto.probs[it.id].join('; '))+'</div>';
+    h+='</div>';
+  });
+  h+='<div class="pager"><button class="btn o sm" type="button" data-act="prev"'+(page?'':' disabled')+'>Back</button><span>Page '+(page+1)+' of '+pages+'</span><button class="btn sm" type="button" data-act="next"'+(page<pages-1?'':' disabled')+'>Next page</button></div>';
+  h+='<button class="btn" type="button" data-act="copy"'+(fixCount()||autoCount()?'':' disabled')+'>Copy my Needs fix list ('+fixCount()+')</button><div class="msg '+msg.c+'" role="status">'+esc(msg.t)+'</div>';
+  return h;
+}
+function render(){
+  var v=$('view');
+  v.innerHTML=screen==='home'?vHome():screen==='dress'?vDress():vFit();
+  [].forEach.call(document.querySelectorAll('#nav button'),function(b){if(b.getAttribute('data-go')===screen)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  if(screen==='fit'&&!auto.done&&!auto.running)runAuto();
+}
+
+/* ---------- automatic picture check ---------- */
+function urlOf(bg){var m=/url\(["']?([^"')]+)["']?\)/.exec(bg||'');return m?m[1]:''}
+var probeCache={};
+/* loads a picture; also counts solid pixels on its two outermost left and right columns (art that reaches the side edge is probably cut off) */
+function probe(u){
+  if(!u||u.indexOf('data:')===0)return Promise.resolve({ok:true});
+  if(probeCache[u])return probeCache[u];
+  return (probeCache[u]=new Promise(function(res){
+    var i=new Image();
+    i.onload=function(){var r={ok:true};
+      try{var c=document.createElement('canvas');c.width=i.naturalWidth;c.height=i.naturalHeight;var x=c.getContext('2d',{willReadFrequently:true});x.drawImage(i,0,0);var w=c.width,h=c.height;
+        var col=function(cx){var d=x.getImageData(cx,0,1,h).data,n=0;for(var k=3;k<d.length;k+=4)if(d[k]>40)n++;return n};
+        r.L=Math.max(col(0),col(Math.min(1,w-1)));r.R=Math.max(col(w-1),col(Math.max(0,w-2)));}catch(e){}
+      res(r)};
+    i.onerror=function(){res({ok:false})};i.src=u;
+  }));
+}
+function runAuto(){
+  auto.running=true;auto.probs={};auto.pre=[];var host=document.createElement('div');host.style.cssText='position:absolute;left:-9999px;top:0;width:150px;height:390px';document.body.appendChild(host);
+  var jobs=[];
+  W.forEach(function(it){
+    var sl=it._slot;
+    if(sl!=='hijab'&&G.SLOT_ORDER.indexOf(sl)===-1&&G.UNDER_SLOTS.indexOf(sl)===-1){auto.pre.push([it.id,'the game does not draw the "'+sl+'" slot']);return}
+    if(sl==='hijab')return;
+    ['m','f','h'].forEach(function(b){
+      if(!fits(b,it))return;
+      var eq={};eq[sl]=it.id;var layers=G.dollLayersFor(b,eq);
+      var wrap=document.createElement('div');wrap.className=lookCls(b,eq,S.skin,S.hair);wrap.innerHTML='<div class="doll">'+layers.map(function(l){return '<div class="'+esc(l.cls)+'"></div>'}).join('')+'</div>';
+      host.appendChild(wrap);
+      var els=wrap.querySelectorAll('.doll > div'), last=els[els.length-1];
+      jobs.push({it:it,b:b,el:last,body:layers.length<2});
+    });
+  });
+  var raw={};
+  function note(id,text,b){var m=(raw[id]=raw[id]||{});(m[text]=m[text]||[]);if(b&&m[text].indexOf(b)===-1)m[text].push(b)}
+  function finish(){auto.probs={};Object.keys(raw).forEach(function(id){auto.probs[id]=Object.keys(raw[id]).map(function(t){var bs=raw[id][t];return bs.length?t+' on '+['m','f','h'].filter(function(x){return bs.indexOf(x)!==-1}).map(baseName).join(', '):t})})}
+  var tasks=jobs.map(function(j){
+    if(j.body){note(j.it.id,'draws nothing',j.b);return Promise.resolve()}
+    var bg=getComputedStyle(j.el).backgroundImage;
+    if(!bg||bg==='none'){note(j.it.id,'no picture rule',j.b);return Promise.resolve()}
+    return probe(urlOf(bg)).then(function(r){
+      if(!r.ok)note(j.it.id,'picture file missing',j.b);
+      else if(r.L>=8||r.R>=8)note(j.it.id,'art reaches the '+(r.L>=8&&r.R>=8?'left and right edges':r.L>=8?'left edge':'right edge')+' of its picture (probably cut off)',j.b);
+    });
+  });
+  (auto.pre||[]).forEach(function(x){note(x[0],x[1],null)});
+  Promise.all(tasks).then(function(){finish();auto.running=false;auto.done=true;document.body.removeChild(host);if(screen==='fit')render()}).catch(function(){finish();auto.running=false;auto.done=true;try{document.body.removeChild(host)}catch(e){}if(screen==='fit')render()});
+  if(screen==='fit')render();
+}
+
+/* ---------- clicks ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest&&e.target.closest('[data-act],[data-go]');if(!t)return;
+  var go=t.getAttribute('data-go');if(go){setScreen(go);return}
+  var a=t.getAttribute('data-act'),v=t.getAttribute('data-v');
+  if(a==='base'){S.base=v;/* drop pieces this Boh cannot wear */Object.keys(S.eq).forEach(function(sl){var it=W.filter(function(x){return x.id===S.eq[sl]})[0];if(!it||!fits(v,it))delete S.eq[sl]});msg={t:'',c:''}}
+  else if(a==='skin')S.skin=v; else if(a==='hair')S.hair=v;
+  else if(a==='tab'){tab=v;msg={t:'',c:''}}
+  else if(a==='wear'){var it=W.filter(function(x){return x.id===v})[0];var r=toggle(it,S.base,S.eq);msg=r.ok?{t:'',c:''}:{t:r.msg,c:'err'}}
+  else if(a==='strip'){S.eq={};msg={t:'Everything is off.',c:'ok'}}
+  else if(a==='reset'){if(t.getAttribute('data-sure')!=='1'){t.setAttribute('data-sure','1');t.textContent='Tap again to reset';setTimeout(function(){try{t.setAttribute('data-sure','0');t.textContent='Reset Test Boh'}catch(x){}},5000);return}
+    S={v:1,base:'m',skin:'medium',hair:'dark',eq:{},fix:{}};msg={t:'Test Boh is back to the start.',c:'ok'}}
+  else if(a==='filter'){filter=v;page=0}
+  else if(a==='zoom'){big=!big}
+  else if(a==='prev'){page=Math.max(0,page-1);window.scrollTo(0,0)}
+  else if(a==='next'){page++;window.scrollTo(0,0)}
+  else if(a==='flag'){if(S.fix[v])delete S.fix[v];else S.fix[v]=1}
+  else if(a==='copy'){copyList();return}
+  save();render();
+});
+function listText(){
+  var rows=[];
+  sorted().forEach(function(it){
+    var bs=['m','f','h'].filter(function(b){return S.fix[it.id+'|'+b]}).map(function(b){return b==='h'?'hijab':b==='m'?'Boh male':'Boh female'});
+    var ap=auto.probs[it.id];
+    if(bs.length||ap)rows.push('- '+(it.it||it.id)+' ('+it.id+')'+(bs.length?': looks wrong on '+bs.join(', '):'')+(ap?' | auto-check: '+ap.join('; '):''));
+  });
+  return 'Test Boh: needs fix ('+rows.length+' items) - '+new Date().toLocaleString()+'\n'+rows.join('\n');
+}
+function copyList(){
+  var txt=listText();
+  function done(ok){msg=ok?{t:'Copied. Paste it into a message or note.',c:'ok'}:{t:'Your browser would not copy. Select the list below and copy it.',c:'err'};render();if(!ok){var ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('aria-label','Needs fix list');ta.style.cssText='width:100%;min-height:160px';$('view').appendChild(ta);ta.select()}}
+  try{navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}catch(e){done(false)}
+}
+
+/* ---------- start ---------- */
+function start(){
+  $('gate').classList.add('hide');$('load').classList.remove('hide');
+  fetch(GAME_URL,{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error('The game file did not load (error '+r.status+').');return r.text()}).then(function(text){
+    G=readGame(text);readCss(text);prep();load();
+    /* forget saved pieces that no longer exist or no longer fit */
+    Object.keys(S.eq).forEach(function(sl){var it=W.filter(function(x){return x.id===S.eq[sl]})[0];if(!it||it._slot!==sl||!fits(S.base,it))delete S.eq[sl]});
+    $('load').classList.add('hide');$('view').classList.remove('hide');$('nav').classList.remove('hide');render();
+  }).catch(function(err){var m=$('loadmsg');m.className='msg err';m.textContent='Test Boh could not start. '+(err&&err.message?err.message:err)});
+}
+function enter(){var v=$('pin').value.trim();if(!v)return;sha(v).then(function(h){if(h!==PIN_HASH){$('gerr').textContent='Wrong code.';$('pin').value='';return}try{sessionStorage.setItem('boh_prof_ok','1')}catch(e){}start()})}
+$('go').addEventListener('click',enter);$('pin').addEventListener('keydown',function(e){if(e.key==='Enter')enter()});
+var ok=false;try{ok=sessionStorage.getItem('boh_prof_ok')==='1'}catch(e){}
+if(ok)start();else $('pin').focus();
+window.__testboh={get:function(){return {G:G,W:W,S:S,auto:auto}}};
+})();
+</script></body></html>
