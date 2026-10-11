@@ -6,6 +6,8 @@
   'use strict';
   var BOH_CLOUD_URL = ''; // e.g. 'https://boh-save.<account>.workers.dev' once the save box is set up and approved
   var KEY_RE = /^(boh|essereAvere|volereDovere)/;
+  // "a recording exists" notes belong to the device: the audio itself stays in this browser, so the note must never travel in a code
+  var DEVICE_ONLY = /^boh_rec_have_/;
   var CLOUD_KEY = 'boh_cloud';
   // round-in-progress fields: they rebuild themselves, so they stay out of the code
   var DROP = ['queue', 'qIndex', 'roundActive', 'missed', 'missedNow', 'zooSession', 'catStats', 'provaLog', 'lsIt', 'tBuilt',
@@ -25,7 +27,7 @@
     var d = {};
     for (var i = 0; i < localStorage.length; i++) {
       var k = localStorage.key(i);
-      if (!KEY_RE.test(k)) continue;
+      if (!KEY_RE.test(k) || DEVICE_ONLY.test(k)) continue;
       var v = localStorage.getItem(k), p = null;
       try { p = JSON.parse(v); } catch (e) {}
       d[k] = p && typeof p === 'object' ? JSON.stringify(slim(p)) : v;
@@ -69,9 +71,9 @@
   function makeBundle() { return { v: 1, t: Date.now(), name: bohName(), d: gather() }; }
   function restore(o, cloud) {
     var kill = [];
-    for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (KEY_RE.test(k)) kill.push(k); }
+    for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (KEY_RE.test(k) && !DEVICE_ONLY.test(k)) kill.push(k); }
     kill.forEach(function (k) { localStorage.removeItem(k); });
-    for (var key in o.d) if (KEY_RE.test(key)) localStorage.setItem(key, o.d[key]);
+    for (var key in o.d) if (KEY_RE.test(key) && !DEVICE_ONLY.test(key)) localStorage.setItem(key, o.d[key]);
     if (cloud) localStorage.setItem(CLOUD_KEY, JSON.stringify(cloud));
     try { sessionStorage.setItem('boh_restored', o.name || '1'); } catch (e) {}
     location.reload();
