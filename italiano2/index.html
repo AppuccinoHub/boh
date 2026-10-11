@@ -17,6 +17,8 @@
 .pb-n.soon{opacity:.6}
 .pb-l{flex:1;height:6px;border-radius:3px;background:#E4DFD3}
 .pb-l.done{background:#1E7A3A}
+.start-seg{grid-column:1/-1;display:flex;gap:4px;margin-top:2px}.start-seg i{flex:1;height:8px;border-radius:4px;background:rgba(188,30,114,.2)}.start-seg i.cur{background:rgba(188,30,114,.5)}.start-seg i.f{background:var(--pop,#BC1E72)}
+.home-hero:has(.start-card.one)~.pathbar{display:none!important}
 .pb-c{margin-left:10px;font:800 13px/1 'Manrope',system-ui,sans-serif;white-space:nowrap;opacity:.85}
 .home-hero.dup .hero-title,.home-hero.dup .hero-words{display:none}
 @media (max-width:899px) and (max-height:660px){.pathbar{display:none}}
@@ -1410,7 +1412,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
           <h1 class="hero-title display" style="margin:0;font-size:32px;line-height:1.12;font-weight:800;">{{unitTitle}}</h1>
           <div class="hero-words display">{{unitWords}}</div>
           <p class="home-lede" style="margin:0;color:var(--text-muted);font-size:15px;line-height:1.55;">{{homeLede}}</p>
-          <div class="start-card">
+          <div class="{{startCls}}">
             <div class="tc-emo tcp tcp-point-side start-lo" role="img" aria-label="Prof. Lo So"></div>
             <div class="start-body">
               <span class="start-hi">{{startHi}}</span>
@@ -1421,7 +1423,8 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
               <sc-if value="{{hasStartW}}" hint-placeholder-val="{{false}}"><span class="start-w">{{startW}}</span></sc-if>
               <sc-if value="{{hasStartN}}" hint-placeholder-val="{{false}}"><span class="start-n">{{startN}}</span></sc-if>
             </div>
-            <button class="start-go" onClick="{{startH}}"><span>Comincia</span><small class="en-only inl">Start</small></button>
+            <button class="start-go" onClick="{{startH}}"><span>{{startGo}}</span><small class="en-only inl">{{startGoEn}}</small></button>
+            <sc-if value="{{hasStartSegs}}" hint-placeholder-val="{{false}}"><div class="start-seg" aria-hidden="true"><sc-for list="{{startSegs}}" as="sg" hint-placeholder-count="5"><i class="{{sg.cls}}"></i></sc-for></div></sc-if>
           </div>
         </div>
 
@@ -11159,6 +11162,30 @@ class Component extends DCLogic {
     result.profStatus = st.join('\n');
   }
 
+  oneStart(s, r, D) {   /* ONE starting point: the Oggi card always points at the student's next step: rounds, then Parla con Prof, then done */
+    var self = this, L = this.lsState(), fr = this.lsFrontier(L, D), N = D.stops.length;
+    var PQ = window.BohParlaData && window.BohParlaData.italiano2 && window.BohParlaData.italiano2[BT_UNIT];
+    var hasP = !!(PQ && window.BohParla && window.BohParla.open), pReady = false;
+    try { var pp = JSON.parse(localStorage.getItem('boh_parla_v1') || 'null') || {}; pReady = !!(pp.italiano2 && pp.italiano2[BT_UNIT] && pp.italiano2[BT_UNIT].ready); } catch (e) {}
+    var pathDone = fr >= N || !!L.finished, pStep = pathDone && hasP && !pReady, all = pathDone && (!hasP || pReady);
+    r.startCls = 'start-card one';
+    r.startK = 'Oggi'; r.startKen = 'Today';
+    r.startT = String(D.title || '').replace(/^Page\s*\d+\s*·\s*/, '');
+    r.startW = ''; r.hasStartW = false;
+    r.startN = pStep ? 'Last step: talk with Prof' : all ? 'Lezione fatta!' : 'Round ' + (fr + 1);
+    r.hasStartN = true;
+    r.startGo = pStep ? 'Parla' : all ? 'Ripassa' : L.done.length ? 'Continua' : 'Comincia';
+    r.startGoEn = pStep ? 'Talk' : all ? 'Review' : L.done.length ? 'Keep going' : 'Start';
+    var base = r.startH;
+    r.startH = function () {
+      if (pStep) { self.sfx('tap'); window.BohParla.open(); }
+      else if (all) { self.sfx('tap'); if (typeof r.lsGoH === 'function') r.lsGoH(); }
+      else if (typeof base === 'function') base();
+    };
+    r.startSegs = D.stops.map(function (st, k) { return { cls: L.done.indexOf(k) !== -1 ? 'f' : (!pathDone && k === fr ? 'cur' : '') }; });
+    if (hasP) r.startSegs.push({ cls: pReady ? 'f' : pStep ? 'cur' : '' });
+    r.hasStartSegs = true;
+  }
   lsVals(s, result) {
     var self = this, D = this.lsData(), base = s.bohBase;
     result.hasLesson = !!D;
@@ -11721,7 +11748,10 @@ class Component extends DCLogic {
     var _cf = modeList.filter(function (m) { return m.featured; })[0];
     result.continuaH = result.hasLesson && result.lsGoH ? result.lsGoH : (_cf ? _cf.pick : function () { self.sfx('tap'); });
     result.continuaLabel = result.hasLesson && result.lsGoLabel ? result.lsGoLabel : (_cf ? 'Continua: ' + _cf.label.replace(/^\d+ \u00b7 /, '') : 'Ripassa un giro');
-    try { if (window.BohUI) window.BohUI.startVals(self, s, result); } catch (e) {}
+    var _bt = window.BohToday, _D1 = result.hasLesson ? this.lsData() : null;
+    result.startCls = 'start-card'; result.startGo = 'Comincia'; result.startGoEn = 'Start'; result.startSegs = []; result.hasStartSegs = false;
+    try { if (_D1) window.BohToday = null; if (window.BohUI) window.BohUI.startVals(self, s, result); } catch (e) {} finally { window.BohToday = _bt; }   /* one start: a unit with a lesson path ignores the teacher's separate Today card */
+    if (_D1) this.oneStart(s, result, _D1);
     this.profVals(s, result);
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';

@@ -83,7 +83,7 @@
 
   /* entry button: sits right under the progress bar on the unit hub (home), only when this unit has questions */
   function sync() {
-    var u = unit(), d = data(u), home = D.querySelector('[data-screen="home"]'), pb = D.querySelector('.pathbar'), show = !!(d && home && pb && !ov);
+    var u = unit(), d = data(u), home = D.querySelector('[data-screen="home"]'), pb = D.querySelector('.pathbar'), show = !!(d && home && pb && !ov && !D.querySelector('.start-card.one'));   /* the Oggi card already carries Parla as its last step */
     if (!show) { if (entry && entry.parentNode) { entry.parentNode.removeChild(entry); } entry = null; return; }
     addCss();
     if (!entry) { entry = D.createElement('button'); entry.type = 'button'; entry.onclick = open; }
