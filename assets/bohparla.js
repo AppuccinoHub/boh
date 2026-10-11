@@ -8,6 +8,7 @@
   'use strict';
   if (W.__bohParla || !/\/italiano2\//.test(W.location.pathname)) return;
   W.__bohParla = true;
+  W.BohParla = { open: function () { open(); } }; /* lets the progress-bar P step open this screen */
   var KEY = 'boh_parla_v1', SAVE = 'bohItaliano2_v2', ov = null, entry = null;
 
   function jget(k) { try { return JSON.parse(localStorage.getItem(k) || 'null') || {}; } catch (e) { return {}; } }

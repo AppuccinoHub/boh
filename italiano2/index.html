@@ -20,6 +20,10 @@
 .start-seg{grid-column:1/-1;display:flex;gap:4px;margin-top:2px}.start-seg i{flex:1;height:8px;border-radius:4px;background:rgba(188,30,114,.2)}.start-seg i.cur{background:rgba(188,30,114,.5)}.start-seg i.f{background:var(--pop,#BC1E72)}
 .home-hero:has(.start-card.one)~.pathbar{display:none!important}
 .pb-c{margin-left:10px;font:800 13px/1 'Manrope',system-ui,sans-serif;white-space:nowrap;opacity:.85}
+.pb-w{display:flex;flex:none}
+.pb-p{position:relative;padding:0;font-family:inherit;cursor:pointer}
+.pb-p::after{content:"";position:absolute;inset:-7px}
+.pb-p:focus-visible{outline:3px solid var(--pop,#35C6C6);outline-offset:3px}
 .home-hero.dup .hero-title,.home-hero.dup .hero-words{display:none}
 @media (max-width:899px) and (max-height:660px){.pathbar{display:none}}
 </style>
@@ -53,10 +57,13 @@ function fill(){var b=document.querySelector('.pathbar');if(!b)return;
  if(b.getAttribute('data-sig')===sig)return;
  b.setAttribute('data-sig',sig);b.setAttribute('data-m','unit');
  var h='';for(var k=0;k<total;k++){var nm=(hasP&&k===total-1)?'P':String(k+1);
-  h+='<span class="pb-n '+st[k]+'" role="listitem" aria-label="'+(hasP&&k===total-1?'Parla con Prof':'Stop '+(k+1))+(st[k]==='done'?', done':st[k]==='here'?', you are here':', next')+'">'+(st[k]==='done'?'✓':nm)+'</span>';
+  var isP=hasP&&k===total-1,sa=(st[k]==='done'?', done':st[k]==='here'?', you are here':', next');
+  if(isP)h+='<span class="pb-w" role="listitem"><button type="button" class="pb-n pb-p '+st[k]+'" aria-label="Parla con Prof'+sa+'">'+(st[k]==='done'?'✓':nm)+'</button></span>';
+  else h+='<span class="pb-n '+st[k]+'" role="listitem" aria-label="Stop '+(k+1)+sa+'">'+(st[k]==='done'?'✓':nm)+'</span>';
   if(k<total-1)h+='<i class="pb-l'+(st[k]==='done'?' done':'')+'"></i>';}
  h+='<span class="pb-c" aria-live="polite">'+got+' of '+total+(got===total?' · Fatto!':'')+'</span>';
- b.innerHTML=h;}
+ b.innerHTML=h;
+ if(!b.__pc){b.__pc=1;b.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('.pb-p');if(t&&window.BohParla&&window.BohParla.open)window.BohParla.open();});}}
 function dup(){var h=document.querySelector('.home-hero'),t=document.querySelector('.hero-title'),o=document.querySelector('.oggi-t');
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
