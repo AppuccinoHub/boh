@@ -1,0 +1,32 @@
+/* Boh · phone play screen. ONE file for every level (Italiano 1-4, AP).
+   Fixes on iPhone-size screens (700 px wide or less): the word sits left and tiny in a big empty area,
+   the answers are forced into 2 columns (the third one sits alone), the footer is cut off, and the top bar
+   has too many buttons. Created by Assunta Scotto, 2026. Not for redistribution.
+   Rules use "html body" in front so they beat the Chromebook-fit rules that come later in each page. */
+@media (max-width: 700px) {
+  html body [data-screen="play"] .play-col .play-mid {
+    flex: 1 1 auto !important; min-height: 0 !important;
+    justify-content: center !important; align-items: center !important; text-align: center !important;
+  }
+  html body [data-screen="play"] .play-col .play-prompt {
+    text-align: center !important; font-size: 34px !important; line-height: 1.15 !important; overflow-wrap: anywhere;
+  }
+  /* bohphone.js marks short words (s), medium lines (m) and long sentences (l) */
+  html body [data-screen="play"] .play-col .play-prompt[data-pl="s"] { font-size: 56px !important; line-height: 1.05 !important; }
+  html body [data-screen="play"] .play-col .play-prompt[data-pl="m"] { font-size: 36px !important; }
+  html body [data-screen="play"] .play-col .play-prompt[data-pl="l"] { font-size: 26px !important; line-height: 1.25 !important; }
+
+  /* answers: one column, full width, easy to hit with a thumb */
+  html body [data-screen="play"] .play-col .opt-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 10px !important; }
+  html body [data-screen="play"] .play-col .opt-grid button {
+    min-height: 60px !important; font-size: 20px !important; padding: 12px 14px !important; width: 100% !important;
+  }
+
+  /* top bar on the play screen: Help chart keeps its icon, the words go; the house button waits for the home screen */
+  html body [data-screen="play"] .tc-playbtn .tl-en,
+  html body [data-screen="play"] .tc-playbtn .tl-it { display: none !important; }
+  html body [data-screen="play"] .bhm { display: none !important; }
+
+  /* the footer line is on the home screen; on the play screen it was cut off */
+  html body [data-screen="play"] .wmark { display: none !important; }
+}
