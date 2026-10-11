@@ -776,7 +776,14 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 .ls-btn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:0 26px;min-height:50px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--primary-bg);color:var(--primary-text);font-weight:800;font-size:17px}
 .ls-btn[disabled]{opacity:.45;cursor:not-allowed}
 .ls-btn2{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:0 20px;min-height:50px;display:flex;align-items:center;justify-content:center;border-radius:999px;border:2px solid var(--primary-bg);color:var(--accent-strong);font-weight:800;font-size:15.5px}
-.ls-done{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.ls-done{display:flex;flex-direction:column;gap:14px;align-items:flex-start;position:relative}
+.ls-clap{align-self:center;width:150px;height:150px}
+.ls-fx{position:absolute;left:0;right:0;top:0;height:0;pointer-events:none;z-index:2}
+.ls-fx i{position:absolute;top:-10px;width:9px;height:14px;border-radius:2px;opacity:0;animation:lsfall 2.6s ease-in 1 both}
+.ls-fx i:nth-child(3n){background:#BC1E72}.ls-fx i:nth-child(3n+1){background:#E0B040}.ls-fx i:nth-child(3n+2){background:#35C6C6}
+.ls-fx i:nth-child(1){left:6%;animation-delay:.0s}.ls-fx i:nth-child(2){left:16%;animation-delay:.3s}.ls-fx i:nth-child(3){left:27%;animation-delay:.1s}.ls-fx i:nth-child(4){left:38%;animation-delay:.5s}.ls-fx i:nth-child(5){left:49%;animation-delay:.2s}.ls-fx i:nth-child(6){left:59%;animation-delay:.6s}.ls-fx i:nth-child(7){left:70%;animation-delay:.15s}.ls-fx i:nth-child(8){left:80%;animation-delay:.45s}.ls-fx i:nth-child(9){left:90%;animation-delay:.25s}.ls-fx i:nth-child(10){left:96%;animation-delay:.55s}
+@keyframes lsfall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(340px) rotate(300deg)}}
+@media (prefers-reduced-motion:reduce){.ls-fx{display:none}}
 .ls-stamp{transform:rotate(-3deg);border:4px solid var(--success-border);color:var(--success-text);border-radius:10px;padding:4px 16px;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:.04em}
 .ls-stamp.big{font-size:30px;letter-spacing:.08em}
 .ls-earn{font-size:20px;font-weight:800;color:var(--success-text)}
@@ -1027,6 +1034,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
     .tc-emo.tcp{font-size:0;width:170px;max-width:60%;height:128px;background:center bottom/contain no-repeat}
     @media (max-height:700px){.tc-emo.tcp{height:92px}}
     .tc-emo.tcp-think{background-image:url(../assets/guide/bust/think.webp)}
+    .tc-emo.tcp-clap{background-image:url(../assets/guide/bust/clap.webp)}
     .tc-emo.tcp-finger-up{background-image:url(../assets/guide/bust/finger-up.webp)}
     .tc-emo.tcp-present{background-image:url(../assets/guide/bust/present.webp)}
     .tc-emo.tcp-tablet{background-image:url(../assets/guide/bust/tablet.webp)}
@@ -1869,7 +1877,9 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 
             <sc-if value="{{lsIsFine}}" hint-placeholder-val="{{false}}">
               <div class="ls-done">
-                <div class="ls-stamp big">LEZIONE FINITA</div>
+                <div class="ls-fx" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="tc-emo tcp tcp-clap ls-clap" role="img" aria-label="Prof. Lo So applaude"></div>
+                <div class="ls-stamp big">LEZIONE FATTA!</div>
                 <h2 class="ls-head display">{{lsFinishLine}}</h2>
                 <div class="ls-stats">
                   <div><b>{{lsTyped}}</b><span>answers you typed</span></div>
