@@ -187,5 +187,19 @@
     applyPause(r);
   }
 
-  W.BohUI = { en: en, startVals: startVals, applyPause: applyPause, unitPlan: unitPlan, warm: warm, warmFrom: warmFrom };
+  /* Chat direction: one line telling students to read the chat first, questions come after.
+     Wording lives here once; every level's chat screen shows it in the same box (.boh-chatdir). */
+  var CHAT_DIR = {
+    italiano1: ['Read the chat.', 'Questions come after.'],
+    italiano2: ['Leggi la chat. Poi le domande.', 'Read the chat. Questions come after.'],
+    italiano3: ['Leggi la chat. Poi le domande.', '(Questions come after.)'],
+    italiano4: ['Leggi la chat. Poi rispondi alle domande.', ''],
+    ap: ['Leggi la chat. Poi rispondi alle domande.', '']
+  };
+  function chatDir() {
+    var m = (W.location && W.location.pathname || '').match(/\/(italiano[1-4]|ap)(\/|$)/);
+    return CHAT_DIR[m ? m[1] : 'italiano2'];
+  }
+
+  W.BohUI = { chatDir: chatDir, en: en, startVals: startVals, applyPause: applyPause, unitPlan: unitPlan, warm: warm, warmFrom: warmFrom };
 })(window);
