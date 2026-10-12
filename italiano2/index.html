@@ -17,11 +17,12 @@
 .pb-n.soon{opacity:.6}
 .pb-l{flex:1;height:6px;border-radius:3px;background:#E4DFD3}
 .pb-l.done{background:#1E7A3A}
+.pb-c{margin-left:10px;font:800 13px/1 'Manrope',system-ui,sans-serif;white-space:nowrap;opacity:.85}
 .home-hero.dup .hero-title,.home-hero.dup .hero-words{display:none}
 @media (max-width:899px) and (max-height:660px){.pathbar{display:none}}
 </style>
 <script>/* Boh path bar */(function(){try{
-function fill(){var b=document.querySelector('.pathbar');if(!b)return;
+function fillOld(b){
  var order=['ea','u2','u3'],cur='ea',all={};
  try{var sv=JSON.parse(localStorage.getItem('bohItaliano2_v2')||'null')||{};cur=sv.unit||'ea';all=sv.units||{};
   var c={};c.passed=sv.passed;c.provaBest=sv.provaBest;all[cur]=c;}catch(e){}
@@ -31,10 +32,33 @@ function fill(){var b=document.querySelector('.pathbar');if(!b)return;
   n[i].className='pb-n '+st;n[i].setAttribute('aria-label','Page '+(i+1)+(d?', done':st==='here'?', you are here':', next'));
   if(l[i])l[i].className='pb-l'+(d?' done':'');}
  n[3].className='pb-n soon';n[3].setAttribute('aria-label','Page 4, coming soon');}
+/* boh-unitmeter-v1: inside a unit the bar counts THIS unit's steps (5 stops + Parla con Prof when the unit has questions).
+   The last dot is reachable, so the student can finish. Reads saved progress only; changes nothing. */
+function fill(){var b=document.querySelector('.pathbar');if(!b)return;
+ var sv={},cur='ea';try{sv=JSON.parse(localStorage.getItem('bohItaliano2_v2')||'null')||{};cur=sv.unit||'ea';}catch(e){}
+ var L=sv.lesson,stops=5;
+ try{if(typeof BT_LESSONS!=='undefined'&&BT_LESSONS[cur])stops=BT_LESSONS[cur].stops.length;}catch(e){}
+ if(cur==='ea'||!(cur==='u2'||cur==='u3')){if(b.getAttribute('data-m')==='unit'){b.removeAttribute('data-m');b.innerHTML='<span class="pb-n" role="listitem">1</span><i class="pb-l"></i><span class="pb-n" role="listitem">2</span><i class="pb-l"></i><span class="pb-n" role="listitem">3</span><i class="pb-l"></i><span class="pb-n" role="listitem">4</span>';}
+  fillOld(b);return;}
+ var done=(L&&L.v===1&&L.done)?L.done:[],hasP=!!(window.BohParlaData&&BohParlaData.italiano2&&BohParlaData.italiano2[cur]),pd=false;
+ try{var pp=JSON.parse(localStorage.getItem('boh_parla_v1')||'null')||{};pd=!!(pp.italiano2&&pp.italiano2[cur]&&pp.italiano2[cur].ready);}catch(e){}
+ var total=stops+(hasP?1:0),got=0,st=[];
+ for(var i=0;i<stops;i++){var d=done.indexOf(i)!==-1;if(d)got++;st.push(d?'done':'');}
+ if(hasP){if(pd)got++;st.push(pd?'done':'');}
+ var first=-1;for(var j=0;j<st.length;j++){if(!st[j]){first=j;break;}}
+ if(first>-1)st[first]='here';
+ var sig=cur+'|'+st.join(',')+'|'+total;
+ if(b.getAttribute('data-sig')===sig)return;
+ b.setAttribute('data-sig',sig);b.setAttribute('data-m','unit');
+ var h='';for(var k=0;k<total;k++){var nm=(hasP&&k===total-1)?'P':String(k+1);
+  h+='<span class="pb-n '+st[k]+'" role="listitem" aria-label="'+(hasP&&k===total-1?'Parla con Prof':'Stop '+(k+1))+(st[k]==='done'?', done':st[k]==='here'?', you are here':', next')+'">'+(st[k]==='done'?'✓':nm)+'</span>';
+  if(k<total-1)h+='<i class="pb-l'+(st[k]==='done'?' done':'')+'"></i>';}
+ h+='<span class="pb-c" aria-live="polite">'+got+' of '+total+(got===total?' · Fatto!':'')+'</span>';
+ b.innerHTML=h;}
 function dup(){var h=document.querySelector('.home-hero'),t=document.querySelector('.hero-title'),o=document.querySelector('.oggi-t');
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610081100"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610081100"></script></head><body>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610081100"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610081100"></script><script src="../assets/bohphone.js?v=202610111800"></script><script src="../assets/parla-italiano2.js?v=202610111800"></script><script src="../assets/recorder.js?v=202610111800"></script><script src="../assets/bohparla.js?v=202610111800"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -11685,7 +11709,7 @@ class Component extends DCLogic {
     var UNI = BT_UNITS[BT_UNIT];
     result.unitEyebrow = UNI.eyebrow; result.unitTitle = UNI.title; result.unitWords = UNI.words || ''; result.unitShort = UNI.short; try { if (window.BohScoreCard) window.BohScoreCard.unit = UNI.short; } catch (e) {}
     result.isImp = BT_UNIT === 'imp'; result.isVdp = BT_UNIT === 'vdp';
-    result.unitTabs = BT_UNIT_ORDER.map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
+    result.unitTabs = BT_UNIT_ORDER.filter(function (u) { return u !== 'ea' || BT_UNIT === 'ea'; /* boh-page1-hidden-v1: Page 1 (Italiano 1 review) is not shown to new students; saved data is kept */ }).map(function (u) { return { label: BT_UNITS[u].tab, sub: BT_UNITS[u].tabSub, on: u === BT_UNIT ? 'true' : 'false', cls: 'unit-tab', pick: function () { self.btSwitchUnit(u); } }; })
       .concat(BT_UNIT_SOON.map(function (x) { return { label: x[0], sub: x[1], on: 'false', cls: 'unit-tab soon', pick: function () { self.sfx('soft'); } }; }));
     result.resetTyped = s.resetTyped || '';
     result.resetOk = (s.resetTyped || '').trim().toUpperCase() === 'RESET';
