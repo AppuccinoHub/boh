@@ -110,21 +110,57 @@
   }
 
   /* ---- 2. Start card ---- */
-  function todayEntry() {
+  function isPause(T) { return !!T && !T.id && !T.total && !T.unit && !T.url; }   // "Class is on": a Today entry with only date / until (and optional note)
+  function liveToday() {
     var T = (W.BohToday || {})[LV];
     return T && !(T.until && ymd() > T.until) ? T : null;
   }
+  function todayEntry() { var T = liveToday(); return isPause(T) ? null : T; }   // a lesson entry (has id/total, unit or url)
+  function pauseEntry() { var T = liveToday(); return isPause(T) ? T : null; }
+  function reviewList() { return (W.BohReview || {})[LV] || []; }   // H-03: review units are named in assets/today.js, never guessed from a label
+
+  /* ---- Unit plan: which unit the Next stop card points at ----
+     Rule (Assunta, 2026-10-12): a student mid-unit stays in that unit; once it is finished (Prova passed at 85%+) the card moves to the
+     next unfinished unit in order, else the earliest unfinished one; none left = "Tutto fatto". Review units are never the target. */
+  function unitPlan(s) {
+    var order = W.BT_UNIT_ORDER || [], cur = W.BT_UNIT, units = {};
+    for (var k in (s.units || {})) units[k] = s.units[k];
+    units[cur] = { passed: s.passed || [], provaBest: s.provaBest };
+    var rev = reviewList(), play = order.filter(function (u) { return rev.indexOf(u) === -1; });
+    if (!play.length) play = order.slice();
+    function done(u) { return ((units[u] || {}).passed || []).indexOf('prova') !== -1; }
+    var best = 0; play.forEach(function (u) { var b = +((units[u] || {}).provaBest) || 0; if (b > best) best = b; });
+    if (play.indexOf(cur) !== -1 && !done(cur)) return { target: cur, mode: 'stay', best: best };
+    var i = order.indexOf(cur);
+    var after = order.slice(i + 1).filter(function (u) { return play.indexOf(u) !== -1 && !done(u); });
+    var first = play.filter(function (u) { return !done(u); });
+    var t = after[0] || first[0] || null;
+    return t ? { target: t, mode: 'next', best: best } : { target: cur, mode: 'all', best: best };
+  }
+
+  function applyPause(r) {   // H-04: the teacher's "Class is on" card. The student's path is kept.
+    var P = pauseEntry(); if (!P) return false;
+    r.startK = 'In classe'; r.startKen = 'Class is on';
+    r.startT = 'Il tuo percorso è salvato.';
+    r.startW = ''; r.hasStartW = false;
+    r.startN = P.note || 'Your path is saved.'; r.hasStartN = true;
+    return true;
+  }
+
   function startVals(g, s, r) {
     derive(W.BT_UNIT, (W.BT_UNITS || {})[W.BT_UNIT]);
     var T = todayEntry(), name = (r.bohName || '').trim(), qep = false;
     try { qep = typeof W.__bohQepCur === 'function' && !!W.__bohQepCur(s); } catch (e) {}
+    var plan = (!T && !qep) ? unitPlan(s) : { target: W.BT_UNIT, mode: 'stay', best: 0 };
+    r.startGo = 'Comincia'; r.startGoEn = 'Start';   // H-05: one label, every level, every state
     r.startHi = 'Ciao' + (name ? ', ' + name : '') + '!';
     r.startHiEn = 'Hi' + (name ? ', ' + name : '') + '!';
     r.startK = T ? 'Oggi' : 'Prossima tappa';   // no date on the card unless the teacher asks for it
     r.startKen = T ? 'Today' : 'Next stop';
-    r.startT = T ? T.title : (qep && r.unitTitle ? r.unitTitle : String(r.continuaLabel || '').replace(/^(Comincia|Continua):\s*/, ''));
+    var UT = (W.BT_UNITS || {})[plan.target] || {};
+    r.startT = T ? T.title : (qep && r.unitTitle ? r.unitTitle : plan.mode === 'next' ? (UT.tab || plan.target) : plan.mode === 'all' ? 'Tutto fatto' : String(r.continuaLabel || '').replace(/^(Comincia|Continua):\s*/, ''));
     r.startW = T && T.words ? T.words : '';
-    r.startN = T && T.note ? T.note : '';
+    r.startN = T && T.note ? T.note : plan.mode === 'next' ? 'Unità da fare' : plan.mode === 'all' ? (plan.best && plan.best < 90 ? 'Miglior Prova: ' + Math.round(plan.best) + '%. Il 90% sblocca ASSURDO.' : 'Ripasso libero') : '';
     if (T && T.id && T.total) {   // an In classe lesson: show how many parts are done
       var d = 0; try { var z = JSON.parse(localStorage.getItem('boh_lz_' + T.id + '_v1') || 'null'); if (z && z.done) for (var k in z.done) if (z.done[k]) d++; } catch (e) {}
       r.startN = d >= T.total ? 'All ' + T.total + ' parts done' : d ? d + ' of ' + T.total + ' parts done. Keep going.' : 'Start here.';
@@ -137,10 +173,19 @@
         else if (T && !T.unit && T.url) { location.href = T.url; }
         else if (typeof r.continuaH === 'function') { r.continuaH(); }
       };
+      if (plan.mode === 'next' && plan.target !== W.BT_UNIT && typeof g.btSwitchUnit === 'function') {   // finished unit: go to the next one, then press this button again
+        try { g.btSwitchUnit(plan.target); } catch (e) { return; }
+        var t0 = Date.now(), again = setInterval(function () {
+          if (W.BT_UNIT === plan.target) { clearInterval(again); var b = document.querySelector('.start-go'); if (b) b.click(); }
+          else if (Date.now() - t0 > 2500) clearInterval(again);   // slow device: the unit switched, the student taps once more
+        }, 120);
+        return;
+      }
       if (qep || (T && T.warmup !== true)) { proceed(); return; }   // a Today lesson skips the warm-up unless the day says warmup: true
       warm(g, proceed);
     };
+    applyPause(r);
   }
 
-  W.BohUI = { en: en, startVals: startVals, warm: warm, warmFrom: warmFrom };
+  W.BohUI = { en: en, startVals: startVals, applyPause: applyPause, unitPlan: unitPlan, warm: warm, warmFrom: warmFrom };
 })(window);

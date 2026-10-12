@@ -67,7 +67,7 @@ function fill(){var b=document.querySelector('.pathbar');if(!b)return;
 function dup(){var h=document.querySelector('.home-hero'),t=document.querySelector('.hero-title'),o=document.querySelector('.oggi-t');
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610081100"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610081100"></script><script src="../assets/bohfinish.js?v=202610121400"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610121400" defer></script><script src="../assets/bohphone.js?v=202610111800"></script><script src="../assets/parla-italiano2.js?v=202610111800"></script><script src="../assets/recorder.js?v=202610111800"></script><script src="../assets/bohparla.js?v=202610111800"></script></head><body>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610081100"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610112330"></script><script src="../assets/bohfinish.js?v=202610121400"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610121400" defer></script><script src="../assets/bohphone.js?v=202610111800"></script><script src="../assets/parla-italiano2.js?v=202610111800"></script><script src="../assets/recorder.js?v=202610111800"></script><script src="../assets/bohparla.js?v=202610111800"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -11191,8 +11191,7 @@ class Component extends DCLogic {
     r.startW = ''; r.hasStartW = false;
     r.startN = pStep ? 'Last step: talk with Prof' : all ? 'Lezione fatta!' : 'Round ' + (fr + 1);
     r.hasStartN = true;
-    r.startGo = pStep ? 'Parla' : all ? 'Ripassa' : L.done.length ? 'Continua' : 'Comincia';
-    r.startGoEn = pStep ? 'Talk' : all ? 'Review' : L.done.length ? 'Keep going' : 'Start';
+    r.startGo = 'Comincia'; r.startGoEn = 'Start';   /* H-05: one label, every level, every state */
     var base = r.startH;
     r.startH = function () {
       if (pStep) { self.sfx('tap'); window.BohParla.open(); }
@@ -11769,6 +11768,7 @@ class Component extends DCLogic {
     result.startCls = 'start-card'; result.startGo = 'Comincia'; result.startGoEn = 'Start'; result.startSegs = []; result.hasStartSegs = false;
     try { if (_D1) window.BohToday = null; if (window.BohUI) window.BohUI.startVals(self, s, result); } catch (e) {} finally { window.BohToday = _bt; }   /* one start: a unit with a lesson path ignores the teacher's separate Today card */
     if (_D1) this.oneStart(s, result, _D1);
+    try { if (window.BohUI && window.BohUI.applyPause) window.BohUI.applyPause(result); } catch (e) {}   /* H-04: the teacher's Class-is-on card works on lesson units too */
     this.profVals(s, result);
     result.isShop = s.screen === 'shop';
     result.isLocker = s.screen === 'locker';
@@ -12436,7 +12436,7 @@ var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohB
 .oggi-k{font-size:11px}
 }
 /* /boh-today-v1 */</style>
-<script src="../assets/today.js?v=202610081200"></script>
+<script src="../assets/today.js?v=202610112330"></script>
 <script>/* Boh today bar */(function(){try{
 var m=/\/(italiano[1-4]|ap)\//.exec(location.pathname);if(!m)return;var lv=m[1];
 function fill(){var t=(window.BohToday||{})[lv],els=document.querySelectorAll('.oggi');
