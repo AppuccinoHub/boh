@@ -1,0 +1,6313 @@
+{
+"ti piace": {
+"text": "Ti piace…?",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"nuotare": {
+"text": "nuotare",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"fa caldo": {
+"text": "Fa caldo.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"fa bel tempo": {
+"text": "Fa bel tempo.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"quando è il tuo compleanno": {
+"text": "Quando è il tuo compleanno?",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"l'estate": {
+"text": "l’estate",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"mi piace": {
+"text": "mi piace",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"giocare a calcio": {
+"text": "giocare a calcio",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"ballare": {
+"text": "ballare",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"cantare": {
+"text": "cantare",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"guardare la tv": {
+"text": "guardare la TV",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"ascoltare musica": {
+"text": "ascoltare musica",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"andare in bici": {
+"text": "andare in bici",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"andare al cinema": {
+"text": "andare al cinema",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"camminare": {
+"text": "camminare",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"la partita": {
+"text": "la partita",
+"levels": [
+"italiano1",
+"italiano2",
+"italiano4",
+"ap"
+]
+},
+"la squadra": {
+"text": "la squadra",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"lo stadio": {
+"text": "lo stadio",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"il campeggio": {
+"text": "il campeggio",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"che tempo fa": {
+"text": "Che tempo fa?",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"fa freddo": {
+"text": "Fa freddo.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"fa brutto tempo": {
+"text": "Fa brutto tempo.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"c'è il sole": {
+"text": "C’è il sole.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"c'è vento": {
+"text": "C’è vento.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"piove": {
+"text": "Piove.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"nevica": {
+"text": "Nevica.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"è nuvoloso": {
+"text": "È nuvoloso.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"l'ombrello": {
+"text": "l’ombrello",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"che giorno è oggi": {
+"text": "Che giorno è oggi?",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"il compleanno": {
+"text": "il compleanno",
+"levels": [
+"italiano1",
+"italiano2",
+"italiano4"
+]
+},
+"l'inverno": {
+"text": "l’inverno",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"la primavera": {
+"text": "la primavera",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"l'autunno": {
+"text": "l’autunno",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"domani": {
+"text": "domani",
+"levels": [
+"italiano1",
+"italiano2",
+"italiano4"
+]
+},
+"settembre": {
+"text": "settembre",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"dicembre": {
+"text": "dicembre",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"maggio": {
+"text": "maggio",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"giugno": {
+"text": "giugno",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"arrivederci": {
+"text": "Arrivederci!",
+"levels": [
+"italiano1"
+]
+},
+"buongiorno": {
+"text": "Buongiorno!",
+"levels": [
+"italiano1"
+]
+},
+"buonasera": {
+"text": "Buonasera!",
+"levels": [
+"italiano1"
+]
+},
+"oggi": {
+"text": "oggi",
+"levels": [
+"italiano3"
+]
+},
+"oggi studio italiano": {
+"text": "Oggi studio italiano.",
+"levels": [
+"italiano3"
+]
+},
+"adesso": {
+"text": "adesso",
+"levels": [
+"italiano3"
+]
+},
+"adesso guardo la tv": {
+"text": "Adesso guardo la TV.",
+"levels": [
+"italiano3"
+]
+},
+"ogni giorno": {
+"text": "ogni giorno",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"ogni giorno faccio i compiti": {
+"text": "Ogni giorno faccio i compiti.",
+"levels": [
+"italiano3"
+]
+},
+"di solito": {
+"text": "di solito",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"di solito mangio a casa": {
+"text": "Di solito mangio a casa.",
+"levels": [
+"italiano3"
+]
+},
+"ieri": {
+"text": "ieri",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"ieri ho mangiato la pizza": {
+"text": "Ieri ho mangiato la pizza.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sera": {
+"text": "ieri sera",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"ieri sera sono uscito con marco": {
+"text": "Ieri sera sono uscito con Marco.",
+"levels": [
+"italiano3"
+]
+},
+"due giorni fa": {
+"text": "due giorni fa",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"due giorni fa ho visto un film": {
+"text": "Due giorni fa ho visto un film.",
+"levels": [
+"italiano3"
+]
+},
+"la settimana scorsa": {
+"text": "la settimana scorsa",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"la settimana scorsa abbiamo giocato a calcio": {
+"text": "La settimana scorsa abbiamo giocato a calcio.",
+"levels": [
+"italiano3"
+]
+},
+"domenica scorsa": {
+"text": "domenica scorsa",
+"levels": [
+"italiano3"
+]
+},
+"domenica scorsa sara è arrivata tardi": {
+"text": "Domenica scorsa Sara è arrivata tardi.",
+"levels": [
+"italiano3"
+]
+},
+"l'anno scorso": {
+"text": "l’anno scorso",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"l'anno scorso sono andata a roma": {
+"text": "L’anno scorso sono andata a Roma.",
+"levels": [
+"italiano3"
+]
+},
+"il weekend": {
+"text": "il weekend",
+"levels": [
+"italiano3"
+]
+},
+"il weekend vado al mare": {
+"text": "Il weekend vado al mare.",
+"levels": [
+"italiano3"
+]
+},
+"già": {
+"text": "già",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"ho già mangiato": {
+"text": "Ho già mangiato.",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"poi": {
+"text": "poi",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"ho mangiato e poi sono uscito": {
+"text": "Ho mangiato e poi sono uscito.",
+"levels": [
+"italiano3"
+]
+},
+"un'ora fa": {
+"text": "un’ora fa",
+"levels": [
+"italiano3"
+]
+},
+"un'ora fa ho telefonato a marco": {
+"text": "Un’ora fa ho telefonato a Marco.",
+"levels": [
+"italiano3"
+]
+},
+"ieri ho mangiato la pizza con la mia famiglia": {
+"text": "Ieri ho mangiato la pizza con la mia famiglia.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sono andata a napoli con la mia famiglia abbiamo visto il vesuvio e abbiamo mangiato una pizza oggi sono a casa e faccio i compiti adesso mia sorella guarda la tv": {
+"text": "Ieri sono andata a Napoli con la mia famiglia. Abbiamo visto il Vesuvio e abbiamo mangiato una pizza. Oggi sono a casa e faccio i compiti. Adesso mia sorella guarda la TV.",
+"levels": [
+"italiano3"
+]
+},
+"sempre": {
+"text": "sempre",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"da piccola giocavo sempre a calcio": {
+"text": "Da piccola giocavo sempre a calcio.",
+"levels": [
+"italiano3"
+]
+},
+"di solito mangiavamo a casa": {
+"text": "Di solito mangiavamo a casa.",
+"levels": [
+"italiano3"
+]
+},
+"ogni giorno andavo a scuola a piedi": {
+"text": "Ogni giorno andavo a scuola a piedi.",
+"levels": [
+"italiano3"
+]
+},
+"spesso": {
+"text": "spesso",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"spesso pioveva a napoli": {
+"text": "Spesso pioveva a Napoli.",
+"levels": [
+"italiano3"
+]
+},
+"da piccolo a": {
+"text": "da piccolo/a",
+"levels": [
+"italiano3"
+]
+},
+"mentre": {
+"text": "mentre",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"mentre dormivo ha suonato il telefono": {
+"text": "Mentre dormivo, ha suonato il telefono.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sono andata al mare": {
+"text": "Ieri sono andata al mare.",
+"levels": [
+"italiano3"
+]
+},
+"una volta": {
+"text": "una volta",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"una volta ho perso il telefono": {
+"text": "Una volta ho perso il telefono.",
+"levels": [
+"italiano3"
+]
+},
+"all'improvviso": {
+"text": "all’improvviso",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"all'improvviso è arrivato marco": {
+"text": "All’improvviso è arrivato Marco.",
+"levels": [
+"italiano3"
+]
+},
+"poi abbiamo mangiato un gelato": {
+"text": "Poi abbiamo mangiato un gelato.",
+"levels": [
+"italiano3"
+]
+},
+"a un certo punto": {
+"text": "a un certo punto",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"a un certo punto ha cominciato a piovere": {
+"text": "A un certo punto ha cominciato a piovere.",
+"levels": [
+"italiano3"
+]
+},
+"quando": {
+"text": "quando",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"quando sono arrivata pioveva": {
+"text": "Quando sono arrivata, pioveva.",
+"levels": [
+"italiano3"
+]
+},
+"faceva freddo": {
+"text": "faceva freddo",
+"levels": [
+"italiano3"
+]
+},
+"ieri faceva freddo ma siamo usciti": {
+"text": "Ieri faceva freddo, ma siamo usciti.",
+"levels": [
+"italiano3"
+]
+},
+"c'era": {
+"text": "c’era",
+"levels": [
+"italiano3"
+]
+},
+"c'era molta gente alla festa": {
+"text": "C’era molta gente alla festa.",
+"levels": [
+"italiano3"
+]
+},
+"è successo": {
+"text": "è successo",
+"levels": [
+"italiano3"
+]
+},
+"che cosa è successo": {
+"text": "Che cosa è successo?",
+"levels": [
+"italiano3"
+]
+},
+"l'anno scorso siamo andati in sicilia": {
+"text": "L’anno scorso siamo andati in Sicilia.",
+"levels": [
+"italiano3"
+]
+},
+"da piccola abitavo a roma": {
+"text": "Da piccola abitavo a Roma.",
+"levels": [
+"italiano3"
+]
+},
+"c'era molta gente alla festa ma all'improvviso è andata via la luce": {
+"text": "C’era molta gente alla festa, ma all’improvviso è andata via la luce.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sera sono andata a una festa a casa di sofia c'era molta gente e la musica era altissima mentre ballavamo all'improvviso è andata via la luce tutti hanno riso e qualcuno ha acceso il telefono poi abbiamo mangiato la torta al buio": {
+"text": "Ieri sera sono andata a una festa a casa di Sofia. C’era molta gente e la musica era altissima. Mentre ballavamo, all’improvviso è andata via la luce! Tutti hanno riso e qualcuno ha acceso il telefono. Poi abbiamo mangiato la torta al buio.",
+"levels": [
+"italiano3"
+]
+},
+"da piccola andavo ogni estate dai nonni a napoli": {
+"text": "Da piccola andavo ogni estate dai nonni a Napoli.",
+"levels": [
+"italiano3"
+]
+},
+"da piccola andavo ogni estate dai nonni a napoli la nonna cucinava sempre la pasta e il nonno raccontava storie una volta durante una gita abbiamo perso il treno abbiamo aspettato due ore in stazione e poi siamo tornati a casa in autobus era una giornata lunga ma eravamo felici": {
+"text": "Da piccola andavo ogni estate dai nonni a Napoli. La nonna cucinava sempre la pasta e il nonno raccontava storie. Una volta, durante una gita, abbiamo perso il treno! Abbiamo aspettato due ore in stazione e poi siamo tornati a casa in autobus. Era una giornata lunga, ma eravamo felici.",
+"levels": [
+"italiano3"
+]
+},
+"da piccolo": {
+"text": "da piccolo",
+"levels": [
+"italiano4"
+]
+},
+"da piccolo giocavo sempre fuori": {
+"text": "Da piccolo giocavo sempre fuori.",
+"levels": [
+"italiano4"
+]
+},
+"giocavamo sempre a carte": {
+"text": "Giocavamo sempre a carte.",
+"levels": [
+"italiano4"
+]
+},
+"la nonna cucinava spesso": {
+"text": "La nonna cucinava spesso.",
+"levels": [
+"italiano4"
+]
+},
+"ogni estate": {
+"text": "ogni estate",
+"levels": [
+"italiano4"
+]
+},
+"ogni estate andavamo al mare": {
+"text": "Ogni estate andavamo al mare.",
+"levels": [
+"italiano4"
+]
+},
+"mentre mangiavo leggevo": {
+"text": "Mentre mangiavo, leggevo.",
+"levels": [
+"italiano4"
+]
+},
+"i nonni": {
+"text": "i nonni",
+"levels": [
+"italiano4"
+]
+},
+"i nonni abitavano in campagna": {
+"text": "I nonni abitavano in campagna.",
+"levels": [
+"italiano4"
+]
+},
+"il giocattolo": {
+"text": "il giocattolo",
+"levels": [
+"italiano4"
+]
+},
+"il cortile": {
+"text": "il cortile",
+"levels": [
+"italiano4"
+]
+},
+"la bicicletta": {
+"text": "la bicicletta",
+"levels": [
+"italiano4"
+]
+},
+"l'infanzia": {
+"text": "l’infanzia",
+"levels": [
+"italiano4"
+]
+},
+"di solito mangiavo alle sette": {
+"text": "Di solito mangiavo alle sette.",
+"levels": [
+"italiano4"
+]
+},
+"una volta ho visto una volpe": {
+"text": "Una volta ho visto una volpe.",
+"levels": [
+"italiano4"
+]
+},
+"il mio giocattolo preferito era un orso": {
+"text": "Il mio giocattolo preferito era un orso.",
+"levels": [
+"italiano4"
+]
+},
+"giocavamo nel cortile": {
+"text": "Giocavamo nel cortile.",
+"levels": [
+"italiano4"
+]
+},
+"andavo a scuola in bicicletta": {
+"text": "Andavo a scuola in bicicletta.",
+"levels": [
+"italiano4"
+]
+},
+"la mia infanzia era felice": {
+"text": "La mia infanzia era felice.",
+"levels": [
+"italiano4"
+]
+},
+"ieri ho mangiato una pizza": {
+"text": "Ieri ho mangiato una pizza.",
+"levels": [
+"italiano4"
+]
+},
+"ieri sera ho guardato un film": {
+"text": "Ieri sera ho guardato un film.",
+"levels": [
+"italiano4"
+]
+},
+"l'anno scorso siamo andati a roma": {
+"text": "L’anno scorso siamo andati a Roma.",
+"levels": [
+"italiano4"
+]
+},
+"la settimana scorsa ho visto marco": {
+"text": "La settimana scorsa ho visto Marco.",
+"levels": [
+"italiano4"
+]
+},
+"stamattina": {
+"text": "stamattina",
+"levels": [
+"italiano4"
+]
+},
+"stamattina ho bevuto un caffè": {
+"text": "Stamattina ho bevuto un caffè.",
+"levels": [
+"italiano4"
+]
+},
+"due giorni fa ho scritto una lettera": {
+"text": "Due giorni fa ho scritto una lettera.",
+"levels": [
+"italiano4"
+]
+},
+"ancora": {
+"text": "ancora",
+"levels": [
+"italiano4"
+]
+},
+"non ho ancora finito": {
+"text": "Non ho ancora finito.",
+"levels": [
+"italiano4"
+]
+},
+"appena": {
+"text": "appena",
+"levels": [
+"italiano4"
+]
+},
+"sono appena arrivato": {
+"text": "Sono appena arrivato.",
+"levels": [
+"italiano4"
+]
+},
+"il fine settimana": {
+"text": "il fine settimana",
+"levels": [
+"italiano4"
+]
+},
+"il fine settimana ho dormito molto": {
+"text": "Il fine settimana ho dormito molto.",
+"levels": [
+"italiano4"
+]
+},
+"la gita": {
+"text": "la gita",
+"levels": [
+"italiano4"
+]
+},
+"la gita è stata bellissima": {
+"text": "La gita è stata bellissima.",
+"levels": [
+"italiano4"
+]
+},
+"il viaggio": {
+"text": "il viaggio",
+"levels": [
+"italiano4"
+]
+},
+"il viaggio è stato lungo": {
+"text": "Il viaggio è stato lungo.",
+"levels": [
+"italiano4"
+]
+},
+"mentre dormivo ha telefonato marco": {
+"text": "Mentre dormivo, ha telefonato Marco.",
+"levels": [
+"italiano4"
+]
+},
+"quando ero piccolo giocavo a calcio": {
+"text": "Quando ero piccolo, giocavo a calcio.",
+"levels": [
+"italiano4"
+]
+},
+"all'improvviso ha piovuto": {
+"text": "All’improvviso ha piovuto.",
+"levels": [
+"italiano4"
+]
+},
+"una volta ho perso la bicicletta": {
+"text": "Una volta ho perso la bicicletta.",
+"levels": [
+"italiano4"
+]
+},
+"poi ho mangiato": {
+"text": "Poi ho mangiato.",
+"levels": [
+"italiano4"
+]
+},
+"dopo": {
+"text": "dopo",
+"levels": [
+"italiano4"
+]
+},
+"dopo ho dormito": {
+"text": "Dopo ho dormito.",
+"levels": [
+"italiano4"
+]
+},
+"intanto": {
+"text": "intanto",
+"levels": [
+"italiano4"
+]
+},
+"intanto io studiavo": {
+"text": "Intanto io studiavo.",
+"levels": [
+"italiano4"
+]
+},
+"a un certo punto è arrivato luca": {
+"text": "A un certo punto è arrivato Luca.",
+"levels": [
+"italiano4"
+]
+},
+"mia nonna cucinava sempre": {
+"text": "Mia nonna cucinava sempre.",
+"levels": [
+"italiano4"
+]
+},
+"mai": {
+"text": "mai",
+"levels": [
+"italiano4"
+]
+},
+"non ho mai visto venezia": {
+"text": "Non ho mai visto Venezia.",
+"levels": [
+"italiano4"
+]
+},
+"tutti i giorni": {
+"text": "tutti i giorni",
+"levels": [
+"italiano4"
+]
+},
+"tutti i giorni andavo a scuola a piedi": {
+"text": "Tutti i giorni andavo a scuola a piedi.",
+"levels": [
+"italiano4"
+]
+},
+"attenzione": {
+"text": "attenzione",
+"levels": [
+"italiano4"
+]
+},
+"attenzione c'è un gradino": {
+"text": "Attenzione! C’è un gradino.",
+"levels": [
+"italiano4"
+]
+},
+"per favore": {
+"text": "per favore",
+"levels": [
+"italiano4"
+]
+},
+"aprite il libro per favore": {
+"text": "Aprite il libro, per favore.",
+"levels": [
+"italiano4"
+]
+},
+"subito": {
+"text": "subito",
+"levels": [
+"italiano4"
+]
+},
+"vieni subito": {
+"text": "Vieni subito!",
+"levels": [
+"italiano4"
+]
+},
+"piano": {
+"text": "piano",
+"levels": [
+"italiano4"
+]
+},
+"parla piano per favore": {
+"text": "Parla piano, per favore.",
+"levels": [
+"italiano4"
+]
+},
+"dai": {
+"text": "dai",
+"levels": [
+"italiano4"
+]
+},
+"dai andiamo": {
+"text": "Dai, andiamo!",
+"levels": [
+"italiano4"
+]
+},
+"forza": {
+"text": "forza",
+"levels": [
+"italiano4"
+]
+},
+"forza ce la fai": {
+"text": "Forza, ce la fai!",
+"levels": [
+"italiano4"
+]
+},
+"coraggio": {
+"text": "coraggio",
+"levels": [
+"italiano4"
+]
+},
+"coraggio non preoccuparti": {
+"text": "Coraggio, non preoccuparti!",
+"levels": [
+"italiano4"
+]
+},
+"silenzio": {
+"text": "silenzio",
+"levels": [
+"italiano4"
+]
+},
+"silenzio per favore": {
+"text": "Silenzio, per favore!",
+"levels": [
+"italiano4"
+]
+},
+"aspetta": {
+"text": "aspetta",
+"levels": [
+"italiano4"
+]
+},
+"aspetta un momento": {
+"text": "Aspetta un momento!",
+"levels": [
+"italiano4"
+]
+},
+"vieni qui": {
+"text": "vieni qui",
+"levels": [
+"italiano4"
+]
+},
+"vieni qui marco": {
+"text": "Vieni qui, Marco!",
+"levels": [
+"italiano4"
+]
+},
+"ascolta": {
+"text": "ascolta",
+"levels": [
+"italiano4"
+]
+},
+"ascolta bene": {
+"text": "Ascolta bene!",
+"levels": [
+"italiano4"
+]
+},
+"l'ordine": {
+"text": "l’ordine",
+"levels": [
+"italiano4"
+]
+},
+"un ordine chiaro": {
+"text": "Un ordine chiaro!",
+"levels": [
+"italiano4"
+]
+},
+"domani andrò al parco": {
+"text": "Domani andrò al parco.",
+"levels": [
+"italiano4"
+]
+},
+"dopodomani": {
+"text": "dopodomani",
+"levels": [
+"italiano4"
+]
+},
+"dopodomani avrò la verifica": {
+"text": "Dopodomani avrò la verifica.",
+"levels": [
+"italiano4"
+]
+},
+"la settimana prossima": {
+"text": "la settimana prossima",
+"levels": [
+"italiano4"
+]
+},
+"la settimana prossima partirò": {
+"text": "La settimana prossima partirò.",
+"levels": [
+"italiano4"
+]
+},
+"l'anno prossimo": {
+"text": "l’anno prossimo",
+"levels": [
+"italiano4"
+]
+},
+"l'anno prossimo studierò in italia": {
+"text": "L’anno prossimo studierò in Italia.",
+"levels": [
+"italiano4"
+]
+},
+"tra un anno": {
+"text": "tra un anno",
+"levels": [
+"italiano4"
+]
+},
+"tra un anno sarò più grande": {
+"text": "Tra un anno sarò più grande.",
+"levels": [
+"italiano4"
+]
+},
+"da grande": {
+"text": "da grande",
+"levels": [
+"italiano4"
+]
+},
+"da grande farò il dottore": {
+"text": "Da grande farò il dottore.",
+"levels": [
+"italiano4"
+]
+},
+"il futuro": {
+"text": "il futuro",
+"levels": [
+"italiano4"
+]
+},
+"il futuro è bellissimo": {
+"text": "Il futuro è bellissimo.",
+"levels": [
+"italiano4"
+]
+},
+"il lavoro": {
+"text": "il lavoro",
+"levels": [
+"italiano4"
+]
+},
+"l'università": {
+"text": "l’università",
+"levels": [
+"italiano4"
+]
+},
+"andrò all'università a roma": {
+"text": "Andrò all’università a Roma.",
+"levels": [
+"italiano4"
+]
+},
+"la patente": {
+"text": "la patente",
+"levels": [
+"italiano4"
+]
+},
+"prenderò la patente a diciotto anni": {
+"text": "Prenderò la patente a diciotto anni.",
+"levels": [
+"italiano4"
+]
+},
+"il sogno": {
+"text": "il sogno",
+"levels": [
+"italiano4"
+]
+},
+"diventare": {
+"text": "diventare",
+"levels": [
+"italiano4"
+]
+},
+"avrò un lavoro interessante": {
+"text": "Avrò un lavoro interessante.",
+"levels": [
+"italiano4"
+]
+},
+"il mio sogno è viaggiare": {
+"text": "Il mio sogno è viaggiare.",
+"levels": [
+"italiano4"
+]
+},
+"diventerò un'artista": {
+"text": "Diventerò un’artista.",
+"levels": [
+"italiano4"
+]
+},
+"la sveglia": {
+"text": "la sveglia",
+"levels": [
+"italiano4"
+]
+},
+"la sveglia suona alle sette": {
+"text": "La sveglia suona alle sette.",
+"levels": [
+"italiano4"
+]
+},
+"la doccia": {
+"text": "la doccia",
+"levels": [
+"italiano4"
+]
+},
+"faccio la doccia la mattina": {
+"text": "Faccio la doccia la mattina.",
+"levels": [
+"italiano4"
+]
+},
+"lo specchio": {
+"text": "lo specchio",
+"levels": [
+"italiano4"
+]
+},
+"mi pettino davanti allo specchio": {
+"text": "Mi pettino davanti allo specchio.",
+"levels": [
+"italiano4"
+]
+},
+"i capelli": {
+"text": "i capelli",
+"levels": [
+"italiano4"
+]
+},
+"mi lavo i capelli la sera": {
+"text": "Mi lavo i capelli la sera.",
+"levels": [
+"italiano4"
+]
+},
+"i denti": {
+"text": "i denti",
+"levels": [
+"italiano4"
+]
+},
+"mi lavo i denti dopo cena": {
+"text": "Mi lavo i denti dopo cena.",
+"levels": [
+"italiano4"
+]
+},
+"il pigiama": {
+"text": "il pigiama",
+"levels": [
+"italiano4"
+]
+},
+"mi metto il pigiama alle nove": {
+"text": "Mi metto il pigiama alle nove.",
+"levels": [
+"italiano4"
+]
+},
+"la colazione": {
+"text": "la colazione",
+"levels": [
+"italiano4"
+]
+},
+"presto": {
+"text": "presto",
+"levels": [
+"italiano4"
+]
+},
+"mi alzo presto la domenica": {
+"text": "Mi alzo presto la domenica.",
+"levels": [
+"italiano4"
+]
+},
+"tardi": {
+"text": "tardi",
+"levels": [
+"italiano4"
+]
+},
+"mi addormento tardi il sabato": {
+"text": "Mi addormento tardi il sabato.",
+"levels": [
+"italiano4"
+]
+},
+"mi alzo subito": {
+"text": "Mi alzo subito!",
+"levels": [
+"italiano4"
+]
+},
+"in fretta": {
+"text": "in fretta",
+"levels": [
+"italiano4"
+]
+},
+"mi vesto in fretta": {
+"text": "Mi vesto in fretta.",
+"levels": [
+"italiano4"
+]
+},
+"di solito mi sveglio alle sette": {
+"text": "Di solito mi sveglio alle sette.",
+"levels": [
+"italiano4"
+]
+},
+"faccio colazione con il latte": {
+"text": "Faccio colazione con il latte.",
+"levels": [
+"italiano4"
+]
+},
+"l'amico": {
+"text": "l’amico",
+"levels": [
+"italiano4"
+]
+},
+"l'amica": {
+"text": "l’amica",
+"levels": [
+"italiano4"
+]
+},
+"il compagno": {
+"text": "il compagno",
+"levels": [
+"italiano4"
+]
+},
+"il messaggio": {
+"text": "il messaggio",
+"levels": [
+"italiano4"
+]
+},
+"la telefonata": {
+"text": "la telefonata",
+"levels": [
+"italiano4"
+]
+},
+"l'abbraccio": {
+"text": "l’abbraccio",
+"levels": [
+"italiano4"
+]
+},
+"l'appuntamento": {
+"text": "l’appuntamento",
+"levels": [
+"italiano4"
+]
+},
+"insieme": {
+"text": "insieme",
+"levels": [
+"italiano4"
+]
+},
+"studiamo insieme": {
+"text": "Studiamo insieme.",
+"levels": [
+"italiano4"
+]
+},
+"ci vediamo spesso": {
+"text": "Ci vediamo spesso.",
+"levels": [
+"italiano4"
+]
+},
+"non ci telefoniamo mai": {
+"text": "Non ci telefoniamo mai.",
+"levels": [
+"italiano4"
+]
+},
+"ci scriviamo ogni giorno": {
+"text": "Ci scriviamo ogni giorno.",
+"levels": [
+"italiano4"
+]
+},
+"a vicenda": {
+"text": "a vicenda",
+"levels": [
+"italiano4"
+]
+},
+"ci aiutiamo a vicenda": {
+"text": "Ci aiutiamo a vicenda.",
+"levels": [
+"italiano4"
+]
+},
+"marco è il mio migliore amico": {
+"text": "Marco è il mio migliore amico.",
+"levels": [
+"italiano4"
+]
+},
+"sara è un'amica di scuola": {
+"text": "Sara è un’amica di scuola.",
+"levels": [
+"italiano4"
+]
+},
+"il mio compagno di banco si chiama luca": {
+"text": "Il mio compagno di banco si chiama Luca.",
+"levels": [
+"italiano4"
+]
+},
+"ci mandiamo un messaggio ogni sera": {
+"text": "Ci mandiamo un messaggio ogni sera.",
+"levels": [
+"italiano4"
+]
+},
+"una telefonata veloce per favore": {
+"text": "Una telefonata veloce, per favore!",
+"levels": [
+"italiano4"
+]
+},
+"un abbraccio forte": {
+"text": "Un abbraccio forte!",
+"levels": [
+"italiano4"
+]
+},
+"abbiamo un appuntamento alle cinque": {
+"text": "Abbiamo un appuntamento alle cinque.",
+"levels": [
+"italiano4"
+]
+},
+"la festa": {
+"text": "la festa",
+"levels": [
+"italiano4"
+]
+},
+"la festa è stata bellissima": {
+"text": "La festa è stata bellissima.",
+"levels": [
+"italiano4"
+]
+},
+"il compleanno di sara è domani": {
+"text": "Il compleanno di Sara è domani.",
+"levels": [
+"italiano4"
+]
+},
+"il concerto": {
+"text": "il concerto",
+"levels": [
+"italiano4"
+]
+},
+"la sorpresa": {
+"text": "la sorpresa",
+"levels": [
+"italiano4"
+]
+},
+"che sorpresa la sorpresa era bellissima": {
+"text": "Che sorpresa! La sorpresa era bellissima.",
+"levels": [
+"italiano4"
+]
+},
+"in ritardo": {
+"text": "in ritardo",
+"levels": [
+"italiano4"
+]
+},
+"mi sono svegliato in ritardo": {
+"text": "Mi sono svegliato in ritardo.",
+"levels": [
+"italiano4"
+]
+},
+"la partita è stata lunga": {
+"text": "La partita è stata lunga.",
+"levels": [
+"italiano4"
+]
+},
+"la cena": {
+"text": "la cena",
+"levels": [
+"italiano4"
+]
+},
+"stanco": {
+"text": "stanco",
+"levels": [
+"italiano4"
+]
+},
+"mi sono addormentato ero stanco": {
+"text": "Mi sono addormentato, ero stanco.",
+"levels": [
+"italiano4"
+]
+},
+"contento": {
+"text": "contento",
+"levels": [
+"italiano4"
+]
+},
+"arrabbiato": {
+"text": "arrabbiato",
+"levels": [
+"italiano4"
+]
+},
+"marco è arrabbiato": {
+"text": "Marco è arrabbiato.",
+"levels": [
+"italiano4"
+]
+},
+"annoiato": {
+"text": "annoiato",
+"levels": [
+"italiano4"
+]
+},
+"sono annoiato": {
+"text": "Sono annoiato.",
+"levels": [
+"italiano4"
+]
+},
+"ieri mattina": {
+"text": "ieri mattina",
+"levels": [
+"italiano4"
+]
+},
+"ieri mattina ci siamo incontrati": {
+"text": "Ieri mattina ci siamo incontrati.",
+"levels": [
+"italiano4"
+]
+},
+"ci siamo divertiti al concerto": {
+"text": "Ci siamo divertiti al concerto.",
+"levels": [
+"italiano4"
+]
+},
+"ci siamo visti a cena": {
+"text": "Ci siamo visti a cena.",
+"levels": [
+"italiano4"
+]
+},
+"siamo contenti": {
+"text": "Siamo contenti!",
+"levels": [
+"italiano4"
+]
+},
+"la comunità locale": {
+"text": "la comunità locale",
+"levels": [
+"ap"
+]
+},
+"la comunità locale organizza una festa": {
+"text": "La comunità locale organizza una festa.",
+"levels": [
+"ap"
+]
+},
+"l'associazione di volontariato": {
+"text": "l’associazione di volontariato",
+"levels": [
+"ap"
+]
+},
+"l'associazione di volontariato aiuta gli anziani": {
+"text": "L’associazione di volontariato aiuta gli anziani.",
+"levels": [
+"ap"
+]
+},
+"la sagra": {
+"text": "la sagra",
+"levels": [
+"ap"
+]
+},
+"la sagra del tartufo è in ottobre": {
+"text": "La sagra del tartufo è in ottobre.",
+"levels": [
+"ap"
+]
+},
+"la festa patronale": {
+"text": "la festa patronale",
+"levels": [
+"ap"
+]
+},
+"la festa patronale dura tre giorni": {
+"text": "La festa patronale dura tre giorni.",
+"levels": [
+"ap"
+]
+},
+"il comune": {
+"text": "il comune",
+"levels": [
+"ap"
+]
+},
+"il comune finanzia il progetto": {
+"text": "Il comune finanzia il progetto.",
+"levels": [
+"ap"
+]
+},
+"la parrocchia": {
+"text": "la parrocchia",
+"levels": [
+"ap"
+]
+},
+"la parrocchia organizza un mercatino": {
+"text": "La parrocchia organizza un mercatino.",
+"levels": [
+"ap"
+]
+},
+"la solidarietà": {
+"text": "la solidarietà",
+"levels": [
+"ap"
+]
+},
+"la solidarietà è la nostra forza": {
+"text": "La solidarietà è la nostra forza.",
+"levels": [
+"ap"
+]
+},
+"l'appartenenza": {
+"text": "l’appartenenza",
+"levels": [
+"ap"
+]
+},
+"l'appartenenza a un gruppo dà sicurezza": {
+"text": "L’appartenenza a un gruppo dà sicurezza.",
+"levels": [
+"ap"
+]
+},
+"il volontario": {
+"text": "il volontario",
+"levels": [
+"ap"
+]
+},
+"il volontario porta i pasti a casa": {
+"text": "Il volontario porta i pasti a casa.",
+"levels": [
+"ap"
+]
+},
+"la raccolta fondi": {
+"text": "la raccolta fondi",
+"levels": [
+"ap"
+]
+},
+"la raccolta fondi aiuta la scuola": {
+"text": "La raccolta fondi aiuta la scuola.",
+"levels": [
+"ap"
+]
+},
+"il campanilismo": {
+"text": "il campanilismo",
+"levels": [
+"ap"
+]
+},
+"il campanilismo è forte tra i paesi vicini": {
+"text": "Il campanilismo è forte tra i paesi vicini.",
+"levels": [
+"ap"
+]
+},
+"la banca del tempo": {
+"text": "la Banca del Tempo",
+"levels": [
+"ap"
+]
+},
+"alla banca del tempo si scambiano servizi": {
+"text": "Alla Banca del Tempo si scambiano servizi.",
+"levels": [
+"ap"
+]
+},
+"organizzare": {
+"text": "organizzare",
+"levels": [
+"ap"
+]
+},
+"contribuire a": {
+"text": "contribuire a",
+"levels": [
+"ap"
+]
+},
+"tramandare le tradizioni": {
+"text": "tramandare le tradizioni",
+"levels": [
+"ap"
+]
+},
+"fare volontariato": {
+"text": "fare volontariato",
+"levels": [
+"ap"
+]
+},
+"la famiglia allargata": {
+"text": "la famiglia allargata",
+"levels": [
+"ap"
+]
+},
+"la famiglia allargata vive nello stesso palazzo": {
+"text": "La famiglia allargata vive nello stesso palazzo.",
+"levels": [
+"ap"
+]
+},
+"la famiglia monoparentale": {
+"text": "la famiglia monoparentale",
+"levels": [
+"ap"
+]
+},
+"la famiglia monoparentale è sempre più comune": {
+"text": "La famiglia monoparentale è sempre più comune.",
+"levels": [
+"ap"
+]
+},
+"la coppia di fatto": {
+"text": "la coppia di fatto",
+"levels": [
+"ap"
+]
+},
+"la coppia di fatto vive insieme da anni": {
+"text": "La coppia di fatto vive insieme da anni.",
+"levels": [
+"ap"
+]
+},
+"il nucleo familiare": {
+"text": "il nucleo familiare",
+"levels": [
+"ap"
+]
+},
+"il nucleo familiare è più piccolo oggi": {
+"text": "Il nucleo familiare è più piccolo oggi.",
+"levels": [
+"ap"
+]
+},
+"i parenti acquisiti": {
+"text": "i parenti acquisiti",
+"levels": [
+"ap"
+]
+},
+"i parenti acquisiti vengono a natale": {
+"text": "I parenti acquisiti vengono a Natale.",
+"levels": [
+"ap"
+]
+},
+"il capofamiglia": {
+"text": "il capofamiglia",
+"levels": [
+"ap"
+]
+},
+"una volta il capofamiglia decideva tutto": {
+"text": "Una volta il capofamiglia decideva tutto.",
+"levels": [
+"ap"
+]
+},
+"il badante": {
+"text": "il badante",
+"levels": [
+"ap"
+]
+},
+"il badante aiuta mio nonno ogni giorno": {
+"text": "Il badante aiuta mio nonno ogni giorno.",
+"levels": [
+"ap"
+]
+},
+"il nipote": {
+"text": "il nipote",
+"levels": [
+"ap"
+]
+},
+"il nipote gioca con il nonno": {
+"text": "Il nipote gioca con il nonno.",
+"levels": [
+"ap"
+]
+},
+"il suocero": {
+"text": "il suocero",
+"levels": [
+"ap"
+]
+},
+"il cognato": {
+"text": "il cognato",
+"levels": [
+"ap"
+]
+},
+"il mammone": {
+"text": "il mammone",
+"levels": [
+"ap"
+]
+},
+"badare a": {
+"text": "badare a",
+"levels": [
+"ap"
+]
+},
+"il legame familiare": {
+"text": "il legame familiare",
+"levels": [
+"ap"
+]
+},
+"il legame familiare è molto forte": {
+"text": "Il legame familiare è molto forte.",
+"levels": [
+"ap"
+]
+},
+"il rapporto di fiducia": {
+"text": "il rapporto di fiducia",
+"levels": [
+"ap"
+]
+},
+"la rete di supporto": {
+"text": "la rete di supporto",
+"levels": [
+"ap"
+]
+},
+"la solidarietà tra vicini": {
+"text": "la solidarietà tra vicini",
+"levels": [
+"ap"
+]
+},
+"la solidarietà tra vicini aiuta tutti": {
+"text": "La solidarietà tra vicini aiuta tutti.",
+"levels": [
+"ap"
+]
+},
+"la comunità di riferimento": {
+"text": "la comunità di riferimento",
+"levels": [
+"ap"
+]
+},
+"riunirsi attorno alla tavola": {
+"text": "riunirsi attorno alla tavola",
+"levels": [
+"ap"
+]
+},
+"mantenere le tradizioni": {
+"text": "mantenere le tradizioni",
+"levels": [
+"ap"
+]
+},
+"vogliamo mantenere le tradizioni": {
+"text": "Vogliamo mantenere le tradizioni.",
+"levels": [
+"ap"
+]
+},
+"rafforzare i legami": {
+"text": "rafforzare i legami",
+"levels": [
+"ap"
+]
+},
+"le feste servono a rafforzare i legami": {
+"text": "Le feste servono a rafforzare i legami.",
+"levels": [
+"ap"
+]
+},
+"l'aperitivo": {
+"text": "l’aperitivo",
+"levels": [
+"ap"
+]
+},
+"dopo il lavoro facciamo l'aperitivo": {
+"text": "Dopo il lavoro facciamo l’aperitivo.",
+"levels": [
+"ap"
+]
+},
+"la passeggiata serale": {
+"text": "la passeggiata serale",
+"levels": [
+"ap"
+]
+},
+"la passeggiata serale è un rito del paese": {
+"text": "La passeggiata serale è un rito del paese.",
+"levels": [
+"ap"
+]
+},
+"darsi del lei": {
+"text": "darsi del Lei",
+"levels": [
+"ap"
+]
+},
+"il borgo": {
+"text": "il borgo",
+"levels": [
+"ap"
+]
+},
+"il borgo è in cima alla collina": {
+"text": "Il borgo è in cima alla collina.",
+"levels": [
+"ap"
+]
+},
+"la frazione": {
+"text": "la frazione",
+"levels": [
+"ap"
+]
+},
+"il rione": {
+"text": "il rione",
+"levels": [
+"ap"
+]
+},
+"il rione è pieno di vita": {
+"text": "Il rione è pieno di vita.",
+"levels": [
+"ap"
+]
+},
+"la periferia": {
+"text": "la periferia",
+"levels": [
+"ap"
+]
+},
+"la periferia è lontana dal centro": {
+"text": "La periferia è lontana dal centro.",
+"levels": [
+"ap"
+]
+},
+"il centro storico": {
+"text": "il centro storico",
+"levels": [
+"ap"
+]
+},
+"il centro storico è pieno di turisti": {
+"text": "Il centro storico è pieno di turisti.",
+"levels": [
+"ap"
+]
+},
+"la piazza principale": {
+"text": "la piazza principale",
+"levels": [
+"ap"
+]
+},
+"la piazza principale è il cuore del paese": {
+"text": "La piazza principale è il cuore del paese.",
+"levels": [
+"ap"
+]
+},
+"la campagna": {
+"text": "la campagna",
+"levels": [
+"ap"
+]
+},
+"mi piace la tranquillità della campagna": {
+"text": "Mi piace la tranquillità della campagna.",
+"levels": [
+"ap"
+]
+},
+"lo spopolamento rurale": {
+"text": "lo spopolamento rurale",
+"levels": [
+"ap"
+]
+},
+"lo spopolamento rurale preoccupa i sindaci": {
+"text": "Lo spopolamento rurale preoccupa i sindaci.",
+"levels": [
+"ap"
+]
+},
+"la migrazione interna": {
+"text": "la migrazione interna",
+"levels": [
+"ap"
+]
+},
+"la migrazione interna va dal sud al nord": {
+"text": "La migrazione interna va dal Sud al Nord.",
+"levels": [
+"ap"
+]
+},
+"il pendolarismo": {
+"text": "il pendolarismo",
+"levels": [
+"ap"
+]
+},
+"il pendolarismo stanca molti lavoratori": {
+"text": "Il pendolarismo stanca molti lavoratori.",
+"levels": [
+"ap"
+]
+},
+"le radici culturali": {
+"text": "le radici culturali",
+"levels": [
+"ap"
+]
+},
+"torno al paese per le radici culturali": {
+"text": "Torno al paese per le radici culturali.",
+"levels": [
+"ap"
+]
+},
+"la qualità della vita": {
+"text": "la qualità della vita",
+"levels": [
+"ap"
+]
+},
+"in campagna la qualità della vita è diversa": {
+"text": "In campagna la qualità della vita è diversa.",
+"levels": [
+"ap"
+]
+},
+"il tessuto sociale": {
+"text": "il tessuto sociale",
+"levels": [
+"ap"
+]
+},
+"il tessuto sociale del paese resiste": {
+"text": "Il tessuto sociale del paese resiste.",
+"levels": [
+"ap"
+]
+},
+"trasferirsi": {
+"text": "trasferirsi",
+"levels": [
+"ap"
+]
+},
+"organizziamo una cena di quartiere": {
+"text": "Organizziamo una cena di quartiere.",
+"levels": [
+"ap"
+]
+},
+"tutti contribuiscono alla raccolta": {
+"text": "Tutti contribuiscono alla raccolta.",
+"levels": [
+"ap"
+]
+},
+"i nonni tramandano le tradizioni": {
+"text": "I nonni tramandano le tradizioni.",
+"levels": [
+"ap"
+]
+},
+"da giovane facevo volontariato in parrocchia": {
+"text": "Da giovane facevo volontariato in parrocchia.",
+"levels": [
+"ap"
+]
+},
+"mio suocero cucina benissimo": {
+"text": "Mio suocero cucina benissimo.",
+"levels": [
+"ap"
+]
+},
+"mio cognato fa l'architetto": {
+"text": "Mio cognato fa l’architetto.",
+"levels": [
+"ap"
+]
+},
+"un mammone resta con i genitori fino a trent'anni": {
+"text": "Un mammone resta con i genitori fino a trent’anni.",
+"levels": [
+"ap"
+]
+},
+"i nonni badano ai nipoti": {
+"text": "I nonni badano ai nipoti.",
+"levels": [
+"ap"
+]
+},
+"tra amici c'è un rapporto di fiducia": {
+"text": "Tra amici c’è un rapporto di fiducia.",
+"levels": [
+"ap"
+]
+},
+"la famiglia è una rete di supporto": {
+"text": "La famiglia è una rete di supporto.",
+"levels": [
+"ap"
+]
+},
+"la mia comunità di riferimento è la parrocchia": {
+"text": "La mia comunità di riferimento è la parrocchia.",
+"levels": [
+"ap"
+]
+},
+"la domenica ci riuniamo attorno alla tavola": {
+"text": "La domenica ci riuniamo attorno alla tavola.",
+"levels": [
+"ap"
+]
+},
+"con gli sconosciuti ci si dà del lei": {
+"text": "Con gli sconosciuti ci si dà del Lei.",
+"levels": [
+"ap"
+]
+},
+"abito in una frazione vicino al paese": {
+"text": "Abito in una frazione vicino al paese.",
+"levels": [
+"ap"
+]
+},
+"molti giovani si trasferiscono in città": {
+"text": "Molti giovani si trasferiscono in città.",
+"levels": [
+"ap"
+]
+},
+"la domenica i parenti si riunivano a casa dei nonni per il pranzo": {
+"text": "La domenica i parenti si riunivano a casa dei nonni per il pranzo.",
+"levels": [
+"ap"
+]
+},
+"quando sono arrivato mia sorella si era già alzata e aveva preparato la colazione": {
+"text": "Quando sono arrivato, mia sorella si era già alzata e aveva preparato la colazione.",
+"levels": [
+"ap"
+]
+},
+"mio padre ha un buon rapporto con i vicini si fidano l'uno dell'altro": {
+"text": "Mio padre ha un buon rapporto con i vicini: si fidano l’uno dell’altro.",
+"levels": [
+"ap"
+]
+},
+"dopo il divorzio i miei genitori sono rimasti amici e abitano vicini": {
+"text": "Dopo il divorzio, i miei genitori sono rimasti amici e abitano vicini.",
+"levels": [
+"ap"
+]
+},
+"ad alba c'è la sagra del tartufo ogni ottobre": {
+"text": "Ad Alba c’è la Sagra del Tartufo ogni ottobre.",
+"levels": [
+"ap"
+]
+},
+"da giovane facevo volontariato nella mia parrocchia": {
+"text": "Da giovane facevo volontariato nella mia parrocchia.",
+"levels": [
+"ap"
+]
+},
+"ogni ottobre ad alba in piemonte c'è la sagra del tartufo mia nonna ricordava che da giovane partecipava come volontaria la comunità si era organizzata mesi prima i contadini avevano raccolto i tartufi e i ristoratori avevano preparato i menu oggi in tanti comuni la banca del tempo permette di scambiare servizi senza usare soldi": {
+"text": "Ogni ottobre, ad Alba, in Piemonte, c’è la Sagra del Tartufo. Mia nonna ricordava che da giovane partecipava come volontaria: la comunità si era organizzata mesi prima, i contadini avevano raccolto i tartufi e i ristoratori avevano preparato i menu. Oggi, in tanti comuni, la Banca del Tempo permette di scambiare servizi senza usare soldi.",
+"levels": [
+"ap"
+]
+},
+"i nonni badano ai nipoti quando i genitori lavorano": {
+"text": "I nonni badano ai nipoti quando i genitori lavorano.",
+"levels": [
+"ap"
+]
+},
+"la mia famiglia era allargata viveva con noi anche mia zia": {
+"text": "La mia famiglia era allargata: viveva con noi anche mia zia.",
+"levels": [
+"ap"
+]
+},
+"quando mio padre era giovane la famiglia era allargata nonni zii e cugini abitavano nello stesso palazzo oggi molti giovani i cosiddetti mammoni restano con i genitori fino a trent'anni perché gli affitti sono alti e il lavoro è precario i nonni spesso badano ai nipoti quando i genitori lavorano la domenica però la famiglia si riunisce ancora attorno alla tavola": {
+"text": "Quando mio padre era giovane, la famiglia era allargata: nonni, zii e cugini abitavano nello stesso palazzo. Oggi molti giovani, i cosiddetti “mammoni”, restano con i genitori fino a trent’anni perché gli affitti sono alti e il lavoro è precario. I nonni, spesso, badano ai nipoti quando i genitori lavorano. La domenica, però, la famiglia si riunisce ancora attorno alla tavola.",
+"levels": [
+"ap"
+]
+},
+"dopo il lavoro ci incontriamo per l'aperitivo": {
+"text": "Dopo il lavoro ci incontriamo per l’aperitivo.",
+"levels": [
+"ap"
+]
+},
+"la sera molti fanno la passeggiata in centro": {
+"text": "La sera molti fanno la passeggiata in centro.",
+"levels": [
+"ap"
+]
+},
+"a napoli la domenica la famiglia si riuniva attorno alla tavola per il pranzo e mia madre aveva già preparato il ragù la sera prima nelle città del nord invece dopo il lavoro molti amici si incontrano per l'aperitivo in tutta italia la sera si fa anche la passeggiata in centro con gli sconosciuti si usa il lei con gli amici il tu": {
+"text": "A Napoli, la domenica, la famiglia si riuniva attorno alla tavola per il pranzo, e mia madre aveva già preparato il ragù la sera prima. Nelle città del Nord, invece, dopo il lavoro molti amici si incontrano per l’aperitivo. In tutta Italia, la sera, si fa anche la passeggiata in centro. Con gli sconosciuti si usa il Lei; con gli amici, il tu.",
+"levels": [
+"ap"
+]
+},
+"molti giovani si trasferiscono in città per studiare": {
+"text": "Molti giovani si trasferiscono in città per studiare.",
+"levels": [
+"ap"
+]
+},
+"in campagna la qualità della vita è più tranquilla": {
+"text": "In campagna la qualità della vita è più tranquilla.",
+"levels": [
+"ap"
+]
+},
+"negli ultimi decenni molti piccoli borghi si sono spopolati i giovani si erano trasferiti in città per studiare e lavorare per questo alcuni paesi come ollolai in sardegna hanno venduto case abbandonate a un prezzo simbolico milano invece è una città cosmopolita nel quartiere di porta venezia vivono comunità di tante origini molti giovani però tornano al paese d'origine per le feste": {
+"text": "Negli ultimi decenni molti piccoli borghi si sono spopolati: i giovani si erano trasferiti in città per studiare e lavorare. Per questo alcuni paesi, come Ollolai, in Sardegna, hanno venduto case abbandonate a un prezzo simbolico. Milano, invece, è una città cosmopolita: nel quartiere di Porta Venezia vivono comunità di tante origini. Molti giovani, però, tornano al paese d’origine per le feste.",
+"levels": [
+"ap"
+]
+},
+"la ricorrenza": {
+"text": "la ricorrenza",
+"levels": [
+"ap"
+]
+},
+"la ricorrenza ricorda un evento importante": {
+"text": "La ricorrenza ricorda un evento importante.",
+"levels": [
+"ap"
+]
+},
+"la festività": {
+"text": "la festività",
+"levels": [
+"ap"
+]
+},
+"la festività è sentita in tutto il paese": {
+"text": "La festività è sentita in tutto il paese.",
+"levels": [
+"ap"
+]
+},
+"la celebrazione": {
+"text": "la celebrazione",
+"levels": [
+"ap"
+]
+},
+"la celebrazione comincia in piazza": {
+"text": "La celebrazione comincia in piazza.",
+"levels": [
+"ap"
+]
+},
+"il patrono": {
+"text": "il patrono",
+"levels": [
+"ap"
+]
+},
+"il patrono protegge la città": {
+"text": "Il patrono protegge la città.",
+"levels": [
+"ap"
+]
+},
+"la processione religiosa": {
+"text": "la processione religiosa",
+"levels": [
+"ap"
+]
+},
+"la processione religiosa attraversa il centro": {
+"text": "La processione religiosa attraversa il centro.",
+"levels": [
+"ap"
+]
+},
+"il corteo storico": {
+"text": "il corteo storico",
+"levels": [
+"ap"
+]
+},
+"il corteo storico mostra i costumi del passato": {
+"text": "Il corteo storico mostra i costumi del passato.",
+"levels": [
+"ap"
+]
+},
+"il rito": {
+"text": "il rito",
+"levels": [
+"ap"
+]
+},
+"la sfilata in costume": {
+"text": "la sfilata in costume",
+"levels": [
+"ap"
+]
+},
+"la sfilata in costume è molto colorata": {
+"text": "La sfilata in costume è molto colorata.",
+"levels": [
+"ap"
+]
+},
+"i fuochi d'artificio": {
+"text": "i fuochi d’artificio",
+"levels": [
+"ap"
+]
+},
+"i fuochi d'artificio chiudono la festa": {
+"text": "I fuochi d’artificio chiudono la festa.",
+"levels": [
+"ap"
+]
+},
+"il pranzo di famiglia": {
+"text": "il pranzo di famiglia",
+"levels": [
+"ap"
+]
+},
+"il pranzo di famiglia dura ore": {
+"text": "Il pranzo di famiglia dura ore.",
+"levels": [
+"ap"
+]
+},
+"il cenone": {
+"text": "il cenone",
+"levels": [
+"ap"
+]
+},
+"il cenone di capodanno è una tradizione": {
+"text": "Il cenone di Capodanno è una tradizione.",
+"levels": [
+"ap"
+]
+},
+"fare le vacanze": {
+"text": "fare le vacanze",
+"levels": [
+"ap"
+]
+},
+"stare in famiglia": {
+"text": "stare in famiglia",
+"levels": [
+"ap"
+]
+},
+"a natale preferisco stare in famiglia": {
+"text": "A Natale preferisco stare in famiglia.",
+"levels": [
+"ap"
+]
+},
+"il carnevale": {
+"text": "il Carnevale",
+"levels": [
+"ap"
+]
+},
+"il carnevale di venezia è famoso": {
+"text": "Il Carnevale di Venezia è famoso.",
+"levels": [
+"ap"
+]
+},
+"la maschera": {
+"text": "la maschera",
+"levels": [
+"ap"
+]
+},
+"la maschera nasconde l'identità": {
+"text": "La maschera nasconde l’identità.",
+"levels": [
+"ap"
+]
+},
+"il ferragosto": {
+"text": "il Ferragosto",
+"levels": [
+"ap"
+]
+},
+"il ferragosto è il 15 agosto": {
+"text": "Il Ferragosto è il 15 agosto.",
+"levels": [
+"ap"
+]
+},
+"la sagra del paese è in settembre": {
+"text": "La sagra del paese è in settembre.",
+"levels": [
+"ap"
+]
+},
+"il dialetto": {
+"text": "il dialetto",
+"levels": [
+"ap"
+]
+},
+"il dialetto è parte dell'identità locale": {
+"text": "Il dialetto è parte dell’identità locale.",
+"levels": [
+"ap"
+]
+},
+"la varietà linguistica": {
+"text": "la varietà linguistica",
+"levels": [
+"ap"
+]
+},
+"il bilinguismo": {
+"text": "il bilinguismo",
+"levels": [
+"ap"
+]
+},
+"il bilinguismo è una ricchezza": {
+"text": "Il bilinguismo è una ricchezza.",
+"levels": [
+"ap"
+]
+},
+"il plurilinguismo": {
+"text": "il plurilinguismo",
+"levels": [
+"ap"
+]
+},
+"il plurilinguismo è comune in europa": {
+"text": "Il plurilinguismo è comune in Europa.",
+"levels": [
+"ap"
+]
+},
+"la lingua madre": {
+"text": "la lingua madre",
+"levels": [
+"ap"
+]
+},
+"la lingua ufficiale": {
+"text": "la lingua ufficiale",
+"levels": [
+"ap"
+]
+},
+"l'italiano è la lingua ufficiale": {
+"text": "L’italiano è la lingua ufficiale.",
+"levels": [
+"ap"
+]
+},
+"la lingua minoritaria": {
+"text": "la lingua minoritaria",
+"levels": [
+"ap"
+]
+},
+"il prestito linguistico": {
+"text": "il prestito linguistico",
+"levels": [
+"ap"
+]
+},
+"l'anglicismo": {
+"text": "l’anglicismo",
+"levels": [
+"ap"
+]
+},
+"il codice misto": {
+"text": "il codice misto",
+"levels": [
+"ap"
+]
+},
+"il codice misto è frequente tra i giovani": {
+"text": "Il codice misto è frequente tra i giovani.",
+"levels": [
+"ap"
+]
+},
+"il registro formale": {
+"text": "il registro formale",
+"levels": [
+"ap"
+]
+},
+"al colloquio uso il registro formale": {
+"text": "Al colloquio uso il registro formale.",
+"levels": [
+"ap"
+]
+},
+"la norma linguistica": {
+"text": "la norma linguistica",
+"levels": [
+"ap"
+]
+},
+"la norma linguistica cambia nel tempo": {
+"text": "La norma linguistica cambia nel tempo.",
+"levels": [
+"ap"
+]
+},
+"l'identità linguistica": {
+"text": "l’identità linguistica",
+"levels": [
+"ap"
+]
+},
+"l'identità linguistica si forma in famiglia": {
+"text": "L’identità linguistica si forma in famiglia.",
+"levels": [
+"ap"
+]
+},
+"la diffusione": {
+"text": "la diffusione",
+"levels": [
+"ap"
+]
+},
+"la diffusione dell'italiano continua": {
+"text": "La diffusione dell’italiano continua.",
+"levels": [
+"ap"
+]
+},
+"la presenza globale": {
+"text": "la presenza globale",
+"levels": [
+"ap"
+]
+},
+"la presenza globale dell'italiano è culturale": {
+"text": "La presenza globale dell’italiano è culturale.",
+"levels": [
+"ap"
+]
+},
+"la diaspora italiana": {
+"text": "la diaspora italiana",
+"levels": [
+"ap"
+]
+},
+"la diaspora italiana è molto numerosa": {
+"text": "La diaspora italiana è molto numerosa.",
+"levels": [
+"ap"
+]
+},
+"la comunità italofona": {
+"text": "la comunità italofona",
+"levels": [
+"ap"
+]
+},
+"la comunità italofona organizza corsi": {
+"text": "La comunità italofona organizza corsi.",
+"levels": [
+"ap"
+]
+},
+"parlare correntemente": {
+"text": "parlare correntemente",
+"levels": [
+"ap"
+]
+},
+"la lingua d'adozione": {
+"text": "la lingua d’adozione",
+"levels": [
+"ap"
+]
+},
+"per lei l'italiano è la lingua d'adozione": {
+"text": "Per lei l’italiano è la lingua d’adozione.",
+"levels": [
+"ap"
+]
+},
+"a mio avviso": {
+"text": "a mio avviso",
+"levels": [
+"ap"
+]
+},
+"a mio avviso la lingua è identità": {
+"text": "A mio avviso, la lingua è identità.",
+"levels": [
+"ap"
+]
+},
+"è innegabile che": {
+"text": "è innegabile che",
+"levels": [
+"ap"
+]
+},
+"è innegabile che l'inglese domini il web": {
+"text": "È innegabile che l’inglese domini il web.",
+"levels": [
+"ap"
+]
+},
+"da un lato": {
+"text": "da un lato",
+"levels": [
+"ap"
+]
+},
+"da un lato il dialetto unisce dall'altro divide": {
+"text": "Da un lato il dialetto unisce; dall’altro divide.",
+"levels": [
+"ap"
+]
+},
+"si potrebbe sostenere che": {
+"text": "si potrebbe sostenere che",
+"levels": [
+"ap"
+]
+},
+"si potrebbe sostenere che il dialetto sia in declino": {
+"text": "Si potrebbe sostenere che il dialetto sia in declino.",
+"levels": [
+"ap"
+]
+},
+"vale la pena sottolineare che": {
+"text": "vale la pena sottolineare che",
+"levels": [
+"ap"
+]
+},
+"vale la pena sottolineare che la lingua cambia": {
+"text": "Vale la pena sottolineare che la lingua cambia.",
+"levels": [
+"ap"
+]
+},
+"parlare la stessa lingua": {
+"text": "parlare la stessa lingua",
+"levels": [
+"ap"
+]
+},
+"fare bella figura": {
+"text": "fare bella figura",
+"levels": [
+"ap"
+]
+},
+"per fare bella figura saluta con gentilezza": {
+"text": "Per fare bella figura, saluta con gentilezza.",
+"levels": [
+"ap"
+]
+},
+"la lingua di dante": {
+"text": "la lingua di Dante",
+"levels": [
+"ap"
+]
+},
+"la lingua di dante è viva": {
+"text": "La lingua di Dante è viva.",
+"levels": [
+"ap"
+]
+},
+"ogni festa ha i suoi riti": {
+"text": "Ogni festa ha i suoi riti.",
+"levels": [
+"ap"
+]
+},
+"a ferragosto molti fanno le vacanze al mare": {
+"text": "A Ferragosto molti fanno le vacanze al mare.",
+"levels": [
+"ap"
+]
+},
+"ogni regione ha una varietà linguistica": {
+"text": "Ogni regione ha una varietà linguistica.",
+"levels": [
+"ap"
+]
+},
+"la mia lingua madre è l'inglese": {
+"text": "La mia lingua madre è l’inglese.",
+"levels": [
+"ap"
+]
+},
+"il sardo è una lingua minoritaria": {
+"text": "Il sardo è una lingua minoritaria.",
+"levels": [
+"ap"
+]
+},
+"selfie è un prestito linguistico": {
+"text": "Selfie è un prestito linguistico.",
+"levels": [
+"ap"
+]
+},
+"lockdown è un anglicismo": {
+"text": "Lockdown è un anglicismo.",
+"levels": [
+"ap"
+]
+},
+"mia zia parla correntemente tre lingue": {
+"text": "Mia zia parla correntemente tre lingue.",
+"levels": [
+"ap"
+]
+},
+"dopo anni finalmente parliamo la stessa lingua": {
+"text": "Dopo anni, finalmente parliamo la stessa lingua.",
+"levels": [
+"ap"
+]
+},
+"a ferragosto molte famiglie vanno al mare e fanno un grande pranzo insieme": {
+"text": "A Ferragosto molte famiglie vanno al mare e fanno un grande pranzo insieme.",
+"levels": [
+"ap"
+]
+},
+"penso che il dialetto sia importante ma bisogna anche studiare bene l'italiano standard": {
+"text": "Penso che il dialetto sia importante, ma bisogna anche studiare bene l’italiano standard.",
+"levels": [
+"ap"
+]
+},
+"la sagra del paese comincia sabato sera con i fuochi d'artificio": {
+"text": "La sagra del paese comincia sabato sera con i fuochi d’artificio.",
+"levels": [
+"ap"
+]
+},
+"mia nonna è emigrata in america e parla ancora il dialetto della sua città": {
+"text": "Mia nonna è emigrata in America e parla ancora il dialetto della sua città.",
+"levels": [
+"ap"
+]
+},
+"il carnevale di venezia è famoso per le maschere": {
+"text": "Il Carnevale di Venezia è famoso per le maschere.",
+"levels": [
+"ap"
+]
+},
+"a ferragosto molti italiani fanno le vacanze al mare": {
+"text": "A Ferragosto molti italiani fanno le vacanze al mare.",
+"levels": [
+"ap"
+]
+},
+"il carnevale di venezia è famoso per le maschere soprattutto la bauta e la moretta nel passato la maschera permetteva a tutti di nascondere la classe sociale oggi molti veneziani pensano che il carnevale sia diventato troppo commerciale ma altri credono che resti una tradizione importante": {
+"text": "Il Carnevale di Venezia è famoso per le maschere, soprattutto la bauta e la moretta. Nel passato la maschera permetteva a tutti di nascondere la classe sociale. Oggi molti veneziani pensano che il Carnevale sia diventato troppo commerciale, ma altri credono che resti una tradizione importante.",
+"levels": [
+"ap"
+]
+},
+"nel 1861 la maggior parte degli italiani parlava il dialetto": {
+"text": "Nel 1861 la maggior parte degli italiani parlava il dialetto.",
+"levels": [
+"ap"
+]
+},
+"la televisione ha aiutato molti a imparare l'italiano": {
+"text": "La televisione ha aiutato molti a imparare l’italiano.",
+"levels": [
+"ap"
+]
+},
+"quando l'italia è diventata unita nel 1861 solo una piccola parte degli italiani parlava ogni giorno la lingua standard la maggior parte parlava il dialetto negli anni cinquanta la televisione della rai ha aiutato molte persone a imparare l'italiano oggi molti pensano che i dialetti siano un patrimonio da proteggere e alcuni temono che gli anglicismi come selfie e lockdown cambino la lingua": {
+"text": "Quando l’Italia è diventata unita, nel 1861, solo una piccola parte degli italiani parlava ogni giorno la lingua standard: la maggior parte parlava il dialetto. Negli anni Cinquanta la televisione della RAI ha aiutato molte persone a imparare l’italiano. Oggi molti pensano che i dialetti siano un patrimonio da proteggere, e alcuni temono che gli anglicismi, come “selfie” e “lockdown”, cambino la lingua.",
+"levels": [
+"ap"
+]
+},
+"in svizzera l'italiano è una lingua ufficiale": {
+"text": "In Svizzera l’italiano è una lingua ufficiale.",
+"levels": [
+"ap"
+]
+},
+"la società dante alighieri promuove la lingua nel mondo": {
+"text": "La Società Dante Alighieri promuove la lingua nel mondo.",
+"levels": [
+"ap"
+]
+},
+"l'italiano non si parla solo in italia in svizzera è una lingua ufficiale soprattutto nel canton ticino in argentina una parte molto grande della popolazione ha origini italiane per questo molti pensano che la cultura italiana sia viva anche a buenos aires dal 1889 la società dante alighieri promuove lo studio della lingua in tutto il mondo": {
+"text": "L’italiano non si parla solo in Italia. In Svizzera è una lingua ufficiale, soprattutto nel Canton Ticino. In Argentina una parte molto grande della popolazione ha origini italiane, per questo molti pensano che la cultura italiana sia viva anche a Buenos Aires. Dal 1889 la Società Dante Alighieri promuove lo studio della lingua in tutto il mondo.",
+"levels": [
+"ap"
+]
+},
+"il patrimonio architettonico": {
+"text": "il patrimonio architettonico",
+"levels": [
+"ap"
+]
+},
+"il patrimonio architettonico italiano è immenso": {
+"text": "Il patrimonio architettonico italiano è immenso.",
+"levels": [
+"ap"
+]
+},
+"il restauro": {
+"text": "il restauro",
+"levels": [
+"ap"
+]
+},
+"il restauro dura tre anni": {
+"text": "Il restauro dura tre anni.",
+"levels": [
+"ap"
+]
+},
+"la facciata": {
+"text": "la facciata",
+"levels": [
+"ap"
+]
+},
+"la facciata è di marmo bianco": {
+"text": "La facciata è di marmo bianco.",
+"levels": [
+"ap"
+]
+},
+"la cupola": {
+"text": "la cupola",
+"levels": [
+"ap"
+]
+},
+"la cupola del duomo è enorme": {
+"text": "La cupola del Duomo è enorme.",
+"levels": [
+"ap"
+]
+},
+"il portico": {
+"text": "il portico",
+"levels": [
+"ap"
+]
+},
+"il portico protegge dalla pioggia": {
+"text": "Il portico protegge dalla pioggia.",
+"levels": [
+"ap"
+]
+},
+"l'urbanistica": {
+"text": "l’urbanistica",
+"levels": [
+"ap"
+]
+},
+"l'urbanistica decide come cresce la città": {
+"text": "L’urbanistica decide come cresce la città.",
+"levels": [
+"ap"
+]
+},
+"il consumo di suolo": {
+"text": "il consumo di suolo",
+"levels": [
+"ap"
+]
+},
+"il consumo di suolo è un problema": {
+"text": "Il consumo di suolo è un problema.",
+"levels": [
+"ap"
+]
+},
+"l'edificio storico": {
+"text": "l’edificio storico",
+"levels": [
+"ap"
+]
+},
+"l'edificio storico è sotto tutela": {
+"text": "L’edificio storico è sotto tutela.",
+"levels": [
+"ap"
+]
+},
+"il sito unesco": {
+"text": "il sito UNESCO",
+"levels": [
+"ap"
+]
+},
+"il sito unesco attira molti turisti": {
+"text": "Il sito UNESCO attira molti turisti.",
+"levels": [
+"ap"
+]
+},
+"la riqualificazione urbana": {
+"text": "la riqualificazione urbana",
+"levels": [
+"ap"
+]
+},
+"la riqualificazione urbana cambia il quartiere": {
+"text": "La riqualificazione urbana cambia il quartiere.",
+"levels": [
+"ap"
+]
+},
+"il cantiere": {
+"text": "il cantiere",
+"levels": [
+"ap"
+]
+},
+"il cantiere è aperto da mesi": {
+"text": "Il cantiere è aperto da mesi.",
+"levels": [
+"ap"
+]
+},
+"il progetto architettonico": {
+"text": "il progetto architettonico",
+"levels": [
+"ap"
+]
+},
+"il progetto architettonico è stato approvato": {
+"text": "Il progetto architettonico è stato approvato.",
+"levels": [
+"ap"
+]
+},
+"il bene culturale": {
+"text": "il bene culturale",
+"levels": [
+"ap"
+]
+},
+"il bene culturale appartiene a tutti": {
+"text": "Il bene culturale appartiene a tutti.",
+"levels": [
+"ap"
+]
+},
+"la soprintendenza": {
+"text": "la soprintendenza",
+"levels": [
+"ap"
+]
+},
+"la soprintendenza controlla i lavori": {
+"text": "La soprintendenza controlla i lavori.",
+"levels": [
+"ap"
+]
+},
+"la tutela": {
+"text": "la tutela",
+"levels": [
+"ap"
+]
+},
+"la tutela del patrimonio è una legge": {
+"text": "La tutela del patrimonio è una legge.",
+"levels": [
+"ap"
+]
+},
+"la valorizzazione": {
+"text": "la valorizzazione",
+"levels": [
+"ap"
+]
+},
+"la valorizzazione porta turisti e lavoro": {
+"text": "La valorizzazione porta turisti e lavoro.",
+"levels": [
+"ap"
+]
+},
+"l'afflusso turistico": {
+"text": "l’afflusso turistico",
+"levels": [
+"ap"
+]
+},
+"l'afflusso turistico danneggia i monumenti": {
+"text": "L’afflusso turistico danneggia i monumenti.",
+"levels": [
+"ap"
+]
+},
+"il degrado": {
+"text": "il degrado",
+"levels": [
+"ap"
+]
+},
+"il degrado minaccia gli affreschi": {
+"text": "Il degrado minaccia gli affreschi.",
+"levels": [
+"ap"
+]
+},
+"la fruizione pubblica": {
+"text": "la fruizione pubblica",
+"levels": [
+"ap"
+]
+},
+"la fruizione pubblica deve essere garantita": {
+"text": "La fruizione pubblica deve essere garantita.",
+"levels": [
+"ap"
+]
+},
+"il vincolo": {
+"text": "il vincolo",
+"levels": [
+"ap"
+]
+},
+"il vincolo impedisce di cambiare la facciata": {
+"text": "Il vincolo impedisce di cambiare la facciata.",
+"levels": [
+"ap"
+]
+},
+"finanziare": {
+"text": "finanziare",
+"levels": [
+"ap"
+]
+},
+"un privato potrebbe finanziare il restauro": {
+"text": "Un privato potrebbe finanziare il restauro.",
+"levels": [
+"ap"
+]
+},
+"i fondi": {
+"text": "i fondi",
+"levels": [
+"ap"
+]
+},
+"i fondi pubblici non bastano": {
+"text": "I fondi pubblici non bastano.",
+"levels": [
+"ap"
+]
+},
+"il bello": {
+"text": "il bello",
+"levels": [
+"ap"
+]
+},
+"per gli italiani il bello è importante": {
+"text": "Per gli italiani il bello è importante.",
+"levels": [
+"ap"
+]
+},
+"la bella figura": {
+"text": "la bella figura",
+"levels": [
+"ap"
+]
+},
+"il paesaggio urbano": {
+"text": "il paesaggio urbano",
+"levels": [
+"ap"
+]
+},
+"il paesaggio urbano di roma è unico": {
+"text": "Il paesaggio urbano di Roma è unico.",
+"levels": [
+"ap"
+]
+},
+"l'estetica": {
+"text": "l’estetica",
+"levels": [
+"ap"
+]
+},
+"l'estetica italiana è elegante": {
+"text": "L’estetica italiana è elegante.",
+"levels": [
+"ap"
+]
+},
+"deturpare": {
+"text": "deturpare",
+"levels": [
+"ap"
+]
+},
+"un cartellone potrebbe deturpare la piazza": {
+"text": "Un cartellone potrebbe deturpare la piazza.",
+"levels": [
+"ap"
+]
+},
+"la cura del dettaglio": {
+"text": "la cura del dettaglio",
+"levels": [
+"ap"
+]
+},
+"la cura del dettaglio fa la differenza": {
+"text": "La cura del dettaglio fa la differenza.",
+"levels": [
+"ap"
+]
+},
+"valorizzare": {
+"text": "valorizzare",
+"levels": [
+"ap"
+]
+},
+"vorremmo valorizzare il centro storico": {
+"text": "Vorremmo valorizzare il centro storico.",
+"levels": [
+"ap"
+]
+},
+"il saper fare": {
+"text": "il saper fare",
+"levels": [
+"ap"
+]
+},
+"il saper fare si tramanda in famiglia": {
+"text": "Il saper fare si tramanda in famiglia.",
+"levels": [
+"ap"
+]
+},
+"la sfilata": {
+"text": "la sfilata",
+"levels": [
+"ap"
+]
+},
+"la sfilata comincia alle otto": {
+"text": "La sfilata comincia alle otto.",
+"levels": [
+"ap"
+]
+},
+"il tessuto": {
+"text": "il tessuto",
+"levels": [
+"ap"
+]
+},
+"il tessuto è di seta": {
+"text": "Il tessuto è di seta.",
+"levels": [
+"ap"
+]
+},
+"la pelletteria": {
+"text": "la pelletteria",
+"levels": [
+"ap"
+]
+},
+"la pelletteria toscana è famosa": {
+"text": "La pelletteria toscana è famosa.",
+"levels": [
+"ap"
+]
+},
+"il prêt à porter": {
+"text": "il prêt-à-porter",
+"levels": [
+"ap"
+]
+},
+"il prêt à porter costa meno dell'alta moda": {
+"text": "Il prêt-à-porter costa meno dell’alta moda.",
+"levels": [
+"ap"
+]
+},
+"l'alta moda": {
+"text": "l’alta moda",
+"levels": [
+"ap"
+]
+},
+"l'alta moda è fatta su misura": {
+"text": "L’alta moda è fatta su misura.",
+"levels": [
+"ap"
+]
+},
+"il marchio": {
+"text": "il marchio",
+"levels": [
+"ap"
+]
+},
+"il marchio è conosciuto in tutto il mondo": {
+"text": "Il marchio è conosciuto in tutto il mondo.",
+"levels": [
+"ap"
+]
+},
+"artigianale": {
+"text": "artigianale",
+"levels": [
+"ap"
+]
+},
+"questa borsa è artigianale": {
+"text": "Questa borsa è artigianale.",
+"levels": [
+"ap"
+]
+},
+"la collezione": {
+"text": "la collezione",
+"levels": [
+"ap"
+]
+},
+"lo stilista presenta la collezione": {
+"text": "Lo stilista presenta la collezione.",
+"levels": [
+"ap"
+]
+},
+"lo stilista": {
+"text": "lo stilista",
+"levels": [
+"ap"
+]
+},
+"lo stilista lavora a milano": {
+"text": "Lo stilista lavora a Milano.",
+"levels": [
+"ap"
+]
+},
+"il made in italy": {
+"text": "il Made in Italy",
+"levels": [
+"ap"
+]
+},
+"il made in italy è un simbolo di qualità": {
+"text": "Il Made in Italy è un simbolo di qualità.",
+"levels": [
+"ap"
+]
+},
+"la vetrina": {
+"text": "la vetrina",
+"levels": [
+"ap"
+]
+},
+"la vetrina è elegantissima": {
+"text": "La vetrina è elegantissima.",
+"levels": [
+"ap"
+]
+},
+"il design sostenibile": {
+"text": "il design sostenibile",
+"levels": [
+"ap"
+]
+},
+"il design sostenibile rispetta l'ambiente": {
+"text": "Il design sostenibile rispetta l’ambiente.",
+"levels": [
+"ap"
+]
+},
+"il lusso accessibile": {
+"text": "il lusso accessibile",
+"levels": [
+"ap"
+]
+},
+"il lusso accessibile sta tra moda veloce e alta moda": {
+"text": "Il lusso accessibile sta tra moda veloce e alta moda.",
+"levels": [
+"ap"
+]
+},
+"il romanzo": {
+"text": "il romanzo",
+"levels": [
+"ap"
+]
+},
+"il racconto": {
+"text": "il racconto",
+"levels": [
+"ap"
+]
+},
+"il racconto è breve ma intenso": {
+"text": "Il racconto è breve ma intenso.",
+"levels": [
+"ap"
+]
+},
+"la poesia": {
+"text": "la poesia",
+"levels": [
+"ap"
+]
+},
+"la poesia di dante è immortale": {
+"text": "La poesia di Dante è immortale.",
+"levels": [
+"ap"
+]
+},
+"il protagonista": {
+"text": "il protagonista",
+"levels": [
+"ap"
+]
+},
+"il protagonista è un giovane povero": {
+"text": "Il protagonista è un giovane povero.",
+"levels": [
+"ap"
+]
+},
+"il narratore": {
+"text": "il narratore",
+"levels": [
+"ap"
+]
+},
+"il narratore parla in prima persona": {
+"text": "Il narratore parla in prima persona.",
+"levels": [
+"ap"
+]
+},
+"la trama": {
+"text": "la trama",
+"levels": [
+"ap"
+]
+},
+"la trama è molto complicata": {
+"text": "La trama è molto complicata.",
+"levels": [
+"ap"
+]
+},
+"il tema centrale": {
+"text": "il tema centrale",
+"levels": [
+"ap"
+]
+},
+"il tema centrale è la giustizia": {
+"text": "Il tema centrale è la giustizia.",
+"levels": [
+"ap"
+]
+},
+"la metafora": {
+"text": "la metafora",
+"levels": [
+"ap"
+]
+},
+"la metafora spiega l'idea in modo nuovo": {
+"text": "La metafora spiega l’idea in modo nuovo.",
+"levels": [
+"ap"
+]
+},
+"mettere in luce": {
+"text": "mettere in luce",
+"levels": [
+"ap"
+]
+},
+"denunciare": {
+"text": "denunciare",
+"levels": [
+"ap"
+]
+},
+"un classico senza tempo": {
+"text": "un classico senza tempo",
+"levels": [
+"ap"
+]
+},
+"la divina commedia è un classico senza tempo": {
+"text": "La Divina Commedia è un classico senza tempo.",
+"levels": [
+"ap"
+]
+},
+"dare voce a chi non ha voce": {
+"text": "dare voce a chi non ha voce",
+"levels": [
+"ap"
+]
+},
+"la letteratura può dare voce a chi non ha voce": {
+"text": "La letteratura può dare voce a chi non ha voce.",
+"levels": [
+"ap"
+]
+},
+"le arti dello spettacolo": {
+"text": "le arti dello spettacolo",
+"levels": [
+"ap"
+]
+},
+"le arti dello spettacolo vivono di pubblico": {
+"text": "Le arti dello spettacolo vivono di pubblico.",
+"levels": [
+"ap"
+]
+},
+"la scenografia": {
+"text": "la scenografia",
+"levels": [
+"ap"
+]
+},
+"la scenografia dell'opera è splendida": {
+"text": "La scenografia dell’opera è splendida.",
+"levels": [
+"ap"
+]
+},
+"il loggione": {
+"text": "il loggione",
+"levels": [
+"ap"
+]
+},
+"il loggione della scala è famoso per i suoi fischi": {
+"text": "Il loggione della Scala è famoso per i suoi fischi.",
+"levels": [
+"ap"
+]
+},
+"la sala d'essai": {
+"text": "la sala d’essai",
+"levels": [
+"ap"
+]
+},
+"la sala d'essai proietta film d'autore": {
+"text": "La sala d’essai proietta film d’autore.",
+"levels": [
+"ap"
+]
+},
+"il mecenatismo": {
+"text": "il mecenatismo",
+"levels": [
+"ap"
+]
+},
+"il mecenatismo ha sostenuto il rinascimento": {
+"text": "Il mecenatismo ha sostenuto il Rinascimento.",
+"levels": [
+"ap"
+]
+},
+"l'allestimento": {
+"text": "l’allestimento",
+"levels": [
+"ap"
+]
+},
+"l'allestimento della mostra è moderno": {
+"text": "L’allestimento della mostra è moderno.",
+"levels": [
+"ap"
+]
+},
+"il regista": {
+"text": "il regista",
+"levels": [
+"ap"
+]
+},
+"il regista ha vinto un premio": {
+"text": "Il regista ha vinto un premio.",
+"levels": [
+"ap"
+]
+},
+"il soprano": {
+"text": "il soprano",
+"levels": [
+"ap"
+]
+},
+"il soprano canta la parte principale": {
+"text": "Il soprano canta la parte principale.",
+"levels": [
+"ap"
+]
+},
+"la rassegna": {
+"text": "la rassegna",
+"levels": [
+"ap"
+]
+},
+"la rassegna di cinema comincia domani": {
+"text": "La rassegna di cinema comincia domani.",
+"levels": [
+"ap"
+]
+},
+"il fondo pubblico": {
+"text": "il fondo pubblico",
+"levels": [
+"ap"
+]
+},
+"il fondo pubblico sostiene i teatri": {
+"text": "Il fondo pubblico sostiene i teatri.",
+"levels": [
+"ap"
+]
+},
+"l'opera lirica": {
+"text": "l’opera lirica",
+"levels": [
+"ap"
+]
+},
+"l'opera lirica è nata in italia": {
+"text": "L’opera lirica è nata in Italia.",
+"levels": [
+"ap"
+]
+},
+"la critica d'arte": {
+"text": "la critica d’arte",
+"levels": [
+"ap"
+]
+},
+"la critica d'arte spiega le opere": {
+"text": "La critica d’arte spiega le opere.",
+"levels": [
+"ap"
+]
+},
+"fare una bella figura conta molto": {
+"text": "Fare una bella figura conta molto.",
+"levels": [
+"ap"
+]
+},
+"leggerei volentieri questo romanzo": {
+"text": "Leggerei volentieri questo romanzo.",
+"levels": [
+"ap"
+]
+},
+"il libro mette in luce un problema sociale": {
+"text": "Il libro mette in luce un problema sociale.",
+"levels": [
+"ap"
+]
+},
+"lo scrittore denuncia l'ingiustizia": {
+"text": "Lo scrittore denuncia l’ingiustizia.",
+"levels": [
+"ap"
+]
+},
+"nel centro storico molti edifici hanno una facciata del rinascimento": {
+"text": "Nel centro storico molti edifici hanno una facciata del Rinascimento.",
+"levels": [
+"ap"
+]
+},
+"gli uffizi sono aperti dal martedì alla domenica e il lunedì sono chiusi": {
+"text": "Gli Uffizi sono aperti dal martedì alla domenica e il lunedì sono chiusi.",
+"levels": [
+"ap"
+]
+},
+"mi piace come hanno decorato la piazza con i fiori e le luci": {
+"text": "Mi piace come hanno decorato la piazza con i fiori e le luci.",
+"levels": [
+"ap"
+]
+},
+"il designer ha creato una lampada semplice ma molto elegante": {
+"text": "Il designer ha creato una lampada semplice, ma molto elegante.",
+"levels": [
+"ap"
+]
+},
+"ho letto un romanzo di elena ferrante e vorrei vedere anche il film": {
+"text": "Ho letto un romanzo di Elena Ferrante e vorrei vedere anche il film.",
+"levels": [
+"ap"
+]
+},
+"il film comincia alle nove ma il regista arriva un'ora prima": {
+"text": "Il film comincia alle nove, ma il regista arriva un’ora prima.",
+"levels": [
+"ap"
+]
+},
+"il colosseo ha bisogno di restauri continui": {
+"text": "Il Colosseo ha bisogno di restauri continui.",
+"levels": [
+"ap"
+]
+},
+"dopo il crollo del ponte morandi a genova nel 2018 l'architetto renzo piano ha progettato il nuovo ponte san giorgio molti italiani direbbero che il patrimonio architettonico è un tesoro ma anche una responsabilità per restaurare il colosseo per esempio un'azienda di moda ha finanziato i lavori": {
+"text": "Dopo il crollo del Ponte Morandi, a Genova, nel 2018, l’architetto Renzo Piano ha progettato il nuovo Ponte San Giorgio. Molti italiani direbbero che il patrimonio architettonico è un tesoro, ma anche una responsabilità. Per restaurare il Colosseo, per esempio, un’azienda di moda ha finanziato i lavori.",
+"levels": [
+"ap"
+]
+},
+"agli uffizi si ammira la nascita di venere di botticelli": {
+"text": "Agli Uffizi si ammira la Nascita di Venere di Botticelli.",
+"levels": [
+"ap"
+]
+},
+"l'italia ha più siti unesco di quasi ogni altro paese agli uffizi a firenze milioni di visitatori ammirano la nascita di venere di botticelli il turismo porta fondi ma l'afflusso eccessivo potrebbe causare degrado per questo la soprintendenza dovrebbe garantire sia la tutela sia la fruizione pubblica": {
+"text": "L’Italia ha più siti UNESCO di quasi ogni altro paese. Agli Uffizi, a Firenze, milioni di visitatori ammirano la Nascita di Venere di Botticelli. Il turismo porta fondi, ma l’afflusso eccessivo potrebbe causare degrado. Per questo la soprintendenza dovrebbe garantire sia la tutela sia la fruizione pubblica.",
+"levels": [
+"ap"
+]
+},
+"per gli italiani la bella figura è molto importante": {
+"text": "Per gli italiani la bella figura è molto importante.",
+"levels": [
+"ap"
+]
+},
+"per molti italiani il bello è un valore non un lusso la bella figura conta ci si veste bene e si cura il dettaglio anche le città sono protette a bologna a siena e a lecce le regole sulle facciate impediscono di deturpare il centro storico qualcuno sosterrebbe che troppe regole bloccano la modernità": {
+"text": "Per molti italiani il bello è un valore, non un lusso. La bella figura conta: ci si veste bene e si cura il dettaglio. Anche le città sono protette: a Bologna, a Siena e a Lecce le regole sulle facciate impediscono di deturpare il centro storico. Qualcuno sosterrebbe che troppe regole bloccano la modernità.",
+"levels": [
+"ap"
+]
+},
+"milano ospita la settimana della moda ogni anno": {
+"text": "Milano ospita la settimana della moda ogni anno.",
+"levels": [
+"ap"
+]
+},
+"la moda italiana si basa sul saper fare artigiani e stilisti lavorano il tessuto e la pelle a mano gucci per esempio è nato a firenze nel 1921 oggi molti marchi vorrebbero offrire un lusso più accessibile e un design più sostenibile il made in italy resterebbe un simbolo di qualità solo se i giovani imparassero questi mestieri": {
+"text": "La moda italiana si basa sul saper fare: artigiani e stilisti lavorano il tessuto e la pelle a mano. Gucci, per esempio, è nato a Firenze nel 1921. Oggi molti marchi vorrebbero offrire un lusso più accessibile e un design più sostenibile. Il Made in Italy resterebbe un simbolo di qualità solo se i giovani imparassero questi mestieri.",
+"levels": [
+"ap"
+]
+},
+"il 25 marzo gli italiani celebrano dante": {
+"text": "Il 25 marzo gli italiani celebrano Dante.",
+"levels": [
+"ap"
+]
+},
+"dante scrisse la divina commedia tra il 1308 e il 1320 e il 25 marzo nel dantedì gli italiani lo celebrano nel dopoguerra primo levi con se questo è un uomo volle dare voce a chi non aveva voce elena ferrante invece nell'amica geniale racconta la vita di due ragazze a napoli io leggerei volentieri tutti e tre": {
+"text": "Dante scrisse la Divina Commedia tra il 1308 e il 1320 e il 25 marzo, nel Dantedì, gli italiani lo celebrano. Nel dopoguerra Primo Levi, con Se questo è un uomo, volle dare voce a chi non aveva voce. Elena Ferrante, invece, nell’Amica geniale racconta la vita di due ragazze a Napoli. Io leggerei volentieri tutti e tre.",
+"levels": [
+"ap"
+]
+},
+"il teatro alla scala di milano è famoso in tutto il mondo": {
+"text": "Il Teatro alla Scala di Milano è famoso in tutto il mondo.",
+"levels": [
+"ap"
+]
+},
+"l'opera lirica è nata in italia e teatri come la scala di milano e il san carlo di napoli fondato nel 1737 sono famosi nel mondo il cinema italiano ha dato capolavori come ladri di biciclette la mostra del cinema di venezia esiste dal 1932 senza fondi pubblici e mecenatismo molti teatri chiuderebbero per questo il governo dovrebbe sostenere le arti": {
+"text": "L’opera lirica è nata in Italia e teatri come la Scala di Milano e il San Carlo di Napoli, fondato nel 1737, sono famosi nel mondo. Il cinema italiano ha dato capolavori come Ladri di biciclette; la Mostra del Cinema di Venezia esiste dal 1932. Senza fondi pubblici e mecenatismo, molti teatri chiuderebbero. Per questo il governo dovrebbe sostenere le arti.",
+"levels": [
+"ap"
+]
+},
+"l'intelligenza artificiale": {
+"text": "l’intelligenza artificiale",
+"levels": [
+"ap"
+]
+},
+"l'intelligenza artificiale cambierà molti lavori": {
+"text": "L’intelligenza artificiale cambierà molti lavori.",
+"levels": [
+"ap"
+]
+},
+"le energie rinnovabili": {
+"text": "le energie rinnovabili",
+"levels": [
+"ap"
+]
+},
+"le energie rinnovabili cresceranno in sicilia e in puglia": {
+"text": "Le energie rinnovabili cresceranno in Sicilia e in Puglia.",
+"levels": [
+"ap"
+]
+},
+"la transizione ecologica": {
+"text": "la transizione ecologica",
+"levels": [
+"ap"
+]
+},
+"la transizione ecologica richiederà molti investimenti": {
+"text": "La transizione ecologica richiederà molti investimenti.",
+"levels": [
+"ap"
+]
+},
+"il fotovoltaico": {
+"text": "il fotovoltaico",
+"levels": [
+"ap"
+]
+},
+"il fotovoltaico è conveniente al sud": {
+"text": "Il fotovoltaico è conveniente al sud.",
+"levels": [
+"ap"
+]
+},
+"la rete elettrica intelligente": {
+"text": "la rete elettrica intelligente",
+"levels": [
+"ap"
+]
+},
+"la rete elettrica intelligente ridurrà gli sprechi": {
+"text": "La rete elettrica intelligente ridurrà gli sprechi.",
+"levels": [
+"ap"
+]
+},
+"la digitalizzazione": {
+"text": "la digitalizzazione",
+"levels": [
+"ap"
+]
+},
+"la digitalizzazione è arrivata anche negli ospedali": {
+"text": "La digitalizzazione è arrivata anche negli ospedali.",
+"levels": [
+"ap"
+]
+},
+"il fascicolo sanitario elettronico": {
+"text": "il fascicolo sanitario elettronico",
+"levels": [
+"ap"
+]
+},
+"il fascicolo sanitario elettronico raccoglie la storia clinica": {
+"text": "Il fascicolo sanitario elettronico raccoglie la storia clinica.",
+"levels": [
+"ap"
+]
+},
+"la startup": {
+"text": "la startup",
+"levels": [
+"ap"
+]
+},
+"l'automazione": {
+"text": "l’automazione",
+"levels": [
+"ap"
+]
+},
+"l'automazione sostituirà alcuni mestieri": {
+"text": "L’automazione sostituirà alcuni mestieri.",
+"levels": [
+"ap"
+]
+},
+"il progresso tecnologico": {
+"text": "il progresso tecnologico",
+"levels": [
+"ap"
+]
+},
+"il progresso tecnologico non si fermerà": {
+"text": "Il progresso tecnologico non si fermerà.",
+"levels": [
+"ap"
+]
+},
+"la ricerca applicata": {
+"text": "la ricerca applicata",
+"levels": [
+"ap"
+]
+},
+"la ricerca applicata trasforma le idee in prodotti": {
+"text": "La ricerca applicata trasforma le idee in prodotti.",
+"levels": [
+"ap"
+]
+},
+"l'innovazione sostenibile": {
+"text": "l’innovazione sostenibile",
+"levels": [
+"ap"
+]
+},
+"l'innovazione sostenibile sarà la sfida del futuro": {
+"text": "L’innovazione sostenibile sarà la sfida del futuro.",
+"levels": [
+"ap"
+]
+},
+"i dati": {
+"text": "i dati",
+"levels": [
+"ap"
+]
+},
+"i dati saranno protetti meglio": {
+"text": "I dati saranno protetti meglio.",
+"levels": [
+"ap"
+]
+},
+"la bioinformatica": {
+"text": "la bioinformatica",
+"levels": [
+"ap"
+]
+},
+"la bioinformatica studia i dati del dna": {
+"text": "La bioinformatica studia i dati del DNA.",
+"levels": [
+"ap"
+]
+},
+"lo smartphone": {
+"text": "lo smartphone",
+"levels": [
+"ap"
+]
+},
+"lo smartphone sarà sempre più importante": {
+"text": "Lo smartphone sarà sempre più importante.",
+"levels": [
+"ap"
+]
+},
+"la connessione internet": {
+"text": "la connessione internet",
+"levels": [
+"ap"
+]
+},
+"la piattaforma digitale": {
+"text": "la piattaforma digitale",
+"levels": [
+"ap"
+]
+},
+"la piattaforma digitale offrirà corsi gratuiti": {
+"text": "La piattaforma digitale offrirà corsi gratuiti.",
+"levels": [
+"ap"
+]
+},
+"i social": {
+"text": "i social",
+"levels": [
+"ap"
+]
+},
+"i social cambieranno il modo di parlare": {
+"text": "I social cambieranno il modo di parlare.",
+"levels": [
+"ap"
+]
+},
+"la messaggistica istantanea": {
+"text": "la messaggistica istantanea",
+"levels": [
+"ap"
+]
+},
+"la messaggistica istantanea unisce le famiglie": {
+"text": "La messaggistica istantanea unisce le famiglie.",
+"levels": [
+"ap"
+]
+},
+"la bufala": {
+"text": "la bufala",
+"levels": [
+"ap"
+]
+},
+"il divario digitale": {
+"text": "il divario digitale",
+"levels": [
+"ap"
+]
+},
+"il divario digitale separa il nord dal sud": {
+"text": "Il divario digitale separa il nord dal sud.",
+"levels": [
+"ap"
+]
+},
+"la riservatezza": {
+"text": "la riservatezza",
+"levels": [
+"ap"
+]
+},
+"la riservatezza dei dati sarà una priorità": {
+"text": "La riservatezza dei dati sarà una priorità.",
+"levels": [
+"ap"
+]
+},
+"l'influencer": {
+"text": "l’influencer",
+"levels": [
+"ap"
+]
+},
+"l'influencer pubblicherà un video domani": {
+"text": "L’influencer pubblicherà un video domani.",
+"levels": [
+"ap"
+]
+},
+"lo spid": {
+"text": "lo SPID",
+"levels": [
+"ap"
+]
+},
+"con lo spid entrerai nei servizi pubblici online": {
+"text": "Con lo SPID entrerai nei servizi pubblici online.",
+"levels": [
+"ap"
+]
+},
+"condividere": {
+"text": "condividere",
+"levels": [
+"ap"
+]
+},
+"scaricare": {
+"text": "scaricare",
+"levels": [
+"ap"
+]
+},
+"verificare le fonti": {
+"text": "verificare le fonti",
+"levels": [
+"ap"
+]
+},
+"dovremo verificare le fonti prima di condividere": {
+"text": "Dovremo verificare le fonti prima di condividere.",
+"levels": [
+"ap"
+]
+},
+"da un lato dall'altro": {
+"text": "Da un lato… dall’altro…",
+"levels": [
+"ap"
+]
+},
+"vale la pena chiedersi se": {
+"text": "Vale la pena chiedersi se…",
+"levels": [
+"ap"
+]
+},
+"la ricerca scientifica": {
+"text": "la ricerca scientifica",
+"levels": [
+"ap"
+]
+},
+"la ricerca scientifica avrà più fondi": {
+"text": "La ricerca scientifica avrà più fondi.",
+"levels": [
+"ap"
+]
+},
+"la medicina preventiva": {
+"text": "la medicina preventiva",
+"levels": [
+"ap"
+]
+},
+"la medicina preventiva salva vite": {
+"text": "La medicina preventiva salva vite.",
+"levels": [
+"ap"
+]
+},
+"il tasso di positività": {
+"text": "il tasso di positività",
+"levels": [
+"ap"
+]
+},
+"il tasso di positività scenderà presto": {
+"text": "Il tasso di positività scenderà presto.",
+"levels": [
+"ap"
+]
+},
+"i dati epidemiologici": {
+"text": "i dati epidemiologici",
+"levels": [
+"ap"
+]
+},
+"i dati epidemiologici saranno pubblicati ogni giorno": {
+"text": "I dati epidemiologici saranno pubblicati ogni giorno.",
+"levels": [
+"ap"
+]
+},
+"la fermentazione": {
+"text": "la fermentazione",
+"levels": [
+"ap"
+]
+},
+"la fermentazione trasforma il latte in formaggio": {
+"text": "La fermentazione trasforma il latte in formaggio.",
+"levels": [
+"ap"
+]
+},
+"il disciplinare di produzione": {
+"text": "il disciplinare di produzione",
+"levels": [
+"ap"
+]
+},
+"il disciplinare di produzione protegge il parmigiano": {
+"text": "Il disciplinare di produzione protegge il Parmigiano.",
+"levels": [
+"ap"
+]
+},
+"il marchio dop": {
+"text": "il marchio DOP",
+"levels": [
+"ap"
+]
+},
+"il marchio dop garantisce l'origine": {
+"text": "Il marchio DOP garantisce l’origine.",
+"levels": [
+"ap"
+]
+},
+"la transizione energetica": {
+"text": "la transizione energetica",
+"levels": [
+"ap"
+]
+},
+"la transizione energetica cambierà le città": {
+"text": "La transizione energetica cambierà le città.",
+"levels": [
+"ap"
+]
+},
+"l'impatto ambientale": {
+"text": "l’impatto ambientale",
+"levels": [
+"ap"
+]
+},
+"l'impatto ambientale sarà ridotto": {
+"text": "L’impatto ambientale sarà ridotto.",
+"levels": [
+"ap"
+]
+},
+"la sostenibilità": {
+"text": "la sostenibilità",
+"levels": [
+"ap"
+]
+},
+"la sostenibilità guiderà le scelte future": {
+"text": "La sostenibilità guiderà le scelte future.",
+"levels": [
+"ap"
+]
+},
+"la comunicazione scientifica": {
+"text": "la comunicazione scientifica",
+"levels": [
+"ap"
+]
+},
+"la comunicazione scientifica deve essere chiara": {
+"text": "La comunicazione scientifica deve essere chiara.",
+"levels": [
+"ap"
+]
+},
+"l'energia geotermica": {
+"text": "l’energia geotermica",
+"levels": [
+"ap"
+]
+},
+"l'energia geotermica viene da larderello": {
+"text": "L’energia geotermica viene da Larderello.",
+"levels": [
+"ap"
+]
+},
+"la banda larga": {
+"text": "la banda larga",
+"levels": [
+"ap"
+]
+},
+"la banda larga arriverà nei piccoli paesi": {
+"text": "La banda larga arriverà nei piccoli paesi.",
+"levels": [
+"ap"
+]
+},
+"la telemedicina": {
+"text": "la telemedicina",
+"levels": [
+"ap"
+]
+},
+"la telemedicina aiuterà i pazienti lontani": {
+"text": "La telemedicina aiuterà i pazienti lontani.",
+"levels": [
+"ap"
+]
+},
+"il teleconsulto": {
+"text": "il teleconsulto",
+"levels": [
+"ap"
+]
+},
+"il teleconsulto farà risparmiare tempo": {
+"text": "Il teleconsulto farà risparmiare tempo.",
+"levels": [
+"ap"
+]
+},
+"la riqualificazione professionale": {
+"text": "la riqualificazione professionale",
+"levels": [
+"ap"
+]
+},
+"la riqualificazione professionale sarà necessaria": {
+"text": "La riqualificazione professionale sarà necessaria.",
+"levels": [
+"ap"
+]
+},
+"l'equità": {
+"text": "l’equità",
+"levels": [
+"ap"
+]
+},
+"l'equità sociale dipende dall'accesso": {
+"text": "L’equità sociale dipende dall’accesso.",
+"levels": [
+"ap"
+]
+},
+"il pnrr": {
+"text": "il PNRR",
+"levels": [
+"ap"
+]
+},
+"il pnrr finanzierà la banda larga": {
+"text": "Il PNRR finanzierà la banda larga.",
+"levels": [
+"ap"
+]
+},
+"l'ansia sociale": {
+"text": "l’ansia sociale",
+"levels": [
+"ap"
+]
+},
+"i social potrebbero aumentare l'ansia sociale": {
+"text": "I social potrebbero aumentare l’ansia sociale.",
+"levels": [
+"ap"
+]
+},
+"l'alfabetizzazione digitale": {
+"text": "l’alfabetizzazione digitale",
+"levels": [
+"ap"
+]
+},
+"l'alfabetizzazione digitale aiuterà gli anziani": {
+"text": "L’alfabetizzazione digitale aiuterà gli anziani.",
+"levels": [
+"ap"
+]
+},
+"i posti di lavoro": {
+"text": "i posti di lavoro",
+"levels": [
+"ap"
+]
+},
+"alcuni posti di lavoro spariranno": {
+"text": "Alcuni posti di lavoro spariranno.",
+"levels": [
+"ap"
+]
+},
+"l'accesso": {
+"text": "l’accesso",
+"levels": [
+"ap"
+]
+},
+"l'accesso alla rete dovrà essere per tutti": {
+"text": "L’accesso alla rete dovrà essere per tutti.",
+"levels": [
+"ap"
+]
+},
+"una startup di milano svilupperà l'app": {
+"text": "Una startup di Milano svilupperà l’app.",
+"levels": [
+"ap"
+]
+},
+"senza connessione internet non potrò lavorare": {
+"text": "Senza connessione internet non potrò lavorare.",
+"levels": [
+"ap"
+]
+},
+"quella notizia sarà una bufala": {
+"text": "Quella notizia sarà una bufala.",
+"levels": [
+"ap"
+]
+},
+"condividerò le foto con i nonni": {
+"text": "Condividerò le foto con i nonni.",
+"levels": [
+"ap"
+]
+},
+"scaricherò l'app stasera": {
+"text": "Scaricherò l’app stasera.",
+"levels": [
+"ap"
+]
+},
+"da un lato è utile dall'altro è pericoloso": {
+"text": "Da un lato è utile, dall’altro è pericoloso.",
+"levels": [
+"ap"
+]
+},
+"vale la pena chiedersi se i social ci aiutino": {
+"text": "Vale la pena chiedersi se i social ci aiutino.",
+"levels": [
+"ap"
+]
+},
+"tra qualche anno useremo le auto elettriche ogni giorno": {
+"text": "Tra qualche anno useremo le auto elettriche ogni giorno.",
+"levels": [
+"ap"
+]
+},
+"ho dimenticato il caricabatterie quindi il telefono si spegnerà presto": {
+"text": "Ho dimenticato il caricabatterie, quindi il telefono si spegnerà presto.",
+"levels": [
+"ap"
+]
+},
+"il medico ha detto di bere più acqua e di fare una passeggiata": {
+"text": "Il medico ha detto di bere più acqua e di fare una passeggiata.",
+"levels": [
+"ap"
+]
+},
+"la tecnologia ci aiuta ma non deve sostituire il contatto umano": {
+"text": "La tecnologia ci aiuta, ma non deve sostituire il contatto umano.",
+"levels": [
+"ap"
+]
+},
+"il human technopole di milano studierà il dna con l'intelligenza artificiale": {
+"text": "Il Human Technopole di Milano studierà il DNA con l’intelligenza artificiale.",
+"levels": [
+"ap"
+]
+},
+"a milano nell'area dell'expo 2015 c'è il human technopole un centro di ricerca su genomica e bioinformatica ricercatori di molti paesi lavoreranno sui dati per scoprire nuove cure intanto la sicilia e la puglia costruiranno nuovi impianti fotovoltaici e la transizione ecologica cambierà anche l'economia nasceranno startup e nuovi mestieri": {
+"text": "A Milano, nell’area dell’Expo 2015, c’è il Human Technopole, un centro di ricerca su genomica e bioinformatica. Ricercatori di molti paesi lavoreranno sui dati per scoprire nuove cure. Intanto la Sicilia e la Puglia costruiranno nuovi impianti fotovoltaici, e la transizione ecologica cambierà anche l’economia: nasceranno startup e nuovi mestieri.",
+"levels": [
+"ap"
+]
+},
+"domani condividerò le foto con i miei nonni su whatsapp": {
+"text": "Domani condividerò le foto con i miei nonni su WhatsApp.",
+"levels": [
+"ap"
+]
+},
+"in italia più del novanta per cento dei giovani usa lo smartphone ogni giorno whatsapp è il mezzo della famiglia i gruppi organizzano il pranzo della domenica da un lato i social uniscono le persone dall'altro diffondono bufale per questo in futuro dovremo verificare le fonti e siti come pagella politica e facta news ci aiuteranno": {
+"text": "In Italia più del novanta per cento dei giovani usa lo smartphone ogni giorno. WhatsApp è il mezzo della famiglia: i gruppi organizzano il pranzo della domenica. Da un lato i social uniscono le persone, dall’altro diffondono bufale. Per questo, in futuro, dovremo verificare le fonti, e siti come Pagella Politica e Facta.news ci aiuteranno.",
+"levels": [
+"ap"
+]
+},
+"rita levi montalcini ha vinto il nobel per la medicina nel 1986": {
+"text": "Rita Levi-Montalcini ha vinto il Nobel per la medicina nel 1986.",
+"levels": [
+"ap"
+]
+},
+"la scienza è anche in cucina per il parmigiano reggiano un prodotto dop la fermentazione e il disciplinare di produzione sono fondamentali a larderello in toscana l'energia geotermica funziona dal 1904 nel 1987 un referendum ha chiuso le centrali nucleari in futuro la transizione energetica ridurrà l'impatto ambientale ma i parchi eolici faranno discutere per il paesaggio": {
+"text": "La scienza è anche in cucina: per il Parmigiano Reggiano, un prodotto DOP, la fermentazione e il disciplinare di produzione sono fondamentali. A Larderello, in Toscana, l’energia geotermica funziona dal 1904. Nel 1987 un referendum ha chiuso le centrali nucleari. In futuro la transizione energetica ridurrà l’impatto ambientale, ma i parchi eolici faranno discutere per il paesaggio.",
+"levels": [
+"ap"
+]
+},
+"il pnrr porterà la banda larga nei piccoli paesi": {
+"text": "Il PNRR porterà la banda larga nei piccoli paesi.",
+"levels": [
+"ap"
+]
+},
+"il divario digitale divide l'italia il nord ha più connessioni mentre il sud e le isole ne hanno meno il pnrr finanzierà la banda larga e corsi di alfabetizzazione digitale la telemedicina aiuterà i pazienti lontani dagli ospedali ma l'automazione farà sparire alcuni posti di lavoro i sindacati chiederanno la riqualificazione professionale vale la pena chiedersi chi guadagnerà davvero dal progresso": {
+"text": "Il divario digitale divide l’Italia: il nord ha più connessioni, mentre il sud e le isole ne hanno meno. Il PNRR finanzierà la banda larga e corsi di alfabetizzazione digitale. La telemedicina aiuterà i pazienti lontani dagli ospedali, ma l’automazione farà sparire alcuni posti di lavoro: i sindacati chiederanno la riqualificazione professionale. Vale la pena chiedersi chi guadagnerà davvero dal progresso.",
+"levels": [
+"ap"
+]
+},
+"la maturità": {
+"text": "la maturità",
+"levels": [
+"ap"
+]
+},
+"studia con calma per la maturità": {
+"text": "Studia con calma per la maturità!",
+"levels": [
+"ap"
+]
+},
+"il liceo": {
+"text": "il liceo",
+"levels": [
+"ap"
+]
+},
+"scegli il liceo che ti piace": {
+"text": "Scegli il liceo che ti piace.",
+"levels": [
+"ap"
+]
+},
+"la laurea": {
+"text": "la laurea",
+"levels": [
+"ap"
+]
+},
+"finisci la laurea prima di partire": {
+"text": "Finisci la laurea prima di partire.",
+"levels": [
+"ap"
+]
+},
+"il tirocinio": {
+"text": "il tirocinio",
+"levels": [
+"ap"
+]
+},
+"il mercato del lavoro": {
+"text": "il mercato del lavoro",
+"levels": [
+"ap"
+]
+},
+"conosci il mercato del lavoro": {
+"text": "Conosci il mercato del lavoro.",
+"levels": [
+"ap"
+]
+},
+"la disoccupazione giovanile": {
+"text": "la disoccupazione giovanile",
+"levels": [
+"ap"
+]
+},
+"la disoccupazione giovanile è alta": {
+"text": "La disoccupazione giovanile è alta.",
+"levels": [
+"ap"
+]
+},
+"la fuga dei cervelli": {
+"text": "la fuga dei cervelli",
+"levels": [
+"ap"
+]
+},
+"la fuga dei cervelli preoccupa l'italia": {
+"text": "La fuga dei cervelli preoccupa l’Italia.",
+"levels": [
+"ap"
+]
+},
+"il precariato": {
+"text": "il precariato",
+"levels": [
+"ap"
+]
+},
+"il precariato non dà sicurezza": {
+"text": "Il precariato non dà sicurezza.",
+"levels": [
+"ap"
+]
+},
+"il curriculum": {
+"text": "il curriculum",
+"levels": [
+"ap"
+]
+},
+"fare domanda di lavoro": {
+"text": "fare domanda di lavoro",
+"levels": [
+"ap"
+]
+},
+"essere assunto": {
+"text": "essere assunto",
+"levels": [
+"ap"
+]
+},
+"la borsa di studio": {
+"text": "la borsa di studio",
+"levels": [
+"ap"
+]
+},
+"il concorso pubblico": {
+"text": "il concorso pubblico",
+"levels": [
+"ap"
+]
+},
+"prepara il concorso pubblico con cura": {
+"text": "Prepara il concorso pubblico con cura.",
+"levels": [
+"ap"
+]
+},
+"l'orientamento scolastico": {
+"text": "l’orientamento scolastico",
+"levels": [
+"ap"
+]
+},
+"vai all'orientamento scolastico": {
+"text": "Vai all’orientamento scolastico.",
+"levels": [
+"ap"
+]
+},
+"il dottorato": {
+"text": "il dottorato",
+"levels": [
+"ap"
+]
+},
+"il dottorato dura tre anni": {
+"text": "Il dottorato dura tre anni.",
+"levels": [
+"ap"
+]
+},
+"il telegiornale": {
+"text": "il telegiornale",
+"levels": [
+"ap"
+]
+},
+"guarda il telegiornale stasera": {
+"text": "Guarda il telegiornale stasera.",
+"levels": [
+"ap"
+]
+},
+"la rete televisiva": {
+"text": "la rete televisiva",
+"levels": [
+"ap"
+]
+},
+"la rete televisiva pubblica è la rai": {
+"text": "La rete televisiva pubblica è la RAI.",
+"levels": [
+"ap"
+]
+},
+"il palinsesto": {
+"text": "il palinsesto",
+"levels": [
+"ap"
+]
+},
+"leggi il palinsesto della settimana": {
+"text": "Leggi il palinsesto della settimana.",
+"levels": [
+"ap"
+]
+},
+"la trasmissione in diretta": {
+"text": "la trasmissione in diretta",
+"levels": [
+"ap"
+]
+},
+"segui la trasmissione in diretta": {
+"text": "Segui la trasmissione in diretta!",
+"levels": [
+"ap"
+]
+},
+"il quotidiano": {
+"text": "il quotidiano",
+"levels": [
+"ap"
+]
+},
+"leggi il quotidiano ogni mattina": {
+"text": "Leggi il quotidiano ogni mattina.",
+"levels": [
+"ap"
+]
+},
+"la testata giornalistica": {
+"text": "la testata giornalistica",
+"levels": [
+"ap"
+]
+},
+"quella testata giornalistica è molto seria": {
+"text": "Quella testata giornalistica è molto seria.",
+"levels": [
+"ap"
+]
+},
+"la piattaforma di streaming": {
+"text": "la piattaforma di streaming",
+"levels": [
+"ap"
+]
+},
+"guarda un film sulla piattaforma di streaming": {
+"text": "Guarda un film sulla piattaforma di streaming.",
+"levels": [
+"ap"
+]
+},
+"il podcast": {
+"text": "il podcast",
+"levels": [
+"ap"
+]
+},
+"andare in onda": {
+"text": "andare in onda",
+"levels": [
+"ap"
+]
+},
+"fare ascolti": {
+"text": "fare ascolti",
+"levels": [
+"ap"
+]
+},
+"l'alimentazione sana": {
+"text": "l’alimentazione sana",
+"levels": [
+"ap"
+]
+},
+"il regime alimentare": {
+"text": "il regime alimentare",
+"levels": [
+"ap"
+]
+},
+"i prodotti a chilometro zero": {
+"text": "i prodotti a chilometro zero",
+"levels": [
+"ap"
+]
+},
+"compra i prodotti a chilometro zero": {
+"text": "Compra i prodotti a chilometro zero.",
+"levels": [
+"ap"
+]
+},
+"la filiera corta": {
+"text": "la filiera corta",
+"levels": [
+"ap"
+]
+},
+"la filiera corta aiuta i contadini": {
+"text": "La filiera corta aiuta i contadini.",
+"levels": [
+"ap"
+]
+},
+"il sovrappeso": {
+"text": "il sovrappeso",
+"levels": [
+"ap"
+]
+},
+"il sovrappeso riguarda molti bambini": {
+"text": "Il sovrappeso riguarda molti bambini.",
+"levels": [
+"ap"
+]
+},
+"i disturbi alimentari": {
+"text": "i disturbi alimentari",
+"levels": [
+"ap"
+]
+},
+"parla dei disturbi alimentari con un adulto": {
+"text": "Parla dei disturbi alimentari con un adulto.",
+"levels": [
+"ap"
+]
+},
+"la convivialità": {
+"text": "la convivialità",
+"levels": [
+"ap"
+]
+},
+"la convivialità è il cuore della tavola italiana": {
+"text": "La convivialità è il cuore della tavola italiana.",
+"levels": [
+"ap"
+]
+},
+"l'etichetta nutrizionale": {
+"text": "l’etichetta nutrizionale",
+"levels": [
+"ap"
+]
+},
+"leggi l'etichetta nutrizionale": {
+"text": "Leggi l’etichetta nutrizionale.",
+"levels": [
+"ap"
+]
+},
+"i cibi ultra processati": {
+"text": "i cibi ultra-processati",
+"levels": [
+"ap"
+]
+},
+"evita i cibi ultra processati": {
+"text": "Evita i cibi ultra-processati.",
+"levels": [
+"ap"
+]
+},
+"il benessere": {
+"text": "il benessere",
+"levels": [
+"ap"
+]
+},
+"seguire una dieta equilibrata": {
+"text": "seguire una dieta equilibrata",
+"levels": [
+"ap"
+]
+},
+"sensibilizzare": {
+"text": "sensibilizzare",
+"levels": [
+"ap"
+]
+},
+"la cultura di massa": {
+"text": "la cultura di massa",
+"levels": [
+"ap"
+]
+},
+"la cultura di massa raggiunge tutti": {
+"text": "La cultura di massa raggiunge tutti.",
+"levels": [
+"ap"
+]
+},
+"il fenomeno mediatico": {
+"text": "il fenomeno mediatico",
+"levels": [
+"ap"
+]
+},
+"andare virale": {
+"text": "andare virale",
+"levels": [
+"ap"
+]
+},
+"il grande pubblico": {
+"text": "il grande pubblico",
+"levels": [
+"ap"
+]
+},
+"il grande pubblico ama le canzoni facili": {
+"text": "Il grande pubblico ama le canzoni facili.",
+"levels": [
+"ap"
+]
+},
+"la colonna sonora": {
+"text": "la colonna sonora",
+"levels": [
+"ap"
+]
+},
+"ascolta la colonna sonora del film": {
+"text": "Ascolta la colonna sonora del film.",
+"levels": [
+"ap"
+]
+},
+"il personaggio iconico": {
+"text": "il personaggio iconico",
+"levels": [
+"ap"
+]
+},
+"il tormentone dell'estate": {
+"text": "il tormentone dell’estate",
+"levels": [
+"ap"
+]
+},
+"questo è il tormentone dell'estate": {
+"text": "Questo è il tormentone dell’estate.",
+"levels": [
+"ap"
+]
+},
+"fare il botto": {
+"text": "fare il botto",
+"levels": [
+"ap"
+]
+},
+"essere sulla cresta dell'onda": {
+"text": "essere sulla cresta dell’onda",
+"levels": [
+"ap"
+]
+},
+"il tifoso": {
+"text": "il tifoso",
+"levels": [
+"ap"
+]
+},
+"il tifoso canta con la sua squadra": {
+"text": "Il tifoso canta con la sua squadra.",
+"levels": [
+"ap"
+]
+},
+"guarda la partita con noi": {
+"text": "Guarda la partita con noi!",
+"levels": [
+"ap"
+]
+},
+"il campionato": {
+"text": "il campionato",
+"levels": [
+"ap"
+]
+},
+"il campionato inizia a settembre": {
+"text": "Il campionato inizia a settembre.",
+"levels": [
+"ap"
+]
+},
+"segnare": {
+"text": "segnare",
+"levels": [
+"ap"
+]
+},
+"il pareggio": {
+"text": "il pareggio",
+"levels": [
+"ap"
+]
+},
+"la sconfitta": {
+"text": "la sconfitta",
+"levels": [
+"ap"
+]
+},
+"non temere la sconfitta": {
+"text": "Non temere la sconfitta.",
+"levels": [
+"ap"
+]
+},
+"allenarsi": {
+"text": "allenarsi",
+"levels": [
+"ap"
+]
+},
+"il ciclista": {
+"text": "il ciclista",
+"levels": [
+"ap"
+]
+},
+"il ciclista sale la montagna": {
+"text": "Il ciclista sale la montagna.",
+"levels": [
+"ap"
+]
+},
+"la passeggiata": {
+"text": "la passeggiata",
+"levels": [
+"ap"
+]
+},
+"la villeggiatura": {
+"text": "la villeggiatura",
+"levels": [
+"ap"
+]
+},
+"la villeggiatura dura tutto agosto": {
+"text": "La villeggiatura dura tutto agosto.",
+"levels": [
+"ap"
+]
+},
+"rilassarsi": {
+"text": "rilassarsi",
+"levels": [
+"ap"
+]
+},
+"staccare la spina": {
+"text": "staccare la spina",
+"levels": [
+"ap"
+]
+},
+"il patrimonio unesco": {
+"text": "il patrimonio UNESCO",
+"levels": [
+"ap"
+]
+},
+"il sovraffollamento turistico": {
+"text": "il sovraffollamento turistico",
+"levels": [
+"ap"
+]
+},
+"il sovraffollamento turistico preoccupa venezia": {
+"text": "Il sovraffollamento turistico preoccupa Venezia.",
+"levels": [
+"ap"
+]
+},
+"il turismo sostenibile": {
+"text": "il turismo sostenibile",
+"levels": [
+"ap"
+]
+},
+"scegli il turismo sostenibile": {
+"text": "Scegli il turismo sostenibile.",
+"levels": [
+"ap"
+]
+},
+"il turismo di massa": {
+"text": "il turismo di massa",
+"levels": [
+"ap"
+]
+},
+"il turismo di massa danneggia le città": {
+"text": "Il turismo di massa danneggia le città.",
+"levels": [
+"ap"
+]
+},
+"i flussi turistici": {
+"text": "i flussi turistici",
+"levels": [
+"ap"
+]
+},
+"bisogna controllare i flussi turistici": {
+"text": "Bisogna controllare i flussi turistici.",
+"levels": [
+"ap"
+]
+},
+"la stagione alta": {
+"text": "la stagione alta",
+"levels": [
+"ap"
+]
+},
+"evita la stagione alta": {
+"text": "Evita la stagione alta.",
+"levels": [
+"ap"
+]
+},
+"il borgo medievale": {
+"text": "il borgo medievale",
+"levels": [
+"ap"
+]
+},
+"l'agriturismo": {
+"text": "l’agriturismo",
+"levels": [
+"ap"
+]
+},
+"il cammino": {
+"text": "il cammino",
+"levels": [
+"ap"
+]
+},
+"vivere come un locale": {
+"text": "vivere come un locale",
+"levels": [
+"ap"
+]
+},
+"il turista mordi e fuggi": {
+"text": "il turista mordi e fuggi",
+"levels": [
+"ap"
+]
+},
+"fare le valigie": {
+"text": "fare le valigie",
+"levels": [
+"ap"
+]
+},
+"fai un tirocinio durante l'estate": {
+"text": "Fai un tirocinio durante l’estate.",
+"levels": [
+"ap"
+]
+},
+"scrivi un curriculum chiaro": {
+"text": "Scrivi un curriculum chiaro.",
+"levels": [
+"ap"
+]
+},
+"fai domanda di lavoro oggi stesso": {
+"text": "Fai domanda di lavoro oggi stesso.",
+"levels": [
+"ap"
+]
+},
+"sii paziente sarai assunto presto": {
+"text": "Sii paziente: sarai assunto presto.",
+"levels": [
+"ap"
+]
+},
+"chiedi una borsa di studio": {
+"text": "Chiedi una borsa di studio.",
+"levels": [
+"ap"
+]
+},
+"ascolta questo podcast in italiano": {
+"text": "Ascolta questo podcast in italiano.",
+"levels": [
+"ap"
+]
+},
+"il programma va in onda alle nove": {
+"text": "Il programma va in onda alle nove.",
+"levels": [
+"ap"
+]
+},
+"sanremo fa ascolti altissimi": {
+"text": "Sanremo fa ascolti altissimi.",
+"levels": [
+"ap"
+]
+},
+"scegli un'alimentazione sana": {
+"text": "Scegli un’alimentazione sana.",
+"levels": [
+"ap"
+]
+},
+"cambia il tuo regime alimentare": {
+"text": "Cambia il tuo regime alimentare.",
+"levels": [
+"ap"
+]
+},
+"pensa al tuo benessere": {
+"text": "Pensa al tuo benessere.",
+"levels": [
+"ap"
+]
+},
+"segui una dieta equilibrata": {
+"text": "Segui una dieta equilibrata.",
+"levels": [
+"ap"
+]
+},
+"sensibilizziamo i giovani con una campagna": {
+"text": "Sensibilizziamo i giovani con una campagna.",
+"levels": [
+"ap"
+]
+},
+"sanremo è un fenomeno mediatico": {
+"text": "Sanremo è un fenomeno mediatico.",
+"levels": [
+"ap"
+]
+},
+"il video è andato virale": {
+"text": "Il video è andato virale.",
+"levels": [
+"ap"
+]
+},
+"dylan dog è un personaggio iconico": {
+"text": "Dylan Dog è un personaggio iconico.",
+"levels": [
+"ap"
+]
+},
+"quel film ha fatto il botto": {
+"text": "Quel film ha fatto il botto.",
+"levels": [
+"ap"
+]
+},
+"il cantante è sulla cresta dell'onda": {
+"text": "Il cantante è sulla cresta dell’onda.",
+"levels": [
+"ap"
+]
+},
+"segna un gol marco": {
+"text": "Segna un gol, Marco!",
+"levels": [
+"ap"
+]
+},
+"la partita finisce in pareggio": {
+"text": "La partita finisce in pareggio.",
+"levels": [
+"ap"
+]
+},
+"allenati ogni giorno": {
+"text": "Allenati ogni giorno.",
+"levels": [
+"ap"
+]
+},
+"facciamo una passeggiata in centro": {
+"text": "Facciamo una passeggiata in centro.",
+"levels": [
+"ap"
+]
+},
+"rilassati un po'": {
+"text": "Rilassati un po’!",
+"levels": [
+"ap"
+]
+},
+"stacca la spina e riposati": {
+"text": "Stacca la spina e riposati.",
+"levels": [
+"ap"
+]
+},
+"visita un sito del patrimonio unesco": {
+"text": "Visita un sito del patrimonio UNESCO.",
+"levels": [
+"ap"
+]
+},
+"visita un borgo medievale": {
+"text": "Visita un borgo medievale.",
+"levels": [
+"ap"
+]
+},
+"dormi in un agriturismo": {
+"text": "Dormi in un agriturismo.",
+"levels": [
+"ap"
+]
+},
+"percorri un cammino a piedi": {
+"text": "Percorri un cammino a piedi.",
+"levels": [
+"ap"
+]
+},
+"vivi come un locale non come un turista": {
+"text": "Vivi come un locale, non come un turista.",
+"levels": [
+"ap"
+]
+},
+"non essere un turista mordi e fuggi": {
+"text": "Non essere un turista mordi e fuggi.",
+"levels": [
+"ap"
+]
+},
+"fai le valigie si parte": {
+"text": "Fai le valigie: si parte!",
+"levels": [
+"ap"
+]
+},
+"domani ho un colloquio di lavoro e devo preparare il curriculum": {
+"text": "Domani ho un colloquio di lavoro e devo preparare il curriculum.",
+"levels": [
+"ap"
+]
+},
+"stasera guardo una serie su netflix e poi leggo il giornale": {
+"text": "Stasera guardo una serie su Netflix e poi leggo il giornale.",
+"levels": [
+"ap"
+]
+},
+"non mangio carne ma mangio volentieri pesce e verdure": {
+"text": "Non mangio carne, ma mangio volentieri pesce e verdure.",
+"levels": [
+"ap"
+]
+},
+"questa canzone è il tormentone dell'estate la sentono tutti": {
+"text": "Questa canzone è il tormentone dell’estate: la sentono tutti!",
+"levels": [
+"ap"
+]
+},
+"domenica andiamo allo stadio a vedere la partita della nostra squadra": {
+"text": "Domenica andiamo allo stadio a vedere la partita della nostra squadra.",
+"levels": [
+"ap"
+]
+},
+"vorrei un biglietto per firenze andata e ritorno per domani mattina": {
+"text": "Vorrei un biglietto per Firenze, andata e ritorno, per domani mattina.",
+"levels": [
+"ap"
+]
+},
+"fai un tirocinio e scrivi un buon curriculum": {
+"text": "Fai un tirocinio e scrivi un buon curriculum!",
+"levels": [
+"ap"
+]
+},
+"l'università di bologna fondata nel 1088 è la più antica dell'occidente oggi per molti giovani il mercato del lavoro è difficile la disoccupazione giovanile e il precariato spingono migliaia di persone tra i venticinque e i trentaquattro anni verso regno unito germania e svizzera un consiglio a chi studia cerca un tirocinio chiedi una borsa di studio fai domanda di lavoro e non aspettare": {
+"text": "L’Università di Bologna, fondata nel 1088, è la più antica dell’Occidente. Oggi per molti giovani il mercato del lavoro è difficile: la disoccupazione giovanile e il precariato spingono migliaia di persone tra i venticinque e i trentaquattro anni verso Regno Unito, Germania e Svizzera. Un consiglio a chi studia: “Cerca un tirocinio, chiedi una borsa di studio, fai domanda di lavoro e non aspettare!”",
+"levels": [
+"ap"
+]
+},
+"guarda il festival di sanremo su rai 1 a febbraio": {
+"text": "Guarda il Festival di Sanremo su Rai 1 a febbraio!",
+"levels": [
+"ap"
+]
+},
+"la rai esiste dal 1954 mediaset è nata negli anni ottanta oggi raiplay netflix e disney cambiano il modo di guardare la televisione il festival di sanremo a febbraio fa ascolti enormi dieci milioni di spettatori ogni sera un amico ti direbbe leggi un quotidiano come il corriere della sera ascolta un podcast e guarda io capitano di matteo garrone": {
+"text": "La RAI esiste dal 1954; Mediaset è nata negli anni Ottanta. Oggi RaiPlay, Netflix e Disney+ cambiano il modo di guardare la televisione. Il Festival di Sanremo, a febbraio, fa ascolti enormi: dieci milioni di spettatori ogni sera. Un amico ti direbbe: “Leggi un quotidiano come Il Corriere della Sera, ascolta un podcast e guarda Io Capitano di Matteo Garrone!”",
+"levels": [
+"ap"
+]
+},
+"mangia verdure di stagione e compra prodotti a chilometro zero": {
+"text": "Mangia verdure di stagione e compra prodotti a chilometro zero!",
+"levels": [
+"ap"
+]
+},
+"la dieta mediterranea è patrimonio unesco dal 2010 lo slow food nasce nel 1989 con carlo petrini a bra in piemonte per sensibilizzare i giovani i nutrizionisti dicono leggi l'etichetta evita i cibi ultra processati privilegia i prodotti locali e siediti a tavola con la famiglia circa un bambino su cinque tra i sei e gli undici anni è in sovrappeso": {
+"text": "La dieta mediterranea è patrimonio UNESCO dal 2010. Lo Slow Food nasce nel 1989 con Carlo Petrini, a Bra, in Piemonte. Per sensibilizzare i giovani, i nutrizionisti dicono: “Leggi l’etichetta, evita i cibi ultra-processati, privilegia i prodotti locali e siediti a tavola con la famiglia!” Circa un bambino su cinque, tra i sei e gli undici anni, è in sovrappeso.",
+"levels": [
+"ap"
+]
+},
+"ascolta il tormentone dell'estate e balla con noi": {
+"text": "Ascolta il tormentone dell’estate e balla con noi!",
+"levels": [
+"ap"
+]
+},
+"ogni anno un tormentone domina l'estate e un video può diventare virale in poche ore a sanremo nel 2019 mahmood ha vinto con una canzone che mescola italiano e arabo nel 2023 ha vinto marco mengoni dylan dog creato da tiziano sclavi nel 1986 è un personaggio iconico dei fumetti se ami i fumetti vai a lucca comics games e porta un amico": {
+"text": "Ogni anno un tormentone domina l’estate e un video può diventare virale in poche ore. A Sanremo, nel 2019, Mahmood ha vinto con una canzone che mescola italiano e arabo; nel 2023 ha vinto Marco Mengoni. Dylan Dog, creato da Tiziano Sclavi nel 1986, è un personaggio iconico dei fumetti. Se ami i fumetti, vai a Lucca Comics & Games e porta un amico!",
+"levels": [
+"ap"
+]
+},
+"allenati ogni giorno e fai il tifo per la tua squadra": {
+"text": "Allenati ogni giorno e fai il tifo per la tua squadra!",
+"levels": [
+"ap"
+]
+},
+"il giro d'italia esiste dal 1909 e fausto coppi e gino bartali sono due miti del ciclismo a siena il palio divide la città in diciassette contrade di sera gli italiani fanno la passeggiata in centro e in estate molte famiglie vanno in villeggiatura per rilassarti stacca la spina esci prendi una boccata d'aria e vai al mare o in montagna": {
+"text": "Il Giro d’Italia esiste dal 1909 e Fausto Coppi e Gino Bartali sono due miti del ciclismo. A Siena il Palio divide la città in diciassette contrade. Di sera gli italiani fanno la passeggiata in centro, e in estate molte famiglie vanno in villeggiatura. Per rilassarti, stacca la spina: “Esci, prendi una boccata d’aria e vai al mare o in montagna!”",
+"levels": [
+"ap"
+]
+},
+"non essere un turista mordi e fuggi vivi come un locale": {
+"text": "Non essere un turista mordi e fuggi: vivi come un locale!",
+"levels": [
+"ap"
+]
+},
+"l'italia è tra i paesi più visitati del mondo e venezia riceve fino a duecentocinquantamila visitatori al giorno oggi ha meno di cinquantamila abitanti e dice venezia non è un museo per un turismo sostenibile evita la stagione alta visita un borgo come alberobello e percorri la via francigena un cammino di milleottocento chilometri verso roma vivi il viaggio con lentezza": {
+"text": "L’Italia è tra i paesi più visitati del mondo, e Venezia riceve fino a duecentocinquantamila visitatori al giorno: oggi ha meno di cinquantamila abitanti, e dice “Venezia non è un museo”. Per un turismo sostenibile, evita la stagione alta, visita un borgo come Alberobello e percorri la Via Francigena, un cammino di milleottocento chilometri verso Roma. Vivi il viaggio con lentezza!",
+"levels": [
+"ap"
+]
+},
+"la comunicazione globale": {
+"text": "la comunicazione globale",
+"levels": [
+"ap"
+]
+},
+"la comunicazione globale unisce paesi lontani": {
+"text": "La comunicazione globale unisce paesi lontani.",
+"levels": [
+"ap"
+]
+},
+"la rete digitale": {
+"text": "la rete digitale",
+"levels": [
+"ap"
+]
+},
+"la rete digitale ha cambiato la lingua": {
+"text": "La rete digitale ha cambiato la lingua.",
+"levels": [
+"ap"
+]
+},
+"l'itanglese": {
+"text": "l’itanglese",
+"levels": [
+"ap"
+]
+},
+"l'itanglese è comune sui social": {
+"text": "L’itanglese è comune sui social.",
+"levels": [
+"ap"
+]
+},
+"la diaspora italiana vive in tutto il mondo": {
+"text": "La diaspora italiana vive in tutto il mondo.",
+"levels": [
+"ap"
+]
+},
+"la tutela della lingua": {
+"text": "la tutela della lingua",
+"levels": [
+"ap"
+]
+},
+"la tutela della lingua è un tema serio": {
+"text": "La tutela della lingua è un tema serio.",
+"levels": [
+"ap"
+]
+},
+"il patrimonio linguistico": {
+"text": "il patrimonio linguistico",
+"levels": [
+"ap"
+]
+},
+"la società dante alighieri": {
+"text": "la Società Dante Alighieri",
+"levels": [
+"ap"
+]
+},
+"la società dante alighieri è nata nel 1889": {
+"text": "La Società Dante Alighieri è nata nel 1889.",
+"levels": [
+"ap"
+]
+},
+"l'accademia della crusca": {
+"text": "l’Accademia della Crusca",
+"levels": [
+"ap"
+]
+},
+"l'accademia della crusca studia l'italiano da secoli": {
+"text": "L’Accademia della Crusca studia l’italiano da secoli.",
+"levels": [
+"ap"
+]
+},
+"il gemellaggio": {
+"text": "il gemellaggio",
+"levels": [
+"ap"
+]
+},
+"il gemellaggio ha unito due città": {
+"text": "Il gemellaggio ha unito due città.",
+"levels": [
+"ap"
+]
+},
+"diffondere": {
+"text": "diffondere",
+"levels": [
+"ap"
+]
+},
+"raggiungere un pubblico globale": {
+"text": "raggiungere un pubblico globale",
+"levels": [
+"ap"
+]
+},
+"fare code switching": {
+"text": "fare code-switching",
+"levels": [
+"ap"
+]
+},
+"il cambiamento climatico": {
+"text": "il cambiamento climatico",
+"levels": [
+"ap"
+]
+},
+"il cambiamento climatico minaccia i ghiacciai": {
+"text": "Il cambiamento climatico minaccia i ghiacciai.",
+"levels": [
+"ap"
+]
+},
+"la siccità": {
+"text": "la siccità",
+"levels": [
+"ap"
+]
+},
+"nel 2022 la siccità ha colpito il nord": {
+"text": "Nel 2022 la siccità ha colpito il Nord.",
+"levels": [
+"ap"
+]
+},
+"l'alluvione": {
+"text": "l’alluvione",
+"levels": [
+"ap"
+]
+},
+"l'alluvione ha distrutto molte case": {
+"text": "L’alluvione ha distrutto molte case.",
+"levels": [
+"ap"
+]
+},
+"il dissesto idrogeologico": {
+"text": "il dissesto idrogeologico",
+"levels": [
+"ap"
+]
+},
+"il dissesto idrogeologico causa frane": {
+"text": "Il dissesto idrogeologico causa frane.",
+"levels": [
+"ap"
+]
+},
+"il ghiacciaio": {
+"text": "il ghiacciaio",
+"levels": [
+"ap"
+]
+},
+"il ghiacciaio della marmolada si è ridotto": {
+"text": "Il ghiacciaio della Marmolada si è ridotto.",
+"levels": [
+"ap"
+]
+},
+"l'italia ha investito nelle energie rinnovabili": {
+"text": "L’Italia ha investito nelle energie rinnovabili.",
+"levels": [
+"ap"
+]
+},
+"la transizione energetica è urgente": {
+"text": "La transizione energetica è urgente.",
+"levels": [
+"ap"
+]
+},
+"la biodiversità": {
+"text": "la biodiversità",
+"levels": [
+"ap"
+]
+},
+"la biodiversità alpina è fragile": {
+"text": "La biodiversità alpina è fragile.",
+"levels": [
+"ap"
+]
+},
+"l'impronta ecologica": {
+"text": "l’impronta ecologica",
+"levels": [
+"ap"
+]
+},
+"il consumo di suolo è cresciuto sulle coste": {
+"text": "Il consumo di suolo è cresciuto sulle coste.",
+"levels": [
+"ap"
+]
+},
+"la raccolta differenziata": {
+"text": "la raccolta differenziata",
+"levels": [
+"ap"
+]
+},
+"la raccolta differenziata è obbligatoria": {
+"text": "La raccolta differenziata è obbligatoria.",
+"levels": [
+"ap"
+]
+},
+"far fronte a": {
+"text": "far fronte a",
+"levels": [
+"ap"
+]
+},
+"sensibilizzare l'opinione pubblica": {
+"text": "sensibilizzare l’opinione pubblica",
+"levels": [
+"ap"
+]
+},
+"la memoria collettiva": {
+"text": "la memoria collettiva",
+"levels": [
+"ap"
+]
+},
+"la memoria collettiva non deve sparire": {
+"text": "La memoria collettiva non deve sparire.",
+"levels": [
+"ap"
+]
+},
+"il regime fascista": {
+"text": "il regime fascista",
+"levels": [
+"ap"
+]
+},
+"il regime fascista è durato vent'anni": {
+"text": "Il regime fascista è durato vent’anni.",
+"levels": [
+"ap"
+]
+},
+"la resistenza partigiana": {
+"text": "la Resistenza partigiana",
+"levels": [
+"ap"
+]
+},
+"la resistenza partigiana ha liberato l'italia": {
+"text": "La Resistenza partigiana ha liberato l’Italia.",
+"levels": [
+"ap"
+]
+},
+"il dopoguerra": {
+"text": "il dopoguerra",
+"levels": [
+"ap"
+]
+},
+"il giorno della memoria": {
+"text": "il Giorno della Memoria",
+"levels": [
+"ap"
+]
+},
+"il giorno della memoria è il 27 gennaio": {
+"text": "Il Giorno della Memoria è il 27 gennaio.",
+"levels": [
+"ap"
+]
+},
+"il 25 aprile": {
+"text": "il 25 aprile",
+"levels": [
+"ap"
+]
+},
+"il 25 aprile gli italiani ricordano la liberazione": {
+"text": "Il 25 aprile gli italiani ricordano la Liberazione.",
+"levels": [
+"ap"
+]
+},
+"il binario 21": {
+"text": "il Binario 21",
+"levels": [
+"ap"
+]
+},
+"fare i conti con il passato": {
+"text": "fare i conti con il passato",
+"levels": [
+"ap"
+]
+},
+"un paese deve fare i conti con il passato": {
+"text": "Un paese deve fare i conti con il passato.",
+"levels": [
+"ap"
+]
+},
+"tramandare la memoria": {
+"text": "tramandare la memoria",
+"levels": [
+"ap"
+]
+},
+"la testimonianza orale": {
+"text": "la testimonianza orale",
+"levels": [
+"ap"
+]
+},
+"la riconciliazione": {
+"text": "la riconciliazione",
+"levels": [
+"ap"
+]
+},
+"la riconciliazione è stata lenta": {
+"text": "La riconciliazione è stata lenta.",
+"levels": [
+"ap"
+]
+},
+"contestualizzare": {
+"text": "contestualizzare",
+"levels": [
+"ap"
+]
+},
+"bisogna contestualizzare ogni fonte": {
+"text": "Bisogna contestualizzare ogni fonte.",
+"levels": [
+"ap"
+]
+},
+"la politica pubblica": {
+"text": "la politica pubblica",
+"levels": [
+"ap"
+]
+},
+"la politica pubblica cambia la vita dei cittadini": {
+"text": "La politica pubblica cambia la vita dei cittadini.",
+"levels": [
+"ap"
+]
+},
+"la riforma strutturale": {
+"text": "la riforma strutturale",
+"levels": [
+"ap"
+]
+},
+"il fondo di coesione": {
+"text": "il fondo di coesione",
+"levels": [
+"ap"
+]
+},
+"il fondo di coesione aiuta il sud": {
+"text": "Il fondo di coesione aiuta il Sud.",
+"levels": [
+"ap"
+]
+},
+"il pnrr è nato dopo la pandemia": {
+"text": "Il PNRR è nato dopo la pandemia.",
+"levels": [
+"ap"
+]
+},
+"il green deal europeo": {
+"text": "il Green Deal europeo",
+"levels": [
+"ap"
+]
+},
+"il green deal europeo punta sul clima": {
+"text": "Il Green Deal europeo punta sul clima.",
+"levels": [
+"ap"
+]
+},
+"il richiedente asilo": {
+"text": "il richiedente asilo",
+"levels": [
+"ap"
+]
+},
+"il richiedente asilo ha aspettato mesi": {
+"text": "Il richiedente asilo ha aspettato mesi.",
+"levels": [
+"ap"
+]
+},
+"i flussi migratori": {
+"text": "i flussi migratori",
+"levels": [
+"ap"
+]
+},
+"i flussi migratori sono aumentati": {
+"text": "I flussi migratori sono aumentati.",
+"levels": [
+"ap"
+]
+},
+"stanziare fondi": {
+"text": "stanziare fondi",
+"levels": [
+"ap"
+]
+},
+"attuare una politica": {
+"text": "attuare una politica",
+"levels": [
+"ap"
+]
+},
+"attuare una politica richiede anni": {
+"text": "Attuare una politica richiede anni.",
+"levels": [
+"ap"
+]
+},
+"la sovranità nazionale": {
+"text": "la sovranità nazionale",
+"levels": [
+"ap"
+]
+},
+"la sovranità nazionale divide l'europa": {
+"text": "La sovranità nazionale divide l’Europa.",
+"levels": [
+"ap"
+]
+},
+"la burocrazia": {
+"text": "la burocrazia",
+"levels": [
+"ap"
+]
+},
+"la burocrazia ha rallentato il progetto": {
+"text": "La burocrazia ha rallentato il progetto.",
+"levels": [
+"ap"
+]
+},
+"trovare un equilibrio tra": {
+"text": "trovare un equilibrio tra",
+"levels": [
+"ap"
+]
+},
+"bisogna trovare un equilibrio tra economia e ambiente": {
+"text": "Bisogna trovare un equilibrio tra economia e ambiente.",
+"levels": [
+"ap"
+]
+},
+"il treno ad alta velocità": {
+"text": "il treno ad alta velocità",
+"levels": [
+"ap"
+]
+},
+"il treno ad alta velocità ha accorciato le distanze": {
+"text": "Il treno ad alta velocità ha accorciato le distanze.",
+"levels": [
+"ap"
+]
+},
+"il frecciarossa": {
+"text": "il Frecciarossa",
+"levels": [
+"ap"
+]
+},
+"ho preso il frecciarossa per milano": {
+"text": "Ho preso il Frecciarossa per Milano.",
+"levels": [
+"ap"
+]
+},
+"la pista ciclabile": {
+"text": "la pista ciclabile",
+"levels": [
+"ap"
+]
+},
+"il pendolare": {
+"text": "il pendolare",
+"levels": [
+"ap"
+]
+},
+"ogni giorno il pendolare prendeva il treno delle sei": {
+"text": "Ogni giorno il pendolare prendeva il treno delle sei.",
+"levels": [
+"ap"
+]
+},
+"il traghetto": {
+"text": "il traghetto",
+"levels": [
+"ap"
+]
+},
+"il traghetto per la sicilia è partito in ritardo": {
+"text": "Il traghetto per la Sicilia è partito in ritardo.",
+"levels": [
+"ap"
+]
+},
+"il divario nord sud": {
+"text": "il divario Nord-Sud",
+"levels": [
+"ap"
+]
+},
+"il divario nord sud riguarda anche i trasporti": {
+"text": "Il divario Nord-Sud riguarda anche i trasporti.",
+"levels": [
+"ap"
+]
+},
+"l'inquinamento atmosferico": {
+"text": "l’inquinamento atmosferico",
+"levels": [
+"ap"
+]
+},
+"l'inquinamento atmosferico era altissimo": {
+"text": "L’inquinamento atmosferico era altissimo.",
+"levels": [
+"ap"
+]
+},
+"la mobilità sostenibile": {
+"text": "la mobilità sostenibile",
+"levels": [
+"ap"
+]
+},
+"la mobilità sostenibile è il futuro": {
+"text": "La mobilità sostenibile è il futuro.",
+"levels": [
+"ap"
+]
+},
+"i ritardi": {
+"text": "i ritardi",
+"levels": [
+"ap"
+]
+},
+"i ritardi hanno stancato i viaggiatori": {
+"text": "I ritardi hanno stancato i viaggiatori.",
+"levels": [
+"ap"
+]
+},
+"il trasporto pubblico locale": {
+"text": "il trasporto pubblico locale",
+"levels": [
+"ap"
+]
+},
+"il trasporto pubblico locale funzionava male": {
+"text": "Il trasporto pubblico locale funzionava male.",
+"levels": [
+"ap"
+]
+},
+"il ponte sullo stretto": {
+"text": "il Ponte sullo Stretto",
+"levels": [
+"ap"
+]
+},
+"il ponte sullo stretto divide l'opinione pubblica": {
+"text": "Il Ponte sullo Stretto divide l’opinione pubblica.",
+"levels": [
+"ap"
+]
+},
+"prendere i mezzi pubblici": {
+"text": "prendere i mezzi pubblici",
+"levels": [
+"ap"
+]
+},
+"selfie è un prestito linguistico dall'inglese": {
+"text": "Selfie è un prestito linguistico dall’inglese.",
+"levels": [
+"ap"
+]
+},
+"l'italiano è un patrimonio linguistico": {
+"text": "L’italiano è un patrimonio linguistico.",
+"levels": [
+"ap"
+]
+},
+"la rai diffondeva l'italiano all'estero": {
+"text": "La RAI diffondeva l’italiano all’estero.",
+"levels": [
+"ap"
+]
+},
+"il video ha raggiunto un pubblico globale": {
+"text": "Il video ha raggiunto un pubblico globale.",
+"levels": [
+"ap"
+]
+},
+"molti giovani facevano code switching in chat": {
+"text": "Molti giovani facevano code-switching in chat.",
+"levels": [
+"ap"
+]
+},
+"ogni famiglia ha un'impronta ecologica": {
+"text": "Ogni famiglia ha un’impronta ecologica.",
+"levels": [
+"ap"
+]
+},
+"il governo ha fatto fronte alla crisi idrica": {
+"text": "Il governo ha fatto fronte alla crisi idrica.",
+"levels": [
+"ap"
+]
+},
+"i giovani sensibilizzavano l'opinione pubblica sul clima": {
+"text": "I giovani sensibilizzavano l’opinione pubblica sul clima.",
+"levels": [
+"ap"
+]
+},
+"nel dopoguerra molti emigravano": {
+"text": "Nel dopoguerra molti emigravano.",
+"levels": [
+"ap"
+]
+},
+"dal binario 21 partivano i treni dei deportati": {
+"text": "Dal Binario 21 partivano i treni dei deportati.",
+"levels": [
+"ap"
+]
+},
+"i nonni tramandavano la memoria ai nipoti": {
+"text": "I nonni tramandavano la memoria ai nipoti.",
+"levels": [
+"ap"
+]
+},
+"una testimonianza orale vale più di un libro": {
+"text": "Una testimonianza orale vale più di un libro.",
+"levels": [
+"ap"
+]
+},
+"il governo ha promesso una riforma strutturale": {
+"text": "Il governo ha promesso una riforma strutturale.",
+"levels": [
+"ap"
+]
+},
+"l'europa ha stanziato fondi per le regioni": {
+"text": "L’Europa ha stanziato fondi per le regioni.",
+"levels": [
+"ap"
+]
+},
+"milano ha costruito nuove piste ciclabili": {
+"text": "Milano ha costruito nuove piste ciclabili.",
+"levels": [
+"ap"
+]
+},
+"molti hanno preso i mezzi pubblici per risparmiare": {
+"text": "Molti hanno preso i mezzi pubblici per risparmiare.",
+"levels": [
+"ap"
+]
+},
+"mia nonna vive negli stati uniti ma parla ancora italiano con la famiglia": {
+"text": "Mia nonna vive negli Stati Uniti, ma parla ancora italiano con la famiglia.",
+"levels": [
+"ap"
+]
+},
+"l'estate scorsa c'è stata una forte siccità e molti agricoltori hanno perso il raccolto": {
+"text": "L’estate scorsa c’è stata una forte siccità e molti agricoltori hanno perso il raccolto.",
+"levels": [
+"ap"
+]
+},
+"mio nonno ricordava che durante la guerra non c'era pane per tutti": {
+"text": "Mio nonno ricordava che durante la guerra non c’era pane per tutti.",
+"levels": [
+"ap"
+]
+},
+"il governo deve trovare un equilibrio tra crescita economica e protezione dell'ambiente": {
+"text": "Il governo deve trovare un equilibrio tra crescita economica e protezione dell’ambiente.",
+"levels": [
+"ap"
+]
+},
+"per andare al lavoro prendo i mezzi pubblici perché il traffico è sempre terribile": {
+"text": "Per andare al lavoro prendo i mezzi pubblici perché il traffico è sempre terribile.",
+"levels": [
+"ap"
+]
+},
+"la società dante alighieri promuove l'italiano nel mondo": {
+"text": "La Società Dante Alighieri promuove l’italiano nel mondo.",
+"levels": [
+"ap"
+]
+},
+"la società dante alighieri è nata nel 1889 e ha diffuso l'italiano in tutto il mondo per milioni di italiani all'estero la lingua era un legame con la famiglia oggi i social media hanno cambiato tutto molti giovani mescolano italiano e inglese e fanno code switching in chat l'accademia della crusca ha spiegato che alcuni prestiti sono necessari altri no da un lato l'inglese raggiunge un pubblico globale dall'altro la tutela della lingua resta importante": {
+"text": "La Società Dante Alighieri è nata nel 1889 e ha diffuso l’italiano in tutto il mondo. Per milioni di italiani all’estero la lingua era un legame con la famiglia. Oggi i social media hanno cambiato tutto: molti giovani mescolano italiano e inglese e fanno code-switching in chat. L’Accademia della Crusca ha spiegato che alcuni prestiti sono necessari, altri no. Da un lato l’inglese raggiunge un pubblico globale; dall’altro la tutela della lingua resta importante.",
+"levels": [
+"ap"
+]
+},
+"il cambiamento climatico minaccia i ghiacciai delle alpi": {
+"text": "Il cambiamento climatico minaccia i ghiacciai delle Alpi.",
+"levels": [
+"ap"
+]
+},
+"nel luglio 2022 un grande seracco si è staccato dal ghiacciaio della marmolada gli scienziati hanno spiegato che il riscaldamento globale era la causa principale nello stesso anno la siccità ha colpito il nord e molti agricoltori hanno perso il raccolto da un lato il turismo dipendeva dalla neve dall'altro serviva ridurre le emissioni per questo i giovani hanno sensibilizzato l'opinione pubblica e hanno chiesto più energie rinnovabili": {
+"text": "Nel luglio 2022 un grande seracco si è staccato dal ghiacciaio della Marmolada. Gli scienziati hanno spiegato che il riscaldamento globale era la causa principale. Nello stesso anno la siccità ha colpito il Nord e molti agricoltori hanno perso il raccolto. Da un lato il turismo dipendeva dalla neve; dall’altro serviva ridurre le emissioni. Per questo i giovani hanno sensibilizzato l’opinione pubblica e hanno chiesto più energie rinnovabili.",
+"levels": [
+"ap"
+]
+},
+"dal 1922 al 1943 l'italia ha vissuto sotto il regime fascista durante la guerra la resistenza partigiana ha combattuto l'occupazione nazifascista e il 25 aprile 1945 è finita l'occupazione a milano dal binario 21 partivano i treni dei deportati oggi lì c'è il memoriale della shoah ogni 27 gennaio nel giorno della memoria i sopravvissuti raccontavano la loro testimonianza orale ai ragazzi per molti storici fare i conti con il passato è un dovere civico": {
+"text": "Dal 1922 al 1943 l’Italia ha vissuto sotto il regime fascista. Durante la guerra la Resistenza partigiana ha combattuto l’occupazione nazifascista, e il 25 aprile 1945 è finita l’occupazione. A Milano, dal Binario 21 partivano i treni dei deportati; oggi lì c’è il Memoriale della Shoah. Ogni 27 gennaio, nel Giorno della Memoria, i sopravvissuti raccontavano la loro testimonianza orale ai ragazzi. Per molti storici, fare i conti con il passato è un dovere civico.",
+"levels": [
+"ap"
+]
+},
+"il pnrr è un piano per rilanciare l'italia dopo la pandemia": {
+"text": "Il PNRR è un piano per rilanciare l’Italia dopo la pandemia.",
+"levels": [
+"ap"
+]
+},
+"dopo la pandemia l'unione europea ha stanziato molti fondi per l'italia con il pnrr il governo ha promesso riforme e ha scelto la transizione ecologica come priorità però la burocrazia ha rallentato molti progetti soprattutto nelle regioni con poca capacità amministrativa nello stesso tempo i flussi migratori hanno diviso l'opinione pubblica alcuni difendevano la sovranità nazionale altri chiedevano una redistribuzione europea secondo me è necessario trovare un equilibrio tra rapidità e controllo": {
+"text": "Dopo la pandemia l’Unione Europea ha stanziato molti fondi per l’Italia con il PNRR. Il governo ha promesso riforme e ha scelto la transizione ecologica come priorità. Però la burocrazia ha rallentato molti progetti, soprattutto nelle regioni con poca capacità amministrativa. Nello stesso tempo i flussi migratori hanno diviso l’opinione pubblica: alcuni difendevano la sovranità nazionale, altri chiedevano una redistribuzione europea. Secondo me, è necessario trovare un equilibrio tra rapidità e controllo.",
+"levels": [
+"ap"
+]
+},
+"il frecciarossa collega le grandi città italiane": {
+"text": "Il Frecciarossa collega le grandi città italiane.",
+"levels": [
+"ap"
+]
+},
+"con il treno ad alta velocità milano e roma sono diventate più vicine e molti pendolari hanno scelto il frecciarossa invece dell'aereo nel sud però il trasporto pubblico locale funzionava male i ritardi erano frequenti e le persone usavano soprattutto l'auto per arrivare in sicilia molti prendevano il traghetto e il ponte sullo stretto ha diviso l'opinione pubblica a milano dopo la pandemia le nuove piste ciclabili hanno ridotto un po' l'inquinamento atmosferico ma il divario nord sud resta grande": {
+"text": "Con il treno ad alta velocità, Milano e Roma sono diventate più vicine, e molti pendolari hanno scelto il Frecciarossa invece dell’aereo. Nel Sud, però, il trasporto pubblico locale funzionava male: i ritardi erano frequenti e le persone usavano soprattutto l’auto. Per arrivare in Sicilia molti prendevano il traghetto, e il Ponte sullo Stretto ha diviso l’opinione pubblica. A Milano, dopo la pandemia, le nuove piste ciclabili hanno ridotto un po’ l’inquinamento atmosferico, ma il divario Nord-Sud resta grande.",
+"levels": [
+"ap"
+]
+}
+}
