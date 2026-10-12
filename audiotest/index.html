@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BOH audio test</title>
+<style>
+  :root { --bg:#f6f1ea; --card:#fff; --ink:#1c2430; --accent:#2f6fed; --ok:#1c7c4d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:18px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; padding:20px 16px 40px; }
+  main { max-width:560px; margin:0 auto; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  p { margin:0 0 14px; }
+  .btn { display:block; width:100%; min-height:72px; margin:0 0 14px; padding:14px 18px; border:0; border-radius:16px; background:var(--accent); color:#fff; font:inherit; font-weight:800; text-align:left; cursor:pointer; }
+  .btn small { display:block; font-weight:600; opacity:.9; font-size:15px; }
+  .btn:active { transform:scale(.99); }
+  .note { background:var(--card); border-radius:14px; padding:14px 16px; margin-top:8px; font-size:16px; }
+  #log { margin-top:14px; font-size:15px; color:#445; min-height:20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Audio test</h1>
+  <p>Play each one. Tell Claude which you <b>hear on the TV or board</b>.</p>
+
+  <button class="btn" id="b1" type="button">1 · Voice now<small>The game's current Italian voice (text-to-speech)</small></button>
+  <button class="btn" id="b2" type="button">2 · Recorded clip<small>One real audio file (a short test melody)</small></button>
+  <button class="btn" id="b3" type="button">3 · Game sound<small>A coin ding like the game makes</small></button>
+
+  <div class="note">Tell Claude, for example: “all three”, “only 2”, “only 1 and 3”. Also say which device: iPhone Safari, iPhone Chrome, or Chromebook, and where it played: AirPlay TV, Promethean board, or Bluetooth speaker.</div>
+  <div id="log" role="status" aria-live="polite"></div>
+</main>
+
+<script src="../assets/bohvoice.js"></script>
+<script>
+(function () {
+  var log = document.getElementById('log');
+  function say(t) { try { log.textContent = t; } catch (e) {} }
+
+  // 1 · the game's own Italian voice (same function every level uses)
+  document.getElementById('b1').addEventListener('click', function () {
+    try {
+      if (window.BohVoice && BohVoice.speak) {
+        var u = BohVoice.speak('Ciao! Questo è un test audio. Mi senti?', { rate: 0.9 });
+        say(u ? 'Played: voice now.' : 'Voice not available on this device.');
+      } else { say('Voice code did not load.'); }
+    } catch (e) { say('Voice error.'); }
+  });
+
+  // 2 · a real recorded file through a normal audio element
+  var clip = new Audio('clip.mp3');
+  clip.preload = 'auto';
+  document.getElementById('b2').addEventListener('click', function () {
+    try {
+      clip.currentTime = 0;
+      var p = clip.play();
+      if (p && p.then) p.then(function () { say('Played: recorded clip.'); }, function () { say('The clip could not play.'); });
+      else say('Played: recorded clip.');
+    } catch (e) { say('Clip error.'); }
+  });
+
+  // 3 · a small generated sound, like the game's coin ding (Web Audio)
+  document.getElementById('b3').addEventListener('click', function () {
+    try {
+      var C = window.AudioContext || window.webkitAudioContext;
+      if (!C) { say('Game sounds are not supported here.'); return; }
+      var ctx = new C();
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(988, ctx.currentTime); o.frequency.setValueAtTime(1319, ctx.currentTime + 0.09);
+      g.gain.setValueAtTime(0.0001, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.35, ctx.currentTime + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
+      o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + 0.65);
+      say('Played: game sound.');
+    } catch (e) { say('Game sound error.'); }
+  });
+})();
+</script>
+</body>
+</html>
