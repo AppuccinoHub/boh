@@ -4,6 +4,9 @@
    1. Every time the page speaks Italian, it uses the best Italian voice found (Google / Microsoft / Apple natural voices first, never eSpeak when anything else exists),
       or the voice a student picked in the voice list (remembered on that computer).
    2. Very slow speech (below 0.7) is raised to 0.7 on Chromebooks and on online voices, because they turn into garbled robot noise when slowed more than that.
+   3. Recorded clips (added 2026-10-12): if a recording of the exact phrase exists in assets/audio/manifest.json, it is played as a normal audio file instead of the built-in voice.
+      Why: the built-in voice stays on the device's own speaker, so it is silent on AirPlay, Bluetooth and the Promethean board; a recorded file goes out like any other sound.
+      No recording for the phrase, or the clip cannot play: the built-in voice speaks, exactly as before.
    Nothing here changes any page's content. window.BohVoice.openPicker() shows the voice list; voices.html is the teacher's check page. */
 (function (W) {
   'use strict';
@@ -41,18 +44,74 @@
   function pick() { return chosen() || auto(); }
   function slowSensitive(v) { return CROS || !v || v.localService === false; }
 
+
+  /* ---------------------------------------------------------------- recorded clips (one shared player) */
+  var SRC = ''; try { SRC = (document.currentScript && document.currentScript.src) || ''; } catch (e) {}
+  var CLIPS = null, CBASE = '', clipEl = null, cur = null, unlocked = false;
+  var SILENT = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+  /* one spelling for every phrase: lower case, accents kept, punctuation and emoji dropped. assets/audio/README.md has the same rule for the script that makes the clips. */
+  function norm(t) {
+    try { return String(t || '').toLowerCase().normalize('NFC').replace(/[‘’]/g, "'").replace(/[^\p{L}\p{N}' ]/gu, ' ').replace(/\s+/g, ' ').trim(); }
+    catch (e) { return String(t || '').toLowerCase().replace(/\s+/g, ' ').trim(); }
+  }
+  function loadClips() {
+    try {
+      if (!SRC || !W.fetch) return;
+      var dir = SRC.split('?')[0].replace(/[^\/]*$/, ''), q = SRC.indexOf('?') > -1 ? SRC.slice(SRC.indexOf('?')) : '';
+      CBASE = dir + 'audio/';
+      W.fetch(CBASE + 'manifest.json' + q).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { if (j && j.clips) CLIPS = j.clips; }).catch(function () {});
+    } catch (e) {}
+  }
+  function el() { if (!clipEl) { try { clipEl = new Audio(); clipEl.preload = 'auto'; clipEl.setAttribute('playsinline', ''); } catch (e) { clipEl = null; } } return clipEl; }
+  /* iPhone Safari only lets an audio element play later, on its own, if it was started once by a tap: do that quietly on the first touch, key or click */
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    try { var a = el(); if (a) { a.src = SILENT; var p = a.play(); if (p && p.catch) p.catch(function () { unlocked = false; }); } } catch (e) {}
+  }
+  ['touchend', 'click', 'keydown'].forEach(function (ev) { try { document.addEventListener(ev, unlock, { capture: true, passive: true, once: true }); } catch (e) {} });
+  function fire(u, type, err) { try { var e = new Event(type); if (err) e.error = err; u.dispatchEvent(e); } catch (e2) {} }
+  function stopClip(err) { var u = cur; cur = null; try { if (clipEl) clipEl.pause(); } catch (e) {} if (u && err) fire(u, 'error', err); }
+  function hasClip(text) { return !!(CLIPS && CLIPS[norm(text)]); }
+  /* returns true when a recording is playing for this utterance; false means the caller should use the built-in voice */
+  function playClip(u, speakNative) {
+    if (!CLIPS || !u || u.__bohRaw || (u.lang && !/^it/i.test(u.lang))) return false;
+    var file = CLIPS[norm(u.text)]; if (!file) return false;
+    var a = el(); if (!a) return false;
+    if (cur) stopClip('interrupted');
+    cur = u;
+    var back = function () { if (cur === u) { cur = null; try { speakNative(u); } catch (e) {} } };
+    a.onended = function () { if (cur === u) { cur = null; fire(u, 'end'); } };
+    a.onerror = back;
+    try {
+      a.src = CBASE + file;
+      var r = (u.rate && u.rate > 0) ? u.rate : 1;
+      a.playbackRate = Math.min(1.3, Math.max(0.5, r / 0.92));
+      try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch (e) {}
+      if (typeof u.volume === 'number') a.volume = Math.min(1, Math.max(0, u.volume));
+      var p = a.play();
+      if (p && p.then) p.then(function () { if (cur === u) fire(u, 'start'); }, back);
+    } catch (e) { back(); }
+    return true;
+  }
+  loadClips();
+
   /* every Italian utterance, from any page or script, gets the shared voice and a safe minimum speed */
   if (S && W.SpeechSynthesis && W.SpeechSynthesis.prototype && !W.SpeechSynthesis.prototype.__bohVoice) {
-    var orig = W.SpeechSynthesis.prototype.speak;
+    var orig = W.SpeechSynthesis.prototype.speak, origCancel = W.SpeechSynthesis.prototype.cancel, nativeSpeak = function (u) { return orig.call(S, u); };
+    W.SpeechSynthesis.prototype.cancel = function () { try { if (cur) stopClip('canceled'); } catch (e) {} return origCancel.apply(this, arguments); };
     W.SpeechSynthesis.prototype.speak = function (u) {
+      try { if (playClip(u, function (x) { prepare(x); return orig.call(S, x); })) return; } catch (e) {}
+      prepare(u);
+      return orig.call(this, u);
+    };
+    function prepare(u) {
       try {
         if (u && !u.__bohRaw && (!u.lang || /^it/i.test(u.lang))) {
           var v = pick(); if (v) u.voice = v;
           if (slowSensitive(u.voice) && u.rate < MINRATE) u.rate = MINRATE;
         }
       } catch (e) {}
-      return orig.call(this, u);
-    };
+    }
     W.SpeechSynthesis.prototype.__bohVoice = true;
   }
 
@@ -125,7 +184,7 @@
   }
 
   W.BohVoice = {
-    pick: pick, auto: auto, list: italian, all: all, speak: speak, openPicker: openPicker, helpHtml: helpHtml, closePicker: closePicker,
+    pick: pick, auto: auto, hasClip: hasClip, norm: norm, list: italian, all: all, speak: speak, openPicker: openPicker, helpHtml: helpHtml, closePicker: closePicker,
     isRobotic: robotic, onlyRobotic: function () { var it = italian(); return !it.length || it.every(robotic); },
     cros: CROS, minRate: MINRATE, key: KEY
   };

@@ -1,0 +1,596 @@
+{
+"ti piace": {
+"text": "Ti piace…?",
+"levels": [
+"italiano2"
+]
+},
+"nuotare": {
+"text": "nuotare",
+"levels": [
+"italiano2"
+]
+},
+"fa caldo": {
+"text": "Fa caldo.",
+"levels": [
+"italiano2"
+]
+},
+"fa bel tempo": {
+"text": "Fa bel tempo.",
+"levels": [
+"italiano2"
+]
+},
+"quando è il tuo compleanno": {
+"text": "Quando è il tuo compleanno?",
+"levels": [
+"italiano2"
+]
+},
+"l'estate": {
+"text": "l’estate",
+"levels": [
+"italiano2"
+]
+},
+"mi piace": {
+"text": "mi piace",
+"levels": [
+"italiano2"
+]
+},
+"giocare a calcio": {
+"text": "giocare a calcio",
+"levels": [
+"italiano2"
+]
+},
+"ballare": {
+"text": "ballare",
+"levels": [
+"italiano2"
+]
+},
+"cantare": {
+"text": "cantare",
+"levels": [
+"italiano2"
+]
+},
+"guardare la tv": {
+"text": "guardare la TV",
+"levels": [
+"italiano2"
+]
+},
+"ascoltare musica": {
+"text": "ascoltare musica",
+"levels": [
+"italiano2"
+]
+},
+"andare in bici": {
+"text": "andare in bici",
+"levels": [
+"italiano2"
+]
+},
+"andare al cinema": {
+"text": "andare al cinema",
+"levels": [
+"italiano2"
+]
+},
+"camminare": {
+"text": "camminare",
+"levels": [
+"italiano2"
+]
+},
+"la partita": {
+"text": "la partita",
+"levels": [
+"italiano2"
+]
+},
+"la squadra": {
+"text": "la squadra",
+"levels": [
+"italiano2"
+]
+},
+"lo stadio": {
+"text": "lo stadio",
+"levels": [
+"italiano2"
+]
+},
+"il campeggio": {
+"text": "il campeggio",
+"levels": [
+"italiano2"
+]
+},
+"che tempo fa": {
+"text": "Che tempo fa?",
+"levels": [
+"italiano2"
+]
+},
+"fa freddo": {
+"text": "Fa freddo.",
+"levels": [
+"italiano2"
+]
+},
+"fa brutto tempo": {
+"text": "Fa brutto tempo.",
+"levels": [
+"italiano2"
+]
+},
+"c'è il sole": {
+"text": "C’è il sole.",
+"levels": [
+"italiano2"
+]
+},
+"c'è vento": {
+"text": "C’è vento.",
+"levels": [
+"italiano2"
+]
+},
+"piove": {
+"text": "Piove.",
+"levels": [
+"italiano2"
+]
+},
+"nevica": {
+"text": "Nevica.",
+"levels": [
+"italiano2"
+]
+},
+"è nuvoloso": {
+"text": "È nuvoloso.",
+"levels": [
+"italiano2"
+]
+},
+"l'ombrello": {
+"text": "l’ombrello",
+"levels": [
+"italiano2"
+]
+},
+"che giorno è oggi": {
+"text": "Che giorno è oggi?",
+"levels": [
+"italiano2"
+]
+},
+"il compleanno": {
+"text": "il compleanno",
+"levels": [
+"italiano2"
+]
+},
+"l'inverno": {
+"text": "l’inverno",
+"levels": [
+"italiano2"
+]
+},
+"la primavera": {
+"text": "la primavera",
+"levels": [
+"italiano2"
+]
+},
+"l'autunno": {
+"text": "l’autunno",
+"levels": [
+"italiano2"
+]
+},
+"domani": {
+"text": "domani",
+"levels": [
+"italiano2"
+]
+},
+"settembre": {
+"text": "settembre",
+"levels": [
+"italiano2"
+]
+},
+"dicembre": {
+"text": "dicembre",
+"levels": [
+"italiano2"
+]
+},
+"maggio": {
+"text": "maggio",
+"levels": [
+"italiano2"
+]
+},
+"giugno": {
+"text": "giugno",
+"levels": [
+"italiano2"
+]
+},
+"oggi": {
+"text": "oggi",
+"levels": [
+"italiano3"
+]
+},
+"oggi studio italiano": {
+"text": "Oggi studio italiano.",
+"levels": [
+"italiano3"
+]
+},
+"adesso": {
+"text": "adesso",
+"levels": [
+"italiano3"
+]
+},
+"adesso guardo la tv": {
+"text": "Adesso guardo la TV.",
+"levels": [
+"italiano3"
+]
+},
+"ogni giorno": {
+"text": "ogni giorno",
+"levels": [
+"italiano3"
+]
+},
+"ogni giorno faccio i compiti": {
+"text": "Ogni giorno faccio i compiti.",
+"levels": [
+"italiano3"
+]
+},
+"di solito": {
+"text": "di solito",
+"levels": [
+"italiano3"
+]
+},
+"di solito mangio a casa": {
+"text": "Di solito mangio a casa.",
+"levels": [
+"italiano3"
+]
+},
+"ieri": {
+"text": "ieri",
+"levels": [
+"italiano3"
+]
+},
+"ieri ho mangiato la pizza": {
+"text": "Ieri ho mangiato la pizza.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sera": {
+"text": "ieri sera",
+"levels": [
+"italiano3"
+]
+},
+"ieri sera sono uscito con marco": {
+"text": "Ieri sera sono uscito con Marco.",
+"levels": [
+"italiano3"
+]
+},
+"due giorni fa": {
+"text": "due giorni fa",
+"levels": [
+"italiano3"
+]
+},
+"due giorni fa ho visto un film": {
+"text": "Due giorni fa ho visto un film.",
+"levels": [
+"italiano3"
+]
+},
+"la settimana scorsa": {
+"text": "la settimana scorsa",
+"levels": [
+"italiano3"
+]
+},
+"la settimana scorsa abbiamo giocato a calcio": {
+"text": "La settimana scorsa abbiamo giocato a calcio.",
+"levels": [
+"italiano3"
+]
+},
+"domenica scorsa": {
+"text": "domenica scorsa",
+"levels": [
+"italiano3"
+]
+},
+"domenica scorsa sara è arrivata tardi": {
+"text": "Domenica scorsa Sara è arrivata tardi.",
+"levels": [
+"italiano3"
+]
+},
+"l'anno scorso": {
+"text": "l’anno scorso",
+"levels": [
+"italiano3"
+]
+},
+"l'anno scorso sono andata a roma": {
+"text": "L’anno scorso sono andata a Roma.",
+"levels": [
+"italiano3"
+]
+},
+"il weekend": {
+"text": "il weekend",
+"levels": [
+"italiano3"
+]
+},
+"il weekend vado al mare": {
+"text": "Il weekend vado al mare.",
+"levels": [
+"italiano3"
+]
+},
+"già": {
+"text": "già",
+"levels": [
+"italiano3"
+]
+},
+"ho già mangiato": {
+"text": "Ho già mangiato.",
+"levels": [
+"italiano3"
+]
+},
+"poi": {
+"text": "poi",
+"levels": [
+"italiano3"
+]
+},
+"ho mangiato e poi sono uscito": {
+"text": "Ho mangiato e poi sono uscito.",
+"levels": [
+"italiano3"
+]
+},
+"un'ora fa": {
+"text": "un’ora fa",
+"levels": [
+"italiano3"
+]
+},
+"un'ora fa ho telefonato a marco": {
+"text": "Un’ora fa ho telefonato a Marco.",
+"levels": [
+"italiano3"
+]
+},
+"ieri ho mangiato la pizza con la mia famiglia": {
+"text": "Ieri ho mangiato la pizza con la mia famiglia.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sono andata a napoli con la mia famiglia abbiamo visto il vesuvio e abbiamo mangiato una pizza oggi sono a casa e faccio i compiti adesso mia sorella guarda la tv": {
+"text": "Ieri sono andata a Napoli con la mia famiglia. Abbiamo visto il Vesuvio e abbiamo mangiato una pizza. Oggi sono a casa e faccio i compiti. Adesso mia sorella guarda la TV.",
+"levels": [
+"italiano3"
+]
+},
+"sempre": {
+"text": "sempre",
+"levels": [
+"italiano3"
+]
+},
+"da piccola giocavo sempre a calcio": {
+"text": "Da piccola giocavo sempre a calcio.",
+"levels": [
+"italiano3"
+]
+},
+"di solito mangiavamo a casa": {
+"text": "Di solito mangiavamo a casa.",
+"levels": [
+"italiano3"
+]
+},
+"ogni giorno andavo a scuola a piedi": {
+"text": "Ogni giorno andavo a scuola a piedi.",
+"levels": [
+"italiano3"
+]
+},
+"spesso": {
+"text": "spesso",
+"levels": [
+"italiano3"
+]
+},
+"spesso pioveva a napoli": {
+"text": "Spesso pioveva a Napoli.",
+"levels": [
+"italiano3"
+]
+},
+"da piccolo a": {
+"text": "da piccolo/a",
+"levels": [
+"italiano3"
+]
+},
+"mentre": {
+"text": "mentre",
+"levels": [
+"italiano3"
+]
+},
+"mentre dormivo ha suonato il telefono": {
+"text": "Mentre dormivo, ha suonato il telefono.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sono andata al mare": {
+"text": "Ieri sono andata al mare.",
+"levels": [
+"italiano3"
+]
+},
+"una volta": {
+"text": "una volta",
+"levels": [
+"italiano3"
+]
+},
+"una volta ho perso il telefono": {
+"text": "Una volta ho perso il telefono.",
+"levels": [
+"italiano3"
+]
+},
+"all'improvviso": {
+"text": "all’improvviso",
+"levels": [
+"italiano3"
+]
+},
+"all'improvviso è arrivato marco": {
+"text": "All’improvviso è arrivato Marco.",
+"levels": [
+"italiano3"
+]
+},
+"poi abbiamo mangiato un gelato": {
+"text": "Poi abbiamo mangiato un gelato.",
+"levels": [
+"italiano3"
+]
+},
+"a un certo punto": {
+"text": "a un certo punto",
+"levels": [
+"italiano3"
+]
+},
+"a un certo punto ha cominciato a piovere": {
+"text": "A un certo punto ha cominciato a piovere.",
+"levels": [
+"italiano3"
+]
+},
+"quando": {
+"text": "quando",
+"levels": [
+"italiano3"
+]
+},
+"quando sono arrivata pioveva": {
+"text": "Quando sono arrivata, pioveva.",
+"levels": [
+"italiano3"
+]
+},
+"faceva freddo": {
+"text": "faceva freddo",
+"levels": [
+"italiano3"
+]
+},
+"ieri faceva freddo ma siamo usciti": {
+"text": "Ieri faceva freddo, ma siamo usciti.",
+"levels": [
+"italiano3"
+]
+},
+"c'era": {
+"text": "c’era",
+"levels": [
+"italiano3"
+]
+},
+"c'era molta gente alla festa": {
+"text": "C’era molta gente alla festa.",
+"levels": [
+"italiano3"
+]
+},
+"è successo": {
+"text": "è successo",
+"levels": [
+"italiano3"
+]
+},
+"che cosa è successo": {
+"text": "Che cosa è successo?",
+"levels": [
+"italiano3"
+]
+},
+"l'anno scorso siamo andati in sicilia": {
+"text": "L’anno scorso siamo andati in Sicilia.",
+"levels": [
+"italiano3"
+]
+},
+"da piccola abitavo a roma": {
+"text": "Da piccola abitavo a Roma.",
+"levels": [
+"italiano3"
+]
+},
+"c'era molta gente alla festa ma all'improvviso è andata via la luce": {
+"text": "C’era molta gente alla festa, ma all’improvviso è andata via la luce.",
+"levels": [
+"italiano3"
+]
+},
+"ieri sera sono andata a una festa a casa di sofia c'era molta gente e la musica era altissima mentre ballavamo all'improvviso è andata via la luce tutti hanno riso e qualcuno ha acceso il telefono poi abbiamo mangiato la torta al buio": {
+"text": "Ieri sera sono andata a una festa a casa di Sofia. C’era molta gente e la musica era altissima. Mentre ballavamo, all’improvviso è andata via la luce! Tutti hanno riso e qualcuno ha acceso il telefono. Poi abbiamo mangiato la torta al buio.",
+"levels": [
+"italiano3"
+]
+},
+"da piccola andavo ogni estate dai nonni a napoli": {
+"text": "Da piccola andavo ogni estate dai nonni a Napoli.",
+"levels": [
+"italiano3"
+]
+},
+"da piccola andavo ogni estate dai nonni a napoli la nonna cucinava sempre la pasta e il nonno raccontava storie una volta durante una gita abbiamo perso il treno abbiamo aspettato due ore in stazione e poi siamo tornati a casa in autobus era una giornata lunga ma eravamo felici": {
+"text": "Da piccola andavo ogni estate dai nonni a Napoli. La nonna cucinava sempre la pasta e il nonno raccontava storie. Una volta, durante una gita, abbiamo perso il treno! Abbiamo aspettato due ore in stazione e poi siamo tornati a casa in autobus. Era una giornata lunga, ma eravamo felici.",
+"levels": [
+"italiano3"
+]
+}
+}
