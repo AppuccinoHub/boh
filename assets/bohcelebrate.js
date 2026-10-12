@@ -8,6 +8,7 @@
    With "reduce motion" on, it shows the end state at once (no falling coins, no bouncing).
    Reads only: the BC earned from the finish screen's own stats, the student's Boh from the page, the pun from BohPuns, the line from BohFinish.
    It never changes a score, price or saved progress. Nothing happens if those pieces are missing.
+   Teacher preview: add ?celebrate=30 to any level's address to play it at once with 30 BC (no lesson needed). Changes nothing.
    Created by Assunta Scotto, 2026. Not for redistribution. */
 (function () {
   try {
@@ -119,7 +120,7 @@
       var line = '';
       try { line = window.BohFinish ? window.BohFinish.line(window.BT_UNIT || (typeof BT_UNIT !== 'undefined' ? BT_UNIT : '')) : ''; } catch (e) {}
       if (!line) return;                       /* nothing to say: do nothing, never block the finish screen */
-      css(); done = false; earned = readEarned(); lastFocus = document.activeElement;
+      css(); done = false; earned = (typeof window.__bfcForce === 'number') ? window.__bfcForce : readEarned(); lastFocus = document.activeElement; window.__bfcForce = undefined;
       lineWords = line.split(' ');
       var pun = null; try { pun = window.BohPuns ? window.BohPuns.today() : null; } catch (e) {}
       el = document.createElement('div'); el.id = 'bfc'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', 'Lesson finished');
@@ -141,7 +142,7 @@
 
       /* the student's own Boh: a copy of the one already on the finish screen, scaled to 150px tall (smaller on short screens) */
       try {
-        var src = document.querySelector('.ls-boh .doll');
+        var src = document.querySelector('.ls-boh .doll') || document.querySelector('.doll');
         var slot = el.querySelector('.bfc-doll');
         if (src && slot) {
           var w = src.offsetWidth || 110, h = src.offsetHeight || 286;
@@ -198,6 +199,12 @@
       if (there && !wasThere) later(function () { if (document.querySelector('.ls-done')) play(); }, 350);
       wasThere = there;
     }, 300);
+
+    /* teacher preview: ?celebrate=30 */
+    try {
+      var pm = /[?&]celebrate=(\d{1,4})(&|$)/.exec(location.search);
+      if (pm) { window.__bfcForce = parseInt(pm[1], 10); setTimeout(function () { play(); }, 1800); }
+    } catch (e) {}
 
     window.BohCelebrate = { play: play, close: close };
   } catch (e) { try { console.warn('bohcelebrate', e); } catch (_) {} }
