@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<title>Parla con Prof · Interrogazioni</title>
+<!-- Boh · "Parla con Prof" IN-PERSON practice page (Interrogazioni · Oral Formative).
+     ONE standalone link for Italiano 2, 3, 4 and AP. Students practice the questions and answers, then wait for Prof. to call them up in class.
+     This page never records anything and is separate from the recording page on purpose.
+     Questions come from the same four files as the recording page (assets/parla-italiano2.js, -italiano3.js, -italiano4.js, -ap.js).
+     Add or edit a unit there and it shows up here automatically: the level and unit buttons are built from those files.
+     Each question may have "alt" versions; each student sees a stable, different pick, and "New set" re-rolls it.
+     Direct links: ?level=italiano3&unit=imp  (level: italiano2, italiano3, italiano4, ap).
+     Created by Assunta Scotto, 2026. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F7F4EE;--card:#fff;--bd:#D9D0BF;--tx:#0E2A5B;--mu:#4A5878;--ac:#0A7C7C;--onac:#fff;--navy:#0E2A5B;--onnavy:#fff;--chip:#fff;--note:#FFF3CF;--notebd:#E3C566}
+@media (prefers-color-scheme:dark){:root{--bg:#0C1421;--card:#151E2E;--bd:#2A3850;--tx:#E6ECF2;--mu:#A9B7CC;--ac:#35C6C6;--onac:#06201F;--navy:#E6ECF2;--onnavy:#0C1421;--chip:#151E2E;--note:#2A2410;--notebd:#8A6F1E}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.4;padding:calc(env(safe-area-inset-top,0px) + 18px) 18px calc(env(safe-area-inset-bottom,0px) + 40px)}
+main{max-width:980px;margin:0 auto}
+.k{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin:0 0 4px}
+h1{font:800 clamp(32px,7vw,48px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 6px}
+.sub{font-size:19px;font-weight:800;margin:0 0 12px}
+.sub span{color:var(--mu);font-weight:700}
+.lede{background:var(--card);border:2px solid var(--bd);border-radius:18px;padding:14px 18px;margin:0 0 18px;font-weight:700;font-size:18px}
+.lede b{color:var(--ac)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+.lab{font-size:14px;font-weight:800;color:var(--mu);margin:6px 0 8px}
+.chip{min-height:48px;padding:0 20px;border-radius:999px;border:2px solid var(--bd);background:var(--chip);color:var(--tx);font:800 17px/1 "Manrope",system-ui,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--navy);color:var(--onnavy);border-color:var(--navy)}
+.chip:focus-visible,.new:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.chip small{font-weight:700;opacity:.8;margin-left:6px}
+.qs{display:grid;gap:14px;margin:18px 0}
+@media (min-width:860px){.qs{grid-template-columns:repeat(3,1fr)}}
+.q{background:var(--card);border:2px solid var(--bd);border-radius:20px;padding:16px 18px}
+.q .n{font-size:15px;font-weight:800;color:var(--ac);margin:0 0 4px}
+.q .it{font:800 24px/1.2 "Bricolage Grotesque",system-ui,sans-serif;margin:0}
+.q .en{font-size:17px;color:var(--mu);margin:8px 0 0;padding-top:8px;border-top:2px solid var(--bd)}
+.note{background:var(--note);border:2px solid var(--notebd);border-radius:16px;padding:12px 16px;font-weight:700;font-size:16px;margin:0 0 14px}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:6px 0 0}
+.new{min-height:48px;padding:0 22px;border-radius:999px;border:2px solid var(--ac);background:transparent;color:var(--ac);font:800 17px/1 "Manrope",system-ui,sans-serif;cursor:pointer}
+.empty{background:var(--card);border:2px dashed var(--bd);border-radius:18px;padding:18px;font-weight:700;color:var(--mu)}
+footer{margin-top:28px;font-size:13px;color:var(--mu);font-weight:700}
+</style>
+</head>
+<body>
+<main>
+  <p class="k">BOH · Italiano</p>
+  <h1>Parla con Prof</h1>
+  <p class="sub">Interrogazioni <span>· Oral Formative</span></p>
+  <p class="lede"><b>Practice</b> the questions and answers. Then <b>wait for Prof. to call you up</b> in class.</p>
+
+  <div id="levels-l" class="lab">Level</div>
+  <div class="row" id="levels" role="group" aria-labelledby="levels-l"></div>
+  <div id="units-l" class="lab">Unit</div>
+  <div class="row" id="units" role="group" aria-labelledby="units-l"></div>
+
+  <div id="out"></div>
+  <footer>Created by Assunta Scotto, 2026</footer>
+</main>
+
+<script src="../assets/parla-italiano2.js?v=202610132000"></script>
+<script src="../assets/parla-italiano3.js?v=202610132000"></script>
+<script src="../assets/parla-italiano4.js?v=202610132000"></script>
+<script src="../assets/parla-ap.js?v=202610132000"></script>
+<script>
+(function (W, D) {
+  'use strict';
+  var LEVELS = [
+    { id: 'italiano2', name: 'Italiano 2', en: true },
+    { id: 'italiano3', name: 'Italiano 3', en: true },
+    { id: 'italiano4', name: 'Italiano 4', en: false },
+    { id: 'ap', name: 'AP', en: false }
+  ];
+  var SEEDKEY = 'boh_interr_seed_v1', DATA = W.BohParlaData || {}, st = { level: null, unit: null, seed: 1 };
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function units(lv) { var d = DATA[lv] || {}; return Object.keys(d).filter(function (u) { return d[u] && d[u].questions && d[u].questions.length; }); }
+  function levels() { return LEVELS.filter(function (l) { return units(l.id).length; }); }
+  function readSeed() { try { var v = parseInt(localStorage.getItem(SEEDKEY), 10); if (v > 0) return v; } catch (e) {} return newSeed(false); }
+  function newSeed(force) { var v = 1 + Math.floor(Math.random() * 2147483000); try { localStorage.setItem(SEEDKEY, String(v)); } catch (e) {} return v; }
+  function hash(str) { var h = 2166136261; for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } h ^= h >>> 16; h = Math.imul(h, 0x45d9f3b); h ^= h >>> 16; h = Math.imul(h, 0x45d9f3b); h ^= h >>> 16; return (h >>> 0); }
+  function pick(q, i) {
+    var pool = [{ it: q.it, en: q.en }].concat((q.alt || []).filter(function (a) { return a && a.it; }));
+    return pool[hash(st.seed + '|' + st.level + '|' + st.unit + '|' + i) % pool.length];
+  }
+  function levelInfo(id) { return LEVELS.filter(function (l) { return l.id === id; })[0]; }
+
+  function chips(el, items, cur, fn) {
+    el.innerHTML = items.map(function (x) {
+      return '<button type="button" class="chip" data-id="' + esc(x.id) + '" aria-pressed="' + (x.id === cur) + '">' + esc(x.label) + (x.small ? '<small>' + esc(x.small) + '</small>' : '') + '</button>';
+    }).join('');
+    Array.prototype.forEach.call(el.querySelectorAll('.chip'), function (b) { b.addEventListener('click', function () { fn(b.getAttribute('data-id')); }); });
+  }
+
+  function render() {
+    var ls = levels(), out = D.getElementById('out');
+    if (!ls.length) { out.innerHTML = '<p class="empty">No questions yet.</p>'; return; }
+    if (!ls.some(function (l) { return l.id === st.level; })) st.level = ls[0].id;
+    var us = units(st.level);
+    if (us.indexOf(st.unit) < 0) st.unit = us[0];
+    chips(D.getElementById('levels'), ls.map(function (l) { return { id: l.id, label: l.name }; }), st.level, function (id) { st.level = id; st.unit = null; render(); });
+    chips(D.getElementById('units'), us.map(function (u) { return { id: u, label: DATA[st.level][u].title || u }; }), st.unit, function (id) { st.unit = id; render(); });
+    var d = DATA[st.level][st.unit], lv = levelInfo(st.level) || { en: false };
+    var h = '<p class="note">On the day, Prof. may ask a <b>similar</b> question, not the exact one. Practice answering in your own words, in full sentences, out loud.</p><div class="qs">';
+    d.questions.forEach(function (q, i) {
+      var p = pick(q, i);
+      h += '<section class="q" aria-label="Question ' + (i + 1) + '"><p class="n">' + (i + 1) + '</p><p class="it" lang="it">' + esc(p.it) + '</p>' +
+        (lv.en && p.en ? '<p class="en" lang="en">' + esc(p.en) + '</p>' : '') + '</section>';
+    });
+    h += '</div><div class="bar"><button type="button" class="new" id="new">New set</button></div>';
+    out.innerHTML = h;
+    D.getElementById('new').addEventListener('click', function () { st.seed = newSeed(true); render(); });
+    try { var u = new URL(W.location.href); u.searchParams.set('level', st.level); u.searchParams.set('unit', st.unit); history.replaceState(null, '', u.toString()); } catch (e) {}
+  }
+
+  var qs = new URLSearchParams(W.location.search);
+  st.seed = readSeed();
+  if (qs.get('level')) st.level = qs.get('level');
+  if (qs.get('unit')) st.unit = qs.get('unit');
+  W.BohInterr = { render: render, state: st };
+  render();
+})(window, document);
+</script>
+</body>
+</html>
