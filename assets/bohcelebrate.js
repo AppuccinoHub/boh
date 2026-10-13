@@ -43,9 +43,9 @@
         '#bfc .bfc-count{align-self:center;display:flex;align-items:center;gap:6px;font:900 38px/1 system-ui,sans-serif;color:var(--text,#0E2A5B)}' +
         '#bfc .bfc-count img{height:40px;width:40px}' +
         '#bfc .bfc-count small{font:800 18px system-ui,sans-serif}' +
-        '#bfc .bfc-coin{position:absolute;top:-30px;width:30px;height:auto;z-index:2;opacity:0;pointer-events:none}' +
+        '#bfc .bfc-coin{position:absolute;top:-30px;width:30px;height:auto;z-index:0;opacity:0;pointer-events:none}' +
         '#bfc .bfc-coin.fall{animation:bfcFall .62s cubic-bezier(.45,.05,.7,.6) forwards}' +
-        '@keyframes bfcFall{0%{opacity:1;transform:translateY(0)}85%{opacity:1}100%{opacity:0;transform:translateY(var(--dy,120px)) scale(.7)}}' +
+        '@keyframes bfcFall{0%{opacity:1;transform:translateY(0)}85%{opacity:1}100%{opacity:0;transform:translateY(var(--dy,120px)) scale(.55)}}' +
         '#bfc .bfc-me{display:flex;align-items:center;justify-content:center;gap:12px;min-height:150px;opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s}' +
         '#bfc.bfc-on-me .bfc-me,#bfc.bfc-end .bfc-me{opacity:1;transform:none}' +
         '#bfc .bfc-doll{flex:none;position:relative}#bfc .bfc-doll .doll{display:block!important;animation:none!important}' +
@@ -168,8 +168,10 @@
         later(function () {
           if (!el) return;
           var c = document.createElement('img'); c.className = 'bfc-coin'; c.src = base + 'bc-coin.webp'; c.alt = '';
-          var sw = stage.clientWidth || 300, cx = sw / 2 - 13 + (Math.random() * 56 - 28);
-          c.style.left = cx + 'px'; c.style.top = '-30px'; c.style.setProperty('--dy', (stage.clientHeight * 0.75) + 'px');
+          /* aim at the purse itself: centred over its opening, falling until the coin is behind the purse's front (coins sit under the purse in the stacking order) */
+          var cw = 30, cl = chest ? chest.offsetLeft + chest.offsetWidth / 2 : (stage.clientWidth || 300) / 2, ch = chest ? chest.offsetHeight : 120, ct = chest ? chest.offsetTop : 20;
+          var cx = cl - cw / 2 + (Math.random() * 20 - 10);
+          c.style.left = cx + 'px'; c.style.top = '-30px'; c.style.setProperty('--dy', Math.max(40, ct + ch * 0.42 + 30) + 'px');
           stage.appendChild(c); c.classList.add('fall');
           later(function () { if (chest) { chest.classList.remove('hit'); void chest.offsetWidth; chest.classList.add('hit'); } if (c.parentNode) c.parentNode.removeChild(c); }, 600);
         }, 300 + i * (DUR / Math.max(1, nCoins)));
