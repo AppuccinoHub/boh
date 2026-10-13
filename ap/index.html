@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#E88A6C">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <style>/* boh-sa-v1 */html{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}</style>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/today.js?v=202610112330"></script><script src="../assets/bohui.js?v=202610121200"></script><script src="../assets/bohfinish.js?v=202610121400"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610121400" defer></script><script src="../assets/bohphone.js?v=202610111800"></script></head><body>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/today.js?v=202610112330"></script><script src="../assets/bohui.js?v=202610121200"></script><script src="../assets/bohfinish.js?v=202610121400"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610121400" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610111800"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -2604,7 +2604,7 @@
       <div style="display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:20px;text-align:center;">
         <sc-if value="{{paccoClosed}}" hint-placeholder-val="{{true}}">
           <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
-            <div class="{{faceWhoaCls}}"></div>
+            <div class="pacco-pre-boh"><div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div></div>
             <div class="display" style="font-size:40px;font-weight:800;line-height:1;">PACCO BOH!</div>
             <div style="font-size:15px;font-weight:700;color:var(--text-muted);">{{pendingTitle}}</div>
             <div class="icbig j-pacco shake" style="margin:10px 0;"></div>
@@ -2612,10 +2612,10 @@
           </div>
         </sc-if>
         <sc-if value="{{paccoOpen}}" hint-placeholder-val="{{false}}">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-            <div style="display:flex;align-items:center;gap:8px;"><div class="{{pFaceCls}}"></div><span style="font-size:16px;font-weight:800;">{{pReaction}}</span></div>
+          <div class="pacco-rev" data-rar="{{pRarity}}" style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div class="pacco-prof"><img src="../assets/guide/bust/clap.webp" alt=""><div class="pp-bub">Incredi-BOH-le!<small>Incredible!</small></div></div><div class="pacco-say">{{pReaction}}</div>
             <span class="pop" style="font-size:13px;font-weight:800;letter-spacing:.14em;color:#fff;background:{{pRarityColor}};padding:5px 14px;border-radius:999px;">{{pRarity}}</span>
-            <div style="display:flex;align-items:flex-end;justify-content:center;gap:14px;"><div class="{{pCls}} pop" style="{{pIco}}"></div><sc-if value="{{pWearable}}" hint-placeholder-val="{{false}}"><div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div></sc-if></div>
+            <div class="pacco-row" style="display:flex;align-items:flex-end;justify-content:center;gap:14px;"><div class="{{pCls}} pop" style="{{pIco}}"></div><div class="doll dS idle"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div></div>
             <div class="display pop" style="font-size:32px;font-weight:800;line-height:1.1;">{{pIt}}</div>
             <div style="font-size:16px;font-weight:700;color:var(--text-muted);">{{pEn}}</div>
             <div style="font-size:15px;line-height:1.5;max-width:340px;">{{pDesc}}</div>
@@ -5746,7 +5746,6 @@ class Component extends DCLogic {
         result.pRarity = 'RIMBORSO'; result.pRarityColor = '#6B7280'; result.pCls = 'icbig j-pacco';
         result.pIt = 'Hai tutto!'; result.pEn = 'You already own everything.'; result.pDesc = 'Here are ' + (s.paccoRefund || 50) + ' BC instead.'; result.pIco = '';
       }
-      result.pFaceCls = 'bf ' + (pit && pit.id === 'calzino' ? FACES[s.bohBase || 'm'].boh : FACES[s.bohBase || 'm'].happy);
       result.pReaction = pit && pit.id === 'calzino' ? (s.bohName || 'Boh') + ': \u201cBoh.\u201d' : (s.bohName || 'Boh') + ': \u201cMa dai!\u201d';
       result.hasBonusCard = !!s.paccoBonus;
       if (s.paccoBonus) { result.bCls = 'ic i-' + s.paccoBonus; result.bTitle = CARDS[s.paccoBonus].title; result.bText = CARDS[s.paccoBonus].text; }
