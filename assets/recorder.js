@@ -26,6 +26,10 @@
   function dbDel(k) { return openDb().then(function (db) { return new Promise(function (ok, no) { var t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).delete(k); t.oncomplete = ok; t.onerror = function () { no(t.error); }; }); }); }
   function setFlag(k, on) { try { if (on) localStorage.setItem(FLAG + k, '1'); else localStorage.removeItem(FLAG + k); } catch (e) {} }
   function has(k) { try { return localStorage.getItem(FLAG + k) === '1'; } catch (e) { return false; } }
+  /* "kept" is used only by the Parla con Prof skin (opt.skin === 'parla'): a take exists once recording stops, and is "kept" when the student taps Keep it */
+  var KEPT = 'boh_rec_kept_';
+  function setKept(k, on) { try { if (on) localStorage.setItem(KEPT + k, '1'); else localStorage.removeItem(KEPT + k); } catch (e) {} }
+  function kept(k) { try { return localStorage.getItem(KEPT + k) === '1'; } catch (e) { return false; } }
 
   function pickMime() {
     if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return '';
@@ -64,7 +68,8 @@
     var key = opt.key || 'take', maxSec = opt.maxSec || 60, label = opt.label || 'Your recording';
     var st = { phase: 'idle', url: '', mime: '', ms: 0, fails: 0, stream: null, mr: null, chunks: [], t0: 0, tick: 0, ac: null, an: null, raf: 0, peak: 0, quiet: 0, dead: false, stopWhy: '' };
 
-    function say(h) { el.innerHTML = '<div class="brec" role="group" aria-label="' + esc(label) + '">' + h + '</div>'; }
+    var parla = opt.skin === 'parla';
+    function say(h) { el.innerHTML = '<div class="' + (parla ? 'bpr' : 'brec') + '" role="group" aria-label="' + esc(label) + '">' + h + '</div>'; }
     function note(msg) { return '<p class="brec-note">' + msg + '</p>'; }
     function fmt(ms) { var s = Math.floor(ms / 1000); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
     function change() { var h = has(key); try { if (opt.onChange) opt.onChange(h); } catch (e) {} }
@@ -85,12 +90,36 @@
       else if (a === 'stop') { st.stopWhy = 'user'; stop(); }
       else if (a === 'again') { show('idle'); }
       else if (a === 'download') download();
+      else if (a === 'play') { try { var au = new Audio(st.url); au.play(); } catch (er) {} }
+      else if (a === 'keep') { setKept(key, true); show('kept'); change(); }
+      else if (a === 'nowork') { esca('manual'); }
       else if (a === 'delete') { dbDel(key).then(function () {}, function () {}); setFlag(key, false); freeUrl(); change(); show('idle'); }
     }
     function freeUrl() { if (st.url) { try { URL.revokeObjectURL(st.url); } catch (e) {} st.url = ''; } }
 
+    function showParla(ph, extra) {
+      var tot = fmt(maxSec * 1000);
+      if (ph === 'idle') {
+        say('<div class="bpr-row"><button class="bpr-rec" data-r="start" type="button" aria-label="Record"><i></i></button><div class="bpr-side"><span class="bpr-time">0:00 / ' + tot + '</span></div></div>' +
+          '<button class="bpr-link" data-r="nowork" type="button">Mic not working?</button>');
+      } else if (ph === 'rec') {
+        say('<div class="bpr-row"><button class="bpr-rec on" data-r="stop" type="button" aria-label="Stop recording"><i></i></button><div class="bpr-side"><div class="bpr-meter" aria-hidden="true"><i id="brec-m"></i></div><span class="bpr-time" id="brec-t">0:00 / ' + tot + '</span></div></div>' +
+          '<div id="brec-q"></div><p class="bpr-hint">Recording… press the red button to stop.</p>');
+      } else if (ph === 'have') {
+        say('<div class="bpr-row2"><button class="bpr-b" data-r="play" type="button">▶ Listen</button><button class="bpr-b ghost" data-r="again" type="button">Again</button></div>' +
+          '<button class="bpr-keep" data-r="keep" type="button">✓ Keep it</button>' + (extra || ''));
+      } else if (ph === 'kept') {
+        say('<div class="bpr-kept">✓ Kept on this device</div>' +
+          '<div class="bpr-row2"><button class="bpr-b" data-r="play" type="button">Ascolta</button><button class="bpr-b ghost" data-r="again" type="button">Di nuovo</button></div>' +
+          '<button class="bpr-dl" data-r="download" type="button">Download</button>' + (extra || ''));
+      } else if (ph === 'bad') {
+        say(extra + '<button class="bpr-keep try" data-r="start" type="button">Try again</button>');
+      }
+    }
+
     function show(ph, extra) {
       st.phase = ph;
+      if (parla) { showParla(ph, extra); bind(); return; }
       if (ph === 'idle') {
         say('<h3>' + esc(label) + '</h3>' +
           '<p>Press <b>Record</b> and read your sentences out loud. You can record again as many times as you want.</p>' +
@@ -128,6 +157,7 @@
         return fail('unsupported', 'This browser cannot record inside the game.');
       }
       st.chunks = []; st.peak = 0; st.quiet = 0; st.stopWhy = '';
+      if (parla) { setKept(key, false); change(); }
       navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
         if (st.dead) { stream.getTracks().forEach(function (t) { t.stop(); }); return; }
         st.stream = stream;
@@ -162,7 +192,7 @@
         st.t0 = Date.now();
         try { mr.start(1000); } catch (e) { return fail('unsupported', 'This browser cannot record inside the game.'); }
         st.tick = setInterval(function () {
-          var ms = Date.now() - st.t0, t = el.querySelector('#brec-t'); if (t) t.textContent = fmt(ms);
+          var ms = Date.now() - st.t0, t = el.querySelector('#brec-t'); if (t) t.textContent = fmt(ms) + (parla ? ' / ' + fmt(maxSec * 1000) : '');
           var q = el.querySelector('#brec-q');
           if (st.an && ms > 3000 && st.peak < 0.02 && q) q.innerHTML = '<div class="brec-warn">I cannot hear you yet. Speak louder or move closer to the microphone.</div>';
           else if (q && q.firstChild && st.peak >= 0.02) q.innerHTML = '';
@@ -202,7 +232,7 @@
       dbGet(key).then(function (rec) {
         if (st.dead || !rec || !rec.chunks || !rec.chunks.length || st.phase !== 'idle') return;
         st.mime = rec.mime; st.blob = new Blob(rec.chunks, { type: rec.mime }); st.url = URL.createObjectURL(st.blob); st.ms = rec.ms || 0;
-        show('have');
+        show(parla && kept(key) ? 'kept' : 'have');
       }, function () {});
     } else {
       // a take that was cut off (page closed while recording) can still be played
@@ -215,5 +245,18 @@
     return { destroy: function () { st.dead = true; try { if (st.mr) { st.mr.onstop = null; st.mr.ondataavailable = null; if (st.mr.state !== 'inactive') st.mr.stop(); } } catch (e) {} cleanup(); freeUrl(); } };
   }
 
-  window.BohRecorder = { mount: mount, has: has };
+  /* Download a saved take by key without mounting a recorder (used by the Parla con Prof "Registrato!" screen). */
+  function downloadKey(k, opt) {
+    return dbGet(k).then(function (rec) {
+      if (!rec || !rec.chunks || !rec.chunks.length) return false;
+      var d = new Date(), ds = d.getFullYear() + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2);
+      var url = URL.createObjectURL(new Blob(rec.chunks, { type: rec.mime }));
+      var a = document.createElement('a'); a.href = url; a.download = 'Boh-' + who(opt) + '-' + k + '-' + ds + '.' + extOf(rec.mime);
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { a.remove(); try { URL.revokeObjectURL(url); } catch (e) {} }, 1000);
+      return true;
+    }, function () { return false; });
+  }
+
+  window.BohRecorder = { mount: mount, has: has, kept: kept, downloadKey: downloadKey };
 })();
