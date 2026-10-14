@@ -107,4 +107,7 @@ html body.bf-sheet .ls-card .ls-actions .ls-btn2 { background: none; border: 0; 
   html body [data-screen="play"] .play-col .fb-dock .tip-box b, html body [data-screen="play"] .play-col .fb-dock .bb-trick b { font-size: 20px !important; }
   html body [data-screen="play"] .play-col .fb-dock .tip-box span, html body [data-screen="play"] .play-col .fb-dock .bb-trick span { font-size: 17px !important; }
 }
+html body [data-screen="lesson"] .wmark { display: none !important; }
+@media (max-width: 700px) { html body [data-screen="lesson"] .wrap { padding-top: 8px !important; padding-bottom: 10px !important; gap: 10px !important; } html body .ls { gap: 10px !important; } }
+html body .ls .lc.h { text-transform: none !important; letter-spacing: 0 !important; overflow-wrap: anywhere; }
 /* /boh-fit-v3 */

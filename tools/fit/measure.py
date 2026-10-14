@@ -41,7 +41,7 @@ def seed(key, unit):
     return ("(function(){try{localStorage.setItem('boh_profile_v1',JSON.stringify({bohBase:'m',bohName:'Gia'}));"
             "localStorage.setItem(%s,JSON.stringify({unit:%s,bohBase:'m',bohName:'Gia'}));localStorage.setItem('boh_break_off','1');}catch(e){}})();" % (json.dumps(key), json.dumps(unit)))
 
-CLEAN = "(function(){try{BohCelebrate.close()}catch(e){};['bohBreak','bfc','bcel'].forEach(function(i){var b=document.getElementById(i);if(b)b.remove()});try{btTipTimer(null)}catch(e){}})()"
+CLEAN = "(function(){try{BohCelebrate.close()}catch(e){};var pb=document.querySelector('.pop-ov button');if(pb)pb.click();['bohBreak','bfc','bcel'].forEach(function(i){var b=document.getElementById(i);if(b)b.remove()});try{btTipTimer(null)}catch(e){}})()"
 
 def lesson_item(pg, types, nth=0):
     """open the first lesson item of one of the given types; returns description or None"""

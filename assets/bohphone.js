@@ -85,22 +85,27 @@
   function paging(root) {
     var card = q('.ls-card', root); if (!card) return false;
     var acts = q('.ls-actions', card), pager = q('.bf-pager', card);
-    var kids = [].filter.call(card.children, function (c) { return c !== acts && c !== pager && !c.classList.contains('ls-kick') && !c.classList.contains('ls-top'); });
-    var blocks = [];
-    kids.forEach(function (c) {   /* the Learn screen is one big block: split it into its own parts */
-      if (c.tagName === 'SC-IF' || c.children.length > 1 && !c.matches('.ls-fc,.ls-phone,.ls-chart,.ls-opts,.ls-sent,.ls-tricks,.ls-spia,.ls-uses,.ls-qs,.ls-checks')) [].forEach.call(c.children, function (g) { blocks.push(g); });
-      else blocks.push(c);
-    });
-    blocks = blocks.filter(function (b) { return b.offsetHeight > 0 || b.classList.contains('bf-later'); });
-    if (blocks.length < 2) return false;
-    blocks.forEach(function (b) { b.classList.remove('bf-later'); });
     if (pager) pager.remove();
     if (acts) acts.style.display = '';
-    /* how much room the screen has for the blocks */
-    var room = W.innerHeight - 16 - (acts ? acts.offsetHeight + 14 : 0);
-    var pages = [[]], used = blocks[0].getBoundingClientRect().top, start = used;
+    [].forEach.call(card.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); });
+    var room = W.innerHeight - 12 - Math.max(acts ? acts.offsetHeight + 14 : 0, 66);
+    var top0 = null;
+    function split(list, depth) {   /* a part taller than the room is split into its own parts (two levels deep at most) */
+      var out = [];
+      list.forEach(function (c) {
+        if (c === acts || c.classList.contains('ls-kick')) return;
+        if (!c.offsetHeight) return;
+        if (top0 === null) top0 = c.getBoundingClientRect().top;
+        if (depth < 2 && c.children.length > 1 && c.offsetHeight > (room - top0) * 0.6) out = out.concat(split([].slice.call(c.children), depth + 1));
+        else out.push(c);
+      });
+      return out;
+    }
+    var blocks = split([].slice.call(card.children), 0);
+    if (blocks.length < 2) return false;
+    var pages = [[]], used = top0, start = top0;
     blocks.forEach(function (b) {
-      var h = b.offsetHeight + 12;
+      var h = b.getBoundingClientRect().height + 10;
       if (pages[pages.length - 1].length && used + h > room) { pages.push([]); used = start; }
       pages[pages.length - 1].push(b); used += h;
     });
@@ -108,7 +113,7 @@
     var key = (W.__game && W.__game.state ? W.__game.state.lsCur + ':' + W.__game.state.lsI : '') + ':' + blocks.length;
     if (page.key !== key) page = { key: key, n: 0 };
     if (page.n >= pages.length) page.n = pages.length - 1;
-    pages.forEach(function (p, i) { p.forEach(function (b) { b.classList.toggle('bf-later', i !== page.n); }); });
+    pages.forEach(function (p, i) { p.forEach(function (b) { if (i !== page.n) b.classList.add('bf-later'); }); });
     var last = page.n === pages.length - 1;
     if (acts) acts.style.display = last ? '' : 'none';
     var pg = D.createElement('div'); pg.className = 'bf-pager';
@@ -136,6 +141,8 @@
       var bh = boh(root);
       /* reset */
       root.style.width = ''; setZoom(root, 1); if (bh) { setZoom(bh, 1); bh.classList.remove('bf-noboh'); }
+      var st0 = q('.ls-boh', root); if (st0) st0.classList.remove('bf-noboh');
+      if (s === 'lesson') { var pgr = q('.bf-pager', root); if (pgr) pgr.remove(); [].forEach.call(root.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); var ac = q('.ls-card .ls-actions', root); if (ac) ac.style.display = ''; }
       var bh0 = bh && vis(bh) ? bh.getBoundingClientRect().height : 0;
       if (over() <= 1) {
         /* room to spare: grow everything together, then Boh a little more */
@@ -150,10 +157,13 @@
           var emin = Math.min(1, BOHMIN / bh0);
           if (search(emin, 1, function (v) { setZoom(bh, v); return over() <= 1; }) === null) {
             setZoom(bh, emin);
-            if (isQuestion(root)) bh.classList.add('bf-noboh');
+            if (isQuestion(root)) { bh.classList.add('bf-noboh'); var st1 = q('.ls-boh', root); if (st1 && over() > 1) st1.classList.add('bf-noboh'); }
           }
         }
         if (over() > 1 && s === 'lesson') paging(root);
+        /* last resort: Boh and the speech bubble step aside, and the parts are laid out again */
+        var stage = q('.ls-boh', root);
+        if (over() > 1 && stage) { stage.classList.add('bf-noboh'); if (s === 'lesson') paging(root); }
       }
     } catch (e) { try { console.warn('boh-fit-v3', e); } catch (_) {} }
     busy = false; skip = true; Promise.resolve().then(function () { skip = false; });   /* ignore the changes this step made itself */
