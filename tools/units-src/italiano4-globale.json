@@ -1,0 +1,196 @@
+{
+  "level": "italiano4",
+  "key": "globale",
+  "guideUnit": 2,
+  "proficiency": "Intermediate Mid",
+  "title": "Unità 9 · La globalizzazione",
+  "tab": "Globalizzazione",
+  "tabSub": "UNITÀ 9",
+  "eyebrow": "ITALIANO 4 · UNITÀ 9",
+  "question": "How is the world connected, and what would I have done differently?",
+  "words": "(l'immigrazione, avrei voluto, sto ascoltando)",
+  "workingOn": "global issues, immigration, and music that mixes cultures",
+  "canDo": [
+    "I can talk about artists from other countries.",
+    "I can talk about current events and global issues.",
+    "I can compare immigration in Italy and in the US.",
+    "I can analyze a song and its cultural influences."
+  ],
+  "culture": "For about a century, millions of Italians emigrated, many of them to the United States. Since the late 1900s Italy has also become a country where people from other countries come to live, and new Italian music often mixes Italian with other languages and rhythms. Italy, like every UN member, signed the Agenda 2030, a plan with 17 goals for a fairer and more sustainable world.",
+  "vocab": [
+    { "group": "Il mondo globale", "words": [
+      ["la globalizzazione", "globalization"],
+      ["l'immigrazione", "immigration"],
+      ["l'integrazione", "integration"],
+      ["l'immigrato / l'immigrata", "the immigrant"],
+      ["emigrare", "to emigrate"],
+      ["accogliere", "to welcome, to take in"],
+      ["la cittadinanza", "citizenship"],
+      ["il confine", "the border"],
+      ["il pregiudizio", "prejudice"],
+      ["la diversità", "diversity"]
+    ]},
+    { "group": "L'attualità", "words": [
+      ["l'attualità", "current events"],
+      ["la povertà", "poverty"],
+      ["l'ambiente", "the environment"],
+      ["il cambiamento climatico", "climate change"],
+      ["l'uguaglianza", "equality"],
+      ["lo sviluppo sostenibile", "sustainable development"],
+      ["l'obiettivo", "the goal"]
+    ]},
+    { "group": "La musica senza confini", "words": [
+      ["il testo", "the lyrics"],
+      ["il ritmo", "the rhythm"],
+      ["mescolare", "to mix"],
+      ["l'influenza", "the influence"],
+      ["le origini", "roots, origins"]
+    ]}
+  ],
+  "grammar": {
+    "head": "Condizionale passato = avrei/sarei + past participle (avrei fatto, sarei andato/a). Gerundio = -ando / -endo (parlando, facendo).",
+    "verbs": ["parlare", "andare"],
+    "rows": [
+      ["io", ["avrei parl", "ato"], ["sarei and", "ato/a"]],
+      ["tu", ["avresti parl", "ato"], ["saresti and", "ato/a"]],
+      ["lui/lei", ["avrebbe parl", "ato"], ["sarebbe and", "ato/a"]],
+      ["noi", ["avremmo parl", "ato"], ["saremmo and", "ati/e"]],
+      ["voi", ["avreste parl", "ato"], ["sareste and", "ati/e"]],
+      ["loro", ["avrebbero parl", "ato"], ["sarebbero and", "ati/e"]]
+    ],
+    "tricks": [
+      "Use the condizionale passato for what you would have done but didn't: Avrei voluto, ma non ho potuto.",
+      "Same helper as the passato prossimo, so essere verbs agree: Giulia sarebbe andata.",
+      "After ha detto che, it shows a future seen from the past: Ha detto che sarebbe venuto.",
+      "Gerundio: -are → -ando, -ere/-ire → -endo (fare → facendo); stare + gerundio = right now: sto leggendo."
+    ],
+    "chips": ["Avrei voluto …, ma …", "Sarei andato/a, ma …", "Al tuo posto, avrei …", "Sto ascoltando …"]
+  },
+  "sentences": [
+    ["Avrei voluto vedere il concerto, ma non avevo i biglietti.", "I would have liked to see the concert, but I didn't have tickets."],
+    ["Sarei andata alla manifestazione, ma ero malata.", "I would have gone to the demonstration, but I was sick."],
+    ["Al tuo posto, avrei ascoltato la canzone prima di giudicare.", "In your place, I would have listened to the song before judging."],
+    ["Sto leggendo le notizie sull'ambiente.", "I'm reading the news about the environment."],
+    ["Ascoltando questa canzone, sento l'influenza della musica araba.", "Listening to this song, I hear the influence of Arabic music."],
+    ["Molti italiani sono emigrati in America per lavoro.", "Many Italians emigrated to America for work."],
+    ["Imparando la lingua, l'integrazione è più facile.", "By learning the language, integration is easier."],
+    ["Mio nonno ha detto che sarebbe tornato in Italia.", "My grandfather said he would go back to Italy."],
+    ["Non bisogna fare di tutta l'erba un fascio.", "You shouldn't lump everything together."],
+    ["L'Agenda 2030 ha diciassette obiettivi.", "The 2030 Agenda has seventeen goals."],
+    ["Stiamo parlando di povertà e di uguaglianza.", "We're talking about poverty and equality."],
+    ["Avremmo dovuto proteggere l'ambiente prima.", "We should have protected the environment sooner."]
+  ],
+  "forms": [
+    { "prompt": "io + parlare (condizionale passato)", "answer": "avrei parlato", "alts": [], "traps": ["parlerei", "sarei parlato"],
+      "why": "parlare takes avere: avrei + parlato.", "trick": ["avere + participio", "Conditional of avere + past participle: avrei parlato."] },
+    { "prompt": "tu (Marco) + andare (condizionale passato)", "answer": "saresti andato", "alts": [], "traps": ["avresti andato", "andresti"],
+      "why": "andare takes essere: saresti + andato.", "trick": ["essere verbs", "Movement verbs use essere: saresti andato."] },
+    { "prompt": "lei + fare (condizionale passato)", "answer": "avrebbe fatto", "alts": [], "traps": ["farebbe", "avrebbe facuto"],
+      "why": "fare → fatto, with avere: avrebbe fatto.", "trick": ["fatto", "fare has the irregular participle fatto."] },
+    { "prompt": "noi (Luca e Paolo) + venire (condizionale passato)", "answer": "saremmo venuti", "alts": [], "traps": ["avremmo venuto", "saremmo venuto"],
+      "why": "venire takes essere; noi (boys) → venuti.", "trick": ["Agreement", "With essere, the participle agrees: venuti."] },
+    { "prompt": "loro + volere (condizionale passato)", "answer": "avrebbero voluto", "alts": [], "traps": ["vorrebbero", "avrebbero volato"],
+      "why": "volere → voluto, with avere: avrebbero voluto.", "trick": ["voluto", "Avrebbero voluto = they would have wanted."] },
+    { "prompt": "voi + dovere (condizionale passato)", "answer": "avreste dovuto", "alts": [], "traps": ["sareste dovuto", "avreste doveto"],
+      "why": "dovere → dovuto, with avere: avreste dovuto.", "trick": ["should have", "Avreste dovuto = you all should have."] },
+    { "prompt": "io (Sara) + partire (condizionale passato)", "answer": "sarei partita", "alts": [], "traps": ["avrei partito", "sarei partito"],
+      "why": "partire takes essere; Sara → partita.", "trick": ["Feminine", "Sara is female, so the participle ends in -a."] },
+    { "prompt": "gerundio di parlare", "answer": "parlando", "alts": [], "traps": ["parlendo", "parlato"],
+      "why": "-are → -ando: parlando.", "trick": ["-ando", "-are verbs: cut -are, add -ando."] },
+    { "prompt": "gerundio di fare", "answer": "facendo", "alts": [], "traps": ["fando", "faccendo"],
+      "why": "fare uses the old stem fac-: facendo.", "trick": ["fac-", "fare → facendo, like facevo."] },
+    { "prompt": "gerundio di dire", "answer": "dicendo", "alts": [], "traps": ["dindo", "direndo"],
+      "why": "dire uses the stem dic-: dicendo.", "trick": ["dic-", "dire → dicendo, like dicevo."] },
+    { "prompt": "io + stare + ascoltare", "answer": "sto ascoltando", "alts": [], "traps": ["sto ascoltato", "sono ascoltando"],
+      "why": "stare + gerundio: sto ascoltando.", "trick": ["stare, not essere", "Right now = stare + -ando/-endo."] },
+    { "prompt": "noi + stare + leggere", "answer": "stiamo leggendo", "alts": [], "traps": ["stiamo letto", "siamo leggendo"],
+      "why": "stiamo + leggendo (-ere → -endo).", "trick": ["-endo", "-ere verbs: leggere → leggendo."] }
+  ],
+  "fill": [
+    { "text": "Io ___ al concerto, ma non avevo i biglietti.", "answers": ["sarei andato", "sarei andata"], "cue": "andare",
+      "hint": "I would have gone: s… a…", "why": "andare takes essere: sarei andato (boy) or sarei andata (girl)." },
+    { "text": "Al tuo posto, io ___ il testo prima di giudicare.", "answers": ["avrei letto"], "cue": "leggere",
+      "hint": "I would have read: a… l…", "why": "leggere → letto, with avere: avrei letto." },
+    { "text": "Marta ha detto che ___ alle otto.", "answers": ["sarebbe arrivata"], "cue": "arrivare",
+      "hint": "She said she would arrive: s… a…", "why": "Future seen from the past: sarebbe arrivata (Marta → -a)." },
+    { "text": "Loro ___ aiutare, ma non avevano tempo.", "answers": ["avrebbero voluto"], "cue": "volere",
+      "hint": "They would have liked to: a… v…", "why": "volere with avere: avrebbero voluto." },
+    { "text": "Noi ___ proteggere l'ambiente prima.", "answers": ["avremmo dovuto"], "cue": "dovere",
+      "hint": "We should have: a… d…", "why": "dovere with avere: avremmo dovuto." },
+    { "text": "In questo momento io ___ le notizie.", "answers": ["sto leggendo"], "cue": "stare + leggere",
+      "hint": "I am reading right now: s… l…", "why": "stare + gerundio: sto leggendo." },
+    { "text": "___ l'italiano, mio padre si è integrato più facilmente.", "answers": ["Imparando"], "cue": "imparare",
+      "hint": "By learning: I…", "why": "Gerundio of imparare: imparando (-are → -ando)." },
+    { "text": "Che cosa ___ facendo i ragazzi?", "answers": ["stanno"], "cue": "stare",
+      "hint": "What are the kids doing: s…", "why": "loro + stare = stanno + facendo." }
+  ],
+  "read": {
+    "title": "Mahmood e la canzone «Soldi»",
+    "passage": [
+      ["Alessandro Mahmoud, in arte Mahmood, è nato a Milano nel 1992.", "Alessandro Mahmoud, known as Mahmood, was born in Milan in 1992."],
+      ["Sua madre è sarda e suo padre è egiziano.", "His mother is Sardinian and his father is Egyptian."],
+      ["Nel 2019 ha vinto il Festival di Sanremo con la canzone «Soldi».", "In 2019 he won the Sanremo Festival with the song \"Soldi.\""],
+      ["Nella canzone ci sono il pop, il rap e ritmi della musica araba.", "In the song there is pop, rap, and rhythms from Arabic music."],
+      ["In una strofa canta anche alcune parole in arabo.", "In one verse he also sings a few words in Arabic."],
+      ["Il testo parla di un rapporto difficile tra un figlio e un padre.", "The lyrics are about a difficult relationship between a son and a father."],
+      ["Dopo la vittoria, alcune persone hanno detto che la canzone non era abbastanza italiana.", "After the win, some people said the song wasn't Italian enough."],
+      ["Mahmood ha risposto che lui è italiano al cento per cento.", "Mahmood answered that he is one hundred percent Italian."],
+      ["Poi la canzone è arrivata seconda all'Eurovision e ha avuto successo in tutta Europa.", "Then the song came in second at Eurovision and was a hit all over Europe."],
+      ["Oggi molti giovani ascoltano musica che mescola culture diverse, proprio come l'Italia di oggi.", "Today many young people listen to music that mixes different cultures, just like today's Italy."]
+    ],
+    "gloss": { "in arte": "stage name, known as", "sarda": "Sardinian", "strofa": "verse", "rapporto": "relationship", "la vittoria": "the win", "abbastanza": "enough" },
+    "questions": [
+      { "q": "Da dove vengono i genitori di Mahmood?", "answer": "dalla Sardegna e dall'Egitto", "traps": ["da Milano e da Roma", "dalla Tunisia e dalla Sicilia"],
+        "why": "Sua madre è sarda e suo padre è egiziano." },
+      { "q": "Perché, secondo te, nella canzone ci sono parole in arabo?", "answer": "Perché il cantante ha origini egiziane.", "traps": ["Perché la canzone è nata in Egitto.", "Perché a Sanremo si deve cantare in arabo."],
+        "why": "Inference: his father is Egyptian, so Arabic is part of his roots." },
+      { "q": "Che cosa vuole dire Mahmood con «italiano al cento per cento»?", "answer": "Che è nato e cresciuto in Italia ed è italiano come gli altri.", "traps": ["Che non vuole più cantare in italiano.", "Che la sua canzone è solo rap."],
+        "why": "Inference: he was born in Milan, so he answers the critics: he is fully Italian." },
+      { "q": "Che cosa pensa l'autore del testo della musica di oggi?", "answer": "Che mescola culture diverse, come l'Italia.", "traps": ["Che è meno bella della musica di una volta.", "Che i giovani non la ascoltano."],
+        "why": "Musica che mescola culture diverse, proprio come l'Italia di oggi." }
+    ]
+  },
+  "listen": [
+    { "q": "Che cosa avresti voluto fare l'estate scorsa, ma non hai fatto?", "en": "What would you have liked to do last summer, but didn't?",
+      "frames": ["Avrei voluto … , ma …", "Sarei andato/a a … , ma …"] },
+    { "q": "Che cosa stai studiando in questo periodo?", "en": "What are you studying these days?",
+      "frames": ["In questo periodo sto studiando …", "Sto anche leggendo …"] },
+    { "q": "Secondo te, l'immigrazione in Italia e negli Stati Uniti è simile o diversa? Perché?", "en": "In your opinion, is immigration in Italy and in the US similar or different? Why?",
+      "frames": ["Secondo me è simile perché …", "Secondo me è diversa perché …", "In tutti e due i paesi …"] }
+  ],
+  "chat": {
+    "who": ["Karim", "Giulia"],
+    "lines": [
+      [0, "Hai sentito la canzone che ti ho mandato? 🎧", "Did you hear the song I sent you?"],
+      [1, "Sì! La sto ascoltando adesso. Che ritmo!", "Yes! I'm listening to it now. What a rhythm!"],
+      [0, "Il testo mescola italiano e arabo, come la mia famiglia 😊", "The lyrics mix Italian and Arabic, like my family."],
+      [1, "Bellissimo! Avrei voluto venire al concerto con te.", "Beautiful! I would have liked to come to the concert with you."],
+      [0, "Peccato! Ma il cantante ha detto che sarebbe tornato a Milano a maggio.", "Too bad! But the singer said he would come back to Milan in May."],
+      [1, "Allora ci andiamo insieme! 🎤", "Then we'll go together!"]
+    ],
+    "words": { "la sto ascoltando": "I'm listening to it", "avrei voluto": "I would have liked", "sarebbe tornato": "he would come back" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che cosa avresti voluto fare il weekend scorso?", "Avrei voluto … , ma …"],
+      ["Che cosa stai facendo per l'ambiente in questo periodo?", "In questo periodo sto …"],
+      ["Quale canzone mescola culture diverse? Che cosa senti?", "La canzone … mescola … Ascoltando, sento …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho dato un'opinione con un perché.", "Ho usato il condizionale passato o il gerundio."]
+  },
+  "finish": "Now I know how to talk about global issues, compare immigration in Italy and the US, and say what I would have done!",
+  "idiom": {
+    "it": "Fare di tutta l'erba un fascio",
+    "en": "to lump everything together",
+    "ex": "Non tutti i turisti sono maleducati: non fare di tutta l'erba un fascio!",
+    "exEn": "Not all tourists are rude: don't lump them all together!",
+    "note": "Literally \"to make one bundle of all the grass.\" Said when someone judges a whole group by a few people."
+  },
+  "flags": [
+    "Mahmood facts (born Milan 1992, Sardinian mother, Egyptian father, won Sanremo 2019 with \"Soldi\", 2nd at Eurovision 2019, Arabic words in one verse) are believed accurate; please confirm before class.",
+    "The post-Sanremo debate and the quote \"italiano al cento per cento\" are paraphrased from press coverage; check wording if you want to cite it as a direct quote. The topic touches politics; it is written neutrally.",
+    "Culture note avoids exact emigration/immigration numbers on purpose; if you add figures, use ISTAT for Italy and a US Census/Ellis Island source for the US.",
+    "Gerundio with a different subject (Imparando la lingua, l'integrazione è più facile) is common in speech but stylistically loose; fine for Intermediate Mid.",
+    "Fill item 1 accepts both sarei andato and sarei andata since the subject's gender is not given."
+  ]
+}

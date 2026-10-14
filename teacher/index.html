@@ -35,10 +35,12 @@ input.pin{width:100%;padding:14px;border-radius:14px;border:2px solid var(--line
 <div id="gate" class="card"><h2>Prof code</h2><input id="pin" class="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="Prof code" placeholder="&bull;&bull;&bull;&bull;"><button id="go" class="btn" type="button">Enter</button> <span id="gerr" class="err" role="alert"></span></div>
 <div id="main" class="hide">
  <div class="card"><h2>Unlock everything on this device</h2><div class="mut">Opens every unit in all five levels, AP included. La Prova (the graded test) stays on its own switch below.</div><div style="margin-top:12px"><button class="btn big" id="all" type="button">Unlock everything</button></div><div id="allmsg" class="msg" role="status"></div></div>
- <div class="card" id="asg"><h2>Assign in Google Classroom</h2><div class="mut">Pick a level, a unit and a stop. Post the link as a scheduled assignment, class by class. Classroom sets the dates. A student who has not reached that stop lands on the stop they have reached.</div>
+ <div class="card" id="asg"><h2>Assign in Google Classroom · Today link</h2><div class="mut">Pick a level and a unit, then tick the stops for today (sub day, review, test day). You get one link. Post it in Classroom, class by class; Classroom sets the dates. The link guides students, it does not lock: a student who has not reached a stop lands on the stop they have reached, and can still tap &ldquo;Show everything&rdquo;.</div>
   <div class="chips" id="alv"></div>
   <div class="chips" id="aun"></div>
   <div class="chips" id="ast"></div>
+  <div class="chips" id="apre"><span class="mut" style="align-self:center">Quick picks:</span><button class="chip" type="button" data-pre="sub">Sub day</button><button class="chip" type="button" data-pre="rev">Review only</button><button class="chip" type="button" data-pre="test">Test day</button></div>
+  <label class="mut" for="albl" style="display:block;margin-top:8px">What students see at the top (a date is fine here)</label><input id="albl" class="pin" type="text" maxlength="60" placeholder="Today" style="width:100%;max-width:420px;letter-spacing:0;font-size:18px">
   <div class="lnk" id="alink" aria-live="polite"></div>
   <div class="chips"><button class="btn" id="acl" type="button">Share to Classroom</button><button class="btn o" id="acp" type="button">Copy link</button><button class="btn o" id="ash" type="button">Share&hellip;</button></div>
   <div class="mut" style="margin-top:8px">If the Classroom page does not accept the link, use Copy link and paste it into the assignment. Boh never sends names or scores to Google.</div></div>
@@ -48,8 +50,8 @@ input.pin{width:100%;padding:14px;border-radius:14px;border:2px solid var(--line
   <div id="tree"></div></div>
 </div></div>
 <div class="bar hide" id="bar"><div class="w"><button class="btn" id="apply" type="button">Apply to this device</button><button class="btn o" id="clr" type="button">Untick all</button><span id="note" class="msg" role="status"></span></div></div>
-<script src="../assets/areas.js?v=202610052300"></script>
-<script src="../assets/share.js?v=202610052300"></script>
+<script src="../assets/areas.js?v=202610140100"></script>
+<script src="../assets/share.js?v=202610140100"></script>
 <script>
 (function(){
 'use strict';
@@ -114,25 +116,39 @@ $('all').addEventListener('click',function(){
 function enter(){ var v=$('pin').value.trim(); if(!v)return; sha(v).then(function(h){ if(h!==PIN_HASH){$('gerr').textContent='Wrong code.';$('pin').value='';return}
   try{sessionStorage.setItem('boh_prof_ok','1')}catch(e){} open_(); }); }
 
-/* Assign in Classroom (boh-assign-v1): one link per unit or stop, built by BohShare so it is the same everywhere */
-var A={l:0,u:0,s:0};
+/* Assign in Classroom (boh-assign-v1) + Today link (boh-todaylink-v1): pick several stops, La Prova and Parla; one link, built by BohShare */
+var A={l:0,u:0,sel:[],parla:false,prova:false,label:''};
 function aUnit(){return LV[A.l].units[A.u]}
-function aTitle(){var l=LV[A.l],u=aUnit();return l.label+' · '+u.tab+(A.s?' · Stop '+A.s:'')}
-function aUrl(){return BohShare.stopUrl(LV[A.l].id,aUnit().id,A.s)}
+function aParlaOk(){return LV[A.l].id!=='italiano1'&&(aUnit().stops||0)>0}
+function aTitle(){var l=LV[A.l],u=aUnit(),t=l.label+' · '+u.tab;if(A.label)t+=' · '+A.label;else if(A.sel.length===1&&!A.parla&&!A.prova)t+=' · Stop '+A.sel[0];return t}
+function aUrl(){var l=LV[A.l].id,u=aUnit().id;
+  if(!A.parla&&!A.prova&&!A.label&&A.sel.length<=1)return BohShare.stopUrl(l,u,A.sel[0]||0);
+  var t=A.sel.slice().sort(function(a,b){return a-b}).map(String);if(A.parla)t.push('parla');if(A.prova)t.push('prova');
+  return BohShare.todayUrl(l,u,t,A.label)}
 function aRender(){
   var h='';LV.forEach(function(l,i){h+='<button class="chip" type="button" data-al="'+i+'" aria-pressed="'+(i===A.l)+'">'+esc(l.label)+'</button>'});$('alv').innerHTML=h;
   h='';LV[A.l].units.forEach(function(u,i){h+='<button class="chip" type="button" data-au="'+i+'" aria-pressed="'+(i===A.u)+'">'+esc(u.tab)+'</button>'});$('aun').innerHTML=h;
   var n=aUnit().stops||0;h='';
-  if(n){h+='<button class="chip" type="button" data-as="0" aria-pressed="'+(A.s===0)+'">Whole unit</button>';for(var k=1;k<=n;k++)h+='<button class="chip" type="button" data-as="'+k+'" aria-pressed="'+(A.s===k)+'">Stop '+k+'</button>'}
+  h+='<button class="chip" type="button" data-as="0" aria-pressed="'+(!A.sel.length)+'">Whole unit</button>';
+  for(var k=1;k<=n;k++)h+='<button class="chip" type="button" data-as="'+k+'" aria-pressed="'+(A.sel.indexOf(k)!==-1)+'">Stop '+k+'</button>';
+  if(aParlaOk())h+='<button class="chip" type="button" data-ax="parla" aria-pressed="'+A.parla+'">Parla con Prof</button>';
+  h+='<button class="chip" type="button" data-ax="prova" aria-pressed="'+A.prova+'">La Prova</button>';
   $('ast').innerHTML=h;$('alink').textContent=aUrl();
 }
 document.addEventListener('click',function(e){
-  var b=e.target.closest&&e.target.closest('[data-al],[data-au],[data-as]');if(!b)return;
-  if(b.hasAttribute('data-al')){A.l=+b.getAttribute('data-al');A.u=0;A.s=0}
-  else if(b.hasAttribute('data-au')){A.u=+b.getAttribute('data-au');A.s=0}
-  else A.s=+b.getAttribute('data-as');
+  var b=e.target.closest&&e.target.closest('[data-al],[data-au],[data-as],[data-ax],[data-pre]');if(!b)return;
+  if(b.hasAttribute('data-al')){A.l=+b.getAttribute('data-al');A.u=0;A.sel=[];A.parla=false;A.prova=false}
+  else if(b.hasAttribute('data-au')){A.u=+b.getAttribute('data-au');A.sel=[];A.parla=false;A.prova=false}
+  else if(b.hasAttribute('data-as')){var k=+b.getAttribute('data-as');if(!k)A.sel=[];else{var i=A.sel.indexOf(k);if(i===-1)A.sel.push(k);else A.sel.splice(i,1)}}
+  else if(b.hasAttribute('data-ax')){var x=b.getAttribute('data-ax');A[x]=!A[x]}
+  else{var p=b.getAttribute('data-pre'),n=aUnit().stops||0,all=[];for(var q=1;q<=n;q++)all.push(q);
+    if(p==='sub'){A.sel=all;A.parla=aParlaOk();A.prova=false;A.label='Sub day'}
+    if(p==='rev'){A.sel=all;A.parla=false;A.prova=false;A.label='Review'}
+    if(p==='test'){A.sel=[];A.parla=false;A.prova=true;A.label='Test day'}
+    $('albl').value=A.label}
   aRender();
 });
+$('albl').addEventListener('input',function(e){A.label=e.target.value.trim().slice(0,60);aRender()});
 $('acl').addEventListener('click',function(){window.open(BohShare.classroomUrl(aUrl(),aTitle()),'_blank','noopener')});
 $('acp').addEventListener('click',function(){BohShare.copy(aUrl())});
 $('ash').addEventListener('click',function(){BohShare.share(aUrl(),aTitle(),'')});

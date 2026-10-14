@@ -1,0 +1,191 @@
+{
+  "level": "italiano3",
+  "key": "nazione",
+  "guideUnit": 5,
+  "proficiency": "Intermediate Low",
+  "title": "Unità 5 · L'Italia: nord e sud",
+  "tab": "La nazione",
+  "tabSub": "UNITÀ 5",
+  "eyebrow": "ITALIANO 3 · UNITÀ 5",
+  "question": "How did Italy become one country, and how are its regions different?",
+  "words": "(il Risorgimento, il dialetto, glielo)",
+  "workingOn": "Italian geography, history, north and south",
+  "canDo": [
+    "I can ask and answer questions about Italian geography and history.",
+    "I can talk about the differences between north and south.",
+    "I can compare Italians and Italian Americans.",
+    "I can explain how unification shaped the country."
+  ],
+  "culture": "Italy became one kingdom only in 1861, after the Risorgimento, and Rome became its capital in 1871, so regional identities, dialects and food traditions are still very strong. The north industrialized earlier, while the south (il Mezzogiorno) had fewer jobs, and between about 1880 and 1920 millions of Italians, most of them from the south, emigrated to the Americas. Stereotypes about north and south exist in Italy too; every region has its own history, strengths and pride.",
+  "vocab": [
+    { "group": "La geografia", "words": [
+      ["la regione", "region"],
+      ["il capoluogo", "regional capital"],
+      ["la penisola", "peninsula"],
+      ["l'isola", "island"],
+      ["le Alpi", "the Alps"],
+      ["gli Appennini", "the Apennines"],
+      ["il nord", "the north"],
+      ["il sud", "the south"],
+      ["il confine", "border"]
+    ] },
+    { "group": "La storia", "words": [
+      ["l'unità d'Italia", "Italian unification"],
+      ["il Risorgimento", "the movement to unify Italy"],
+      ["il re", "king"],
+      ["la repubblica", "republic"],
+      ["emigrare", "to emigrate"]
+    ] },
+    { "group": "Italiani e italoamericani", "words": [
+      ["l'italoamericano", "Italian American"],
+      ["il dialetto", "dialect"],
+      ["la tradizione", "tradition"],
+      ["il paese", "country; hometown"],
+      ["la differenza", "difference"]
+    ] }
+  ],
+  "grammar": {
+    "head": "Two pronouns together: the 'to whom' pronoun comes first, and mi, ti, ci, vi become me, te, ce, ve: Me lo dai?",
+    "verbs": ["lo", "la", "li", "le"],
+    "rows": [
+      ["mi", ["me ", "lo"], ["me ", "la"], ["me ", "li"], ["me ", "le"]],
+      ["ti", ["te ", "lo"], ["te ", "la"], ["te ", "li"], ["te ", "le"]],
+      ["gli / le", ["glie", "lo"], ["glie", "la"], ["glie", "li"], ["glie", "le"]],
+      ["ci", ["ce ", "lo"], ["ce ", "la"], ["ce ", "li"], ["ce ", "le"]],
+      ["vi", ["ve ", "lo"], ["ve ", "la"], ["ve ", "li"], ["ve ", "le"]]
+    ],
+    "tricks": [
+      "Indirect first, direct second: me lo, te la, ce li.",
+      "mi, ti, ci, vi change i to e before lo, la, li, le.",
+      "gli and le both become glie- and join the next word: glielo, gliela, glieli, gliele.",
+      "In the passato prossimo the participle agrees with lo, la, li, le: Me l'ha data. Glieli ho mandati."
+    ],
+    "chips": ["Me lo dai?", "Te la porto domani.", "Glielo dico subito.", "Ce li ha mandati la nonna."]
+  },
+  "sentences": [
+    ["L'Italia ha venti regioni.", "Italy has twenty regions."],
+    ["Le Alpi sono al confine nord dell'Italia.", "The Alps are on Italy's northern border."],
+    ["L'Italia è diventata un paese unito nel 1861.", "Italy became a unified country in 1861."],
+    ["Nel 1860 Garibaldi è partito per la Sicilia con i Mille.", "In 1860 Garibaldi left for Sicily with the Thousand."],
+    ["Molti italiani del sud sono emigrati in America.", "Many southern Italians emigrated to America."],
+    ["Mio nonno parlava il dialetto napoletano.", "My grandfather spoke the Neapolitan dialect."],
+    ["Mi dai la mappa? Sì, te la do.", "Will you give me the map? Yes, I'll give it to you."],
+    ["Hai detto la verità a Marco? Sì, gliel'ho detta.", "Did you tell Marco the truth? Yes, I told him."],
+    ["La nonna ci manda le foto? Sì, ce le manda.", "Is Grandma sending us the photos? Yes, she's sending them to us."],
+    ["Chi ti ha portato il libro? Me l'ha portato Luca.", "Who brought you the book? Luca brought it to me."],
+    ["I biglietti? Ve li mando domani.", "The tickets? I'll send them to you tomorrow."],
+    ["Il segreto? Glielo dico io.", "The secret? I'll tell him."]
+  ],
+  "forms": [
+    { "prompt": "mi + lo", "answer": "me lo", "alts": [], "traps": ["mi lo", "lo mi"],
+      "why": "mi becomes me before lo: me lo.", "trick": ["i → e", "mi → me before lo, la, li, le."] },
+    { "prompt": "ti + la", "answer": "te la", "alts": [], "traps": ["ti la", "la te"],
+      "why": "ti becomes te, and it comes first: te la.", "trick": ["Indirect first", "To-whom pronoun first, then the thing."] },
+    { "prompt": "gli + lo", "answer": "glielo", "alts": [], "traps": ["gli lo", "le lo"],
+      "why": "gli + lo = glielo, one word.", "trick": ["glie-", "gli becomes glie- and joins: glielo."] },
+    { "prompt": "le (to her) + li", "answer": "glieli", "alts": [], "traps": ["le li", "gli li"],
+      "why": "le (to her) also becomes glie-: glieli.", "trick": ["Him or her: glie-", "gli and le both → glie-."] },
+    { "prompt": "ci + le", "answer": "ce le", "alts": [], "traps": ["ci le", "le ce"],
+      "why": "ci becomes ce before le: ce le.", "trick": ["i → e", "ci → ce."] },
+    { "prompt": "vi + li", "answer": "ve li", "alts": [], "traps": ["vi li", "li ve"],
+      "why": "vi becomes ve before li: ve li.", "trick": ["i → e", "vi → ve."] },
+    { "prompt": "Mi dai il libro? Sì, ___ do.", "answer": "te lo", "alts": [], "traps": ["me lo", "ti lo"],
+      "why": "To you (te) + il libro (lo): te lo do.", "trick": ["Flip the person", "Mi dai…? → Sì, te lo do."] },
+    { "prompt": "Porti la torta alla nonna? Sì, ___ porto.", "answer": "gliela", "alts": [], "traps": ["le la", "glielo"],
+      "why": "alla nonna = le → glie-; la torta = la: gliela.", "trick": ["glie + la", "To her + feminine thing = gliela."] },
+    { "prompt": "Mandi i messaggi a Marco? Sì, ___ mando.", "answer": "glieli", "alts": [], "traps": ["gli li", "gliele"],
+      "why": "a Marco = gli; i messaggi = li: glieli.", "trick": ["glie + li", "To him + masculine plural = glieli."] },
+    { "prompt": "Ci dici la verità? Sì, ___ dico.", "answer": "ve la", "alts": [], "traps": ["ce la", "vi la"],
+      "why": "To you all (ve) + la verità (la): ve la dico.", "trick": ["Flip the person", "Ci dici…? → Sì, ve la dico."] },
+    { "prompt": "Hai dato le foto a Paolo? Sì, ___ ho date.", "answer": "gliele", "alts": [], "traps": ["glieli", "gli le"],
+      "why": "a Paolo = gli; le foto = le: gliele ho date.", "trick": ["glie + le", "To him + feminine plural = gliele."] },
+    { "prompt": "Ti ha mandato la cartolina? Sì, me l'ha ___.", "answer": "mandata", "alts": [], "traps": ["mandato", "mandate"],
+      "why": "l' = la cartolina, so mandata.", "trick": ["Agreement", "The participle matches lo / la / li / le."] }
+  ],
+  "fill": [
+    { "text": "Mi presti la penna? Sì, ___ presto.", "answers": ["te la"], "cue": "it to you",
+      "hint": "to you + la penna → t… l…", "why": "te + la: te la presto." },
+    { "text": "Dai il libro a Luca? Sì, ___ do adesso.", "answers": ["glielo"], "cue": "it to him",
+      "hint": "to him + il libro → gli…", "why": "gli + lo = glielo." },
+    { "text": "Mostri le foto alla prof? Sì, ___ mostro.", "answers": ["gliele"], "cue": "them to her",
+      "hint": "to her + le foto → gli…", "why": "le (to her) + le = gliele." },
+    { "text": "Ci porti i biscotti? Sì, ___ porto domani.", "answers": ["ve li"], "cue": "them to you all",
+      "hint": "to you all + i biscotti → v… l…", "why": "ve + li: ve li porto." },
+    { "text": "Chi ti ha dato la mappa? Mia madre me l'ha ___.", "answers": ["data"], "cue": "dare",
+      "hint": "given → dat…, like la mappa", "why": "l' = la mappa, so data." },
+    { "text": "Dici la verità ai tuoi genitori? Sì, ___ dico sempre.", "answers": ["gliela"], "cue": "gli + la",
+      "hint": "to them + la verità → gli…", "why": "gli + la = gliela." },
+    { "text": "Il nonno ci manda le cartoline? Sì, ___ manda ogni anno.", "answers": ["ce le"], "cue": "ci + le",
+      "hint": "to us + le cartoline → c… l…", "why": "ci → ce before le: ce le." },
+    { "text": "Hai portato i libri a Marta? Sì, glieli ho ___.", "answers": ["portati"], "cue": "portare",
+      "hint": "brought → portat…, like i libri", "why": "glieli = i libri, masculine plural → portati." }
+  ],
+  "read": {
+    "title": "Il nord e il sud",
+    "passage": [
+      ["L'Italia è un paese giovane: è diventata una nazione unita nel 1861.", "Italy is a young country: it became a unified nation in 1861."],
+      ["Prima c'erano molti stati diversi, e Garibaldi, con la spedizione dei Mille, ha aiutato a unire il paese.", "Before, there were many different states, and Garibaldi, with the Expedition of the Thousand, helped unite the country."],
+      ["Nel nord ci sono le Alpi e molte industrie, come a Milano e a Torino.", "In the north there are the Alps and many industries, as in Milan and Turin."],
+      ["Il sud ha il mare, il sole e città antichissime come Napoli e Palermo, ma per molti anni ha avuto meno lavoro del nord.", "The south has the sea, the sun and very old cities like Naples and Palermo, but for many years it had fewer jobs than the north."],
+      ["Per questo, fra il 1880 e il 1920, milioni di italiani, soprattutto del sud, sono emigrati in America.", "For this reason, between 1880 and 1920, millions of Italians, especially from the south, emigrated to America."],
+      ["Oggi negli Stati Uniti ci sono più di quindici milioni di italoamericani.", "Today in the United States there are more than fifteen million Italian Americans."],
+      ["Molti di loro conservano le tradizioni della famiglia, come il pranzo della domenica.", "Many of them keep their family traditions, like Sunday lunch."]
+    ],
+    "gloss": { "giovane": "young", "stati": "states", "la spedizione dei Mille": "the Expedition of the Thousand", "unire": "to unite", "industrie": "industries", "antichissime": "very ancient", "soprattutto": "especially", "conservano": "keep, preserve" },
+    "questions": [
+      { "q": "Quando è diventata una nazione l'Italia?", "answer": "nel 1861", "traps": ["nel 1920", "nel 1880"],
+        "why": "…è diventata una nazione unita nel 1861." },
+      { "q": "Dove sono le Alpi?", "answer": "nel nord", "traps": ["nel sud", "in Sicilia"],
+        "why": "Nel nord ci sono le Alpi." },
+      { "q": "Perché molti italiani del sud sono emigrati?", "answer": "perché c'era meno lavoro", "traps": ["perché faceva freddo", "perché volevano vedere le Alpi"],
+        "why": "Il sud ha avuto meno lavoro del nord. Per questo… sono emigrati." },
+      { "q": "Che cosa conservano molti italoamericani?", "answer": "le tradizioni della famiglia", "traps": ["il dialetto di Milano", "le industrie del nord"],
+        "why": "Molti di loro conservano le tradizioni della famiglia." }
+    ]
+  },
+  "listen": [
+    { "q": "In che anno è diventata una nazione l'Italia?", "en": "In what year did Italy become a nation?",
+      "frames": ["L'Italia è diventata una nazione nel …", "Garibaldi ha aiutato a …"] },
+    { "q": "Mi presti il tuo libro di storia?", "en": "Will you lend me your history book?",
+      "frames": ["Sì, te lo presto.", "No, mi dispiace, non te lo presto."] },
+    { "q": "Qual è una tradizione della tua famiglia?", "en": "What is one of your family's traditions?",
+      "frames": ["Una tradizione della mia famiglia è …", "La domenica noi …"] }
+  ],
+  "chat": {
+    "who": ["Marco", "Chiara"],
+    "lines": [
+      [0, "Chiara, mi mandi la ricetta del ragù di tua nonna? 🍝", "Chiara, will you send me your grandma's ragù recipe?"],
+      [1, "Certo, te la mando stasera! E tu mi mandi le foto del New Jersey?", "Sure, I'll send it to you tonight! And will you send me the photos of New Jersey?"],
+      [0, "Sì, te le mando subito. Mia nonna è nata a Napoli come te!", "Yes, I'll send them right away. My grandma was born in Naples like you!"],
+      [1, "Davvero? Allora parla il napoletano? 😄", "Really? So does she speak Neapolitan?"],
+      [0, "Sì! Gliel'ha insegnato sua madre.", "Yes! Her mother taught it to her."],
+      [1, "Tutte le strade portano a Roma… ma la tua porta a Napoli! 😂", "All roads lead to Rome… but yours leads to Naples!"]
+    ],
+    "words": { "te la mando": "I'll send it to you", "te le mando": "I'll send them to you", "Gliel'ha insegnato": "taught it to her", "il napoletano": "Neapolitan (dialect)", "Tutte le strade portano a Roma": "all roads lead to Rome" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che differenze ci sono fra il nord e il sud dell'Italia?", "Nel nord ci sono … Nel sud …"],
+      ["Chi ha aiutato a unire l'Italia, e quando?", "Garibaldi … L'Italia è diventata una nazione nel …"],
+      ["Che cosa sai degli italoamericani?", "Molti italoamericani … La loro famiglia è emigrata da …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato una data o un nome della storia.", "Ho detto una cosa che sa il mio compagno."]
+  },
+  "finish": "Now I know how to talk about Italy's north and south, its unification, and Italian Americans!",
+  "idiom": {
+    "it": "Tutte le strade portano a Roma",
+    "en": "all roads lead to Rome",
+    "ex": "Studio la storia, l'arte o il latino? Tutte le strade portano a Roma!",
+    "exEn": "Should I study history, art or Latin? All roads lead to Rome!",
+    "note": "Said when different choices lead to the same result; it goes back to the road network of ancient Rome."
+  },
+  "flags": [
+    "North/south framing (industry in the north, fewer jobs in the south, emigration) is the standard textbook account. Please review it against your own knowledge of southern Italian economic history before it goes live.",
+    "Facts, Unverified (standard history, not checked against a source in this session): Kingdom of Italy proclaimed 17 March 1861; Expedition of the Thousand landed in Sicily in May 1860; Rome capital in 1871; Italy has 20 regions.",
+    "'Più di quindici milioni di italoamericani': US Census ACS figures are roughly 16-17 million self-reported Italian ancestry in recent years. Unverified; check before publishing.",
+    "'1880-1920, millions, especially from the south': consistent with standard accounts (about 4 million to the US). Unverified figure; the passage avoids an exact number.",
+    "The comparison can-do (Italians vs Italian Americans) is covered only by the reading and Parla prompt 3; there is no comparativo item here because it was taught in Unit 4. Recycles 'meno lavoro del nord'.",
+    "'Gliel'ha insegnato' and 'gliel'ho detta' show the elided glie + l'. Students may find it hard; consider a note.",
+    "The Parla checks do not require a double pronoun, because the prompts are about history; the double pronoun is practiced in listen 2 and the chat."
+  ]
+}

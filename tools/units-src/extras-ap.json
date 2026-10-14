@@ -1,0 +1,182 @@
+{
+  "f1": {
+    "workingOn": "family and community life, then and now",
+    "read": {
+      "title": "La sagra del borgo",
+      "passage": [
+        ["Mia nonna è nata in un piccolo borgo dell'Abruzzo, dove tutti si conoscevano.", "My grandmother was born in a small village in Abruzzo, where everyone knew each other."],
+        ["Quando era giovane, la famiglia allargata si riuniva ogni domenica attorno alla tavola: nonni, zii, cugini e perfino i vicini.", "When she was young, the extended family gathered around the table every Sunday: grandparents, aunts and uncles, cousins and even the neighbors."],
+        ["Ogni agosto il paese organizzava la sagra, e le donne avevano già preparato la pasta fatta a mano giorni prima.", "Every August the town held its food festival, and the women had already made the handmade pasta days before."],
+        ["I volontari dell'associazione montavano i tavoli in piazza, mentre i ragazzi aiutavano a servire.", "Volunteers from the association set up tables in the square, while the young people helped serve."],
+        ["Con i soldi della raccolta fondi, il comune riparava la chiesa o la scuola.", "With the money from the fundraiser, the town repaired the church or the school."],
+        ["Oggi molti giovani si sono trasferiti in città o all'estero, e il borgo si è svuotato.", "Today many young people have moved to the city or abroad, and the village has emptied out."],
+        ["Eppure, ogni estate, tanti tornano per la sagra, come per un appuntamento con le proprie radici.", "And yet, every summer, many come back for the festival, as if for a date with their own roots."],
+        ["Negli Stati Uniti, dove vivo io, la mia famiglia si riunisce soprattutto per le feste, come il Giorno del Ringraziamento.", "In the United States, where I live, my family gets together mostly for holidays, like Thanksgiving."],
+        ["Da noi la comunità si forma più spesso intorno alla scuola, alla squadra o alla parrocchia che intorno alla piazza.", "Here, community forms more often around the school, the team or the parish than around the town square."],
+        ["Mia nonna dice che il campanilismo a volte divide, ma che senza un senso di appartenenza ci sentiremmo tutti più soli.", "My grandmother says local rivalry sometimes divides people, but without a sense of belonging we would all feel lonelier."]
+      ],
+      "gloss": { "borgo": "small historic village", "perfino": "even", "montavano": "set up", "si è svuotato": "emptied out", "Eppure": "and yet", "le proprie radici": "one's own roots", "il Giorno del Ringraziamento": "Thanksgiving", "il campanilismo": "local pride / rivalry" },
+      "questions": [
+        { "q": "Che cosa avevano fatto le donne prima della sagra?", "answer": "Avevano preparato la pasta fatta a mano.", "traps": ["Avevano montato i tavoli in piazza.", "Avevano riparato la chiesa."], "why": "Le donne avevano già preparato la pasta fatta a mano giorni prima." },
+        { "q": "A che cosa servivano i soldi della raccolta fondi?", "answer": "A riparare la chiesa o la scuola.", "traps": ["A pagare i volontari.", "A comprare la pasta per la sagra."], "why": "Con i soldi della raccolta fondi, il comune riparava la chiesa o la scuola." },
+        { "q": "Che cosa suggerisce il fatto che molti tornano ogni estate per la sagra?", "answer": "Che il legame con il borgo resta forte anche a distanza.", "traps": ["Che in città non ci sono feste.", "Che la sagra è obbligatoria per tutti."], "why": "Inference: they come back «come per un appuntamento con le proprie radici»." },
+        { "q": "Secondo l'autore, che differenza c'è tra la sua comunità americana e il borgo?", "answer": "In America la comunità nasce intorno a scuola, sport e parrocchia più che alla piazza.", "traps": ["In America le famiglie non si riuniscono mai.", "Nel borgo non c'era nessuna festa religiosa."], "why": "Cultural comparison: «Da noi la comunità si forma più spesso intorno alla scuola, alla squadra o alla parrocchia che intorno alla piazza.»" }
+      ]
+    },
+    "listen": [
+      { "q": "Quando eri piccolo/a, com’era il tuo quartiere? Cosa è cambiato da allora?", "en": "When you were little, what was your neighborhood like? What has changed since then?", "frames": ["Quando ero piccolo/a, il mio quartiere era …", "Da allora è cambiato molto: …", "Oggi, invece, …"] },
+      { "q": "Racconta una riunione di famiglia: chi c’era e che cosa avevano preparato i parenti prima del tuo arrivo?", "en": "Describe a family gathering: who was there, and what had your relatives prepared before you arrived?", "frames": ["C'erano …", "Prima del mio arrivo, i miei parenti avevano già preparato …"] },
+      { "q": "Che rapporto avevi con i vicini quando eri piccolo/a? È cambiato?", "en": "What was your relationship with your neighbors like when you were little? Has it changed?", "frames": ["Da piccolo/a, con i vicini avevo un rapporto …", "Oggi, invece, …", "Non è cambiato perché …"] }
+    ]
+  },
+  "u2": {
+    "workingOn": "language, dialect and identity",
+    "read": {
+      "title": "Dialetto o italiano?",
+      "passage": [
+        ["Quando Chiara va a trovare i nonni in Sicilia, sente parlare quasi solo in dialetto.", "When Chiara visits her grandparents in Sicily, she hears almost nothing but dialect."],
+        ["Il nonno racconta le storie del paese in siciliano, e la nonna usa espressioni che Chiara non trova in nessun dizionario.", "Her grandfather tells the town's stories in Sicilian, and her grandmother uses expressions Chiara can't find in any dictionary."],
+        ["A scuola, invece, Chiara parla italiano standard e usa un registro formale con i professori.", "At school, instead, Chiara speaks standard Italian and uses a formal register with her teachers."],
+        ["Con gli amici mescola italiano, un po' di dialetto e tanti anglicismi come «weekend» e «selfie».", "With friends she mixes Italian, a bit of dialect and lots of anglicisms like \"weekend\" and \"selfie.\""],
+        ["Sua madre pensa che il dialetto sia importante, perché fa parte dell'identità della famiglia.", "Her mother thinks dialect is important, because it is part of the family's identity."],
+        ["Suo padre, invece, teme che i figli parlino male l'italiano se usano troppo il dialetto.", "Her father, instead, fears that the children will speak Italian badly if they use dialect too much."],
+        ["Chiara non è d'accordo: crede che si possano parlare due varietà senza confonderle.", "Chiara disagrees: she believes one can speak two varieties without mixing them up."],
+        ["Per lei, il bilinguismo tra lingua e dialetto è una ricchezza, non un problema.", "For her, bilingualism between language and dialect is an asset, not a problem."],
+        ["Negli Stati Uniti la situazione è spesso diversa: molti nipoti di immigrati italiani conoscono solo qualche parola della lingua dei nonni.", "In the United States the situation is often different: many grandchildren of Italian immigrants know only a few words of their grandparents' language."],
+        ["Chiara spera che, un giorno, anche i suoi figli capiscano il siciliano del nonno.", "Chiara hopes that one day her own children will also understand her grandfather's Sicilian."]
+      ],
+      "gloss": { "mescola": "mixes", "teme": "fears", "confonderle": "mixing them up", "una ricchezza": "an asset", "qualche parola": "a few words" },
+      "questions": [
+        { "q": "Con chi Chiara usa un registro formale?", "answer": "Con i professori a scuola.", "traps": ["Con i nonni in Sicilia.", "Con gli amici nel weekend."], "why": "A scuola … usa un registro formale con i professori." },
+        { "q": "Qual è la preoccupazione del padre?", "answer": "Che i figli parlino male l'italiano.", "traps": ["Che i figli dimentichino il dialetto.", "Che i figli usino pochi anglicismi."], "why": "Suo padre teme che i figli parlino male l'italiano se usano troppo il dialetto." },
+        { "q": "Quale atteggiamento ha Chiara verso il dialetto?", "answer": "Positivo: vuole che il dialetto continui a vivere.", "traps": ["Negativo: lo considera inutile.", "Indifferente: non le interessa."], "why": "Inference: she calls bilingualism «una ricchezza» and hopes her children will understand Sicilian." },
+        { "q": "Che differenza c'è, secondo il testo, con molte famiglie italoamericane?", "answer": "Spesso i nipoti conoscono solo poche parole della lingua dei nonni.", "traps": ["I nipoti parlano tutti il dialetto perfettamente.", "Nessuno ha mai parlato italiano in famiglia."], "why": "Cultural comparison: «molti nipoti di immigrati italiani conoscono solo qualche parola della lingua dei nonni»." }
+      ]
+    },
+    "listen": [
+      { "q": "Pensi che i giovani debbano imparare il dialetto? Perché?", "en": "Do you think young people should learn dialect? Why?", "frames": ["Penso che i giovani debbano … perché …", "A mio avviso, è importante che …"] },
+      { "q": "Credi che la lingua standard sia più importante delle tradizioni locali? Spiega.", "en": "Do you believe the standard language is more important than local traditions? Explain.", "frames": ["Credo che la lingua standard sia …", "Da un lato …, dall'altro …"] },
+      { "q": "Dubiti che le tradizioni italiane scompaiano? Perché sì o perché no?", "en": "Do you doubt that Italian traditions will disappear? Why or why not?", "frames": ["Dubito che le tradizioni scompaiano perché …", "Temo che alcune tradizioni … perché …"] }
+    ]
+  },
+  "u3": {
+    "workingOn": "art, heritage and creativity",
+    "read": {
+      "title": "La bottega del nonno",
+      "passage": [
+        ["Nel centro storico di Firenze, Marco lavora nella bottega di pelletteria che era di suo nonno.", "In Florence's historic center, Marco works in the leather workshop that belonged to his grandfather."],
+        ["Ogni borsa è fatta a mano, con una cura del dettaglio che richiede molte ore.", "Every bag is handmade, with an attention to detail that takes many hours."],
+        ["Davanti alla vetrina si fermano ogni giorno turisti da tutto il mondo.", "Every day tourists from all over the world stop in front of the shop window."],
+        ["Molti fanno una foto, ma pochi entrano: i prezzi sono alti rispetto ai prodotti industriali.", "Many take a photo, but few come in: prices are high compared to factory-made products."],
+        ["Marco dice che gli piacerebbe insegnare il mestiere ai giovani, ma pochi vogliono imparare un lavoro così lungo.", "Marco says he would like to teach the trade to young people, but few want to learn such slow work."],
+        ["Vorrebbe anche aprire un piccolo laboratorio aperto al pubblico, dove i visitatori potrebbero vedere come nasce una borsa.", "He would also like to open a small workshop open to the public, where visitors could see how a bag is born."],
+        ["Secondo lui, il Made in Italy non è solo un marchio: è un saper fare che passa da una generazione all'altra.", "In his view, Made in Italy is not just a label: it is know-how passed from one generation to the next."],
+        ["Marco racconta che molti clienti stranieri cercano soprattutto il nome famoso, mentre i clienti del quartiere chiedono chi ha fatto la borsa e con quale pelle.", "Marco says many foreign customers look mostly for a famous name, while neighborhood customers ask who made the bag and with what leather."],
+        ["Se avesse più tempo, scriverebbe un libro sulla storia della sua bottega.", "If he had more time, he would write a book on the history of his workshop."],
+        ["Per ora, però, preferisce lavorare in silenzio, tra il profumo della pelle e il rumore della città.", "For now, though, he prefers to work in silence, between the smell of leather and the noise of the city."]
+      ],
+      "gloss": { "bottega": "artisan workshop", "pelletteria": "leather goods", "rispetto ai": "compared to", "il mestiere": "the trade", "il profumo": "the smell", "pelle": "leather" },
+      "questions": [
+        { "q": "Perché pochi turisti entrano nella bottega?", "answer": "Perché i prezzi sono alti.", "traps": ["Perché la bottega è chiusa.", "Perché la vetrina è vuota."], "why": "Pochi entrano: i prezzi sono alti rispetto ai prodotti industriali." },
+        { "q": "Che cosa vorrebbe aprire Marco?", "answer": "Un laboratorio aperto al pubblico.", "traps": ["Un negozio all'estero.", "Una fabbrica industriale."], "why": "Vorrebbe aprire un piccolo laboratorio aperto al pubblico." },
+        { "q": "Che cosa si può dedurre sul futuro della bottega?", "answer": "È incerto, perché pochi giovani vogliono imparare il mestiere.", "traps": ["È sicuro: Marco ha già molti apprendisti.", "Marco vuole chiuderla subito."], "why": "Inference: he wants to teach the trade, but «pochi vogliono imparare un lavoro così lungo»." },
+        { "q": "Secondo Marco, che differenza c'è tra i clienti stranieri e quelli del quartiere?", "answer": "Gli stranieri cercano il nome famoso; quelli del quartiere chiedono chi ha fatto la borsa.", "traps": ["Gli stranieri comprano solo online.", "I clienti del quartiere non comprano mai borse."], "why": "Cultural comparison: brand name vs. craft and materials." }
+      ]
+    },
+    "listen": [
+      { "q": "Se potessi parlare con un artista italiano, chi sceglieresti? Cosa gli/le chiederesti?", "en": "If you could talk with an Italian artist, whom would you choose? What would you ask him or her?", "frames": ["Se potessi, sceglierei …", "Gli / Le chiederei …"] },
+      { "q": "Se avessi un giorno libero a Firenze o a Roma, cosa faresti?", "en": "If you had a free day in Florence or Rome, what would you do?", "frames": ["Se avessi un giorno libero a …, visiterei …", "Poi mangerei …"] },
+      { "q": "Quale film o canzone italiana ti piacerebbe far conoscere a un amico? Perché?", "en": "Which Italian film or song would you like to introduce to a friend? Why?", "frames": ["Mi piacerebbe far conoscere … perché …"] }
+    ]
+  },
+  "u4": {
+    "workingOn": "science, technology and the future",
+    "read": {
+      "title": "Il dottore nello schermo",
+      "passage": [
+        ["In un piccolo paese di montagna, il medico più vicino è a molti chilometri di distanza.", "In a small mountain town, the nearest doctor is many kilometers away."],
+        ["Per gli anziani che non guidano, una visita può diventare un viaggio difficile, soprattutto d'inverno.", "For elderly people who don't drive, a checkup can become a hard trip, especially in winter."],
+        ["Da qualche mese la farmacia del paese offre un servizio di telemedicina.", "For a few months now, the town pharmacy has offered a telemedicine service."],
+        ["Il paziente si siede davanti a uno schermo e parla con un medico in città, che può vedere i suoi dati in tempo reale.", "The patient sits in front of a screen and talks with a doctor in the city, who can see their data in real time."],
+        ["Nonna Rosa, ottantadue anni, all'inizio era scettica: «Un dottore dentro un computer? Non mi fido!»", "Grandma Rosa, eighty-two, was skeptical at first: \"A doctor inside a computer? I don't trust it!\""],
+        ["Oggi, invece, dice che il teleconsulto le fa risparmiare tempo e fatica.", "Today, instead, she says the online consultation saves her time and effort."],
+        ["Non tutti, però, sono convinti: in alcune case la connessione internet è ancora lenta, e il divario digitale resta un problema.", "Not everyone is convinced, though: in some homes the internet connection is still slow, and the digital divide remains a problem."],
+        ["Il nipote di Rosa, che studia ingegneria, pensa che tra dieci anni la banda larga arriverà ovunque e l'intelligenza artificiale aiuterà i medici a fare diagnosi più rapide.", "Rosa's grandson, an engineering student, thinks that in ten years broadband will reach everywhere and AI will help doctors make faster diagnoses."],
+        ["Rosa sorride: «Forse sarà così, ma nessuna macchina sostituirà una stretta di mano del dottore.»", "Rosa smiles: \"Maybe so, but no machine will replace a handshake from the doctor.\""],
+        ["Anche negli Stati Uniti, dove le distanze sono spesso enormi, molte comunità rurali usano servizi simili.", "In the United States too, where distances are often huge, many rural communities use similar services."]
+      ],
+      "gloss": { "scettica": "skeptical", "Non mi fido": "I don't trust it", "risparmiare": "save", "fatica": "effort", "una stretta di mano": "a handshake", "comunità rurali": "rural communities" },
+      "questions": [
+        { "q": "Perché la telemedicina è utile in questo paese?", "answer": "Perché il medico è lontano e per gli anziani è difficile spostarsi.", "traps": ["Perché in paese ci sono troppi medici.", "Perché la farmacia è sempre chiusa."], "why": "Il medico più vicino è a molti chilometri … per gli anziani che non guidano, una visita può diventare un viaggio difficile." },
+        { "q": "Quale problema resta, secondo il testo?", "answer": "In alcune case la connessione internet è lenta.", "traps": ["I medici in città non vogliono usare il servizio.", "Il servizio funziona solo d'estate."], "why": "In alcune case la connessione internet è ancora lenta." },
+        { "q": "Che cosa pensa Rosa, alla fine, della tecnologia?", "answer": "È utile, ma non può sostituire il contatto umano.", "traps": ["È inutile e pericolosa.", "Sostituirà completamente i medici."], "why": "Inference: it saves her time, but «nessuna macchina sostituirà una stretta di mano»." },
+        { "q": "Che cosa hanno in comune il paese di montagna e molte comunità rurali americane?", "answer": "Le grandi distanze dal medico.", "traps": ["La stessa lingua.", "Un ospedale in ogni paese."], "why": "Cultural comparison: distances are «spesso enormi» and they use similar services." }
+      ]
+    },
+    "listen": [
+      { "q": "Come cambierà la scuola tra dieci anni a causa dell’intelligenza artificiale?", "en": "How will school change in ten years because of artificial intelligence?", "frames": ["Tra dieci anni, la scuola sarà …", "Gli studenti useranno …", "Da un lato …, dall'altro …"] },
+      { "q": "Quali vantaggi e quali rischi avranno i social network in futuro?", "en": "What advantages and what risks will social networks have in the future?", "frames": ["Un vantaggio sarà che …", "Un rischio sarà che …"] },
+      { "q": "Quale tecnologia userai di più da adulto/a? Perché?", "en": "Which technology will you use most as an adult? Why?", "frames": ["Da adulto/a userò soprattutto … perché …"] }
+    ]
+  },
+  "u5": {
+    "workingOn": "school, health and balance in daily life today",
+    "read": {
+      "title": "Cara Martina",
+      "passage": [
+        ["Cara Martina, mi scrivi che quest'anno hai la maturità e che non dormi più di cinque ore a notte.", "Dear Martina, you write that you have your final high-school exam this year and you don't sleep more than five hours a night."],
+        ["Ti capisco: l'ultimo anno di liceo è impegnativo per tutti.", "I understand: the last year of liceo is demanding for everyone."],
+        ["Prima di tutto, non studiare fino a mezzanotte: il cervello ha bisogno di riposo.", "First of all, don't study until midnight: your brain needs rest."],
+        ["Organizza la settimana con un piano realistico e lascia spazio anche al tempo libero.", "Plan your week realistically and leave room for free time too."],
+        ["Spegni il telefono un'ora prima di dormire e non controllare i social a letto.", "Turn off your phone an hour before sleep and don't check social media in bed."],
+        ["Segui una dieta equilibrata: non saltare la colazione ed evita i cibi ultra-processati.", "Follow a balanced diet: don't skip breakfast and avoid ultra-processed foods."],
+        ["Fai una passeggiata o un po' di sport ogni giorno, anche solo per mezz'ora.", "Take a walk or do some exercise every day, even just for half an hour."],
+        ["Ricorda che il voto della maturità è importante, ma non decide tutta la tua vita.", "Remember that your exam grade matters, but it doesn't decide your whole life."],
+        ["Molti studenti americani vivono una pressione simile con gli esami per entrare all'università, quindi non sei sola.", "Many American students feel similar pressure with college admission tests, so you're not alone."],
+        ["Parla con i tuoi genitori e con i professori: chiedere aiuto non è un segno di debolezza.", "Talk to your parents and your teachers: asking for help is not a sign of weakness."]
+      ],
+      "gloss": { "impegnativo": "demanding", "il cervello": "the brain", "Spegni": "turn off", "non saltare": "don't skip", "debolezza": "weakness" },
+      "questions": [
+        { "q": "Qual è il problema principale di Martina?", "answer": "Dorme troppo poco a causa dello studio.", "traps": ["Non ha amici a scuola.", "Mangia troppo a colazione."], "why": "Non dormi più di cinque ore a notte … hai la maturità." },
+        { "q": "Che cosa consiglia la lettera di fare prima di dormire?", "answer": "Spegnere il telefono un'ora prima.", "traps": ["Controllare i social a letto.", "Studiare fino a mezzanotte."], "why": "Spegni il telefono un'ora prima di dormire." },
+        { "q": "Qual è il tono della lettera?", "answer": "Comprensivo e incoraggiante.", "traps": ["Severo e arrabbiato.", "Ironico e indifferente."], "why": "Inference: «Ti capisco», «non sei sola», «chiedere aiuto non è un segno di debolezza»." },
+        { "q": "Che cosa hanno in comune Martina e molti studenti americani?", "answer": "La pressione degli esami di fine scuola.", "traps": ["Lo stesso esame di maturità.", "La stessa scuola."], "why": "Cultural comparison: «una pressione simile con gli esami per entrare all'università»." }
+      ]
+    },
+    "listen": [
+      { "q": "Un amico dorme poco. Dagli tre consigli. (tu)", "en": "A friend doesn't sleep much. Give him three pieces of advice. (tu)", "frames": ["Non usare il telefono a letto!", "Va' a letto prima!", "Prova a …"] },
+      { "q": "Spiega a un turista come passare un buon weekend nella tua città. Usa l’imperativo.", "en": "Explain to a tourist how to spend a good weekend in your city. Use the imperative.", "frames": ["Visita …", "Mangia da …", "Non perdere …"] },
+      { "q": "Come bilanci scuola, sport e tempo libero? Cosa dovresti cambiare?", "en": "How do you balance school, sports and free time? What should you change?", "frames": ["Di solito …", "Dovrei …", "Potrei …"] }
+    ]
+  },
+  "u6": {
+    "workingOn": "global issues, history and change",
+    "read": {
+      "title": "Il fiume e la memoria",
+      "passage": [
+        ["Quando il nonno di Luca era giovane, il fiume vicino al paese era tranquillo e d'estate i ragazzi ci facevano il bagno.", "When Luca's grandfather was young, the river near the town was calm and in summer the kids swam in it."],
+        ["Nessuno parlava di cambiamento climatico, e le stagioni sembravano sempre uguali.", "Nobody talked about climate change, and the seasons always seemed the same."],
+        ["Due anni fa, invece, dopo giorni di pioggia fortissima, il fiume è uscito dagli argini e ha allagato molte case.", "Two years ago, though, after days of very heavy rain, the river burst its banks and flooded many homes."],
+        ["Quella notte Luca dormiva quando i vicini hanno bussato alla porta per avvisare la famiglia.", "That night Luca was sleeping when the neighbors knocked on the door to warn the family."],
+        ["Sono saliti al primo piano e hanno aspettato i soccorsi fino alla mattina.", "They went up to the second floor and waited for rescuers until morning."],
+        ["Nei giorni seguenti sono arrivati tanti volontari da tutta Italia, molti giovanissimi, per spalare il fango.", "In the following days many volunteers came from all over Italy, many of them very young, to shovel the mud."],
+        ["Qualcuno li ha chiamati «angeli del fango», come i ragazzi che avevano aiutato Firenze durante l'alluvione del 1966.", "Some called them \"mud angels,\" like the young people who had helped Florence during the 1966 flood."],
+        ["Oggi Luca studia scienze ambientali e vuole capire come proteggere il territorio dal dissesto idrogeologico.", "Today Luca studies environmental science and wants to understand how to protect the land from hydrogeological instability."],
+        ["Anche negli Stati Uniti molte comunità affrontano uragani e incendi, e anche lì la solidarietà tra vicini fa la differenza.", "In the United States, too, many communities face hurricanes and wildfires, and there too, solidarity among neighbors makes the difference."],
+        ["Il nonno dice che il fiume non è cambiato da solo: siamo cambiati anche noi.", "Grandpa says the river didn't change on its own: we changed too."]
+      ],
+      "gloss": { "dagli argini": "over its banks", "ha allagato": "flooded", "hanno bussato": "knocked", "i soccorsi": "rescuers", "spalare il fango": "shovel the mud", "uragani": "hurricanes", "incendi": "wildfires" },
+      "questions": [
+        { "q": "Com'era il fiume quando il nonno era giovane?", "answer": "Tranquillo: i ragazzi ci facevano il bagno.", "traps": ["Pericoloso: usciva spesso dagli argini.", "Inquinato: nessuno ci andava."], "why": "Il fiume era tranquillo e d'estate i ragazzi ci facevano il bagno." },
+        { "q": "Che cosa faceva Luca quando i vicini hanno bussato?", "answer": "Dormiva.", "traps": ["Guardava la TV.", "Spalava il fango."], "why": "Quella notte Luca dormiva quando i vicini hanno bussato alla porta." },
+        { "q": "Che cosa vuol dire il nonno con «siamo cambiati anche noi»?", "answer": "Che anche le scelte delle persone hanno contribuito al problema.", "traps": ["Che il fiume non è mai cambiato.", "Che i volontari sono arrivati troppo tardi."], "why": "Inference: the flood is linked to human change (climate, land use), not only to the river." },
+        { "q": "Che cosa accomuna l'Italia e gli Stati Uniti, secondo il testo?", "answer": "I disastri naturali e la solidarietà tra vicini.", "traps": ["Le stesse leggi sull'ambiente.", "L'assenza di volontari."], "why": "Cultural comparison: «anche lì la solidarietà tra vicini fa la differenza»." }
+      ]
+    },
+    "listen": [
+      { "q": "Racconta un viaggio all’estero: com’era il posto e cosa hai fatto?", "en": "Tell about a trip abroad: what was the place like and what did you do?", "frames": ["Sono andato/a a …", "Il posto era …", "Ho visitato …"] },
+      { "q": "Racconta un cambiamento importante nella tua città o nel mondo: com’era prima e cosa è successo dopo?", "en": "Describe an important change in your city or in the world: what was it like before, and what happened afterward?", "frames": ["Prima … era …", "Poi è successo che …", "Da allora …"] },
+      { "q": "Quale problema globale ti preoccupa di più? Che cosa si può fare?", "en": "Which global problem worries you most? What can be done?", "frames": ["Il problema che mi preoccupa di più è …", "Si può …", "Bisognerebbe …"] }
+    ]
+  }
+}

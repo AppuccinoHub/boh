@@ -1,0 +1,193 @@
+{
+  "level": "italiano3",
+  "key": "vorrei",
+  "guideUnit": 4,
+  "proficiency": "Intermediate Low",
+  "title": "Unità 4 · La vita che vorrei",
+  "tab": "Il condizionale",
+  "tabSub": "UNITÀ 4",
+  "eyebrow": "ITALIANO 3 · UNITÀ 4",
+  "question": "How do I ask politely, and what would I like?",
+  "words": "(vorrei, dovresti, più … di)",
+  "workingOn": "asking politely, shopping and comparing",
+  "canDo": [
+    "I can order food and drink politely with vorrei.",
+    "I can offer, accept and refuse.",
+    "I can say what I could, would or should do.",
+    "I can describe clothes I would like.",
+    "I can compare people.",
+    "I can talk about common body aches."
+  ],
+  "culture": "In many Italian bars you pay first at the cassa, then show your receipt (lo scontrino) at the counter, and most people drink their coffee standing up. Clothing sizes work differently (an Italian women's 42 is about a US 6), and the big sales, i saldi, start in early January and early July.",
+  "vocab": [
+    { "group": "Facciamo spese", "words": [
+      ["la giacca", "jacket"],
+      ["la gonna", "skirt"],
+      ["i pantaloni", "pants"],
+      ["la camicia", "shirt"],
+      ["le scarpe", "shoes"],
+      ["la taglia", "size"],
+      ["il camerino", "fitting room"],
+      ["lo sconto", "discount"],
+      ["costare", "to cost"]
+    ] },
+    { "group": "Mi fa male…", "words": [
+      ["la testa", "head"],
+      ["la gola", "throat"],
+      ["la pancia", "stomach, belly"],
+      ["la schiena", "back"],
+      ["i denti", "teeth"],
+      ["i piedi", "feet"]
+    ] },
+    { "group": "Al bar", "words": [
+      ["il cornetto", "croissant"],
+      ["il bicchiere d'acqua", "glass of water"],
+      ["la spremuta", "fresh-squeezed juice"],
+      ["il tramezzino", "sandwich"],
+      ["il conto", "check, bill"]
+    ] }
+  ],
+  "grammar": {
+    "head": "Condizionale = futuro stem + -ei, -esti, -ebbe, -emmo, -este, -ebbero: parlerei, vorrei.",
+    "verbs": ["parlare", "prendere", "finire"],
+    "rows": [
+      ["io", ["parler", "ei"], ["prender", "ei"], ["finir", "ei"]],
+      ["tu", ["parler", "esti"], ["prender", "esti"], ["finir", "esti"]],
+      ["lui / lei", ["parler", "ebbe"], ["prender", "ebbe"], ["finir", "ebbe"]],
+      ["noi", ["parler", "emmo"], ["prender", "emmo"], ["finir", "emmo"]],
+      ["voi", ["parler", "este"], ["prender", "este"], ["finir", "este"]],
+      ["loro", ["parler", "ebbero"], ["prender", "ebbero"], ["finir", "ebbero"]]
+    ],
+    "tricks": [
+      "Same stem as the futuro, new endings: parlerò → parlerei. noi has double m: prenderemmo (futuro: prenderemo).",
+      "Irregulars keep the futuro stem: vorrei, potrei, dovrei, sarei, avrei, andrei.",
+      "To compare, use più / meno + adjective + di: Marco è più alto di Luca. Equal: (tanto) … quanto.",
+      "Superlative: il / la più … (la più simpatica della classe) or -issimo (bellissimo, carissimo)."
+    ],
+    "chips": ["Vorrei un cappuccino, per favore.", "Potrei provare la giacca?", "Mi fa male la testa.", "Costa un occhio della testa!"]
+  },
+  "sentences": [
+    ["Vorrei un cappuccino e un cornetto, per favore.", "I'd like a cappuccino and a croissant, please."],
+    ["Potrei avere il conto?", "Could I have the check?"],
+    ["Ti piacerebbe venire al cinema stasera?", "Would you like to come to the movies tonight?"],
+    ["Grazie, ma non posso: dovrei studiare.", "Thanks, but I can't: I should study."],
+    ["Mi piacerebbe fare l'avvocato.", "I'd like to be a lawyer."],
+    ["Potrei provare questa giacca?", "Could I try on this jacket?"],
+    ["Che taglia porti?", "What size do you wear?"],
+    ["Questa gonna è più cara di quella.", "This skirt is more expensive than that one."],
+    ["Mio fratello è alto quanto mio padre.", "My brother is as tall as my father."],
+    ["Queste scarpe sono bellissime!", "These shoes are gorgeous!"],
+    ["Giulia è la più simpatica della classe.", "Giulia is the nicest in the class."],
+    ["Mi fa male la testa: dovrei dormire.", "My head hurts: I should sleep."]
+  ],
+  "forms": [
+    { "prompt": "io + volere", "answer": "vorrei", "alts": [], "traps": ["volerei", "vorrò"],
+      "why": "volere → vorr- + ei: vorrei.", "trick": ["Futuro stem", "vorrò → vorrei."] },
+    { "prompt": "tu + potere", "answer": "potresti", "alts": [], "traps": ["poteresti", "potrai"],
+      "why": "potere → potr- + esti: potresti.", "trick": ["tu → -esti", "potr- + esti."] },
+    { "prompt": "lui + dovere", "answer": "dovrebbe", "alts": [], "traps": ["doverebbe", "dovrà"],
+      "why": "dovere → dovr- + ebbe: dovrebbe.", "trick": ["lui → -ebbe", "dovr- + ebbe."] },
+    { "prompt": "io + parlare", "answer": "parlerei", "alts": [], "traps": ["parlarei", "parlerò"],
+      "why": "-are → -er- + ei: parlerei.", "trick": ["a → e", "Like the futuro: parler-, then -ei."] },
+    { "prompt": "noi + prendere", "answer": "prenderemmo", "alts": [], "traps": ["prenderemo", "prenderamo"],
+      "why": "noi = -emmo, two m: prenderemmo. prenderemo is the futuro.", "trick": ["Double m", "Condizionale noi: -emmo. Futuro noi: -emo."] },
+    { "prompt": "loro + finire", "answer": "finirebbero", "alts": [], "traps": ["finerebbero", "finiranno"],
+      "why": "finir- + ebbero: finirebbero.", "trick": ["loro → -ebbero", "finir- + ebbero."] },
+    { "prompt": "tu + mangiare", "answer": "mangeresti", "alts": [], "traps": ["mangiaresti", "mangeristi"],
+      "why": "mangiare → manger- + esti: mangeresti.", "trick": ["Drop the i", "Same spelling as the futuro: manger-."] },
+    { "prompt": "io + essere", "answer": "sarei", "alts": [], "traps": ["esserei", "sarò"],
+      "why": "essere → sar- + ei: sarei.", "trick": ["essere → sar-", "sarò → sarei."] },
+    { "prompt": "voi + andare", "answer": "andreste", "alts": [], "traps": ["andareste", "andrete"],
+      "why": "andare → andr- + este: andreste.", "trick": ["voi → -este", "andrete is the futuro; andreste is the condizionale."] },
+    { "prompt": "lei + avere", "answer": "avrebbe", "alts": [], "traps": ["averebbe", "avrà"],
+      "why": "avere → avr- + ebbe: avrebbe.", "trick": ["Short stem", "avr- + ebbe."] },
+    { "prompt": "più alto ___ Luca (more … than)", "answer": "di", "alts": [], "traps": ["che", "quanto"],
+      "why": "Comparing two people: più … di.", "trick": ["più … di", "Two people or things: Marco è più alto di Luca."] },
+    { "prompt": "bello + -issimo (la casa è ___)", "answer": "bellissima", "alts": [], "traps": ["bellissimo", "bellisima"],
+      "why": "la casa is feminine: bellissima, with double s.", "trick": ["-issimo agrees", "-issimo / -issima / -issimi / -issime, like any adjective."] }
+  ],
+  "fill": [
+    { "text": "Buongiorno! Io ___ un caffè, per favore.", "answers": ["vorrei"], "cue": "would like",
+      "hint": "would like → v…", "why": "Polite ordering: vorrei." },
+    { "text": "Scusi, ___ provare queste scarpe?", "answers": ["potrei"], "cue": "could I",
+      "hint": "could I → p…", "why": "potere → potr- + ei = potrei." },
+    { "text": "Hai la febbre? Tu ___ andare dal medico.", "answers": ["dovresti"], "cue": "should",
+      "hint": "you should → d…", "why": "Advice: dovere → dovr- + esti = dovresti." },
+    { "text": "Questa giacca è ___ cara della gonna.", "answers": ["più"], "cue": "more",
+      "hint": "more → p…", "why": "più … di: più cara della gonna." },
+    { "text": "Ho camminato tutto il giorno: mi ___ male i piedi.", "answers": ["fanno"], "cue": "fare",
+      "hint": "i piedi is plural → f…", "why": "Plural body part: mi fanno male i piedi." },
+    { "text": "Noi ___ volentieri in Italia!", "answers": ["andremmo"], "cue": "andare",
+      "hint": "we would go → andr…, double m", "why": "andr- + emmo = andremmo." },
+    { "text": "Che cosa ___ i tuoi genitori al bar?", "answers": ["prenderebbero"], "cue": "prendere",
+      "hint": "they would have → prender…", "why": "prender- + ebbero = prenderebbero." },
+    { "text": "Questo vestito costa 500 euro: è ___!", "answers": ["carissimo"], "cue": "caro",
+      "hint": "very expensive → car…", "why": "caro + -issimo = carissimo." }
+  ],
+  "read": {
+    "title": "Facciamo spese!",
+    "passage": [
+      ["Sabato Elena è andata a fare spese in centro con sua madre.", "On Saturday Elena went shopping downtown with her mother."],
+      ["In un negozio ha visto una giacca rossa bellissima.", "In a store she saw a gorgeous red jacket."],
+      ["\"Potrei provare la giacca?\" ha chiesto alla commessa.", "\"Could I try on the jacket?\" she asked the saleswoman."],
+      ["La giacca le stava benissimo, ma costava 200 euro, più della giacca nera.", "The jacket looked great on her, but it cost 200 euros, more than the black jacket."],
+      ["\"Costa un occhio della testa!\" ha detto la madre. \"Dovresti prendere quella nera.\"", "\"It costs an arm and a leg!\" her mother said. \"You should get the black one.\""],
+      ["Alla fine Elena ha comprato la giacca nera, bella quanto quella rossa ma meno cara.", "In the end Elena bought the black jacket, as pretty as the red one but less expensive."]
+    ],
+    "gloss": { "la commessa": "the saleswoman", "le stava benissimo": "looked great on her", "Alla fine": "in the end" },
+    "questions": [
+      { "q": "Con chi è andata a fare spese Elena?", "answer": "con sua madre", "traps": ["con un'amica", "con sua sorella"],
+        "why": "…è andata a fare spese in centro con sua madre." },
+      { "q": "Quanto costava la giacca rossa?", "answer": "200 euro", "traps": ["100 euro", "50 euro"],
+        "why": "…ma costava 200 euro." },
+      { "q": "Che cosa dice la madre della giacca rossa?", "answer": "Costa un occhio della testa.", "traps": ["È bruttissima.", "È troppo piccola."],
+        "why": "\"Costa un occhio della testa!\" ha detto la madre." },
+      { "q": "Quale giacca ha comprato Elena?", "answer": "la giacca nera", "traps": ["la giacca rossa", "nessuna giacca"],
+        "why": "Alla fine Elena ha comprato la giacca nera." }
+    ]
+  },
+  "listen": [
+    { "q": "Che cosa prenderesti al bar?", "en": "What would you have at the café?",
+      "frames": ["Prenderei …", "Vorrei un / una …, per favore."] },
+    { "q": "Che lavoro ti piacerebbe fare?", "en": "What job would you like to do?",
+      "frames": ["Mi piacerebbe fare il / la …", "Vorrei diventare …"] },
+    { "q": "Chi è più alto, tu o tuo fratello?", "en": "Who is taller, you or your brother?",
+      "frames": ["Io sono più alto / alta di …", "Mio fratello è meno alto di me.", "Non ho fratelli, ma …"] }
+  ],
+  "chat": {
+    "who": ["Giulia", "Sara"],
+    "lines": [
+      [0, "Sara, ti piacerebbe venire a fare spese sabato? 🛍️", "Sara, would you like to come shopping Saturday?"],
+      [1, "Mi piacerebbe, ma dovrei studiare per l'esame…", "I'd like to, but I should study for the test…"],
+      [0, "Dai! In centro c'è uno sconto del 50%!", "Come on! There's a 50% discount downtown!"],
+      [1, "Ok, ok! Vorrei comprare delle scarpe nuove. 👟", "Ok, ok! I'd like to buy some new shoes."],
+      [0, "Perfetto! E dopo potremmo prendere un gelato.", "Perfect! And afterwards we could get a gelato."],
+      [1, "Sì! Ma niente scarpe che costano un occhio della testa! 😂", "Yes! But no shoes that cost an arm and a leg!"]
+    ],
+    "words": { "ti piacerebbe": "would you like", "dovrei": "I should", "uno sconto": "a discount", "vorrei": "I would like", "potremmo": "we could", "costano un occhio della testa": "cost an arm and a leg" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che cosa vorresti fare questo fine settimana?", "Vorrei …"],
+      ["Che cosa dovresti fare stasera?", "Stasera dovrei …, ma vorrei …"],
+      ["Chi è la persona più simpatica della tua famiglia?", "La persona più simpatica è … perché …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato vorrei, potrei o dovrei.", "Ho fatto un paragone (più … di)."]
+  },
+  "finish": "Now I know how to ask politely, say what I would do, and compare people and things!",
+  "idiom": {
+    "it": "Costare un occhio della testa",
+    "en": "to cost an arm and a leg",
+    "ex": "Queste scarpe costano un occhio della testa!",
+    "exEn": "These shoes cost an arm and a leg!",
+    "note": "Said about anything very expensive; literally 'to cost an eye from your head.'"
+  },
+  "flags": [
+    "Culture facts, Unverified: Italian women's size 42 ≈ US 6 (charts vary by brand); saldi start dates are set by each region, usually early January and early July; 'pay first at the cassa' is common but not universal.",
+    "'Mi piacerebbe' is the condizionale of piacere; taught here as a chunk alongside vorrei (matches the approved condizionale outline).",
+    "'Le stava benissimo' (looked great on her) uses stare + indirect pronoun; glossed as a chunk.",
+    "'Mio fratello è meno alto di me' (listen frame) uses the stressed pronoun 'me' after di; Italian I-II usually cover it, confirm.",
+    "Six can-dos (the brief lists six); the schema says 2-4. The validator accepts it; trim if the path card has no room.",
+    "The approved condizionale outline (2026-10-08) has a 6-stop plan and 'Al bar' dialogue; this file follows the single-unit schema instead. The bar dialogue items (cappuccino, cornetto, bicchiere d'acqua, Potrei avere…) are reused."
+  ]
+}

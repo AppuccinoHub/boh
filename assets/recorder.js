@@ -122,7 +122,7 @@
       if (parla) { showParla(ph, extra); bind(); return; }
       if (ph === 'idle') {
         say('<h3>' + esc(label) + '</h3>' +
-          '<p>Press <b>Record</b> and read your sentences out loud. You can record again as many times as you want.</p>' +
+          '<p>' + (opt && opt.intro ? opt.intro : 'Press <b>Record</b> and read your sentences out loud.') + ' You can record again as many times as you want.</p>' +
           '<div class="brec-row"><button class="rec" data-r="start">Record</button></div>' +
           note('Your browser will ask to use the microphone. Tap <b>Allow</b>. Your teacher listens to your recording. The game does not score how you sound.'));
       } else if (ph === 'rec') {

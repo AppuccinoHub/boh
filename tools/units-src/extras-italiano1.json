@@ -1,0 +1,26 @@
+{
+  "it1": {
+    "workingOn": "essere or avere: who you are and what you have",
+    "read": {
+      "title": "Io e il mio cane",
+      "passage": [
+        ["Io sono Luca e ho quindici anni.", "I am Luca and I am fifteen years old."],
+        ["Sono di Hamilton.", "I am from Hamilton."],
+        ["Ho un cane bianco e un gatto.", "I have a white dog and a cat."],
+        ["Il mio cane è piccolo e molto simpatico.", "My dog is small and very nice."]
+      ],
+      "gloss": { "quindici": "fifteen", "simpatico": "nice, likeable" },
+      "questions": [
+        { "q": "Quanti anni ha Luca?", "answer": "quindici anni", "traps": ["quattordici anni", "sedici anni"], "why": "Io sono Luca e ho quindici anni." },
+        { "q": "Di dov'è Luca?", "answer": "di Hamilton", "traps": ["di Roma", "di Venezia"], "why": "Sono di Hamilton." },
+        { "q": "Che animali ha Luca?", "answer": "un cane e un gatto", "traps": ["un cane e un criceto", "un gatto e un uccello"], "why": "Ho un cane bianco e un gatto." },
+        { "q": "Com'è il cane?", "answer": "piccolo e simpatico", "traps": ["grande e simpatico", "piccolo e vecchio"], "why": "Il mio cane è piccolo e molto simpatico." }
+      ]
+    },
+    "listen": [
+      { "q": "Hai un animale domestico?", "en": "Do you have a pet?", "frames": ["Sì, ho un …", "Sì, ho una …", "No, non ho un animale domestico."] },
+      { "q": "Quanti anni hai?", "en": "How old are you?", "frames": ["Ho … anni."] },
+      { "q": "La tua scuola è grande o piccola?", "en": "Is your school big or small?", "frames": ["La mia scuola è grande.", "La mia scuola è piccola."] }
+    ]
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "level": "italiano1",
+  "key": "cibo",
+  "guideUnit": 4,
+  "proficiency": "Novice Mid",
+  "title": "Unità 4 · A tavola!",
+  "tab": "A tavola",
+  "tabSub": "UNITÀ 4",
+  "eyebrow": "ITALIANO 1 · UNITÀ 4",
+  "question": "What do I like to eat, and how do I order?",
+  "words": "(il, lo, la, mi piace, vorrei)",
+  "workingOn": "food words, the, mi piace, and ordering politely",
+  "canDo": [
+    "I can read a menu.",
+    "I can order food and beverages in a café or restaurant.",
+    "I can talk about a variety of foods using definite articles.",
+    "I can express food preferences using piacere."
+  ],
+  "culture": "Italian breakfast (la colazione) is light: often a cappuccino and a cornetto, drunk standing up at the bar, which in Italy is a café, not a pub. Lunch and dinner are bigger meals, and dinner is often at 8 pm or later. In restaurants the bill may include a coperto (a small cover charge per person), and big tips are not expected the way they are in the US.",
+  "vocab": [
+    { "group": "Da mangiare", "words": [
+      ["la pizza", "pizza"],
+      ["la pasta", "pasta"],
+      ["il panino", "sandwich"],
+      ["il cornetto", "croissant"],
+      ["il gelato", "ice cream"],
+      ["lo yogurt", "yogurt"],
+      ["l'insalata", "salad"],
+      ["gli spaghetti", "spaghetti"],
+      ["i biscotti", "cookies"],
+      ["le patatine", "fries / chips"]
+    ]},
+    { "group": "Da bere", "words": [
+      ["il caffè", "espresso coffee"],
+      ["il cappuccino", "cappuccino"],
+      ["l'acqua", "water"],
+      ["il latte", "milk"],
+      ["il succo d'arancia", "orange juice"]
+    ]},
+    { "group": "Al bar e al ristorante", "words": [
+      ["la colazione", "breakfast"],
+      ["il pranzo", "lunch"],
+      ["la cena", "dinner"],
+      ["il menù", "menu"],
+      ["il conto", "the check / bill"],
+      ["il cameriere", "waiter"],
+      ["lo zucchero", "sugar"],
+      ["vorrei", "I would like (memorized)"]
+    ]}
+  ],
+  "grammar": {
+    "head": "the: il, lo, la, l' (one) · i, gli, le (more). Mi piace + one thing, mi piacciono + more things.",
+    "verbs": [],
+    "rows": [],
+    "tricks": [
+      "Masculine: il for most words, lo before s + consonant, z, or y (lo zucchero, lo yogurt), l' before a vowel. Feminine: la, or l' before a vowel.",
+      "Plural: il → i; lo and masculine l' → gli; la and feminine l' → le.",
+      "Mi piace la pizza (one thing). Mi piacciono gli spaghetti (more than one). Ti piace? = Do you like?",
+      "Vorrei = I would like. Learn it as a memorized phrase for ordering politely; you will see how it works in Italiano 3."
+    ],
+    "chips": ["Vorrei un cappuccino, per favore.", "Mi piace la pizza.", "Mi piacciono le patatine.", "Il conto, per favore."]
+  },
+  "sentences": [
+    ["Mi piace la pizza.", "I like pizza."],
+    ["Mi piacciono gli spaghetti.", "I like spaghetti."],
+    ["Ti piace il gelato?", "Do you like ice cream?"],
+    ["Non mi piace il latte.", "I don't like milk."],
+    ["Ti piacciono i biscotti?", "Do you like cookies?"],
+    ["Vorrei un caffè, per favore.", "I'd like a coffee, please."],
+    ["Vorrei un panino e un'acqua.", "I'd like a sandwich and a water."],
+    ["Il conto, per favore.", "The check, please."],
+    ["Lo yogurt è buono.", "The yogurt is good."],
+    ["Le patatine sono buone.", "The fries are good."],
+    ["Il cameriere è simpatico.", "The waiter is nice."],
+    ["Il gelato è buonissimo!", "The ice cream is super good!"]
+  ],
+  "forms": [
+    { "prompt": "the + pizza", "answer": "la pizza", "alts": [], "traps": ["il pizza", "lo pizza"],
+      "why": "pizza is feminine (-a): la pizza.", "trick": ["-a word → la", "la pizza, la pasta, la cena."] },
+    { "prompt": "the + panino", "answer": "il panino", "alts": [], "traps": ["lo panino", "la panino"],
+      "why": "Masculine, starts with a normal consonant: il.", "trick": ["most masculine → il", "il panino, il gelato, il conto."] },
+    { "prompt": "the + zucchero", "answer": "lo zucchero", "alts": [], "traps": ["il zucchero", "la zucchero"],
+      "why": "Masculine word starting with z: lo.", "trick": ["z, s + consonant, y → lo", "lo zucchero, lo yogurt, lo zaino."] },
+    { "prompt": "the + acqua", "answer": "l'acqua", "alts": [], "traps": ["la acqua", "il acqua"],
+      "why": "Starts with a vowel: l'.", "trick": ["vowel → l'", "l'acqua, l'insalata."] },
+    { "prompt": "the + insalata", "answer": "l'insalata", "alts": [], "traps": ["la insalata", "lo insalata"],
+      "why": "Starts with a vowel: l'.", "trick": ["vowel → l'", "Drop the a and add an apostrophe: l'insalata."] },
+    { "prompt": "the + spaghetti", "answer": "gli spaghetti", "alts": [], "traps": ["i spaghetti", "le spaghetti"],
+      "why": "Plural of lo (s + consonant) → gli.", "trick": ["lo → gli", "lo spaghetto → gli spaghetti."] },
+    { "prompt": "the + biscotti", "answer": "i biscotti", "alts": [], "traps": ["gli biscotti", "le biscotti"],
+      "why": "Plural of il → i.", "trick": ["il → i", "il biscotto → i biscotti."] },
+    { "prompt": "the + patatine", "answer": "le patatine", "alts": [], "traps": ["i patatine", "gli patatine"],
+      "why": "Feminine plural (-e) → le.", "trick": ["la → le", "la patatina → le patatine."] },
+    { "prompt": "Mi ___ la pasta.", "answer": "piace", "alts": [], "traps": ["piacciono", "piaci"],
+      "why": "la pasta is one thing → piace.", "trick": ["one thing → piace", "Mi piace la pasta."] },
+    { "prompt": "Mi ___ i biscotti.", "answer": "piacciono", "alts": [], "traps": ["piace", "piaci"],
+      "why": "i biscotti is more than one → piacciono.", "trick": ["more things → piacciono", "Mi piacciono i biscotti."] },
+    { "prompt": "Ti ___ il gelato?", "answer": "piace", "alts": [], "traps": ["piacciono", "piaci"],
+      "why": "il gelato is one thing → piace.", "trick": ["look at the food, not the person", "Ti piace il gelato?"] },
+    { "prompt": "Ti ___ le patatine?", "answer": "piacciono", "alts": [], "traps": ["piace", "piaci"],
+      "why": "le patatine is more than one → piacciono.", "trick": ["look at the food, not the person", "Ti piacciono le patatine?"] }
+  ],
+  "fill": [
+    { "text": "Mi ___ la pizza.", "answers": ["piace"], "cue": "like",
+      "bank": ["piace", "piacciono", "piaci"], "hint": "one thing → p-i-a-c-e.", "why": "la pizza is one thing → piace." },
+    { "text": "Mi ___ gli spaghetti.", "answers": ["piacciono"], "cue": "like",
+      "bank": ["piacciono", "piace", "piaci"], "hint": "more than one → ends in -ono.", "why": "gli spaghetti is plural → piacciono." },
+    { "text": "Ti piace ___ yogurt?", "answers": ["lo"], "cue": "the",
+      "bank": ["lo", "il", "la"], "hint": "yogurt starts with y → l-o.", "why": "Masculine word with y → lo yogurt." },
+    { "text": "Ti piacciono ___ biscotti?", "answers": ["i"], "cue": "the",
+      "bank": ["i", "gli", "le"], "hint": "plural of il → one letter.", "why": "il biscotto → i biscotti." },
+    { "text": "___ spaghetti sono buoni.", "answers": ["Gli"], "cue": "the",
+      "bank": ["Gli", "I", "Le"], "hint": "plural of lo → G-l-i.", "why": "s + consonant, plural → gli spaghetti." },
+    { "text": "___ patatine sono buone.", "answers": ["Le"], "cue": "the",
+      "bank": ["Le", "La", "I"], "hint": "feminine plural → L-e.", "why": "patatine is feminine plural → le." },
+    { "text": "___ un caffè, per favore.", "answers": ["Vorrei"], "cue": "I would like",
+      "bank": ["Vorrei", "Mi piacciono", "Sono"], "hint": "I would like → V-o-r.", "why": "Vorrei = I would like: the polite way to order." },
+    { "text": "Il ___, per favore.", "answers": ["conto"], "cue": "the check",
+      "bank": ["conto", "colazione", "latte"], "hint": "check / bill → c-o-n.", "why": "Il conto, per favore = The check, please." }
+  ],
+  "read": {
+    "title": "Al bar",
+    "passage": [
+      ["Sono le otto. Giulia è al bar con Marco.", "It's eight o'clock. Giulia is at the café with Marco."],
+      ["Giulia: «Vorrei un cappuccino e un cornetto, per favore.»", "Giulia: \"I'd like a cappuccino and a croissant, please.\""],
+      ["Marco ha sete: prende un succo d'arancia.", "Marco is thirsty: he gets an orange juice."],
+      ["Marco: «Non mi piace il caffè!»", "Marco: \"I don't like coffee!\""]
+    ],
+    "gloss": { "al bar": "at the café", "ha sete": "is thirsty", "prende": "gets / has" },
+    "questions": [
+      { "q": "Che ora è?", "answer": "Sono le otto.", "traps": ["È l'una.", "Sono le due."],
+        "why": "Sono le otto." },
+      { "q": "Che cosa prende Giulia?", "answer": "un cappuccino e un cornetto", "traps": ["un succo d'arancia", "un caffè e un panino"],
+        "why": "Vorrei un cappuccino e un cornetto, per favore." },
+      { "q": "Che cosa prende Marco?", "answer": "un succo d'arancia", "traps": ["un cappuccino", "un caffè"],
+        "why": "Prende un succo d'arancia." },
+      { "q": "Marco ha fame o ha sete?", "answer": "Ha sete.", "traps": ["Ha fame.", "Ha freddo."],
+        "why": "Marco ha sete." }
+    ]
+  },
+  "listen": [
+    { "q": "Ti piace la pizza?", "en": "Do you like pizza?",
+      "frames": ["Sì, mi piace la pizza.", "No, non mi piace la pizza."] },
+    { "q": "Ti piacciono gli spaghetti?", "en": "Do you like spaghetti?",
+      "frames": ["Sì, mi piacciono gli spaghetti.", "No, non mi piacciono gli spaghetti."] },
+    { "q": "Sei al bar. Un caffè o un cappuccino?", "en": "You're at the café. A coffee or a cappuccino?",
+      "frames": ["Vorrei un caffè, per favore.", "Vorrei un cappuccino, per favore."] }
+  ],
+  "chat": {
+    "who": ["Sara", "Luca"],
+    "lines": [
+      [0, "Ho una fame da lupo! 🐺", "I'm starving!"],
+      [1, "Anch'io! Pizza? 🍕", "Me too! Pizza?"],
+      [0, "Sì! Mi piace la pizza margherita.", "Yes! I like margherita pizza."],
+      [1, "Io vorrei gli spaghetti.", "I'd like spaghetti."],
+      [0, "Va bene. E dopo il gelato? 🍦", "OK. And ice cream after?"],
+      [1, "Certo! Il gelato mi piace tanto!", "Of course! I really like ice cream!"]
+    ],
+    "words": { "Anch'io": "me too", "Va bene": "OK", "dopo": "after", "Certo": "of course", "tanto": "a lot" }
+  },
+  "parla": {
+    "prompts": [
+      ["Ti piace la pizza?", "Sì, mi piace … / No, non mi piace …"],
+      ["Ti piacciono le patatine?", "Sì, mi piacciono … / No, non mi piacciono …"],
+      ["Buongiorno! Che cosa desidera?", "Vorrei …, per favore."]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho risposto con frasi intere.", "Ho ordinato con «Vorrei … per favore»."]
+  },
+  "finish": "Now I know how to say what food I like and how to order at an Italian café!",
+  "idiom": {
+    "it": "Avere una fame da lupo",
+    "en": "to be starving",
+    "ex": "È l'una e ho una fame da lupo!",
+    "exEn": "It's one o'clock and I'm starving!",
+    "note": "Literally 'to have a wolf's hunger.' Said when you are very, very hungry. It uses avere, like ho fame."
+  },
+  "flags": [
+    "Vorrei is condizionale (Italiano 3). It is taught ONLY as a memorized phrase, as you approved; trick 4 tells students so.",
+    "Reading uses 'al bar' (articulated preposition), 'ha sete' and 'prende' (regular -ere verb); all three are glossed as chunks.",
+    "Parla prompt 3 has the waiter say 'Che cosa desidera?' (formal 'What would you like?'). It is not in the vocab; introduce it orally in class or swap it.",
+    "Indefinite articles un / una / un' (Vorrei un caffè, un'acqua) are assumed known from Unit 1. Confirm.",
+    "Chat chunks not taught in a chart: Anch'io, Va bene, dopo, Certo, tanto (all glossed); 'pizza margherita' is a name.",
+    "Spelling: il menù (with accent) chosen; il menu (no accent) is also correct and common. Pick one for the whole game.",
+    "il caffè is glossed as espresso coffee: in Italy un caffè means an espresso. Worth saying in class.",
+    "Culture facts are unverified: coperto is common but not universal, tipping norms and dinner times vary by region.",
+    "Trap 'Ha freddo' in the reading uses avere + freddo, assumed known from the Il tempo unit."
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "level": "italiano4",
+  "key": "tecno",
+  "guideUnit": 3,
+  "proficiency": "Intermediate Mid",
+  "title": "Unità 10 · La tecnologia",
+  "tab": "La tecnologia",
+  "tabSub": "UNITÀ 10",
+  "eyebrow": "ITALIANO 4 · UNITÀ 10",
+  "question": "How has technology changed the way we live, talk, and meet people?",
+  "words": "(si usa, i social, staccare la spina)",
+  "workingOn": "technology, social media, and how people use them",
+  "canDo": [
+    "I can talk about how technology has changed the world.",
+    "I can discuss social media and how people use it.",
+    "I can post an entry to a blog or forum.",
+    "I can understand the main idea of messages in a chat."
+  ],
+  "culture": "In Italy most people text on WhatsApp, and many prefer voice messages (i vocali) to typing. Not so long ago, in many Italian towns, families had a big say in who married whom; today many couples meet at school, at work, or on an app.",
+  "vocab": [
+    { "group": "Il telefono e la rete", "words": [
+      ["lo smartphone", "the smartphone"],
+      ["l'app", "the app"],
+      ["i social", "social media"],
+      ["scaricare", "to download"],
+      ["pubblicare", "to post, to publish"],
+      ["condividere", "to share"],
+      ["il post", "the post"],
+      ["il commento", "the comment"],
+      ["la password", "the password"],
+      ["la privacy", "privacy"],
+      ["la videochiamata", "the video call"],
+      ["il vocale", "the voice message"]
+    ]},
+    { "group": "Online", "words": [
+      ["il blog", "the blog"],
+      ["il forum", "the forum"],
+      ["l'utente", "the user"],
+      ["iscriversi", "to sign up"],
+      ["essere connesso/a", "to be online"]
+    ]},
+    { "group": "L'amore ieri e oggi", "words": [
+      ["la coppia", "the couple"],
+      ["il matrimonio combinato", "the arranged marriage"],
+      ["l'appuntamento", "the date"],
+      ["innamorarsi", "to fall in love"],
+      ["fidarsi di", "to trust"]
+    ]}
+  ],
+  "grammar": {
+    "head": "Si impersonale: si + verb in the 3rd person. One thing → singular (si usa l'app); many things → plural (si usano i social).",
+    "verbs": ["usare", "scrivere", "vivere"],
+    "rows": [
+      ["singolare: si", ["si us", "a"], ["si scriv", "e"], ["si viv", "e"]],
+      ["plurale: si", ["si us", "ano"], ["si scriv", "ono"], ["si viv", "ono"]]
+    ],
+    "tricks": [
+      "Si means people / you / one in general: In Italia si mangia tardi.",
+      "Singular thing or no thing → lui/lei form; plural thing → loro form: si scrivono i messaggi.",
+      "Si dice … ? asks how people say something: Come si dice «password»?",
+      "With a reflexive verb, use ci si: ci si diverte."
+    ],
+    "chips": ["Come si dice …?", "Si usa molto …", "Non si deve …", "Si vive meglio senza …"]
+  },
+  "sentences": [
+    ["In Italia si usa molto WhatsApp.", "In Italy people use WhatsApp a lot."],
+    ["Oggi si usano i social per tutto.", "Today people use social media for everything."],
+    ["Come si dice «password» in italiano?", "How do you say \"password\" in Italian?"],
+    ["Senza telefono si vive meglio.", "You live better without a phone."],
+    ["Una volta si scrivevano le lettere a mano.", "People used to write letters by hand."],
+    ["Su Instagram si pubblicano molte foto.", "On Instagram people post a lot of photos."],
+    ["Prima di iscriversi, si legge la privacy.", "Before signing up, you read the privacy policy."],
+    ["Non si deve condividere la password.", "You must not share your password."],
+    ["Mia nonna manda solo vocali.", "My grandmother only sends voice messages."],
+    ["Molte coppie si conoscono su un'app.", "Many couples meet on an app."],
+    ["Questo weekend stacco la spina.", "This weekend I'm unplugging."],
+    ["Il mio post ha ricevuto venti commenti.", "My post got twenty comments."]
+  ],
+  "forms": [
+    { "prompt": "si + usare (lo smartphone)", "answer": "si usa", "alts": [], "traps": ["si usano", "si uso"],
+      "why": "One thing (lo smartphone) → singular: si usa.", "trick": ["Singolare", "One thing → -a / -e."] },
+    { "prompt": "si + usare (i social)", "answer": "si usano", "alts": [], "traps": ["si usa", "si usiamo"],
+      "why": "Many things (i social) → plural: si usano.", "trick": ["Plurale", "Plural thing → -ano / -ono."] },
+    { "prompt": "si + dire (come …?)", "answer": "si dice", "alts": [], "traps": ["si dicono", "si dico"],
+      "why": "Come si dice? = How do you say?", "trick": ["Si dice", "Fixed phrase: Come si dice …?"] },
+    { "prompt": "si + vivere (meglio)", "answer": "si vive", "alts": [], "traps": ["si vivono", "si vivi"],
+      "why": "No thing after it → singular: si vive.", "trick": ["No object", "No noun after → singular."] },
+    { "prompt": "si + mandare (i messaggi)", "answer": "si mandano", "alts": [], "traps": ["si manda", "si mandiamo"],
+      "why": "i messaggi is plural → si mandano.", "trick": ["Look at the noun", "Plural noun → plural verb."] },
+    { "prompt": "si + scaricare (un'app)", "answer": "si scarica", "alts": [], "traps": ["si scaricano", "si scarico"],
+      "why": "un'app is singular → si scarica.", "trick": ["Singolare", "un'app = one thing → -a."] },
+    { "prompt": "si + leggere (le notizie online)", "answer": "si leggono", "alts": [], "traps": ["si legge", "si leggiamo"],
+      "why": "le notizie is plural → si leggono.", "trick": ["-ere plural", "-ere verbs: -ono in the plural."] },
+    { "prompt": "si + pubblicare (le foto)", "answer": "si pubblicano", "alts": [], "traps": ["si pubblica", "si pubblicono"],
+      "why": "le foto is plural → si pubblicano.", "trick": ["-are plural", "-are verbs: -ano in the plural."] },
+    { "prompt": "si + condividere (un post)", "answer": "si condivide", "alts": [], "traps": ["si condividono", "si condivida"],
+      "why": "un post is singular → si condivide.", "trick": ["-ere singular", "-ere verbs: -e in the singular."] },
+    { "prompt": "si + parlare (di privacy)", "answer": "si parla", "alts": [], "traps": ["si parlano", "si parlo"],
+      "why": "di privacy is not a subject → singular: si parla.", "trick": ["si parla di", "si parla di … stays singular."] },
+    { "prompt": "si + fare (le videochiamate)", "answer": "si fanno", "alts": [], "traps": ["si fa", "si facono"],
+      "why": "le videochiamate is plural → si fanno.", "trick": ["fare", "fare → fa / fanno."] },
+    { "prompt": "si + stare (bene senza telefono)", "answer": "si sta", "alts": [], "traps": ["si stanno", "si sto"],
+      "why": "No plural noun → singular: si sta bene.", "trick": ["si sta bene", "Si sta bene = it feels good, people are fine."] }
+  ],
+  "fill": [
+    { "text": "In Italia ___ molto WhatsApp.", "answers": ["si usa"], "cue": "usare",
+      "hint": "People use: s… u…", "why": "WhatsApp is one thing → si usa." },
+    { "text": "Oggi ___ meno lettere di una volta.", "answers": ["si scrivono"], "cue": "scrivere",
+      "hint": "People write: s… s…", "why": "lettere is plural → si scrivono." },
+    { "text": "Senza telefono ___ meglio!", "answers": ["si vive"], "cue": "vivere",
+      "hint": "One lives: s… v…", "why": "No noun → singular: si vive." },
+    { "text": "Su Instagram ___ molte foto.", "answers": ["si pubblicano"], "cue": "pubblicare",
+      "hint": "People post: s… p…", "why": "foto is plural → si pubblicano." },
+    { "text": "Come ___ «password» in italiano?", "answers": ["si dice"], "cue": "dire",
+      "hint": "How do you say: s… d…", "why": "Come si dice …? Answer: si dice «password»!" },
+    { "text": "Prima di accettare, ___ sempre le regole sulla privacy.", "answers": ["si leggono"], "cue": "leggere",
+      "hint": "You read: s… l…", "why": "le regole is plural → si leggono." },
+    { "text": "Una volta, in molti paesi, i matrimoni ___ in famiglia.", "answers": ["si decidevano"], "cue": "decidere",
+      "hint": "Were decided (imperfetto): s… d…", "why": "Habit in the past + plural noun → si decidevano." },
+    { "text": "Oggi ___ un'app per tutto.", "answers": ["si scarica"], "cue": "scaricare",
+      "hint": "People download: s… s…", "why": "un'app is singular → si scarica." }
+  ],
+  "read": {
+    "title": "L'amore ieri e oggi",
+    "passage": [
+      ["Ieri ho parlato con mia nonna dell'amore ai suoi tempi.", "Yesterday I talked with my grandmother about love in her day."],
+      ["Mi ha raccontato che sua madre non ha scelto il marito da sola: le due famiglie si sono messe d'accordo.", "She told me her mother didn't choose her husband on her own: the two families agreed."],
+      ["Quando la nonna era giovane, invece, si ballava alla festa del paese e si parlava in piazza.", "When Grandma was young, instead, people danced at the town festival and talked in the square."],
+      ["Non c'era il telefono in casa, quindi si scrivevano lettere.", "There was no phone at home, so people wrote letters."],
+      ["Oggi molte coppie si conoscono su un'app.", "Today many couples meet on an app."],
+      ["Si guarda una foto, si legge un profilo e si manda un messaggio.", "You look at a photo, read a profile, and send a message."],
+      ["La nonna dice che così si va troppo veloce.", "Grandma says that this way things go too fast."],
+      ["Secondo lei, una lettera si legge cento volte, un messaggio una volta sola.", "In her opinion, a letter gets read a hundred times, a message just once."],
+      ["Secondo me la tecnologia è utile, ma ogni tanto bisogna staccare la spina.", "In my opinion technology is useful, but every so often you need to unplug."]
+    ],
+    "gloss": { "si sono messe d'accordo": "came to an agreement", "la festa del paese": "the town festival", "profilo": "profile", "ogni tanto": "every so often" },
+    "questions": [
+      { "q": "Chi ha scelto il marito della bisnonna?", "answer": "le due famiglie", "traps": ["lei da sola", "un'app"],
+        "why": "Le due famiglie si sono messe d'accordo." },
+      { "q": "Perché ai tempi della nonna si scrivevano lettere?", "answer": "Perché non c'era il telefono in casa.", "traps": ["Perché le lettere erano più veloci.", "Perché si usavano i social."],
+        "why": "Non c'era il telefono in casa, quindi si scrivevano lettere." },
+      { "q": "Che cosa preferisce la nonna, una lettera o un messaggio?", "answer": "Una lettera, perché si legge e si rilegge.", "traps": ["Un messaggio, perché è più veloce.", "Un vocale, perché è più facile."],
+        "why": "Inference: she says letters are read a hundred times and apps go too fast." },
+      { "q": "Che cosa pensa il narratore della tecnologia?", "answer": "È utile, ma a volte serve una pausa.", "traps": ["È inutile e pericolosa.", "Si deve usare sempre, senza pause."],
+        "why": "La tecnologia è utile, ma ogni tanto bisogna staccare la spina." }
+    ]
+  },
+  "listen": [
+    { "q": "Come si usa il telefono nella tua famiglia?", "en": "How is the phone used in your family?",
+      "frames": ["Nella mia famiglia si usa il telefono per …", "A cena non si …"] },
+    { "q": "Secondo te, si vive meglio con o senza i social? Perché?", "en": "In your opinion, do people live better with or without social media? Why?",
+      "frames": ["Secondo me si vive meglio … perché …", "Però …"] },
+    { "q": "Com'è cambiata la vita con lo smartphone?", "en": "How has life changed with the smartphone?",
+      "frames": ["Prima si … , adesso si …", "Una volta si scrivevano … , oggi si …"] }
+  ],
+  "chat": {
+    "who": ["Luca", "Sofia"],
+    "lines": [
+      [0, "Domani c'è la verifica di storia 😱 Come si studia tutto in una sera?", "Tomorrow is the history test. How do you study everything in one night?"],
+      [1, "Non si studia in una sera 😂 Ti mando i miei appunti?", "You don't study in one night. Should I send you my notes?"],
+      [0, "Sì, grazie!! Mandameli adesso 🙏", "Yes, thanks!! Send them to me now."],
+      [1, "Te li mando, ma poi stacca la spina e dormi!", "I'll send them, but then unplug and sleep!"],
+      [0, "Va bene, mamma 😜", "Okay, Mom."],
+      [1, "Ahah! In bocca al lupo! 🍀", "Haha! Good luck!"]
+    ],
+    "words": { "la verifica": "the test", "gli appunti": "the notes", "Mandameli": "send them to me", "In bocca al lupo": "good luck" }
+  },
+  "parla": {
+    "prompts": [
+      ["Quali app si usano di più nella tua scuola?", "Nella mia scuola si usano …"],
+      ["Che cosa non si deve fare sui social?", "Sui social non si deve … perché …"],
+      ["Hai mai staccato la spina dal telefono? Com'è andata?", "Una volta ho staccato la spina per … e …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato il si impersonale.", "Ho dato un'opinione con un perché."]
+  },
+  "finish": "Now I know how to talk about technology and social media, say what people do in general, and follow a chat in Italian!",
+  "idiom": {
+    "it": "Staccare la spina",
+    "en": "to unplug, to take a break",
+    "ex": "Questo weekend stacco la spina: niente telefono e niente computer!",
+    "exEn": "This weekend I'm unplugging: no phone and no computer!",
+    "note": "Literally \"to pull the plug.\" Used for taking a break from school, work, or screens."
+  },
+  "flags": [
+    "Can-do \"post an entry to a blog or forum\" has no dedicated writing task in this schema; the Parla prompts and chat model it. Consider a short written forum post as a class activity.",
+    "Culture note on WhatsApp and voice messages is a general, widely reported trend, not a cited statistic.",
+    "Arranged marriage is handled as family history (a great-grandmother), kept neutral and classroom-safe; check it suits your students.",
+    "\"Molte coppie si conoscono su un'app\" uses reciprocal si (known), not impersonal si; students may confuse the two. Worth pointing out.",
+    "Fill item 7 uses si + imperfetto (si decidevano); the chart only shows the present. Imperfetto forms are known, so it should be fine as a stretch item.",
+    "Chat uses Mandameli / Te li mando (imperativo + doppi pronomi) as review."
+  ]
+}

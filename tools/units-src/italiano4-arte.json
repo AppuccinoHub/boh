@@ -1,0 +1,199 @@
+{
+  "level": "italiano4",
+  "key": "arte",
+  "guideUnit": 4,
+  "proficiency": "Intermediate Mid",
+  "title": "Unità 11 · La storia e l'arte",
+  "tab": "Storia e arte",
+  "tabSub": "UNITÀ 11",
+  "eyebrow": "ITALIANO 4 · UNITÀ 11",
+  "question": "Who made Italy's great art, and how do Italians tell history?",
+  "words": "(il Rinascimento, dipinse, fu)",
+  "workingOn": "history, Renaissance art, and the passato remoto",
+  "canDo": [
+    "I can talk about historical events.",
+    "I can talk about artists and famous works.",
+    "I can discuss the Renaissance and its key figures.",
+    "I can talk about the Palio di Siena and Carnevale."
+  ],
+  "culture": "The Renaissance began in Florence in the 1400s, where rich families like the Medici paid artists to create new works. History books, museum signs, and fairy tales use the passato remoto, so you will see it everywhere in Italy. Old traditions are still alive: the Palio di Siena is run on July 2 and August 16, and Carnevale fills Venice with masks and Viareggio with giant floats.",
+  "vocab": [
+    { "group": "L'arte", "words": [
+      ["l'opera d'arte", "the work of art"],
+      ["il capolavoro", "the masterpiece"],
+      ["il dipinto", "the painting"],
+      ["l'affresco", "the fresco"],
+      ["la scultura", "the sculpture"],
+      ["il pittore / la pittrice", "the painter"],
+      ["lo scultore", "the sculptor"],
+      ["dipingere", "to paint"],
+      ["scolpire", "to sculpt"],
+      ["il marmo", "marble"],
+      ["il bronzo", "bronze"]
+    ]},
+    { "group": "La storia", "words": [
+      ["il Rinascimento", "the Renaissance"],
+      ["il secolo", "the century"],
+      ["il Quattrocento", "the 1400s"],
+      ["il mecenate", "the patron"],
+      ["l'evento storico", "the historical event"]
+    ]},
+    { "group": "Le feste", "words": [
+      ["il Palio", "the Palio horse race"],
+      ["la contrada", "the city district (Siena)"],
+      ["il fantino", "the jockey"],
+      ["il Carnevale", "Carnival"],
+      ["la maschera", "the mask"],
+      ["il carro", "the parade float"]
+    ]}
+  ],
+  "grammar": {
+    "head": "Passato remoto: finished actions in the distant past, used in history, art, and stories (parlò, credé, finì).",
+    "verbs": ["parlare", "credere", "finire"],
+    "rows": [
+      ["io", ["parl", "ai"], ["cred", "ei"], ["fin", "ii"]],
+      ["tu", ["parl", "asti"], ["cred", "esti"], ["fin", "isti"]],
+      ["lui/lei", ["parl", "ò"], ["cred", "é"], ["fin", "ì"]],
+      ["noi", ["parl", "ammo"], ["cred", "emmo"], ["fin", "immo"]],
+      ["voi", ["parl", "aste"], ["cred", "este"], ["fin", "iste"]],
+      ["loro", ["parl", "arono"], ["cred", "erono"], ["fin", "irono"]]
+    ],
+    "tricks": [
+      "Use it for history and art: Michelangelo scolpì il David. In speech, Italians usually say the passato prossimo.",
+      "The lui/lei form carries an accent: parlò, credé, finì.",
+      "Many -ere verbs also have -etti forms: credetti, credette, credettero.",
+      "Recognize these irregulars: fu (essere), ebbe (avere), fece (fare), nacque (nascere), dipinse (dipingere)."
+    ],
+    "chips": ["… nacque a … nel …", "… dipinse …", "… fu un grande artista.", "Nel Quattrocento …"]
+  },
+  "sentences": [
+    ["Michelangelo scolpì il David tra il 1501 e il 1504.", "Michelangelo sculpted the David between 1501 and 1504."],
+    ["Leonardo da Vinci nacque nel 1452.", "Leonardo da Vinci was born in 1452."],
+    ["Leonardo dipinse la Gioconda, che oggi è a Parigi.", "Leonardo painted the Mona Lisa, which is in Paris today."],
+    ["Giotto dipinse gli affreschi della Cappella degli Scrovegni.", "Giotto painted the frescoes of the Scrovegni Chapel."],
+    ["Ghiberti lavorò alle porte del Battistero per molti anni.", "Ghiberti worked on the Baptistery doors for many years."],
+    ["Il Rinascimento cominciò a Firenze nel Quattrocento.", "The Renaissance began in Florence in the 1400s."],
+    ["Lorenzo de' Medici aiutò molti artisti.", "Lorenzo de' Medici helped many artists."],
+    ["Nel 1504 i fiorentini ammirarono il David in piazza.", "In 1504 the Florentines admired the David in the square."],
+    ["Il Palio di Siena si corre due volte all'anno.", "The Palio di Siena is run twice a year."],
+    ["A Carnevale, a Venezia, tutti portano la maschera.", "At Carnival in Venice, everyone wears a mask."],
+    ["Roma non fu fatta in un giorno.", "Rome wasn't built in a day."],
+    ["Mio nonno fu molto felice quando visitò Firenze.", "My grandfather was very happy when he visited Florence."]
+  ],
+  "forms": [
+    { "prompt": "io + parlare (passato remoto)", "answer": "parlai", "alts": [], "traps": ["parlò", "parlasti"],
+      "why": "io, -are → -ai: parlai.", "trick": ["io -ai", "-are verbs: io → -ai."] },
+    { "prompt": "tu + credere (passato remoto)", "answer": "credesti", "alts": [], "traps": ["credisti", "credeste"],
+      "why": "tu, -ere → -esti: credesti.", "trick": ["tu -sti", "tu always ends in -sti."] },
+    { "prompt": "lui + finire (passato remoto)", "answer": "finì", "alts": [], "traps": ["finii", "finé"],
+      "why": "lui, -ire → -ì: finì.", "trick": ["Accent", "lui/lei: accent on the last vowel."] },
+    { "prompt": "noi + parlare (passato remoto)", "answer": "parlammo", "alts": [], "traps": ["parlamo", "parlaste"],
+      "why": "noi, -are → -ammo (double m).", "trick": ["Double m", "noi: -ammo, -emmo, -immo."] },
+    { "prompt": "voi + finire (passato remoto)", "answer": "finiste", "alts": [], "traps": ["finisti", "finimmo"],
+      "why": "voi, -ire → -iste: finiste.", "trick": ["voi -ste", "voi always ends in -ste."] },
+    { "prompt": "loro + credere (passato remoto)", "answer": "crederono", "alts": ["credettero"], "traps": ["crederano", "credono"],
+      "why": "loro, -ere → -erono (or -ettero).", "trick": ["loro -rono", "loro ends in -rono: parlarono, crederono, finirono."] },
+    { "prompt": "il Rinascimento + essere (passato remoto)", "answer": "fu", "alts": [], "traps": ["fò", "fui"],
+      "why": "essere, lui/lei → fu.", "trick": ["fu", "fu = was. Fui is io."] },
+    { "prompt": "i Medici + avere (passato remoto)", "answer": "ebbero", "alts": [], "traps": ["avettero", "ebbe"],
+      "why": "avere, loro → ebbero.", "trick": ["ebb-", "avere: ebbi, ebbe, ebbero."] },
+    { "prompt": "Leonardo + nascere (passato remoto)", "answer": "nacque", "alts": [], "traps": ["nascé", "nasque"],
+      "why": "nascere, lui → nacque.", "trick": ["nacque", "Spelled with cq: nacque."] },
+    { "prompt": "Michelangelo + fare (passato remoto)", "answer": "fece", "alts": [], "traps": ["facé", "fecì"],
+      "why": "fare, lui → fece.", "trick": ["fec-", "fare: feci, fece, fecero."] },
+    { "prompt": "Giotto + dipingere (passato remoto)", "answer": "dipinse", "alts": [], "traps": ["dipingé", "dipinsi"],
+      "why": "dipingere, lui → dipinse.", "trick": ["-nse", "dipingere: dipinsi, dipinse, dipinsero."] },
+    { "prompt": "lei + portare (passato remoto)", "answer": "portò", "alts": [], "traps": ["portà", "portai"],
+      "why": "lei, -are → -ò: portò.", "trick": ["-ò", "-are verbs: lui/lei → -ò."] }
+  ],
+  "fill": [
+    { "text": "Michelangelo ___ il David a Firenze.", "answers": ["scolpì"], "cue": "scolpire",
+      "hint": "He sculpted: s…", "why": "-ire, lui → -ì: scolpì." },
+    { "text": "Leonardo ___ a Vinci nel 1452.", "answers": ["nacque"], "cue": "nascere",
+      "hint": "He was born: n…", "why": "Irregular: nascere → nacque." },
+    { "text": "Brunelleschi ___ la cupola del Duomo di Firenze.", "answers": ["costruì"], "cue": "costruire",
+      "hint": "He built: c…", "why": "-ire, lui → -ì: costruì." },
+    { "text": "Gli artisti del Rinascimento ___ per i Medici.", "answers": ["lavorarono"], "cue": "lavorare",
+      "hint": "They worked: l…", "why": "-are, loro → -arono: lavorarono." },
+    { "text": "Giotto ___ gli affreschi di Padova.", "answers": ["dipinse"], "cue": "dipingere",
+      "hint": "He painted: d…", "why": "Irregular: dipingere → dipinse." },
+    { "text": "Il Rinascimento ___ un periodo di grande arte.", "answers": ["fu"], "cue": "essere",
+      "hint": "It was: f…", "why": "essere, lui → fu." },
+    { "text": "I Medici ___ molto potere a Firenze.", "answers": ["ebbero"], "cue": "avere",
+      "hint": "They had: e…", "why": "avere, loro → ebbero." },
+    { "text": "Quel giorno la contrada ___ una grande festa.", "answers": ["fece"], "cue": "fare",
+      "hint": "It made / held: f…", "why": "fare, lei → fece." }
+  ],
+  "read": {
+    "title": "La sfida delle porte",
+    "passage": [
+      ["Nel 1401 i mercanti di Firenze organizzarono un concorso per le nuove porte del Battistero.", "In 1401 the merchants of Florence held a competition for the new doors of the Baptistery."],
+      ["Sette artisti presentarono un pannello di bronzo.", "Seven artists presented a bronze panel."],
+      ["Il tema fu lo stesso per tutti: il sacrificio di Isacco.", "The subject was the same for everyone: the sacrifice of Isaac."],
+      ["Alla fine restarono due giovani: Lorenzo Ghiberti e Filippo Brunelleschi.", "In the end two young men were left: Lorenzo Ghiberti and Filippo Brunelleschi."],
+      ["Vinse Ghiberti, che lavorò alle porte per più di vent'anni.", "Ghiberti won, and he worked on the doors for more than twenty years."],
+      ["Brunelleschi, forse deluso, partì per Roma a studiare l'architettura antica.", "Brunelleschi, perhaps disappointed, left for Rome to study ancient architecture."],
+      ["Più tardi costruì la grande cupola del Duomo di Firenze.", "Later he built the great dome of Florence Cathedral."],
+      ["Ghiberti, invece, creò anche le porte est, in bronzo dorato.", "Ghiberti, on the other hand, also created the east doors, in gilded bronze."],
+      ["Secondo la tradizione, Michelangelo le chiamò «la Porta del Paradiso».", "According to tradition, Michelangelo called them \"the Gate of Paradise.\""],
+      ["Oggi gli originali sono al Museo dell'Opera del Duomo e sul Battistero ci sono copie.", "Today the originals are in the Museo dell'Opera del Duomo, and there are copies on the Baptistery."]
+    ],
+    "gloss": { "i mercanti": "the merchants", "concorso": "competition", "pannello": "panel", "il sacrificio di Isacco": "the sacrifice of Isaac", "Vinse": "won (vincere)", "deluso": "disappointed", "la grande cupola": "the great dome", "dorato": "gilded" },
+    "questions": [
+      { "q": "Chi vinse il concorso del 1401?", "answer": "Lorenzo Ghiberti", "traps": ["Filippo Brunelleschi", "Michelangelo"],
+        "why": "Vinse Ghiberti." },
+      { "q": "Perché, forse, Brunelleschi partì per Roma?", "answer": "Perché non vinse il concorso.", "traps": ["Perché vinse il concorso.", "Perché voleva vedere la Gioconda."],
+        "why": "Inference: «forse deluso» right after Ghiberti won." },
+      { "q": "Che cosa ci fa capire il nome «Porta del Paradiso»?", "answer": "Che le porte erano bellissime.", "traps": ["Che le porte erano in una chiesa di Roma.", "Che le porte erano di legno."],
+        "why": "Inference: Michelangelo compared them to Paradise because they were so beautiful." },
+      { "q": "Dove sono oggi le porte originali?", "answer": "al Museo dell'Opera del Duomo", "traps": ["sul Battistero", "a Roma"],
+        "why": "Gli originali sono al Museo dell'Opera del Duomo; sul Battistero ci sono copie." }
+    ]
+  },
+  "listen": [
+    { "q": "Quale opera d'arte italiana ti piace di più? Perché?", "en": "Which Italian work of art do you like most? Why?",
+      "frames": ["Mi piace di più … perché …", "L'artista è …"] },
+    { "q": "Che cosa sai di Leonardo da Vinci?", "en": "What do you know about Leonardo da Vinci?",
+      "frames": ["Leonardo nacque a Vinci nel …", "Dipinse …", "È famoso per …"] },
+    { "q": "Preferiresti vedere il Palio di Siena o il Carnevale di Venezia? Perché?", "en": "Would you rather see the Palio di Siena or the Carnival in Venice? Why?",
+      "frames": ["Preferirei vedere … perché …", "Mi piacerebbe …"] }
+  ],
+  "chat": {
+    "who": ["Elena", "Tommaso"],
+    "lines": [
+      [0, "Sono davanti al David! 😍 È enorme!", "I'm in front of the David! It's huge!"],
+      [1, "Quello vero o la copia in piazza?", "The real one or the copy in the square?"],
+      [0, "Quello vero, all'Accademia. Michelangelo lo scolpì quando era giovanissimo!", "The real one, at the Accademia. Michelangelo sculpted it when he was very young!"],
+      [1, "Che invidia! Io domani vado a Siena per il Palio 🐎", "So jealous! Tomorrow I'm going to Siena for the Palio."],
+      [0, "Che fortuna! Per quale contrada fai il tifo?", "Lucky you! Which contrada are you rooting for?"],
+      [1, "Per l'Oca, ovviamente! 🦢", "The Goose, obviously!"]
+    ],
+    "words": { "Che invidia": "I'm so jealous", "fai il tifo": "you root for", "l'Oca": "the Goose (a Siena contrada)" }
+  },
+  "parla": {
+    "prompts": [
+      ["Chi fu un grande artista del Rinascimento? Che cosa fece?", "… fu un grande artista. Dipinse / Scolpì …"],
+      ["Quale evento storico ti interessa? Che cosa è successo?", "Mi interessa … perché …"],
+      ["Ti piacerebbe vedere il Palio o il Carnevale? Perché?", "Mi piacerebbe vedere … perché …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato almeno un verbo al passato remoto.", "Ho dato un'opinione con un perché."]
+  },
+  "finish": "Now I know how to talk about Italian history, the Renaissance, its artists, and the Palio and Carnevale, and I can read the passato remoto!",
+  "idiom": {
+    "it": "Roma non fu fatta in un giorno",
+    "en": "Rome wasn't built in a day",
+    "ex": "Imparare l'italiano richiede tempo: Roma non fu fatta in un giorno!",
+    "exEn": "Learning Italian takes time: Rome wasn't built in a day!",
+    "note": "Look: fu fatta is the passato remoto of essere + fatta = \"was made.\" You also hear \"Roma non è stata fatta in un giorno.\""
+  },
+  "flags": [
+    "Number of competitors in 1401 (\"sette\") follows the usual account; sources list six or seven. Change to \"Molti artisti\" if you prefer to avoid it.",
+    "Brunelleschi leaving for Rome after losing is traditional (Manetti/Vasari); the text marks it with \"forse\".",
+    "The name \"Porta del Paradiso\" given by Michelangelo comes from Vasari; marked \"secondo la tradizione\".",
+    "Ghiberti's north doors took about 1403-1424 (\"più di vent'anni\" = 21 years); east doors 1425-1452.",
+    "Passato remoto of credere: credé (acute accent) is used here; some books write credè. Alternate -etti forms accepted only in the loro form item.",
+    "Recognition-only irregulars appear in production items (nacque, fece, dipinse, fu, ebbero) because the brief lists them; vincere (vinse) and creare/costruire appear only in the reading with a gloss or as regular forms.",
+    "Sentence 9 uses si impersonale (si corre), taught in Unit 10, so the order holds.",
+    "Parla prompt 2 uses passato prossimo (è successo) on purpose: successe is irregular and not taught."
+  ]
+}

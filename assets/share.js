@@ -33,5 +33,7 @@
   function classroomUrl(url, title) { return 'https://classroom.google.com/share?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title || 'Boh') + '&itemtype=assignment'; }
   /* Link to a unit or a stop. level: 'italiano4'|'ap'; unit: id; stop: 1-based number or 0/undefined for the whole unit */
   function stopUrl(level, unit, stop) { return BASE + level + '/?unit=' + encodeURIComponent(unit) + (stop ? '&stop=' + (+stop) : ''); }
-  window.BohShare = { BASE: BASE, share: share, copy: copy, classroomUrl: classroomUrl, stopUrl: stopUrl, toast: toast };
+  /* Today link (boh-todaylink-v1): several stops at once. today: ['1','2','parla','prova']; label: what students see. Read by assets/bohtodaylink.js */
+  function todayUrl(level, unit, today, label) { return BASE + level + '/?unit=' + encodeURIComponent(unit) + '&today=' + encodeURIComponent((today || []).join(',')) + (label ? '&label=' + encodeURIComponent(label) : ''); }
+  window.BohShare = { BASE: BASE, share: share, copy: copy, classroomUrl: classroomUrl, stopUrl: stopUrl, todayUrl: todayUrl, toast: toast };
 })();

@@ -1,0 +1,192 @@
+{
+  "level": "italiano3",
+  "key": "futuro",
+  "guideUnit": 3,
+  "proficiency": "Intermediate Low",
+  "title": "Unità 3 · E dopo, che farai?",
+  "tab": "Il futuro",
+  "tabSub": "UNITÀ 3",
+  "eyebrow": "ITALIANO 3 · UNITÀ 3",
+  "question": "What will I do, and what will my future look like?",
+  "words": "(andrò, sarò, l'oroscopo)",
+  "workingOn": "talking about plans, vacations and the future",
+  "canDo": [
+    "I can make a reservation.",
+    "I can describe my plans and visions for my future.",
+    "I can tell what I will do over a holiday.",
+    "I can read and make a horoscope."
+  ],
+  "culture": "Most Italians take their summer vacation in August, around Ferragosto (August 15), when many shops close and families head to the beach or the mountains, so hotels are booked months ahead. Horoscopes are everywhere in Italy, in newspapers, on the radio and on TV, and many people read theirs every morning just for fun.",
+  "vocab": [
+    { "group": "In vacanza", "words": [
+      ["le vacanze", "vacation"],
+      ["prenotare", "to book, to reserve"],
+      ["la prenotazione", "reservation"],
+      ["l'albergo", "hotel"],
+      ["la camera doppia", "double room"],
+      ["il volo", "flight"],
+      ["la spiaggia", "beach"]
+    ] },
+    { "group": "Il mio futuro", "words": [
+      ["l'università", "college, university"],
+      ["laurearsi", "to graduate from college"],
+      ["il lavoro", "job, work"],
+      ["diventare", "to become"],
+      ["l'avvocato", "lawyer"],
+      ["il medico", "doctor"],
+      ["l'ingegnere", "engineer"],
+      ["sposarsi", "to get married"]
+    ] },
+    { "group": "L'oroscopo", "words": [
+      ["l'oroscopo", "horoscope"],
+      ["il segno", "sign (of the zodiac)"],
+      ["la fortuna", "luck"],
+      ["l'amore", "love"],
+      ["la salute", "health"],
+      ["fra dieci anni", "in ten years"]
+    ] }
+  ],
+  "grammar": {
+    "head": "Futuro: infinitive minus final -e, then -ò, -ai, -à, -emo, -ete, -anno. In -are verbs, a becomes e: parlerò.",
+    "verbs": ["parlare", "prendere", "finire"],
+    "rows": [
+      ["io", ["parler", "ò"], ["prender", "ò"], ["finir", "ò"]],
+      ["tu", ["parler", "ai"], ["prender", "ai"], ["finir", "ai"]],
+      ["lui / lei", ["parler", "à"], ["prender", "à"], ["finir", "à"]],
+      ["noi", ["parler", "emo"], ["prender", "emo"], ["finir", "emo"]],
+      ["voi", ["parler", "ete"], ["prender", "ete"], ["finir", "ete"]],
+      ["loro", ["parler", "anno"], ["prender", "anno"], ["finir", "anno"]]
+    ],
+    "tricks": [
+      "-are → -er-: parlerò. Spelling: mangiare → mangerò (drop the i), giocare → giocherò (add h).",
+      "Short stems: avere → avrò, andare → andrò, potere → potrò, dovere → dovrò; essere → sarò, fare → farò.",
+      "Double r: volere → vorrò, venire → verrò.",
+      "Futuro anteriore = avrò / sarò + participle, for the action that comes first: Dopo che avrò finito, uscirò."
+    ],
+    "chips": ["Che cosa farai quest'estate?", "Andrò al mare.", "Arriveremo sabato e partiremo domenica.", "Chi vivrà, vedrà!"]
+  },
+  "sentences": [
+    ["Quest'estate andrò al mare con la mia famiglia.", "This summer I'll go to the beach with my family."],
+    ["Prenoteremo un albergo vicino alla spiaggia.", "We'll book a hotel near the beach."],
+    ["Il volo partirà alle otto di mattina.", "The flight will leave at eight in the morning."],
+    ["Arriveremo il 3 luglio e partiremo il 10.", "We'll arrive on July 3 and leave on the 10th."],
+    ["Dopo il liceo andrò all'università.", "After high school I'll go to college."],
+    ["Mia sorella studierà medicina e diventerà medico.", "My sister will study medicine and become a doctor."],
+    ["Fra dieci anni avrò un lavoro interessante.", "In ten years I'll have an interesting job."],
+    ["Dove abiterai fra dieci anni?", "Where will you live in ten years?"],
+    ["Posso prenotare una camera doppia per tre notti?", "Can I book a double room for three nights?"],
+    ["Potrai venire alla festa sabato?", "Will you be able to come to the party Saturday?"],
+    ["Dopo che avrò finito i compiti, uscirò.", "After I've finished my homework, I'll go out."],
+    ["Leone: questa settimana avrai molta fortuna.", "Leo: this week you'll have lots of luck."]
+  ],
+  "forms": [
+    { "prompt": "io + parlare", "answer": "parlerò", "alts": [], "traps": ["parlarò", "parlerà"],
+      "why": "-are → -er- + ò: parlerò.", "trick": ["a → e", "In the futuro, -are verbs use -er-: parlerò."] },
+    { "prompt": "tu + prendere", "answer": "prenderai", "alts": [], "traps": ["prendrai", "prenderà"],
+      "why": "prender- + ai: prenderai.", "trick": ["tu → -ai", "Keep prender-, add -ai."] },
+    { "prompt": "lui + finire", "answer": "finirà", "alts": [], "traps": ["finerà", "finirò"],
+      "why": "finir- + à: finirà.", "trick": ["lui → -à", "-ire verbs keep -ir-: finirà."] },
+    { "prompt": "noi + mangiare", "answer": "mangeremo", "alts": [], "traps": ["mangieremo", "mangiaremo"],
+      "why": "mangiare → manger- (no i) + emo.", "trick": ["Drop the i", "-giare / -ciare lose the i: mangerò, comincerò."] },
+    { "prompt": "loro + giocare", "answer": "giocheranno", "alts": [], "traps": ["giocaranno", "giocheremo"],
+      "why": "giocare → giocher- (add h) + anno.", "trick": ["Add h", "-care / -gare add h to keep the hard sound: giocherò, pagherò."] },
+    { "prompt": "io + essere", "answer": "sarò", "alts": [], "traps": ["esserò", "sarà"],
+      "why": "essere → sar- + ò: sarò.", "trick": ["essere → sar-", "Irregular stem: sarò, sarai, sarà."] },
+    { "prompt": "tu + avere", "answer": "avrai", "alts": [], "traps": ["averai", "avrò"],
+      "why": "avere → avr- + ai: avrai.", "trick": ["Short stem", "avere loses the e: avr-."] },
+    { "prompt": "noi + andare", "answer": "andremo", "alts": [], "traps": ["anderemo", "andaremo"],
+      "why": "andare → andr- + emo: andremo.", "trick": ["Short stem", "andare → andr-: andrò, andremo."] },
+    { "prompt": "lei + fare", "answer": "farà", "alts": [], "traps": ["facerà", "farò"],
+      "why": "fare → far- + à: farà.", "trick": ["fare → far-", "farò, farai, farà."] },
+    { "prompt": "voi + venire", "answer": "verrete", "alts": [], "traps": ["venirete", "verremo"],
+      "why": "venire → verr- + ete: verrete.", "trick": ["Double r", "venire → verr-, volere → vorr-."] },
+    { "prompt": "io + potere", "answer": "potrò", "alts": [], "traps": ["poterò", "potrà"],
+      "why": "potere → potr- + ò: potrò.", "trick": ["Short stem", "potere → potr-, dovere → dovr-."] },
+    { "prompt": "io + finire (futuro anteriore: Dopo che ___ i compiti…)", "answer": "avrò finito", "alts": [], "traps": ["finirò", "ho finito"],
+      "why": "The action that comes first: avrò + participle = avrò finito.", "trick": ["First of two", "Future action that happens first: avrò / sarò + participle."] }
+  ],
+  "fill": [
+    { "text": "Quest'estate noi ___ in Sicilia.", "answers": ["andremo"], "cue": "will go",
+      "hint": "will go → andare, noi → andr…", "why": "andare → andr- + emo = andremo." },
+    { "text": "Domani ___ bel tempo.", "answers": ["farà"], "cue": "will be (weather)",
+      "hint": "weather uses fare → f…", "why": "fare → far- + à = farà." },
+    { "text": "Fra dieci anni io ___ un lavoro interessante.", "answers": ["avrò"], "cue": "will have",
+      "hint": "will have → avere, io → avr…", "why": "avere → avr- + ò = avrò." },
+    { "text": "Dopo il liceo mio fratello ___ ingegneria.", "answers": ["studierà"], "cue": "will study",
+      "hint": "will study → studiare, lui → studier…", "why": "studiare → studier- + à = studierà." },
+    { "text": "Domani tu ___ alzarti presto per il volo.", "answers": ["dovrai"], "cue": "dovere",
+      "hint": "you will have to → dovr…", "why": "dovere → dovr- + ai = dovrai." },
+    { "text": "Noi ___ in albergo per una settimana.", "answers": ["saremo", "staremo"], "cue": "essere",
+      "hint": "we will be → sar…", "why": "essere → sar- + emo = saremo." },
+    { "text": "Il treno ___ alle nove.", "answers": ["partirà"], "cue": "partire",
+      "hint": "will leave → partir…", "why": "partire → partir- + à = partirà." },
+    { "text": "Dopo che io ___ i compiti, guarderò un film.", "answers": ["avrò finito"], "cue": "finire",
+      "hint": "will have finished → avrò f…", "why": "Finishing comes first: futuro anteriore, avrò finito." }
+  ],
+  "read": {
+    "title": "Un'estate in Puglia",
+    "passage": [
+      ["A luglio Luca e la sua famiglia andranno in vacanza in Puglia.", "In July Luca and his family will go on vacation in Puglia."],
+      ["Il padre ha già prenotato una camera in un albergo vicino al mare.", "His father has already booked a room in a hotel near the sea."],
+      ["Partiranno da New York il 2 luglio e arriveranno a Bari il giorno dopo.", "They'll leave from New York on July 2 and arrive in Bari the next day."],
+      ["Ogni mattina andranno in spiaggia e il pomeriggio visiteranno le città vicine.", "Every morning they'll go to the beach and in the afternoon they'll visit the nearby towns."],
+      ["Luca vorrà assaggiare le orecchiette, la pasta tipica della regione.", "Luca will want to taste orecchiette, the typical pasta of the region."],
+      ["A settembre tornerà a scuola: sarà il suo ultimo anno di liceo.", "In September he'll go back to school: it will be his last year of high school."]
+    ],
+    "gloss": { "già": "already", "il giorno dopo": "the next day", "assaggiare": "to taste", "orecchiette": "small ear-shaped pasta", "ultimo": "last" },
+    "questions": [
+      { "q": "Dove andrà in vacanza la famiglia di Luca?", "answer": "in Puglia", "traps": ["in Sicilia", "a New York"],
+        "why": "…andranno in vacanza in Puglia." },
+      { "q": "Quando arriveranno a Bari?", "answer": "il 3 luglio", "traps": ["il 2 luglio", "a settembre"],
+        "why": "Partiranno il 2 luglio e arriveranno il giorno dopo: il 3." },
+      { "q": "Che cosa faranno il pomeriggio?", "answer": "visiteranno le città vicine", "traps": ["andranno in spiaggia", "dormiranno in albergo"],
+        "why": "…il pomeriggio visiteranno le città vicine." },
+      { "q": "Che cosa vorrà assaggiare Luca?", "answer": "le orecchiette", "traps": ["la pizza", "il gelato"],
+        "why": "Luca vorrà assaggiare le orecchiette." }
+    ]
+  },
+  "listen": [
+    { "q": "Che cosa farai quest'estate?", "en": "What will you do this summer?",
+      "frames": ["Quest'estate andrò …", "Farò …", "Starò a casa e …"] },
+    { "q": "Che cosa farai dopo il liceo?", "en": "What will you do after high school?",
+      "frames": ["Dopo il liceo andrò all'università.", "Studierò …", "Diventerò …"] },
+    { "q": "Qual è il tuo segno? Come sarà la tua settimana?", "en": "What's your sign? How will your week be?",
+      "frames": ["Il mio segno è …", "La mia settimana sarà …", "Avrò fortuna in amore / a scuola."] }
+  ],
+  "chat": {
+    "who": ["Sara", "Matteo"],
+    "lines": [
+      [0, "Matteo, hai letto l'oroscopo di oggi? ⭐", "Matteo, did you read today's horoscope?"],
+      [1, "No! Che cosa dice per il Leone?", "No! What does it say for Leo?"],
+      [0, "Questa settimana avrai fortuna in amore e troverai un lavoro! 😄", "This week you'll be lucky in love and you'll find a job!"],
+      [1, "Un lavoro? Ma io ho sedici anni! 😂", "A job? But I'm sixteen!"],
+      [0, "Allora sarà un lavoro per l'estate.", "Then it'll be a summer job."],
+      [1, "Mah… chi vivrà, vedrà! 🤷", "Well… time will tell!"]
+    ],
+    "words": { "l'oroscopo": "the horoscope", "avrai": "you will have", "troverai": "you will find", "sarà": "it will be", "chi vivrà, vedrà": "time will tell" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che cosa farai questo fine settimana?", "Questo fine settimana io …"],
+      ["Dove andrai in vacanza?", "Andrò a / in … con …"],
+      ["Che lavoro farai fra dieci anni?", "Fra dieci anni sarò … / farò …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato il futuro (-ò, -ai, -à).", "Ho detto un piano del mio compagno."]
+  },
+  "finish": "Now I know how to talk about my plans, my vacations and my future!",
+  "idiom": {
+    "it": "Chi vivrà, vedrà",
+    "en": "time will tell",
+    "ex": "Studierò in Italia? Chi vivrà, vedrà.",
+    "exEn": "Will I study in Italy? Time will tell.",
+    "note": "Said when nobody can know yet how something will turn out; literally 'whoever lives will see.'"
+  },
+  "flags": [
+    "Zodiac sign names (l'Ariete, il Toro, il Leone…) are not in the vocab list; only il Leone appears. Decide whether to add a sign list for the horoscope can-do.",
+    "Making a reservation is done here with the futuro and present (Arriveremo sabato…, Posso prenotare…?) because 'vorrei' belongs to Unit 4. Level 2 already uses 'Vorrei' as a fixed phrase; you may allow it here as a chunk.",
+    "Overlap: the Aiutami page (Level 4) has a futuro unit 'Fra dieci anni'. This unit teaches the futuro in Level 3 per the guide; Aiutami's placement is still open (log C-13).",
+    "Fill 6 accepts 'staremo' too, though the cue says essere.",
+    "Culture: Ferragosto August 15 and the August vacation habit are well known; 'many people read their horoscope every morning' is a general statement, Unverified.",
+    "Reading date math (leave July 2, arrive 'the next day' July 3) assumes an overnight flight from New York to Bari with a connection; realistic but Unverified."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "level": "italiano2",
+  "key": "passato",
+  "guideUnit": 4,
+  "proficiency": "Novice High",
+  "title": "Unità 4 · Quando ero piccolo/a",
+  "tab": "Da piccolo/a",
+  "tabSub": "UNITÀ 4",
+  "eyebrow": "ITALIANO 2 · UNITÀ 4",
+  "question": "What was I like as a child, and what did I do?",
+  "words": "(quando ero piccolo/a, giocavo, avevo)",
+  "workingOn": "describing my childhood and a place I visited",
+  "canDo": [
+    "I can describe what I did as a child.",
+    "I can say my favorite things to do growing up.",
+    "I can understand short written passages about past events.",
+    "I can describe a place I visited."
+  ],
+  "culture": "Italian kids play nascondino (hide-and-seek) and campana (hopscotch) in courtyards, piazzas and parks. Because many parents work, i nonni often pick children up from school, cook lunch and watch them in the afternoon. For many Italians, childhood memories are full of their grandparents.",
+  "vocab": [
+    { "group": "Giochi e giocattoli", "words": [
+      ["il gioco", "the game"],
+      ["il giocattolo", "the toy"],
+      ["la bambola", "the doll"],
+      ["il pallone", "the ball (soccer ball)"],
+      ["giocare a nascondino", "to play hide-and-seek"],
+      ["giocare a campana", "to play hopscotch"],
+      ["il parco giochi", "the playground"],
+      ["l'altalena", "the swing"],
+      ["lo scivolo", "the slide"]
+    ] },
+    { "group": "Il mio mondo", "words": [
+      ["il quartiere", "the neighborhood"],
+      ["il vicino / la vicina", "the neighbor"],
+      ["il cortile", "the courtyard"],
+      ["la scuola elementare", "elementary school"],
+      ["la maestra", "the (elementary) teacher"]
+    ] },
+    { "group": "Quando ero piccolo/a", "words": [
+      ["quando ero piccolo/a", "when I was little"],
+      ["avevo", "I had / I used to have"],
+      ["giocavo", "I used to play"],
+      ["abitavo", "I used to live"],
+      ["andavo", "I used to go"],
+      ["ho visitato", "I visited"]
+    ] }
+  ],
+  "grammar": {
+    "head": "Imperfetto = how things were and what I used to do: -vo, -vi, -va, -vamo, -vate, -vano",
+    "verbs": ["essere", "avere", "giocare"],
+    "rows": [
+      ["io", ["er", "o"], ["avev", "o"], ["giocav", "o"]],
+      ["tu", ["er", "i"], ["avev", "i"], ["giocav", "i"]],
+      ["lui / lei", ["er", "a"], ["avev", "a"], ["giocav", "a"]],
+      ["noi", ["erav", "amo"], ["avev", "amo"], ["giocav", "amo"]],
+      ["voi", ["erav", "ate"], ["avev", "ate"], ["giocav", "ate"]],
+      ["loro", ["er", "ano"], ["avev", "ano"], ["giocav", "ano"]]
+    ],
+    "tricks": [
+      "Imperfetto = used to / was …ing: giocavo = I used to play.",
+      "-are verbs: cut -re, add -vo, -vi, -va: giocare → giocavo, abitare → abitavo.",
+      "essere is irregular: ero, eri, era. Quando ero piccolo/a = When I was little.",
+      "One finished event → passato prossimo: Ho visitato Roma. A habit or a description → imperfetto: Roma era bella."
+    ],
+    "chips": ["Quando ero piccolo/a…", "Giocavo a nascondino.", "Avevo un cane.", "Abitavo a …"]
+  },
+  "sentences": [
+    ["Quando ero piccola, abitavo a Napoli.", "When I was little, I lived in Naples."],
+    ["Da piccolo avevo un cane bianco.", "As a kid I had a white dog."],
+    ["Giocavo a nascondino con i miei cugini.", "I used to play hide-and-seek with my cousins."],
+    ["Mia sorella giocava sempre con la bambola.", "My sister always played with her doll."],
+    ["Il mio giocattolo preferito era il pallone.", "My favorite toy was the ball."],
+    ["I nonni abitavano vicino a noi.", "My grandparents lived near us."],
+    ["Andavamo al parco giochi la domenica.", "We used to go to the playground on Sundays."],
+    ["La mia maestra era molto simpatica.", "My teacher was very nice."],
+    ["Nel mio quartiere c'era un grande parco.", "There was a big park in my neighborhood."],
+    ["Eravate felici da piccoli?", "Were you all happy as kids?"],
+    ["L'anno scorso ho visitato Roma.", "Last year I visited Rome."],
+    ["Roma era bellissima!", "Rome was beautiful!"]
+  ],
+  "forms": [
+    { "prompt": "io + essere (imperfetto)", "answer": "ero", "alts": [], "traps": ["era", "sono"],
+      "why": "io → ero. Quando ero piccolo/a…", "trick": ["io → -o", "Even essere ends in -o for io: ero."] },
+    { "prompt": "tu + avere (imperfetto)", "answer": "avevi", "alts": [], "traps": ["aveva", "hai"],
+      "why": "tu → avevi.", "trick": ["tu → -i", "avev- + i = avevi."] },
+    { "prompt": "lui + giocare (imperfetto)", "answer": "giocava", "alts": [], "traps": ["giocavo", "gioca"],
+      "why": "lui / lei → -va: giocava.", "trick": ["lui / lei → -va", "gioca + va = giocava."] },
+    { "prompt": "noi + essere (imperfetto)", "answer": "eravamo", "alts": [], "traps": ["eravate", "siamo"],
+      "why": "noi → eravamo.", "trick": ["noi → -vamo", "erav- + amo = eravamo."] },
+    { "prompt": "voi + avere (imperfetto)", "answer": "avevate", "alts": [], "traps": ["avevamo", "avete"],
+      "why": "voi → avevate.", "trick": ["voi → -vate", "avev- + ate = avevate."] },
+    { "prompt": "loro + giocare (imperfetto)", "answer": "giocavano", "alts": [], "traps": ["giocavamo", "giocano"],
+      "why": "loro → giocavano.", "trick": ["loro → -vano", "giocav- + ano = giocavano."] },
+    { "prompt": "io + abitare (imperfetto)", "answer": "abitavo", "alts": [], "traps": ["abitava", "abito"],
+      "why": "io → abitavo.", "trick": ["Cut -re, add -vo", "abitare → abita → abitavo."] },
+    { "prompt": "lei + essere (imperfetto)", "answer": "era", "alts": [], "traps": ["eri", "è"],
+      "why": "lei → era. La maestra era simpatica.", "trick": ["lui / lei → era", "ero, eri, era: o, i, a."] },
+    { "prompt": "noi + andare (imperfetto)", "answer": "andavamo", "alts": [], "traps": ["andiamo", "andavano"],
+      "why": "noi → andavamo.", "trick": ["Regular here", "andare is regular in the imperfetto: anda + vamo."] },
+    { "prompt": "loro + avere (imperfetto)", "answer": "avevano", "alts": [], "traps": ["avevate", "hanno"],
+      "why": "loro → avevano.", "trick": ["loro → -vano", "avev- + ano = avevano."] },
+    { "prompt": "I visited (one time) → io + visitare", "answer": "ho visitato", "alts": [], "traps": ["visitavo", "ho visitare"],
+      "why": "One finished visit → passato prossimo: ho visitato.", "trick": ["One time = ho + -ato", "A habit = visitavo. One visit = ho visitato."] },
+    { "prompt": "tu + giocare (imperfetto)", "answer": "giocavi", "alts": [], "traps": ["giocava", "giochi"],
+      "why": "tu → giocavi.", "trick": ["No h here", "giochi (now) needs h; giocavi (then) does not."] }
+  ],
+  "fill": [
+    { "text": "Quando ___ piccola, abitavo a Roma.", "answers": ["ero"], "cue": "I was",
+      "bank": ["ero", "era", "sono"], "hint": "essere, imperfetto, io: e…",
+      "why": "Quando ero piccola = When I was little." },
+    { "text": "Da piccolo io ___ un gatto.", "answers": ["avevo"], "cue": "had",
+      "bank": ["avevo", "aveva", "ho"], "hint": "avere, imperfetto, io: av…",
+      "why": "io → avevo." },
+    { "text": "Noi ___ a nascondino nel cortile.", "answers": ["giocavamo"], "cue": "used to play",
+      "bank": ["giocavamo", "giocavano", "giochiamo"], "hint": "noi → -vamo: gioc…",
+      "why": "noi → giocavamo." },
+    { "text": "Mio fratello ___ con il pallone.", "answers": ["giocava"], "cue": "used to play",
+      "bank": ["giocava", "giocavo", "gioca"], "hint": "lui → -va: gioc…",
+      "why": "lui → giocava." },
+    { "text": "I miei nonni ___ in Italia.", "answers": ["abitavano"], "cue": "used to live",
+      "bank": ["abitavano", "abitava", "abitano"], "hint": "loro → -vano: abit…",
+      "why": "loro → abitavano." },
+    { "text": "La mia maestra ___ molto simpatica.", "answers": ["era"], "cue": "was",
+      "bank": ["era", "ero", "eri"], "hint": "essere, imperfetto, lei: e…",
+      "why": "lei → era." },
+    { "text": "L'anno scorso ___ visitato Firenze.", "answers": ["ho"], "cue": "I (have)",
+      "bank": ["ho", "hai", "ero"], "hint": "avere, io: h…",
+      "why": "One visit → ho visitato." },
+    { "text": "Il sabato ___ al parco giochi.", "answers": ["andavo"], "cue": "I used to go",
+      "bank": ["andavo", "andava", "vado"], "hint": "io → -vo: and…",
+      "why": "A habit, io → andavo." }
+  ],
+  "read": {
+    "title": "Da piccola a Napoli",
+    "passage": [
+      ["Quando ero piccola, abitavo a Napoli con la mia famiglia.", "When I was little, I lived in Naples with my family."],
+      ["I nonni abitavano vicino a noi.", "My grandparents lived near us."],
+      ["Ogni pomeriggio la nonna preparava la merenda.", "Every afternoon Grandma made the afternoon snack."],
+      ["Io e mio cugino giocavamo a campana nel cortile.", "My cousin and I played hopscotch in the courtyard."],
+      ["L'estate scorsa ho visitato Napoli di nuovo: era bellissima!", "Last summer I visited Naples again: it was beautiful!"]
+    ],
+    "gloss": { "vicino a noi": "near us", "Ogni pomeriggio": "Every afternoon", "la merenda": "the afternoon snack", "di nuovo": "again", "bellissima": "very beautiful" },
+    "questions": [
+      { "q": "Dove abitava la ragazza?", "answer": "a Napoli", "traps": ["a Roma", "a Milano"],
+        "why": "Quando ero piccola, abitavo a Napoli." },
+      { "q": "Chi preparava la merenda?", "answer": "la nonna", "traps": ["la madre", "il cugino"],
+        "why": "Ogni pomeriggio la nonna preparava la merenda." },
+      { "q": "A che cosa giocavano?", "answer": "a campana", "traps": ["a nascondino", "a calcio"],
+        "why": "Giocavamo a campana nel cortile." },
+      { "q": "Quando ha visitato Napoli di nuovo?", "answer": "l'estate scorsa", "traps": ["l'inverno scorso", "ieri"],
+        "why": "L'estate scorsa ho visitato Napoli di nuovo." }
+    ]
+  },
+  "listen": [
+    { "q": "Dove abitavi a cinque anni?", "en": "Where did you live when you were five?",
+      "frames": ["A cinque anni abitavo a …", "Abitavo con …"] },
+    { "q": "Qual era il tuo gioco preferito?", "en": "What was your favorite game?",
+      "frames": ["Il mio gioco preferito era …", "Giocavo a …"] },
+    { "q": "Avevi un animale?", "en": "Did you have a pet?",
+      "frames": ["Sì, avevo un cane.", "No, non avevo un animale."] }
+  ],
+  "chat": {
+    "who": ["Sofia", "Nonna"],
+    "lines": [
+      [0, "Nonna, a che cosa giocavi da piccola?", "Grandma, what did you play when you were little?"],
+      [1, "Giocavo a campana nel cortile! 😊", "I played hopscotch in the courtyard!"],
+      [0, "E avevi una bambola?", "And did you have a doll?"],
+      [1, "Sì, ma il mio gioco preferito era il nascondino.", "Yes, but my favorite game was hide-and-seek."],
+      [0, "Giochiamo a nascondino oggi? 🙈", "Shall we play hide-and-seek today?"],
+      [1, "Certo! Come ai vecchi tempi! ❤️", "Of course! Like in the old days!"]
+    ],
+    "words": { "giocavi": "did you use to play", "nel cortile": "in the courtyard", "Come ai vecchi tempi": "Like in the old days" }
+  },
+  "parla": {
+    "prompts": [
+      ["Dove abitavi a cinque anni?", "A cinque anni abitavo a …"],
+      ["A che cosa giocavi da piccolo/a?", "Da piccolo/a giocavo a …"],
+      ["Che posto hai visitato?", "Ho visitato … Era …"]
+    ],
+    "checks": ["Faccio le 3 domande.", "Rispondo con frasi intere.", "Uso ero, avevo o giocavo."]
+  },
+  "finish": "Now I know how to describe my childhood and a place I visited!",
+  "idiom": { "it": "Come ai vecchi tempi", "en": "like in the old days",
+             "ex": "Oggi giochiamo a nascondino, come ai vecchi tempi!", "exEn": "Today we're playing hide-and-seek, like in the old days!",
+             "note": "Said when you do something the way you used to, often with a little nostalgia." },
+  "flags": [
+    "First contact with the imperfetto: limited to essere, avere and regular -are verbs (giocare, abitare, andare). andare is regular in the imperfetto (andavo), so it is used outside the chart.",
+    "Passato prossimo vs imperfetto: only the basic contrast (one finished event vs habit / description) in one trick and one forms item. No full contrast drill.",
+    "c'era (there was) appears once (Nel mio quartiere c'era un grande parco) as a chunk; not taught as a form.",
+    "piccolo/a and da piccolo/a use a slash in titles, chips and parla starters; the listen questions avoid the slash (Dove abitavi a cinque anni?) so text-to-speech reads cleanly. Check how TTS reads the parla prompt A che cosa giocavi da piccolo/a?",
+    "Reading: bellissima (superlative -issimo) and preparava (preparare) are glossed or transparent.",
+    "il gioco (game) vs il giocattolo (toy) are both listed so students don't confuse them.",
+    "Vicino a noi and l'estate scorsa are glossed / transparent chunks; seasons come from Page 2."
+  ]
+}

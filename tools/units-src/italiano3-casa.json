@@ -1,0 +1,191 @@
+{
+  "level": "italiano3",
+  "key": "casa",
+  "guideUnit": 2,
+  "proficiency": "Intermediate Low",
+  "title": "Unità 2 · Casa dolce casa",
+  "tab": "La casa",
+  "tabSub": "UNITÀ 2",
+  "eyebrow": "ITALIANO 3 · UNITÀ 2",
+  "question": "What is my home like, and where are things in it?",
+  "words": "(il soggiorno, sulla scrivania, l'ho comprata)",
+  "workingOn": "describing my home and saying where things are",
+  "canDo": [
+    "I can identify furniture and rooms.",
+    "I can describe my room.",
+    "I can say where things are in my house.",
+    "I can describe where I live."
+  ],
+  "culture": "Many Italians live in an appartamento inside a condominio, and floors are counted from the piano terra (ground floor), so the primo piano is the American second floor. Bedrooms have a freestanding armadio instead of a built-in closet, floors are usually tile or marble, windows have persiane (shutters), and almost every bathroom has a bidet.",
+  "vocab": [
+    { "group": "Le stanze", "words": [
+      ["la cucina", "kitchen"],
+      ["il soggiorno", "living room"],
+      ["la camera da letto", "bedroom"],
+      ["il bagno", "bathroom"],
+      ["la sala da pranzo", "dining room"],
+      ["il balcone", "balcony"]
+    ] },
+    { "group": "I mobili", "words": [
+      ["il letto", "bed"],
+      ["l'armadio", "wardrobe"],
+      ["la scrivania", "desk"],
+      ["la sedia", "chair"],
+      ["il divano", "couch"],
+      ["la lampada", "lamp"],
+      ["lo scaffale", "shelf"],
+      ["il comodino", "nightstand"],
+      ["lo specchio", "mirror"],
+      ["il tappeto", "rug"]
+    ] },
+    { "group": "La casa italiana", "words": [
+      ["l'appartamento", "apartment"],
+      ["il condominio", "apartment building"],
+      ["il piano", "floor (level)"],
+      ["le persiane", "shutters"],
+      ["le piastrelle", "tiles"],
+      ["il bidet", "bidet"]
+    ] }
+  ],
+  "grammar": {
+    "head": "Preposition + article = one word: in + il = nel, su + la = sulla, di + i = dei.",
+    "verbs": ["il", "la", "i", "le"],
+    "rows": [
+      ["a", ["a", "l"], ["a", "lla"], ["a", "i"], ["a", "lle"]],
+      ["da", ["da", "l"], ["da", "lla"], ["da", "i"], ["da", "lle"]],
+      ["in", ["ne", "l"], ["ne", "lla"], ["ne", "i"], ["ne", "lle"]],
+      ["su", ["su", "l"], ["su", "lla"], ["su", "i"], ["su", "lle"]],
+      ["di", ["de", "l"], ["de", "lla"], ["de", "i"], ["de", "lle"]]
+    ],
+    "tricks": [
+      "in becomes ne- and di becomes de- before the article; before a vowel use l' (nell'armadio) and before lo use -llo (sullo scaffale).",
+      "lo, la, li, le replace a thing and go before the verb: La lampada? La compro.",
+      "In the passato prossimo lo and la become l' and the participle agrees: L'ho comprata. Li ho comprati.",
+      "Indirect pronouns answer 'to whom?': mi, ti, gli (to him), le (to her), ci, vi, gli (to them)."
+    ],
+    "chips": ["Il libro è sulla scrivania.", "L'ho messo nell'armadio.", "Gli mostro la mia camera.", "Abito al terzo piano."]
+  },
+  "sentences": [
+    ["La mia camera è al secondo piano.", "My room is on the second floor."],
+    ["Il computer è sulla scrivania.", "The computer is on the desk."],
+    ["I vestiti sono nell'armadio.", "The clothes are in the wardrobe."],
+    ["La lampada è sul comodino, vicino al letto.", "The lamp is on the nightstand, near the bed."],
+    ["Abitiamo in un appartamento in un condominio.", "We live in an apartment in an apartment building."],
+    ["Il divano? L'ho comprato ieri.", "The couch? I bought it yesterday."],
+    ["Le persiane? Le ho chiuse stamattina.", "The shutters? I closed them this morning."],
+    ["La sedia? L'ho messa in cucina.", "The chair? I put it in the kitchen."],
+    ["Arriva la nonna: le mostro la mia camera.", "Grandma is here: I show her my room."],
+    ["Gli ho regalato un tappeto.", "I gave him a rug."],
+    ["Ci piace molto il balcone.", "We really like the balcony."],
+    ["Esco dalla camera e vado in cucina.", "I leave the room and go to the kitchen."]
+  ],
+  "forms": [
+    { "prompt": "in + il letto", "answer": "nel", "alts": [], "traps": ["nella", "in il"],
+      "why": "in + il = nel: nel letto.", "trick": ["in → ne-", "in + il = nel, never 'in il'."] },
+    { "prompt": "su + la scrivania", "answer": "sulla", "alts": [], "traps": ["sul", "su la"],
+      "why": "su + la = sulla: sulla scrivania.", "trick": ["su + article", "su + la = sulla. One word."] },
+    { "prompt": "di + le ragazze (la camera ___ ragazze)", "answer": "delle", "alts": [], "traps": ["dei", "della"],
+      "why": "di + le = delle: la camera delle ragazze.", "trick": ["di → de-", "di + le = delle."] },
+    { "prompt": "a + il secondo piano", "answer": "al", "alts": [], "traps": ["alla", "a il"],
+      "why": "a + il = al: al secondo piano.", "trick": ["a + il", "a + il = al."] },
+    { "prompt": "da + la cucina", "answer": "dalla", "alts": [], "traps": ["dal", "da la"],
+      "why": "da + la = dalla: dalla cucina.", "trick": ["da + la", "da + la = dalla."] },
+    { "prompt": "in + l'armadio", "answer": "nell'armadio", "alts": ["nell' armadio"], "traps": ["nel armadio", "nello armadio"],
+      "why": "Before a vowel: in + l' = nell'. nell'armadio.", "trick": ["Vowel → l'", "Before a vowel the article is l': nell', sull', dell'."] },
+    { "prompt": "il divano → ___ compro", "answer": "lo", "alts": [], "traps": ["la", "gli"],
+      "why": "il divano is masculine singular → lo.", "trick": ["il → lo", "Masculine singular thing → lo."] },
+    { "prompt": "la sedia → L'ho ___ (comprare)", "answer": "comprata", "alts": [], "traps": ["comprato", "comprati"],
+      "why": "L' = la sedia, feminine singular → comprata.", "trick": ["Agreement", "With lo/la/li/le before avere, the participle matches: la → -a."] },
+    { "prompt": "i tappeti → Li ho ___ (comprare)", "answer": "comprati", "alts": [], "traps": ["comprato", "comprate"],
+      "why": "li = masculine plural → comprati.", "trick": ["li → -i", "li ho … -i: Li ho comprati."] },
+    { "prompt": "le lampade → Le ho ___ (mettere)", "answer": "messe", "alts": [], "traps": ["messo", "mettute"],
+      "why": "mettere → messo; le = feminine plural → messe.", "trick": ["le → -e", "Irregular participle messo, then agree: messe."] },
+    { "prompt": "a Marco → ___ telefono", "answer": "gli", "alts": [], "traps": ["lo", "le"],
+      "why": "telefonare a qualcuno: to him = gli.", "trick": ["To him = gli", "a + a boy → gli."] },
+    { "prompt": "a Giulia → ___ scrivo", "answer": "le", "alts": [], "traps": ["la", "gli"],
+      "why": "scrivere a qualcuno: to her = le.", "trick": ["To her = le", "a + a girl → le (not la)."] }
+  ],
+  "fill": [
+    { "text": "Il gatto dorme ___ divano.", "answers": ["sul"], "cue": "on the",
+      "hint": "on the = su + il → s…", "why": "su + il = sul." },
+    { "text": "Metto i vestiti ___ armadio.", "answers": ["nell'"], "cue": "in the",
+      "hint": "in the = in + l' → nell'…", "why": "Before a vowel: in + l' = nell'." },
+    { "text": "La lampada? L'ho ___ ieri.", "answers": ["comprata"], "cue": "bought",
+      "hint": "bought = comprare → compr…, ends like la lampada", "why": "L' = la lampada, so comprata." },
+    { "text": "Marco è a casa? Sì, ___ telefono adesso.", "answers": ["gli"], "cue": "to him",
+      "hint": "to him → g…", "why": "telefonare a Marco → gli telefono." },
+    { "text": "La mia camera è ___ secondo piano.", "answers": ["al"], "cue": "a",
+      "hint": "a + il → a…", "why": "a + il = al." },
+    { "text": "Le sedie? Le ho ___ in cucina.", "answers": ["messe"], "cue": "mettere",
+      "hint": "put → mess…, feminine plural", "why": "mettere → messo; le sedie → messe." },
+    { "text": "È il compleanno di mia sorella: ___ regalo uno specchio.", "answers": ["le"], "cue": "a lei",
+      "hint": "to her → l…", "why": "a lei = le." },
+    { "text": "I libri? Io ___ ho messi sullo scaffale.", "answers": ["li"], "cue": "i libri",
+      "hint": "them (masc.) → l…", "why": "i libri = masculine plural → li (messi)." }
+  ],
+  "read": {
+    "title": "La casa di Chiara",
+    "passage": [
+      ["Chiara abita a Bologna, in un appartamento al terzo piano di un condominio.", "Chiara lives in Bologna, in an apartment on the third floor of an apartment building."],
+      ["L'appartamento ha una cucina, un soggiorno, due camere da letto e un bagno.", "The apartment has a kitchen, a living room, two bedrooms and a bathroom."],
+      ["Nella sua camera ci sono un letto, una scrivania e un grande armadio.", "In her room there are a bed, a desk and a big wardrobe."],
+      ["Il suo posto preferito è il balcone: la mattina beve il caffè lì e guarda la città.", "Her favorite place is the balcony: in the morning she drinks coffee there and looks at the city."],
+      ["Ieri sua madre ha comprato un tappeto nuovo e l'ha messo nel soggiorno.", "Yesterday her mother bought a new rug and put it in the living room."],
+      ["Stasera arrivano i nonni e Chiara gli mostra la casa.", "Tonight her grandparents arrive and Chiara shows them the house."]
+    ],
+    "gloss": { "posto preferito": "favorite place", "lì": "there" },
+    "questions": [
+      { "q": "A che piano abita Chiara?", "answer": "al terzo piano", "traps": ["al primo piano", "al secondo piano"],
+        "why": "…in un appartamento al terzo piano." },
+      { "q": "Dove ha messo il tappeto la madre?", "answer": "nel soggiorno", "traps": ["in cucina", "nella camera di Chiara"],
+        "why": "…e l'ha messo nel soggiorno." },
+      { "q": "Che cosa fa Chiara sul balcone la mattina?", "answer": "beve il caffè", "traps": ["fa i compiti", "dorme"],
+        "why": "…la mattina beve il caffè lì." },
+      { "q": "A chi mostra la casa Chiara stasera?", "answer": "ai nonni", "traps": ["alla madre", "agli amici"],
+        "why": "Stasera arrivano i nonni e Chiara gli mostra la casa." }
+    ]
+  },
+  "listen": [
+    { "q": "Com'è la tua camera?", "en": "What is your room like?",
+      "frames": ["La mia camera è …", "Nella mia camera c'è …", "Ci sono …"] },
+    { "q": "Dove metti i vestiti?", "en": "Where do you put your clothes?",
+      "frames": ["Li metto nell'armadio.", "Li metto sulla sedia."] },
+    { "q": "Abiti in una casa o in un appartamento?", "en": "Do you live in a house or an apartment?",
+      "frames": ["Abito in una casa …", "Abito in un appartamento al … piano."] }
+  ],
+  "chat": {
+    "who": ["Giulia", "Marco"],
+    "lines": [
+      [0, "Ciao Marco! Com'è la tua camera nuova? 🏠", "Hi Marco! How's your new room?"],
+      [1, "Bella! Ieri ho comprato una scrivania e l'ho messa vicino alla finestra.", "Nice! Yesterday I bought a desk and put it near the window."],
+      [0, "E il letto? Dove l'hai messo?", "And the bed? Where did you put it?"],
+      [1, "Vicino all'armadio. Sul comodino c'è la lampada nuova. 💡", "Near the wardrobe. The new lamp is on the nightstand."],
+      [0, "Che bello! Mi mostri la camera?", "How nice! Will you show me the room?"],
+      [1, "Certo! Puoi venire sabato? Faccio io gli onori di casa! 😄", "Sure! Can you come Saturday? I'll play the host!"]
+    ],
+    "words": { "l'ho messa": "I put it", "dove l'hai messo": "where did you put it", "mi mostri": "will you show me", "gli onori di casa": "the honors of the house (playing host)" }
+  },
+  "parla": {
+    "prompts": [
+      ["Com'è la tua camera?", "La mia camera è … Nella mia camera c'è …"],
+      ["Dov'è il tuo letto?", "Il mio letto è vicino al / alla …"],
+      ["Che cosa hai comprato per la tua camera? Dove l'hai messo?", "Ho comprato … L'ho messo / messa …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato nel, sul, al o dalla.", "Ho detto una cosa della camera del mio compagno."]
+  },
+  "finish": "Now I know how to describe my home and say where everything is!",
+  "idiom": {
+    "it": "Fare gli onori di casa",
+    "en": "to play the host",
+    "ex": "Mamma non c'è, quindi faccio io gli onori di casa.",
+    "exEn": "Mom isn't here, so I'm playing the host.",
+    "note": "Said when you welcome guests into your home and show them around."
+  },
+  "flags": [
+    "Floor numbers: 'al secondo piano' is translated literally as 'on the second floor'; in the US that is the third floor. The culture note explains piano terra. Decide if the English should say this.",
+    "'gli' for 'to them' (Chiara gli mostra la casa) is standard modern Italian; 'loro' after the verb is the formal alternative. Confirm you teach gli for both.",
+    "'Le mostro' (to her) is the same word as formal 'Le' (to you). Not taught here.",
+    "'lì' (there) is glossed in the reading; 'ci' as 'there' is avoided on purpose.",
+    "Existing Italiano 3 lessons are already titled 'Unità 3 · Presente o passato prossimo?' etc. This unit's 'Unità 2' uses the guide's numbering; the numbers will clash on the path."
+  ]
+}

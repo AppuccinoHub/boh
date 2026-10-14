@@ -1,0 +1,195 @@
+{
+  "level": "italiano4",
+  "key": "dante",
+  "guideUnit": 5,
+  "proficiency": "Intermediate Mid",
+  "title": "Unità 12 · Dante e la lingua",
+  "tab": "Dante",
+  "tabSub": "UNITÀ 12",
+  "eyebrow": "ITALIANO 4 · UNITÀ 12",
+  "question": "Who was Dante, and how did his Florentine become Italian?",
+  "words": "(la Divina Commedia, il volgare, penso che sia)",
+  "workingOn": "Dante, the Divina Commedia, and the congiuntivo",
+  "canDo": [
+    "I can talk about Dante Alighieri's life.",
+    "I can describe the Divina Commedia and the Inferno.",
+    "I can describe the evolution of the Italian language.",
+    "I can infer the meaning of new words through literature."
+  ],
+  "culture": "Dante Alighieri wrote the Divina Commedia in the Florentine vernacular instead of Latin, and that choice helped make Florentine the base of standard Italian. That is why Italians call him il padre della lingua italiana. Italian students still read cantos of the Inferno in school, and many adults know the first line by heart.",
+  "vocab": [
+    { "group": "Dante e la Commedia", "words": [
+      ["il poeta", "the poet"],
+      ["il poema", "the long poem"],
+      ["la cantica", "one of the three parts of the Commedia"],
+      ["il canto", "the canto (chapter)"],
+      ["il verso", "the line of poetry"],
+      ["l'esilio", "exile"],
+      ["la guida", "the guide"],
+      ["il cerchio", "the circle"],
+      ["l'anima", "the soul"],
+      ["la selva oscura", "the dark wood"]
+    ]},
+    { "group": "La lingua", "words": [
+      ["il volgare", "the vernacular (everyday language)"],
+      ["il latino", "Latin"],
+      ["il dialetto", "the dialect"],
+      ["derivare da", "to come from"],
+      ["il significato", "the meaning"],
+      ["il contesto", "the context"]
+    ]},
+    { "group": "Le opinioni", "words": [
+      ["penso che", "I think that"],
+      ["credo che", "I believe that"],
+      ["è importante che", "it's important that"],
+      ["voglio che", "I want (someone) to"]
+    ]}
+  ],
+  "grammar": {
+    "head": "Congiuntivo presente after opinions and wishes: penso che sia, credo che abbia, è importante che tu vada, voglio che facciate.",
+    "verbs": ["parlare", "prendere", "finire"],
+    "rows": [
+      ["che io", ["parl", "i"], ["prend", "a"], ["fin", "isca"]],
+      ["che tu", ["parl", "i"], ["prend", "a"], ["fin", "isca"]],
+      ["che lui/lei", ["parl", "i"], ["prend", "a"], ["fin", "isca"]],
+      ["che noi", ["parl", "iamo"], ["prend", "iamo"], ["fin", "iamo"]],
+      ["che voi", ["parl", "iate"], ["prend", "iate"], ["fin", "iate"]],
+      ["che loro", ["parl", "ino"], ["prend", "ano"], ["fin", "iscano"]]
+    ],
+    "tricks": [
+      "Use the congiuntivo after penso che, credo che, è importante che, voglio che.",
+      "Swap the vowel: -are verbs take -i (parli), -ere and -ire verbs take -a (prenda, finisca).",
+      "io, tu, lui/lei look the same, so say the subject when needed: che tu parli.",
+      "Learn four irregulars: sia (essere), abbia (avere), vada (andare), faccia (fare)."
+    ],
+    "chips": ["Penso che sia …", "Credo che abbia ragione.", "È importante che tu legga …", "Voglio che tu vada …"]
+  },
+  "sentences": [
+    ["Dante nacque a Firenze nel 1265.", "Dante was born in Florence in 1265."],
+    ["Nel 1302 Dante fu esiliato da Firenze.", "In 1302 Dante was exiled from Florence."],
+    ["Dante morì a Ravenna nel 1321.", "Dante died in Ravenna in 1321."],
+    ["La Divina Commedia ha tre cantiche.", "The Divine Comedy has three parts."],
+    ["Nell'Inferno ci sono nove cerchi.", "In the Inferno there are nine circles."],
+    ["Virgilio è la guida di Dante nell'Inferno.", "Virgil is Dante's guide in the Inferno."],
+    ["Penso che l'Inferno sia la cantica più famosa.", "I think the Inferno is the most famous part."],
+    ["È importante che tu legga i versi ad alta voce.", "It's important that you read the lines out loud."],
+    ["La prof vuole che capiamo le parole dal contesto.", "The teacher wants us to understand words from context."],
+    ["Credo che Dante abbia un posto speciale nella cultura italiana.", "I believe Dante has a special place in Italian culture."],
+    ["L'italiano di oggi deriva dal volgare fiorentino.", "Today's Italian comes from Florentine vernacular."],
+    ["«Nel mezzo del cammin di nostra vita» è il primo verso.", "\"Midway upon the journey of our life\" is the first line."]
+  ],
+  "forms": [
+    { "prompt": "Penso che tu + parlare", "answer": "parli", "alts": [], "traps": ["parla", "parlo"],
+      "why": "-are verbs: tu → -i: che tu parli.", "trick": ["-are → -i", "Congiuntivo of -are verbs ends in -i."] },
+    { "prompt": "Credo che lei + prendere", "answer": "prenda", "alts": [], "traps": ["prende", "prendi"],
+      "why": "-ere verbs: lei → -a: che lei prenda.", "trick": ["-ere → -a", "Congiuntivo of -ere verbs ends in -a."] },
+    { "prompt": "È importante che loro + finire", "answer": "finiscano", "alts": [], "traps": ["finiscono", "finano"],
+      "why": "-isc verbs keep -isc-: finiscano.", "trick": ["-isc-", "finire → finisca, finiscano."] },
+    { "prompt": "Voglio che voi + leggere", "answer": "leggiate", "alts": [], "traps": ["leggete", "leggiete"],
+      "why": "voi → -iate: leggiate.", "trick": ["voi -iate", "voi always ends in -iate."] },
+    { "prompt": "Penso che la Commedia + essere (difficile)", "answer": "sia", "alts": [], "traps": ["è", "sei"],
+      "why": "essere → sia.", "trick": ["sia", "Irregular: essere → sia."] },
+    { "prompt": "Credo che loro + avere (ragione)", "answer": "abbiano", "alts": [], "traps": ["hanno", "abbino"],
+      "why": "avere → abbia; loro → abbiano.", "trick": ["abbia", "Irregular: avere → abbia, abbiano."] },
+    { "prompt": "È importante che tu + andare", "answer": "vada", "alts": [], "traps": ["vai", "vadi"],
+      "why": "andare → vada (never vadi).", "trick": ["vada", "Irregular: andare → vada for io, tu, lui/lei."] },
+    { "prompt": "Voglio che noi + fare", "answer": "facciamo", "alts": [], "traps": ["faciamo", "fanno"],
+      "why": "fare → faccia; noi → facciamo.", "trick": ["facci-", "Irregular: fare → faccia, facciamo."] },
+    { "prompt": "È importante che io + capire", "answer": "capisca", "alts": [], "traps": ["capisco", "capischi"],
+      "why": "-isc verb: che io capisca.", "trick": ["-isca", "capire → capisca, like finisca."] },
+    { "prompt": "Penso che lui + leggere", "answer": "legga", "alts": [], "traps": ["legge", "leggia"],
+      "why": "-ere → -a: legga (hard g sound stays).", "trick": ["-gga", "leggere → legga."] },
+    { "prompt": "Voglio che tu + essere (gentile)", "answer": "sia", "alts": [], "traps": ["sei", "sii"],
+      "why": "essere → sia for io, tu, lui/lei.", "trick": ["sia", "Che tu sia: same form as lui/lei."] },
+    { "prompt": "Credo che voi + parlare", "answer": "parliate", "alts": [], "traps": ["parlate", "parlaste"],
+      "why": "voi → -iate: parliate.", "trick": ["-iate", "parlare → parliate."] }
+  ],
+  "fill": [
+    { "text": "Penso che Dante ___ il poeta più importante d'Italia.", "answers": ["sia"], "cue": "essere",
+      "hint": "is (after penso che): s…", "why": "penso che + congiuntivo: sia." },
+    { "text": "La prof vuole che noi ___ il canto III.", "answers": ["leggiamo"], "cue": "leggere",
+      "hint": "we read: l…", "why": "vuole che + congiuntivo; noi → leggiamo." },
+    { "text": "È importante che tu ___ le parole nuove dal contesto.", "answers": ["capisca"], "cue": "capire",
+      "hint": "you understand: c…", "why": "è importante che + congiuntivo: capisca." },
+    { "text": "Il professore vuole che gli studenti ___ alla mostra su Dante.", "answers": ["vadano"], "cue": "andare",
+      "hint": "they go: v…", "why": "andare → vada; loro → vadano." },
+    { "text": "Penso che i ragazzi ___ paura di questo canto.", "answers": ["abbiano"], "cue": "avere",
+      "hint": "they have: a…", "why": "avere → abbia; loro → abbiano." },
+    { "text": "È importante che voi ___ i compiti prima della lezione.", "answers": ["facciate"], "cue": "fare",
+      "hint": "you all do: f…", "why": "fare → faccia; voi → facciate." },
+    { "text": "Credo che questa parola ___ dal latino.", "answers": ["derivi"], "cue": "derivare",
+      "hint": "comes from: d…", "why": "credo che + congiuntivo; -are → -i: derivi." },
+    { "text": "Voglio che tu ___ il libro stasera.", "answers": ["finisca"], "cue": "finire",
+      "hint": "you finish: f…", "why": "voglio che + congiuntivo: finisca." }
+  ],
+  "read": {
+    "title": "Dante, il padre della lingua",
+    "passage": [
+      ["Dante Alighieri nacque a Firenze nel 1265.", "Dante Alighieri was born in Florence in 1265."],
+      ["Da giovane conobbe Beatrice, una ragazza che amò per tutta la vita.", "As a young man he met Beatrice, a girl he loved all his life."],
+      ["Dante fu anche un politico, ma nel 1302 fu esiliato da Firenze e non tornò mai più.", "Dante was also a politician, but in 1302 he was exiled from Florence and never went back."],
+      ["Durante l'esilio scrisse la Divina Commedia.", "During his exile he wrote the Divine Comedy."],
+      ["Il poema ha tre cantiche: l'Inferno, il Purgatorio e il Paradiso.", "The poem has three parts: Inferno, Purgatorio, and Paradiso."],
+      ["Nell'Inferno Dante viaggia con Virgilio, il grande poeta latino, attraverso nove cerchi.", "In the Inferno Dante travels with Virgil, the great Latin poet, through nine circles."],
+      ["Dante non scrisse in latino, la lingua dei libri importanti, ma in volgare fiorentino.", "Dante didn't write in Latin, the language of important books, but in Florentine vernacular."],
+      ["Per questo molti lo chiamano «il padre della lingua italiana».", "That's why many call him \"the father of the Italian language.\""],
+      ["Morì a Ravenna nel 1321, lontano dalla sua città.", "He died in Ravenna in 1321, far from his city."],
+      ["Ancora oggi molti italiani sanno a memoria i primi versi dell'Inferno.", "Even today many Italians know the first lines of the Inferno by heart."]
+    ],
+    "gloss": { "conobbe": "met (conoscere)", "esiliato": "exiled", "esilio": "exile", "scrisse": "wrote (scrivere)", "cantiche": "parts of the poem", "attraverso": "through", "cerchi": "circles", "volgare": "vernacular, everyday language", "a memoria": "by heart" },
+    "questions": [
+      { "q": "Dove morì Dante?", "answer": "a Ravenna", "traps": ["a Firenze", "a Roma"],
+        "why": "Morì a Ravenna nel 1321." },
+      { "q": "Perché Dante morì lontano da Firenze?", "answer": "Perché fu esiliato e non tornò mai più.", "traps": ["Perché preferiva il mare di Ravenna.", "Perché Virgilio lo portò a Ravenna."],
+        "why": "Inference: exiled in 1302, never went back, so he died elsewhere." },
+      { "q": "Perché Dante è «il padre della lingua italiana»?", "answer": "Perché scrisse in volgare fiorentino, non in latino.", "traps": ["Perché inventò il latino.", "Perché scrisse solo in dialetto napoletano."],
+        "why": "Dante non scrisse in latino ma in volgare fiorentino. Per questo …" },
+      { "q": "Che cosa capiamo da «la lingua dei libri importanti»?", "answer": "Che scrivere in volgare fu una scelta nuova e coraggiosa.", "traps": ["Che Dante non sapeva il latino.", "Che il volgare era la lingua dei libri importanti."],
+        "why": "Inference: important books were in Latin, so writing in the vernacular was unusual." }
+    ]
+  },
+  "listen": [
+    { "q": "Pensi che la Divina Commedia sia difficile da leggere? Perché?", "en": "Do you think the Divine Comedy is hard to read? Why?",
+      "frames": ["Penso che sia … perché …", "Secondo me …"] },
+    { "q": "Chi era Dante Alighieri?", "en": "Who was Dante Alighieri?",
+      "frames": ["Dante era un poeta di …", "Nacque a … nel …", "Scrisse …"] },
+    { "q": "È importante che i giovani leggano Dante oggi? Perché?", "en": "Is it important for young people to read Dante today? Why?",
+      "frames": ["Penso che sia importante perché …", "È importante che i giovani …"] }
+  ],
+  "chat": {
+    "who": ["Chiara", "Matteo"],
+    "lines": [
+      [0, "Hai letto il canto III per domani? 📖", "Did you read Canto III for tomorrow?"],
+      [1, "Sì! Ma che cosa vuol dire «intrate»? 🤔", "Yes! But what does \"intrate\" mean?"],
+      [0, "Penso che sia «entrate». È italiano antico!", "I think it's \"entrate.\" It's old Italian!"],
+      [1, "Ah! «Lasciate ogne speranza, voi ch'intrate» 😱", "Oh! \"Abandon all hope, you who enter.\""],
+      [0, "Esatto! La prof vuole che lo impariamo a memoria.", "Exactly! The teacher wants us to learn it by heart."],
+      [1, "Allora lasciate ogni speranza… di dormire stasera! 😂", "Then abandon all hope… of sleeping tonight!"]
+    ],
+    "words": { "intrate": "old form of entrate (you enter)", "ogne": "old form of ogni", "a memoria": "by heart" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che cosa sai della vita di Dante?", "Dante nacque … Nel 1302 …"],
+      ["Pensi che sia importante leggere Dante oggi? Perché?", "Penso che sia importante perché …"],
+      ["Leggi un verso con una parola antica. Che cosa significa, secondo te?", "Secondo me significa … perché nel contesto …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho usato il congiuntivo dopo penso che o è importante che.", "Ho spiegato una parola dal contesto."]
+  },
+  "finish": "Now I know how to talk about Dante, the Divina Commedia, and the birth of Italian, and how to give opinions with the congiuntivo!",
+  "idiom": {
+    "it": "Lasciate ogni speranza",
+    "en": "abandon all hope",
+    "ex": "Domani abbiamo tre verifiche: lasciate ogni speranza!",
+    "exEn": "Tomorrow we have three tests: abandon all hope!",
+    "note": "From Inferno III, the words over the gate of Hell. Dante wrote: «Lasciate ogne speranza, voi ch'intrate» (ogne = ogni, intrate = entrate). Today Italians say it as a joke about hopeless situations."
+  },
+  "flags": [
+    "The reading uses passato remoto irregulars not drilled in Unit 11 (conobbe, scrisse); both are glossed.",
+    "Beatrice: Dante met her as a child (age nine, per the Vita Nuova); \"da giovane\" is simplified. Her identity as Beatrice Portinari is traditional, so it is left out.",
+    "\"Durante l'esilio scrisse la Commedia\": composition is usually dated c. 1304/1307-1321, all during the exile. Verified as the standard scholarly view; double-check if you cite exact years.",
+    "Several forms items have identical indicative/congiuntivo forms for noi (facciamo); this is correct Italian, just flagging that the noi form gives no visual clue.",
+    "Fill item 1 (Penso che Dante sia …) uses the present because the judgment is about his status today; a stricter teacher might prefer sia stato. It is not taught yet, so sia is kept.",
+    "Inferno quotes used: «Nel mezzo del cammin di nostra vita» (Inf. I, 1) and «Lasciate ogne speranza, voi ch'intrate» (Inf. III, 9). Both public domain. Spelling follows the Petrocchi edition; some school editions print «ogni» and «ch'entrate»."
+  ]
+}

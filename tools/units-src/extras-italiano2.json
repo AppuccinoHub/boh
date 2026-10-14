@@ -1,0 +1,102 @@
+{
+  "ea": {
+    "workingOn": "essere and avere: describing people and pets",
+    "read": {
+      "title": "Io e i miei animali",
+      "passage": [
+        ["Sono Sara e sono americana.", "I am Sara and I am American."],
+        ["Ho sedici anni e sono di Hamilton.", "I am sixteen and I am from Hamilton."],
+        ["Io e mio fratello abbiamo due animali: un cane nero e una tartaruga.", "My brother and I have two animals: a black dog and a turtle."],
+        ["Il cane è grande, ma la tartaruga è piccola.", "The dog is big, but the turtle is small."],
+        ["Oggi il cane ha fame e io ho sete!", "Today the dog is hungry and I am thirsty!"]
+      ],
+      "gloss": { "sedici": "sixteen", "ma": "but", "nero": "black" },
+      "questions": [
+        { "q": "Quanti anni ha Sara?", "answer": "sedici anni", "traps": ["quindici anni", "dodici anni"], "why": "Ho sedici anni." },
+        { "q": "Che animali hanno Sara e il fratello?", "answer": "un cane e una tartaruga", "traps": ["un gatto e una tartaruga", "un cane e un criceto"], "why": "Abbiamo due animali: un cane nero e una tartaruga." },
+        { "q": "Com'è il cane?", "answer": "grande e nero", "traps": ["piccolo e nero", "grande e bianco"], "why": "Un cane nero … Il cane è grande." },
+        { "q": "Chi ha fame oggi?", "answer": "il cane", "traps": ["Sara", "il fratello"], "why": "Oggi il cane ha fame e io ho sete!" }
+      ]
+    },
+    "listen": [
+      { "q": "Hai un animale domestico?", "en": "Do you have a pet?", "frames": ["Sì, ho un …", "Sì, ho una …", "No, non ho un animale domestico."] },
+      { "q": "Quanti anni hai?", "en": "How old are you?", "frames": ["Ho … anni."] },
+      { "q": "Hai fame o hai sete adesso?", "en": "Are you hungry or thirsty right now?", "frames": ["Ho fame.", "Ho sete.", "No, non ho fame."] }
+    ]
+  },
+  "u2": {
+    "workingOn": "free time, weather and dates",
+    "read": {
+      "title": "Il mio compleanno",
+      "passage": [
+        ["Il mio compleanno è a giugno.", "My birthday is in June."],
+        ["A giugno fa caldo e c'è il sole.", "In June it's hot and sunny."],
+        ["Mi piace nuotare e andare in bici.", "I like to swim and ride my bike."],
+        ["Non mi piace guardare la TV.", "I don't like to watch TV."],
+        ["Oggi piove, ma domani fa bel tempo!", "Today it's raining, but tomorrow the weather is nice!"]
+      ],
+      "gloss": { "ma": "but" },
+      "questions": [
+        { "q": "Quando è il compleanno?", "answer": "a giugno", "traps": ["a maggio", "a dicembre"], "why": "Il mio compleanno è a giugno." },
+        { "q": "Che tempo fa a giugno?", "answer": "fa caldo e c'è il sole", "traps": ["fa freddo e nevica", "piove e c'è vento"], "why": "A giugno fa caldo e c'è il sole." },
+        { "q": "Che tempo fa oggi?", "answer": "piove", "traps": ["nevica", "fa caldo"], "why": "Oggi piove." },
+        { "q": "Che tempo fa domani?", "answer": "fa bel tempo", "traps": ["piove", "fa brutto tempo"], "why": "Domani fa bel tempo!" }
+      ]
+    },
+    "listen": [
+      { "q": "Ti piace ascoltare musica o guardare la TV?", "en": "Do you like listening to music or watching TV?", "frames": ["Mi piace ascoltare musica.", "Mi piace guardare la TV.", "Non mi piace …"] },
+      { "q": "Che tempo fa oggi?", "en": "What’s the weather like today?", "frames": ["Oggi fa …", "Oggi c'è …", "Oggi piove."] },
+      { "q": "Quando è il tuo compleanno?", "en": "When is your birthday?", "frames": ["Il mio compleanno è a …"] }
+    ]
+  },
+  "u3": {
+    "workingOn": "inviting friends with posso, voglio and devo",
+    "read": {
+      "title": "Il messaggio di Giulia",
+      "passage": [
+        ["Ciao Marco! Vuoi venire al cinema sabato?", "Hi Marco! Do you want to come to the movies on Saturday?"],
+        ["Oggi non posso: devo studiare.", "Today I can't: I have to study."],
+        ["Domani lavoro, ma sabato posso!", "Tomorrow I work, but on Saturday I can!"],
+        ["Dopo il cinema vorrei mangiare una pizza.", "After the movies I would like to eat a pizza."],
+        ["Puoi venire? A sabato!", "Can you come? See you Saturday!"]
+      ],
+      "gloss": { "Dopo": "after", "ma": "but" },
+      "questions": [
+        { "q": "Quando è il cinema?", "answer": "sabato", "traps": ["oggi", "domani"], "why": "Vuoi venire al cinema sabato?" },
+        { "q": "Giulia: «Oggi non posso: devo …»", "answer": "studiare", "traps": ["lavorare", "nuotare"], "why": "Oggi non posso: devo studiare." },
+        { "q": "Giulia: «Domani …»", "answer": "lavoro", "traps": ["studio", "nuoto"], "why": "Domani lavoro, ma sabato posso!" },
+        { "q": "Giulia: «Dopo il cinema vorrei mangiare …»", "answer": "una pizza", "traps": ["un gelato", "un biglietto"], "why": "Dopo il cinema vorrei mangiare una pizza." }
+      ]
+    },
+    "listen": [
+      { "q": "Puoi venire al cinema domani?", "en": "Can you come to the movies tomorrow?", "frames": ["Sì, posso venire!", "Mi dispiace, non posso.", "Devo …"] },
+      { "q": "Vuoi andare a casa oggi?", "en": "Do you want to go home today?", "frames": ["Sì, voglio andare a casa.", "No, non voglio andare a casa.", "Voglio …"] },
+      { "q": "Devi andare in bagno?", "en": "Do you have to go to the bathroom?", "frames": ["Sì, devo andare in bagno.", "No, non devo andare in bagno.", "Posso andare in bagno?"] }
+    ]
+  },
+  "u4": {
+    "workingOn": "all six persons of -are verbs: family and food",
+    "read": {
+      "title": "La domenica in famiglia",
+      "passage": [
+        ["La domenica mia madre compra il pane e la frutta al supermercato.", "On Sundays my mother buys bread and fruit at the supermarket."],
+        ["Mio fratello gioca a calcio e mio padre guarda la partita.", "My brother plays soccer and my father watches the game."],
+        ["Io e mia sorella ascoltiamo musica a casa.", "My sister and I listen to music at home."],
+        ["Mia cugina abita a Roma e parla italiano.", "My cousin lives in Rome and speaks Italian."],
+        ["La sera noi mangiamo la pizza al ristorante.", "In the evening we eat pizza at the restaurant."]
+      ],
+      "gloss": { "la partita": "the game", "al ristorante": "at the restaurant" },
+      "questions": [
+        { "q": "Dove compra il pane la madre?", "answer": "al supermercato", "traps": ["al ristorante", "in palestra"], "why": "Mia madre compra il pane e la frutta al supermercato." },
+        { "q": "Chi gioca a calcio?", "answer": "il fratello", "traps": ["il padre", "la sorella"], "why": "Mio fratello gioca a calcio e mio padre guarda la partita." },
+        { "q": "Dove abita la cugina?", "answer": "a Roma", "traps": ["a casa", "al supermercato"], "why": "Mia cugina abita a Roma." },
+        { "q": "Che cosa mangiano la sera?", "answer": "la pizza", "traps": ["il gelato", "la frutta"], "why": "La sera noi mangiamo la pizza al ristorante." }
+      ]
+    },
+    "listen": [
+      { "q": "Che cosa mangi la mattina?", "en": "What do you eat in the morning?", "frames": ["La mattina mangio …", "La mattina non mangio."] },
+      { "q": "Dove abita la tua famiglia?", "en": "Where does your family live?", "frames": ["La mia famiglia abita a …"] },
+      { "q": "Che cosa comprate tu e la tua famiglia al supermercato?", "en": "What do you and your family buy at the supermarket?", "frames": ["Noi compriamo …", "Noi compriamo il pane e …"] }
+    ]
+  }
+}

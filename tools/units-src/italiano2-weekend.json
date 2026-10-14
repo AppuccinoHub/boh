@@ -1,0 +1,193 @@
+{
+  "level": "italiano2",
+  "key": "weekend",
+  "guideUnit": 3,
+  "proficiency": "Novice High",
+  "title": "Unità 3 · Il mio weekend",
+  "tab": "Il weekend",
+  "tabSub": "UNITÀ 3",
+  "eyebrow": "ITALIANO 2 · UNITÀ 3",
+  "question": "What did I do this weekend, and what don't I do?",
+  "words": "(ho giocato, ho fatto, non … più)",
+  "workingOn": "saying what I did and what I don't do",
+  "canDo": [
+    "I can talk about others' free-time activities.",
+    "I can understand short written passages about past events.",
+    "I can say what I don't do anymore (non … più), never (non … mai), nothing (non … niente)."
+  ],
+  "culture": "Sunday in Italy is family time: a long lunch, often with the nonni. In the early evening many Italians take la passeggiata, a slow stroll through the town center. Fans follow Serie A soccer every weekend, and every May the Giro d'Italia bike race crosses the country.",
+  "vocab": [
+    { "group": "Il fine settimana", "words": [
+      ["il fine settimana", "the weekend"],
+      ["ieri", "yesterday"],
+      ["ieri sera", "last night"],
+      ["l'altro ieri", "the day before yesterday"],
+      ["sabato scorso", "last Saturday"],
+      ["la settimana scorsa", "last week"]
+    ] },
+    { "group": "Lo sport in Italia", "words": [
+      ["la pallavolo", "volleyball"],
+      ["il ciclismo", "cycling"],
+      ["il Giro d'Italia", "the Tour of Italy (bike race)"],
+      ["la Serie A", "Italy's top soccer league"],
+      ["il tifoso / la tifosa", "the fan"],
+      ["la gara", "the race"]
+    ] },
+    { "group": "Che cosa (non) faccio", "words": [
+      ["fare una passeggiata", "to take a walk"],
+      ["riposare", "to rest"],
+      ["lavorare", "to work"],
+      ["visitare", "to visit"],
+      ["non … mai", "never"],
+      ["non … più", "not anymore"],
+      ["non … niente", "nothing"]
+    ] }
+  ],
+  "grammar": {
+    "head": "Passato prossimo: ho, hai, ha … + giocato. -are → -ato. fare → fatto.",
+    "verbs": ["giocare", "fare"],
+    "rows": [
+      ["io", ["ho gioc", "ato"], ["ho f", "atto"]],
+      ["tu", ["hai gioc", "ato"], ["hai f", "atto"]],
+      ["lui / lei", ["ha gioc", "ato"], ["ha f", "atto"]],
+      ["noi", ["abbiamo gioc", "ato"], ["abbiamo f", "atto"]],
+      ["voi", ["avete gioc", "ato"], ["avete f", "atto"]],
+      ["loro", ["hanno gioc", "ato"], ["hanno f", "atto"]]
+    ],
+    "tricks": [
+      "Past = avere (ho, hai, ha, abbiamo, avete, hanno) + the verb ending in -ato: ho giocato.",
+      "fare is irregular: ho fatto, hai fatto, ha fatto. Che cosa hai fatto? = What did you do?",
+      "non before the verb, the second word after: non gioco più, non nuoto mai, non faccio niente.",
+      "Sono andato/a = I went. Learn it as one chunk for now: andato for a boy, andata for a girl."
+    ],
+    "chips": ["Che cosa hai fatto ieri?", "Ho giocato a calcio.", "Sabato sono andato/a al cinema.", "Non faccio niente!"]
+  },
+  "sentences": [
+    ["Sabato ho giocato a pallavolo.", "On Saturday I played volleyball."],
+    ["Ieri sera abbiamo guardato la partita.", "Last night we watched the game."],
+    ["Mio fratello ha fatto una passeggiata.", "My brother took a walk."],
+    ["Domenica i nonni hanno mangiato con noi.", "On Sunday my grandparents ate with us."],
+    ["Che cosa hai fatto il fine settimana?", "What did you do on the weekend?"],
+    ["Sono andata al cinema con Giulia.", "I went to the movies with Giulia."],
+    ["Non gioco più a calcio.", "I don't play soccer anymore."],
+    ["Mia sorella non nuota mai.", "My sister never swims."],
+    ["Domenica non ho fatto niente!", "On Sunday I did nothing!"],
+    ["Mio padre guarda sempre la Serie A.", "My dad always watches Serie A."],
+    ["Il Giro d'Italia è una gara di ciclismo.", "The Giro d'Italia is a cycling race."],
+    ["Avete visitato Roma la settimana scorsa?", "Did you all visit Rome last week?"]
+  ],
+  "forms": [
+    { "prompt": "io + giocare (past)", "answer": "ho giocato", "alts": [], "traps": ["ho giocare", "sono giocato"],
+      "why": "io → ho + giocato.", "trick": ["ho + -ato", "Cut -are, add -ato: giocare → giocato."] },
+    { "prompt": "tu + guardare (past)", "answer": "hai guardato", "alts": [], "traps": ["ha guardato", "hai guardare"],
+      "why": "tu → hai + guardato.", "trick": ["tu → hai", "avere for tu is hai: hai guardato."] },
+    { "prompt": "lei + fare (past)", "answer": "ha fatto", "alts": [], "traps": ["ha fato", "hai fatto"],
+      "why": "lei → ha + fatto.", "trick": ["fare → fatto", "Double t: fatto."] },
+    { "prompt": "noi + mangiare (past)", "answer": "abbiamo mangiato", "alts": [], "traps": ["avete mangiato", "abbiamo mangiare"],
+      "why": "noi → abbiamo + mangiato.", "trick": ["noi → abbiamo", "abbiamo mangiato = we ate."] },
+    { "prompt": "voi + giocare (past)", "answer": "avete giocato", "alts": [], "traps": ["abbiamo giocato", "avete giocate"],
+      "why": "voi → avete + giocato.", "trick": ["-ato stays", "With avere the -ato never changes: avete giocato."] },
+    { "prompt": "loro + guardare (past)", "answer": "hanno guardato", "alts": [], "traps": ["hanno guardare", "ha guardato"],
+      "why": "loro → hanno + guardato.", "trick": ["loro → hanno", "hanno guardato = they watched."] },
+    { "prompt": "io + fare (past)", "answer": "ho fatto", "alts": [], "traps": ["ho fare", "ho fato"],
+      "why": "io → ho + fatto.", "trick": ["fare → fatto", "Ho fatto una passeggiata = I took a walk."] },
+    { "prompt": "loro + visitare (past)", "answer": "hanno visitato", "alts": [], "traps": ["hanno visitare", "avete visitato"],
+      "why": "loro → hanno + visitato.", "trick": ["-are → -ato", "visitare → visitato."] },
+    { "prompt": "I don't play anymore", "answer": "non gioco più", "alts": [], "traps": ["non gioco mai", "gioco più"],
+      "why": "not anymore = non … più.", "trick": ["non … più", "non before the verb, più after."] },
+    { "prompt": "I never swim", "answer": "non nuoto mai", "alts": [], "traps": ["nuoto mai", "non nuoto più"],
+      "why": "never = non … mai.", "trick": ["non … mai", "Italian needs both: non + verb + mai."] },
+    { "prompt": "I do nothing", "answer": "non faccio niente", "alts": [], "traps": ["faccio niente", "non faccio mai"],
+      "why": "nothing = non … niente.", "trick": ["non … niente", "Two negatives are normal in Italian."] },
+    { "prompt": "I went (a girl speaking)", "answer": "sono andata", "alts": [], "traps": ["ho andata", "sono andato"],
+      "why": "I went = sono andata for a girl, sono andato for a boy.", "trick": ["One chunk", "andare uses sono, not ho. Learn it as one chunk."] }
+  ],
+  "fill": [
+    { "text": "Sabato io ___ giocato a calcio.", "answers": ["ho"], "cue": "have",
+      "bank": ["ho", "hai", "sono"], "hint": "avere, io form: h…",
+      "why": "io → ho giocato." },
+    { "text": "Ieri Marco ha ___ la TV.", "answers": ["guardato"], "cue": "watched",
+      "bank": ["guardato", "guarda", "guardare"], "hint": "-are → -ato: guard…",
+      "why": "ha + guardato = watched." },
+    { "text": "Domenica noi ___ mangiato con i nonni.", "answers": ["abbiamo"], "cue": "have",
+      "bank": ["abbiamo", "avete", "hanno"], "hint": "avere, noi form: abb…",
+      "why": "noi → abbiamo mangiato." },
+    { "text": "Che cosa hai ___ ieri?", "answers": ["fatto"], "cue": "done / did",
+      "bank": ["fatto", "fare", "fato"], "hint": "fare in the past, double t: fa…",
+      "why": "Che cosa hai fatto? = What did you do?" },
+    { "text": "Non gioco ___ a pallavolo.", "answers": ["più"], "cue": "anymore",
+      "bank": ["più", "mai", "niente"], "hint": "non … ___ = not anymore: p…",
+      "why": "non … più = not anymore." },
+    { "text": "Mia madre non guarda ___ la Serie A.", "answers": ["mai"], "cue": "never",
+      "bank": ["mai", "più", "sempre"], "hint": "non … ___ = never: m…",
+      "why": "non … mai = never." },
+    { "text": "Il fine settimana non faccio ___.", "answers": ["niente"], "cue": "nothing",
+      "bank": ["niente", "mai", "più"], "hint": "non … ___ = nothing: n…",
+      "why": "non … niente = nothing." },
+    { "text": "I miei amici ___ giocato a calcio.", "answers": ["hanno"], "cue": "have",
+      "bank": ["hanno", "ha", "avete"], "hint": "avere, loro form: ha…",
+      "why": "loro → hanno giocato." }
+  ],
+  "read": {
+    "title": "La domenica di Sofia",
+    "passage": [
+      ["Domenica ho fatto quattro passi in centro con i miei genitori.", "On Sunday I went for a short walk downtown with my parents."],
+      ["Dopo, abbiamo mangiato a casa dei nonni.", "Afterward, we ate at my grandparents' house."],
+      ["Il pomeriggio mio fratello ha guardato la partita di Serie A.", "In the afternoon my brother watched the Serie A game."],
+      ["Io non ho guardato la partita: non mi piace il calcio!", "I didn't watch the game: I don't like soccer!"],
+      ["Ho giocato a pallavolo con le mie amiche.", "I played volleyball with my friends."]
+    ],
+    "gloss": { "ho fatto quattro passi": "I went for a short walk", "in centro": "downtown", "Dopo": "Afterward", "Il pomeriggio": "In the afternoon" },
+    "questions": [
+      { "q": "Con chi ha fatto quattro passi Sofia?", "answer": "con i genitori", "traps": ["con le amiche", "con il fratello"],
+        "why": "Ho fatto quattro passi in centro con i miei genitori." },
+      { "q": "Dove hanno mangiato?", "answer": "a casa dei nonni", "traps": ["al ristorante", "al parco"],
+        "why": "Abbiamo mangiato a casa dei nonni." },
+      { "q": "Chi ha guardato la partita?", "answer": "il fratello", "traps": ["Sofia", "i nonni"],
+        "why": "Mio fratello ha guardato la partita." },
+      { "q": "Che cosa ha fatto Sofia il pomeriggio?", "answer": "ha giocato a pallavolo", "traps": ["ha guardato la partita", "ha giocato a calcio"],
+        "why": "Ho giocato a pallavolo con le mie amiche." }
+    ]
+  },
+  "listen": [
+    { "q": "Che cosa hai fatto sabato?", "en": "What did you do on Saturday?",
+      "frames": ["Sabato ho giocato a …", "Sabato ho guardato …"] },
+    { "q": "Che cosa fa il tuo amico il fine settimana?", "en": "What does your friend do on the weekend?",
+      "frames": ["Il mio amico gioca a …", "Lui guarda …"] },
+    { "q": "Che cosa non fai più?", "en": "What don't you do anymore?",
+      "frames": ["Non gioco più a …", "Non guardo più …"] }
+  ],
+  "chat": {
+    "who": ["Luca", "Giulia"],
+    "lines": [
+      [0, "Ciao! Che cosa hai fatto sabato?", "Hi! What did you do on Saturday?"],
+      [1, "Ho giocato a pallavolo. E tu?", "I played volleyball. And you?"],
+      [0, "Ho guardato la partita allo stadio! ⚽", "I watched the game at the stadium!"],
+      [1, "Bello! Io non guardo mai il calcio 😅", "Nice! I never watch soccer."],
+      [0, "Domenica fai quattro passi con me?", "Will you go for a short walk with me on Sunday?"],
+      [1, "Sì, volentieri! A domenica! 👋", "Yes, gladly! See you Sunday!"]
+    ],
+    "words": { "Che cosa hai fatto": "What did you do", "allo stadio": "at the stadium", "fai quattro passi": "will you go for a short walk", "volentieri": "gladly" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che cosa hai fatto ieri sera?", "Ieri sera ho …"],
+      ["Che cosa fa la tua famiglia la domenica?", "La domenica la mia famiglia …"],
+      ["Che sport non fai più?", "Non gioco più a …"]
+    ],
+    "checks": ["Faccio le 3 domande.", "Rispondo con frasi intere.", "Uso non … più, non … mai o non … niente."]
+  },
+  "finish": "Now I know how to say what I did on the weekend and what I never do!",
+  "idiom": { "it": "Fare quattro passi", "en": "to go for a short walk",
+             "ex": "Dopo cena faccio quattro passi con il cane.", "exEn": "After dinner I go for a short walk with the dog.",
+             "note": "Literally 'to take four steps': a short, relaxed stroll, not a hike." },
+  "flags": [
+    "Grammar chart cells put the avere form inside the stem (e.g. ['ho gioc', 'ato']) so the -ato / -atto ending is highlighted. Check that the chart renders well with a two-word stem.",
+    "Essere verbs: only sono andato/a, as one memorized chunk (trick, chip, one sentence, one forms item). Agreement of the past participle is not taught.",
+    "Present tense of fare (faccio, fai, fa) is assumed known from Italian I; it appears in forms, fills, chat and parla. Verify.",
+    "non … mai was introduced in Unit 1 (frequency words) and is recycled here.",
+    "Reading and question 1 use the idiom ho fatto quattro passi (glossed) before the idiom card; and casa dei nonni (a + i nonni contraction) as a chunk.",
+    "il calcio, la partita and lo stadio come from Page 2 and are used but not listed as new vocab; sabato and domenica are assumed known from Italian I.",
+    "Culture: Giro d'Italia is usually in May (it can end in early June). Shops closing on Sunday is no longer universal, so the culture text does not claim it."
+  ]
+}

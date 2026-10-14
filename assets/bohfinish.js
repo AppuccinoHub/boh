@@ -48,8 +48,8 @@
   window.BohFinish = {
     lines: LINES,
     line: function (unit) {
-      var L = LINES[level()];
-      return (L && L[unit]) || FALLBACK;
+      var lv = level(), L = LINES[lv], X = (window.BohFinishExtra || {})[lv];   /* X: the new units' lines, from tools/units-src/build.js */
+      return (L && L[unit]) || (X && X[unit]) || FALLBACK;
     }
   };
 })();

@@ -1,0 +1,195 @@
+{
+  "level": "italiano1",
+  "key": "scuola",
+  "guideUnit": 2,
+  "proficiency": "Novice Mid",
+  "title": "Unità 2 · La vita da studente",
+  "tab": "La scuola",
+  "tabSub": "UNITÀ 2",
+  "eyebrow": "ITALIANO 1 · UNITÀ 2",
+  "question": "What is my school day like?",
+  "words": "(ho lezione di, Che ora è?, lo zaino)",
+  "workingOn": "school subjects, days of the week, and telling time",
+  "canDo": [
+    "I can enter a discussion related to school subjects.",
+    "I can talk about my school schedule and activities.",
+    "I can give the time.",
+    "I can write my school schedule."
+  ],
+  "culture": "In Italy, many high schools end around 1 or 2 pm, and some still have class on Saturday morning. Teachers often give oral tests called interrogazioni, where you answer questions in front of the class. Grades go up to 10, and 6 is a passing grade.",
+  "vocab": [
+    { "group": "Le materie", "words": [
+      ["l'italiano", "Italian"],
+      ["l'inglese", "English"],
+      ["la matematica", "math"],
+      ["la storia", "history"],
+      ["le scienze", "science"],
+      ["l'arte", "art"],
+      ["la musica", "music"],
+      ["l'educazione fisica", "gym / PE"]
+    ]},
+    { "group": "I giorni", "words": [
+      ["lunedì", "Monday"],
+      ["martedì", "Tuesday"],
+      ["mercoledì", "Wednesday"],
+      ["giovedì", "Thursday"],
+      ["venerdì", "Friday"],
+      ["sabato", "Saturday"],
+      ["domenica", "Sunday"]
+    ]},
+    { "group": "In classe", "words": [
+      ["la lezione", "class / lesson"],
+      ["l'orario", "schedule"],
+      ["il libro", "book"],
+      ["il quaderno", "notebook"],
+      ["la penna", "pen"],
+      ["la matita", "pencil"],
+      ["lo zaino", "backpack"],
+      ["facile", "easy"],
+      ["difficile", "hard"]
+    ]}
+  ],
+  "grammar": {
+    "head": "avere for school: ho lezione di… · essere for time: È l'una. Sono le due.",
+    "verbs": ["avere"],
+    "rows": [
+      ["io", ["h", "o"]],
+      ["tu", ["h", "ai"]],
+      ["lui / lei", ["h", "a"]],
+      ["noi", ["abb", "iamo"]],
+      ["voi", ["av", "ete"]],
+      ["loro", ["h", "anno"]]
+    ],
+    "tricks": [
+      "Ho lezione di + subject = I have … class: ho lezione di storia.",
+      "One o'clock is singular (È l'una); every other hour is plural (Sono le due, Sono le tre).",
+      "Days are lowercase. Il lunedì = on Mondays; domenica is feminine: la domenica.",
+      "Studio l'italiano (I study Italian) is a memorized phrase for now; verb charts for -are come later."
+    ],
+    "chips": ["Ho lezione di italiano.", "Che ora è?", "Sono le due.", "È l'una."]
+  },
+  "sentences": [
+    ["Ho lezione di italiano.", "I have Italian class."],
+    ["Il lunedì ho lezione di storia.", "On Mondays I have history class."],
+    ["Che ora è?", "What time is it?"],
+    ["Sono le otto.", "It's eight o'clock."],
+    ["È l'una.", "It's one o'clock."],
+    ["La matematica è difficile.", "Math is hard."],
+    ["L'arte è facile.", "Art is easy."],
+    ["Ho un quaderno e una penna.", "I have a notebook and a pen."],
+    ["Lo zaino è grande.", "The backpack is big."],
+    ["Il sabato abbiamo scuola.", "On Saturdays we have school."],
+    ["La domenica non ho scuola.", "On Sundays I don't have school."],
+    ["Studio l'italiano.", "I study Italian."]
+  ],
+  "forms": [
+    { "prompt": "io + avere", "answer": "ho", "alts": [], "traps": ["hai", "ha"],
+      "why": "io → ho. The h is silent.", "trick": ["io → ho", "Ho lezione di storia = I have history class."] },
+    { "prompt": "tu + avere", "answer": "hai", "alts": [], "traps": ["ha", "ho"],
+      "why": "tu → hai.", "trick": ["tu → hai", "Hai una penna? = Do you have a pen?"] },
+    { "prompt": "lei + avere", "answer": "ha", "alts": [], "traps": ["hai", "hanno"],
+      "why": "lui / lei → ha.", "trick": ["lui / lei → ha", "Ha (with h) = has. A (no h) = to / at."] },
+    { "prompt": "noi + avere", "answer": "abbiamo", "alts": [], "traps": ["avete", "hanno"],
+      "why": "noi → abbiamo.", "trick": ["noi → -iamo", "Every noi form ends in -iamo: abbiamo."] },
+    { "prompt": "voi + avere", "answer": "avete", "alts": [], "traps": ["abbiamo", "hai"],
+      "why": "voi → avete.", "trick": ["voi → -ete", "voi = you all: avete."] },
+    { "prompt": "loro + avere", "answer": "hanno", "alts": [], "traps": ["ha", "avete"],
+      "why": "loro → hanno.", "trick": ["loro → hanno", "Hanno lezione = they have class."] },
+    { "prompt": "Marco e io + avere", "answer": "abbiamo", "alts": [], "traps": ["hanno", "ha"],
+      "why": "Marco e io = noi → abbiamo.", "trick": ["… e io = noi", "If you are in the group, use noi: abbiamo."] },
+    { "prompt": "la matematica + essere", "answer": "è", "alts": [], "traps": ["sono", "sei"],
+      "why": "One subject = lui / lei → è.", "trick": ["one thing → è", "La matematica è difficile."] },
+    { "prompt": "le scienze + essere", "answer": "sono", "alts": [], "traps": ["è", "siamo"],
+      "why": "le scienze is plural = loro → sono.", "trick": ["many things → sono", "Le scienze sono facili."] },
+    { "prompt": "1:00 · Che ora è?", "answer": "È l'una", "alts": ["è l'una", "È l'una."], "traps": ["Sono le una", "È la una"],
+      "why": "One o'clock is singular: È l'una.", "trick": ["1:00 → È l'una", "Only one o'clock uses È."] },
+    { "prompt": "2:00 · Che ora è?", "answer": "Sono le due", "alts": ["sono le due", "Sono le due."], "traps": ["È le due", "Sono la due"],
+      "why": "Two is plural: Sono le due.", "trick": ["2:00+ → Sono le …", "Every hour after one uses Sono le."] },
+    { "prompt": "8:00 · Che ora è?", "answer": "Sono le otto", "alts": ["sono le otto", "Sono le otto."], "traps": ["È l'otto", "Sono l'otto"],
+      "why": "Eight is plural: Sono le otto.", "trick": ["2:00+ → Sono le …", "Sono le otto = It's eight o'clock."] }
+  ],
+  "fill": [
+    { "text": "Io ___ lezione di storia.", "answers": ["ho"], "cue": "have",
+      "bank": ["ho", "hai", "ha", "sono"], "hint": "I have … → starts with h-o.", "why": "io → ho: Ho lezione di storia." },
+    { "text": "Tu ___ una matita?", "answers": ["hai"], "cue": "do you have",
+      "bank": ["hai", "ho", "hanno", "sei"], "hint": "tu + avere → starts with h-a-i.", "why": "tu → hai." },
+    { "text": "Il lunedì noi ___ lezione di arte.", "answers": ["abbiamo"], "cue": "have",
+      "bank": ["abbiamo", "avete", "hanno", "siamo"], "hint": "we have → starts with a-b-b.", "why": "noi → abbiamo." },
+    { "text": "Che ora ___?", "answers": ["è"], "cue": "is",
+      "bank": ["è", "sono", "ha"], "hint": "What time is it? → one letter.", "why": "Che ora è? = What time is it?" },
+    { "text": "Sono le ___.", "answers": ["tre"], "cue": "three o'clock",
+      "bank": ["tre", "una", "tredici"], "hint": "three → starts with t-r.", "why": "3:00 = Sono le tre." },
+    { "text": "La matematica è ___.", "answers": ["difficile"], "cue": "hard",
+      "bank": ["difficile", "facile", "difficili"], "hint": "hard → starts with d-i-f.", "why": "One subject → difficile (singular)." },
+    { "text": "Ho lezione di ___ fisica.", "answers": ["educazione"], "cue": "physical education",
+      "bank": ["educazione", "musica", "storia"], "hint": "education → starts with e-d-u.", "why": "educazione fisica = gym / PE." },
+    { "text": "La ___ non ho scuola.", "answers": ["domenica"], "cue": "on Sundays",
+      "bank": ["domenica", "lunedì", "sabato"], "hint": "Sunday → starts with d-o-m.", "why": "La domenica = on Sundays. It's the only feminine day." }
+  ],
+  "read": {
+    "title": "La settimana di Luca",
+    "passage": [
+      ["Ciao, sono Luca e sono di Roma.", "Hi, I'm Luca and I'm from Rome."],
+      ["Il sabato ho scuola.", "On Saturdays I have school."],
+      ["Il lunedì ho lezione di storia e di matematica.", "On Mondays I have history and math class."],
+      ["La storia è difficile, ma l'arte è facile!", "History is hard, but art is easy!"]
+    ],
+    "gloss": { "ma": "but" },
+    "questions": [
+      { "q": "Di dov'è Luca?", "answer": "di Roma", "traps": ["di Milano", "di Napoli"],
+        "why": "Sono di Roma." },
+      { "q": "Luca ha scuola il sabato?", "answer": "Sì, ha scuola.", "traps": ["No, non ha scuola.", "No, ha scuola la domenica."],
+        "why": "Il sabato ho scuola." },
+      { "q": "Quando ha lezione di storia?", "answer": "il lunedì", "traps": ["il martedì", "la domenica"],
+        "why": "Il lunedì ho lezione di storia." },
+      { "q": "Com'è l'arte?", "answer": "facile", "traps": ["difficile", "grande"],
+        "why": "L'arte è facile!" }
+    ]
+  },
+  "listen": [
+    { "q": "Che ora è?", "en": "What time is it?",
+      "frames": ["Sono le …", "È l'una."] },
+    { "q": "Che lezione hai il lunedì?", "en": "What class do you have on Mondays?",
+      "frames": ["Il lunedì ho lezione di …"] },
+    { "q": "Com'è la matematica?", "en": "What is math like?",
+      "frames": ["La matematica è facile.", "La matematica è difficile."] }
+  ],
+  "chat": {
+    "who": ["Giulia", "Marco"],
+    "lines": [
+      [0, "Ciao Marco! Che ora è?", "Hi Marco! What time is it?"],
+      [1, "Sono le otto. Hai lezione?", "It's eight. Do you have class?"],
+      [0, "Sì, ho lezione di matematica. 😩", "Yes, I have math class."],
+      [1, "Ah, la matematica è difficile!", "Oh, math is hard!"],
+      [0, "E tu? Che lezione hai?", "And you? What class do you have?"],
+      [1, "Ho lezione di arte. Che bello! 🎨", "I have art class. How nice!"]
+    ],
+    "words": { "Che bello": "how nice" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che lezione hai il lunedì?", "Il lunedì ho lezione di …"],
+      ["Com'è la storia?", "La storia è …"],
+      ["Che ora è?", "Sono le …"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho risposto con frasi intere.", "Ho detto una cosa del mio compagno."]
+  },
+  "finish": "Now I know how to talk about my classes, my schedule, and the time!",
+  "idiom": {
+    "it": "Avere la testa tra le nuvole",
+    "en": "to have your head in the clouds",
+    "ex": "Marco, hai la testa tra le nuvole!",
+    "exEn": "Marco, your head is in the clouds!",
+    "note": "Said to someone who is daydreaming and not paying attention. Italian teachers say it a lot in class!"
+  },
+  "flags": [
+    "Studio l'italiano (sentence 12, trick 4) uses studio as a memorized chunk; regular -are conjugation is not taught yet.",
+    "Telling time assumes students already know numbers 1-12. Please confirm Unit 1 covers them.",
+    "Guide can-do 'I can describe my daily routine' was left out of canDo (schema max is 4, and daily routine needs reflexive and regular verbs students don't have yet). Decide if it should replace another can-do.",
+    "Conflict to check: the existing Italiano 1 game already has a unit titled 'Unità 2 · -are e voglio, devo, posso' plus a 'Volere, dovere, potere' unit. This new unit is also Unità 2, and the brief says -are charts are not known yet. Decide numbering and order.",
+    "Schedules use il lunedì (= on Mondays, every week) rather than lunedì (= this Monday). Confirm you want the article taught here.",
+    "Com'è…? (What is … like?) is assumed known from Unit 1 adjectives.",
+    "Culture facts are unverified: end time varies by school, Saturday school is only in some schools, and grade scales usually run about 1/2/3 to 10 with 6 = sufficiente.",
+    "Chat uses 'Che bello!' as a chunk (glossed). Reading glosses 'ma' (but) in case it is new."
+  ]
+}

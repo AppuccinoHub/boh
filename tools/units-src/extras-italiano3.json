@@ -1,0 +1,109 @@
+{
+  "vdp": {
+    "workingOn": "volere, dovere, potere: plans, rules and permission",
+    "read": {
+      "title": "Una cartolina da Firenze",
+      "passage": [
+        ["Cari amici, sono a Firenze con la mia famiglia!", "Dear friends, I'm in Florence with my family!"],
+        ["Oggi vogliamo vedere il David di Michelangelo.", "Today we want to see Michelangelo's David."],
+        ["Mio padre vuole mangiare la bistecca alla fiorentina.", "My dad wants to eat the Florentine steak."],
+        ["Per salire sulla Cupola dobbiamo fare tanti gradini.", "To climb the Dome we have to do lots of steps."],
+        ["Mia sorella non può salire: ha paura!", "My sister can't climb: she's scared!"],
+        ["Agli Uffizi non possiamo toccare i quadri.", "At the Uffizi we can't touch the paintings."],
+        ["Domani dobbiamo partire presto per Roma.", "Tomorrow we have to leave early for Rome."]
+      ],
+      "gloss": { "gradini": "steps", "ha paura": "is scared", "toccare": "to touch", "i quadri": "the paintings", "presto": "early" },
+      "questions": [
+        { "q": "Che cosa vogliono vedere oggi?", "answer": "il David di Michelangelo", "traps": ["il Colosseo", "la Torre di Pisa"], "why": "Oggi vogliamo vedere il David di Michelangelo." },
+        { "q": "Che cosa vuole mangiare il padre?", "answer": "la bistecca alla fiorentina", "traps": ["la pizza", "la carbonara"], "why": "Mio padre vuole mangiare la bistecca alla fiorentina." },
+        { "q": "Perché la sorella non può salire sulla Cupola?", "answer": "Ha paura.", "traps": ["È stanca.", "Deve studiare."], "why": "Mia sorella non può salire: ha paura!" },
+        { "q": "Che cosa devono fare domani?", "answer": "partire presto per Roma", "traps": ["salire sulla Cupola", "vedere il David"], "why": "Domani dobbiamo partire presto per Roma." }
+      ]
+    },
+    "listen": [
+      { "q": "Che cosa vuoi fare stasera?", "en": "What do you want to do tonight?", "frames": ["Stasera voglio …", "Stasera non posso: devo …"] },
+      { "q": "Che cosa devi fare prima di uscire?", "en": "What do you have to do before going out?", "frames": ["Prima di uscire devo …", "Devo finire i compiti."] },
+      { "q": "Che cosa non possiamo fare in classe?", "en": "What can't we do in class?", "frames": ["In classe non possiamo …", "Non possiamo usare il telefono."] }
+    ]
+  },
+  "imp": {
+    "workingOn": "the imperfetto: life when I was little",
+    "read": {
+      "title": "Quando ero piccola",
+      "passage": [
+        ["Quando ero piccola, abitavo a Napoli con i miei nonni.", "When I was little, I lived in Naples with my grandparents."],
+        ["Ogni sabato giocavo a calcetto con i miei cugini.", "Every Saturday I played five-a-side soccer with my cousins."],
+        ["D'estate faceva un caldo pazzesco e andavamo al mare.", "In summer it was crazy hot and we went to the beach."],
+        ["Quando pioveva, guardavo i cartoni animati con mio nonno.", "When it rained, I watched cartoons with my grandpa."],
+        ["Mio nonno tifava sempre per il Napoli.", "My grandpa always cheered for Napoli."],
+        ["La domenica mia nonna faceva la pizza per tutti.", "On Sundays my grandma made pizza for everyone."],
+        ["Ero molto felice!", "I was very happy!"]
+      ],
+      "gloss": { "D'estate": "in summer", "pazzesco": "crazy", "al mare": "to the beach", "i cartoni animati": "cartoons", "felice": "happy" },
+      "questions": [
+        { "q": "Dove abitava da piccola?", "answer": "a Napoli", "traps": ["a Roma", "a Milano"], "why": "Quando ero piccola, abitavo a Napoli." },
+        { "q": "Che cosa faceva ogni sabato?", "answer": "giocava a calcetto", "traps": ["andava al mare", "guardava i cartoni animati"], "why": "Ogni sabato giocavo a calcetto con i miei cugini." },
+        { "q": "Che cosa faceva con il nonno quando pioveva?", "answer": "guardava i cartoni animati", "traps": ["giocava a calcetto", "andava al mare"], "why": "Quando pioveva, guardavo i cartoni animati con mio nonno." },
+        { "q": "Per quale squadra tifava il nonno?", "answer": "per il Napoli", "traps": ["per la Roma", "per la Juventus"], "why": "Mio nonno tifava sempre per il Napoli." }
+      ]
+    },
+    "listen": [
+      { "q": "Dove abitavi quando eri piccolo/a?", "en": "Where did you live when you were little?", "frames": ["Quando ero piccolo/a, abitavo a …", "Abitavo con …"] },
+      { "q": "Cosa facevi dopo la scuola quando eri piccolo/a?", "en": "What did you do after school when you were little?", "frames": ["Dopo la scuola giocavo …", "Di solito guardavo …", "Andavo …"] },
+      { "q": "Com’eri da piccolo/a?", "en": "What were you like as a little kid?", "frames": ["Da piccolo/a ero …", "Ero sempre …"] }
+    ]
+  },
+  "pp": {
+    "workingOn": "presente or passato prossimo: today vs yesterday",
+    "read": {
+      "title": "Di solito… ma ieri sera!",
+      "passage": [
+        ["Ogni giorno vado a scuola in autobus.", "Every day I go to school by bus."],
+        ["Di solito dopo la scuola faccio i compiti e guardo la TV.", "Usually after school I do my homework and watch TV."],
+        ["Ma ieri sera sono uscita con mia cugina Sara.", "But last night I went out with my cousin Sara."],
+        ["Siamo andate al cinema e abbiamo visto un film italiano.", "We went to the movies and saw an Italian film."],
+        ["Poi abbiamo mangiato una pizza in centro.", "Then we ate a pizza downtown."],
+        ["Sono tornata a casa tardi.", "I came home late."],
+        ["Oggi sono stanca, ma sono contenta!", "Today I'm tired, but I'm happy!"]
+      ],
+      "gloss": { "in centro": "downtown", "tardi": "late", "stanca": "tired", "contenta": "happy" },
+      "questions": [
+        { "q": "Come va a scuola ogni giorno?", "answer": "in autobus", "traps": ["in macchina", "in bici"], "why": "Ogni giorno vado a scuola in autobus." },
+        { "q": "Con chi è uscita ieri sera?", "answer": "con la cugina Sara", "traps": ["con la sorella", "con la madre"], "why": "Ieri sera sono uscita con mia cugina Sara." },
+        { "q": "Che cosa hanno visto al cinema?", "answer": "un film italiano", "traps": ["un film americano", "una partita di calcio"], "why": "Abbiamo visto un film italiano." },
+        { "q": "Com'è la ragazza oggi?", "answer": "stanca ma contenta", "traps": ["malata", "in ritardo"], "why": "Oggi sono stanca, ma sono contenta!" }
+      ]
+    },
+    "listen": [
+      { "q": "Cosa fai di solito il sabato?", "en": "What do you usually do on Saturdays?", "frames": ["Di solito il sabato …", "Il sabato vado …", "Il sabato gioco …"] },
+      { "q": "Cosa hai fatto ieri sera?", "en": "What did you do last night?", "frames": ["Ieri sera ho …", "Ieri sera sono andato/a …"] },
+      { "q": "Dove sei andato/a l’estate scorsa?", "en": "Where did you go last summer?", "frames": ["L'estate scorsa sono andato/a a …", "Ho visto …"] }
+    ]
+  },
+  "pi": {
+    "workingOn": "passato prossimo or imperfetto: telling a story",
+    "read": {
+      "title": "Una sera strana",
+      "passage": [
+        ["Sabato scorso faceva freddo e pioveva.", "Last Saturday it was cold and raining."],
+        ["Io ero a casa e guardavo la TV con mio fratello.", "I was at home watching TV with my brother."],
+        ["Mentre guardavamo un film, all'improvviso è andata via la luce!", "While we were watching a movie, suddenly the power went out!"],
+        ["Mio fratello aveva paura, ma io no.", "My brother was scared, but I wasn't."],
+        ["A un certo punto ha suonato il telefono: era la nonna.", "At one point the phone rang: it was Grandma."],
+        ["Allora siamo andati dalla nonna e abbiamo mangiato la pizza a lume di candela.", "So we went to Grandma's and ate pizza by candlelight."]
+      ],
+      "gloss": { "è andata via la luce": "the power went out", "aveva paura": "was scared", "Allora": "so", "dalla nonna": "to Grandma's house", "a lume di candela": "by candlelight" },
+      "questions": [
+        { "q": "Che tempo faceva sabato scorso?", "answer": "faceva freddo e pioveva", "traps": ["faceva caldo e c'era il sole", "nevicava"], "why": "Sabato scorso faceva freddo e pioveva." },
+        { "q": "Che cosa facevano i due fratelli quando è andata via la luce?", "answer": "guardavano un film", "traps": ["mangiavano la pizza", "dormivano"], "why": "Mentre guardavamo un film, all'improvviso è andata via la luce!" },
+        { "q": "Chi ha telefonato?", "answer": "la nonna", "traps": ["la madre", "un amico"], "why": "Ha suonato il telefono: era la nonna." },
+        { "q": "Dove sono andati alla fine?", "answer": "dalla nonna", "traps": ["al cinema", "al ristorante"], "why": "Allora siamo andati dalla nonna." }
+      ]
+    },
+    "listen": [
+      { "q": "Cosa hai fatto sabato scorso? Com’era il tempo?", "en": "What did you do last Saturday? What was the weather like?", "frames": ["Sabato scorso ho …", "Sabato scorso sono andato/a …", "Faceva … / Pioveva."] },
+      { "q": "Dove sei andato/a l’ultima volta in vacanza? Com’era il posto?", "en": "Where did you go the last time you were on vacation? What was the place like?", "frames": ["L'ultima volta sono andato/a a …", "Il posto era …", "C'era …"] },
+      { "q": "Che tempo faceva quando sei uscito/a di casa stamattina?", "en": "What was the weather like when you left the house this morning?", "frames": ["Quando sono uscito/a di casa, faceva …", "Pioveva.", "C'era il sole."] }
+    ]
+  }
+}

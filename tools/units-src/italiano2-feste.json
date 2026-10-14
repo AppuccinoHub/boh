@@ -1,0 +1,199 @@
+{
+  "level": "italiano2",
+  "key": "feste",
+  "guideUnit": 1,
+  "proficiency": "Novice High",
+  "title": "Unità 1 · Le feste e la famiglia",
+  "tab": "Le feste",
+  "tabSub": "UNITÀ 1",
+  "eyebrow": "ITALIANO 2 · UNITÀ 1",
+  "question": "How do Italians celebrate, and how do I wish someone well?",
+  "words": "(il Natale, Tanti auguri!, conosco / so)",
+  "workingOn": "holidays, wishes, and how often I celebrate",
+  "canDo": [
+    "I can recognize words and sayings relating to parties and celebrations.",
+    "I can compare celebrations in my home with Italian celebrations.",
+    "I can write a special occasion message (birthday, congratulations).",
+    "I can write a short invitation or thank-you note."
+  ],
+  "culture": "On Pasquetta (Easter Monday) Italians head out for a picnic with friends. On the night of January 5, la Befana, a kind old witch on a broom, fills children's stockings with sweets, or coal if they were naughty. Many Italians also celebrate their onomastico, the saint's day that shares their name.",
+  "vocab": [
+    { "group": "Le feste", "words": [
+      ["il Natale", "Christmas"],
+      ["la Vigilia", "Christmas Eve"],
+      ["il Capodanno", "New Year's Day"],
+      ["l'Epifania", "Epiphany (January 6)"],
+      ["la Befana", "the Befana (kind old witch)"],
+      ["il Carnevale", "Carnival"],
+      ["la Pasqua", "Easter"],
+      ["la Pasquetta", "Easter Monday"],
+      ["il Ferragosto", "August 15 holiday"],
+      ["l'onomastico", "name day"]
+    ] },
+    { "group": "Festeggiamo!", "words": [
+      ["la festa", "the party"],
+      ["il regalo", "the gift"],
+      ["la torta", "the cake"],
+      ["l'invito", "the invitation"],
+      ["festeggiare", "to celebrate"],
+      ["Tanti auguri!", "Best wishes!"],
+      ["Buon compleanno!", "Happy birthday!"],
+      ["Congratulazioni!", "Congratulations!"]
+    ] },
+    { "group": "Quanto spesso?", "words": [
+      ["sempre", "always"],
+      ["spesso", "often"],
+      ["qualche volta", "sometimes"],
+      ["non … mai", "never"]
+    ] }
+  ],
+  "grammar": {
+    "head": "conoscere = know a person or place · sapere = know a fact or how to do something",
+    "verbs": ["conoscere", "sapere"],
+    "rows": [
+      ["io", ["conosc", "o"], ["s", "o"]],
+      ["tu", ["conosc", "i"], ["sa", "i"]],
+      ["lui / lei", ["conosc", "e"], ["s", "a"]],
+      ["noi", ["conosc", "iamo"], ["sapp", "iamo"]],
+      ["voi", ["conosc", "ete"], ["sap", "ete"]],
+      ["loro", ["conosc", "ono"], ["s", "anno"]]
+    ],
+    "tricks": [
+      "conoscere + a person or a place: Conosco Marco. Conosco Roma.",
+      "sapere + a fact or a verb: So che giorno è. So ballare.",
+      "conosco and conoscono sound hard (sk); conosci and conosce sound soft (sh).",
+      "Frequency words go after the verb: Festeggio sempre. Never = non + verb + mai."
+    ],
+    "chips": ["Tanti auguri!", "Conosci Roma?", "Sai ballare?", "Do una festa sabato."]
+  },
+  "sentences": [
+    ["A Natale mangiamo sempre con i nonni.", "At Christmas we always eat with our grandparents."],
+    ["La Befana porta i regali ai bambini.", "The Befana brings gifts to children."],
+    ["A Pasquetta mangiamo al parco con gli amici.", "On Easter Monday we eat in the park with friends."],
+    ["Oggi è il mio onomastico!", "Today is my name day!"],
+    ["Conosci il Carnevale di Venezia?", "Do you know the Venice Carnival?"],
+    ["Sai quando è Ferragosto?", "Do you know when Ferragosto is?"],
+    ["Non festeggio mai l'onomastico.", "I never celebrate my name day."],
+    ["Qualche volta diamo una festa a casa.", "Sometimes we throw a party at home."],
+    ["Dico sempre grazie per i regali.", "I always say thank you for the gifts."],
+    ["Tanti auguri e buon compleanno, Luca!", "Best wishes and happy birthday, Luca!"],
+    ["Grazie mille per l'invito!", "Thanks so much for the invitation!"],
+    ["Il mio regalo è piccolo, il tuo è grande.", "My gift is small, yours is big."]
+  ],
+  "forms": [
+    { "prompt": "io + conoscere", "answer": "conosco", "alts": [], "traps": ["conosci", "conosce"],
+      "why": "io → -o: conosco.", "trick": ["io → -o", "Cut -ere, add -o: conoscere → conosco."] },
+    { "prompt": "tu + sapere", "answer": "sai", "alts": [], "traps": ["so", "sa"],
+      "why": "tu → sai. Sai ballare? = Do you know how to dance?", "trick": ["tu → -i", "sapere is irregular, but tu still ends in -i: sai."] },
+    { "prompt": "lui / lei + sapere", "answer": "sa", "alts": [], "traps": ["sai", "sanno"],
+      "why": "lui / lei → sa.", "trick": ["Short form", "sapere: so, sai, sa. Three short forms to start."] },
+    { "prompt": "noi + conoscere", "answer": "conosciamo", "alts": [], "traps": ["conoscete", "conoscono"],
+      "why": "noi → -iamo: conosciamo.", "trick": ["noi → -iamo", "noi always ends in -iamo, for -are and -ere verbs."] },
+    { "prompt": "loro + sapere", "answer": "sanno", "alts": [], "traps": ["sapete", "sa"],
+      "why": "loro → sanno, like hanno.", "trick": ["Like hanno", "sanno rhymes with hanno (avere): loro sanno, loro hanno."] },
+    { "prompt": "I know Rome → io + conoscere or sapere?", "answer": "conosco", "alts": [], "traps": ["so", "sa"],
+      "why": "Rome is a place → conoscere: Conosco Roma.", "trick": ["Person or place?", "A person or a place → conoscere."] },
+    { "prompt": "I know how to dance → io + conoscere or sapere?", "answer": "so", "alts": [], "traps": ["conosco", "sai"],
+      "why": "Knowing how to do something → sapere: So ballare.", "trick": ["A verb follows?", "sapere + a verb = know how to: So cantare."] },
+    { "prompt": "io + dare", "answer": "do", "alts": [], "traps": ["dai", "dà"],
+      "why": "dare: io do. Do una festa = I'm throwing a party.", "trick": ["dare = to give", "do, dai, dà, diamo, date, danno."] },
+    { "prompt": "lui / lei + dare", "answer": "dà", "alts": [], "traps": ["da", "do"],
+      "why": "lui / lei dà, with an accent. da without an accent means from.", "trick": ["Watch the accent", "dà (gives) needs the accent; da = from."] },
+    { "prompt": "loro + dare", "answer": "danno", "alts": [], "traps": ["dano", "date"],
+      "why": "loro → danno, double n, like hanno.", "trick": ["Double n", "danno, hanno, sanno: all double n."] },
+    { "prompt": "io + dire", "answer": "dico", "alts": [], "traps": ["dici", "dice"],
+      "why": "dire: io dico. Dico grazie = I say thank you.", "trick": ["dire = to say", "dico, dici, dice, diciamo, dite, dicono."] },
+    { "prompt": "noi + dire", "answer": "diciamo", "alts": [], "traps": ["dite", "dicono"],
+      "why": "noi → diciamo.", "trick": ["noi → -iamo", "dic- + iamo = diciamo."] }
+  ],
+  "fill": [
+    { "text": "A Natale ___ sempre con i nonni.", "answers": ["mangiamo"], "cue": "we eat",
+      "bank": ["mangiamo", "mangiate", "mangiano"], "hint": "we eat → noi, ends in -iamo: m…",
+      "why": "noi → -iamo: mangiamo." },
+    { "text": "Io ___ Marco: è mio cugino.", "answers": ["conosco"], "cue": "know",
+      "bank": ["conosco", "so", "sai"], "hint": "Marco is a person → conoscere: con…",
+      "why": "A person → conoscere: conosco." },
+    { "text": "Tu ___ cantare?", "answers": ["sai"], "cue": "know how",
+      "bank": ["sai", "conosci", "so"], "hint": "Know how + verb → sapere, tu form: s…",
+      "why": "sapere + a verb, tu → sai." },
+    { "text": "Il sei gennaio arriva la ___.", "answers": ["Befana"], "cue": "the kind old witch",
+      "bank": ["Befana", "Pasqua", "torta"], "hint": "She flies on a broom: B…",
+      "why": "The Befana arrives for the Epiphany, January 6." },
+    { "text": "Per il compleanno, io ___ un regalo a Sara.", "answers": ["do"], "cue": "give",
+      "bank": ["do", "dico", "dà"], "hint": "to give = dare, io form: d…",
+      "why": "dare, io → do." },
+    { "text": "Lei ___ sempre grazie.", "answers": ["dice"], "cue": "says",
+      "bank": ["dice", "dici", "dà"], "hint": "to say = dire, lei form: di…",
+      "why": "dire, lei → dice." },
+    { "text": "Non festeggio ___ l'onomastico.", "answers": ["mai"], "cue": "never",
+      "bank": ["mai", "sempre", "spesso"], "hint": "non … ___ = never: m…",
+      "why": "non + verb + mai = never." },
+    { "text": "___ auguri, nonna!", "answers": ["Tanti"], "cue": "best (many)",
+      "bank": ["Tanti", "Grazie", "Buon"], "hint": "Many wishes: T…",
+      "why": "Tanti auguri! = Best wishes!" }
+  ],
+  "read": {
+    "title": "A Pasquetta",
+    "passage": [
+      ["Oggi è Pasquetta, il giorno dopo Pasqua.", "Today is Easter Monday, the day after Easter."],
+      ["In Italia molte famiglie fanno un picnic.", "In Italy many families have a picnic."],
+      ["Io e i miei amici mangiamo al parco.", "My friends and I eat in the park."],
+      ["Marco porta la torta e io porto i panini.", "Marco brings the cake and I bring the sandwiches."],
+      ["Qualche volta piove, ma noi festeggiamo sempre!", "Sometimes it rains, but we always celebrate!"]
+    ],
+    "gloss": { "il giorno dopo": "the day after", "fanno un picnic": "have a picnic", "i panini": "the sandwiches" },
+    "questions": [
+      { "q": "Quando è Pasquetta?", "answer": "il giorno dopo Pasqua", "traps": ["il giorno di Natale", "il sei gennaio"],
+        "why": "Oggi è Pasquetta, il giorno dopo Pasqua." },
+      { "q": "Dove mangiano gli amici?", "answer": "al parco", "traps": ["a casa", "al ristorante"],
+        "why": "Io e i miei amici mangiamo al parco." },
+      { "q": "Chi porta la torta?", "answer": "Marco", "traps": ["la nonna", "la Befana"],
+        "why": "Marco porta la torta." },
+      { "q": "Festeggiano quando piove?", "answer": "Sì, sempre.", "traps": ["No, mai.", "Solo a Natale."],
+        "why": "Qualche volta piove, ma noi festeggiamo sempre!" }
+    ]
+  },
+  "listen": [
+    { "q": "Qual è la tua festa preferita?", "en": "What is your favorite holiday?",
+      "frames": ["La mia festa preferita è …", "Mi piace …"] },
+    { "q": "Come festeggi il compleanno?", "en": "How do you celebrate your birthday?",
+      "frames": ["Mangio la torta con …", "Do una festa a casa."] },
+    { "q": "Che cosa dici a un amico per il compleanno?", "en": "What do you say to a friend on their birthday?",
+      "frames": ["Dico: Tanti auguri!", "Dico: Buon compleanno!"] }
+  ],
+  "chat": {
+    "who": ["Sofia", "Luca"],
+    "lines": [
+      [0, "Ciao Luca! Sabato do una festa per il mio compleanno 🎉", "Hi Luca! On Saturday I'm throwing a party for my birthday."],
+      [1, "Che bello! Tanti auguri!", "How nice! Best wishes!"],
+      [0, "Grazie! Vuoi venire?", "Thanks! Do you want to come?"],
+      [1, "Sì! Conosci il mio amico Marco? Può venire anche lui?", "Yes! Do you know my friend Marco? Can he come too?"],
+      [0, "Certo! Sai fare la torta? 🎂", "Of course! Do you know how to make a cake?"],
+      [1, "No, non so cucinare… Porto un regalo! 🎁", "No, I can't cook… I'll bring a gift!"]
+    ],
+    "words": { "do una festa": "I'm throwing a party", "Vuoi venire?": "Do you want to come?", "Sai fare": "Do you know how to make", "cucinare": "to cook" }
+  },
+  "parla": {
+    "prompts": [
+      ["Qual è la tua festa preferita?", "La mia festa preferita è …"],
+      ["Festeggi l'onomastico?", "Sì, festeggio … / No, non festeggio mai …"],
+      ["Conosci la Befana?", "Sì, conosco … / No, non conosco …"]
+    ],
+    "checks": ["Faccio le 3 domande.", "Rispondo con frasi intere.", "Uso sempre, spesso o non … mai."]
+  },
+  "finish": "Now I know how to talk about Italian holidays, wish someone well, and say how often I celebrate!",
+  "idiom": { "it": "Cin cin!", "en": "Cheers! (said when toasting)",
+             "ex": "Buon anno a tutti! Cin cin!", "exEn": "Happy New Year, everyone! Cheers!",
+             "note": "Said when clinking glasses at a party, a family dinner or Capodanno." },
+  "flags": [
+    "conoscere is the students' first -ere verb; the regular -ere endings are formally taught in Unit 2 (Buon appetito). Here it is taught through the chart only.",
+    "sapere, dare and dire are irregular. dare and dire are taught through forms items only (no chart), as the brief asked.",
+    "non … mai is introduced here with the frequency words; Unit 3 recycles it with non … più and non … niente.",
+    "Possessive pronouns (il mio, il tuo) appear in one model sentence only (Il mio regalo è piccolo, il tuo è grande); there is no drill. Add one if the guide expects mastery.",
+    "Reading uses fanno (fare, loro) as a glossed chunk; fare is not charted here.",
+    "Chat uses Può venire anche lui? (potere, Page 3) and cucinare (glossed).",
+    "Befana: she comes the night of January 5; Epifania is January 6. Fill item says Il sei gennaio arriva la Befana, which is the common way to say it.",
+    "The can-dos about writing an invitation or thank-you note are modeled in sentences and chat only; the game has no free-writing task. Consider a class writing activity.",
+    "il compleanno was taught on Page 2, so it is used here but not listed as a new vocab word."
+  ]
+}

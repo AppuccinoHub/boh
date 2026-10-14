@@ -1,0 +1,191 @@
+{
+  "level": "italiano2",
+  "key": "cibo",
+  "guideUnit": 2,
+  "proficiency": "Novice High",
+  "title": "Unità 2 · Buon appetito",
+  "tab": "Buon appetito",
+  "tabSub": "UNITÀ 2",
+  "eyebrow": "ITALIANO 2 · UNITÀ 2",
+  "question": "What do I eat, and how do I order?",
+  "words": "(la colazione, prendo, il conto)",
+  "workingOn": "ordering food and talking about meals",
+  "canDo": [
+    "I can order a meal.",
+    "I can talk about others' likes and dislikes.",
+    "I can recognize food and mealtime vocabulary."
+  ],
+  "culture": "In Italy colazione is small: a cornetto and a cappuccino, often standing at the bar. Pranzo can be long, and cena is late, often around 8 or 9 p.m. Many restaurants add il coperto, a small charge per person for bread and the table, and tipping is small or optional, not 15-20% like in the US.",
+  "vocab": [
+    { "group": "I pasti", "words": [
+      ["la colazione", "breakfast"],
+      ["il pranzo", "lunch"],
+      ["la cena", "dinner"]
+    ] },
+    { "group": "Il cibo", "words": [
+      ["il pane", "bread"],
+      ["il formaggio", "cheese"],
+      ["la pasta", "pasta"],
+      ["la carne", "meat"],
+      ["il pesce", "fish"],
+      ["la frutta", "fruit"],
+      ["la verdura", "vegetables"],
+      ["l'acqua", "water"],
+      ["il caffè", "coffee"],
+      ["il dolce", "dessert"]
+    ] },
+    { "group": "Al ristorante", "words": [
+      ["il menù", "the menu"],
+      ["il cameriere", "the waiter"],
+      ["il conto", "the check"]
+    ] }
+  ],
+  "grammar": {
+    "head": "prendere and bere: -o, -i, -e, -iamo, -ete, -ono",
+    "verbs": ["prendere", "bere"],
+    "rows": [
+      ["io", ["prend", "o"], ["bev", "o"]],
+      ["tu", ["prend", "i"], ["bev", "i"]],
+      ["lui / lei", ["prend", "e"], ["bev", "e"]],
+      ["noi", ["prend", "iamo"], ["bev", "iamo"]],
+      ["voi", ["prend", "ete"], ["bev", "ete"]],
+      ["loro", ["prend", "ono"], ["bev", "ono"]]
+    ],
+    "tricks": [
+      "-ere verbs: o, i, e, iamo, ete, ono. Only lui/lei, voi and loro differ from -are.",
+      "bere uses the stem bev-: bevo, bevi, beve, beviamo, bevete, bevono.",
+      "Vorrei… = I would like. Learn it as one polite phrase for ordering; the full verb form comes in Italiano 3.",
+      "un po' di = some: un po' di pane. Ho mangiato, ho bevuto, ho preso = I ate, I drank, I had."
+    ],
+    "chips": ["Vorrei la pasta, per favore.", "Prendo l'acqua.", "Il conto, per favore.", "Ho mangiato bene!"]
+  },
+  "sentences": [
+    ["A colazione bevo un caffè.", "For breakfast I drink a coffee."],
+    ["Prendo la pasta, per favore.", "I'll have the pasta, please."],
+    ["Vorrei un po' di pane.", "I'd like some bread."],
+    ["Mia sorella prende il pesce.", "My sister is having the fish."],
+    ["Che cosa bevete?", "What are you all drinking?"],
+    ["Noi beviamo l'acqua.", "We drink water."],
+    ["A mio padre piace la carne.", "My dad likes meat."],
+    ["A Giulia non piace la verdura.", "Giulia doesn't like vegetables."],
+    ["Il cameriere porta il menù.", "The waiter brings the menu."],
+    ["In Italia la cena è alle otto.", "In Italy dinner is at eight."],
+    ["A pranzo ho mangiato la pasta.", "At lunch I ate pasta."],
+    ["Il conto, per favore!", "The check, please!"]
+  ],
+  "forms": [
+    { "prompt": "io + prendere", "answer": "prendo", "alts": [], "traps": ["prendi", "prende"],
+      "why": "io → -o: prendo.", "trick": ["io → -o", "Cut -ere, add -o: prendere → prendo."] },
+    { "prompt": "tu + bere", "answer": "bevi", "alts": [], "traps": ["bevo", "beve"],
+      "why": "tu → -i: bevi.", "trick": ["Stem bev-", "bere → bev- + i = bevi."] },
+    { "prompt": "noi + bere", "answer": "beviamo", "alts": [], "traps": ["bevete", "bevono"],
+      "why": "noi → -iamo: beviamo.", "trick": ["noi → -iamo", "Same for every verb: beviamo, prendiamo, mangiamo."] },
+    { "prompt": "voi + prendere", "answer": "prendete", "alts": [], "traps": ["prendate", "prendiamo"],
+      "why": "-ere verbs: voi → -ete. prendete.", "trick": ["-ete, not -ate", "-are → -ate, -ere → -ete."] },
+    { "prompt": "loro + prendere", "answer": "prendono", "alts": [], "traps": ["prende", "prendete"],
+      "why": "-ere verbs: loro → -ono. prendono.", "trick": ["-ono, not -ano", "-are → -ano, -ere → -ono."] },
+    { "prompt": "lui / lei + bere", "answer": "beve", "alts": [], "traps": ["bevi", "bere"],
+      "why": "-ere verbs: lui / lei → -e. beve.", "trick": ["lui / lei → -e", "-are → -a, -ere → -e: mangia, beve."] },
+    { "prompt": "loro + bere", "answer": "bevono", "alts": [], "traps": ["beve", "bevete"],
+      "why": "loro → -ono: bevono.", "trick": ["loro → -ono", "bev- + ono = bevono."] },
+    { "prompt": "I ate → io + mangiare (past)", "answer": "ho mangiato", "alts": [], "traps": ["ho mangiare", "mangiato"],
+      "why": "I ate = ho mangiato.", "trick": ["ho + -ato", "ho + mangiato. Both words, every time."] },
+    { "prompt": "I drank → io + bere (past)", "answer": "ho bevuto", "alts": [], "traps": ["ho bevato", "ho bere"],
+      "why": "I drank = ho bevuto.", "trick": ["Learn the chunk", "bere → ho bevuto."] },
+    { "prompt": "I had (ordered) → io + prendere (past)", "answer": "ho preso", "alts": [], "traps": ["ho prenduto", "ho prendato"],
+      "why": "I had / I ordered = ho preso.", "trick": ["Learn the chunk", "prendere → ho preso. Short and irregular."] },
+    { "prompt": "I would like (polite, to order)", "answer": "vorrei", "alts": [], "traps": ["vuoi", "vuole"],
+      "why": "Vorrei = I would like. The polite way to order.", "trick": ["Polite chunk", "Vorrei la pasta, per favore."] },
+    { "prompt": "some bread", "answer": "un po' di pane", "alts": [], "traps": ["un po' pane", "una po' di pane"],
+      "why": "some = un po' di + the food: un po' di pane.", "trick": ["un po' di", "A little of: un po' di acqua, un po' di pane."] }
+  ],
+  "fill": [
+    { "text": "A colazione io ___ un caffè.", "answers": ["bevo"], "cue": "drink",
+      "bank": ["bevo", "bevi", "bere"], "hint": "to drink = bere, io form: bev…",
+      "why": "bere, io → bevo." },
+    { "text": "Mia sorella ___ il pesce.", "answers": ["prende", "ordina"], "cue": "has / orders",
+      "bank": ["prende", "ordina", "prendi", "prendo"], "hint": "lei form of prendere or ordinare: pr… or or…",
+      "why": "lei → prende (-ere) or ordina (-are). Both work." },
+    { "text": "Il ___ porta il menù.", "answers": ["cameriere"], "cue": "waiter",
+      "bank": ["cameriere", "conto", "pranzo"], "hint": "The person who serves you: ca…",
+      "why": "il cameriere = the waiter." },
+    { "text": "Vorrei un po' ___ pane.", "answers": ["di"], "cue": "of",
+      "bank": ["di", "a", "il"], "hint": "un po' ___ = a little of: d…",
+      "why": "un po' di = some." },
+    { "text": "Noi ___ l'acqua.", "answers": ["beviamo"], "cue": "drink",
+      "bank": ["beviamo", "bevete", "bevono"], "hint": "noi → -iamo: bev…",
+      "why": "noi → beviamo." },
+    { "text": "Ieri a pranzo ho ___ la pasta.", "answers": ["mangiato"], "cue": "ate",
+      "bank": ["mangiato", "mangio", "mangiare"], "hint": "ho + -ato: mang…",
+      "why": "I ate = ho mangiato." },
+    { "text": "Il ___, per favore!", "answers": ["conto"], "cue": "check / bill",
+      "bank": ["conto", "menù", "dolce"], "hint": "You ask for it at the end: co…",
+      "why": "il conto = the check." },
+    { "text": "A Marco ___ la carne.", "answers": ["piace"], "cue": "likes (is pleasing)",
+      "bank": ["piace", "piacciono", "mangia"], "hint": "One thing is pleasing: pi…",
+      "why": "la carne is one thing → piace." }
+  ],
+  "read": {
+    "title": "Al ristorante",
+    "passage": [
+      ["Sono al ristorante con la mia famiglia.", "I'm at the restaurant with my family."],
+      ["Il cameriere porta il menù.", "The waiter brings the menu."],
+      ["Io prendo la pasta e mia sorella prende il pesce.", "I'm having pasta and my sister is having fish."],
+      ["Mio padre beve l'acqua e prende un dolce.", "My dad drinks water and has a dessert."],
+      ["Il conto è venti euro.", "The check is twenty euros."]
+    ],
+    "gloss": { "venti euro": "twenty euros" },
+    "questions": [
+      { "q": "Che cosa prende la sorella?", "answer": "il pesce", "traps": ["la pasta", "il dolce"],
+        "why": "Mia sorella prende il pesce." },
+      { "q": "Che cosa porta il cameriere?", "answer": "il menù", "traps": ["il pesce", "il caffè"],
+        "why": "Il cameriere porta il menù." },
+      { "q": "Che cosa beve il padre?", "answer": "l'acqua", "traps": ["il caffè", "il latte"],
+        "why": "Mio padre beve l'acqua." },
+      { "q": "Quanto è il conto?", "answer": "venti euro", "traps": ["dieci euro", "trenta euro"],
+        "why": "Il conto è venti euro." }
+    ]
+  },
+  "listen": [
+    { "q": "Che cosa mangi a colazione?", "en": "What do you eat for breakfast?",
+      "frames": ["A colazione mangio …", "A colazione bevo …"] },
+    { "q": "Ti piace la pasta?", "en": "Do you like pasta?",
+      "frames": ["Sì, mi piace la pasta.", "No, non mi piace la pasta."] },
+    { "q": "Che cosa vuoi bere?", "en": "What do you want to drink?",
+      "frames": ["Voglio bere …", "Vorrei l'acqua, per favore."] }
+  ],
+  "chat": {
+    "who": ["Giulia", "Marco"],
+    "lines": [
+      [0, "Ciao! Hai fame? 😋", "Hi! Are you hungry?"],
+      [1, "Sì! Ho l'acquolina in bocca!", "Yes! My mouth is watering!"],
+      [0, "Mangiamo in pizzeria? 🍕", "Shall we eat at the pizzeria?"],
+      [1, "Sì! Io prendo la pizza. E tu?", "Yes! I'll have pizza. And you?"],
+      [0, "Io prendo la pasta e bevo l'acqua. 🍝", "I'll have pasta and drink water."],
+      [1, "Perfetto! Paghiamo il conto insieme.", "Perfect! We'll pay the check together."]
+    ],
+    "words": { "Hai fame?": "Are you hungry?", "Ho l'acquolina in bocca": "My mouth is watering", "Paghiamo": "We pay", "insieme": "together" }
+  },
+  "parla": {
+    "prompts": [
+      ["Che cosa mangi a pranzo?", "A pranzo mangio …"],
+      ["Che cosa bevi a cena?", "A cena bevo …"],
+      ["Che cosa piace a tua madre?", "A mia madre piace …"]
+    ],
+    "checks": ["Faccio le 3 domande.", "Rispondo con frasi intere.", "Dico che cosa piace al mio compagno."]
+  },
+  "finish": "Now I know how to say what I eat and how to order in a restaurant!",
+  "idiom": { "it": "Avere l'acquolina in bocca", "en": "to have a watering mouth",
+             "ex": "Che profumo! Ho l'acquolina in bocca.", "exEn": "What a smell! My mouth is watering.",
+             "note": "Said when food smells or looks delicious, before you eat it." },
+  "flags": [
+    "Vorrei is condizionale (Italiano 3). Per the teacher's decision it is taught ONLY as a memorized phrase for ordering (trick 3 and the forms item). Page 3 already introduced vorrei as a chunk, so this is consistent.",
+    "Passato prossimo is limited to three chunks: ho mangiato, ho bevuto, ho preso. No chart, no other persons.",
+    "Others' likes use A + name / A mio padre piace … . Indirect object pronouns (gli piace, le piace) are not taught; if the teacher wants them, they need their own item.",
+    "Reading: Il conto è venti euro is low for a family of three or four with pasta, fish and dessert. Kept as approved; consider a higher number if students know it.",
+    "la verdura is singular in vocab (vegetables as a category); le verdure is also common. Both are correct.",
+    "Culture claims are Unverified general statements: coperto is common but not charged everywhere; tipping in Italy is optional and small. Dinner time varies by region (later in the south).",
+    "Chat uses Paghiamo (pagare, noi, like giochiamo) and insieme, both glossed.",
+    "Vocab is exactly the approved 16 words; verbs are in the grammar and sentences."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "level": "italiano1",
+  "key": "famiglia",
+  "guideUnit": 3,
+  "proficiency": "Novice Mid",
+  "title": "Unità 3 · Amici e famiglia",
+  "tab": "La famiglia",
+  "tabSub": "UNITÀ 3",
+  "eyebrow": "ITALIANO 1 · UNITÀ 3",
+  "question": "Who is in my family, and what do we want or have to do?",
+  "words": "(mia madre, i miei nonni, devo)",
+  "workingOn": "family words, my / your, and voglio, devo, posso",
+  "canDo": [
+    "I can refer to family members using possessives.",
+    "I can read and interpret a story related to family members.",
+    "I can describe and talk about family lineage.",
+    "I can talk about wants and obligations."
+  ],
+  "culture": "In Italy, grandparents (i nonni) often help raise their grandchildren: they pick them up from school and cook for them. Many families still meet for a long Sunday lunch, often at the grandparents' house. Many young Italians live with their parents until their late twenties or longer.",
+  "vocab": [
+    { "group": "La famiglia", "words": [
+      ["la madre", "mother"],
+      ["il padre", "father"],
+      ["la mamma", "mom"],
+      ["il papà", "dad"],
+      ["i genitori", "parents"],
+      ["il fratello", "brother"],
+      ["la sorella", "sister"],
+      ["il nonno", "grandfather"],
+      ["la nonna", "grandmother"],
+      ["i nonni", "grandparents"],
+      ["lo zio", "uncle"],
+      ["la zia", "aunt"],
+      ["il cugino", "cousin (boy)"],
+      ["la cugina", "cousin (girl)"],
+      ["il figlio", "son"],
+      ["la figlia", "daughter"]
+    ]},
+    { "group": "Amici e animali", "words": [
+      ["l'amico", "friend (boy)"],
+      ["l'amica", "friend (girl)"],
+      ["il cane", "dog"],
+      ["il gatto", "cat"]
+    ]},
+    { "group": "Mio, tuo, suo", "words": [
+      ["mio / mia", "my"],
+      ["tuo / tua", "your (tu)"],
+      ["suo / sua", "his / her"],
+      ["nostro / nostra", "our"]
+    ]}
+  ],
+  "grammar": {
+    "head": "my / your match the noun: mio padre, mia madre · voglio, devo, posso + a verb: Devo studiare.",
+    "verbs": ["volere", "dovere", "potere"],
+    "rows": [
+      ["io", ["vogli", "o"], ["dev", "o"], ["poss", "o"]],
+      ["tu", ["vu", "oi"], ["dev", "i"], ["pu", "oi"]],
+      ["lui / lei", ["vuol", "e"], ["dev", "e"], ["pu", "ò"]],
+      ["noi", ["vogl", "iamo"], ["dobb", "iamo"], ["poss", "iamo"]],
+      ["voi", ["vol", "ete"], ["dov", "ete"], ["pot", "ete"]],
+      ["loro", ["vogli", "ono"], ["dev", "ono"], ["poss", "ono"]]
+    ],
+    "tricks": [
+      "One family member = no article: mia madre, tuo fratello. More than one keeps it: i miei nonni.",
+      "Mamma, papà, and pets keep the article: la mia mamma, il mio papà, il mio cane.",
+      "The possessive matches the thing, not the owner: Marco e sua sorella.",
+      "After voglio, devo, posso, use the whole verb: Voglio giocare. Devo studiare. Posso uscire?"
+    ],
+    "chips": ["Mia madre è simpatica.", "Il mio cane è piccolo.", "Voglio giocare.", "Devo studiare."]
+  },
+  "sentences": [
+    ["Mia madre è alta.", "My mother is tall."],
+    ["Mio padre è simpatico.", "My father is nice."],
+    ["Ho due fratelli.", "I have two brothers."],
+    ["I miei nonni sono di Napoli.", "My grandparents are from Naples."],
+    ["Com'è tua sorella?", "What is your sister like?"],
+    ["Il mio cane è piccolo.", "My dog is small."],
+    ["Mia zia ha un gatto.", "My aunt has a cat."],
+    ["Voglio mangiare la pizza.", "I want to eat pizza."],
+    ["Devo studiare l'italiano.", "I have to study Italian."],
+    ["Posso uscire con gli amici?", "Can I go out with my friends?"],
+    ["Mio cugino vuole giocare.", "My cousin wants to play."],
+    ["Dobbiamo mangiare con i nonni.", "We have to eat with our grandparents."]
+  ],
+  "forms": [
+    { "prompt": "my + madre", "answer": "mia madre", "alts": [], "traps": ["la mia madre", "mio madre"],
+      "why": "madre is feminine and one person: mia, no article.", "trick": ["one family member → no article", "mia madre, mio padre."] },
+    { "prompt": "my + padre", "answer": "mio padre", "alts": [], "traps": ["il mio padre", "mia padre"],
+      "why": "padre is masculine and one person: mio, no article.", "trick": ["one family member → no article", "mio padre, mio fratello."] },
+    { "prompt": "my + nonni", "answer": "i miei nonni", "alts": [], "traps": ["miei nonni", "i mie nonni"],
+      "why": "Plural family words keep the article: i miei nonni.", "trick": ["plural → keep the article", "i miei nonni, i miei genitori."] },
+    { "prompt": "your (tu) + sorella", "answer": "tua sorella", "alts": [], "traps": ["tuo sorella", "la tua sorella"],
+      "why": "sorella is feminine, one person: tua, no article.", "trick": ["-a noun → tua", "tua sorella, tua madre."] },
+    { "prompt": "my + cane", "answer": "il mio cane", "alts": [], "traps": ["mio cane", "la mia cane"],
+      "why": "A pet is not family: keep the article. il mio cane.", "trick": ["pets keep the article", "il mio cane, il mio gatto."] },
+    { "prompt": "Marco + his + sorella", "answer": "sua sorella", "alts": [], "traps": ["suo sorella", "la sua sorella"],
+      "why": "sorella is feminine → sua, even though Marco is a boy.", "trick": ["match the thing, not the owner", "Marco e sua sorella. Anna e suo fratello."] },
+    { "prompt": "io + volere", "answer": "voglio", "alts": [], "traps": ["vuoi", "vuole"],
+      "why": "io → voglio.", "trick": ["io → voglio", "Voglio giocare = I want to play."] },
+    { "prompt": "tu + volere", "answer": "vuoi", "alts": [], "traps": ["voglio", "vuole"],
+      "why": "tu → vuoi.", "trick": ["tu → -oi", "vuoi and puoi rhyme."] },
+    { "prompt": "lui + dovere", "answer": "deve", "alts": [], "traps": ["devo", "devi"],
+      "why": "lui / lei → deve.", "trick": ["lui / lei → -e", "Deve studiare = he has to study."] },
+    { "prompt": "noi + dovere", "answer": "dobbiamo", "alts": [], "traps": ["doviamo", "devono"],
+      "why": "noi → dobbiamo (with bb).", "trick": ["noi → -iamo", "Like abbiamo: dobbiamo."] },
+    { "prompt": "tu + potere", "answer": "puoi", "alts": [], "traps": ["può", "posso"],
+      "why": "tu → puoi.", "trick": ["tu → -oi", "Puoi uscire? = Can you go out?"] },
+    { "prompt": "loro + potere", "answer": "possono", "alts": [], "traps": ["potono", "può"],
+      "why": "loro → possono.", "trick": ["loro → -ono", "Like io posso: loro possono."] }
+  ],
+  "fill": [
+    { "text": "___ madre è alta.", "answers": ["Mia"], "cue": "my",
+      "bank": ["Mia", "Mio", "La mia"], "hint": "my (madre is feminine) → starts with M-i-a.", "why": "One family member, feminine: Mia madre, no article." },
+    { "text": "I ___ nonni sono di Roma.", "answers": ["miei"], "cue": "my",
+      "bank": ["miei", "mie", "mio"], "hint": "my (many boys/mixed) → starts with m-i-e-i.", "why": "nonni is masculine plural: i miei nonni." },
+    { "text": "Il ___ cane è piccolo.", "answers": ["mio"], "cue": "my",
+      "bank": ["mio", "mia", "miei"], "hint": "my (one, masculine) → m-i-o.", "why": "cane is masculine singular: il mio cane." },
+    { "text": "Com'è ___ fratello?", "answers": ["tuo"], "cue": "your (tu)",
+      "bank": ["tuo", "tua", "il tuo"], "hint": "your (masculine) → t-u-o.", "why": "One family member, masculine: tuo fratello, no article." },
+    { "text": "Io ___ giocare.", "answers": ["voglio"], "cue": "want",
+      "bank": ["voglio", "vuoi", "vuole"], "hint": "I want → starts with v-o-g.", "why": "io → voglio." },
+    { "text": "Tu ___ studiare?", "answers": ["devi"], "cue": "have to",
+      "bank": ["devi", "devo", "deve"], "hint": "you have to → starts with d-e-v, ends in -i.", "why": "tu → devi." },
+    { "text": "Noi ___ uscire?", "answers": ["possiamo"], "cue": "can",
+      "bank": ["possiamo", "possono", "posso"], "hint": "we can → ends in -iamo.", "why": "noi → possiamo." },
+    { "text": "Mia sorella ___ mangiare la pizza.", "answers": ["vuole"], "cue": "wants",
+      "bank": ["vuole", "vuoi", "voglio"], "hint": "she wants → starts with v-u, ends in -e.", "why": "lei → vuole." }
+  ],
+  "read": {
+    "title": "La famiglia di Sofia",
+    "passage": [
+      ["Ciao, sono Sofia. Ho due fratelli e un cane.", "Hi, I'm Sofia. I have two brothers and a dog."],
+      ["Mia nonna è di Napoli ed è molto simpatica.", "My grandmother is from Naples and she's very nice."],
+      ["Il pranzo della domenica è a casa della nonna.", "Sunday lunch is at Grandma's house."],
+      ["Oggi non posso uscire: devo studiare!", "Today I can't go out: I have to study!"]
+    ],
+    "gloss": { "molto": "very", "Il pranzo della domenica": "Sunday lunch", "a casa della nonna": "at Grandma's house", "Oggi": "today" },
+    "questions": [
+      { "q": "Quanti fratelli ha Sofia?", "answer": "due", "traps": ["uno", "tre"],
+        "why": "Ho due fratelli." },
+      { "q": "Di dov'è la nonna?", "answer": "di Napoli", "traps": ["di Roma", "di Milano"],
+        "why": "Mia nonna è di Napoli." },
+      { "q": "Dov'è il pranzo della domenica?", "answer": "a casa della nonna", "traps": ["a scuola", "a casa di Sofia"],
+        "why": "Il pranzo della domenica è a casa della nonna." },
+      { "q": "Oggi Sofia può uscire?", "answer": "No, deve studiare.", "traps": ["Sì, può uscire.", "Sì, deve uscire."],
+        "why": "Oggi non posso uscire: devo studiare!" }
+    ]
+  },
+  "listen": [
+    { "q": "Quanti fratelli hai?", "en": "How many brothers do you have?",
+      "frames": ["Ho … fratelli.", "Ho un fratello.", "Non ho fratelli."] },
+    { "q": "Com'è tua madre?", "en": "What is your mother like?",
+      "frames": ["Mia madre è …"] },
+    { "q": "Vuoi giocare o studiare?", "en": "Do you want to play or study?",
+      "frames": ["Voglio giocare.", "Voglio studiare."] }
+  ],
+  "chat": {
+    "who": ["Luca", "Anna"],
+    "lines": [
+      [0, "Ciao Anna! Puoi uscire oggi? 😊", "Hi Anna! Can you go out today?"],
+      [1, "No, non posso. Devo mangiare con i nonni.", "No, I can't. I have to eat with my grandparents."],
+      [0, "Ah, è domenica! 🍝", "Oh, it's Sunday!"],
+      [1, "Sì! E dopo mio nonno vuole giocare a carte. 🃏", "Yes! And after, my grandpa wants to play cards."],
+      [0, "E tuo padre?", "And your dad?"],
+      [1, "Anche lui! Tale padre, tale figlio! 😄", "Him too! Like father, like son!"]
+    ],
+    "words": { "oggi": "today", "dopo": "after", "a carte": "cards", "Anche lui": "him too" }
+  },
+  "parla": {
+    "prompts": [
+      ["Quanti fratelli hai?", "Ho …"],
+      ["Com'è tuo padre?", "Mio padre è …"],
+      ["Puoi uscire oggi?", "No, non posso. Devo … / Sì, posso!"]
+    ],
+    "checks": ["Ho fatto le 3 domande.", "Ho risposto con frasi intere.", "Ho detto una cosa del mio compagno."]
+  },
+  "finish": "Now I know how to talk about my family and say what I want, have to, and can do!",
+  "idiom": {
+    "it": "Tale padre, tale figlio",
+    "en": "like father, like son",
+    "ex": "Marco è alto e simpatico come suo padre. Tale padre, tale figlio!",
+    "exEn": "Marco is tall and nice like his father. Like father, like son!",
+    "note": "Said when a child looks or acts just like a parent, the same as the English saying."
+  },
+  "flags": [
+    "Infinitives after the modals (mangiare, studiare, giocare, uscire) are taught as memorized chunks; regular conjugation is not taught yet.",
+    "Possible duplication: the existing Italiano 1 game already has a 'Volere, dovere, potere' unit and 'Unità 2 · -are e voglio, devo, posso'. Decide whether this unit replaces or reviews it.",
+    "Possessives cover mio, tuo, suo, nostro only (vocab cap). vostro and il loro are not taught here; add them if your guide expects all six.",
+    "Trick: la mia mamma / il mio papà keep the article. This is standard usage but some teachers teach mia mamma as also acceptable in speech; confirm your preference.",
+    "Reading uses della in 'Il pranzo della domenica' and 'a casa della nonna' (articulated preposition, not taught yet); both are glossed as chunks.",
+    "Chunks used without a taught chart: oggi, dopo, molto, Anche lui, giocare a carte, Quanti…? (all glossed or assumed known from Unit 1).",
+    "Sentence 12 'Dobbiamo mangiare con i nonni' translates i nonni as 'our grandparents' (natural Italian drops the possessive here). Fine for students, but worth a word in class.",
+    "Culture facts are unverified (general trends; vary by region and family)."
+  ]
+}

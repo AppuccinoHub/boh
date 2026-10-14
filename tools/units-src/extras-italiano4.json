@@ -1,0 +1,233 @@
+{
+  "r3": {
+    "workingOn": "the imperfetto: how life used to be",
+    "read": {
+      "title": "L'infanzia del nonno",
+      "passage": [
+        ["Da piccolo, mio nonno abitava in campagna, vicino a Bari.", "As a little boy, my grandpa lived in the countryside, near Bari."],
+        ["La sua famiglia era grande: aveva sei fratelli!", "His family was big: he had six brothers and sisters!"],
+        ["Non avevano la televisione, quindi i bambini giocavano sempre fuori.", "They didn't have a TV, so the children always played outside."],
+        ["Ogni mattina il nonno andava a scuola a piedi con i fratelli.", "Every morning Grandpa walked to school with his siblings."],
+        ["Dopo la scuola aiutava suo padre nei campi.", "After school he helped his father in the fields."],
+        ["Il suo giocattolo preferito era un vecchio pallone.", "His favorite toy was an old ball."],
+        ["D'estate faceva molto caldo e tutti dormivano dopo pranzo.", "In summer it was very hot and everyone slept after lunch."],
+        ["La sera sua madre raccontava storie e tutti ascoltavano in silenzio.", "In the evening his mother told stories and everyone listened in silence."],
+        ["Il nonno dice sempre: «Eravamo poveri, ma eravamo felici.»", "Grandpa always says: \"We were poor, but we were happy.\""]
+      ],
+      "gloss": { "in campagna": "in the countryside", "vicino a": "near", "a piedi": "on foot", "nei campi": "in the fields", "raccontava storie": "told stories", "poveri": "poor" },
+      "questions": [
+        { "q": "Dove abitava il nonno da piccolo?", "answer": "in campagna, vicino a Bari", "traps": ["in città, a Bari", "al mare, vicino a Napoli"], "why": "Mio nonno abitava in campagna, vicino a Bari." },
+        { "q": "Come andava a scuola il nonno?", "answer": "a piedi", "traps": ["in autobus", "in bicicletta"], "why": "Ogni mattina il nonno andava a scuola a piedi." },
+        { "q": "Qual era il suo giocattolo preferito?", "answer": "un vecchio pallone", "traps": ["una bicicletta", "la televisione"], "why": "Il suo giocattolo preferito era un vecchio pallone." },
+        { "q": "Come ricorda la sua infanzia il nonno?", "answer": "con affetto: era un periodo felice", "traps": ["con tristezza: era un periodo brutto", "non la ricorda per niente"], "why": "Inference: «Eravamo poveri, ma eravamo felici.» He remembers it fondly." }
+      ]
+    },
+    "listen": [
+      { "q": "Cosa mangiavate a casa la domenica quando eri piccolo/a?", "en": "What did your family eat at home on Sundays when you were little?", "frames": ["La domenica mangiavamo …", "Di solito mia madre / mio padre preparava …"] },
+      { "q": "A che ora andavi a letto da piccolo/a?", "en": "What time did you go to bed as a little kid?", "frames": ["Da piccolo/a andavo a letto alle …", "Di solito dormivo …"] },
+      { "q": "Che programmi guardavi sempre in TV da piccolo/a?", "en": "What shows did you always watch on TV as a little kid?", "frames": ["Da piccolo/a guardavo sempre …", "Il mio programma preferito era …"] }
+    ]
+  },
+  "r4": {
+    "workingOn": "the passato prossimo: what I did",
+    "read": {
+      "title": "Una gita a Roma",
+      "passage": [
+        ["La settimana scorsa la mia classe ha fatto una gita a Roma.", "Last week my class took a trip to Rome."],
+        ["Siamo partiti presto la mattina e abbiamo preso il treno.", "We left early in the morning and took the train."],
+        ["Durante il viaggio ho letto un libro e ho dormito un po'.", "During the trip I read a book and slept a little."],
+        ["A Roma abbiamo visto il Colosseo e la Fontana di Trevi.", "In Rome we saw the Colosseum and the Trevi Fountain."],
+        ["Io ho lanciato una moneta nella fontana.", "I threw a coin into the fountain."],
+        ["A pranzo abbiamo mangiato una carbonara buonissima.", "At lunch we ate a delicious carbonara."],
+        ["Il mio amico Luca ha perso il biglietto del treno!", "My friend Luca lost his train ticket!"],
+        ["Per fortuna la prof ha comprato un altro biglietto.", "Luckily the teacher bought another ticket."],
+        ["Siamo tornati a casa la sera, stanchi ma contenti.", "We came home in the evening, tired but happy."]
+      ],
+      "gloss": { "presto": "early", "Durante": "during", "ho lanciato": "I threw", "una moneta": "a coin", "Per fortuna": "luckily" },
+      "questions": [
+        { "q": "Come sono andati a Roma?", "answer": "in treno", "traps": ["in aereo", "in autobus"], "why": "Siamo partiti presto la mattina e abbiamo preso il treno." },
+        { "q": "Che cosa ha fatto il narratore durante il viaggio?", "answer": "ha letto un libro e ha dormito", "traps": ["ha mangiato una carbonara", "ha scritto una lettera"], "why": "Durante il viaggio ho letto un libro e ho dormito un po'." },
+        { "q": "Che cosa ha perso Luca?", "answer": "il biglietto del treno", "traps": ["il libro", "una moneta"], "why": "Il mio amico Luca ha perso il biglietto del treno!" },
+        { "q": "Perché, probabilmente, il narratore ha lanciato una moneta nella fontana?", "answer": "Vuole tornare a Roma un giorno.", "traps": ["Ha perso il biglietto.", "Vuole comprare un gelato."], "why": "Inference: tradition says a coin in the Trevi Fountain means you will return to Rome (Italiano 3 cartoline)." }
+      ]
+    },
+    "listen": [
+      { "q": "Cosa hai fatto il fine settimana scorso?", "en": "What did you do last weekend?", "frames": ["Il fine settimana scorso ho …", "Sono andato/a …", "Ho visto …"] },
+      { "q": "Cosa hai mangiato ieri sera?", "en": "What did you eat last night?", "frames": ["Ieri sera ho mangiato …", "Ho bevuto …"] },
+      { "q": "Dove sei andato/a in vacanza l'anno scorso?", "en": "Where did you go on vacation last year?", "frames": ["L'anno scorso sono andato/a a …", "Ho visitato …", "Ho preso …"] }
+    ]
+  },
+  "r6": {
+    "workingOn": "imperfetto or passato prossimo: telling a story",
+    "read": {
+      "title": "Il giorno della neve",
+      "passage": [
+        ["Era un martedì di gennaio e faceva molto freddo.", "It was a Tuesday in January and it was very cold."],
+        ["Io ero in classe e la prof spiegava la lezione di storia.", "I was in class and the teacher was explaining the history lesson."],
+        ["Tutti scrivevano in silenzio e un ragazzo dormiva in fondo all'aula.", "Everyone was writing in silence and a boy was sleeping at the back of the classroom."],
+        ["All'improvviso Marco ha guardato fuori e ha detto: «Nevica!»", "Suddenly Marco looked outside and said: \"It's snowing!\""],
+        ["Tutti sono andati alla finestra.", "Everyone went to the window."],
+        ["Intanto la neve cadeva sempre di più.", "Meanwhile the snow was falling harder and harder."],
+        ["A un certo punto il preside ha telefonato ai genitori.", "At one point the principal called the parents."],
+        ["Alle undici siamo tornati a casa e io ho fatto un pupazzo di neve con mia sorella.", "At eleven we went home and I made a snowman with my sister."],
+        ["È stata una giornata bellissima!", "It was a wonderful day!"]
+      ],
+      "gloss": { "spiegava": "was explaining", "in fondo all'aula": "at the back of the classroom", "la finestra": "the window", "cadeva sempre di più": "kept falling harder", "il preside": "the principal", "un pupazzo di neve": "a snowman" },
+      "questions": [
+        { "q": "Che tempo faceva quella mattina?", "answer": "faceva molto freddo", "traps": ["faceva caldo", "pioveva"], "why": "Era un martedì di gennaio e faceva molto freddo." },
+        { "q": "Che cosa facevano gli studenti quando Marco ha parlato?", "answer": "scrivevano in silenzio", "traps": ["guardavano un film", "giocavano fuori"], "why": "Tutti scrivevano in silenzio … All'improvviso Marco ha detto: «Nevica!»" },
+        { "q": "Che cosa ha fatto il narratore a casa?", "answer": "un pupazzo di neve con la sorella", "traps": ["i compiti di storia", "una telefonata a Marco"], "why": "Io ho fatto un pupazzo di neve con mia sorella." },
+        { "q": "Perché, probabilmente, il preside ha telefonato ai genitori?", "answer": "La scuola ha chiuso presto per la neve.", "traps": ["Un ragazzo dormiva in classe.", "Gli studenti non scrivevano."], "why": "Inference: right after the call, at eleven, everyone went home because of the snow." }
+      ]
+    },
+    "listen": [
+      { "q": "Dove eri ieri alle tre? Cosa facevi?", "en": "Where were you yesterday at three? What were you doing?", "frames": ["Ieri alle tre ero a / in …", "Facevo …", "Guardavo …"] },
+      { "q": "Racconta una giornata a scuola: com’era il tempo, cosa facevano tutti e cosa è successo?", "en": "Tell about a day at school: what was the weather like, what was everyone doing, and what happened?", "frames": ["Faceva …", "Tutti …", "All'improvviso …"] },
+      { "q": "Cosa facevi sempre da piccolo/a? Una volta cosa hai fatto di diverso?", "en": "What did you always do as a little kid? What did you do differently one time?", "frames": ["Da piccolo/a … sempre …", "Una volta, invece, ho …", "Una volta sono andato/a …"] }
+    ]
+  },
+  "r7": {
+    "workingOn": "the imperativo: giving orders and advice",
+    "read": {
+      "title": "Le regole della prof",
+      "passage": [
+        ["Ragazzi, benvenuti nella classe d'italiano!", "Class, welcome to Italian class!"],
+        ["Entrate in silenzio e sedetevi subito.", "Come in quietly and sit down right away."],
+        ["Aprite il libro alla pagina dieci e ascoltate bene.", "Open your book to page ten and listen carefully."],
+        ["Non usate il telefono in classe, per favore.", "Don't use your phone in class, please."],
+        ["Se non capisci, non preoccuparti: alza la mano e chiedi aiuto.", "If you don't understand, don't worry: raise your hand and ask for help."],
+        ["Aiutate i compagni e parliamo sempre in italiano!", "Help your classmates and let's always speak Italian!"],
+        ["Il venerdì giochiamo a un gioco, quindi studiate bene durante la settimana.", "On Fridays we play a game, so study well during the week."],
+        ["E tu, Marco, non dormire in classe!", "And you, Marco, don't sleep in class!"],
+        ["Forza, ragazzi: cominciamo!", "Come on, class: let's begin!"]
+      ],
+      "gloss": { "benvenuti": "welcome", "sedetevi": "sit down (you all)", "alza la mano": "raise your hand", "chiedi aiuto": "ask for help", "i compagni": "classmates", "cominciamo": "let's begin" },
+      "questions": [
+        { "q": "Che cosa devono fare gli studenti quando entrano?", "answer": "Entrare in silenzio e sedersi subito.", "traps": ["Entrare e usare il telefono.", "Entrare e parlare in inglese."], "why": "Entrate in silenzio e sedetevi subito." },
+        { "q": "Che cosa deve fare uno studente che non capisce?", "answer": "Alzare la mano e chiedere aiuto.", "traps": ["Uscire dalla classe.", "Usare il telefono."], "why": "Se non capisci, non preoccuparti: alza la mano e chiedi aiuto." },
+        { "q": "Che cosa fanno il venerdì?", "answer": "Giocano a un gioco.", "traps": ["Fanno una verifica.", "Guardano un film."], "why": "Il venerdì giochiamo a un gioco." },
+        { "q": "Quando, probabilmente, la prof dice queste parole?", "answer": "il primo giorno di scuola", "traps": ["l'ultimo giorno di scuola", "durante le vacanze d'estate"], "why": "Inference: «benvenuti» and a list of class rules → the first day of school." }
+      ]
+    },
+    "listen": [
+      { "q": "Sei il/la prof. Dai un ordine a uno studente che parla troppo. (tu)", "en": "You're the teacher. Give an order to a student who talks too much. (tu)", "frames": ["Non parlare, per favore!", "Ascolta e scrivi!", "Silenzio!"] },
+      { "q": "Spiega a un nuovo studente come si arriva in classe. Usa tre ordini. (tu)", "en": "Explain to a new student how to get to class. Use three commands. (tu)", "frames": ["Prima vai …", "Poi prendi …", "Alla fine entra …"] },
+      { "q": "Proponi a tutti noi tre cose da fare insieme dopo la scuola. (noi)", "en": "Suggest three things for all of us to do together after school. (noi)", "frames": ["Andiamo …!", "Mangiamo …!", "Giochiamo a …!"] }
+    ]
+  },
+  "r8": {
+    "workingOn": "the futuro: plans and predictions",
+    "read": {
+      "title": "Il mio futuro",
+      "passage": [
+        ["Mi chiamo Sofia e l'anno prossimo finirò il liceo.", "My name is Sofia and next year I will finish high school."],
+        ["Dopo la scuola andrò all'università a Bologna.", "After school I will go to university in Bologna."],
+        ["Studierò medicina perché da grande voglio diventare medico.", "I will study medicine because when I grow up I want to become a doctor."],
+        ["I miei genitori saranno un po' tristi, ma verranno a trovarmi spesso.", "My parents will be a little sad, but they will come to visit me often."],
+        ["A Bologna vivrò con due amiche in un piccolo appartamento.", "In Bologna I will live with two friends in a small apartment."],
+        ["Tra un anno prenderò anche la patente.", "In a year I will also get my driver's license."],
+        ["Il fine settimana lavorerò in un bar per avere un po' di soldi.", "On weekends I will work in a café to have a little money."],
+        ["Forse un giorno lavorerò in un ospedale in un altro paese.", "Maybe one day I will work in a hospital in another country."],
+        ["Il futuro mi fa un po' paura, ma sarà una bella avventura!", "The future scares me a little, but it will be a great adventure!"]
+      ],
+      "gloss": { "il liceo": "high school", "a trovarmi": "to visit me", "appartamento": "apartment", "un po' di soldi": "a little money", "ospedale": "hospital", "avventura": "adventure" },
+      "questions": [
+        { "q": "Dove andrà all'università Sofia?", "answer": "a Bologna", "traps": ["a Roma", "a Milano"], "why": "Dopo la scuola andrò all'università a Bologna." },
+        { "q": "Con chi vivrà a Bologna?", "answer": "con due amiche", "traps": ["con i genitori", "da sola"], "why": "A Bologna vivrò con due amiche." },
+        { "q": "Perché lavorerà in un bar?", "answer": "per avere un po' di soldi", "traps": ["per diventare medico", "per prendere la patente"], "why": "Il fine settimana lavorerò in un bar per avere un po' di soldi." },
+        { "q": "Perché, probabilmente, i genitori saranno tristi?", "answer": "Sofia andrà a vivere lontano da casa.", "traps": ["Sofia non studierà più.", "Sofia non prenderà la patente."], "why": "Inference: she is moving to Bologna, so they will see her less (but «verranno a trovarmi»)." }
+      ]
+    },
+    "listen": [
+      { "q": "Dove andrai in vacanza l’anno prossimo?", "en": "Where will you go on vacation next year?", "frames": ["L'anno prossimo andrò a …", "Visiterò …"] },
+      { "q": "Cosa mangerai stasera? Cosa farai dopo?", "en": "What will you eat tonight? What will you do afterward?", "frames": ["Stasera mangerò …", "Dopo farò …", "Poi guarderò …"] },
+      { "q": "Cosa studierai all’università? Dove vivrai?", "en": "What will you study in college? Where will you live?", "frames": ["All'università studierò …", "Vivrò a …"] }
+    ]
+  },
+  "r1": {
+    "workingOn": "reflexive verbs: my daily routine",
+    "read": {
+      "title": "La mattina di Marco",
+      "passage": [
+        ["Marco si sveglia ogni giorno alle sei e mezza, ma non si alza subito.", "Marco wakes up every day at six thirty, but he doesn't get up right away."],
+        ["La sveglia suona tre volte!", "The alarm clock rings three times!"],
+        ["Poi si alza, va in bagno e fa la doccia.", "Then he gets up, goes to the bathroom and takes a shower."],
+        ["Si lava i denti e si pettina davanti allo specchio.", "He brushes his teeth and combs his hair in front of the mirror."],
+        ["Sua sorella Anna, invece, si trucca e si veste in fretta perché si sveglia sempre tardi.", "His sister Anna, instead, puts on makeup and gets dressed in a hurry because she always wakes up late."],
+        ["I due fratelli fanno colazione insieme in cucina.", "The two siblings have breakfast together in the kitchen."],
+        ["La sera Marco si diverte con i videogiochi e si addormenta molto tardi.", "In the evening Marco has fun with video games and falls asleep very late."],
+        ["Per questo, la mattina è sempre stanco.", "That's why he is always tired in the morning."]
+      ],
+      "gloss": { "si pettina": "combs his hair", "si trucca": "puts on makeup", "in cucina": "in the kitchen", "i videogiochi": "video games", "Per questo": "that's why" },
+      "questions": [
+        { "q": "A che ora si sveglia Marco?", "answer": "alle sei e mezza", "traps": ["alle sette", "alle otto"], "why": "Marco si sveglia ogni giorno alle sei e mezza." },
+        { "q": "Quante volte suona la sveglia?", "answer": "tre volte", "traps": ["una volta", "due volte"], "why": "La sveglia suona tre volte!" },
+        { "q": "Perché Anna si veste in fretta?", "answer": "Perché si sveglia sempre tardi.", "traps": ["Perché ha una verifica.", "Perché non fa colazione."], "why": "Si veste in fretta perché si sveglia sempre tardi." },
+        { "q": "Perché, secondo il testo, Marco è stanco la mattina?", "answer": "Perché si addormenta molto tardi.", "traps": ["Perché fa la doccia fredda.", "Perché fa colazione da solo."], "why": "Inference: he plays video games and falls asleep very late; «per questo» he is tired." }
+      ]
+    },
+    "listen": [
+      { "q": "Cosa fai la sera prima di dormire? A che ora ti addormenti?", "en": "What do you do in the evening before sleeping? What time do you fall asleep?", "frames": ["La sera mi lavo i denti e …", "Mi addormento alle …"] },
+      { "q": "Ti diverti più a scuola o a casa? Perché?", "en": "Do you have more fun at school or at home? Why?", "frames": ["Mi diverto più a … perché …"] },
+      { "q": "Quando ti annoi? Cosa fai?", "en": "When do you get bored? What do you do?", "frames": ["Mi annoio quando …", "Quando mi annoio, …"] }
+    ]
+  },
+  "r2": {
+    "workingOn": "reciprocal verbs: friends and each other",
+    "read": {
+      "title": "Due amiche lontane",
+      "passage": [
+        ["Giulia e Sara sono migliori amiche dalla scuola elementare.", "Giulia and Sara have been best friends since elementary school."],
+        ["L'anno scorso Sara è andata a vivere a Milano con la sua famiglia.", "Last year Sara moved to Milan with her family."],
+        ["Adesso le due amiche non si vedono ogni giorno, ma si sentono spesso.", "Now the two friends don't see each other every day, but they keep in touch often."],
+        ["Ogni sera si telefonano e si raccontano tutto.", "Every evening they call each other and tell each other everything."],
+        ["Durante il giorno si mandano messaggi e foto.", "During the day they send each other messages and photos."],
+        ["Quando hanno un problema, si aiutano a vicenda.", "When they have a problem, they help each other."],
+        ["A Natale si incontrano sempre a Napoli, a casa dei nonni di Giulia.", "At Christmas they always meet in Naples, at Giulia's grandparents' house."],
+        ["Quando si vedono, si abbracciano forte e piangono un po'.", "When they see each other, they hug tight and cry a little."],
+        ["Giulia dice: «Siamo lontane, ma ci capiamo sempre.»", "Giulia says: \"We're far apart, but we always understand each other.\""]
+      ],
+      "gloss": { "scuola elementare": "elementary school", "si sentono": "keep in touch", "si raccontano": "tell each other", "Durante": "during", "piangono": "they cry", "lontane": "far apart" },
+      "questions": [
+        { "q": "Dove vive Sara adesso?", "answer": "a Milano", "traps": ["a Napoli", "a Roma"], "why": "Sara è andata a vivere a Milano." },
+        { "q": "Come restano in contatto le due amiche?", "answer": "si telefonano e si mandano messaggi", "traps": ["si scrivono lettere", "si vedono ogni giorno"], "why": "Ogni sera si telefonano … si mandano messaggi e foto." },
+        { "q": "Dove si incontrano a Natale?", "answer": "a Napoli, dai nonni di Giulia", "traps": ["a Milano, a casa di Sara", "a scuola"], "why": "A Natale si incontrano sempre a Napoli, a casa dei nonni di Giulia." },
+        { "q": "Che cosa si capisce della loro amicizia?", "answer": "È ancora forte, anche da lontano.", "traps": ["È finita.", "È diventata fredda."], "why": "Inference: they talk every day, help each other and «ci capiamo sempre»." }
+      ]
+    },
+    "listen": [
+      { "q": "Chi ti telefona ogni giorno? Cosa vi dite?", "en": "Who calls you every day? What do you say to each other?", "frames": ["Ogni giorno mi telefona …", "Ci raccontiamo …", "Ci diciamo …"] },
+      { "q": "Come vi aiutate tu e un compagno a scuola?", "en": "How do you and a classmate help each other at school?", "frames": ["Io e il mio compagno ci aiutiamo con …", "Ci spieghiamo …"] },
+      { "q": "Tu e i tuoi amici, vi vedete spesso nel fine settimana? Dove vi incontrate?", "en": "Do you and your friends see each other often on weekends? Where do you meet?", "frames": ["Sì, ci vediamo …", "No, non ci vediamo spesso.", "Ci incontriamo a / al …"] }
+    ]
+  },
+  "r5": {
+    "workingOn": "reflexive and reciprocal verbs in the past",
+    "read": {
+      "title": "La festa a sorpresa",
+      "passage": [
+        ["Sabato scorso era il compleanno di Luca e i suoi amici hanno organizzato una festa a sorpresa.", "Last Saturday was Luca's birthday and his friends organized a surprise party."],
+        ["Quella mattina Luca si è svegliato tardi e si è preparato in fretta.", "That morning Luca woke up late and got ready in a hurry."],
+        ["Era un po' triste perché nessuno gli faceva gli auguri.", "He was a little sad because nobody was wishing him happy birthday."],
+        ["Intanto Anna e Marco si sono incontrati davanti al bar e hanno preparato la torta.", "Meanwhile Anna and Marco met in front of the café and prepared the cake."],
+        ["La sera Luca è entrato nel bar e tutti hanno gridato: «Sorpresa!»", "In the evening Luca walked into the café and everyone shouted: \"Surprise!\""],
+        ["Luca si è emozionato e lui e Anna si sono abbracciati.", "Luca got emotional and he and Anna hugged."],
+        ["Alla festa tutti si sono divertiti: hanno ballato e cantato fino a mezzanotte.", "At the party everyone had fun: they danced and sang until midnight."],
+        ["Solo il fratellino di Luca si è annoiato e si è addormentato sul divano.", "Only Luca's little brother got bored and fell asleep on the couch."],
+        ["Il giorno dopo gli amici si sono scritti tanti messaggi per ricordare la serata.", "The next day the friends wrote each other lots of messages to remember the evening."]
+      ],
+      "gloss": { "nessuno": "nobody", "gli auguri": "birthday wishes", "hanno gridato": "shouted", "si è emozionato": "got emotional", "il fratellino": "little brother", "sul divano": "on the couch" },
+      "questions": [
+        { "q": "Come si è preparato Luca la mattina?", "answer": "in fretta", "traps": ["con calma", "con Anna"], "why": "Luca si è svegliato tardi e si è preparato in fretta." },
+        { "q": "Dove si sono incontrati Anna e Marco?", "answer": "davanti al bar", "traps": ["a casa di Luca", "a scuola"], "why": "Anna e Marco si sono incontrati davanti al bar." },
+        { "q": "Chi si è addormentato sul divano?", "answer": "il fratellino di Luca", "traps": ["Luca", "Anna"], "why": "Il fratellino di Luca si è annoiato e si è addormentato sul divano." },
+        { "q": "Perché, probabilmente, la mattina nessuno faceva gli auguri a Luca?", "answer": "Volevano fargli una sorpresa.", "traps": ["Avevano dimenticato il compleanno.", "Erano arrabbiati con lui."], "why": "Inference: the friends were secretly preparing a surprise party." }
+      ]
+    },
+    "listen": [
+      { "q": "Come ti sei sentito/a ieri sera? Perché?", "en": "How did you feel last night? Why?", "frames": ["Ieri sera mi sono sentito/a … perché …"] },
+      { "q": "A che ora ti sei addormentato/a ieri sera?", "en": "What time did you fall asleep last night?", "frames": ["Ieri sera mi sono addormentato/a alle …"] },
+      { "q": "Con chi ti sei visto/a sabato? Dove vi siete incontrati?", "en": "Who did you see on Saturday? Where did you meet?", "frames": ["Sabato mi sono visto/a con …", "Ci siamo incontrati a / al …"] }
+    ]
+  }
+}
