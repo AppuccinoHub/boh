@@ -6,6 +6,7 @@
      4. One "Continua" button.
    Tap, click or press Enter / Space / Esc at any time: the first one jumps to the end (full count, full line); the next one closes it.
    With "reduce motion" on, it shows the end state at once (no falling coins, no bouncing).
+   Own names: every id, class and style id here starts with "bfin" so it can never clash with another file (flashcards.js uses "bfc").
    Reads only: the BC earned from the finish screen's own stats, the student's Boh from the page, the pun from BohPuns, the line from BohFinish.
    It never changes a score, price or saved progress. Nothing happens if those pieces are missing.
    Teacher preview: add ?celebrate=30 to any level's address to play it at once with 30 BC (no lesson needed). Changes nothing.
@@ -23,46 +24,46 @@
     function clearAll() { timers.forEach(clearTimeout); timers = []; if (raf) cancelAnimationFrame(raf); raf = 0; }
 
     function css() {
-      if (document.getElementById('bfc-css')) return;
-      var s = document.createElement('style'); s.id = 'bfc-css';
+      if (document.getElementById('bfin-css')) return;
+      var s = document.createElement('style'); s.id = 'bfin-css';
       s.textContent =
-        '#bfc{position:fixed;inset:0;z-index:99980;background:rgba(14,42,91,.72);display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden;-webkit-tap-highlight-color:transparent}' +
-        '#bfc .bfc-card{position:relative;width:100%;max-width:400px;max-height:100%;overflow:hidden;background:var(--pop-tint,#FEE5EE);border:3px solid var(--pop,#BC1E72);border-radius:28px;padding:14px 16px 12px;text-align:center;color:var(--text,#0E2A5B);display:flex;flex-direction:column;gap:6px}' +
-        '#bfc .bfc-top{display:flex;align-items:center;justify-content:center;gap:16px;min-height:112px}' +
-        '#bfc .bfc-prof{flex:none;height:112px;width:auto;object-fit:contain}' +
-        '#bfc .bfc-pun{flex:1 1 0;min-width:0;max-width:240px;text-align:left;font-size:22px;position:relative;opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}' +
-        '#bfc.bfc-on-pun .bfc-pun,#bfc.bfc-end .bfc-pun{opacity:1;transform:none}' +
-        '#bfc .bfc-pun::before{content:"";position:absolute;left:-12px;top:50%;margin-top:-10px;border:10px solid transparent;border-left:0;border-right-color:var(--card-border,#CBD5E1)}' +
-        '#bfc .bfc-pun::after{content:"";position:absolute;left:-8px;top:50%;margin-top:-8px;border:8px solid transparent;border-left:0;border-right-color:var(--card-bg,#fff)}' +
-        '#bfc .bfc-pun small{display:none;font:700 13px/1.2 system-ui,sans-serif;color:var(--text-muted,#46566E);margin-top:2px}' +
-        'html[data-en="1"] #bfc .bfc-pun small{display:block}' +
-        '#bfc .bfc-stage{position:relative;height:150px;display:flex;align-items:flex-end;justify-content:center;gap:10px}' +
-        '#bfc .bfc-chest{height:132px;width:132px;object-fit:contain;position:relative;z-index:1}' +
-        '#bfc .bfc-chest.hit{animation:bfcHit .18s ease-out}' +
-        '@keyframes bfcHit{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}' +
-        '#bfc .bfc-count{align-self:center;display:flex;align-items:center;gap:6px;font:900 38px/1 system-ui,sans-serif;color:var(--text,#0E2A5B)}' +
-        '#bfc .bfc-count img{height:40px;width:40px}' +
-        '#bfc .bfc-count small{font:800 18px system-ui,sans-serif}' +
-        '#bfc .bfc-coin{position:absolute;top:-30px;width:30px;height:auto;z-index:0;opacity:0;pointer-events:none}' +
-        '#bfc .bfc-coin.fall{animation:bfcFall .62s cubic-bezier(.45,.05,.7,.6) forwards}' +
-        '@keyframes bfcFall{0%{opacity:1;transform:translateY(0)}85%{opacity:1}100%{opacity:0;transform:translateY(var(--dy,120px)) scale(.55)}}' +
-        '#bfc .bfc-me{display:flex;align-items:center;justify-content:center;gap:12px;min-height:150px;opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s}' +
-        '#bfc.bfc-on-me .bfc-me,#bfc.bfc-end .bfc-me{opacity:1;transform:none}' +
-        '#bfc .bfc-doll{flex:none;position:relative}#bfc .bfc-doll .doll{display:block!important;animation:none!important}' +
-        '#bfc.bfc-on-me:not(.bfc-end) .bfc-doll{animation:bfcBounce .7s ease-in-out infinite}' +
-        '@keyframes bfcBounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-16px) rotate(-3deg)}70%{transform:translateY(0) rotate(3deg)}}' +
-        '#bfc .bfc-say{margin:0;flex:1 1 0;min-width:0;text-align:left;font:800 22px/1.2 system-ui,sans-serif;transform-origin:left center}' +
-        '#bfc .bfc-say span{opacity:0;transition:opacity .2s}' +
-        '#bfc .bfc-say span.on{opacity:1}' +
-        '#bfc .bfc-go{display:block;width:100%;min-height:54px;margin-top:2px;border:0;border-radius:18px;background:var(--primary-bg,#1A5CDF);color:var(--primary-text,#fff);font:900 21px system-ui,sans-serif;cursor:pointer;visibility:hidden}' +
-        '#bfc.bfc-end .bfc-go{visibility:visible}' +
-        '#bfc .bfc-go:focus-visible{outline:3px solid var(--text,#0E2A5B);outline-offset:3px}' +
-        '#bfc .bfc-hint{font:700 12px system-ui,sans-serif;color:var(--text-muted,#46566E);min-height:14px}' +
-        '#bfc.bfc-end .bfc-hint{visibility:hidden}' +
-        '#bfc .bfc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
-        '@media (max-height:600px){#bfc .bfc-top{min-height:84px}#bfc .bfc-prof{height:84px}#bfc .bfc-stage{height:112px}#bfc .bfc-chest{height:96px;width:96px}#bfc .bfc-count{font-size:30px}#bfc .bfc-me{min-height:110px}#bfc .bfc-pun{font-size:19px}#bfc .bfc-say{font-size:19px}}' +
-        '@media (max-height:460px){#bfc{padding:6px}#bfc .bfc-card{padding:8px 12px 8px;gap:4px}#bfc .bfc-top{min-height:60px;gap:12px}#bfc .bfc-prof{height:60px}#bfc .bfc-pun{font-size:16px;padding:6px 10px}#bfc .bfc-pun small{font-size:11px}#bfc .bfc-stage{height:78px}#bfc .bfc-chest{height:70px;width:70px}#bfc .bfc-count{font-size:24px}#bfc .bfc-count img{height:26px;width:26px}#bfc .bfc-count small{font-size:13px}#bfc .bfc-me{min-height:84px;gap:8px}#bfc .bfc-say{font-size:15px}#bfc .bfc-go{min-height:42px;font-size:17px;border-radius:14px}#bfc .bfc-hint{display:none}}' +
-        '@media (prefers-reduced-motion:reduce){#bfc .bfc-coin,#bfc .bfc-doll,#bfc .bfc-chest,#bfc .bfc-pun,#bfc .bfc-me{animation:none!important;transition:none!important}}';
+        '#bfin{position:fixed;inset:0;z-index:99980;background:rgba(14,42,91,.72);display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden;-webkit-tap-highlight-color:transparent}' +
+        '#bfin .bfin-card{position:relative;width:100%;max-width:400px;max-height:100%;overflow:hidden;background:var(--pop-tint,#FEE5EE);border:3px solid var(--pop,#BC1E72);border-radius:28px;padding:14px 16px 12px;text-align:center;color:var(--text,#0E2A5B);display:flex;flex-direction:column;gap:6px}' +
+        '#bfin .bfin-top{display:flex;align-items:center;justify-content:center;gap:16px;min-height:112px}' +
+        '#bfin .bfin-prof{flex:none;height:112px;width:auto;object-fit:contain}' +
+        '#bfin .bfin-pun{flex:1 1 0;min-width:0;max-width:240px;text-align:left;font-size:22px;position:relative;opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}' +
+        '#bfin.bfin-on-pun .bfin-pun,#bfin.bfin-end .bfin-pun{opacity:1;transform:none}' +
+        '#bfin .bfin-pun::before{content:"";position:absolute;left:-12px;top:50%;margin-top:-10px;border:10px solid transparent;border-left:0;border-right-color:var(--card-border,#CBD5E1)}' +
+        '#bfin .bfin-pun::after{content:"";position:absolute;left:-8px;top:50%;margin-top:-8px;border:8px solid transparent;border-left:0;border-right-color:var(--card-bg,#fff)}' +
+        '#bfin .bfin-pun small{display:none;font:700 13px/1.2 system-ui,sans-serif;color:var(--text-muted,#46566E);margin-top:2px}' +
+        'html[data-en="1"] #bfin .bfin-pun small{display:block}' +
+        '#bfin .bfin-stage{position:relative;height:150px;display:flex;align-items:flex-end;justify-content:center;gap:10px}' +
+        '#bfin .bfin-chest{height:132px;width:132px;object-fit:contain;position:relative;z-index:1}' +
+        '#bfin .bfin-chest.hit{animation:bfinHit .18s ease-out}' +
+        '@keyframes bfinHit{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}' +
+        '#bfin .bfin-count{align-self:center;display:flex;align-items:center;gap:6px;font:900 38px/1 system-ui,sans-serif;color:var(--text,#0E2A5B)}' +
+        '#bfin .bfin-count img{height:40px;width:40px}' +
+        '#bfin .bfin-count small{font:800 18px system-ui,sans-serif}' +
+        '#bfin .bfin-coin{position:absolute;top:-30px;width:30px;height:auto;z-index:0;opacity:0;pointer-events:none}' +
+        '#bfin .bfin-coin.fall{animation:bfinFall .62s cubic-bezier(.45,.05,.7,.6) forwards}' +
+        '@keyframes bfinFall{0%{opacity:1;transform:translateY(0)}85%{opacity:1}100%{opacity:0;transform:translateY(var(--dy,120px)) scale(.55)}}' +
+        '#bfin .bfin-me{display:flex;align-items:center;justify-content:center;gap:12px;min-height:150px;opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s}' +
+        '#bfin.bfin-on-me .bfin-me,#bfin.bfin-end .bfin-me{opacity:1;transform:none}' +
+        '#bfin .bfin-doll{flex:none;position:relative}#bfin .bfin-doll .doll{display:block!important;animation:none!important}' +
+        '#bfin.bfin-on-me:not(.bfin-end) .bfin-doll{animation:bfinBounce .7s ease-in-out infinite}' +
+        '@keyframes bfinBounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-16px) rotate(-3deg)}70%{transform:translateY(0) rotate(3deg)}}' +
+        '#bfin .bfin-say{margin:0;flex:1 1 0;min-width:0;text-align:left;font:800 22px/1.2 system-ui,sans-serif;transform-origin:left center}' +
+        '#bfin .bfin-say span{opacity:0;transition:opacity .2s}' +
+        '#bfin .bfin-say span.on{opacity:1}' +
+        '#bfin .bfin-go{display:block;width:100%;min-height:54px;margin-top:2px;border:0;border-radius:18px;background:var(--primary-bg,#1A5CDF);color:var(--primary-text,#fff);font:900 21px system-ui,sans-serif;cursor:pointer;visibility:hidden}' +
+        '#bfin.bfin-end .bfin-go{visibility:visible}' +
+        '#bfin .bfin-go:focus-visible{outline:3px solid var(--text,#0E2A5B);outline-offset:3px}' +
+        '#bfin .bfin-hint{font:700 12px system-ui,sans-serif;color:var(--text-muted,#46566E);min-height:14px}' +
+        '#bfin.bfin-end .bfin-hint{visibility:hidden}' +
+        '#bfin .bfin-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
+        '@media (max-height:600px){#bfin .bfin-top{min-height:84px}#bfin .bfin-prof{height:84px}#bfin .bfin-stage{height:112px}#bfin .bfin-chest{height:96px;width:96px}#bfin .bfin-count{font-size:30px}#bfin .bfin-me{min-height:110px}#bfin .bfin-pun{font-size:19px}#bfin .bfin-say{font-size:19px}}' +
+        '@media (max-height:460px){#bfin{padding:6px}#bfin .bfin-card{padding:8px 12px 8px;gap:4px}#bfin .bfin-top{min-height:60px;gap:12px}#bfin .bfin-prof{height:60px}#bfin .bfin-pun{font-size:16px;padding:6px 10px}#bfin .bfin-pun small{font-size:11px}#bfin .bfin-stage{height:78px}#bfin .bfin-chest{height:70px;width:70px}#bfin .bfin-count{font-size:24px}#bfin .bfin-count img{height:26px;width:26px}#bfin .bfin-count small{font-size:13px}#bfin .bfin-me{min-height:84px;gap:8px}#bfin .bfin-say{font-size:15px}#bfin .bfin-go{min-height:42px;font-size:17px;border-radius:14px}#bfin .bfin-hint{display:none}}' +
+        '@media (prefers-reduced-motion:reduce){#bfin .bfin-coin,#bfin .bfin-doll,#bfin .bfin-chest,#bfin .bfin-pun,#bfin .bfin-me{animation:none!important;transition:none!important}}';
       document.head.appendChild(s);
     }
 
@@ -77,12 +78,12 @@
       return 0;
     }
 
-    function setCount(n) { var b = el && el.querySelector('.bfc-count b'); if (b) b.textContent = '+' + n; }
+    function setCount(n) { var b = el && el.querySelector('.bfin-count b'); if (b) b.textContent = '+' + n; }
 
     function showWords(upTo) {
-      var sp = el.querySelectorAll('.bfc-say span');
+      var sp = el.querySelectorAll('.bfin-say span');
       for (var i = 0; i < sp.length; i++) sp[i].classList.toggle('on', i < upTo);
-      var say = el.querySelector('.bfc-say');
+      var say = el.querySelector('.bfin-say');
       /* the wording grows as it appears: starts at 60% size, ends at full size */
       var f = lineWords.length ? Math.min(1, upTo / lineWords.length) : 1;
       say.style.transform = 'scale(' + (0.6 + 0.4 * f).toFixed(3) + ')';
@@ -91,11 +92,11 @@
     function finish() {
       if (!el || done) return;
       done = true; clearAll();
-      el.classList.add('bfc-on-pun', 'bfc-on-me', 'bfc-end');
+      el.classList.add('bfin-on-pun', 'bfin-on-me', 'bfin-end');
       setCount(earned); showWords(lineWords.length);
-      var sr = el.querySelector('.bfc-sr');
+      var sr = el.querySelector('.bfin-sr');
       if (sr) sr.textContent = 'Lesson finished. You earned ' + earned + ' BC. ' + lineWords.join(' ');
-      var go = el.querySelector('.bfc-go'); if (go) { try { go.focus({ preventScroll: true }); } catch (e) { go.focus(); } }
+      var go = el.querySelector('.bfin-go'); if (go) { try { go.focus({ preventScroll: true }); } catch (e) { go.focus(); } }
     }
 
     function close() {
@@ -120,21 +121,23 @@
       var line = '';
       try { line = window.BohFinish ? window.BohFinish.line(window.BT_UNIT || (typeof BT_UNIT !== 'undefined' ? BT_UNIT : '')) : ''; } catch (e) {}
       if (!line) return;                       /* nothing to say: do nothing, never block the finish screen */
-      css(); done = false; earned = (typeof window.__bfcForce === 'number') ? window.__bfcForce : readEarned(); lastFocus = document.activeElement; window.__bfcForce = undefined;
+      var want = (typeof window.__bfinForce === 'number') ? window.__bfinForce : readEarned();
+      if (!(want > 0)) { window.__bfinForce = undefined; return; }   /* only a finished lesson that earned BC celebrates (not the small stop cards, never "+0 BC") */
+      css(); done = false; earned = want; lastFocus = document.activeElement; window.__bfinForce = undefined;
       lineWords = line.split(' ');
       var pun = null; try { pun = window.BohPuns ? window.BohPuns.today() : null; } catch (e) {}
-      el = document.createElement('div'); el.id = 'bfc'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', 'Lesson finished');
+      el = document.createElement('div'); el.id = 'bfin'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', 'Lesson finished');
       el.innerHTML =
-        '<div class="bfc-card">' +
-          '<div class="bfc-top"><img class="bfc-prof" src="' + base + 'guide/bust/clap.webp" alt="Prof. Lo So applaude">' +
-            (pun ? '<div class="ls-bubble bfc-pun">' + esc(pun.it) + '<small>' + esc(pun.en) + '</small></div>' : '') + '</div>' +
-          '<div class="bfc-stage"><img class="bfc-chest" src="' + base + 'tiles/boh-borsa.webp" alt="">' +
-            '<div class="bfc-count" aria-hidden="true"><img src="' + base + 'bc.svg" alt=""><b>+0</b><small>BC</small></div></div>' +
-          '<div class="bfc-me"><div class="bfc-doll" aria-hidden="true"></div><p class="bfc-say">' +
+        '<div class="bfin-card">' +
+          '<div class="bfin-top"><img class="bfin-prof" src="' + base + 'guide/bust/clap.webp" alt="Prof. Lo So applaude">' +
+            (pun ? '<div class="ls-bubble bfin-pun">' + esc(pun.it) + '<small>' + esc(pun.en) + '</small></div>' : '') + '</div>' +
+          '<div class="bfin-stage"><img class="bfin-chest" src="' + base + 'tiles/boh-borsa.webp" alt="">' +
+            '<div class="bfin-count" aria-hidden="true"><img src="' + base + 'bc.svg" alt=""><b>+0</b><small>BC</small></div></div>' +
+          '<div class="bfin-me"><div class="bfin-doll" aria-hidden="true"></div><p class="bfin-say">' +
             lineWords.map(function (w) { return '<span>' + esc(w) + ' </span>'; }).join('') + '</p></div>' +
-          '<button type="button" class="bfc-go">Continua</button>' +
-          '<div class="bfc-hint" aria-hidden="true">Tap to skip</div>' +
-          '<div class="bfc-sr" role="status" aria-live="polite"></div>' +
+          '<button type="button" class="bfin-go">Continua</button>' +
+          '<div class="bfin-hint" aria-hidden="true">Tap to skip</div>' +
+          '<div class="bfin-sr" role="status" aria-live="polite"></div>' +
         '</div>';
       document.body.appendChild(el);
       document.addEventListener('keydown', onKey, true);
@@ -143,7 +146,7 @@
       /* the student's own Boh: a copy of the one already on the finish screen, scaled to 150px tall (smaller on short screens) */
       try {
         var src = document.querySelector('.ls-boh .doll') || document.querySelector('.doll');
-        var slot = el.querySelector('.bfc-doll');
+        var slot = el.querySelector('.bfin-doll');
         if (src && slot) {
           var w = src.offsetWidth || 110, h = src.offsetHeight || 286;
           var c = src.cloneNode(true); c.classList.remove('idle'); var TH = window.innerHeight <= 460 ? 80 : (window.innerHeight <= 600 ? 110 : 150);
@@ -161,13 +164,13 @@
 
       /* beat 1: Prof + pun, coins fall into the purse, the counter adds up */
       var DUR = Math.max(900, Math.min(2600, 900 + earned * 45));
-      later(function () { if (el) el.classList.add('bfc-on-pun'); }, 150);
-      var stage = el.querySelector('.bfc-stage'), chest = el.querySelector('.bfc-chest');
+      later(function () { if (el) el.classList.add('bfin-on-pun'); }, 150);
+      var stage = el.querySelector('.bfin-stage'), chest = el.querySelector('.bfin-chest');
       var nCoins = Math.max(0, Math.min(16, Math.ceil(earned / 2)));
       for (var i = 0; i < nCoins; i++) (function (i) {
         later(function () {
           if (!el) return;
-          var c = document.createElement('img'); c.className = 'bfc-coin'; c.src = base + 'bc-coin.webp'; c.alt = '';
+          var c = document.createElement('img'); c.className = 'bfin-coin'; c.src = base + 'bc-coin.webp'; c.alt = '';
           /* aim at the purse itself: centred over its opening, falling until the coin is behind the purse's front (coins sit under the purse in the stacking order) */
           var cw = 30, cl = chest ? chest.offsetLeft + chest.offsetWidth / 2 : (stage.clientWidth || 300) / 2, ch = chest ? chest.offsetHeight : 120, ct = chest ? chest.offsetTop : 20;
           var cx = cl - cw / 2 + (Math.random() * 20 - 10);
@@ -186,7 +189,7 @@
 
       /* beat 2: the student's Boh bounces in; beat 3: the line appears word by word, growing */
       var t2 = 300 + DUR + 700;
-      later(function () { if (el) { el.classList.add('bfc-on-me'); showWords(0); } }, t2);
+      later(function () { if (el) { el.classList.add('bfin-on-me'); showWords(0); } }, t2);
       var step = 230;
       for (var w = 1; w <= lineWords.length; w++) (function (w) { later(function () { showWords(w); }, t2 + 500 + w * step); })(w);
       /* beat 4 */
@@ -197,15 +200,15 @@
 
     /* start when the finish screen appears (it stays put on later re-draws, so this runs once per finish) */
     setInterval(function () {
-      var there = !!document.querySelector('.ls-done');
-      if (there && !wasThere) later(function () { if (document.querySelector('.ls-done')) play(); }, 350);
+      var there = !!document.querySelector('.ls-done .ls-stats');   /* the LEZIONE FINITA screen only; the between-stops card has no stats */
+      if (there && !wasThere) later(function () { if (document.querySelector('.ls-done .ls-stats')) play(); }, 350);
       wasThere = there;
     }, 300);
 
     /* teacher preview: ?celebrate=30 */
     try {
       var pm = /[?&]celebrate=(\d{1,4})(&|$)/.exec(location.search);
-      if (pm) { window.__bfcForce = parseInt(pm[1], 10); setTimeout(function () { play(); }, 1800); }
+      if (pm) { window.__bfinForce = parseInt(pm[1], 10); setTimeout(function () { play(); }, 1800); }
     } catch (e) {}
 
     window.BohCelebrate = { play: play, close: close };
