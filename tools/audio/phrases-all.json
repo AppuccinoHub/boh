@@ -287,6 +287,1366 @@
 "italiano1"
 ]
 },
+"l'italiano": {
+"text": "l'italiano",
+"levels": [
+"italiano1"
+]
+},
+"l'inglese": {
+"text": "l'inglese",
+"levels": [
+"italiano1"
+]
+},
+"la matematica": {
+"text": "la matematica",
+"levels": [
+"italiano1"
+]
+},
+"la storia": {
+"text": "la storia",
+"levels": [
+"italiano1"
+]
+},
+"le scienze": {
+"text": "le scienze",
+"levels": [
+"italiano1"
+]
+},
+"l'arte": {
+"text": "l'arte",
+"levels": [
+"italiano1"
+]
+},
+"la musica": {
+"text": "la musica",
+"levels": [
+"italiano1"
+]
+},
+"l'educazione fisica": {
+"text": "l'educazione fisica",
+"levels": [
+"italiano1"
+]
+},
+"lunedì": {
+"text": "lunedì",
+"levels": [
+"italiano1"
+]
+},
+"martedì": {
+"text": "martedì",
+"levels": [
+"italiano1"
+]
+},
+"mercoledì": {
+"text": "mercoledì",
+"levels": [
+"italiano1"
+]
+},
+"giovedì": {
+"text": "giovedì",
+"levels": [
+"italiano1"
+]
+},
+"venerdì": {
+"text": "venerdì",
+"levels": [
+"italiano1"
+]
+},
+"sabato": {
+"text": "sabato",
+"levels": [
+"italiano1"
+]
+},
+"domenica": {
+"text": "domenica",
+"levels": [
+"italiano1"
+]
+},
+"la lezione": {
+"text": "la lezione",
+"levels": [
+"italiano1"
+]
+},
+"l'orario": {
+"text": "l'orario",
+"levels": [
+"italiano1"
+]
+},
+"il libro": {
+"text": "il libro",
+"levels": [
+"italiano1"
+]
+},
+"il quaderno": {
+"text": "il quaderno",
+"levels": [
+"italiano1"
+]
+},
+"la penna": {
+"text": "la penna",
+"levels": [
+"italiano1"
+]
+},
+"la matita": {
+"text": "la matita",
+"levels": [
+"italiano1"
+]
+},
+"lo zaino": {
+"text": "lo zaino",
+"levels": [
+"italiano1"
+]
+},
+"facile": {
+"text": "facile",
+"levels": [
+"italiano1"
+]
+},
+"difficile": {
+"text": "difficile",
+"levels": [
+"italiano1"
+]
+},
+"ho lezione di italiano": {
+"text": "Ho lezione di italiano.",
+"levels": [
+"italiano1"
+]
+},
+"il lunedì ho lezione di storia": {
+"text": "Il lunedì ho lezione di storia.",
+"levels": [
+"italiano1"
+]
+},
+"che ora è": {
+"text": "Che ora è?",
+"levels": [
+"italiano1"
+]
+},
+"sono le otto": {
+"text": "Sono le otto.",
+"levels": [
+"italiano1"
+]
+},
+"è l'una": {
+"text": "È l'una.",
+"levels": [
+"italiano1"
+]
+},
+"la matematica è difficile": {
+"text": "La matematica è difficile.",
+"levels": [
+"italiano1"
+]
+},
+"l'arte è facile": {
+"text": "L'arte è facile.",
+"levels": [
+"italiano1"
+]
+},
+"ho un quaderno e una penna": {
+"text": "Ho un quaderno e una penna.",
+"levels": [
+"italiano1"
+]
+},
+"lo zaino è grande": {
+"text": "Lo zaino è grande.",
+"levels": [
+"italiano1"
+]
+},
+"il sabato abbiamo scuola": {
+"text": "Il sabato abbiamo scuola.",
+"levels": [
+"italiano1"
+]
+},
+"la domenica non ho scuola": {
+"text": "La domenica non ho scuola.",
+"levels": [
+"italiano1"
+]
+},
+"studio l'italiano": {
+"text": "Studio l'italiano.",
+"levels": [
+"italiano1"
+]
+},
+"la madre": {
+"text": "la madre",
+"levels": [
+"italiano1"
+]
+},
+"il padre": {
+"text": "il padre",
+"levels": [
+"italiano1"
+]
+},
+"la mamma": {
+"text": "la mamma",
+"levels": [
+"italiano1"
+]
+},
+"il papà": {
+"text": "il papà",
+"levels": [
+"italiano1"
+]
+},
+"i genitori": {
+"text": "i genitori",
+"levels": [
+"italiano1"
+]
+},
+"il fratello": {
+"text": "il fratello",
+"levels": [
+"italiano1"
+]
+},
+"la sorella": {
+"text": "la sorella",
+"levels": [
+"italiano1"
+]
+},
+"il nonno": {
+"text": "il nonno",
+"levels": [
+"italiano1"
+]
+},
+"la nonna": {
+"text": "la nonna",
+"levels": [
+"italiano1"
+]
+},
+"i nonni": {
+"text": "i nonni",
+"levels": [
+"italiano1",
+"italiano4"
+]
+},
+"lo zio": {
+"text": "lo zio",
+"levels": [
+"italiano1"
+]
+},
+"la zia": {
+"text": "la zia",
+"levels": [
+"italiano1"
+]
+},
+"il cugino": {
+"text": "il cugino",
+"levels": [
+"italiano1"
+]
+},
+"la cugina": {
+"text": "la cugina",
+"levels": [
+"italiano1"
+]
+},
+"il figlio": {
+"text": "il figlio",
+"levels": [
+"italiano1"
+]
+},
+"la figlia": {
+"text": "la figlia",
+"levels": [
+"italiano1"
+]
+},
+"l'amico": {
+"text": "l'amico",
+"levels": [
+"italiano1",
+"italiano4"
+]
+},
+"l'amica": {
+"text": "l'amica",
+"levels": [
+"italiano1",
+"italiano4"
+]
+},
+"il cane": {
+"text": "il cane",
+"levels": [
+"italiano1"
+]
+},
+"il gatto": {
+"text": "il gatto",
+"levels": [
+"italiano1"
+]
+},
+"mio mia": {
+"text": "mio / mia",
+"levels": [
+"italiano1"
+]
+},
+"tuo tua": {
+"text": "tuo / tua",
+"levels": [
+"italiano1"
+]
+},
+"suo sua": {
+"text": "suo / sua",
+"levels": [
+"italiano1"
+]
+},
+"nostro nostra": {
+"text": "nostro / nostra",
+"levels": [
+"italiano1"
+]
+},
+"mia madre è alta": {
+"text": "Mia madre è alta.",
+"levels": [
+"italiano1"
+]
+},
+"mio padre è simpatico": {
+"text": "Mio padre è simpatico.",
+"levels": [
+"italiano1"
+]
+},
+"ho due fratelli": {
+"text": "Ho due fratelli.",
+"levels": [
+"italiano1"
+]
+},
+"i miei nonni sono di napoli": {
+"text": "I miei nonni sono di Napoli.",
+"levels": [
+"italiano1"
+]
+},
+"com'è tua sorella": {
+"text": "Com'è tua sorella?",
+"levels": [
+"italiano1"
+]
+},
+"il mio cane è piccolo": {
+"text": "Il mio cane è piccolo.",
+"levels": [
+"italiano1"
+]
+},
+"mia zia ha un gatto": {
+"text": "Mia zia ha un gatto.",
+"levels": [
+"italiano1"
+]
+},
+"voglio mangiare la pizza": {
+"text": "Voglio mangiare la pizza.",
+"levels": [
+"italiano1"
+]
+},
+"devo studiare l'italiano": {
+"text": "Devo studiare l'italiano.",
+"levels": [
+"italiano1"
+]
+},
+"posso uscire con gli amici": {
+"text": "Posso uscire con gli amici?",
+"levels": [
+"italiano1"
+]
+},
+"mio cugino vuole giocare": {
+"text": "Mio cugino vuole giocare.",
+"levels": [
+"italiano1"
+]
+},
+"dobbiamo mangiare con i nonni": {
+"text": "Dobbiamo mangiare con i nonni.",
+"levels": [
+"italiano1"
+]
+},
+"la pizza": {
+"text": "la pizza",
+"levels": [
+"italiano1"
+]
+},
+"la pasta": {
+"text": "la pasta",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"il panino": {
+"text": "il panino",
+"levels": [
+"italiano1"
+]
+},
+"il cornetto": {
+"text": "il cornetto",
+"levels": [
+"italiano1",
+"italiano3"
+]
+},
+"il gelato": {
+"text": "il gelato",
+"levels": [
+"italiano1"
+]
+},
+"lo yogurt": {
+"text": "lo yogurt",
+"levels": [
+"italiano1"
+]
+},
+"l'insalata": {
+"text": "l'insalata",
+"levels": [
+"italiano1"
+]
+},
+"gli spaghetti": {
+"text": "gli spaghetti",
+"levels": [
+"italiano1"
+]
+},
+"i biscotti": {
+"text": "i biscotti",
+"levels": [
+"italiano1"
+]
+},
+"le patatine": {
+"text": "le patatine",
+"levels": [
+"italiano1"
+]
+},
+"il caffè": {
+"text": "il caffè",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"il cappuccino": {
+"text": "il cappuccino",
+"levels": [
+"italiano1"
+]
+},
+"l'acqua": {
+"text": "l'acqua",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"il latte": {
+"text": "il latte",
+"levels": [
+"italiano1"
+]
+},
+"il succo d'arancia": {
+"text": "il succo d'arancia",
+"levels": [
+"italiano1"
+]
+},
+"la colazione": {
+"text": "la colazione",
+"levels": [
+"italiano1",
+"italiano2",
+"italiano4"
+]
+},
+"il pranzo": {
+"text": "il pranzo",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"la cena": {
+"text": "la cena",
+"levels": [
+"italiano1",
+"italiano2",
+"italiano4"
+]
+},
+"il menù": {
+"text": "il menù",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"il conto": {
+"text": "il conto",
+"levels": [
+"italiano1",
+"italiano2",
+"italiano3"
+]
+},
+"il cameriere": {
+"text": "il cameriere",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"lo zucchero": {
+"text": "lo zucchero",
+"levels": [
+"italiano1"
+]
+},
+"vorrei": {
+"text": "vorrei",
+"levels": [
+"italiano1"
+]
+},
+"mi piace la pizza": {
+"text": "Mi piace la pizza.",
+"levels": [
+"italiano1"
+]
+},
+"mi piacciono gli spaghetti": {
+"text": "Mi piacciono gli spaghetti.",
+"levels": [
+"italiano1"
+]
+},
+"ti piace il gelato": {
+"text": "Ti piace il gelato?",
+"levels": [
+"italiano1"
+]
+},
+"non mi piace il latte": {
+"text": "Non mi piace il latte.",
+"levels": [
+"italiano1"
+]
+},
+"ti piacciono i biscotti": {
+"text": "Ti piacciono i biscotti?",
+"levels": [
+"italiano1"
+]
+},
+"vorrei un caffè per favore": {
+"text": "Vorrei un caffè, per favore.",
+"levels": [
+"italiano1"
+]
+},
+"vorrei un panino e un'acqua": {
+"text": "Vorrei un panino e un'acqua.",
+"levels": [
+"italiano1"
+]
+},
+"il conto per favore": {
+"text": "Il conto, per favore.",
+"levels": [
+"italiano1",
+"italiano2"
+]
+},
+"lo yogurt è buono": {
+"text": "Lo yogurt è buono.",
+"levels": [
+"italiano1"
+]
+},
+"le patatine sono buone": {
+"text": "Le patatine sono buone.",
+"levels": [
+"italiano1"
+]
+},
+"il cameriere è simpatico": {
+"text": "Il cameriere è simpatico.",
+"levels": [
+"italiano1"
+]
+},
+"il gelato è buonissimo": {
+"text": "Il gelato è buonissimo!",
+"levels": [
+"italiano1"
+]
+},
+"il natale": {
+"text": "il Natale",
+"levels": [
+"italiano2"
+]
+},
+"la vigilia": {
+"text": "la Vigilia",
+"levels": [
+"italiano2"
+]
+},
+"il capodanno": {
+"text": "il Capodanno",
+"levels": [
+"italiano2"
+]
+},
+"l'epifania": {
+"text": "l'Epifania",
+"levels": [
+"italiano2"
+]
+},
+"la befana": {
+"text": "la Befana",
+"levels": [
+"italiano2"
+]
+},
+"il carnevale": {
+"text": "il Carnevale",
+"levels": [
+"italiano2",
+"italiano4",
+"ap"
+]
+},
+"la pasqua": {
+"text": "la Pasqua",
+"levels": [
+"italiano2"
+]
+},
+"la pasquetta": {
+"text": "la Pasquetta",
+"levels": [
+"italiano2"
+]
+},
+"il ferragosto": {
+"text": "il Ferragosto",
+"levels": [
+"italiano2",
+"ap"
+]
+},
+"l'onomastico": {
+"text": "l'onomastico",
+"levels": [
+"italiano2"
+]
+},
+"la festa": {
+"text": "la festa",
+"levels": [
+"italiano2",
+"italiano4"
+]
+},
+"il regalo": {
+"text": "il regalo",
+"levels": [
+"italiano2"
+]
+},
+"la torta": {
+"text": "la torta",
+"levels": [
+"italiano2"
+]
+},
+"l'invito": {
+"text": "l'invito",
+"levels": [
+"italiano2"
+]
+},
+"festeggiare": {
+"text": "festeggiare",
+"levels": [
+"italiano2"
+]
+},
+"tanti auguri": {
+"text": "Tanti auguri!",
+"levels": [
+"italiano2"
+]
+},
+"buon compleanno": {
+"text": "Buon compleanno!",
+"levels": [
+"italiano2"
+]
+},
+"congratulazioni": {
+"text": "Congratulazioni!",
+"levels": [
+"italiano2"
+]
+},
+"sempre": {
+"text": "sempre",
+"levels": [
+"italiano2",
+"italiano3",
+"italiano4"
+]
+},
+"spesso": {
+"text": "spesso",
+"levels": [
+"italiano2",
+"italiano3",
+"italiano4"
+]
+},
+"qualche volta": {
+"text": "qualche volta",
+"levels": [
+"italiano2"
+]
+},
+"non mai": {
+"text": "non … mai",
+"levels": [
+"italiano2"
+]
+},
+"a natale mangiamo sempre con i nonni": {
+"text": "A Natale mangiamo sempre con i nonni.",
+"levels": [
+"italiano2"
+]
+},
+"la befana porta i regali ai bambini": {
+"text": "La Befana porta i regali ai bambini.",
+"levels": [
+"italiano2"
+]
+},
+"a pasquetta mangiamo al parco con gli amici": {
+"text": "A Pasquetta mangiamo al parco con gli amici.",
+"levels": [
+"italiano2"
+]
+},
+"oggi è il mio onomastico": {
+"text": "Oggi è il mio onomastico!",
+"levels": [
+"italiano2"
+]
+},
+"conosci il carnevale di venezia": {
+"text": "Conosci il Carnevale di Venezia?",
+"levels": [
+"italiano2"
+]
+},
+"sai quando è ferragosto": {
+"text": "Sai quando è Ferragosto?",
+"levels": [
+"italiano2"
+]
+},
+"non festeggio mai l'onomastico": {
+"text": "Non festeggio mai l'onomastico.",
+"levels": [
+"italiano2"
+]
+},
+"qualche volta diamo una festa a casa": {
+"text": "Qualche volta diamo una festa a casa.",
+"levels": [
+"italiano2"
+]
+},
+"dico sempre grazie per i regali": {
+"text": "Dico sempre grazie per i regali.",
+"levels": [
+"italiano2"
+]
+},
+"tanti auguri e buon compleanno luca": {
+"text": "Tanti auguri e buon compleanno, Luca!",
+"levels": [
+"italiano2"
+]
+},
+"grazie mille per l'invito": {
+"text": "Grazie mille per l'invito!",
+"levels": [
+"italiano2"
+]
+},
+"il mio regalo è piccolo il tuo è grande": {
+"text": "Il mio regalo è piccolo, il tuo è grande.",
+"levels": [
+"italiano2"
+]
+},
+"il pane": {
+"text": "il pane",
+"levels": [
+"italiano2"
+]
+},
+"il formaggio": {
+"text": "il formaggio",
+"levels": [
+"italiano2"
+]
+},
+"la carne": {
+"text": "la carne",
+"levels": [
+"italiano2"
+]
+},
+"il pesce": {
+"text": "il pesce",
+"levels": [
+"italiano2"
+]
+},
+"la frutta": {
+"text": "la frutta",
+"levels": [
+"italiano2"
+]
+},
+"la verdura": {
+"text": "la verdura",
+"levels": [
+"italiano2"
+]
+},
+"il dolce": {
+"text": "il dolce",
+"levels": [
+"italiano2"
+]
+},
+"a colazione bevo un caffè": {
+"text": "A colazione bevo un caffè.",
+"levels": [
+"italiano2"
+]
+},
+"prendo la pasta per favore": {
+"text": "Prendo la pasta, per favore.",
+"levels": [
+"italiano2"
+]
+},
+"vorrei un po' di pane": {
+"text": "Vorrei un po' di pane.",
+"levels": [
+"italiano2"
+]
+},
+"mia sorella prende il pesce": {
+"text": "Mia sorella prende il pesce.",
+"levels": [
+"italiano2"
+]
+},
+"che cosa bevete": {
+"text": "Che cosa bevete?",
+"levels": [
+"italiano2"
+]
+},
+"noi beviamo l'acqua": {
+"text": "Noi beviamo l'acqua.",
+"levels": [
+"italiano2"
+]
+},
+"a mio padre piace la carne": {
+"text": "A mio padre piace la carne.",
+"levels": [
+"italiano2"
+]
+},
+"a giulia non piace la verdura": {
+"text": "A Giulia non piace la verdura.",
+"levels": [
+"italiano2"
+]
+},
+"il cameriere porta il menù": {
+"text": "Il cameriere porta il menù.",
+"levels": [
+"italiano2"
+]
+},
+"in italia la cena è alle otto": {
+"text": "In Italia la cena è alle otto.",
+"levels": [
+"italiano2"
+]
+},
+"a pranzo ho mangiato la pasta": {
+"text": "A pranzo ho mangiato la pasta.",
+"levels": [
+"italiano2"
+]
+},
+"il fine settimana": {
+"text": "il fine settimana",
+"levels": [
+"italiano2",
+"italiano4"
+]
+},
+"ieri": {
+"text": "ieri",
+"levels": [
+"italiano2",
+"italiano3",
+"italiano4"
+]
+},
+"ieri sera": {
+"text": "ieri sera",
+"levels": [
+"italiano2",
+"italiano3",
+"italiano4"
+]
+},
+"l'altro ieri": {
+"text": "l'altro ieri",
+"levels": [
+"italiano2"
+]
+},
+"sabato scorso": {
+"text": "sabato scorso",
+"levels": [
+"italiano2"
+]
+},
+"la settimana scorsa": {
+"text": "la settimana scorsa",
+"levels": [
+"italiano2",
+"italiano3",
+"italiano4"
+]
+},
+"la pallavolo": {
+"text": "la pallavolo",
+"levels": [
+"italiano2"
+]
+},
+"il ciclismo": {
+"text": "il ciclismo",
+"levels": [
+"italiano2"
+]
+},
+"il giro d'italia": {
+"text": "il Giro d'Italia",
+"levels": [
+"italiano2"
+]
+},
+"la serie a": {
+"text": "la Serie A",
+"levels": [
+"italiano2"
+]
+},
+"il tifoso la tifosa": {
+"text": "il tifoso / la tifosa",
+"levels": [
+"italiano2"
+]
+},
+"la gara": {
+"text": "la gara",
+"levels": [
+"italiano2"
+]
+},
+"fare una passeggiata": {
+"text": "fare una passeggiata",
+"levels": [
+"italiano2"
+]
+},
+"riposare": {
+"text": "riposare",
+"levels": [
+"italiano2"
+]
+},
+"lavorare": {
+"text": "lavorare",
+"levels": [
+"italiano2"
+]
+},
+"visitare": {
+"text": "visitare",
+"levels": [
+"italiano2"
+]
+},
+"non più": {
+"text": "non … più",
+"levels": [
+"italiano2"
+]
+},
+"non niente": {
+"text": "non … niente",
+"levels": [
+"italiano2"
+]
+},
+"sabato ho giocato a pallavolo": {
+"text": "Sabato ho giocato a pallavolo.",
+"levels": [
+"italiano2"
+]
+},
+"ieri sera abbiamo guardato la partita": {
+"text": "Ieri sera abbiamo guardato la partita.",
+"levels": [
+"italiano2"
+]
+},
+"mio fratello ha fatto una passeggiata": {
+"text": "Mio fratello ha fatto una passeggiata.",
+"levels": [
+"italiano2"
+]
+},
+"domenica i nonni hanno mangiato con noi": {
+"text": "Domenica i nonni hanno mangiato con noi.",
+"levels": [
+"italiano2"
+]
+},
+"che cosa hai fatto il fine settimana": {
+"text": "Che cosa hai fatto il fine settimana?",
+"levels": [
+"italiano2"
+]
+},
+"sono andata al cinema con giulia": {
+"text": "Sono andata al cinema con Giulia.",
+"levels": [
+"italiano2"
+]
+},
+"non gioco più a calcio": {
+"text": "Non gioco più a calcio.",
+"levels": [
+"italiano2"
+]
+},
+"mia sorella non nuota mai": {
+"text": "Mia sorella non nuota mai.",
+"levels": [
+"italiano2"
+]
+},
+"domenica non ho fatto niente": {
+"text": "Domenica non ho fatto niente!",
+"levels": [
+"italiano2"
+]
+},
+"mio padre guarda sempre la serie a": {
+"text": "Mio padre guarda sempre la Serie A.",
+"levels": [
+"italiano2"
+]
+},
+"il giro d'italia è una gara di ciclismo": {
+"text": "Il Giro d'Italia è una gara di ciclismo.",
+"levels": [
+"italiano2"
+]
+},
+"avete visitato roma la settimana scorsa": {
+"text": "Avete visitato Roma la settimana scorsa?",
+"levels": [
+"italiano2"
+]
+},
+"il gioco": {
+"text": "il gioco",
+"levels": [
+"italiano2"
+]
+},
+"il giocattolo": {
+"text": "il giocattolo",
+"levels": [
+"italiano2",
+"italiano4"
+]
+},
+"la bambola": {
+"text": "la bambola",
+"levels": [
+"italiano2"
+]
+},
+"il pallone": {
+"text": "il pallone",
+"levels": [
+"italiano2"
+]
+},
+"giocare a nascondino": {
+"text": "giocare a nascondino",
+"levels": [
+"italiano2"
+]
+},
+"giocare a campana": {
+"text": "giocare a campana",
+"levels": [
+"italiano2"
+]
+},
+"il parco giochi": {
+"text": "il parco giochi",
+"levels": [
+"italiano2"
+]
+},
+"l'altalena": {
+"text": "l'altalena",
+"levels": [
+"italiano2"
+]
+},
+"lo scivolo": {
+"text": "lo scivolo",
+"levels": [
+"italiano2"
+]
+},
+"il quartiere": {
+"text": "il quartiere",
+"levels": [
+"italiano2"
+]
+},
+"il vicino la vicina": {
+"text": "il vicino / la vicina",
+"levels": [
+"italiano2"
+]
+},
+"il cortile": {
+"text": "il cortile",
+"levels": [
+"italiano2",
+"italiano4"
+]
+},
+"la scuola elementare": {
+"text": "la scuola elementare",
+"levels": [
+"italiano2"
+]
+},
+"la maestra": {
+"text": "la maestra",
+"levels": [
+"italiano2"
+]
+},
+"quando ero piccolo a": {
+"text": "quando ero piccolo/a",
+"levels": [
+"italiano2"
+]
+},
+"avevo": {
+"text": "avevo",
+"levels": [
+"italiano2"
+]
+},
+"giocavo": {
+"text": "giocavo",
+"levels": [
+"italiano2"
+]
+},
+"abitavo": {
+"text": "abitavo",
+"levels": [
+"italiano2"
+]
+},
+"andavo": {
+"text": "andavo",
+"levels": [
+"italiano2"
+]
+},
+"ho visitato": {
+"text": "ho visitato",
+"levels": [
+"italiano2"
+]
+},
+"quando ero piccola abitavo a napoli": {
+"text": "Quando ero piccola, abitavo a Napoli.",
+"levels": [
+"italiano2"
+]
+},
+"da piccolo avevo un cane bianco": {
+"text": "Da piccolo avevo un cane bianco.",
+"levels": [
+"italiano2"
+]
+},
+"giocavo a nascondino con i miei cugini": {
+"text": "Giocavo a nascondino con i miei cugini.",
+"levels": [
+"italiano2"
+]
+},
+"mia sorella giocava sempre con la bambola": {
+"text": "Mia sorella giocava sempre con la bambola.",
+"levels": [
+"italiano2"
+]
+},
+"il mio giocattolo preferito era il pallone": {
+"text": "Il mio giocattolo preferito era il pallone.",
+"levels": [
+"italiano2"
+]
+},
+"i nonni abitavano vicino a noi": {
+"text": "I nonni abitavano vicino a noi.",
+"levels": [
+"italiano2"
+]
+},
+"andavamo al parco giochi la domenica": {
+"text": "Andavamo al parco giochi la domenica.",
+"levels": [
+"italiano2"
+]
+},
+"la mia maestra era molto simpatica": {
+"text": "La mia maestra era molto simpatica.",
+"levels": [
+"italiano2"
+]
+},
+"nel mio quartiere c'era un grande parco": {
+"text": "Nel mio quartiere c'era un grande parco.",
+"levels": [
+"italiano2"
+]
+},
+"eravate felici da piccoli": {
+"text": "Eravate felici da piccoli?",
+"levels": [
+"italiano2"
+]
+},
+"l'anno scorso ho visitato roma": {
+"text": "L'anno scorso ho visitato Roma.",
+"levels": [
+"italiano2"
+]
+},
+"roma era bellissima": {
+"text": "Roma era bellissima!",
+"levels": [
+"italiano2"
+]
+},
 "oggi": {
 "text": "oggi",
 "levels": [
@@ -337,24 +1697,10 @@
 "italiano3"
 ]
 },
-"ieri": {
-"text": "ieri",
-"levels": [
-"italiano3",
-"italiano4"
-]
-},
 "ieri ho mangiato la pizza": {
 "text": "Ieri ho mangiato la pizza.",
 "levels": [
 "italiano3"
-]
-},
-"ieri sera": {
-"text": "ieri sera",
-"levels": [
-"italiano3",
-"italiano4"
 ]
 },
 "ieri sera sono uscito con marco": {
@@ -374,13 +1720,6 @@
 "text": "Due giorni fa ho visto un film.",
 "levels": [
 "italiano3"
-]
-},
-"la settimana scorsa": {
-"text": "la settimana scorsa",
-"levels": [
-"italiano3",
-"italiano4"
 ]
 },
 "la settimana scorsa abbiamo giocato a calcio": {
@@ -477,13 +1816,6 @@
 "italiano3"
 ]
 },
-"sempre": {
-"text": "sempre",
-"levels": [
-"italiano3",
-"italiano4"
-]
-},
 "da piccola giocavo sempre a calcio": {
 "text": "Da piccola giocavo sempre a calcio.",
 "levels": [
@@ -500,13 +1832,6 @@
 "text": "Ogni giorno andavo a scuola a piedi.",
 "levels": [
 "italiano3"
-]
-},
-"spesso": {
-"text": "spesso",
-"levels": [
-"italiano3",
-"italiano4"
 ]
 },
 "spesso pioveva a napoli": {
@@ -670,6 +1995,783 @@
 "italiano3"
 ]
 },
+"la cucina": {
+"text": "la cucina",
+"levels": [
+"italiano3"
+]
+},
+"il soggiorno": {
+"text": "il soggiorno",
+"levels": [
+"italiano3"
+]
+},
+"la camera da letto": {
+"text": "la camera da letto",
+"levels": [
+"italiano3"
+]
+},
+"il bagno": {
+"text": "il bagno",
+"levels": [
+"italiano3"
+]
+},
+"la sala da pranzo": {
+"text": "la sala da pranzo",
+"levels": [
+"italiano3"
+]
+},
+"il balcone": {
+"text": "il balcone",
+"levels": [
+"italiano3"
+]
+},
+"il letto": {
+"text": "il letto",
+"levels": [
+"italiano3"
+]
+},
+"l'armadio": {
+"text": "l'armadio",
+"levels": [
+"italiano3"
+]
+},
+"la scrivania": {
+"text": "la scrivania",
+"levels": [
+"italiano3"
+]
+},
+"la sedia": {
+"text": "la sedia",
+"levels": [
+"italiano3"
+]
+},
+"il divano": {
+"text": "il divano",
+"levels": [
+"italiano3"
+]
+},
+"la lampada": {
+"text": "la lampada",
+"levels": [
+"italiano3"
+]
+},
+"lo scaffale": {
+"text": "lo scaffale",
+"levels": [
+"italiano3"
+]
+},
+"il comodino": {
+"text": "il comodino",
+"levels": [
+"italiano3"
+]
+},
+"lo specchio": {
+"text": "lo specchio",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"il tappeto": {
+"text": "il tappeto",
+"levels": [
+"italiano3"
+]
+},
+"l'appartamento": {
+"text": "l'appartamento",
+"levels": [
+"italiano3"
+]
+},
+"il condominio": {
+"text": "il condominio",
+"levels": [
+"italiano3"
+]
+},
+"il piano": {
+"text": "il piano",
+"levels": [
+"italiano3"
+]
+},
+"le persiane": {
+"text": "le persiane",
+"levels": [
+"italiano3"
+]
+},
+"le piastrelle": {
+"text": "le piastrelle",
+"levels": [
+"italiano3"
+]
+},
+"il bidet": {
+"text": "il bidet",
+"levels": [
+"italiano3"
+]
+},
+"la mia camera è al secondo piano": {
+"text": "La mia camera è al secondo piano.",
+"levels": [
+"italiano3"
+]
+},
+"il computer è sulla scrivania": {
+"text": "Il computer è sulla scrivania.",
+"levels": [
+"italiano3"
+]
+},
+"i vestiti sono nell'armadio": {
+"text": "I vestiti sono nell'armadio.",
+"levels": [
+"italiano3"
+]
+},
+"la lampada è sul comodino vicino al letto": {
+"text": "La lampada è sul comodino, vicino al letto.",
+"levels": [
+"italiano3"
+]
+},
+"abitiamo in un appartamento in un condominio": {
+"text": "Abitiamo in un appartamento in un condominio.",
+"levels": [
+"italiano3"
+]
+},
+"il divano l'ho comprato ieri": {
+"text": "Il divano? L'ho comprato ieri.",
+"levels": [
+"italiano3"
+]
+},
+"le persiane le ho chiuse stamattina": {
+"text": "Le persiane? Le ho chiuse stamattina.",
+"levels": [
+"italiano3"
+]
+},
+"la sedia l'ho messa in cucina": {
+"text": "La sedia? L'ho messa in cucina.",
+"levels": [
+"italiano3"
+]
+},
+"arriva la nonna le mostro la mia camera": {
+"text": "Arriva la nonna: le mostro la mia camera.",
+"levels": [
+"italiano3"
+]
+},
+"gli ho regalato un tappeto": {
+"text": "Gli ho regalato un tappeto.",
+"levels": [
+"italiano3"
+]
+},
+"ci piace molto il balcone": {
+"text": "Ci piace molto il balcone.",
+"levels": [
+"italiano3"
+]
+},
+"esco dalla camera e vado in cucina": {
+"text": "Esco dalla camera e vado in cucina.",
+"levels": [
+"italiano3"
+]
+},
+"le vacanze": {
+"text": "le vacanze",
+"levels": [
+"italiano3"
+]
+},
+"prenotare": {
+"text": "prenotare",
+"levels": [
+"italiano3"
+]
+},
+"la prenotazione": {
+"text": "la prenotazione",
+"levels": [
+"italiano3"
+]
+},
+"l'albergo": {
+"text": "l'albergo",
+"levels": [
+"italiano3"
+]
+},
+"la camera doppia": {
+"text": "la camera doppia",
+"levels": [
+"italiano3"
+]
+},
+"il volo": {
+"text": "il volo",
+"levels": [
+"italiano3"
+]
+},
+"la spiaggia": {
+"text": "la spiaggia",
+"levels": [
+"italiano3"
+]
+},
+"l'università": {
+"text": "l'università",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"laurearsi": {
+"text": "laurearsi",
+"levels": [
+"italiano3"
+]
+},
+"il lavoro": {
+"text": "il lavoro",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"diventare": {
+"text": "diventare",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"l'avvocato": {
+"text": "l'avvocato",
+"levels": [
+"italiano3"
+]
+},
+"il medico": {
+"text": "il medico",
+"levels": [
+"italiano3"
+]
+},
+"l'ingegnere": {
+"text": "l'ingegnere",
+"levels": [
+"italiano3"
+]
+},
+"sposarsi": {
+"text": "sposarsi",
+"levels": [
+"italiano3"
+]
+},
+"l'oroscopo": {
+"text": "l'oroscopo",
+"levels": [
+"italiano3"
+]
+},
+"il segno": {
+"text": "il segno",
+"levels": [
+"italiano3"
+]
+},
+"la fortuna": {
+"text": "la fortuna",
+"levels": [
+"italiano3"
+]
+},
+"l'amore": {
+"text": "l'amore",
+"levels": [
+"italiano3"
+]
+},
+"la salute": {
+"text": "la salute",
+"levels": [
+"italiano3"
+]
+},
+"fra dieci anni": {
+"text": "fra dieci anni",
+"levels": [
+"italiano3"
+]
+},
+"quest'estate andrò al mare con la mia famiglia": {
+"text": "Quest'estate andrò al mare con la mia famiglia.",
+"levels": [
+"italiano3"
+]
+},
+"prenoteremo un albergo vicino alla spiaggia": {
+"text": "Prenoteremo un albergo vicino alla spiaggia.",
+"levels": [
+"italiano3"
+]
+},
+"il volo partirà alle otto di mattina": {
+"text": "Il volo partirà alle otto di mattina.",
+"levels": [
+"italiano3"
+]
+},
+"arriveremo il 3 luglio e partiremo il 10": {
+"text": "Arriveremo il 3 luglio e partiremo il 10.",
+"levels": [
+"italiano3"
+]
+},
+"dopo il liceo andrò all'università": {
+"text": "Dopo il liceo andrò all'università.",
+"levels": [
+"italiano3"
+]
+},
+"mia sorella studierà medicina e diventerà medico": {
+"text": "Mia sorella studierà medicina e diventerà medico.",
+"levels": [
+"italiano3"
+]
+},
+"fra dieci anni avrò un lavoro interessante": {
+"text": "Fra dieci anni avrò un lavoro interessante.",
+"levels": [
+"italiano3"
+]
+},
+"dove abiterai fra dieci anni": {
+"text": "Dove abiterai fra dieci anni?",
+"levels": [
+"italiano3"
+]
+},
+"posso prenotare una camera doppia per tre notti": {
+"text": "Posso prenotare una camera doppia per tre notti?",
+"levels": [
+"italiano3"
+]
+},
+"potrai venire alla festa sabato": {
+"text": "Potrai venire alla festa sabato?",
+"levels": [
+"italiano3"
+]
+},
+"dopo che avrò finito i compiti uscirò": {
+"text": "Dopo che avrò finito i compiti, uscirò.",
+"levels": [
+"italiano3"
+]
+},
+"leone questa settimana avrai molta fortuna": {
+"text": "Leone: questa settimana avrai molta fortuna.",
+"levels": [
+"italiano3"
+]
+},
+"la giacca": {
+"text": "la giacca",
+"levels": [
+"italiano3"
+]
+},
+"la gonna": {
+"text": "la gonna",
+"levels": [
+"italiano3"
+]
+},
+"i pantaloni": {
+"text": "i pantaloni",
+"levels": [
+"italiano3"
+]
+},
+"la camicia": {
+"text": "la camicia",
+"levels": [
+"italiano3"
+]
+},
+"le scarpe": {
+"text": "le scarpe",
+"levels": [
+"italiano3"
+]
+},
+"la taglia": {
+"text": "la taglia",
+"levels": [
+"italiano3"
+]
+},
+"il camerino": {
+"text": "il camerino",
+"levels": [
+"italiano3"
+]
+},
+"lo sconto": {
+"text": "lo sconto",
+"levels": [
+"italiano3"
+]
+},
+"costare": {
+"text": "costare",
+"levels": [
+"italiano3"
+]
+},
+"la testa": {
+"text": "la testa",
+"levels": [
+"italiano3"
+]
+},
+"la gola": {
+"text": "la gola",
+"levels": [
+"italiano3"
+]
+},
+"la pancia": {
+"text": "la pancia",
+"levels": [
+"italiano3"
+]
+},
+"la schiena": {
+"text": "la schiena",
+"levels": [
+"italiano3"
+]
+},
+"i denti": {
+"text": "i denti",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"i piedi": {
+"text": "i piedi",
+"levels": [
+"italiano3"
+]
+},
+"il bicchiere d'acqua": {
+"text": "il bicchiere d'acqua",
+"levels": [
+"italiano3"
+]
+},
+"la spremuta": {
+"text": "la spremuta",
+"levels": [
+"italiano3"
+]
+},
+"il tramezzino": {
+"text": "il tramezzino",
+"levels": [
+"italiano3"
+]
+},
+"vorrei un cappuccino e un cornetto per favore": {
+"text": "Vorrei un cappuccino e un cornetto, per favore.",
+"levels": [
+"italiano3"
+]
+},
+"potrei avere il conto": {
+"text": "Potrei avere il conto?",
+"levels": [
+"italiano3"
+]
+},
+"ti piacerebbe venire al cinema stasera": {
+"text": "Ti piacerebbe venire al cinema stasera?",
+"levels": [
+"italiano3"
+]
+},
+"grazie ma non posso dovrei studiare": {
+"text": "Grazie, ma non posso: dovrei studiare.",
+"levels": [
+"italiano3"
+]
+},
+"mi piacerebbe fare l'avvocato": {
+"text": "Mi piacerebbe fare l'avvocato.",
+"levels": [
+"italiano3"
+]
+},
+"potrei provare questa giacca": {
+"text": "Potrei provare questa giacca?",
+"levels": [
+"italiano3"
+]
+},
+"che taglia porti": {
+"text": "Che taglia porti?",
+"levels": [
+"italiano3"
+]
+},
+"questa gonna è più cara di quella": {
+"text": "Questa gonna è più cara di quella.",
+"levels": [
+"italiano3"
+]
+},
+"mio fratello è alto quanto mio padre": {
+"text": "Mio fratello è alto quanto mio padre.",
+"levels": [
+"italiano3"
+]
+},
+"queste scarpe sono bellissime": {
+"text": "Queste scarpe sono bellissime!",
+"levels": [
+"italiano3"
+]
+},
+"giulia è la più simpatica della classe": {
+"text": "Giulia è la più simpatica della classe.",
+"levels": [
+"italiano3"
+]
+},
+"mi fa male la testa dovrei dormire": {
+"text": "Mi fa male la testa: dovrei dormire.",
+"levels": [
+"italiano3"
+]
+},
+"la regione": {
+"text": "la regione",
+"levels": [
+"italiano3"
+]
+},
+"il capoluogo": {
+"text": "il capoluogo",
+"levels": [
+"italiano3"
+]
+},
+"la penisola": {
+"text": "la penisola",
+"levels": [
+"italiano3"
+]
+},
+"l'isola": {
+"text": "l'isola",
+"levels": [
+"italiano3"
+]
+},
+"le alpi": {
+"text": "le Alpi",
+"levels": [
+"italiano3"
+]
+},
+"gli appennini": {
+"text": "gli Appennini",
+"levels": [
+"italiano3"
+]
+},
+"il nord": {
+"text": "il nord",
+"levels": [
+"italiano3"
+]
+},
+"il sud": {
+"text": "il sud",
+"levels": [
+"italiano3"
+]
+},
+"il confine": {
+"text": "il confine",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"l'unità d'italia": {
+"text": "l'unità d'Italia",
+"levels": [
+"italiano3"
+]
+},
+"il risorgimento": {
+"text": "il Risorgimento",
+"levels": [
+"italiano3"
+]
+},
+"il re": {
+"text": "il re",
+"levels": [
+"italiano3"
+]
+},
+"la repubblica": {
+"text": "la repubblica",
+"levels": [
+"italiano3"
+]
+},
+"emigrare": {
+"text": "emigrare",
+"levels": [
+"italiano3",
+"italiano4"
+]
+},
+"l'italoamericano": {
+"text": "l'italoamericano",
+"levels": [
+"italiano3"
+]
+},
+"il dialetto": {
+"text": "il dialetto",
+"levels": [
+"italiano3",
+"italiano4",
+"ap"
+]
+},
+"la tradizione": {
+"text": "la tradizione",
+"levels": [
+"italiano3"
+]
+},
+"il paese": {
+"text": "il paese",
+"levels": [
+"italiano3"
+]
+},
+"la differenza": {
+"text": "la differenza",
+"levels": [
+"italiano3"
+]
+},
+"l'italia ha venti regioni": {
+"text": "L'Italia ha venti regioni.",
+"levels": [
+"italiano3"
+]
+},
+"le alpi sono al confine nord dell'italia": {
+"text": "Le Alpi sono al confine nord dell'Italia.",
+"levels": [
+"italiano3"
+]
+},
+"l'italia è diventata un paese unito nel 1861": {
+"text": "L'Italia è diventata un paese unito nel 1861.",
+"levels": [
+"italiano3"
+]
+},
+"nel 1860 garibaldi è partito per la sicilia con i mille": {
+"text": "Nel 1860 Garibaldi è partito per la Sicilia con i Mille.",
+"levels": [
+"italiano3"
+]
+},
+"molti italiani del sud sono emigrati in america": {
+"text": "Molti italiani del sud sono emigrati in America.",
+"levels": [
+"italiano3"
+]
+},
+"mio nonno parlava il dialetto napoletano": {
+"text": "Mio nonno parlava il dialetto napoletano.",
+"levels": [
+"italiano3"
+]
+},
+"mi dai la mappa sì te la do": {
+"text": "Mi dai la mappa? Sì, te la do.",
+"levels": [
+"italiano3"
+]
+},
+"hai detto la verità a marco sì gliel'ho detta": {
+"text": "Hai detto la verità a Marco? Sì, gliel'ho detta.",
+"levels": [
+"italiano3"
+]
+},
+"la nonna ci manda le foto sì ce le manda": {
+"text": "La nonna ci manda le foto? Sì, ce le manda.",
+"levels": [
+"italiano3"
+]
+},
+"chi ti ha portato il libro me l'ha portato luca": {
+"text": "Chi ti ha portato il libro? Me l'ha portato Luca.",
+"levels": [
+"italiano3"
+]
+},
+"i biglietti ve li mando domani": {
+"text": "I biglietti? Ve li mando domani.",
+"levels": [
+"italiano3"
+]
+},
+"il segreto glielo dico io": {
+"text": "Il segreto? Glielo dico io.",
+"levels": [
+"italiano3"
+]
+},
 "da piccolo": {
 "text": "da piccolo",
 "levels": [
@@ -712,26 +2814,8 @@
 "italiano4"
 ]
 },
-"i nonni": {
-"text": "i nonni",
-"levels": [
-"italiano4"
-]
-},
 "i nonni abitavano in campagna": {
 "text": "I nonni abitavano in campagna.",
-"levels": [
-"italiano4"
-]
-},
-"il giocattolo": {
-"text": "il giocattolo",
-"levels": [
-"italiano4"
-]
-},
-"il cortile": {
-"text": "il cortile",
 "levels": [
 "italiano4"
 ]
@@ -846,12 +2930,6 @@
 },
 "sono appena arrivato": {
 "text": "Sono appena arrivato.",
-"levels": [
-"italiano4"
-]
-},
-"il fine settimana": {
-"text": "il fine settimana",
 "levels": [
 "italiano4"
 ]
@@ -1198,18 +3276,6 @@
 "italiano4"
 ]
 },
-"il lavoro": {
-"text": "il lavoro",
-"levels": [
-"italiano4"
-]
-},
-"l'università": {
-"text": "l’università",
-"levels": [
-"italiano4"
-]
-},
 "andrò all'università a roma": {
 "text": "Andrò all’università a Roma.",
 "levels": [
@@ -1230,12 +3296,6 @@
 },
 "il sogno": {
 "text": "il sogno",
-"levels": [
-"italiano4"
-]
-},
-"diventare": {
-"text": "diventare",
 "levels": [
 "italiano4"
 ]
@@ -1282,12 +3342,6 @@
 "italiano4"
 ]
 },
-"lo specchio": {
-"text": "lo specchio",
-"levels": [
-"italiano4"
-]
-},
 "mi pettino davanti allo specchio": {
 "text": "Mi pettino davanti allo specchio.",
 "levels": [
@@ -1306,12 +3360,6 @@
 "italiano4"
 ]
 },
-"i denti": {
-"text": "i denti",
-"levels": [
-"italiano4"
-]
-},
 "mi lavo i denti dopo cena": {
 "text": "Mi lavo i denti dopo cena.",
 "levels": [
@@ -1326,12 +3374,6 @@
 },
 "mi metto il pigiama alle nove": {
 "text": "Mi metto il pigiama alle nove.",
-"levels": [
-"italiano4"
-]
-},
-"la colazione": {
-"text": "la colazione",
 "levels": [
 "italiano4"
 ]
@@ -1386,18 +3428,6 @@
 },
 "faccio colazione con il latte": {
 "text": "Faccio colazione con il latte.",
-"levels": [
-"italiano4"
-]
-},
-"l'amico": {
-"text": "l’amico",
-"levels": [
-"italiano4"
-]
-},
-"l'amica": {
-"text": "l’amica",
 "levels": [
 "italiano4"
 ]
@@ -1516,12 +3546,6 @@
 "italiano4"
 ]
 },
-"la festa": {
-"text": "la festa",
-"levels": [
-"italiano4"
-]
-},
 "la festa è stata bellissima": {
 "text": "La festa è stata bellissima.",
 "levels": [
@@ -1566,12 +3590,6 @@
 },
 "la partita è stata lunga": {
 "text": "La partita è stata lunga.",
-"levels": [
-"italiano4"
-]
-},
-"la cena": {
-"text": "la cena",
 "levels": [
 "italiano4"
 ]
@@ -1644,6 +3662,786 @@
 },
 "siamo contenti": {
 "text": "Siamo contenti!",
+"levels": [
+"italiano4"
+]
+},
+"la globalizzazione": {
+"text": "la globalizzazione",
+"levels": [
+"italiano4"
+]
+},
+"l'immigrazione": {
+"text": "l'immigrazione",
+"levels": [
+"italiano4"
+]
+},
+"l'integrazione": {
+"text": "l'integrazione",
+"levels": [
+"italiano4"
+]
+},
+"l'immigrato l'immigrata": {
+"text": "l'immigrato / l'immigrata",
+"levels": [
+"italiano4"
+]
+},
+"accogliere": {
+"text": "accogliere",
+"levels": [
+"italiano4"
+]
+},
+"la cittadinanza": {
+"text": "la cittadinanza",
+"levels": [
+"italiano4"
+]
+},
+"il pregiudizio": {
+"text": "il pregiudizio",
+"levels": [
+"italiano4"
+]
+},
+"la diversità": {
+"text": "la diversità",
+"levels": [
+"italiano4"
+]
+},
+"l'attualità": {
+"text": "l'attualità",
+"levels": [
+"italiano4"
+]
+},
+"la povertà": {
+"text": "la povertà",
+"levels": [
+"italiano4"
+]
+},
+"l'ambiente": {
+"text": "l'ambiente",
+"levels": [
+"italiano4"
+]
+},
+"il cambiamento climatico": {
+"text": "il cambiamento climatico",
+"levels": [
+"italiano4",
+"ap"
+]
+},
+"l'uguaglianza": {
+"text": "l'uguaglianza",
+"levels": [
+"italiano4"
+]
+},
+"lo sviluppo sostenibile": {
+"text": "lo sviluppo sostenibile",
+"levels": [
+"italiano4"
+]
+},
+"l'obiettivo": {
+"text": "l'obiettivo",
+"levels": [
+"italiano4"
+]
+},
+"il testo": {
+"text": "il testo",
+"levels": [
+"italiano4"
+]
+},
+"il ritmo": {
+"text": "il ritmo",
+"levels": [
+"italiano4"
+]
+},
+"mescolare": {
+"text": "mescolare",
+"levels": [
+"italiano4"
+]
+},
+"l'influenza": {
+"text": "l'influenza",
+"levels": [
+"italiano4"
+]
+},
+"le origini": {
+"text": "le origini",
+"levels": [
+"italiano4"
+]
+},
+"avrei voluto vedere il concerto ma non avevo i biglietti": {
+"text": "Avrei voluto vedere il concerto, ma non avevo i biglietti.",
+"levels": [
+"italiano4"
+]
+},
+"sarei andata alla manifestazione ma ero malata": {
+"text": "Sarei andata alla manifestazione, ma ero malata.",
+"levels": [
+"italiano4"
+]
+},
+"al tuo posto avrei ascoltato la canzone prima di giudicare": {
+"text": "Al tuo posto, avrei ascoltato la canzone prima di giudicare.",
+"levels": [
+"italiano4"
+]
+},
+"sto leggendo le notizie sull'ambiente": {
+"text": "Sto leggendo le notizie sull'ambiente.",
+"levels": [
+"italiano4"
+]
+},
+"ascoltando questa canzone sento l'influenza della musica araba": {
+"text": "Ascoltando questa canzone, sento l'influenza della musica araba.",
+"levels": [
+"italiano4"
+]
+},
+"molti italiani sono emigrati in america per lavoro": {
+"text": "Molti italiani sono emigrati in America per lavoro.",
+"levels": [
+"italiano4"
+]
+},
+"imparando la lingua l'integrazione è più facile": {
+"text": "Imparando la lingua, l'integrazione è più facile.",
+"levels": [
+"italiano4"
+]
+},
+"mio nonno ha detto che sarebbe tornato in italia": {
+"text": "Mio nonno ha detto che sarebbe tornato in Italia.",
+"levels": [
+"italiano4"
+]
+},
+"non bisogna fare di tutta l'erba un fascio": {
+"text": "Non bisogna fare di tutta l'erba un fascio.",
+"levels": [
+"italiano4"
+]
+},
+"l'agenda 2030 ha diciassette obiettivi": {
+"text": "L'Agenda 2030 ha diciassette obiettivi.",
+"levels": [
+"italiano4"
+]
+},
+"stiamo parlando di povertà e di uguaglianza": {
+"text": "Stiamo parlando di povertà e di uguaglianza.",
+"levels": [
+"italiano4"
+]
+},
+"avremmo dovuto proteggere l'ambiente prima": {
+"text": "Avremmo dovuto proteggere l'ambiente prima.",
+"levels": [
+"italiano4"
+]
+},
+"lo smartphone": {
+"text": "lo smartphone",
+"levels": [
+"italiano4",
+"ap"
+]
+},
+"l'app": {
+"text": "l'app",
+"levels": [
+"italiano4"
+]
+},
+"i social": {
+"text": "i social",
+"levels": [
+"italiano4",
+"ap"
+]
+},
+"scaricare": {
+"text": "scaricare",
+"levels": [
+"italiano4",
+"ap"
+]
+},
+"pubblicare": {
+"text": "pubblicare",
+"levels": [
+"italiano4"
+]
+},
+"condividere": {
+"text": "condividere",
+"levels": [
+"italiano4",
+"ap"
+]
+},
+"il post": {
+"text": "il post",
+"levels": [
+"italiano4"
+]
+},
+"il commento": {
+"text": "il commento",
+"levels": [
+"italiano4"
+]
+},
+"la password": {
+"text": "la password",
+"levels": [
+"italiano4"
+]
+},
+"la privacy": {
+"text": "la privacy",
+"levels": [
+"italiano4"
+]
+},
+"la videochiamata": {
+"text": "la videochiamata",
+"levels": [
+"italiano4"
+]
+},
+"il vocale": {
+"text": "il vocale",
+"levels": [
+"italiano4"
+]
+},
+"il blog": {
+"text": "il blog",
+"levels": [
+"italiano4"
+]
+},
+"il forum": {
+"text": "il forum",
+"levels": [
+"italiano4"
+]
+},
+"l'utente": {
+"text": "l'utente",
+"levels": [
+"italiano4"
+]
+},
+"iscriversi": {
+"text": "iscriversi",
+"levels": [
+"italiano4"
+]
+},
+"essere connesso a": {
+"text": "essere connesso/a",
+"levels": [
+"italiano4"
+]
+},
+"la coppia": {
+"text": "la coppia",
+"levels": [
+"italiano4"
+]
+},
+"il matrimonio combinato": {
+"text": "il matrimonio combinato",
+"levels": [
+"italiano4"
+]
+},
+"innamorarsi": {
+"text": "innamorarsi",
+"levels": [
+"italiano4"
+]
+},
+"fidarsi di": {
+"text": "fidarsi di",
+"levels": [
+"italiano4"
+]
+},
+"in italia si usa molto whatsapp": {
+"text": "In Italia si usa molto WhatsApp.",
+"levels": [
+"italiano4"
+]
+},
+"oggi si usano i social per tutto": {
+"text": "Oggi si usano i social per tutto.",
+"levels": [
+"italiano4"
+]
+},
+"come si dice password in italiano": {
+"text": "Come si dice «password» in italiano?",
+"levels": [
+"italiano4"
+]
+},
+"senza telefono si vive meglio": {
+"text": "Senza telefono si vive meglio.",
+"levels": [
+"italiano4"
+]
+},
+"una volta si scrivevano le lettere a mano": {
+"text": "Una volta si scrivevano le lettere a mano.",
+"levels": [
+"italiano4"
+]
+},
+"su instagram si pubblicano molte foto": {
+"text": "Su Instagram si pubblicano molte foto.",
+"levels": [
+"italiano4"
+]
+},
+"prima di iscriversi si legge la privacy": {
+"text": "Prima di iscriversi, si legge la privacy.",
+"levels": [
+"italiano4"
+]
+},
+"non si deve condividere la password": {
+"text": "Non si deve condividere la password.",
+"levels": [
+"italiano4"
+]
+},
+"mia nonna manda solo vocali": {
+"text": "Mia nonna manda solo vocali.",
+"levels": [
+"italiano4"
+]
+},
+"molte coppie si conoscono su un'app": {
+"text": "Molte coppie si conoscono su un'app.",
+"levels": [
+"italiano4"
+]
+},
+"questo weekend stacco la spina": {
+"text": "Questo weekend stacco la spina.",
+"levels": [
+"italiano4"
+]
+},
+"il mio post ha ricevuto venti commenti": {
+"text": "Il mio post ha ricevuto venti commenti.",
+"levels": [
+"italiano4"
+]
+},
+"l'opera d'arte": {
+"text": "l'opera d'arte",
+"levels": [
+"italiano4"
+]
+},
+"il capolavoro": {
+"text": "il capolavoro",
+"levels": [
+"italiano4"
+]
+},
+"il dipinto": {
+"text": "il dipinto",
+"levels": [
+"italiano4"
+]
+},
+"l'affresco": {
+"text": "l'affresco",
+"levels": [
+"italiano4"
+]
+},
+"la scultura": {
+"text": "la scultura",
+"levels": [
+"italiano4"
+]
+},
+"il pittore la pittrice": {
+"text": "il pittore / la pittrice",
+"levels": [
+"italiano4"
+]
+},
+"lo scultore": {
+"text": "lo scultore",
+"levels": [
+"italiano4"
+]
+},
+"dipingere": {
+"text": "dipingere",
+"levels": [
+"italiano4"
+]
+},
+"scolpire": {
+"text": "scolpire",
+"levels": [
+"italiano4"
+]
+},
+"il marmo": {
+"text": "il marmo",
+"levels": [
+"italiano4"
+]
+},
+"il bronzo": {
+"text": "il bronzo",
+"levels": [
+"italiano4"
+]
+},
+"il rinascimento": {
+"text": "il Rinascimento",
+"levels": [
+"italiano4"
+]
+},
+"il secolo": {
+"text": "il secolo",
+"levels": [
+"italiano4"
+]
+},
+"il quattrocento": {
+"text": "il Quattrocento",
+"levels": [
+"italiano4"
+]
+},
+"il mecenate": {
+"text": "il mecenate",
+"levels": [
+"italiano4"
+]
+},
+"l'evento storico": {
+"text": "l'evento storico",
+"levels": [
+"italiano4"
+]
+},
+"il palio": {
+"text": "il Palio",
+"levels": [
+"italiano4"
+]
+},
+"la contrada": {
+"text": "la contrada",
+"levels": [
+"italiano4"
+]
+},
+"il fantino": {
+"text": "il fantino",
+"levels": [
+"italiano4"
+]
+},
+"la maschera": {
+"text": "la maschera",
+"levels": [
+"italiano4",
+"ap"
+]
+},
+"il carro": {
+"text": "il carro",
+"levels": [
+"italiano4"
+]
+},
+"michelangelo scolpì il david tra il 1501 e il 1504": {
+"text": "Michelangelo scolpì il David tra il 1501 e il 1504.",
+"levels": [
+"italiano4"
+]
+},
+"leonardo da vinci nacque nel 1452": {
+"text": "Leonardo da Vinci nacque nel 1452.",
+"levels": [
+"italiano4"
+]
+},
+"leonardo dipinse la gioconda che oggi è a parigi": {
+"text": "Leonardo dipinse la Gioconda, che oggi è a Parigi.",
+"levels": [
+"italiano4"
+]
+},
+"giotto dipinse gli affreschi della cappella degli scrovegni": {
+"text": "Giotto dipinse gli affreschi della Cappella degli Scrovegni.",
+"levels": [
+"italiano4"
+]
+},
+"ghiberti lavorò alle porte del battistero per molti anni": {
+"text": "Ghiberti lavorò alle porte del Battistero per molti anni.",
+"levels": [
+"italiano4"
+]
+},
+"il rinascimento cominciò a firenze nel quattrocento": {
+"text": "Il Rinascimento cominciò a Firenze nel Quattrocento.",
+"levels": [
+"italiano4"
+]
+},
+"lorenzo de' medici aiutò molti artisti": {
+"text": "Lorenzo de' Medici aiutò molti artisti.",
+"levels": [
+"italiano4"
+]
+},
+"nel 1504 i fiorentini ammirarono il david in piazza": {
+"text": "Nel 1504 i fiorentini ammirarono il David in piazza.",
+"levels": [
+"italiano4"
+]
+},
+"il palio di siena si corre due volte all'anno": {
+"text": "Il Palio di Siena si corre due volte all'anno.",
+"levels": [
+"italiano4"
+]
+},
+"a carnevale a venezia tutti portano la maschera": {
+"text": "A Carnevale, a Venezia, tutti portano la maschera.",
+"levels": [
+"italiano4"
+]
+},
+"roma non fu fatta in un giorno": {
+"text": "Roma non fu fatta in un giorno.",
+"levels": [
+"italiano4"
+]
+},
+"mio nonno fu molto felice quando visitò firenze": {
+"text": "Mio nonno fu molto felice quando visitò Firenze.",
+"levels": [
+"italiano4"
+]
+},
+"il poeta": {
+"text": "il poeta",
+"levels": [
+"italiano4"
+]
+},
+"il poema": {
+"text": "il poema",
+"levels": [
+"italiano4"
+]
+},
+"la cantica": {
+"text": "la cantica",
+"levels": [
+"italiano4"
+]
+},
+"il canto": {
+"text": "il canto",
+"levels": [
+"italiano4"
+]
+},
+"il verso": {
+"text": "il verso",
+"levels": [
+"italiano4"
+]
+},
+"l'esilio": {
+"text": "l'esilio",
+"levels": [
+"italiano4"
+]
+},
+"la guida": {
+"text": "la guida",
+"levels": [
+"italiano4"
+]
+},
+"il cerchio": {
+"text": "il cerchio",
+"levels": [
+"italiano4"
+]
+},
+"l'anima": {
+"text": "l'anima",
+"levels": [
+"italiano4"
+]
+},
+"la selva oscura": {
+"text": "la selva oscura",
+"levels": [
+"italiano4"
+]
+},
+"il volgare": {
+"text": "il volgare",
+"levels": [
+"italiano4"
+]
+},
+"il latino": {
+"text": "il latino",
+"levels": [
+"italiano4"
+]
+},
+"derivare da": {
+"text": "derivare da",
+"levels": [
+"italiano4"
+]
+},
+"il significato": {
+"text": "il significato",
+"levels": [
+"italiano4"
+]
+},
+"il contesto": {
+"text": "il contesto",
+"levels": [
+"italiano4"
+]
+},
+"penso che": {
+"text": "penso che",
+"levels": [
+"italiano4"
+]
+},
+"credo che": {
+"text": "credo che",
+"levels": [
+"italiano4"
+]
+},
+"è importante che": {
+"text": "è importante che",
+"levels": [
+"italiano4"
+]
+},
+"voglio che": {
+"text": "voglio che",
+"levels": [
+"italiano4"
+]
+},
+"dante nacque a firenze nel 1265": {
+"text": "Dante nacque a Firenze nel 1265.",
+"levels": [
+"italiano4"
+]
+},
+"nel 1302 dante fu esiliato da firenze": {
+"text": "Nel 1302 Dante fu esiliato da Firenze.",
+"levels": [
+"italiano4"
+]
+},
+"dante morì a ravenna nel 1321": {
+"text": "Dante morì a Ravenna nel 1321.",
+"levels": [
+"italiano4"
+]
+},
+"la divina commedia ha tre cantiche": {
+"text": "La Divina Commedia ha tre cantiche.",
+"levels": [
+"italiano4"
+]
+},
+"nell'inferno ci sono nove cerchi": {
+"text": "Nell'Inferno ci sono nove cerchi.",
+"levels": [
+"italiano4"
+]
+},
+"virgilio è la guida di dante nell'inferno": {
+"text": "Virgilio è la guida di Dante nell'Inferno.",
+"levels": [
+"italiano4"
+]
+},
+"penso che l'inferno sia la cantica più famosa": {
+"text": "Penso che l'Inferno sia la cantica più famosa.",
+"levels": [
+"italiano4"
+]
+},
+"è importante che tu legga i versi ad alta voce": {
+"text": "È importante che tu legga i versi ad alta voce.",
+"levels": [
+"italiano4"
+]
+},
+"la prof vuole che capiamo le parole dal contesto": {
+"text": "La prof vuole che capiamo le parole dal contesto.",
+"levels": [
+"italiano4"
+]
+},
+"credo che dante abbia un posto speciale nella cultura italiana": {
+"text": "Credo che Dante abbia un posto speciale nella cultura italiana.",
+"levels": [
+"italiano4"
+]
+},
+"l'italiano di oggi deriva dal volgare fiorentino": {
+"text": "L'italiano di oggi deriva dal volgare fiorentino.",
+"levels": [
+"italiano4"
+]
+},
+"nel mezzo del cammin di nostra vita è il primo verso": {
+"text": "«Nel mezzo del cammin di nostra vita» è il primo verso.",
 "levels": [
 "italiano4"
 ]
@@ -2524,32 +5322,14 @@
 "ap"
 ]
 },
-"il carnevale": {
-"text": "il Carnevale",
-"levels": [
-"ap"
-]
-},
 "il carnevale di venezia è famoso": {
 "text": "Il Carnevale di Venezia è famoso.",
 "levels": [
 "ap"
 ]
 },
-"la maschera": {
-"text": "la maschera",
-"levels": [
-"ap"
-]
-},
 "la maschera nasconde l'identità": {
 "text": "La maschera nasconde l’identità.",
-"levels": [
-"ap"
-]
-},
-"il ferragosto": {
-"text": "il Ferragosto",
 "levels": [
 "ap"
 ]
@@ -2562,12 +5342,6 @@
 },
 "la sagra del paese è in settembre": {
 "text": "La sagra del paese è in settembre.",
-"levels": [
-"ap"
-]
-},
-"il dialetto": {
-"text": "il dialetto",
 "levels": [
 "ap"
 ]
@@ -4054,12 +6828,6 @@
 "ap"
 ]
 },
-"lo smartphone": {
-"text": "lo smartphone",
-"levels": [
-"ap"
-]
-},
 "lo smartphone sarà sempre più importante": {
 "text": "Lo smartphone sarà sempre più importante.",
 "levels": [
@@ -4080,12 +6848,6 @@
 },
 "la piattaforma digitale offrirà corsi gratuiti": {
 "text": "La piattaforma digitale offrirà corsi gratuiti.",
-"levels": [
-"ap"
-]
-},
-"i social": {
-"text": "i social",
 "levels": [
 "ap"
 ]
@@ -4158,18 +6920,6 @@
 },
 "con lo spid entrerai nei servizi pubblici online": {
 "text": "Con lo SPID entrerai nei servizi pubblici online.",
-"levels": [
-"ap"
-]
-},
-"condividere": {
-"text": "condividere",
-"levels": [
-"ap"
-]
-},
-"scaricare": {
-"text": "scaricare",
 "levels": [
 "ap"
 ]
@@ -5628,12 +8378,6 @@
 },
 "fare code switching": {
 "text": "fare code-switching",
-"levels": [
-"ap"
-]
-},
-"il cambiamento climatico": {
-"text": "il cambiamento climatico",
 "levels": [
 "ap"
 ]
