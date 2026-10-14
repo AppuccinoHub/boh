@@ -6,7 +6,12 @@ Writes OUT_DIR/results.json and one screenshot per screen and size."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
 BASE = os.environ.get('BOHBASE','http://127.0.0.1:8810/')
-SIZES = {'SE': (375, 553), '15': (393, 710), 'ProMax': (430, 790)}   # visible Safari area (approximate)
+SIZES = {'SE': (375, 553), '15': (393, 710), 'ProMax': (430, 790), 'CB1366': (1366, 625), 'CB1280': (1280, 600)}   # iPhone Safari visible area; Chromebook window minus browser bars and shelf (approximate)
+IPHONE_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1'
+CROS_UA = 'Mozilla/5.0 (X11; CrOS x86_64 15917.71.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+def ctx_for(b, sz, w, h):
+    if sz.startswith('CB'): return b.new_context(viewport={'width': w, 'height': h}, device_scale_factor=1, user_agent=CROS_UA)
+    return b.new_context(viewport={'width': w, 'height': h}, device_scale_factor=2, is_mobile=True, has_touch=True, user_agent=IPHONE_UA)
 KEYS = {'italiano1': 'bohItaliano1_v2', 'italiano2': 'bohItaliano2_v2', 'italiano3': 'bohItaliano3_v2', 'italiano4': 'bohItaliano4_v2', 'ap': 'bohAP_v2'}
 UNIT = json.loads(os.environ['BOHUNITS']) if os.environ.get('BOHUNITS') else {'italiano1': 'scuola', 'italiano2': 'u3', 'italiano3': 'imp', 'italiano4': 'r3', 'ap': 'f1'}
 OUT = sys.argv[1]; os.makedirs(OUT, exist_ok=True)
@@ -76,7 +81,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path='/opt/pw-browsers/chromium', args=['--no-sandbox'])
     for lv in LEVELS:
         for sz, (w, h) in SIZES.items():
-            ctx = b.new_context(viewport={'width': w, 'height': h}, device_scale_factor=2, is_mobile=True, has_touch=True)
+            ctx = ctx_for(b, sz, w, h)
             pg = ctx.new_page()
             pg.add_init_script(seed(KEYS[lv], UNIT[lv]))
             pg.goto(BASE + lv + '/?unit=' + UNIT[lv], wait_until='load'); pg.wait_for_timeout(1800)
@@ -114,7 +119,7 @@ with sync_playwright() as p:
             ctx.close()
     # pages outside the levels
     for sz, (w, h) in SIZES.items():
-        ctx = b.new_context(viewport={'width': w, 'height': h}, device_scale_factor=2, is_mobile=True, has_touch=True)
+        ctx = ctx_for(b, sz, w, h)
         pg = ctx.new_page(); pg.add_init_script(seed('bohItaliano2_v2', 'u3'))
         pg.goto(BASE + 'in-classe/', wait_until='load'); pg.wait_for_timeout(1500)
         m = pg.evaluate(METRICS); m.update({'level': 'in-classe', 'size': sz, 'screen': 'registra-page', 'how': 'first screen'}); res.append(m)

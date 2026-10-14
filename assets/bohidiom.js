@@ -97,5 +97,7 @@
   }
   if (LV) css();
   setInterval(tick, 400);
+  /* the game redraws the finish screen now and then (coins, celebration); put the card back in the same frame so it never blinks out */
+  var raf = 0; try { new MutationObserver(function () { if (!raf) raf = (W.requestAnimationFrame || setTimeout)(function () { raf = 0; tick(); }); }).observe(D.body, { childList: true, subtree: true }); } catch (e) {}
   W.BohIdiom = { get: function (u) { return get(LV, u || unitKey()); }, all: IDIOMS };
 })(window, document);

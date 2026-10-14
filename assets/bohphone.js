@@ -39,7 +39,10 @@
   W.__bohFit3 = true;
   /* MAXG = 1: screens no longer grow with CSS zoom. Safari works out zoomed sizes differently from Chrome, so on iPhones the
      fit step saw a too-tall screen, hid Boh, moved answers to another page and pushed windows off the bottom. Sizes come from the floor rules instead. */
-  var MAXG = 1, BOHMAX = 240, BOHMIN = 80, pend = 0, busy = false, skip = false, page = { key: '', n: 0 }, T = [];
+  /* Chrome (Chromebooks, Android, Windows) measures zoomed screens correctly, so screens may grow there to fill the space.
+     Safari and every iPhone browser (all WebKit) do not, so screens never grow there. */
+  var UA = (W.navigator && W.navigator.userAgent) || '', BLINK = /Chrome\//.test(UA) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(UA);
+  var MAXG = BLINK ? 1.45 : 1, BOHMAX = 240, BOHMIN = 80, pend = 0, busy = false, skip = false, page = { key: '', n: 0 }, T = [];
   var PROMPT = '.ls-prompt,.ls-head,.play-prompt,.lz-q,.lz-big,.bl-q';
   var ANSWER = 'button,input,textarea,select,.ls-opt,.ls-tile,.ls-word,.ls-tx,.ls-ph-m,.ls-q b,.opt-grid button,.lz-opt,.lz-tile,.lz-line';
   function q(s, r) { return (r || D).querySelector(s); }
