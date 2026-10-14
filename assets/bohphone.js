@@ -82,13 +82,13 @@
   function setZoom(el, z) { el.style.zoom = z === 1 ? '' : String(Math.round(z * 1000) / 1000); }
   function search(lo, hi, ok) { if (!ok(lo)) return null; if (ok(hi)) return hi; for (var i = 0; i < 7; i++) { var m = (lo + hi) / 2; if (ok(m)) lo = m; else hi = m; } ok(lo); return lo; }
 
-  function paging(root) {
+  function paging(root, extra) {
     var card = q('.ls-card', root); if (!card) return false;
     var acts = q('.ls-actions', card), pager = q('.bf-pager', card);
     if (pager) pager.remove();
     if (acts) acts.style.display = '';
     [].forEach.call(card.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); });
-    var room = W.innerHeight - 12 - Math.max(acts ? acts.offsetHeight + 14 : 0, 66);
+    var room = W.innerHeight - 12 - (extra || 0) - Math.max(acts ? acts.offsetHeight + 14 : 0, 66);
     var top0 = null;
     function split(list, depth) {   /* a part taller than the room is split into its own parts (two levels deep at most) */
       var out = [];
@@ -96,7 +96,9 @@
         if (c === acts || c.classList.contains('ls-kick')) return;
         if (!c.offsetHeight) return;
         if (top0 === null) top0 = c.getBoundingClientRect().top;
-        if (depth < 2 && c.children.length > 1 && c.offsetHeight > (room - top0) * 0.6) out = out.concat(split([].slice.call(c.children), depth + 1));
+        var cs = getComputedStyle(c), canSplit = depth < 2 && c.children.length > 1 && cs.display !== 'grid' && cs.display !== 'inline-grid' && cs.flexDirection !== 'row' &&
+          !c.matches('.ls-chart,.ls-phone,.ls-opts,.ls-sent,.ls-fc,.ls-slot,.ls-bank,.ls-words,.ls-uses,table,.ls-spia');
+        if (canSplit && c.offsetHeight > (room - top0) * 0.6) out = out.concat(split([].slice.call(c.children), depth + 1));
         else out.push(c);
       });
       return out;
@@ -109,7 +111,7 @@
       if (pages[pages.length - 1].length && used + h > room) { pages.push([]); used = start; }
       pages[pages.length - 1].push(b); used += h;
     });
-    if (pages.length < 2) return false;
+    if (pages.length < 2 || pages.length > 8) { [].forEach.call(card.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); return false; }
     var key = (W.__game && W.__game.state ? W.__game.state.lsCur + ':' + W.__game.state.lsI : '') + ':' + blocks.length;
     if (page.key !== key) page = { key: key, n: 0 };
     if (page.n >= pages.length) page.n = pages.length - 1;
@@ -127,8 +129,37 @@
     return true;
   }
 
+  /* play screens with a reading text (Il tema): the text gets its own screen, then the question with its answers; "Rileggi" goes back */
+  var pas = { key: '', show: true };
+  function passage(root) {
+    var pr = q('.play-prompt', root), box = pr && pr.previousElementSibling;
+    if (!box || (box.textContent || '').length < 120 || box.classList.contains('bf-pbar')) return;
+    var g = W.__game, key = g && g.state ? g.state.mode + ':' + g.state.qIndex : '';
+    if (pas.key !== key) pas = { key: key, show: true };
+    var after = [], n = pr; while (n) { after.push(n); n = n.nextElementSibling; }
+    for (var a = pr.parentNode; a && a !== root && a.parentNode; a = a.parentNode) { var m = a.nextElementSibling; while (m) { after.push(m); m = m.nextElementSibling; } }
+    var bar = D.createElement('div'); bar.className = 'bf-pager bf-pbar';
+    if (pas.show) {
+      after.forEach(function (e) { e.classList.add('bf-later'); });
+      bar.innerHTML = '<span class="bf-pagehint">1 / 2 · Leggi il testo</span><button type="button" class="bf-next">Domanda &rsaquo;</button>';
+      box.parentNode.insertBefore(bar, box.nextSibling);
+    } else {
+      box.classList.add('bf-later');
+      bar.innerHTML = '<button type="button" class="bf-back">&#128214; Rileggi il testo</button><span class="bf-pagehint">2 / 2</span>';
+      box.parentNode.insertBefore(bar, box);
+    }
+    bar.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('button') : null; if (!b) return; pas.show = !b.classList.contains('bf-next'); later(); });
+    if (over() > 1) root.classList.add('bf-reading');
+  }
+
+  /* lay the parts out in pages; if the first try still runs over, try again with a little less room, at most 3 times */
+  function pageFit(root) {
+    paging(root, 0); var ex = 0, prev = over();
+    for (var r = 0; r < 3 && prev > 1; r++) { ex += prev + 4; if (ex > W.innerHeight * 0.35) break; paging(root, ex); var now = over(); if (now >= prev) break; prev = now; }
+  }
+
   function fit() {
-    pend = 0; if (busy) return; busy = true;
+    pend = 0; if (busy) return; busy = true; lastFit = Date.now();
     try {
       var s = screen();
       if (s && s !== 'home') floor(s === 'lz' ? q('.lz') : look());
@@ -140,7 +171,10 @@
       if (!root) { busy = false; return; }
       var bh = boh(root);
       /* reset */
-      root.style.width = ''; setZoom(root, 1); if (bh) { setZoom(bh, 1); bh.classList.remove('bf-noboh'); }
+      root.style.width = ''; setZoom(root, 1); root.classList.remove('bf-t1', 'bf-t2', 'bf-t3', 'bf-reading');
+      if (s === 'play') { [].forEach.call(root.querySelectorAll('.bf-pbar'), function (b) { b.remove(); }); [].forEach.call(root.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); }
+      var m0 = q('.ls-ph-msgs', root); if (m0) { m0.style.maxHeight = ''; m0.style.minHeight = ''; m0.style.overflowY = ''; } var d0 = q('.boh-chatdir', root); if (d0) d0.classList.remove('bf-later');
+      if (bh) { setZoom(bh, 1); bh.classList.remove('bf-noboh'); }
       var st0 = q('.ls-boh', root); if (st0) st0.classList.remove('bf-noboh');
       if (s === 'lesson') { var pgr = q('.bf-pager', root); if (pgr) pgr.remove(); [].forEach.call(root.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); var ac = q('.ls-card .ls-actions', root); if (ac) ac.style.display = ''; }
       var bh0 = bh && vis(bh) ? bh.getBoundingClientRect().height : 0;
@@ -160,10 +194,29 @@
             if (isQuestion(root)) { bh.classList.add('bf-noboh'); var st1 = q('.ls-boh', root); if (st1 && over() > 1) st1.classList.add('bf-noboh'); }
           }
         }
-        if (over() > 1 && s === 'lesson') paging(root);
+        if (over() > 1 && s === 'play') {
+          root.classList.add('bf-t1');
+          if (over() > 1) {
+            root.classList.add('bf-t2');
+            [].forEach.call(root.querySelectorAll('div'), function (d) { if (!d.children.length && /^(WRITE IT IN ITALIAN|WORD HELP)/.test((d.textContent || '').trim())) d.classList.add('bf-later'); });
+            if (over() > 1) root.classList.add('bf-t3');
+            if (over() > 1) root.classList.add('bf-reading');
+            if (over() > 1) { var pp = q('.play-prompt', root), sub = pp && pp.nextElementSibling; for (var k3 = 0; sub && k3 < 3; k3++, sub = sub.nextElementSibling) if (/^\(/.test((sub.textContent || '').trim()) && sub.textContent.length < 90) { sub.classList.add('bf-later'); break; } }
+          }
+        }
+        var phone = s === 'lesson' && q('.ls-phone', root);
+        if (over() > 1 && phone) {   /* the chat: the help box steps aside, then the chat window gets shorter (it scrolls inside, like a real phone) */
+          var dir = q('.boh-chatdir', root); if (dir) dir.classList.add('bf-later');
+          var msgs = q('.ls-ph-msgs', root);
+          if (over() > 1 && msgs) { msgs.style.minHeight = '0'; var o = over(); if (o > 1) { msgs.style.maxHeight = Math.max(110, msgs.offsetHeight - o - 2) + 'px'; msgs.style.overflowY = 'auto'; msgs.scrollTop = msgs.scrollHeight; } }
+        }
+        if (over() > 1 && s === 'lesson' && !phone) pageFit(root);
+        if (over() > 1 && s === 'play') passage(root);
+        /* after the content moved to more screens, use any room that is left over */
+        if (over() <= 1) search(1, MAXG, function (v) { setZoom(root, v); root.style.width = v === 1 ? '' : 'calc(100% / ' + v + ')'; return over() <= 1; });
         /* last resort: Boh and the speech bubble step aside, and the parts are laid out again */
         var stage = q('.ls-boh', root);
-        if (over() > 1 && stage) { stage.classList.add('bf-noboh'); if (s === 'lesson') paging(root); }
+        if (over() > 1 && stage) { stage.classList.add('bf-noboh'); if (s === 'lesson' && !phone) pageFit(root); }
       }
     } catch (e) { try { console.warn('boh-fit-v3', e); } catch (_) {} }
     busy = false; skip = true; Promise.resolve().then(function () { skip = false; });   /* ignore the changes this step made itself */
@@ -197,6 +250,14 @@
     try { new MutationObserver(function () { if (!busy && !skip) later(); }).observe(D.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class', 'data-screen'] }); } catch (e) {}
     later();
   }
+  /* safety net: if the screen changed and no change was seen (for example while this step was ignoring its own changes), fit again */
+  var lastSig = '', lastFit = 0, tries = 0;
+  setInterval(function () {
+    var g = W.__game, st = g && g.state ? g.state : {}, root = rootEl();
+    var sig = screen() + '|' + st.lsCur + '|' + st.lsI + '|' + (st.lsIt ? st.lsIt.st : '') + '|' + st.qIndex + '|' + st.mode + '|' + (root ? root.childElementCount : 0) + '|' + W.innerWidth + 'x' + W.innerHeight;
+    if (sig !== lastSig) { lastSig = sig; tries = 0; later(); }
+    else if (root && tries < 3 && over() > 1 && Date.now() - lastFit > 1200) { tries++; later(); }   /* still running over: try once more */
+  }, 500);
   W.addEventListener('resize', later); W.addEventListener('orientationchange', later);
   if (D.fonts && D.fonts.ready) D.fonts.ready.then(later);
   if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go();

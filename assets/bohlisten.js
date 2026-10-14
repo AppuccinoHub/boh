@@ -41,6 +41,8 @@
   var CSS = '' +
     '#blst{position:fixed;inset:0;z-index:99985;background:rgba(14,42,91,.72);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 10px) 10px calc(env(safe-area-inset-bottom,0px) + 10px)}' +
     '#blst .bl-card{width:100%;max-width:520px;max-height:100%;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--card-bg,#fff);color:var(--text,#0E2A5B);border:2px solid var(--card-border,#CBD5E1);border-radius:22px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:12px;font-family:inherit}' +
+    '#blst .bl-rec{border:0!important;padding:0!important}#blst .bl-rec .brec-note{display:none!important}#blst .bl-rec h3{margin:0 0 4px}' +
+    '#blst .bl-s1,#blst .bl-s2{display:flex;flex-direction:column;gap:12px}#blst [hidden]{display:none!important}' +
     '#blst .bl-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}' +
     '#blst .bl-work{font-size:16px;font-weight:700;color:var(--text-muted,#46566E);line-height:1.3}' +
     '#blst .bl-work b{display:block;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-strong,var(--primary-bg,#1A5CDF))}' +
@@ -73,6 +75,7 @@
     '#blst .bl-step{font-size:16px;font-weight:800;color:var(--text-muted,#46566E);text-align:center}' +
     '#blst .bl-en{display:none;font-size:17px;color:var(--text-muted,#46566E);margin-top:6px}' +
     '#blst.bl-showen .bl-en{display:block}' +
+    '@media (max-height:620px){#blst .bl-card{padding:12px 14px 14px;gap:8px}#blst .bl-s1,#blst .bl-s2{gap:8px}#blst .bl-big{width:80px;height:80px;font-size:38px}#blst .bl-opt{min-height:50px}#blst .bl-go{min-height:50px;line-height:50px}#blst .bl-work{font-size:16px}#blst .bl-rec h3,#blst .bl-rec > div > p:not(.brec-note),#blst .bl-rec > p{display:none!important}}' +
     '@media (prefers-reduced-motion:reduce){#blst *{transition:none!important;animation:none!important}}';
 
   function css() { if (D.getElementById('blst-css')) return; var s = D.createElement('style'); s.id = 'blst-css'; s.textContent = CSS; D.head.appendChild(s); }
@@ -97,6 +100,7 @@
   function openAscolta(o) {
     var frames = (o.frames || []).map(function (f) { return '<b>' + esc(f) + '</b>'; }).join(' · ');
     el.innerHTML = shell(o,
+      '<div class="bl-s1">' +
       '<button class="bl-big" data-a="play" aria-label="Ascolta la domanda">&#128266;</button>' +
       '<p class="bl-note">Listen as often as you like. Then record your answer in Italian.</p>' +
       '<div class="bl-row"><button class="bl-btn2" data-a="slow">&#128034; Play again · slower</button><button class="bl-btn2" data-a="show">&#128065; Show me the question</button></div>' +
@@ -105,10 +109,17 @@
         '<p class="bl-note">1. Check your volume, and that this tab is not muted. 2. Tap <b>Show me the question</b> and read it. ' +
         '3. <button class="bl-btn2" data-a="voices" style="font-size:16px;min-height:44px">Voices and help</button></p></details>' +
       (frames ? '<div class="bl-frames">You can start with: ' + frames + '</div>' : '') +
+      '<button class="bl-go" data-a="step2">Registra la risposta &rsaquo;</button>' +
+      '</div>' +
+      '<div class="bl-s2" hidden>' +
+      '<div class="bl-row"><button class="bl-btn2" data-a="step1">&lsaquo; Ascolta di nuovo</button><button class="bl-btn2" data-a="play" aria-label="Ascolta la domanda">&#128266;</button></div>' +
+      (frames ? '<div class="bl-frames">You can start with: ' + frames + '</div>' : '') +
       '<div class="bl-rec" id="bl-rec"><p class="bl-note">Loading the recorder…</p></div>' +
       '<label class="bl-other"><input type="checkbox" id="bl-other"> I answered out loud another way (no microphone)</label>' +
       '<div class="bl-msg" id="bl-msg" role="status"></div>' +
-      '<button class="bl-go" data-a="done" id="bl-done">Fatto! Avanti</button>');
+      '<button class="bl-go" data-a="done" id="bl-done">Fatto! Avanti</button>' +
+      '</div>');
+    function snug() { var c = el && el.querySelector('.bl-card'); if (!c) return; [].forEach.call(el.querySelectorAll('.bl-frames'), function (f) { f.hidden = false; if (c.scrollHeight > c.clientHeight + 1) f.hidden = true; }); }
     function sync() { var ok = done(o.key) || el.querySelector('#bl-other').checked; el.querySelector('#bl-done').setAttribute('aria-disabled', ok ? 'false' : 'true'); }
     el.querySelector('#bl-other').addEventListener('change', function (e) { if (e.target.checked) mark(o.key); sync(); });
     needRecorder(function () {
@@ -119,9 +130,9 @@
         try { W.BohRecorder.mount(box, { key: o.key, label: 'La mia risposta', intro: 'Press <b>Record</b> and answer the question out loud, in Italian.', maxSec: 60, name: o.name || '', onChange: function (has) { if (has) mark(o.key); sync(); }, onEscalate: function () { var c = el && el.querySelector('#bl-other'); if (c) c.parentNode.style.outline = '3px solid var(--primary-bg,#1A5CDF)'; } }); }
         catch (e) { box.innerHTML = '<p class="bl-note">The recorder could not start. Tick the box below.</p>'; }
       } else box.innerHTML = '<p class="bl-note">The recorder could not load. Tick the box below.</p>';
-      sync();
+      sync(); snug();
     });
-    sync();
+    sync(); snug();
     setTimeout(function () { if (el && cur === o) speak(o.q); }, 400);
     el.addEventListener('click', function (e) {
       var a = e.target.closest ? e.target.closest('[data-a]') : null; if (!a) { if (e.target === el) close(); return; }
@@ -130,7 +141,8 @@
       if (act === 'play') return speak(o.q);
       if (act === 'slow') return speak(o.q, true);
       if (act === 'voices') { try { W.BohVoice && W.BohVoice.openPicker && W.BohVoice.openPicker(); } catch (er) {} return; }
-      if (act === 'show') { var q = el.querySelector('#bl-q'); q.hidden = !q.hidden; return; }
+      if (act === 'show') { var q = el.querySelector('#bl-q'); q.hidden = !q.hidden; snug(); return; }
+      if (act === 'step2' || act === 'step1') { el.querySelector('.bl-s1').hidden = act === 'step2'; el.querySelector('.bl-s2').hidden = act !== 'step2'; snug(); return; }
       if (act === 'done') {
         if (a.getAttribute('aria-disabled') === 'true') { el.querySelector('#bl-msg').textContent = 'First record your answer, or tick the box.'; return; }
         mark(o.key); return close();
@@ -150,16 +162,38 @@
   }
   function openLeggi(o) {
     var qs = o.questions || [], qi = 0, words = Object.keys(o.gloss || {}).sort(function (a, b) { return b.length - a.length; });
-    var opts = null, bad = [], solved = false;
+    var opts = null, bad = [], solved = false, reading = true, pages = null, pi = 0;
     function render() {
+      if (reading) {
+        /* the text gets as many screens as it needs: nothing scrolls, each screen ends with Avanti, the last with Domande */
+        var P = o.passage || [], card;
+        function page(a, b, last) {
+          el.innerHTML = shell(o, passHtml({ title: a === 0 ? o.title : '', passage: P.slice(a, b), gloss: o.gloss }) +
+            '<div class="bl-gl" id="bl-gl" role="status">Tap a dotted word for English.</div>' +
+            '<div class="bl-row">' + (a > 0 ? '<button class="bl-btn2" data-a="pprev">&lsaquo; Indietro</button>' : '') + '<button class="bl-btn2" data-a="en">English</button></div>' +
+            (last ? '<button class="bl-go" data-a="toq">' + (qi ? 'Torna alla domanda' : 'Domande') + ' &rsaquo;</button>' : '<button class="bl-go" data-a="pnext">Avanti &rsaquo;</button>'));
+          card = el.querySelector('.bl-card');
+          return card.scrollHeight <= card.clientHeight + 1;
+        }
+        if (!pages) {   /* work out the screens once */
+          pages = []; var a = 0;
+          while (a < P.length) {
+            var b = a + 1;
+            while (b < P.length && page(a, b + 1, b + 1 >= P.length)) b++;
+            pages.push([a, b]); a = b;
+          }
+        }
+        pi = Math.min(pi, pages.length - 1);
+        page(pages[pi][0], pages[pi][1], pi === pages.length - 1);
+        return;
+      }
       if (qi >= qs.length) {
         el.innerHTML = shell(o, passHtml(o) + '<div class="bl-q">Ottimo! ' + qs.length + ' / ' + qs.length + '</div><p class="bl-note">You understood the text.</p><button class="bl-go" data-a="done">Fatto! Avanti</button>');
         mark(o.key); return;
       }
       var q = qs[qi];
       if (!opts) { opts = shuffle([q.answer].concat(q.traps || [])); bad = []; solved = false; }
-      el.innerHTML = shell(o, passHtml(o) +
-        '<div class="bl-gl" id="bl-gl" role="status">Tap a dotted word for English.</div>' +
+      el.innerHTML = shell(o,
         '<div class="bl-step">Domanda ' + (qi + 1) + ' di ' + qs.length + '</div>' +
         '<div class="bl-q">' + esc(q.q) + '</div>' +
         '<div class="bl-opts">' + opts.map(function (t, i) {
@@ -168,7 +202,7 @@
         }).join('') + '</div>' +
         (bad.length && !solved ? '<div class="bl-why"><b>Non ancora.</b> Read the text again and pick another one.</div>' : '') +
         (solved ? '<div class="bl-why"><b>Giusto!</b> ' + esc(q.why || '') + '</div><button class="bl-go" data-a="next">' + (qi + 1 < qs.length ? 'Avanti' : 'Finisci') + '</button>' : '') +
-        '<div class="bl-row"><button class="bl-btn2" data-a="en">Read it again · English</button></div>');
+        '<div class="bl-row"><button class="bl-btn2" data-a="reread">&#128214; Rileggi il testo</button></div>');
     }
     render();
     el.addEventListener('click', function (e) {
@@ -177,6 +211,10 @@
       var act = a.getAttribute('data-a');
       if (act === 'x') return close();
       if (act === 'en') { el.classList.toggle('bl-showen'); return; }
+      if (act === 'toq') { reading = false; render(); return; }
+      if (act === 'reread') { reading = true; pi = 0; render(); return; }
+      if (act === 'pnext') { pi++; render(); return; }
+      if (act === 'pprev') { pi = Math.max(0, pi - 1); render(); return; }
       if (act === 'pick') { var t = opts[+a.getAttribute('data-i')]; if (t === qs[qi].answer) solved = true; else if (bad.indexOf(t) === -1) bad.push(t); var en = el.classList.contains('bl-showen'); render(); if (en) el.classList.add('bl-showen'); return; }
       if (act === 'next') { qi++; opts = null; render(); return; }
       if (act === 'done') return close();

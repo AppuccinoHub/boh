@@ -110,4 +110,23 @@ html body.bf-sheet .ls-card .ls-actions .ls-btn2 { background: none; border: 0; 
 html body [data-screen="lesson"] .wmark { display: none !important; }
 @media (max-width: 700px) { html body [data-screen="lesson"] .wrap { padding-top: 8px !important; padding-bottom: 10px !important; gap: 10px !important; } html body .ls { gap: 10px !important; } }
 html body .ls .lc.h { text-transform: none !important; letter-spacing: 0 !important; overflow-wrap: anywhere; }
+/* play screens when tight: the prompt steps down (never under 24px) and the answers get a little shorter (never under 48px) */
+html body [data-screen="play"] .play-col.bf-t1 .play-prompt { font-size: 40px !important; }
+html body [data-screen="play"] .play-col.bf-t1 .opt-grid { gap: 8px !important; }
+html body [data-screen="play"] .play-col.bf-t1 .opt-grid button { min-height: 52px !important; padding: 8px 12px !important; }
+html body [data-screen="play"] .play-col.bf-t2 .play-prompt { font-size: var(--bf-q) !important; }
+html body [data-screen="play"] .play-col.bf-t2 .opt-grid button { min-height: 48px !important; }
+@media (max-width: 700px) {
+  html body [data-screen="play"] .play-col .bb-box {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; margin: 0; max-height: 72vh; overflow: auto;
+    border-radius: 22px 22px 0 0 !important; padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    box-shadow: 0 -8px 24px rgba(14, 42, 91, .2);
+  }
+}
+html body [data-screen="play"] .play-col.bf-t2 label[for="frasiInput"] { display: none !important; }
+html body [data-screen="play"] .play-col.bf-t2 .sc-wrap input, html body [data-screen="play"] .play-col.bf-t2 #frasiInput { padding-top: 10px !important; padding-bottom: 10px !important; }
+/* the reading text's own screen (Il tema) on a small phone: the progress row steps aside while the student reads */
+html body [data-screen="play"] .play-col.bf-reading > .pc-meta, html body [data-screen="play"] .play-col.bf-reading > .pc-prog, html body [data-screen="play"] .play-col.bf-reading > .bt-fiamma { display: none !important; }
+html body [data-screen="play"] .play-col.bf-t3 .opt-grid { gap: 6px !important; }
+html body [data-screen="play"] .play-col.bf-t3 .opt-grid button { padding: 4px 10px !important; line-height: 1.2 !important; min-height: 48px !important; }
 /* /boh-fit-v3 */

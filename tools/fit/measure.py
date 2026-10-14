@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 BASE = os.environ.get('BOHBASE','http://127.0.0.1:8810/')
 SIZES = {'SE': (375, 553), '15': (393, 710), 'ProMax': (430, 790)}   # visible Safari area (approximate)
 KEYS = {'italiano1': 'bohItaliano1_v2', 'italiano2': 'bohItaliano2_v2', 'italiano3': 'bohItaliano3_v2', 'italiano4': 'bohItaliano4_v2', 'ap': 'bohAP_v2'}
-UNIT = {'italiano1': 'scuola', 'italiano2': 'u3', 'italiano3': 'imp', 'italiano4': 'r3', 'ap': 'f1'}
+UNIT = json.loads(os.environ['BOHUNITS']) if os.environ.get('BOHUNITS') else {'italiano1': 'scuola', 'italiano2': 'u3', 'italiano3': 'imp', 'italiano4': 'r3', 'ap': 'f1'}
 OUT = sys.argv[1]; os.makedirs(OUT, exist_ok=True)
 LEVELS = sys.argv[2:] or list(KEYS)
 
@@ -81,7 +81,7 @@ with sync_playwright() as p:
             pg.add_init_script(seed(KEYS[lv], UNIT[lv]))
             pg.goto(BASE + lv + '/?unit=' + UNIT[lv], wait_until='load'); pg.wait_for_timeout(1800)
             def shot(name, how):
-                pg.evaluate(CLEAN); pg.wait_for_timeout(700); pg.evaluate("window.scrollTo(0,0)"); pg.wait_for_timeout(150)
+                pg.evaluate(CLEAN); pg.wait_for_timeout(1600); pg.evaluate("window.scrollTo(0,0)"); pg.wait_for_timeout(150)
                 m = pg.evaluate(METRICS); m.update({'level': lv, 'size': sz, 'screen': name, 'how': how})
                 res.append(m)
                 pg.screenshot(path=os.path.join(OUT, '%s-%s-%s.png' % (lv, name, sz)))
@@ -99,6 +99,10 @@ with sync_playwright() as p:
                 d = lesson_item(pg, [t])
                 if d: shot(nm, d)
             pg.evaluate("(function(){var g=window.__game;g.setState({screen:'lesson',lsView:'between',lsCur:0})})()")
+            pg.wait_for_timeout(1200); pg.evaluate("(function(){var e=document.getElementById('bcel');if(e)e.click()})()"); pg.wait_for_timeout(400)
+            m = pg.evaluate(METRICS); m.update({'level': lv, 'size': sz, 'screen': 'celebration', 'how': 'end state'}); res.append(m)
+            pg.screenshot(path=os.path.join(OUT, '%s-%s-%s.png' % (lv, 'celebration', sz)))
+            print('%-9s %-6s %-16s min %5s  scroll %4s  empty %3s%%  %s' % (lv, sz, 'celebration', m['min'], m['scroll'], m['emptyBottom'], m['minWhat'][:50]), flush=True)
             shot('stop-done', 'between')
             pg.evaluate("(function(){var g=window.__game;g.setState({screen:'home'})})()"); pg.wait_for_timeout(300)
             for t, nm in (('mc', 'play-pick'), ('binary', 'play-truefalse'), ('selfcheck', 'play-selfcheck')):
