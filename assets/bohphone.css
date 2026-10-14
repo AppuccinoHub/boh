@@ -69,8 +69,8 @@ html body .lz .lz-bub { font-size: max(var(--bf-hand), 1em) !important; }
 /* typed answers never under 16px, or iPhone Safari zooms the page */
 html body input[type="text"], html body input:not([type]), html body textarea { font-size: max(16px, 1em); }
 
-/* the fit step needs the lesson and play screens to be able to sit in the middle of the screen */
-html body [data-screen="lesson"] .wrap, html body [data-screen="play"] .wrap { justify-content: center; }
+/* lesson and play screens start at the top, under the Back bar (like Duolingo and Babbel); leftover room stays at the bottom */
+html body [data-screen="lesson"] .wrap, html body [data-screen="play"] .wrap { justify-content: flex-start; }
 html body .bf-noboh { display: none !important; }
 html body .bf-later { display: none !important; }
 html body .bf-pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -130,3 +130,8 @@ html body [data-screen="play"] .play-col.bf-reading > .pc-meta, html body [data-
 html body [data-screen="play"] .play-col.bf-t3 .opt-grid { gap: 6px !important; }
 html body [data-screen="play"] .play-col.bf-t3 .opt-grid button { padding: 4px 10px !important; line-height: 1.2 !important; min-height: 48px !important; }
 /* /boh-fit-v3 */
+
+/* boh-fit-v3.1: full-screen windows (Help chart, pop-ups) open at the top like the screens under them,
+   and always sit above the after-a-mistake bottom panel */
+html body .tab-ov { align-items: flex-start !important; padding-top: calc(12px + env(safe-area-inset-top, 0px)) !important; z-index: 80 !important; }
+html body .pop-ov { z-index: 80 !important; }

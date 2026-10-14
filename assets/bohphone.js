@@ -79,6 +79,20 @@
   }
   function boh(root) { return root ? q('.ls-doll,.lz-bust', root) : null; }
   function isQuestion(root) { return !!q('.ls-opts,.ls-sent,.ls-slot,.ls-words,.ls-chat,.opt-grid,.sc-wrap,.lz-opts,.lz-slots', root); }
+  /* grow a screen by zoom and keep it exactly as wide as the screen. Safari and Chrome work out zoomed widths differently,
+     so the width is measured, not assumed: try each way and keep the one that fills the space without going past it. */
+  /* a full-screen window (tips cards, pop-ups) sitting inside the screen: zoom would push it off the bottom in Safari */
+  function ovIn(root) { return [].some.call(root.querySelectorAll('[class*="-ov"]'), function (e) { return vis(e) && getComputedStyle(e).position === 'fixed'; }); }
+  function grow(root, v) {
+    if (ovIn(root)) v = 1;
+    setZoom(root, v); root.style.width = '';
+    if (v === 1) return;
+    var par = root.parentElement; if (!par) return;
+    var cs = getComputedStyle(par), want = par.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var ways = ['calc(100% / ' + v + ')', '100%', ''], best = '', bd = 1e9;
+    for (var i = 0; i < ways.length; i++) { root.style.width = ways[i]; var d = Math.abs(root.getBoundingClientRect().width - want); if (d < bd - 0.5) { bd = d; best = ways[i]; } }
+    root.style.width = best;
+  }
   function setZoom(el, z) { el.style.zoom = z === 1 ? '' : String(Math.round(z * 1000) / 1000); }
   function search(lo, hi, ok) { if (!ok(lo)) return null; if (ok(hi)) return hi; for (var i = 0; i < 7; i++) { var m = (lo + hi) / 2; if (ok(m)) lo = m; else hi = m; } ok(lo); return lo; }
 
@@ -180,7 +194,7 @@
       var bh0 = bh && vis(bh) ? bh.getBoundingClientRect().height : 0;
       if (over() <= 1) {
         /* room to spare: grow everything together, then Boh a little more */
-        var z = search(1, MAXG, function (v) { setZoom(root, v); root.style.width = v === 1 ? '' : 'calc(100% / ' + v + ')'; return over() <= 1; }) || 1;
+        var z = search(1, MAXG, function (v) { grow(root, v); return over() <= 1; }) || 1;
         if (bh && bh0) {
           var emax = Math.max(1, BOHMAX / (bh0 * z));
           if (emax > 1) search(1, emax, function (v) { setZoom(bh, v); return over() <= 1; });
@@ -208,15 +222,22 @@
         if (over() > 1 && phone) {   /* the chat: the help box steps aside, then the chat window gets shorter (it scrolls inside, like a real phone) */
           var dir = q('.boh-chatdir', root); if (dir) dir.classList.add('bf-later');
           var msgs = q('.ls-ph-msgs', root);
-          if (over() > 1 && msgs) { msgs.style.minHeight = '0'; var o = over(); if (o > 1) { msgs.style.maxHeight = Math.max(110, msgs.offsetHeight - o - 2) + 'px'; msgs.style.overflowY = 'auto'; msgs.scrollTop = msgs.scrollHeight; } }
+          if (over() > 1 && msgs) { msgs.style.minHeight = '0'; var o = over(); if (o > 1) { msgs.style.maxHeight = Math.max(110, msgs.offsetHeight - o - 2) + 'px'; msgs.style.overflowY = 'auto'; } }
         }
         if (over() > 1 && s === 'lesson' && !phone) pageFit(root);
         if (over() > 1 && s === 'play') passage(root);
         /* after the content moved to more screens, use any room that is left over */
-        if (over() <= 1) search(1, MAXG, function (v) { setZoom(root, v); root.style.width = v === 1 ? '' : 'calc(100% / ' + v + ')'; return over() <= 1; });
+        if (over() <= 1) search(1, MAXG, function (v) { grow(root, v); return over() <= 1; });
         /* last resort: Boh and the speech bubble step aside, and the parts are laid out again */
         var stage = q('.ls-boh', root);
         if (over() > 1 && stage) { stage.classList.add('bf-noboh'); if (s === 'lesson' && !phone) pageFit(root); }
+        /* the chat window takes back any room that is left, so it is never smaller than it has to be */
+        var mg = phone && q('.ls-ph-msgs', root);
+        if (mg && mg.style.maxHeight) {
+          var h0 = mg.offsetHeight, full = mg.scrollHeight;
+          if (full > h0) search(h0, full, function (v) { mg.style.maxHeight = Math.round(v) + 'px'; return over() <= 1; });
+          mg.scrollTop = mg.scrollHeight;
+        }
       }
     } catch (e) { try { console.warn('boh-fit-v3', e); } catch (_) {} }
     busy = false; skip = true; Promise.resolve().then(function () { skip = false; });   /* ignore the changes this step made itself */
