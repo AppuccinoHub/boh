@@ -135,3 +135,6 @@ html body [data-screen="play"] .play-col.bf-t3 .opt-grid button { padding: 4px 1
    and always sit above the after-a-mistake bottom panel */
 html body .tab-ov { align-items: flex-start !important; padding-top: calc(12px + env(safe-area-inset-top, 0px)) !important; z-index: 80 !important; }
 html body .pop-ov { z-index: 80 !important; }
+
+/* boh-fit-v3.3: tight lesson screens (short Chromebook screens) get a little less space inside the card before anything moves to a second screen */
+html body .ls.bf-lt .ls-card { gap: 10px !important; padding-top: 14px !important; padding-bottom: 14px !important; }

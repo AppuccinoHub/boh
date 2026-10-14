@@ -190,13 +190,16 @@
       if (!root) { busy = false; return; }
       var bh = boh(root);
       /* reset */
-      root.style.width = ''; setZoom(root, 1); root.classList.remove('bf-t1', 'bf-t2', 'bf-t3', 'bf-reading');
+      root.style.width = ''; setZoom(root, 1); root.classList.remove('bf-t1', 'bf-t2', 'bf-t3', 'bf-reading', 'bf-lt');
       if (s === 'play') { [].forEach.call(root.querySelectorAll('.bf-pbar'), function (b) { b.remove(); }); [].forEach.call(root.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); }
       var m0 = q('.ls-ph-msgs', root); if (m0) { m0.style.maxHeight = ''; m0.style.minHeight = ''; m0.style.overflowY = ''; } var d0 = q('.boh-chatdir', root); if (d0) d0.classList.remove('bf-later');
       if (bh) { setZoom(bh, 1); bh.classList.remove('bf-noboh'); }
       var st0 = q('.ls-boh', root); if (st0) st0.classList.remove('bf-noboh');
       if (s === 'lesson') { var pgr = q('.bf-pager', root); if (pgr) pgr.remove(); [].forEach.call(root.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); var ac = q('.ls-card .ls-actions', root); if (ac) ac.style.display = ''; }
       var bh0 = bh && vis(bh) ? bh.getBoundingClientRect().height : 0;
+      /* wide screens (Chromebook): Boh stands BESIDE the card, so making Boh smaller frees no height. Keep Boh, never hide him there. */
+      var stg0 = q('.ls-boh', root), crd0 = q('.ls-card', root);
+      var side = !!(stg0 && crd0 && vis(stg0) && stg0.getBoundingClientRect().right <= crd0.getBoundingClientRect().left + 4 && stg0.getBoundingClientRect().height <= crd0.getBoundingClientRect().height + 2);   /* only when Boh's column is not the taller one */
       if (over() <= 1) {
         /* room to spare: grow everything together, then Boh a little more */
         var z = search(1, MAXG, function (v) { grow(root, v); return over() <= 1; }) || 1;
@@ -206,7 +209,7 @@
         }
       } else {
         /* too tight: Boh first, then hide Boh on question screens, then pages */
-        if (bh && bh0) {
+        if (bh && bh0 && !side) {
           var emin = Math.min(1, BOHMIN / bh0);
           if (search(emin, 1, function (v) { setZoom(bh, v); return over() <= 1; }) === null) {
             setZoom(bh, emin);
@@ -229,13 +232,19 @@
           var msgs = q('.ls-ph-msgs', root);
           if (over() > 1 && msgs) { msgs.style.minHeight = '0'; var o = over(); if (o > 1) { msgs.style.maxHeight = Math.max(110, msgs.offsetHeight - o - 2) + 'px'; msgs.style.overflowY = 'auto'; } }
         }
+        /* before splitting into screens, the small reminder line under the card steps aside (the checkboxes already say it) */
+        if (over() > 1 && s === 'lesson') root.classList.add('bf-lt');   /* a little less space inside the card */
+        if (over() > 1 && s === 'lesson') { var hn = q('.ls-card > .ls-hint2', root); if (hn) hn.classList.add('bf-later'); }
         if (over() > 1 && s === 'lesson' && !phone) pageFit(root);
         if (over() > 1 && s === 'play') passage(root);
         /* after the content moved to more screens, use any room that is left over */
         if (over() <= 1) search(1, MAXG, function (v) { grow(root, v); return over() <= 1; });
         /* last resort: Boh and the speech bubble step aside, and the parts are laid out again */
         var stage = q('.ls-boh', root);
-        if (over() > 1 && stage) { stage.classList.add('bf-noboh'); if (s === 'lesson' && !phone) pageFit(root); }
+        if (over() > 1 && stage && !side) { stage.classList.add('bf-noboh'); if (s === 'lesson' && !phone) pageFit(root); }
+        /* beside the card, Boh may grow to the card's height */
+        /* beside the card, Boh takes the card's height: bigger when there is room, smaller when the card got shorter (for example after splitting into screens) */
+        if (side && bh && bh0) { var bmin = Math.min(1, BOHMIN / bh0); if (search(bmin, Math.max(1, BOHMAX / bh0), function (v) { setZoom(bh, v); return over() <= 1 && stg0.getBoundingClientRect().height <= crd0.getBoundingClientRect().height + 2; }) === null) setZoom(bh, bmin); }
         /* the chat window takes back any room that is left, so it is never smaller than it has to be */
         var mg = phone && q('.ls-ph-msgs', root);
         if (mg && mg.style.maxHeight) {
