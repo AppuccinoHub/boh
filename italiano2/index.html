@@ -67,7 +67,7 @@ function fill(){var b=document.querySelector('.pathbar');if(!b)return;
 function dup(){var h=document.querySelector('.home-hero'),t=document.querySelector('.hero-title'),o=document.querySelector('.oggi-t');
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610141200"></script><script src="../assets/bohhomekit.js?v=202610141200"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610122000" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610111800"></script><script src="../assets/parla-italiano2.js?v=202610140100"></script><script src="../assets/recorder.js?v=202610140100"></script><script src="../assets/bohparla.js?v=202610131900"></script></head><body>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610140600"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610141200"></script><script src="../assets/bohhomekit.js?v=202610141200"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610140700" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610140600"></script><script src="../assets/parla-italiano2.js?v=202610140100"></script><script src="../assets/recorder.js?v=202610140100"></script><script src="../assets/bohparla.js?v=202610131900"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -12503,43 +12503,7 @@ function fill(){var t=(window.BohToday||{})[lv],els=document.querySelectorAll('.
   var w=a.querySelector('.oggi-w');if(w)w.textContent=t.words||'';
   a.querySelector('.oggi-d').textContent=d>=t.total?'All '+t.total+' parts done':(d?d+' of '+t.total+' parts done. Keep going.':'Start here.');}}
 fill();setInterval(fill,600);}catch(e){}})();</script>
-<style>/* boh-lsfit-v1 */
-@media (max-height:780px){
-.wrap:has(.ls){padding-top:8px!important;padding-bottom:8px!important}
-.ls{gap:6px!important}
-.ls-card{gap:8px!important;padding:12px 16px!important}
-.ls-opts{gap:6px!important}
-.ls-opt{padding:8px 14px!important;min-height:40px!important;font-size:16px!important}
-.ls-opt.sm{min-height:38px!important;padding:6px 12px!important}
-.ls-ok,.ls-why,.ls-msg,.ls-bad,.ls-shown{padding:8px 12px!important}
-.ls-btn,.ls-btn2{min-height:42px!important}
-.ls-prompt{font-size:20px!important}
-.ls-noloss{display:none}
-}
-@media (max-width:700px) and (max-height:780px){
-.doll.ls-doll{display:none!important}
-.ls-boh{flex-direction:row!important}
-.ls-bubble{font-size:18px!important;padding:6px 12px!important}
-.ls-stage{gap:6px!important}
-}
-@media (max-height:480px){
-.ls-kick,.ls-oggi{display:none}
-.ls-top{display:none}
-}
-/* /boh-lsfit-v1 */</style>
-<script>/* boh-lsfit-v1: last-resort scale for lesson stops */(function(){try{
-var pend=0,T=[];
-function fit(){pend=0;var col=document.querySelector('.ls');if(!col)return;col.style.zoom='';
- var se=document.scrollingElement;function over(){return se.scrollHeight-innerHeight}
- if(over()<=1)return;
- var lo=.62,hi=1;col.style.zoom=lo;if(over()>1)return;
- for(var i=0;i<6;i++){var mid=(lo+hi)/2;col.style.zoom=mid.toFixed(3);if(over()>1)hi=mid;else lo=mid}
- col.style.zoom=lo.toFixed(3)}
-function later(){if(pend)return;pend=requestAnimationFrame(function(){fit();T.forEach(clearTimeout);T=[setTimeout(fit,150),setTimeout(fit,500)]})}
-function go(){var app=document.getElementById('app');if(!app)return;new MutationObserver(later).observe(app,{childList:true,subtree:true,characterData:true});later()}
-addEventListener('resize',later);addEventListener('orientationchange',later);
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
-}catch(e){}})();</script>
+<!-- boh-lsfit-v1 removed Oct 14 2026: replaced by boh-fit-v3 in assets/bohphone.css + bohphone.js -->
 <style>/* boh-fit-v2 */
 .play-col .okbar{margin-top:2px}
 /* no sign-in strip on this site, so the 76px reserved at the bottom of every page is given back */
@@ -12552,92 +12516,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .play-col:has(.ea-step2) .ea-row > div,.play-col:has(.fb-dock) .ea-row > div{display:none!important}
 .play-col:has(.ea-step2) .ea-row button,.play-col:has(.fb-dock) .ea-row button{min-width:0!important;min-height:38px!important;padding:6px 10px!important;font-size:16px!important}
 .play-col:has(.ea-step2) .ea-wrap > div:first-child,.play-col:has(.fb-dock) .ea-wrap > div:first-child{display:none!important}
-@media (max-height:820px){
-.wrap:has(.play-col){padding-top:10px!important;padding-bottom:10px!important}
-.wrap:has(.play-col){gap:6px!important}
-@media (max-height:480px){.wrap:has(.play-col) > :first-child{zoom:.8}}
-.play-col{gap:8px!important}
-.play-col .bt-fiamma{padding:6px 12px!important;font-size:12.5px!important}
-.play-col .play-mid{min-height:0!important;gap:6px!important}
-.play-col .play-prompt{font-size:25px!important;line-height:1.2!important}
-.play-col .opt-grid{gap:8px!important}
-.play-col .opt-grid button{padding:10px 10px!important;min-height:46px!important;font-size:18px!important}
-.play-col .ea-wrap,.play-col .sc-wrap{gap:8px!important}
-.play-col .fb-dock{gap:8px!important}
-.play-col .fb-dock .pr{width:50px!important;height:56px!important}
-.play-col .fb-dock .pop{gap:8px!important}
-.play-col .fb-dock .pop > div:last-child{padding:6px 12px!important;font-size:15px!important}
-.play-col .fb-dock > div[style*="padding:14px 16px"],.play-col .fr-done{padding:8px 12px!important;gap:3px!important}
-.play-col .fb-dock .tip-box,.play-col .fb-dock .bb-trick,.play-col .bb-box .bb-trick{padding:8px 12px!important;gap:3px!important;font-size:14.5px!important}
-.play-col .fb-dock .bt-continue{padding:12px!important}
-.play-col .bb-box{padding:10px 12px!important;gap:6px!important}
-.play-col .sc-wrap input{padding:11px 12px!important;font-size:17px!important}
-.play-col .sc-wrap button[aria-label^="Add"]{min-height:38px!important;min-width:38px!important;font-size:16px!important}
-.play-col .sc-wrap button[style*="padding:16px"]{padding:11px!important}
-.play-col .sc-wrap button[style*="dashed"]{padding:7px!important}
-.play-col .ea-step2{gap:6px!important;padding-top:2px!important}
-.play-col .ea-step2 > div[style*="font-size:16px"]{font-size:14.5px!important}
-.play-col .ea-step2 .opt-grid button{min-height:40px!important}
-.play-col .bb-buy{padding:8px 12px!important}
-}
-@media (max-height:680px){
-.play-col{gap:6px!important}
-.play-col .play-prompt{font-size:22px!important}
-.play-col .opt-grid button{padding:7px 8px!important;min-height:40px!important;font-size:16.5px!important}
-.play-col .fb-dock .pr{width:40px!important;height:46px!important}
-.play-col .fb-dock .pop > div:last-child{font-size:14px!important;padding:4px 10px!important}
-.play-col .fb-dock > div[style*="padding:14px 16px"],.play-col .fr-done{padding:6px 10px!important}
-.play-col .fb-dock .bt-continue{padding:9px!important}
-.play-col .bb-buy small{display:none!important}
-}
-@media (max-height:470px) and (orientation:landscape){
-[data-screen="play"] .wrap{max-width:none!important;padding:6px 16px!important}
-.play-col{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;row-gap:6px;align-content:start}
-.play-col > .bt-fiamma{display:none!important}
-.play-col > *{grid-column:1}
-.play-col > .pc-prog,.play-col > .pc-meta{grid-column:1 / -1}
-.play-col > .fb-dock,.play-col > .bb-box,.play-col > .bb-note{grid-column:2;grid-row:3 / span 8;align-self:start}
-.play-col .play-prompt{font-size:20px!important}
-.play-col .opt-grid button{min-height:34px!important;font-size:15.5px!important;padding:4px 8px!important}
-.play-col .fb-dock .pr{width:34px!important;height:40px!important}
-.play-col .fb-dock .bt-continue{padding:7px!important}
-.play-col .tip-bar{height:22px!important}
-.play-col .tip-bar em{line-height:22px!important}
-.play-col .fb-dock{gap:4px!important}
-.play-col .fb-dock .pop{gap:6px!important}
-.play-col .fb-dock .pop > div:last-child{font-size:13px!important;padding:3px 8px!important}
-.play-col .fb-dock .tip-box,.play-col .fb-dock .bb-trick,.play-col .bb-box .bb-trick{padding:5px 10px!important;font-size:13px!important;gap:2px!important}
-.play-col .fb-dock .bb-ghost{min-height:32px!important;padding:5px!important;margin-top:2px!important;font-size:13px!important}
-.play-col .fb-dock > div[style*="padding:14px 16px"],.play-col .fr-done{padding:5px 10px!important;gap:1px!important}
-.play-col .fb-dock div[style*="font-size:17px"],.play-col .fr-done div[style*="font-size:17px"]{font-size:15px!important}
-.play-col .fb-dock div[style*="font-size:14px"],.play-col .fr-done div[style*="font-size:14px"]{font-size:12.5px!important;line-height:1.3!important}
-.play-col .fb-dock .display,.play-col .fr-done .display{font-size:16px!important}
-.play-col .fb-dock div[style*="letter-spacing:.08em"],.play-col .fr-done div[style*="letter-spacing:.08em"]{display:none!important}
-.play-col .bb-box{padding:6px 10px!important;gap:4px!important}
-.play-col .bb-head{font-size:15px!important}
-.play-col .bb-row{gap:6px!important}
-.play-col .bb-row .bb-ghost{min-height:30px!important}
-.play-col .ea-wrap{gap:4px!important}
-.play-col .sc-wrap input{padding:7px 10px!important;font-size:16px!important}
-.play-col .sc-wrap button[aria-label^="Add"]{min-height:30px!important;min-width:32px!important;font-size:15px!important}
-.play-col .sc-wrap button[style*="padding:16px"]{padding:7px!important}
-.play-col .sc-wrap button[style*="dashed"]{padding:4px!important;font-size:12.5px!important}
-.play-col .sc-wrap label{font-size:12px!important}
-.play-col:has(.ea-step2) .ea-row button,.play-col:has(.fb-dock) .ea-row button{min-height:32px!important;font-size:15px!important}
-.play-col .ea-wrap > div > div{gap:6px!important}
-}
+/* the size and shrink rules that were here were removed Oct 14 2026 (boh-fit-v3 in assets/bohphone.css) */
 /* /boh-fit-v2 */</style>
-<script>/* boh-fit-v2: last-resort scale so a long answer still fits without scrolling */(function(){try{
-var pend=0;
-function fit(){pend=0;var col=document.querySelector('.play-col');if(!col)return;col.style.zoom='';
- var se=document.scrollingElement;function over(){return se.scrollHeight-innerHeight}
- if(over()<=1)return;
- var lo=innerHeight<=480?.55:.62,hi=1;col.style.zoom=lo;if(over()>1)return;
- for(var i=0;i<6;i++){var mid=(lo+hi)/2;col.style.zoom=mid.toFixed(3);if(over()>1)hi=mid;else lo=mid}
- col.style.zoom=lo.toFixed(3)}
-var T=[];function later(){if(pend)return;pend=requestAnimationFrame(function(){fit();T.forEach(clearTimeout);T=[setTimeout(fit,150),setTimeout(fit,500)]})}
-function go(){var app=document.getElementById('app');if(!app)return;new MutationObserver(later).observe(app,{childList:true,subtree:true,characterData:true});later()}
-addEventListener('resize',later);addEventListener('orientationchange',later);
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
-}catch(e){}})();</script>
+<!-- boh-fit-v2 shrink script removed Oct 14 2026: replaced by boh-fit-v3 -->
 </body></html>
