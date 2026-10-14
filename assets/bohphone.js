@@ -37,7 +37,9 @@
   'use strict';
   if (W.__bohFit3) return;
   W.__bohFit3 = true;
-  var MAXG = 1.45, BOHMAX = 240, BOHMIN = 80, pend = 0, busy = false, skip = false, page = { key: '', n: 0 }, T = [];
+  /* MAXG = 1: screens no longer grow with CSS zoom. Safari works out zoomed sizes differently from Chrome, so on iPhones the
+     fit step saw a too-tall screen, hid Boh, moved answers to another page and pushed windows off the bottom. Sizes come from the floor rules instead. */
+  var MAXG = 1, BOHMAX = 240, BOHMIN = 80, pend = 0, busy = false, skip = false, page = { key: '', n: 0 }, T = [];
   var PROMPT = '.ls-prompt,.ls-head,.play-prompt,.lz-q,.lz-big,.bl-q';
   var ANSWER = 'button,input,textarea,select,.ls-opt,.ls-tile,.ls-word,.ls-tx,.ls-ph-m,.ls-q b,.opt-grid button,.lz-opt,.lz-tile,.lz-line';
   function q(s, r) { return (r || D).querySelector(s); }
