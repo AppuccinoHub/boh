@@ -42,7 +42,8 @@
   /* Chrome (Chromebooks, Android, Windows) measures zoomed screens correctly, so screens may grow there to fill the space.
      Safari and every iPhone browser (all WebKit) do not, so screens never grow there. */
   var UA = (W.navigator && W.navigator.userAgent) || '', BLINK = /Chrome\//.test(UA) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(UA);
-  var MAXG = BLINK ? 1.45 : 1, BOHMAX = 240, BOHMIN = 80, pend = 0, busy = false, skip = false, page = { key: '', n: 0 }, T = [];
+  var MAXG = 1,   /* 14 Oct 2026: growing in Chrome (BLINK ? 1.45) is off; it made Chromebook lesson screens shake back and forth at some display-zoom sizes */
+      BOHMAX = 240, BOHMIN = 80, pend = 0, busy = false, skip = false, page = { key: '', n: 0 }, T = [];
   var PROMPT = '.ls-prompt,.ls-head,.play-prompt,.lz-q,.lz-big,.bl-q';
   var ANSWER = 'button,input,textarea,select,.ls-opt,.ls-tile,.ls-word,.ls-tx,.ls-ph-m,.ls-q b,.opt-grid button,.lz-opt,.lz-tile,.lz-line';
   function q(s, r) { return (r || D).querySelector(s); }
