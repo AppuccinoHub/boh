@@ -67,7 +67,7 @@ function fill(){var b=document.querySelector('.pathbar');if(!b)return;
 function dup(){var h=document.querySelector('.home-hero'),t=document.querySelector('.hero-title'),o=document.querySelector('.oggi-t');
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610121200"></script><script src="../assets/bohfinish.js?v=202610121400"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610122000" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610111800"></script><script src="../assets/parla-italiano2.js?v=202610131900"></script><script src="../assets/recorder.js?v=202610131900"></script><script src="../assets/bohparla.js?v=202610131900"></script></head><body>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610111800"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610141200"></script><script src="../assets/bohhomekit.js?v=202610141200"></script><script src="../assets/bohfinish.js?v=202610121400"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610122000" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610111800"></script><script src="../assets/parla-italiano2.js?v=202610131900"></script><script src="../assets/recorder.js?v=202610131900"></script><script src="../assets/bohparla.js?v=202610131900"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -3123,7 +3123,7 @@ function addUnique(arr, v) { return arr.indexOf(v) === -1 ? arr.concat([v]) : ar
 function progressDefaults() {
   return { trips: [], scudi: 0, scudoWeek: '', playDays: 0, bentornato: 0, fiammaMiles: [], cashi: 0, lifetime: 0, centoniOpened: 0, sacchiOpened: 0, inventory: [], badges: [], missedEver: [], lastPlay: null, diFila: 0, ageTrap: 0, formsHit: [],
            paid: [], missedNow: [], sessionEarned: 0, lastEarn: 0, newBadges: [], eaRun: 0, missRun: 0, zooSession: [],
-           paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, returnScreen: 'home', shopMsg: '',
+           paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, paccoDup: false, returnScreen: 'home', shopMsg: '',
            glossWord: '', glossMean: '', lastTyped: '', fixing: false,
            paidDay: null, cardsPaid: 0, overlay: null, overlayBack: null, equipped: {}, frasiMastered: [], passed: [],
            provaLog: [], provaStart: 0, provaAttempt: 0, provaFirst: null, provaBest: null, provaCard: null, provaTab: false };
@@ -10335,14 +10335,14 @@ class Component extends DCLogic {
 
   openPacco() {
     var s = this.state;
-    var patch = { screen: 'pacco', paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, lastEarn: 0 };
+    var patch = { screen: 'pacco', paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, paccoDup: false, lastEarn: 0 };
     if (s.screen === 'home' || s.screen === 'summary') patch.returnScreen = s.screen;
     this.setState(patch);
   }
 
-  rollItem(inventory, kind, nth) {
+  rollItem(inventory, kind, nth, allowOwned) {
     var pool = ITEMS.filter(function (it) {
-      if (inventory.indexOf(it.id) !== -1) return false;
+      if (!allowOwned && inventory.indexOf(it.id) !== -1) return false;   /* allowOwned: a pack may show an item the student already owns (Già tuo! +BC) */
       if (!it.img || it.trip || it.pack || it.voucher || it.consumable || it.soon || it.source !== 'shop') return false;
       if (kind === 'sacco' && !it.pp && it.rarity !== 'EPICO' && it.rarity !== 'ASSURDO') return false;
       if (kind !== 'sacco' && it.rarity === 'ASSURDO') return false;
@@ -10363,17 +10363,18 @@ class Component extends DCLogic {
     var kind = p.sacchi > 0 ? 'sacco' : (p.centoni > 0 ? 'centone' : null);
     if (!kind) { this.setState({ screen: s.returnScreen || 'home' }); return; }
     var nth = kind === 'sacco' ? s.sacchiOpened : s.centoniOpened;
-    var item = this.rollItem(s.inventory, kind, nth);
+    var item = this.rollItem(s.inventory, kind, nth, true);
     var inv = s.inventory, refund = 0, bonus = null;
-    if (item) inv = inv.concat([item.id]); else refund = kind === 'sacco' ? 250 : 50;
+    var dup = !!(item && inv.indexOf(item.id) !== -1);   /* Già tuo!: no true duplicates, the coins come back instead (cashi only, never lifetime) */
+    if (item && !dup) inv = inv.concat([item.id]); else refund = kind === 'sacco' ? 250 : 50;
     if (kind === 'centone' && nth === 0 && inv.indexOf('card_cashi') === -1) bonus = 'card_cashi';
     if (kind === 'centone' && nth === 1 && inv.indexOf('card_rap') === -1) bonus = 'card_rap';
     if (kind === 'sacco' && inv.indexOf('card_roma') === -1) bonus = 'card_roma';
     if (bonus) inv = inv.concat([bonus]);
     this.sfx('fanfare');
     var eqP = Object.assign({}, s.equipped || {});
-    if (item && SLOT[item.id]) eqP[SLOT[item.id]] = item.id;
-    var patch = { equipped: eqP, paccoOpen: true, paccoItem: item ? item.id : null, paccoBonus: bonus, paccoRefund: refund, inventory: inv, cashi: s.cashi + refund };
+    if (item && !dup && SLOT[item.id]) eqP[SLOT[item.id]] = item.id;
+    var patch = { equipped: eqP, paccoOpen: true, paccoItem: item ? item.id : null, paccoBonus: bonus, paccoRefund: refund, paccoDup: dup, inventory: inv, cashi: s.cashi + refund };
     if (kind === 'sacco') patch.sacchiOpened = s.sacchiOpened + 1; else patch.centoniOpened = s.centoniOpened + 1;
     this.setState(patch);
   }
@@ -10381,7 +10382,7 @@ class Component extends DCLogic {
   collectPacco() {
     var s = this.state;
     var p = this.pending();
-    if (p.sacchi + p.centoni > 0) this.setState({ paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0 });
+    if (p.sacchi + p.centoni > 0) this.setState({ paccoOpen: false, paccoItem: null, paccoBonus: null, paccoRefund: 0, paccoDup: false });
     else this.setState({ screen: s.returnScreen || 'home', paccoOpen: false });
   }
 
@@ -11208,7 +11209,7 @@ class Component extends DCLogic {
     r.startW = ''; r.hasStartW = false;
     r.startN = pStep ? 'Last step: talk with Prof' : all ? 'Lezione fatta!' : 'Round ' + (fr + 1);
     r.hasStartN = true;
-    r.startGo = 'Comincia'; r.startGoEn = 'Start';   /* H-05: one label, every level, every state */
+    r.startGo = 'Continua'; r.startGoEn = 'Continue';   /* H-05: one label, every level, every state */
     var base = r.startH;
     r.startH = function () {
       if (pStep) { self.sfx('tap'); window.BohParla.open(); }
@@ -11784,7 +11785,7 @@ class Component extends DCLogic {
     result.continuaH = result.hasLesson && result.lsGoH ? result.lsGoH : (_cf ? _cf.pick : function () { self.sfx('tap'); });
     result.continuaLabel = result.hasLesson && result.lsGoLabel ? result.lsGoLabel : (_cf ? 'Continua: ' + _cf.label.replace(/^\d+ \u00b7 /, '') : 'Ripassa un giro');
     var _bt = window.BohToday, _D1 = result.hasLesson ? this.lsData() : null;
-    result.startCls = 'start-card'; result.startGo = 'Comincia'; result.startGoEn = 'Start'; result.startSegs = []; result.hasStartSegs = false;
+    result.startCls = 'start-card'; result.startGo = 'Continua'; result.startGoEn = 'Continue'; result.startSegs = []; result.hasStartSegs = false;
     try { if (_D1) window.BohToday = null; if (window.BohUI) window.BohUI.startVals(self, s, result); } catch (e) {} finally { window.BohToday = _bt; }   /* one start: a unit with a lesson path ignores the teacher's separate Today card */
     if (_D1) this.oneStart(s, result, _D1);
     try { if (window.BohUI && window.BohUI.applyPause) window.BohUI.applyPause(result); } catch (e) {}   /* H-04: the teacher's Class-is-on card works on lesson units too */
@@ -11938,7 +11939,8 @@ class Component extends DCLogic {
       if (pit) {
         result.pRarity = pit.rarity; result.pRarityColor = RARITY[pit.rarity].color; result.pCls = pit.img ? 'icbig bt-img' : 'icbig j-' + pit.id; result.pIco = pit.img ? 'background-image:url(' + pit.img + ')' : '';
         result.pIt = pit.it; result.pEn = pit.en; result.pDesc = pit.desc;
-        result.pWearable = !!SLOT[pit.id];
+        result.pWearable = !!SLOT[pit.id] && !s.paccoDup;
+        if (s.paccoDup) { result.pDesc = 'Già tuo! +' + (s.paccoRefund || 50) + ' BC'; }
         result.pWearNote = (s.bohName || 'Boh') + ' is wearing it now. Swap it anytime in your locker.';
       } else {
         result.pRarity = 'RIMBORSO'; result.pRarityColor = '#6B7280'; result.pCls = 'icbig j-pacco';

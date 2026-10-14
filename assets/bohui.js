@@ -152,7 +152,8 @@
     var T = todayEntry(), name = (r.bohName || '').trim(), qep = false;
     try { qep = typeof W.__bohQepCur === 'function' && !!W.__bohQepCur(s); } catch (e) {}
     var plan = (!T && !qep) ? unitPlan(s) : { target: W.BT_UNIT, mode: 'stay', best: 0 };
-    r.startGo = 'Comincia'; r.startGoEn = 'Start';   // H-05: one label, every level, every state
+    W.BohUI.game = g;   // the home kit (assets/bohhomekit.js) uses the running game to hand over a Pacco
+    r.startGo = 'Continua'; r.startGoEn = 'Continue';   // H-05: one label, every level, every state
     r.startHi = 'Ciao' + (name ? ', ' + name : '') + '!';
     r.startHiEn = 'Hi' + (name ? ', ' + name : '') + '!';
     r.startK = T ? 'Oggi' : 'Prossima tappa';   // no date on the card unless the teacher asks for it
