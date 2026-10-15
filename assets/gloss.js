@@ -9,7 +9,7 @@
   var CLASH = {}; (window.BOH_GLOSS_CLASH || []).forEach(function (w) { CLASH[w] = 1; });
   var MAXW = 6;
   var SKIP = 'button,a,input,textarea,select,option,label,script,style,noscript,svg,canvas,[contenteditable],[data-nogloss],' +
-             '.ls-phone,.gl,.bfc,.pv-shot,.boh-gl-tip,.ls-en,.ls-ph-en,.ls-why,.ls-tt,.tc-qo,.credit-line,.credit-name,.wmark,.home-credit';
+             '.ls-phone,.ls-eye,.ls-kick,.ls-sl,.ls-chip,.gl,.bfc,.pv-shot,.boh-gl-tip,.ls-en,.ls-ph-en,.ls-why,.ls-tt,.tc-qo,.credit-line,.credit-name,.wmark,.home-credit';
   var ENW = /\b(the|you|your|is|of|and|to|for|it|this|that|with|what|we|they|be|on|at|my|have|has|was|not|each|tap|read|write|out|get|more|from|here|then|need|see|word|words|answer|round|correct|next|play|save|open|first|will|can|after|before|try|right|wrong|day|days|one|two|it's|you're|don't|i'm|he|she|his|her|who|how|why|when|which|do|does|are|an|or|if|all|just|now)\b/gi;
   var WORD = /[A-Za-zÀ-ÖØ-öø-ÿ]+['’]?/g;
   var hl = null;

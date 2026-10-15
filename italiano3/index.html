@@ -622,10 +622,10 @@
 .ls-bar.cur{background:var(--progress-fill)}
 .ls-stage{display:flex;gap:18px;align-items:flex-start}
 .ls-boh{flex:none;width:200px;display:flex;flex-direction:column;align-items:center;gap:10px;position:sticky;top:12px}
-.ls-bubble{align-self:stretch;background:var(--card-bg);border:2px solid var(--card-border);border-radius:18px;padding:10px 14px;font-family:Caveat,'Comic Sans MS',cursive;font-size:23px;line-height:1.15;color:var(--text)}
+.ls-bubble{align-self:stretch;background:var(--card-bg);border:2px solid var(--card-border);border-radius:18px;padding:10px 14px;font-family:inherit;font-weight:600;font-size:20px;line-height:1.35;color:var(--text)}
 .doll.ls-doll{width:110px;height:286px}
 .ls-card{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:20px;background:var(--card-bg);border:2px solid var(--card-border)}
-.ls-kick{font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--catTag-text)}
+.ls-kick{font-size:14px;font-weight:800;color:var(--catTag-text)}
 .ls-head{margin:0;font-size:22px;font-weight:800;line-height:1.2}
 .ls-uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .ls-use{display:flex;flex-direction:column;gap:3px;padding:10px;border-radius:12px;background:var(--option-default-bg);font-size:14px}
@@ -641,8 +641,8 @@
 .ls-say:focus-visible{outline:3px solid var(--accent-strong);outline-offset:2px}
 .ls-chart{display:grid;grid-template-columns:minmax(64px,.8fr) repeat(4,minmax(0,1fr));border:1px solid var(--card-border);border-radius:12px;overflow:hidden;font-size:15px}
 .lc{padding:6px 8px;border-bottom:1px solid var(--card-border);font-weight:600;overflow-wrap:anywhere}
-.lc b{color:var(--accent-strong)}
-.lc.h{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);background:var(--option-default-bg)}
+.lc b{color:var(--ending);font-weight:800}
+.lc.h{font-size:14px;font-weight:800;color:var(--text-muted);background:var(--option-default-bg)}
 .lc.p{font-weight:800}
 .ls-chart.c3{grid-template-columns:minmax(64px,.8fr) repeat(2,minmax(0,1fr))}
 .ls-chart.c4{grid-template-columns:minmax(64px,.8fr) repeat(3,minmax(0,1fr))}
@@ -653,7 +653,7 @@
 .ls-w span{color:var(--text-muted);font-size:13px}
 .ls-extra{margin:0;font-size:14px;color:var(--text-muted);line-height:1.5}
 .ls-tricks{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:14px;background:var(--catTag-bg);color:var(--catTag-text)}
-.ls-tt{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.ls-tt{font-size:15px;font-weight:800}
 .ls-trick{display:flex;gap:8px;font-size:14.5px;font-weight:700;line-height:1.4}
 .ls-trick span{flex:none;width:20px;height:20px;border-radius:50%;background:var(--catTag-text);color:var(--catTag-bg);display:flex;align-items:center;justify-content:center;font-size:12px}
 .ls-spia{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
@@ -1226,6 +1226,7 @@
       --why-text: #E6ECF2;
       --progress-track: #2C384D;
       --progress-fill: #10BFBF;
+      --ending: #F5A524;
       --breakdown-fill: #97C1F7;
       --pop: #F075AA;
       --pop-text: #1C0710;
@@ -1287,6 +1288,7 @@
       --why-text: #0E2A5B;
       --progress-track: #DAD7D0;
       --progress-fill: #0A9A9A;
+      --ending: #B45309;
       --breakdown-fill: #1A5CDF;
       --pop: #BC1E72;
       --pop-text: #FFFFFF;
@@ -14351,7 +14353,7 @@ window.addEventListener('load', function () { try { window.__game && window.__ga
 <script src="../assets/routine.js?v=202610062200" defer></script>
 <script src="../assets/routine-qep.js?v=202610042210" defer></script>
 <script src="../assets/gloss-dict.js?v=202610042210" defer></script>
-<script src="../assets/gloss.js?v=202610042210" defer></script>
+<script src="../assets/gloss.js?v=202610151300" defer></script>
 <script>
 function btIsVocab(md) {   // vocab rounds get the move-on help
   try { if (!MODES[md] || md === 'prova' || md === 'mistakes' || md === 'mixed') return false; return !!(MODES[md].vocab || md === 'vocab' || (typeof BT_UNIT === 'undefined' && md === 'agg')); } catch (e) { return false; }
