@@ -102,9 +102,47 @@
   function setZoom(el, z) { el.style.zoom = z === 1 ? '' : String(Math.round(z * 1000) / 1000); }
   function search(lo, hi, ok) { if (!ok(lo)) return null; if (ok(hi)) return hi; for (var i = 0; i < 7; i++) { var m = (lo + hi) / 2; if (ok(m)) lo = m; else hi = m; } ok(lo); return lo; }
 
+  /* boh-pages-v2 (14 Oct 2026): a lesson card split into screens keeps the SAME split while the student taps Avanti / Indietro.
+     Before, every tap measured the card again, the split came out different (1 / 7, then 2 / 8) and the page number fell back to 1,
+     so Avanti looked dead. Now the split is made once per card and screen size, saved, and a tap only shows the next part. */
+  var lock = null;
+  function cardKey() { var g = W.__game, st = g && g.state ? g.state : {}; return st.lsCur + ':' + st.lsI; }
+  function kids(card) { return [].filter.call(card.children, function (c) { return !c.classList.contains('bf-pager'); }); }
+  /* parts are saved by their place in the card (the game may rebuild the card's parts after a tap, so saved elements can go stale) */
+  function shape(card) { return kids(card).map(function (c) { return c.tagName + '.' + (typeof c.className === 'string' ? c.className.replace(/\bbf-\S+/g, '').trim() : '') + ':' + c.children.length; }).join('|'); }
+  function pathOf(card, el) { var p = []; for (var e = el; e && e !== card; e = e.parentElement) { var par = e.parentElement; if (!par) return null; p.unshift([].filter.call(par.children, function (c) { return !c.classList.contains('bf-pager'); }).indexOf(e)); } return e === card ? p : null; }
+  function atPath(card, p) { var e = card; for (var i = 0; i < p.length && e; i++) e = [].filter.call(e.children, function (c) { return !c.classList.contains('bf-pager'); })[p[i]]; return e || null; }
+  function resolve(card) { var out = []; for (var i = 0; i < lock.paths.length; i++) { var pg = []; for (var j = 0; j < lock.paths[i].length; j++) { var e = atPath(card, lock.paths[i][j]); if (!e) return null; pg.push(e); } out.push(pg); } return out; }
+  function lockOk(card) {
+    if (!lock || !lock.final || lock.key !== cardKey() || lock.size !== W.innerWidth + 'x' + W.innerHeight || lock.shape !== shape(card)) return null;
+    return resolve(card);
+  }
+  function show(card, acts, pages) {
+    var old = q('.bf-pager', card); if (old) old.remove();
+    if (page.n >= pages.length) page.n = pages.length - 1; if (page.n < 0) page.n = 0;
+    pages.forEach(function (p, i) { p.forEach(function (b) { b.classList.toggle('bf-later', i !== page.n); }); });
+    var last = page.n === pages.length - 1;
+    if (acts) acts.style.display = last ? '' : 'none';
+    var pg = D.createElement('div'); pg.className = 'bf-pager';
+    pg.innerHTML = (page.n > 0 ? '<button type="button" class="bf-back">&lsaquo; Indietro</button>' : '') +
+      '<span class="bf-pagehint">' + (page.n + 1) + ' / ' + pages.length + '</span>' + (last ? '' : '<button type="button" class="bf-next">Avanti &rsaquo;</button>');
+    pg.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('button') : null; if (!b) return;
+      page.n += b.classList.contains('bf-next') ? 1 : -1;
+      var fresh = lockOk(card);   /* the game may have rebuilt the parts since this pager was drawn */
+      skip = true; show(card, q('.ls-actions', card) || acts, fresh || pages); Promise.resolve().then(function () { skip = false; });   /* only switch parts; never measure again on a tap */
+      W.scrollTo(0, 0);
+      var f = q('.bf-pager .bf-next, .bf-pager .bf-back', card) || (acts && acts.querySelector('button')); if (f && f.focus) try { f.focus({ preventScroll: true }); } catch (x) {}
+    });
+    card.insertBefore(pg, acts || null);
+  }
+
   function paging(root, extra) {
     var card = q('.ls-card', root); if (!card) return false;
     var acts = q('.ls-actions', card), pager = q('.bf-pager', card);
+    var key = cardKey();
+    if (page.key !== key) page = { key: key, n: 0 };   /* a new card starts at its first part; the same card keeps its part */
+    var kept = lockOk(card); if (kept) { show(card, acts, kept); return true; }
     if (pager) pager.remove();
     if (acts) acts.style.display = '';
     [].forEach.call(card.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); });
@@ -124,28 +162,17 @@
       return out;
     }
     var blocks = split([].slice.call(card.children), 0);
-    if (blocks.length < 2) return false;
+    if (blocks.length < 2) { lock = null; return false; }
     var pages = [[]], used = top0, start = top0;
     blocks.forEach(function (b) {
       var h = b.getBoundingClientRect().height + 10;
       if (pages[pages.length - 1].length && used + h > room) { pages.push([]); used = start; }
       pages[pages.length - 1].push(b); used += h;
     });
-    if (pages.length < 2 || pages.length > 8) { [].forEach.call(card.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); return false; }
-    var key = (W.__game && W.__game.state ? W.__game.state.lsCur + ':' + W.__game.state.lsI : '') + ':' + blocks.length;
-    if (page.key !== key) page = { key: key, n: 0 };
-    if (page.n >= pages.length) page.n = pages.length - 1;
-    pages.forEach(function (p, i) { p.forEach(function (b) { if (i !== page.n) b.classList.add('bf-later'); }); });
-    var last = page.n === pages.length - 1;
-    if (acts) acts.style.display = last ? '' : 'none';
-    var pg = D.createElement('div'); pg.className = 'bf-pager';
-    pg.innerHTML = (page.n > 0 ? '<button type="button" class="bf-back">&lsaquo; Indietro</button>' : '') +
-      '<span class="bf-pagehint">' + (page.n + 1) + ' / ' + pages.length + '</span>' + (last ? '' : '<button type="button" class="bf-next">Avanti &rsaquo;</button>');
-    pg.addEventListener('click', function (e) {
-      var b = e.target.closest ? e.target.closest('button') : null; if (!b) return;
-      page.n += b.classList.contains('bf-next') ? 1 : -1; later();
-    });
-    card.insertBefore(pg, acts || null);
+    if (pages.length < 2 || pages.length > 8) { lock = null; [].forEach.call(card.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); return false; }
+    var paths = pages.map(function (pg) { return pg.map(function (e) { return pathOf(card, e); }); });
+    lock = paths.every(function (pg) { return pg.every(function (x) { return !!x; }); }) ? { key: key, size: W.innerWidth + 'x' + W.innerHeight, shape: shape(card), paths: paths, final: false } : null;   /* saved for good when this fit is finished */
+    show(card, acts, pages);
     return true;
   }
 
@@ -255,6 +282,7 @@
         }
       }
     } catch (e) { try { console.warn('boh-fit-v3', e); } catch (_) {} }
+    if (lock && !lock.final && lock.key === cardKey()) lock.final = true;   /* boh-pages-v2: this card's split is now kept until the card or the screen size changes */
     busy = false; skip = true; Promise.resolve().then(function () { skip = false; });   /* ignore the changes this step made itself */
   }
 
