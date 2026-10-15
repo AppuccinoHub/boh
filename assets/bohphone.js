@@ -134,7 +134,7 @@
       W.scrollTo(0, 0);
       var f = q('.bf-pager .bf-next, .bf-pager .bf-back', card) || (acts && acts.querySelector('button')); if (f && f.focus) try { f.focus({ preventScroll: true }); } catch (x) {}
     });
-    card.insertBefore(pg, acts || null);
+    if (acts && acts.parentNode) acts.parentNode.insertBefore(pg, acts); else card.appendChild(pg);   /* the buttons may sit deeper than the card itself */
   }
 
   function paging(root, extra) {
@@ -142,6 +142,7 @@
     var acts = q('.ls-actions', card), pager = q('.bf-pager', card);
     var key = cardKey();
     if (page.key !== key) page = { key: key, n: 0 };   /* a new card starts at its first part; the same card keeps its part */
+    if (q('.ls-done', card)) { lock = null; return false; }   /* boh-finish-v1 (15 Oct 2026): the finish screen is never split, so its buttons (Ripasso libero, Vai alla Prova) always show */
     var kept = lockOk(card); if (kept) { show(card, acts, kept); return true; }
     if (pager) pager.remove();
     if (acts) acts.style.display = '';
@@ -224,6 +225,7 @@
       if (bh) { setZoom(bh, 1); bh.classList.remove('bf-noboh'); }
       var st0 = q('.ls-boh', root); if (st0) st0.classList.remove('bf-noboh');
       if (s === 'lesson') { var pgr = q('.bf-pager', root); if (pgr) pgr.remove(); [].forEach.call(root.querySelectorAll('.bf-later'), function (b) { b.classList.remove('bf-later'); }); var ac = q('.ls-card .ls-actions', root); if (ac) ac.style.display = ''; }
+      [].forEach.call(root.querySelectorAll('.ls-done .bf-stick'), function (x) { x.classList.remove('bf-stick'); });   /* boh-done-v1: measure the finish screen unpinned first */
       var bh0 = bh && vis(bh) ? bh.getBoundingClientRect().height : 0;
       /* wide screens (Chromebook): Boh stands BESIDE the card, so making Boh smaller frees no height. Keep Boh, never hide him there. */
       var stg0 = q('.ls-boh', root), crd0 = q('.ls-card', root);
@@ -263,6 +265,16 @@
         /* before splitting into screens, the small reminder line under the card steps aside (the checkboxes already say it) */
         if (over() > 1 && s === 'lesson') root.classList.add('bf-lt');   /* a little less space inside the card */
         if (over() > 1 && s === 'lesson') { var hn = q('.ls-card > .ls-hint2', root); if (hn) hn.classList.add('bf-later'); }
+        /* boh-finish-v1 (15 Oct 2026): the finish screen is never split. If it runs over: the bonus idiom card shrinks to one line
+           (tap it to open), then the buttons (Ripasso libero, Vai alla Prova) stay pinned at the bottom of the screen. Nothing is hidden. */
+        var fin = s === 'lesson' && q('.ls-done', root);
+        if (fin) {
+          var bid = q('.bid', fin), fa = q('.ls-actions', fin);
+          if (bid) { bid.classList.remove('bf-mini'); if (over() > 1 && !bid.getAttribute('data-open')) { bid.classList.add('bf-mini');
+            if (!bid.__bfTap) { bid.__bfTap = 1; bid.addEventListener('click', function () { bid.setAttribute('data-open', '1'); bid.classList.remove('bf-mini'); }); } } }
+          if (fa) { fa.classList.remove('bf-stick'); if (over() > 1) fa.classList.add('bf-stick'); }
+          var nx = q('.bd-next', fin); if (nx) { nx.classList.remove('bf-stick'); if (over() > 1) nx.classList.add('bf-stick'); }   /* boh-done-v1: step 1 on a short phone: Avanti stays pinned at the bottom */
+        }
         if (over() > 1 && s === 'lesson' && !phone) pageFit(root);
         if (over() > 1 && s === 'play') passage(root);
         /* after the content moved to more screens, use any room that is left over */

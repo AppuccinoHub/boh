@@ -138,3 +138,49 @@ html body .pop-ov { z-index: 80 !important; }
 
 /* boh-fit-v3.3: tight lesson screens (short Chromebook screens) get a little less space inside the card before anything moves to a second screen */
 html body .ls.bf-lt .ls-card { gap: 10px !important; padding-top: 14px !important; padding-bottom: 14px !important; }
+
+/* boh-finish-v1 (15 Oct 2026): finish screen. One stat fills the row; the bonus idiom card can shrink to one line; the buttons can stay pinned at the bottom */
+html body .ls-done .ls-stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
+html body .ls-done .bid.bf-mini { cursor: pointer; gap: 2px; }
+html body .ls-done .bid.bf-mini .bid-en, html body .ls-done .bid.bf-mini .bid-ex, html body .ls-done .bid.bf-mini .bid-note { display: none; }
+html body .ls-done .bid.bf-mini .bid-k::after { content: " \00B7  tocca \00B7  tap"; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--text-muted, #46566E); }
+html body .ls-done .ls-actions.bf-stick {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 71; max-width: 640px; margin: 0 auto;
+  padding: 10px 18px calc(12px + env(safe-area-inset-bottom, 0px)) !important; background: var(--card-bg, #fff);
+  border-radius: 22px 22px 0 0; box-shadow: 0 -8px 24px rgba(14, 42, 91, .18);
+}
+html body .ls-done .ls-actions.bf-stick { display: flex !important; flex-direction: row !important; flex-wrap: nowrap; gap: 10px; align-items: stretch; }
+html body .ls-done .ls-actions.bf-stick > button { flex: 1 1 0; min-width: 0; min-height: 52px; margin: 0 !important; }
+html body .ls-done:has(.ls-actions.bf-stick) { padding-bottom: 96px; }
+
+/* boh-read-v1 (15 Oct 2026): no handwriting font on anything students read. The speech bubble was changed in the level files; Boh's chat bubbles and the postcards follow here. */
+html body .ls-cb.boh { font-family: inherit !important; font-weight: 600 !important; font-size: 20px !important; line-height: 1.35 !important; }   /* matches the speech bubble (.ls-bubble), made readable on Oct 15 */
+html body .pc-msg, html body .pcx-msg, html body .gp-card textarea.pcx-ta { font-family: Manrope, "Segoe UI", system-ui, sans-serif !important; font-weight: 700 !important; font-size: 17px !important; }
+html body .pc-greet { font-family: Manrope, "Segoe UI", system-ui, sans-serif !important; font-weight: 800 !important; font-size: 18px !important; }
+html body .gp-post { font-family: Manrope, "Segoe UI", system-ui, sans-serif !important; font-weight: 700; font-size: 17px !important; }
+
+/* boh-steps-v1 (15 Oct 2026): progress bars mean the same thing everywhere: green = done, blue = where you are now (and a little wider), grey = not yet */
+html body .ls-bar.done { background: var(--success-border, #3D8F35) !important; }
+html body .ls-bar.cur { background: var(--primary-bg, #1A5CDF) !important; width: 26px !important; }
+html body .start-seg i.f { background: var(--success-border, #3D8F35) !important; }
+html body .start-seg i.cur { background: var(--primary-bg, #1A5CDF) !important; }
+
+/* boh-done-v1 (15 Oct 2026): the finish screen in two steps. Step 1 = the celebration and one Avanti. Step 2 = "Cosa fai adesso?" with the buttons. */
+html body .ls-done[data-step="1"] .ls-worst, html body .ls-done[data-step="1"] .bid, html body .ls-done[data-step="1"] .ls-actions, html body .ls-done[data-step="1"] .ls-nx { display: none !important; }
+html body .ls-done[data-step="2"] .ls-clap, html body .ls-done[data-step="2"] .ls-fx, html body .ls-done[data-step="2"] .ls-stamp, html body .ls-done[data-step="2"] .ls-head, html body .ls-done[data-step="2"] .ls-head-en, html body .ls-done[data-step="2"] .ls-stats, html body .ls-done[data-step="2"] .bd-next { display: none !important; }
+html body .ls-done[data-step="1"] .bd-now { display: none !important; }
+html body .ls-done[data-step="1"] .ls-head { align-self: stretch; text-align: center; font-size: 26px !important; line-height: 1.2; padding: 10px 14px; border-radius: 14px;
+  background: var(--bd-mark, #FFE9A8); border: 2px solid var(--bd-mark-edge, #E0B53C); color: var(--text, #0E2A5B); }
+html body .ls-done[data-step="1"] .ls-head-en { align-self: center; text-align: center; }
+html body .bd-next { all: unset; box-sizing: border-box; cursor: pointer; align-self: stretch; min-height: 56px; border-radius: 999px; background: var(--primary-bg, #1A5CDF); color: var(--primary-text, #fff);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; font: 800 20px/1.1 "Bricolage Grotesque", Manrope, system-ui, sans-serif; padding: 10px 20px; box-shadow: 0 4px 0 rgba(14, 42, 91, .35); }
+html body .bd-next small { font: 700 13px/1.2 Manrope, system-ui, sans-serif; opacity: .9; }
+html body .bd-next:focus-visible { outline: 3px solid var(--text, #0E2A5B); outline-offset: 3px; }
+html body .bd-now { align-self: stretch; margin: 0; font: 800 24px/1.15 "Bricolage Grotesque", Manrope, system-ui, sans-serif; color: var(--text, #0E2A5B); }
+html body .bd-now small { display: block; font: 700 16px/1.3 Manrope, system-ui, sans-serif; color: var(--text-muted, #46566E); }
+html body .ls-done[data-step="2"] .ls-actions { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+html body .ls-done[data-step="2"] .ls-actions > button { min-height: 56px; font-size: 19px !important; }
+html body .ls-done[data-step="2"] .ls-actions .ls-btn { order: -1; }
+html body .ls-done .bd-next.bf-stick { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 71; max-width: 616px; margin: 0 auto; }
+html body .ls-done:has(.bd-next.bf-stick) { padding-bottom: 84px; }
+html body .ls-done[data-step="1"] .ls-stamp { align-self: center; }
