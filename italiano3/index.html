@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#E88A6C">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <style>/* boh-sa-v1 */html{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}</style>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610151200"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610141200"></script><script src="../assets/bohhomekit.js?v=202610142100"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610140700" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610151030"></script>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610171400"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610141200"></script><script src="../assets/bohhomekit.js?v=202610142100"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610140700" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610151030"></script>
 <script src="../assets/bohdone.js?v=202610151000"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
@@ -1812,6 +1812,21 @@
                 <sc-if value="{{lsCanCheck}}" hint-placeholder-val="{{false}}"><button class="ls-btn" onClick="{{lsCheckH}}">Controlla</button></sc-if>
                 <sc-if value="{{lsCanRetry}}" hint-placeholder-val="{{false}}"><button class="ls-btn" onClick="{{lsRetryH}}">Riprova</button></sc-if>
                 <sc-if value="{{lsCanNext}}" hint-placeholder-val="{{false}}"><button class="ls-btn" onClick="{{lsNextH}}">{{lsNextLabel}}</button></sc-if>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{lsHasLvl}}" hint-placeholder-val="{{false}}">
+              <div class="lvl-ov" role="dialog" aria-modal="true" aria-label="{{lsLvlTitle}}">
+                <div class="{{lsLvlCls}}">
+                  <sc-if value="{{lsLvlTop}}" hint-placeholder-val="{{false}}"><div class="ls-fx" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lvl-medal top" aria-hidden="true">★</div></sc-if>
+                  <sc-if value="{{lsLvlMid}}" hint-placeholder-val="{{true}}"><div class="lvl-medal" aria-hidden="true">2</div></sc-if>
+                  <h2 class="lvl-t display">{{lsLvlTitle}}</h2>
+                  <sc-if value="{{lsHasLvlEn}}" hint-placeholder-val="{{true}}"><p class="lvl-en">{{lsLvlEn}}</p></sc-if>
+                  <div class="lvl-steps" aria-hidden="true"><sc-for list="{{lsLvlSteps}}" as="lv" hint-placeholder-count="3"><i class="{{lv.cls}}"></i></sc-for></div>
+                  <p class="lvl-sub">{{lsLvlSub}}</p>
+                  <sc-if value="{{lsHasLvlEn}}" hint-placeholder-val="{{true}}"><p class="lvl-en">{{lsLvlSubEn}}</p></sc-if>
+                  <button class="ls-btn" onClick="{{lsLvlOkH}}">Avanti</button>
+                </div>
               </div>
             </sc-if>
 
@@ -12951,7 +12966,7 @@ class Component extends DCLogic {
     var L = this.lsState(), fr = Math.max(this.lsFrontier(L, D), ((s.profU || {}).openTo) || 0);
     if (k > fr || k >= D.stops.length) { this.sfx('soft'); return; }
     var deck = this.lsDraw(k, L);
-    var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0, deck || D.stops[k].items), lsView: 'stop', lsStopEarn: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0,
+    var extra = { screen: 'lesson', lsCur: k, lsI: 0, lsIt: this.lsFresh(k, 0, deck || D.stops[k].items), lsView: 'stop', lsStopEarn: 0, lsLvlUp: 0, lsLvlPay: 0, lesson: L, overlay: null, tabOpen: false, lastEarn: 0,
                   lsDeck: deck, lsDeckK: deck ? k : -1, lsDeckU: BT_UNIT };
     var today = dayKey(0);
     if (s.lastPlay !== today) this.btDay(s, today, extra); else extra.fiammaNote = '';
@@ -13101,13 +13116,17 @@ class Component extends DCLogic {
     var s = this.state, D = this.lsData(), st = D.stops[s.lsCur], n = this.lsItems(s.lsCur).length;
     if (s.lsI + 1 < n) { this.sfx('tap'); this.setState({ lsI: s.lsI + 1, lsIt: this.lsFresh(s.lsCur, s.lsI + 1) }); this.lsSayIt(250); return; }
     var L = this.lsCopy().L, patch = {};
+    var wasDone = L.done.indexOf(s.lsCur) !== -1;   /* boh-mastery-v1: count how many times each stop is finished */
+    L.m = Object.assign({}, L.m || {}); L.m[s.lsCur] = Math.min(99, (L.m[s.lsCur] || (wasDone ? 1 : 0)) + 1);
     if (L.done.indexOf(s.lsCur) === -1) L.done = L.done.concat([s.lsCur]);
     var pay = this.lsPay(L, 'S' + s.lsCur, 25), justDone = false;
+    var lvUp = wasDone && L.m[s.lsCur] <= 3 ? L.m[s.lsCur] : 0, mPay = lvUp === 3 ? this.lsPay(L, 'M' + s.lsCur, 50) : 0; pay += mPay;
+    patch.lsLvlUp = lvUp; patch.lsLvlPay = mPay;
     if (!L.finished && L.done.length >= D.stops.length) { L.finished = true; justDone = true; pay += this.lsPay(L, 'FIN', 100); }
     this.lsMoney(patch, pay);
     patch.lesson = L; patch.lsStopEarn = pay;
     patch.lsView = justDone || (L.finished && s.lsCur === D.stops.length - 1) ? 'fine' : 'between';
-    this.sfx(justDone ? 'fanfare' : 'buy');
+    this.sfx(justDone || lvUp === 3 ? 'fanfare' : 'buy');
     this.setState(patch);
   }
 
@@ -13186,8 +13205,9 @@ class Component extends DCLogic {
     result.lsTitle = D.title;
     result.lsPath = D.stops.map(function (st, k) {
       var done = L.done.indexOf(k) !== -1, cur = k === fr, lock = k > frP;
-      return { n: done ? '✓' : String(k + 1), label: st.label, min: st.min + ' min', dis: lsD(lock),
-               cls: 'lp-stop' + (done ? ' is-done' : cur ? ' is-cur' : lock ? ' is-lock' : ' is-open'),
+      var lv = done ? Math.min(3, (L.m || {})[k] || 1) : 0;
+      return { n: lv >= 3 ? '★' : done ? '✓' : String(k + 1), label: st.label, min: st.min + ' min', dis: lsD(lock),
+               cls: 'lp-stop' + (done ? ' is-done' + (lv >= 2 ? ' m' + lv : '') : cur ? ' is-cur' : lock ? ' is-lock' : ' is-open'),
                aria: 'Tappa ' + (k + 1) + ': ' + st.label + (done ? ', fatta' : lock ? ', bloccata' : ''),
                pick: function () { self.lsStart(k); } };
     });
@@ -13208,8 +13228,18 @@ class Component extends DCLogic {
     // ---------- the lesson screen ----------
     var k = s.lsCur || 0, st = D.stops[k], items = this.lsItems(k) || null, i = s.lsI || 0, it = items ? items[i] : null, o = s.lsIt || this.lsFresh(k, i), view = s.lsView || 'stop', ty = it ? it.t : '';
     var G = function (t) { return lsG(t, base); };
-    result.lsBars = D.stops.map(function (x, q) { return { cls: 'ls-bar' + (q === k ? ' cur' : L.done.indexOf(q) !== -1 ? ' done' : '') }; });
-    result.lsEyebrow = 'Tappa ' + (k + 1) + ' di ' + N + ' · ' + st.label + (items ? ' · ' + (i + 1) + ' / ' + items.length : '');
+    result.lsBars = D.stops.map(function (x, q) { var dn = L.done.indexOf(q) !== -1, lv = dn ? Math.min(3, (L.m || {})[q] || 1) : 0; return { cls: 'ls-bar' + (q === k ? ' cur' : '') + (dn ? ' done' + (lv >= 2 ? ' m' + lv : '') : '') }; });
+    result.lsEyebrow = (L.done.indexOf(k) !== -1 ? 'Ripasso · ' : '') + 'Tappa ' + (k + 1) + ' di ' + N + ' · ' + st.label + (items ? ' · ' + (i + 1) + ' / ' + items.length : '');
+    /* boh-mastery-v1: finishing a stop again moves it up: 1 Fatto (green), 2 Forte (violet), 3 Imbattibile (navy, star, +50 BC once) */
+    var lvU = s.lsLvlUp || 0, lvEn = !/italiano4|\/ap\//.test(location.pathname);
+    result.lsHasLvl = lvU >= 2; result.lsLvlTop = lvU >= 3; result.lsLvlMid = lvU === 2; result.lsHasLvlEn = lvEn;
+    result.lsLvlCls = 'lvl-card' + (lvU >= 3 ? ' top' : '');
+    result.lsLvlTitle = lvU >= 3 ? 'Imbattibile!' : 'Forte!';
+    result.lsLvlEn = lvU >= 3 ? 'Unbeatable!' : 'Great!';
+    result.lsLvlSub = lvU >= 3 ? 'Tappa ' + (k + 1) + ': livello 3 di 3' + (s.lsLvlPay ? ' · +' + s.lsLvlPay + ' BC' : '') : 'Tappa ' + (k + 1) + ': livello 2 di 3. Ancora una volta e sei Imbattibile!';
+    result.lsLvlSubEn = lvU >= 3 ? 'Stop ' + (k + 1) + ' is mastered.' + (s.lsLvlPay ? ' Bonus: ' + s.lsLvlPay + ' BC.' : '') : 'Level 2 of 3. One more time and you are Unbeatable!';
+    result.lsLvlSteps = [1, 2, 3].map(function (n) { return { cls: 'lvl-st' + (n <= lvU ? ' on m' + Math.min(lvU, 3) : '') + (n === 3 ? ' last' : '') }; });
+    result.lsLvlOkH = function () { self.sfx('tap'); self.setState({ lsLvlUp: 0 }); };
     result.lsDoll = dollLayersFor(base, s.equipped);
     result.lsFiamma = s.fiammaNote || ''; result.hasLsFiamma = !!s.fiammaNote && view === 'stop' && i === 0;
     result.lsIsStop = view === 'stop'; result.lsIsBetween = view === 'between'; result.lsIsFine = view === 'fine';
