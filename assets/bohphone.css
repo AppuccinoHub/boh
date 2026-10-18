@@ -215,3 +215,8 @@ html body .lvl-steps i.on.m2 { background: #6D28D9; }
 html body .lvl-steps i.on.m3 { background: #172554; }
 html body .lvl-steps i.last::after { content: "\2605"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; line-height: 1; font-style: normal; }
 html body .lvl-card .ls-btn { align-self: stretch; margin-top: 6px; }
+
+/* boh-dvh-v1 (18 Oct 2026): on iPhone Safari "100vh" is the screen height with the address bar HIDDEN, so every screen was
+   about 80px taller than what the student sees. The fit step then saw "too tall", shrank and hid parts (top bar, hints, Boh)
+   and the page scrolled, cutting off the top. 100dvh is the height the student actually sees. Browsers without dvh keep the old rule. */
+html body .look { min-height: calc(100dvh - var(--hostbar, 0px)) !important; }
