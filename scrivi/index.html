@@ -52,6 +52,16 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
 .stat{font-size:13px;color:var(--faint);margin-top:6px}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--bad);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:50;max-width:92vw;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 [hidden]{display:none!important}
+.pp{background:var(--warn-bg);border-radius:14px;padding:10px 12px;margin:10px 0}
+.pp b{display:block;font:800 13px/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);margin-bottom:4px}
+.pp .chip{background:var(--surface)}
+.pp .note{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+.cons{font-size:17px;line-height:1.5;font-weight:600}
+.cons+.muted{font-size:14px;line-height:1.45;margin-top:4px}
+.step{margin-top:10px}.step>b{display:block;font:800 17px/1.2 "Bricolage Grotesque",sans-serif;margin-bottom:4px}
+.subj{display:flex;gap:8px;align-items:center;margin-top:8px}.subj code{flex:1;font:700 14px/1.3 ui-monospace,Menlo,Consolas,monospace;background:var(--field);border:2px solid var(--card-border);border-radius:10px;padding:8px 10px;word-break:break-word}
+.txtbox{font:600 15px/1.5 Manrope,sans-serif;min-height:110px}
+details.code summary{cursor:pointer;font-weight:700;font-size:13px;color:var(--faint)}
 .sig{margin-top:30px;text-align:center;font-size:11px;font-weight:700;color:var(--faint);letter-spacing:.05em}
 </style>
 </head>
@@ -94,7 +104,7 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
     list.forEach(function (t) {
       var d = DONE[t.id];
       h += '<button class="task" data-t="' + t.id + '"><span class="eyebrow">' + esc(t.unit) + '</span><b>' + esc(t.title) + '</b><span class="muted" style="font-size:14px">' + esc(t.prompt.slice(0, 120)) + (t.prompt.length > 120 ? '…' : '') + '</span>' +
-        '<span class="pills"><span class="pill ' + (t.kind === 'summative' ? 'sum' : 'for') + '">' + (t.kind === 'summative' ? 'Summativa' : 'Formativa') + '</span><span class="pill">' + typeLabel(t.type) + '</span><span class="pill">min ' + t.minWords + ' parole</span><span class="pill">+' + t.bc + ' BC</span>' + (d ? '<span class="pill done">✓ consegnata</span>' : (DR[t.id] ? '<span class="pill">bozza salvata</span>' : '')) + '</span></button>';
+        '<span class="pills"><span class="pill ' + (t.kind === 'summative' ? 'sum' : 'for') + '">' + (t.kind === 'summative' ? 'Summativa' : 'Formativa') + '</span><span class="pill">' + typeLabel(t.type) + '</span><span class="pill">' + (t.minCount ? t.minCount + ' ' + (t.countUnit || 'frasi') + ' · ' : 'min ') + t.minWords + ' parole</span><span class="pill">+' + t.bc + ' BC</span>' + (d ? '<span class="pill done">✓ consegnata</span>' : (DR[t.id] ? '<span class="pill">bozza salvata</span>' : '')) + '</span></button>';
     });
     if (!list.length) h += '<div class="card muted">No writing tasks for this level yet.</div>';
     app.innerHTML = h + '</div>';
@@ -112,7 +122,8 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
     DR[id] = d; var st = d.st;
     var name = lsGet('boh_scrivi_name', '');
     var h = '<div class="top"><button class="back" id="bk" style="all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;font-weight:800;font-size:14px;border:1.5px solid var(--card-border);background:var(--surface)">← Compiti</button><span class="pill ' + (t.kind === 'summative' ? 'sum' : 'for') + '">' + (t.kind === 'summative' ? 'Summativa' : 'Formativa') + '</span></div>' +
-      '<div class="eyebrow">' + esc(t.unit) + ' · ' + typeLabel(t.type) + '</div><h1>' + esc(t.title) + '</h1><p>' + esc(t.prompt) + '</p>';
+      '<div class="eyebrow">' + esc(t.unit) + ' · ' + typeLabel(t.type) + '</div><h1>' + esc(t.title) + '</h1>' + (t.it ? '<p class="cons">' + esc(t.it) + '</p><p class="muted">' + esc(t.en || '') + '</p>' : '<p>' + esc(t.prompt) + '</p>');
+    if (t.pp && t.pp.length) h += '<div class="pp"><b>Verbi utili al passato prossimo · tap to add</b><div class="chips" aria-label="Verbi al passato prossimo">' + t.pp.map(function (v, i) { return '<button class="chip" data-pp="' + i + '">' + esc(v) + '</button>'; }).join('') + '</div><div class="note">Sei una ragazza? Cambia la -o finale in -a: andata, stata, uscita, divertita. · Girls: change the final -o to -a.</div></div>';
     if (t.theme) h += '<div class="card" style="border-width:2px"><div class="eyebrow">Il tema · The prompt</div><b style="font-size:19px;line-height:1.35;display:block;margin:4px 0">' + esc(t.theme) + '</b><span class="muted" style="font-size:14px">' + esc(t.themeEn || '') + '</span></div>';
     if (!t.paragraphs && t.frames && t.frames.length) h += '<div class="chips" aria-label="Frasi per iniziare">' + t.frames.map(function (f, i) { return '<button class="chip" data-f="' + i + '">' + esc(f) + '</button>'; }).join('') + '</div>';
     h += '<div class="chips" aria-label="Lettere accentate">' + 'à è é ì ò ù À È É'.split(' ').map(function (c) { return '<button class="chip acc" data-a="' + c + '">' + c + '</button>'; }).join('') + '</div>';
@@ -125,8 +136,20 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
     app.innerHTML = h;
     var tas = app.querySelectorAll('textarea'), last = Date.now(), lens = []; tas.forEach(function (ta, i) { lens[i] = ta.value.length; });
     function total() { var s = 0; tas.forEach(function (ta) { s += words(ta.value); }); return s; }
+    function count() {
+      var u = t.countUnit || 'frasi', n = 0;
+      tas.forEach(function (ta) {
+        var v = ta.value;
+        if (u === 'righe') n += v.split(/\n+/).filter(function (l) { return words(l) >= 2; }).length;
+        else if (u === 'risposte') n += words(v) >= 2 ? 1 : 0;
+        else n += v.split(/[.!?]+/).filter(function (x) { return words(x) >= 2; }).length;
+      });
+      return n;
+    }
+    function okMin() { return t.minCount ? (total() >= t.minWords && count() >= t.minCount) : total() >= 5; }
     function upd() {
-      var n = total(); app.querySelector('#wc').textContent = n + ' / ' + t.minWords + ' parole';
+      var n = total(); app.querySelector('#wc').textContent = (t.minCount ? count() + ' / ' + t.minCount + ' ' + (t.countUnit || 'frasi') + ' · ' : '') + n + ' / ' + t.minWords + ' parole';
+      var gb = app.querySelector('#go'); if (gb && t.minCount) gb.disabled = !okMin();
       app.querySelector('#pb').style.width = Math.min(100, Math.round(n / t.minWords * 100)) + '%';
     }
     function flush() { tas.forEach(function (ta, i) { d.parts[i].text = ta.value; }); d.st.words = total(); saveDr(); app.querySelector('#sv').textContent = 'Salvato'; }
@@ -152,6 +175,7 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
     app.querySelectorAll('[data-f]').forEach(function (b) { b.onclick = function () { st.chips++; insert(cur, t.frames[+b.getAttribute('data-f')].replace(/…$/, '') + ' '); }; });
     app.querySelectorAll('[data-pf]').forEach(function (b) { b.onclick = function () { var ij = b.getAttribute('data-pf').split(':'); st.chips++; insert(tas[+ij[0]], parts[+ij[0]].frames[+ij[1]].replace(/…$/, '') + ' '); }; });
     app.querySelectorAll('[data-a]').forEach(function (b) { b.onclick = function () { st.accents++; insert(cur, b.getAttribute('data-a')); }; });
+    app.querySelectorAll('[data-pp]').forEach(function (b) { b.onclick = function () { st.chips++; insert(cur, t.pp[+b.getAttribute('data-pp')].replace(/\/a\b/g, '') + ' '); }; });
     function away(on) { var now = Date.now(); if (on && !st._away) st._away = now; if (!on && st._away) { var s = now - st._away; st._away = 0; if (s > 1500) { st.leaves++; st.awayMs += s; st.log.push(['away', Math.round(s / 1000)]); flush(); } } }
     window.onblur = function () { away(true); }; window.onfocus = function () { away(false); };
     document.onvisibilitychange = function () { away(document.hidden); };
@@ -161,7 +185,7 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
     app.querySelector('#go').onclick = async function () {
       var msg = app.querySelector('#msg'), nm = app.querySelector('#nm').value.trim();
       if (nm.length < 2) { msg.innerHTML = '<div class="notice bad">Scrivi il tuo nome vero prima di consegnare.</div>'; app.querySelector('#nm').focus(); return; }
-      if (total() < 5) { msg.innerHTML = '<div class="notice bad">Scrivi almeno qualche frase prima di consegnare.</div>'; return; }
+      if (!okMin()) { msg.innerHTML = '<div class="notice bad">' + (t.minCount && count() < t.minCount ? 'Servono almeno ' + t.minCount + ' ' + (t.countUnit || 'frasi') + '.' : (t.minCount ? 'Servono almeno ' + t.minWords + ' parole.' : 'Scrivi almeno qualche frase prima di consegnare.')) + (t.minCount ? ' · Not enough yet.' : '') + '</div>'; return; }
       lsSet('boh_scrivi_name', nm); st.openMs += Date.now() - t0; away(false); flush();
       var payload = { v: 1, l: level, t: t.id, title: t.title, kind: t.kind, unit: t.unit, type: t.type, minWords: t.minWords, name: nm, boh: bohName(), words: total(),
         parts: d.parts.map(function (p) { return { q: p.label, a: p.text }; }),
@@ -169,7 +193,7 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
         first: st.first, at: new Date().toISOString(), tz: new Date().getTimezoneOffset() };
       var code = await pack(payload);
       var first = !DONE[t.id]; if (first) { DONE[t.id] = { at: payload.at, code: code.slice(0, 20) }; lsSet('boh_consegne_v1', DONE); award(t.bc); }
-      done(t, code, first);
+      done(t, code, first, d.parts.map(function (p) { return (p.label ? p.label + '\n' : '') + p.text.trim(); }).join('\n\n'), nm);
     };
   }
   function newStats() { return { keys: 0, paste: 0, drop: 0, jumps: 0, maxJump: 0, dels: 0, chips: 0, accents: 0, activeMs: 0, openMs: 0, leaves: 0, awayMs: 0, sessions: 0, first: '', words: 0, log: [] }; }
@@ -180,14 +204,21 @@ textarea{width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px 
       lsSet(k, s);
     } catch (e) {}
   }
-  function done(t, code, first) {
-    var h = '<div class="top"><a class="back" href="?l=' + level + '">← Compiti</a></div><div class="eyebrow">Consegna</div><h1>Fatto! Hand it in.</h1>' +
-      (first ? '<div class="notice ok">+' + t.bc + ' BC aggiunti al tuo portafoglio.</div>' : '<div class="notice warn">Hai già consegnato questo compito: nessun BC nuovo, ma il codice è aggiornato.</div>') +
-      '<div class="card"><b>1. Copia il codice</b><textarea class="code" id="cd" readonly>' + esc(code) + '</textarea><div class="row" style="margin-top:10px"><button class="btn" id="cp">Copia il codice</button><button class="btn ghost" id="dl">Scarica il file .txt</button></div><div id="cm"></div></div>' +
-      '<div class="card"><b>2. Mettilo in Google Classroom</b><p class="muted">Open the assignment, tap <b>Add or create → Doc</b> (or attach the .txt file), paste the code, then <b>Turn in</b>. Your teacher reads it in Boh.</p></div>';
+  function done(t, code, first, text, nm) {
+    var subj = t.unit + ' · consegna scritta · ' + nm, ital = !!t.it;
+    var h = '<div class="top"><a class="back" href="?l=' + level + '">← Compiti</a></div><div class="eyebrow">Consegna</div><h1>' + (ital ? 'Fatto! Ora consegna.' : 'Fatto! Hand it in.') + '</h1>' +
+      (first ? '<div class="notice ok">+' + t.bc + ' BC aggiunti al tuo portafoglio.</div>' : '<div class="notice warn">Hai già consegnato questo compito: nessun BC nuovo, ma il testo è aggiornato.</div>') +
+      '<div class="card step"><b>1 · Salva il tuo testo</b><p class="muted">Resta in Boh su questo computer. Scaricalo anche come file. · It stays in Boh on this computer. Download it as a file too.</p><div class="row" style="margin-top:10px"><button class="btn ghost" id="dl">Scarica .txt</button></div></div>' +
+      '<div class="card step"><b>2 · Copia il testo</b><textarea class="txtbox" id="tx" readonly>' + esc(text) + '</textarea><div class="row" style="margin-top:10px"><button class="btn" id="cp">Copia il testo</button></div><div id="cm"></div></div>' +
+      '<div class="card step"><b>3 · Incolla in Google Classroom</b><p class="muted">Apri il compito → <b>Aggiungi o crea → Documenti</b> → incolla → <b>Consegna</b>.<br>Non c’è il compito? Manda un’email alla prof con questo oggetto: · No assignment? Email it with this subject:</p>' +
+      '<div class="subj"><code id="sj">' + esc(subj) + '</code><button class="btn ghost" id="cs" style="padding:10px 14px">Copia</button></div><div id="csm"></div></div>' +
+      '<details class="code"><summary>Codice per Prof (opzionale · optional)</summary><textarea class="code" id="cd" readonly style="margin-top:8px">' + esc(code) + '</textarea><div class="row" style="margin-top:8px"><button class="btn ghost" id="cpc">Copia il codice</button></div><div id="ccm"></div></details>';
     app.innerHTML = h;
-    app.querySelector('#cp').onclick = function () { var ta = app.querySelector('#cd'); ta.select(); try { navigator.clipboard.writeText(code); } catch (e) { document.execCommand('copy'); } app.querySelector('#cm').innerHTML = '<div class="notice ok">Copiato!</div>'; };
-    app.querySelector('#dl').onclick = function () { var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([code], { type: 'text/plain' })); a.download = 'boh-' + t.id + '.txt'; a.click(); };
+    function copy(val, boxId, msgId) { var ta = boxId && app.querySelector(boxId); if (ta && ta.select) ta.select(); var ok = function () { app.querySelector(msgId).innerHTML = '<div class="notice ok">Copiato! · Copied!</div>'; }; try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(val).then(ok, function () { try { document.execCommand('copy'); } catch (e) {} ok(); }); else { document.execCommand('copy'); ok(); } } catch (e) { try { document.execCommand('copy'); } catch (e2) {} ok(); } }
+    app.querySelector('#cp').onclick = function () { copy(text, '#tx', '#cm'); };
+    app.querySelector('#cs').onclick = function () { try { var r = document.createRange(); r.selectNodeContents(app.querySelector('#sj')); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); } catch (e) {} copy(subj, null, '#csm'); };
+    app.querySelector('#cpc').onclick = function () { copy(code, '#cd', '#ccm'); };
+    app.querySelector('#dl').onclick = function () { var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([subj + '\n\n' + text + '\n'], { type: 'text/plain;charset=utf-8' })); a.download = 'Boh-' + t.id + '-' + nm.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + '.txt'; a.click(); };
   }
 
   fetch('../assets/tasks.json').then(function (r) { return r.json(); }).then(function (j) { TASKS = j.tasks; LV = j.levels; if (taskId) open(taskId); else home(); })

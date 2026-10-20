@@ -24,7 +24,7 @@
         "Noi siamo…",
         "Noi abbiamo…"
       ],
-      "minWords": 30,
+      "minWords": 20,
       "vocab": [
         "essere",
         "avere",
@@ -61,7 +61,11 @@
         "paura",
         "stanco",
         "stanca"
-      ]
+      ],
+      "minCount": 3,
+      "countUnit": "frasi",
+      "it": "Scrivi 3 frasi in italiano su te e un amico. Usa essere e avere. Poi: ① Salva. ② Copia il testo. ③ Incolla in Google Classroom. Non c'è il compito? Manda un'email alla prof.",
+      "en": "Write 3 sentences in Italian about you and a friend. Use essere and avere. Then save, copy your text, and paste it into the Google Classroom assignment. No assignment there? Email it to your teacher with the subject below."
     },
     {
       "id": "l1-domande",
@@ -102,7 +106,11 @@
         "migliore",
         "mio",
         "mia"
-      ]
+      ],
+      "minCount": 3,
+      "countUnit": "risposte",
+      "it": "Rispondi a 3 domande con una frase completa. Poi: ① Salva. ② Copia il testo. ③ Incolla in Google Classroom. Non c'è il compito? Manda un'email alla prof.",
+      "en": "Answer 3 of the questions with a complete sentence. Then save, copy your text, and paste it into the Google Classroom assignment. No assignment there? Email it to your teacher with the subject below."
     },
     {
       "id": "l1-dialogo",
@@ -120,7 +128,7 @@
         "Quanti anni hai?",
         "Sei…?"
       ],
-      "minWords": 35,
+      "minWords": 25,
       "vocab": [
         "ciao",
         "sono",
@@ -140,7 +148,11 @@
         "cane",
         "gatto",
         "piacere"
-      ]
+      ],
+      "minCount": 6,
+      "countUnit": "righe",
+      "it": "Scrivi un dialogo: due nuovi amici. 3 righe per persona. Scrivi il nome prima di ogni riga. Poi: ① Salva. ② Copia il testo. ③ Incolla in Google Classroom. Non c'è il compito? Manda un'email alla prof.",
+      "en": "Write a dialogue between two new friends: 3 lines each. Put the speaker's name before each line. Then save, copy your text, and paste it into the Google Classroom assignment. No assignment there? Email it to your teacher with the subject below."
     },
     {
       "id": "l2-weekend",
@@ -158,7 +170,7 @@
         "Quando fa freddo…",
         "Non mi piace…"
       ],
-      "minWords": 40,
+      "minWords": 30,
       "vocab": [
         "mi",
         "piace",
@@ -187,7 +199,11 @@
         "domenica",
         "gennaio",
         "luglio"
-      ]
+      ],
+      "minCount": 4,
+      "countUnit": "frasi",
+      "it": "Scrivi almeno 4 frasi complete sul tuo tempo libero: sport, tempo, stagioni. Di' che cosa fai e quando. Quando hai finito: ① Salva. ② Copia il tuo testo. ③ Incollalo nel compito su Google Classroom. Se non c'è il compito, mandalo per email alla prof con l'oggetto qui sotto.",
+      "en": "Write at least 4 complete sentences about your free time: sports, weather, seasons. Say what you do and when. Then save, copy your text and paste it into the Google Classroom assignment; if there's no assignment, email it with the subject below."
     },
     {
       "id": "l2-invito",
@@ -205,7 +221,7 @@
         "Posso…?",
         "A sabato!"
       ],
-      "minWords": 50,
+      "minWords": 35,
       "vocab": [
         "voglio",
         "vuoi",
@@ -235,7 +251,11 @@
         "mi",
         "dispiace",
         "verifica"
-      ]
+      ],
+      "minCount": 8,
+      "countUnit": "righe",
+      "it": "Scrivi un dialogo di messaggi: un amico invita, l'altro dice che cosa vuole, deve o può fare. 4 righe per persona. Usa voglio / devo / posso + infinito almeno 4 volte. Quando hai finito: ① Salva. ② Copia il tuo testo. ③ Incollalo nel compito su Google Classroom. Se non c'è il compito, mandalo per email alla prof con l'oggetto qui sotto.",
+      "en": "Write a text-message dialogue: one friend invites, the other says what they want, must or can do. 4 lines each. Use voglio / devo / posso + infinitive at least 4 times. Then save, copy your text and paste it into the Google Classroom assignment; if there's no assignment, email it with the subject below."
     },
     {
       "id": "l2-domande",
@@ -252,7 +272,7 @@
         "Che tempo fa oggi?",
         "Qual è il tuo mese preferito? Perché?"
       ],
-      "minWords": 20,
+      "minWords": 30,
       "vocab": [
         "mi",
         "piace",
@@ -267,7 +287,11 @@
         "mese",
         "preferito",
         "perché"
-      ]
+      ],
+      "minCount": 4,
+      "countUnit": "risposte",
+      "it": "Rispondi a tutte e 4 le domande con una frase completa. Quando hai finito: ① Salva. ② Copia il tuo testo. ③ Incollalo nel compito su Google Classroom. Se non c'è il compito, mandalo per email alla prof con l'oggetto qui sotto.",
+      "en": "Answer all 4 questions with a complete sentence. Then save, copy your text and paste it into the Google Classroom assignment; if there's no assignment, email it with the subject below."
     },
     {
       "id": "l3-piccolo",
@@ -277,7 +301,7 @@
       "kind": "summative",
       "bc": 120,
       "title": "Da piccolo/a",
-      "prompt": "Write a short story (8–10 sentences) about what you used to do and how things were when you were little. Use the imperfetto. Include at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito).",
+      "prompt": "Write a short story (6–8 sentences) about what you used to do and how things were when you were little. Use the imperfetto. Include at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito).",
       "frames": [
         "Da piccolo/a io…",
         "Ogni estate…",
@@ -286,7 +310,7 @@
         "Mia nonna… sempre",
         "Era…"
       ],
-      "minWords": 70,
+      "minWords": 60,
       "vocab": [
         "ero",
         "eri",
@@ -318,6 +342,23 @@
         "nonno",
         "casa",
         "scuola"
+      ],
+      "minCount": 6,
+      "countUnit": "frasi",
+      "it": "Scrivi 6–8 frasi (almeno 60 parole) su come eri e che cosa facevi da piccolo/a. Usa l'imperfetto: almeno una descrizione (era…, c'era…) e un'abitudine (ogni giorno, sempre, di solito). Usa i verbi della scatola se ti servono. Alla fine: ① Salva. ② Copia il testo. ③ Incollalo nel compito su Google Classroom. Se il compito non c'è, invialo per email alla prof con l'oggetto indicato.",
+      "en": "Write 6–8 sentences (60+ words) about how things were and what you used to do when you were little. Use the imperfetto: at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito). Use the verbs in the box if you need them. Then save, copy, and paste into the Classroom assignment — or email it with the subject shown.",
+      "pp": [
+        "sono andato/a",
+        "sono stato/a",
+        "ho mangiato",
+        "ho fatto",
+        "ho visto",
+        "ho giocato",
+        "ho avuto",
+        "ho preso",
+        "ho detto",
+        "sono uscito/a",
+        "mi sono divertito/a"
       ]
     },
     {
@@ -336,7 +377,7 @@
         "Allora…",
         "Mi ricordo…"
       ],
-      "minWords": 60,
+      "minWords": 50,
       "vocab": [
         "era",
         "ero",
@@ -359,6 +400,23 @@
         "spesso",
         "nonno",
         "nonna"
+      ],
+      "minCount": 5,
+      "countUnit": "righe",
+      "it": "Scrivi un'intervista di 5–6 righe (almeno 50 parole): uno studente chiede a un nonno o a una nonna com'era la vita da giovane. Usa l'imperfetto nelle domande e nelle risposte. Alla fine: ① Salva. ② Copia il testo. ③ Incollalo nel compito su Google Classroom. Se il compito non c'è, invialo per email alla prof con l'oggetto indicato.",
+      "en": "Write a 5–6 line interview (50+ words): a student asks a grandparent what life was like when they were young. Use the imperfetto in questions and answers. Then save, copy, and paste into the Classroom assignment — or email it with the subject shown.",
+      "pp": [
+        "sono andato/a",
+        "sono stato/a",
+        "ho mangiato",
+        "ho fatto",
+        "ho visto",
+        "ho giocato",
+        "ho avuto",
+        "ho preso",
+        "ho detto",
+        "sono uscito/a",
+        "mi sono divertito/a"
       ]
     },
     {
@@ -376,7 +434,7 @@
         "Com'era la tua scuola elementare?",
         "Chi era il tuo migliore amico / la tua migliore amica?"
       ],
-      "minWords": 25,
+      "minWords": 40,
       "vocab": [
         "abitavo",
         "ero",
@@ -388,6 +446,23 @@
         "elementare",
         "amico",
         "amica"
+      ],
+      "minCount": 4,
+      "countUnit": "risposte",
+      "it": "Rispondi a tutte e 4 le domande con una frase completa all'imperfetto (almeno 40 parole in tutto). Alla fine: ① Salva. ② Copia il testo. ③ Incollalo nel compito su Google Classroom. Se il compito non c'è, invialo per email alla prof con l'oggetto indicato.",
+      "en": "Answer all 4 questions with a complete sentence in the imperfetto (40+ words in all). Then save, copy, and paste into the Classroom assignment — or email it with the subject shown.",
+      "pp": [
+        "sono andato/a",
+        "sono stato/a",
+        "ho mangiato",
+        "ho fatto",
+        "ho visto",
+        "ho giocato",
+        "ho avuto",
+        "ho preso",
+        "ho detto",
+        "sono uscito/a",
+        "mi sono divertito/a"
       ]
     },
     {
