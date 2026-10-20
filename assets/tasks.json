@@ -301,7 +301,7 @@
       "kind": "summative",
       "bc": 120,
       "title": "Da piccolo/a",
-      "prompt": "Write a short story (6–8 sentences) about what you used to do and how things were when you were little. Use the imperfetto. Include at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito).",
+      "prompt": "Write a short story (5–6 sentences) about what you used to do and how things were when you were little. Use the imperfetto. Include at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito).",
       "frames": [
         "Da piccolo/a io…",
         "Ogni estate…",
@@ -310,7 +310,7 @@
         "Mia nonna… sempre",
         "Era…"
       ],
-      "minWords": 60,
+      "minWords": 50,
       "vocab": [
         "ero",
         "eri",
@@ -343,10 +343,10 @@
         "casa",
         "scuola"
       ],
-      "minCount": 6,
+      "minCount": 5,
       "countUnit": "frasi",
-      "it": "Scrivi 6–8 frasi (almeno 60 parole) su come eri e che cosa facevi da piccolo/a. Usa l'imperfetto: almeno una descrizione (era…, c'era…) e un'abitudine (ogni giorno, sempre, di solito). Usa i verbi della scatola se ti servono. Alla fine: ① Salva. ② Copia il testo. ③ Incollalo nel compito su Google Classroom. Se il compito non c'è, invialo per email alla prof con l'oggetto indicato.",
-      "en": "Write 6–8 sentences (60+ words) about how things were and what you used to do when you were little. Use the imperfetto: at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito). Use the verbs in the box if you need them. Then save, copy, and paste into the Classroom assignment — or email it with the subject shown.",
+      "it": "Scrivi 5–6 frasi (almeno 50 parole) su come eri e che cosa facevi da piccolo/a. Usa l'imperfetto: almeno una descrizione (era…, c'era…) e un'abitudine (ogni giorno, sempre, di solito). Usa i verbi della scatola se ti servono. Alla fine: ① Salva. ② Copia il testo. ③ Incollalo nel compito su Google Classroom. Se il compito non c'è, invialo per email alla prof con l'oggetto indicato.",
+      "en": "Write 5–6 sentences (50+ words) about how things were and what you used to do when you were little. Use the imperfetto: at least one description (era…, c'era…) and one habit (ogni giorno, sempre, di solito). Use the verbs in the box if you need them. Then save, copy, and paste into the Classroom assignment — or email it with the subject shown.",
       "pp": [
         "sono andato/a",
         "sono stato/a",
