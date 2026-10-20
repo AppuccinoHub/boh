@@ -9191,5 +9191,95 @@
 "levels": [
 "italiano2"
 ]
+},
+"com'eri da piccolo": {
+"text": "Com’eri da piccolo?",
+"levels": [
+"italiano4"
+]
+},
+"dove sei andato l'estate scorsa": {
+"text": "Dove sei andato l’estate scorsa?",
+"levels": [
+"italiano4"
+]
+},
+"essere connesso": {
+"text": "essere connesso",
+"levels": [
+"italiano4"
+]
+},
+"cosa mangiavate a casa la domenica quando eri piccolo": {
+"text": "Cosa mangiavate a casa la domenica quando eri piccolo?",
+"levels": [
+"italiano4"
+]
+},
+"a che ora andavi a letto da piccolo": {
+"text": "A che ora andavi a letto da piccolo?",
+"levels": [
+"italiano4"
+]
+},
+"che programmi guardavi sempre in tv da piccolo": {
+"text": "Che programmi guardavi sempre in TV da piccolo?",
+"levels": [
+"italiano4"
+]
+},
+"dove sei andato in vacanza l'anno scorso": {
+"text": "Dove sei andato in vacanza l'anno scorso?",
+"levels": [
+"italiano4"
+]
+},
+"cosa facevi sempre da piccolo una volta cosa hai fatto di diverso": {
+"text": "Cosa facevi sempre da piccolo? Una volta cosa hai fatto di diverso?",
+"levels": [
+"italiano4"
+]
+},
+"a che ora ti sei addormentato ieri sera": {
+"text": "A che ora ti sei addormentato ieri sera?",
+"levels": [
+"italiano4"
+]
+},
+"qual è la tua festa preferita": {
+"text": "Qual è la tua festa preferita?",
+"levels": [
+"italiano2"
+]
+},
+"quando eri piccolo com'era il tuo quartiere cosa è cambiato da allora": {
+"text": "Quando eri piccolo, com’era il tuo quartiere? Cosa è cambiato da allora?",
+"levels": [
+"ap"
+]
+},
+"che rapporto avevi con i vicini quando eri piccolo è cambiato": {
+"text": "Che rapporto avevi con i vicini quando eri piccolo? È cambiato?",
+"levels": [
+"ap"
+]
+},
+"dove abitavi quando eri piccolo": {
+"text": "Dove abitavi quando eri piccolo?",
+"levels": [
+"italiano3"
+]
+},
+"cosa facevi dopo la scuola quando eri piccolo": {
+"text": "Cosa facevi dopo la scuola quando eri piccolo?",
+"levels": [
+"italiano3"
+]
+},
+"dove sei andato l'ultima volta in vacanza com'era il posto": {
+"text": "Dove sei andato l’ultima volta in vacanza? Com’era il posto?",
+"levels": [
+"italiano3"
+]
 }
 }
