@@ -4,7 +4,7 @@
    CLASS IS ON (pause): an entry with ONLY date (and optionally until, note) and no title/url/unit/id/total. Students see "In classe / Il tuo percorso è salvato." Their path is kept. Example: italiano4: { date: 'martedì 13 ottobre', until: '2026-10-13' },
    Created by Assunta Scotto, 2026. */
 window.BohToday = {
-  italiano2: { date: 'lunedì 5 ottobre', title: 'What can I do, want to do, and have to do?', words: '(posso, voglio, devo)', url: '../in-classe/', id: 'inclasse', total: 10 },
+  italiano2: { date: 'lunedì 19 ottobre', title: 'What can I do, want to do, and have to do?', words: '(Bonus: posso, devo, voglio + 14 verbi)', url: '?unit=pvd', unit: 'pvd', id: 'pvd', total: 4 },
   italiano3: { date: 'martedì 6 ottobre', title: "L'imperfetto", words: '(ero, avevo, giocavo)', url: '?unit=imp', unit: 'imp', note: 'Then do the next tab: Passato prossimo o imperfetto?', until: '2026-10-06' }
 };
 

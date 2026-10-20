@@ -23,6 +23,15 @@ window.BohParlaData.italiano2 = {
       { it: 'Vuoi andare a casa oggi?', en: 'Do you want to go home today?', alt: [{ it: 'Vuoi andare al cinema domani?', en: 'Do you want to go to the movies tomorrow?' }] },
       { it: 'Devi andare in bagno?', en: 'Do you have to go to the bathroom?', alt: [{ it: 'Devi andare a scuola domani?', en: 'Do you have to go to school tomorrow?' }] }
     ]
+  },
+  /* pvd = "Posso, devo, voglio + 14 verbi" (added 19 Oct 2026). These three are DRAFTS by Claude, not yet approved by Assunta. Edit freely. */
+  pvd: {
+    title: 'Bonus · Posso, devo, voglio + 14 verbi',
+    questions: [
+      { it: 'Cosa vuoi fare oggi?', en: 'What do you want to do today? (Voglio …)', alt: [{ it: 'Cosa vuoi fare domani?', en: 'What do you want to do tomorrow? (Voglio …)' }] },
+      { it: 'Cosa devi fare a casa?', en: 'What do you have to do at home? (Devo …)', alt: [{ it: 'Cosa devi fare stasera?', en: 'What do you have to do tonight? (Devo …)' }] },
+      { it: 'Cosa puoi fare a scuola? E cosa non puoi fare?', en: 'What can you do at school? And what can\'t you do? (Posso … / Non posso …)', alt: [{ it: 'Cosa non puoi fare in classe?', en: 'What can\'t you do in class? (Non posso …)' }] }
+    ]
   }
 };
 /*boh-units-v1:start*/(function(){try{var P=window.BohParlaData=window.BohParlaData||{};P["italiano2"]=P["italiano2"]||{};var N={"feste":{"title":"Le feste e la famiglia","questions":[{"it":"Qual è la tua festa preferita?","en":"What is your favorite holiday?"},{"it":"Come festeggi il compleanno?","en":"How do you celebrate your birthday?"},{"it":"Che cosa dici a un amico per il compleanno?","en":"What do you say to a friend on their birthday?"}]},"cibo":{"title":"Buon appetito","questions":[{"it":"Che cosa mangi a colazione?","en":"What do you eat for breakfast?"},{"it":"Ti piace la pasta?","en":"Do you like pasta?"},{"it":"Che cosa vuoi bere?","en":"What do you want to drink?"}]},"weekend":{"title":"Il mio weekend","questions":[{"it":"Che cosa hai fatto sabato?","en":"What did you do on Saturday?"},{"it":"Che cosa fa il tuo amico il fine settimana?","en":"What does your friend do on the weekend?"},{"it":"Che cosa non fai più?","en":"What don't you do anymore?"}]},"passato":{"title":"Quando ero piccolo/a","questions":[{"it":"Dove abitavi a cinque anni?","en":"Where did you live when you were five?"},{"it":"Qual era il tuo gioco preferito?","en":"What was your favorite game?"},{"it":"Avevi un animale?","en":"Did you have a pet?"}]}};for(var k in N)if(!P["italiano2"][k])P["italiano2"][k]=N[k];}catch(e){}})();/*boh-units-v1:end*/
