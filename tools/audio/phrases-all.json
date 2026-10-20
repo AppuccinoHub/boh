@@ -9053,5 +9053,143 @@
 "levels": [
 "ap"
 ]
+},
+"chiedere": {
+"text": "chiedere",
+"levels": [
+"italiano2"
+]
+},
+"mangiare": {
+"text": "mangiare",
+"levels": [
+"italiano2"
+]
+},
+"studiare": {
+"text": "studiare",
+"levels": [
+"italiano2"
+]
+},
+"ascoltare": {
+"text": "ascoltare",
+"levels": [
+"italiano2"
+]
+},
+"dormire": {
+"text": "dormire",
+"levels": [
+"italiano2"
+]
+},
+"parlare": {
+"text": "parlare",
+"levels": [
+"italiano2"
+]
+},
+"andare": {
+"text": "andare",
+"levels": [
+"italiano2"
+]
+},
+"ritornare": {
+"text": "ritornare",
+"levels": [
+"italiano2"
+]
+},
+"leggere": {
+"text": "leggere",
+"levels": [
+"italiano2"
+]
+},
+"scrivere": {
+"text": "scrivere",
+"levels": [
+"italiano2"
+]
+},
+"praticare": {
+"text": "praticare",
+"levels": [
+"italiano2"
+]
+},
+"correre": {
+"text": "correre",
+"levels": [
+"italiano2"
+]
+},
+"non posso": {
+"text": "non posso",
+"levels": [
+"italiano2"
+]
+},
+"voglio": {
+"text": "voglio",
+"levels": [
+"italiano2"
+]
+},
+"scrivi i verbi": {
+"text": "SCRIVI I VERBI",
+"levels": [
+"italiano2"
+]
+},
+"ci sto": {
+"text": "Ci sto!",
+"levels": [
+"italiano2"
+]
+},
+"vuoi mangiare la pizza stasera ci sto": {
+"text": "Vuoi mangiare la pizza stasera? Ci sto!",
+"levels": [
+"italiano2"
+]
+},
+"cosa vuoi fare oggi": {
+"text": "Cosa vuoi fare oggi?",
+"levels": [
+"italiano2"
+]
+},
+"cosa vuoi fare domani": {
+"text": "Cosa vuoi fare domani?",
+"levels": [
+"italiano2"
+]
+},
+"cosa devi fare a casa": {
+"text": "Cosa devi fare a casa?",
+"levels": [
+"italiano2"
+]
+},
+"cosa devi fare stasera": {
+"text": "Cosa devi fare stasera?",
+"levels": [
+"italiano2"
+]
+},
+"cosa puoi fare a scuola e cosa non puoi fare": {
+"text": "Cosa puoi fare a scuola? E cosa non puoi fare?",
+"levels": [
+"italiano2"
+]
+},
+"cosa non puoi fare in classe": {
+"text": "Cosa non puoi fare in classe?",
+"levels": [
+"italiano2"
+]
 }
 }
