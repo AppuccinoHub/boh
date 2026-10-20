@@ -31,10 +31,12 @@
       var u = new SpeechSynthesisUtterance(String(t)); u.lang = 'it-IT'; u.rate = slow ? 0.7 : 0.92; S.speak(u);
     } catch (e) {}
   }
+  /* a question written piccolo/a is SAID piccolo (assets/bohvoice.js drops the /a); this note tells girls what to say */
+  function slashNote(t) { return /\p{L}\/[aei]\b/u.test(String(t || '')) ? '<div class="bl-ga">La voce dice la forma del ragazzo (piccolo). Sei una ragazza? Tu dici la forma con la -a (piccola). · The voice says the boy form; girls say the -a form.</div>' : ''; }
   function needRecorder(cb) {
     if (W.BohRecorder && W.BohRecorder.mount) return cb();
     var s = D.querySelector('script[data-boh-rec]');
-    if (!s) { s = D.createElement('script'); s.src = base + 'recorder.js?v=202610140100'; s.setAttribute('data-boh-rec', '1'); D.head.appendChild(s); }
+    if (!s) { s = D.createElement('script'); s.src = base + 'recorder.js?v=202610201500'; s.setAttribute('data-boh-rec', '1'); D.head.appendChild(s); }
     var n = 0, t = setInterval(function () { if (W.BohRecorder && W.BohRecorder.mount) { clearInterval(t); cb(); } else if (++n > 50) { clearInterval(t); cb(); } }, 100);
   }
 
@@ -73,6 +75,7 @@
     '#blst .bl-opt.ok{border-color:#0E7A52;background:#DDF4EA;color:#0B5C3E}' +
     '#blst .bl-why{font-size:17px;line-height:1.4;padding:10px 12px;border-radius:12px;background:var(--option-default-bg,#F2F5FB)}' +
     '#blst .bl-step{font-size:16px;font-weight:800;color:var(--text-muted,#46566E);text-align:center}' +
+    '#blst .bl-ga{font-size:15px;line-height:1.35;color:var(--text-muted,#46566E);text-align:center;padding:6px 10px;border-radius:10px;background:var(--option-default-bg,#F2F5FB)}' +
     '#blst .bl-en{display:none;font-size:17px;color:var(--text-muted,#46566E);margin-top:6px}' +
     '#blst.bl-showen .bl-en{display:block}' +
     '@media (max-height:620px){#blst .bl-card{padding:12px 14px 14px;gap:8px}#blst .bl-s1,#blst .bl-s2{gap:8px}#blst .bl-big{width:80px;height:80px;font-size:38px}#blst .bl-opt{min-height:50px}#blst .bl-go{min-height:50px;line-height:50px}#blst .bl-work{font-size:16px}#blst .bl-rec h3,#blst .bl-rec > div > p:not(.brec-note),#blst .bl-rec > p{display:none!important}}' +
@@ -104,7 +107,7 @@
       '<button class="bl-big" data-a="play" aria-label="Ascolta la domanda">&#128266;</button>' +
       '<p class="bl-note">Listen as often as you like. Then record your answer in Italian.</p>' +
       '<div class="bl-row"><button class="bl-btn2" data-a="slow">&#128034; Play again · slower</button><button class="bl-btn2" data-a="show">&#128065; Show me the question</button></div>' +
-      '<div class="bl-q" id="bl-q" hidden>' + esc(o.q) + '<small>' + esc(o.en || '') + '</small></div>' +
+      '<div class="bl-q" id="bl-q" hidden>' + esc(o.q) + '<small>' + esc(o.en || '') + '</small>' + slashNote(o.q) + '</div>' +
       '<details class="bl-nosnd"><summary class="bl-note" style="cursor:pointer;font-weight:800;min-height:44px">No sound?</summary>' +
         '<p class="bl-note">1. Check your volume, and that this tab is not muted. 2. Tap <b>Show me the question</b> and read it. ' +
         '3. <button class="bl-btn2" data-a="voices" style="font-size:16px;min-height:44px">Voices and help</button></p></details>' +

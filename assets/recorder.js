@@ -1,6 +1,9 @@
 /* Boh recorder: records the student's voice in the browser, keeps it on the device, lets them play it,
    re-record it and download it. No server, no third-party code. If the microphone cannot be used it says why
    and calls onEscalate so the page can show the next step (Vocaroo, then "tell your teacher").
+   Hand-in box (Oct 2026): under every saved take, one shared box tells the student to download the file and add it to the
+   Google Classroom assignment, or email it with a ready-made subject "<unit> · registrazione · <real name>". Same words on every level.
+   BohRecorder.handIn(el, { unit:'Le feste', n:3, dl:false })  draws that box anywhere (Parla con Prof uses it on its finished screen).
    Use:  BohRecorder.mount(element, { key:'r1', label:'Registra 1', maxSec:60, name:'', onChange:fn(hasTake), onEscalate:fn(reason) })
          BohRecorder.has('r1')   -> true when a take is saved on this device                                  */
 (function () {
@@ -44,7 +47,53 @@
     return String(n || 'student').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'student';
   }
 
+  /* ---- hand-in box: one piece, same on every level */
+  var NAME_KEY = 'boh_scrivi_name';
+  function realName() { try { var v = JSON.parse(localStorage.getItem(NAME_KEY) || '""'); return typeof v === 'string' ? v.trim() : ''; } catch (e) { return ''; } }
+  function setRealName(n) { try { localStorage.setItem(NAME_KEY, JSON.stringify(String(n || '').trim())); } catch (e) {} }
+  function unitName(opt) {
+    if (opt && opt.unit) return String(opt.unit);
+    try { var u = window.BT_UNIT || (typeof BT_UNIT !== 'undefined' ? BT_UNIT : ''), L = window.BT_LESSONS || (typeof BT_LESSONS !== 'undefined' ? BT_LESSONS : null); var t = L && u && L[u] && L[u].title; if (t) return String(t).replace(/^Unità \d+ · /, ''); } catch (e) {}
+    return 'Boh';
+  }
+  function subject(opt) { return unitName(opt) + ' · registrazione · ' + (realName() || '________'); }
+  function handInHtml(opt) {
+    opt = opt || {};
+    var n = opt.n || 1, many = n > 1, name = realName();
+    return '<div class="bhi" role="group" aria-label="Consegna la registrazione">' +
+      '<div class="bhi-ok">&#10003; ' + (many ? 'Registrazioni salvate' : 'Registrazione salvata') + ' su questo computer</div>' +
+      '<div class="bhi-s"><b>1 · ' + (many ? 'Scarica le ' + n + ' registrazioni.' : 'Scarica la registrazione.') + '</b>' + (opt.dl === false ? '' : ' <button type="button" class="bhi-b" data-r="download">&#11015; Scarica</button>') + '</div>' +
+      '<div class="bhi-s"><b>2 · ' + (many ? 'Caricale' : 'Caricala') + ' nel compito su Google Classroom.</b></div>' +
+      '<div class="bhi-n">Non c’è il compito? ' + (many ? 'Mandale' : 'Mandala') + ' per email alla prof con questo oggetto:</div>' +
+      (name ? '' : '<label class="bhi-nm">Il tuo nome vero · your real name <input type="text" maxlength="40" autocomplete="name" placeholder="Nome e cognome" data-hi="name"></label>') +
+      '<div class="bhi-row"><code data-hi="subj">' + esc(subject(opt)) + '</code><button type="button" class="bhi-b ghost" data-hi="copy">Copia</button></div>' +
+      '<div class="bhi-msg" data-hi="msg" role="status"></div>' +
+      '<div class="bhi-en">' + (many ? 'Download all ' + n + ', then add them to the Google Classroom assignment. No assignment? Email them with this subject.' : 'Download your recording and add it to the Google Classroom assignment. No assignment? Email it with this subject.') + '</div></div>';
+  }
+  function handInWire(root, opt) {
+    var box = root && root.querySelector('.bhi'); if (!box) return;
+    var sj = box.querySelector('[data-hi="subj"]'), nm = box.querySelector('[data-hi="name"]'), msg = box.querySelector('[data-hi="msg"]');
+    if (nm) nm.addEventListener('input', function () { setRealName(nm.value); sj.textContent = subject(opt); });
+    box.querySelector('[data-hi="copy"]').addEventListener('click', function () {
+      if (nm && !realName()) { msg.textContent = 'Scrivi prima il tuo nome. · Type your name first.'; nm.focus(); return; }
+      var t = subject(opt), ok = function () { msg.textContent = 'Copiato! · Copied!'; };
+      try { var r = document.createRange(); r.selectNodeContents(sj); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); } catch (e) {}
+      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, function () { try { document.execCommand('copy'); } catch (e) {} ok(); }); else { document.execCommand('copy'); ok(); } } catch (e) { ok(); }
+    });
+  }
+  function handIn(el, opt) { if (!el) return; addCss(); el.innerHTML = handInHtml(opt); handInWire(el, opt); }
+
   var css = '' +
+    '.bhi{background:#DDF4EA;color:#0B5C3E;border-radius:14px;padding:10px 12px;margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.35;text-align:left}' +
+    '@media (prefers-color-scheme:dark){.bhi{background:#123B2A;color:#CFF2DF}}' +
+    '.bhi-ok{font-weight:900;font-size:15px}.bhi-s b{font-weight:900}.bhi-n{font-size:15px}' +
+    '.bhi-nm{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}' +
+    '.bhi-nm input{min-height:44px;border-radius:10px;border:2px solid #2E9E5B;background:#fff;color:#0E2A5B;padding:0 12px;font:700 16px/1 inherit;text-transform:none;letter-spacing:0}' +
+    '.bhi-row{display:flex;gap:8px;align-items:center}.bhi-row code{flex:1;font:800 14px/1.3 ui-monospace,Menlo,Consolas,monospace;background:rgba(255,255,255,.7);color:#0B5C3E;border-radius:10px;padding:8px 10px;word-break:break-word}' +
+    '@media (prefers-color-scheme:dark){.bhi-row code{background:rgba(0,0,0,.3);color:#CFF2DF}}' +
+    '.bhi .bhi-b{min-height:44px;padding:8px 16px;border-radius:999px;border:0;background:#1E6B2A;color:#fff;font:900 16px/1.1 inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}' +
+    '.bhi .bhi-b.ghost{background:#fff;color:#0B5C3E;border:2px solid #1E6B2A}@media (prefers-color-scheme:dark){.bhi .bhi-b.ghost{background:transparent;color:#CFF2DF;border-color:#7FE0A0}}' +
+    '.bhi-msg{font-size:14px;font-weight:800;min-height:1em}.bhi-en{font-size:14px;line-height:1.4;opacity:.92}' +
     '.brec{border:3px solid var(--vio,#1A5CDF);background:var(--viobg,#E2EBFB);border-radius:18px;padding:16px;margin:12px 0;color:var(--ink,#0E2A5B)}' +
     '.brec h3{margin:0 0 6px;font-size:20px}.brec p{margin:6px 0;line-height:1.4}' +
     '.brec .brec-note{font-size:15px;color:var(--mut,#6B5F68);font-weight:700}' +
@@ -83,6 +132,7 @@
     function bind() {
       var b = el.querySelectorAll('[data-r]');
       for (var i = 0; i < b.length; i++) b[i].addEventListener('click', onBtn);
+      handInWire(el, { unit: unitName(opt) });
     }
     function onBtn(e) {
       var a = e.currentTarget.getAttribute('data-r');
@@ -131,11 +181,11 @@
           '<div class="brec-row"><button class="ghost" data-r="stop">Stop</button></div>' +
           note('Up to ' + maxSec + ' seconds. The green bar moves when it hears you.'));
       } else if (ph === 'have') {
-        say('<h3>' + esc(label) + '</h3><p><b>Saved on this device.</b> Listen to it. If you like it, you are done here.</p>' +
+        say('<h3>' + esc(label) + '</h3><p><b>Saved on this device.</b> Listen to it, then hand it in below.</p>' +
           '<audio controls preload="metadata" src="' + esc(st.url) + '"></audio>' +
           (extra || '') +
-          '<div class="brec-row"><button class="ghost" data-r="again">Record again</button><button data-r="download">Download</button><button class="ghost" data-r="delete">Delete</button></div>' +
-          note('Download gives you a file. You can turn it in on Google Classroom. The file is named with your name.'));
+          '<div class="brec-row"><button class="ghost" data-r="again">Record again</button><button class="ghost" data-r="delete">Delete</button></div>' +
+          handInHtml({ unit: unitName(opt) }));
       } else if (ph === 'bad') {
         say('<h3>' + esc(label) + '</h3>' + extra +
           '<div class="brec-row"><button class="rec" data-r="start">Try again</button></div>');
@@ -258,5 +308,5 @@
     }, function () { return false; });
   }
 
-  window.BohRecorder = { mount: mount, has: has, kept: kept, downloadKey: downloadKey };
+  window.BohRecorder = { mount: mount, has: has, kept: kept, downloadKey: downloadKey, handIn: handIn, subject: subject, realName: realName };
 })();

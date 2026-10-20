@@ -4,8 +4,9 @@
    Use:   BohRecordIt.open({ key:'rec_ap_f1_parla', label:'Parla', prompts:['...','...'], unit:'Famiglie e comunità', stop:'Parla',
                              name:'Gia', onClose:function (done) {} })
           BohRecordIt.done(key)  -> true when the student has a saved take, a pasted Vocaroo link, or ticked "recorded another way"
-   Built on assets/recorder.js (records in the browser, keeps the take on the device). Vocaroo is the fallback and the way
-   to hand the recording in: the student copies the link and pastes it into Google Classroom.
+   Built on assets/recorder.js (records in the browser, keeps the take on the device): under a saved take the recorder shows the
+   shared hand-in box (download the file, add it to Google Classroom, or email it with the ready-made subject). Vocaroo is the
+   fallback: the student copies the link into the note and pastes the note into Google Classroom.
    The game never scores how a student sounds. Nothing is uploaded by the game. A level that does not load this file
    (Levels 1 and 2) never shows a Record it button. */
 (function (W) {
@@ -80,7 +81,7 @@
         '<ol class="brit-steps">' +
           '<li><span>Say your lines out loud first.' + say + '</span></li>' +
           '<li><span>Record yourself. Use the box below. If it does not work, use Vocaroo.</span></li>' +
-          '<li><span>Turn it in: tap <b>Copy my note</b>, then paste it in <b>Google Classroom</b> for your teacher.</span></li>' +
+          '<li><span>Turn it in: <b>Scarica</b> the file and add it to the <b>Google Classroom</b> assignment (no assignment? email it with the subject shown). Used Vocaroo? Tap <b>Copy my note</b> and paste it in Classroom instead.</span></li>' +
         '</ol>' +
         (canRec ? '<div id="brit-rec"></div>' : '') +
         '<details id="brit-voc"' + (!canRec ? ' open' : '') + '><summary>' + (canRec ? 'Recording not working? Use Vocaroo instead' : 'Record on Vocaroo') + '</summary>' +
@@ -109,7 +110,7 @@
       b.textContent = ok ? 'Done' : 'Done (record, paste a link, or tick the box first)';
     }
     if (canRec) {
-      o.mount = W.BohRecorder.mount(el.querySelector('#brit-rec'), { key: o.key, label: o.label || 'Parla', maxSec: 60, name: o.name,
+      o.mount = W.BohRecorder.mount(el.querySelector('#brit-rec'), { key: o.key, label: o.label || 'Parla', maxSec: 60, name: o.name, unit: o.unit ? String(o.unit).replace(/^Unità \d+ · /, '') : '',
         onChange: function () { sync(); },
         onEscalate: function () { var d = el.querySelector('#brit-voc'); if (d) d.open = true; } });
     }

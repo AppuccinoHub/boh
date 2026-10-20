@@ -7,6 +7,8 @@
    3. Recorded clips (added 2026-10-12): if a recording of the exact phrase exists in assets/audio/manifest.json, it is played as a normal audio file instead of the built-in voice.
       Why: the built-in voice stays on the device's own speaker, so it is silent on AirPlay, Bluetooth and the Promethean board; a recorded file goes out like any other sound.
       No recording for the phrase, or the clip cannot play: the built-in voice speaks, exactly as before.
+   4. Gender slashes (added 2026-10-20): piccolo/a, andato/a, connesso/a are SAID in the boy form (piccolo), never "piccolo barra a".
+      The written text on screen keeps the slash; the screens that show a spoken question add a note for girls.
    Nothing here changes any page's content. window.BohVoice.openPicker() shows the voice list; voices.html is the teacher's check page. */
 (function (W) {
   'use strict';
@@ -42,6 +44,7 @@
     return null;
   }
   function pick() { return chosen() || auto(); }
+  function deslash(t) { try { return String(t).replace(/(\p{L})\/[aei]\b/gu, '$1'); } catch (e) { return String(t).replace(/([A-Za-z\u00C0-\u024F])\/[aei]\b/g, '$1'); } }
   function slowSensitive(v) { return CROS || !v || v.localService === false; }
 
 
@@ -100,6 +103,7 @@
     var orig = W.SpeechSynthesis.prototype.speak, origCancel = W.SpeechSynthesis.prototype.cancel, nativeSpeak = function (u) { return orig.call(S, u); };
     W.SpeechSynthesis.prototype.cancel = function () { try { if (cur) stopClip('canceled'); } catch (e) {} return origCancel.apply(this, arguments); };
     W.SpeechSynthesis.prototype.speak = function (u) {
+      try { if (u && !u.__bohRaw && typeof u.text === 'string' && (!u.lang || /^it/i.test(u.lang))) { var dt = deslash(u.text); if (dt !== u.text) u.text = dt; } } catch (e) {}
       try { if (playClip(u, function (x) { prepare(x); return orig.call(S, x); })) return; } catch (e) {}
       prepare(u);
       return orig.call(this, u);
@@ -119,7 +123,7 @@
     o = o || {};
     if (!S || typeof SpeechSynthesisUtterance === 'undefined') return null;
     try {
-      S.cancel(); var u = new SpeechSynthesisUtterance(String(text)); u.lang = 'it-IT';
+      S.cancel(); var u = new SpeechSynthesisUtterance(o.raw ? String(text) : deslash(text)); u.lang = 'it-IT';
       if (o.voice) u.voice = o.voice; if (o.rate) u.rate = o.rate; if (o.raw) u.__bohRaw = true;
       if (o.onend) { u.onend = o.onend; u.onerror = o.onend; }
       S.speak(u); return u;

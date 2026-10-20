@@ -3,7 +3,8 @@
    Each question gets a recorder (assets/recorder.js, skin 'parla'): Record, then Listen / Again / Keep it, then Download.
    If the microphone does not work the card shows Vocaroo and "I recorded another way". The student always just records:
    this page never says whether the teacher will also ask the questions in person. Nothing is uploaded by the game;
-   the student downloads the files and turns them in on Google Classroom. Recordings stay on the device.
+   the student downloads the files and turns them in on Google Classroom (or emails them: the finished screen carries the shared
+   hand-in box from assets/recorder.js with a ready-made subject line). Recordings stay on the device.
    The look follows the device's light or dark setting. A unit with no questions in its file shows no Parla step.
    Public API: BohParla.open() opens the page for the current unit (the progress-bar P step uses it).
    Saves a small flag per unit in localStorage key boh_parla_v1. Lives outside #app so the page engine is not touched.
@@ -68,6 +69,8 @@
     '.bp-btn[disabled]{background:var(--off);color:var(--offt);cursor:not-allowed}' +
     '.bp-btn.alt{background:transparent;color:var(--mu);border:2px solid var(--gh);min-height:48px;padding:0 24px;font-size:15px}' +
     '.bp-ov.done .bp-btn.alt{color:#fff;border:3px solid #fff;font-size:18px;min-height:56px;padding:0 32px}' +
+    '.bp-hi{width:100%;max-width:520px;text-align:left}.bp-hi .bhi{margin-top:0}' +
+    '.bp-ga{font-size:14px;line-height:1.35;color:var(--mu);margin:0 0 8px;padding:6px 8px;border-radius:10px;background:var(--off)}' +
     '.bp-hint{font-size:14px;color:var(--mu);margin:0}.bp-big{font:800 56px/1 "Bricolage Grotesque",system-ui,sans-serif}.bp-note{font-size:16px;line-height:1.45}' +
     '.bp-dlr{width:100%;max-width:420px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(0,0,0,.22);border-radius:14px;padding:8px 8px 8px 16px;font-size:16px;font-weight:800;text-align:left}' +
     '.bp-dlr button{min-height:44px;padding:0 20px;border-radius:999px;border:0;background:#E0B040;color:#2A1D00;font:800 15px/1 inherit;cursor:pointer}' +
@@ -105,15 +108,17 @@
     ov.className = 'bp-ov done'; ov.removeAttribute('aria-modal');
     var alt = rec(u).alt || {}, rows = '';
     d.questions.forEach(function (q, i) {
-      if (kept(u, i)) rows += '<div class="bp-dlr"><span>' + (i + 1) + ' ✓</span><button type="button" data-dl="' + i + '">Download</button></div>';
+      if (kept(u, i)) rows += '<div class="bp-dlr"><span>' + (i + 1) + ' ✓</span><button type="button" data-dl="' + i + '">⬇ Scarica</button></div>';
       else if (alt[i] && alt[i].t === 'link') rows += '<div class="bp-dlr"><span>' + (i + 1) + ' ✓ Vocaroo</span><span style="font-weight:500;font-size:14px;word-break:break-all">' + esc(alt[i].v) + '</span></div>';
       else if (alt[i]) rows += '<div class="bp-dlr"><span>' + (i + 1) + ' ✓ recorded another way</span></div>';
     });
     ov.innerHTML = '<div class="bp-big">Registrato!</div><div style="font:700 26px/1.1 \'Bricolage Grotesque\',system-ui,sans-serif">' + esc(nm()) + '</div>' +
       '<div style="font-size:17px;font-weight:700;line-height:1.35">' + esc(CFG.name) + ' · ' + esc(d.title) + '<br>Parla con Prof</div>' +
-      rows + '<div class="bp-note">Your recordings are kept on this device.<br>Then upload the files to Classroom.</div>' +
+      rows + '<div class="bp-hi" data-hi-box="1"></div>' +
       '<button class="bp-btn alt" data-x="1" type="button">Torna all’unità</button>';
     ov.querySelector('[data-x]').onclick = close;
+    var nKept = d.questions.filter(function (q, i) { return kept(u, i); }).length;
+    if (W.BohRecorder && W.BohRecorder.handIn) W.BohRecorder.handIn(ov.querySelector('[data-hi-box]'), { unit: d.title, n: Math.max(1, nKept), dl: false });
     Array.prototype.forEach.call(ov.querySelectorAll('[data-dl]'), function (b) {
       b.onclick = function () { if (W.BohRecorder && W.BohRecorder.downloadKey) W.BohRecorder.downloadKey(rkey(u, +b.getAttribute('data-dl')), { name: nm() }); };
     });
@@ -142,7 +147,7 @@
       '<div class="bp-hd"><img class="bp-lo" src="../assets/guide/bust/mic.webp" alt="Prof. Lo So holding a microphone"><div class="bp-bub"><h1 class="bp-h">Parla con Prof</h1>' +
       '<p class="bp-s">Press the red button and talk. Press it again to stop.</p></div></div><div class="bp-grid">';
     d.questions.forEach(function (q, i) {
-      h += '<div class="bp-q"><div class="bp-n">' + (i + 1) + '</div><div class="bp-it">' + esc(q.it) + '</div>' + (CFG.en && q.en ? '<div class="bp-en">' + esc(q.en) + '</div>' : '') +
+      h += '<div class="bp-q"><div class="bp-n">' + (i + 1) + '</div><div class="bp-it">' + esc(q.it) + '</div>' + (CFG.en && q.en ? '<div class="bp-en">' + esc(q.en) + '</div>' : '') + (/\p{L}\/[aei]\b/u.test(q.it) ? '<div class="bp-ga">La voce dice la forma del ragazzo (piccolo). Sei una ragazza? Tu dici la forma con la -a (piccola). · The voice says the boy form; girls say the -a form.</div>' : '') +
         '<div class="bp-rec" data-rec="' + i + '"></div><div data-alt="' + i + '"></div></div>';
     });
     h += '</div><div class="bp-foot"><button class="bp-btn" data-go="1" type="button" disabled>Ho finito</button>' +
