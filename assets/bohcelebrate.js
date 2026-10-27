@@ -96,7 +96,7 @@
       el.classList.add('bcel-on-pun', 'bcel-on-me', 'bcel-end');
       setCount(earned); showWords(lineWords.length);
       var sr = el.querySelector('.bcel-sr');
-      if (sr) sr.textContent = 'Lesson finished. You earned ' + earned + ' BC. ' + lineWords.join(' ');
+      if (sr) sr.textContent = 'Lesson finished. ' + (earned > 0 ? 'You earned ' + earned + ' BC. ' : '') + lineWords.join(' ');
       var go = el.querySelector('.bcel-go'); if (go) { try { go.focus({ preventScroll: true }); } catch (e) { go.focus(); } }
     }
 
@@ -130,8 +130,9 @@
         '<div class="bcel-card">' +
           '<div class="bcel-top"><img class="bcel-prof" src="' + base + 'guide/bust/clap.webp" alt="Prof. Lo So applaude">' +
             (pun ? '<div class="ls-bubble bcel-pun">' + esc(pun.it) + '<small>' + esc(pun.en) + '</small></div>' : '') + '</div>' +
-          '<div class="bcel-stage"><img class="bcel-chest" src="' + base + 'tiles/boh-borsa.webp" alt="">' +
-            '<div class="bcel-count" aria-hidden="true"><img src="' + base + 'bc.svg" alt=""><b>+0</b><small>BC</small></div></div>' +
+          /* reward of 0 (a teaching card pays nothing): no purse and no BC amount at all. Above 0: exactly as before. */
+          (earned > 0 ? '<div class="bcel-stage"><img class="bcel-chest" src="' + base + 'tiles/boh-borsa.webp" alt="">' +
+            '<div class="bcel-count" aria-hidden="true"><img src="' + base + 'bc.svg" alt=""><b>+0</b><small>BC</small></div></div>' : '') +
           '<div class="bcel-me"><div class="bcel-doll" aria-hidden="true"></div><p class="bcel-say">' +
             lineWords.map(function (w) { return '<span>' + esc(w) + ' </span>'; }).join('') + '</p></div>' +
           '<button type="button" class="bcel-go">Continua</button>' +
@@ -165,7 +166,7 @@
       var DUR = Math.max(900, Math.min(2600, 900 + earned * 45));
       later(function () { if (el) el.classList.add('bcel-on-pun'); }, 150);
       var stage = el.querySelector('.bcel-stage'), chest = el.querySelector('.bcel-chest');
-      var nCoins = Math.max(0, Math.min(16, Math.ceil(earned / 2)));
+      var nCoins = stage ? Math.max(0, Math.min(16, Math.ceil(earned / 2))) : 0;
       for (var i = 0; i < nCoins; i++) (function (i) {
         later(function () {
           if (!el) return;

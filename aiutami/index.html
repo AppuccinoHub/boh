@@ -980,7 +980,7 @@ function stepFine(l){
   shell(`<div class="fine">
     <h2>${ubonus?"Unità completata!":CUR().id!=="chiamami"?"Lettera completata!":all?"Boh è salvo!":"Problema risolto!"}</h2>
     <div class="stars" aria-label="${s} stars">${stars(s)}</div>
-    <div class="earn"><i class="bc" aria-hidden="true"></i>+${P.earned+bonus+ubonus} Boh Cashi</div>
+    ${(P.earned+bonus+ubonus)>0?`<div class="earn"><i class="bc" aria-hidden="true"></i>+${P.earned+bonus+ubonus} Boh Cashi</div>`:""}
     ${ubonus?`<span class="badge">★ Unità ${u.n} completata: ${esc(u.title)} · +50 BC</span>`:""}
     <p class="dir">${P.first} of ${P.tot} right on the first try.${bonus?" Three-star bonus: +25 BC.":""}${P.review?" Review round: replays pay 1/5 of the first time.":""}</p>
     ${endBar(nxtAfter("letter"),"Play again")}</div>`,all?"Grazie mille! Mi hai salvato!":"Grazie! Mi hai aiutato!","happy");
@@ -1087,7 +1087,7 @@ function tmMenu(){
 function tmEnd(){
   sfx("win");
   const {o,close}=ov(`<div style="display:flex;gap:14px;align-items:center">${av(faceKey("happy"),90)}<div><h2>Tempo! Ottimo lavoro oggi.</h2><p class="dir" style="margin:4px 0 0">${esc(NM())} is proud of you.</p></div></div>
-    <div class="earnrow"><span>${SESS.right} risposte giuste</span><span><i class="bc"></i>${SESS.bc} Boh Cashi guadagnati</span></div>
+    <div class="earnrow"><span>${SESS.right} risposte giuste</span>${SESS.bc>0?`<span><i class="bc"></i>${SESS.bc} Boh Cashi guadagnati</span>`:""}</div>
     <p style="margin:0">You can stop here, or keep going if you want to.</p>
     <div class="row" style="margin:0"><button class="ghost" id="tMore">Continua a giocare</button><button class="go" id="tNew">Nuovo timer</button></div>`);
   o.querySelector("#tMore").onclick=close;
