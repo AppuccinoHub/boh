@@ -220,3 +220,7 @@ html body .lvl-card .ls-btn { align-self: stretch; margin-top: 6px; }
    about 80px taller than what the student sees. The fit step then saw "too tall", shrank and hid parts (top bar, hints, Boh)
    and the page scrolled, cutting off the top. 100dvh is the height the student actually sees. Browsers without dvh keep the old rule. */
 html body .look { min-height: calc(100dvh - var(--hostbar, 0px)) !important; }
+/* boh-avanti-lock-v1 (27 Oct 2026): a locked Avanti (flashcards not done yet) stays visible, grayed out, with the reason under it. Tap opens the cards. One style for every level. */
+html body .ls-lockbox { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+html body .ls-btn.ls-btn-lock { background: #E6EAF0; color: #46566E; border: 2px dashed #8795AB; box-shadow: none; }
+html body .ls-lock-why { font-size: 15px; font-weight: 700; line-height: 1.3; text-align: center; color: #46566E; }
