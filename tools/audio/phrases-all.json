@@ -9281,5 +9281,125 @@
 "levels": [
 "italiano3"
 ]
+},
+"vado": {
+"text": "vado",
+"levels": [
+"italiano2"
+]
+},
+"in banca": {
+"text": "in banca",
+"levels": [
+"italiano2"
+]
+},
+"con mia madre": {
+"text": "con mia madre",
+"levels": [
+"italiano2"
+]
+},
+"al cinema": {
+"text": "al cinema",
+"levels": [
+"italiano2"
+]
+},
+"al supermercato": {
+"text": "al supermercato",
+"levels": [
+"italiano2"
+]
+},
+"alla stazione": {
+"text": "alla stazione",
+"levels": [
+"italiano2"
+]
+},
+"dal dottore": {
+"text": "dal dottore",
+"levels": [
+"italiano2"
+]
+},
+"da marco": {
+"text": "da Marco",
+"levels": [
+"italiano2"
+]
+},
+"a roma": {
+"text": "a Roma",
+"levels": [
+"italiano2"
+]
+},
+"in posta": {
+"text": "in posta",
+"levels": [
+"italiano2"
+]
+},
+"in farmacia": {
+"text": "in farmacia",
+"levels": [
+"italiano2"
+]
+},
+"in palestra": {
+"text": "in palestra",
+"levels": [
+"italiano2"
+]
+},
+"a scuola": {
+"text": "a scuola",
+"levels": [
+"italiano2"
+]
+},
+"a casa": {
+"text": "a casa",
+"levels": [
+"italiano2"
+]
+},
+"domani vado in banca con mia madre": {
+"text": "Domani vado in banca con mia madre.",
+"levels": [
+"italiano2"
+]
+},
+"stasera vado in palestra con mia sorella": {
+"text": "Stasera vado in palestra con mia sorella.",
+"levels": [
+"italiano2"
+]
+},
+"sabato vado a casa con mio fratello": {
+"text": "Sabato vado a casa con mio fratello.",
+"levels": [
+"italiano2"
+]
+},
+"domani vado in posta con mio padre": {
+"text": "Domani vado in posta con mio padre.",
+"levels": [
+"italiano2"
+]
+},
+"domani vado in banca": {
+"text": "Domani vado in banca.",
+"levels": [
+"italiano2"
+]
+},
+"sabato vado a casa con mio padre": {
+"text": "Sabato vado a casa con mio padre.",
+"levels": [
+"italiano2"
+]
 }
 }
