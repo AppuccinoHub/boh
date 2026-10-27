@@ -1,0 +1,636 @@
+{
+ "level": "italiano2",
+ "key": "andare",
+ "guideUnit": 4,
+ "proficiency": "Novice High",
+ "title": "Bonus · Dove vai?",
+ "tab": "Dove vai?",
+ "tabSub": "BONUS",
+ "eyebrow": "ITALIANO 2 · BONUS",
+ "question": "Where do I want to go, have to go, and can I go?",
+ "words": "(andare, a, in)",
+ "workingOn": "saying where I want to go, have to go, can go",
+ "canDo": [
+  "I can say where I want to go, have to go, or can go.",
+  "I can ask permission to go somewhere at school.",
+  "I can choose a or in for places and cities."
+ ],
+ "culture": "Rome was the center of the Roman Empire, and its roads reached across Europe. That is where the saying 'all roads lead to Rome' comes from. In Italian, cities like Roma take a, and bigger places like Italia take in.",
+ "vocab": [
+  {
+   "group": "Dove?",
+   "words": [
+    [
+     "la casa",
+     "home"
+    ],
+    [
+     "la scuola",
+     "school"
+    ],
+    [
+     "Roma",
+     "Rome"
+    ],
+    [
+     "il bagno",
+     "bathroom"
+    ],
+    [
+     "la biblioteca",
+     "library"
+    ],
+    [
+     "la palestra",
+     "gym"
+    ],
+    [
+     "la mensa",
+     "cafeteria"
+    ],
+    [
+     "l'infermeria",
+     "nurse's office"
+    ],
+    [
+     "l'Italia",
+     "Italy"
+    ]
+   ]
+  },
+  {
+   "group": "Posso, devo, voglio",
+   "words": [
+    [
+     "andare",
+     "to go"
+    ],
+    [
+     "posso",
+     "I can"
+    ],
+    [
+     "puoi",
+     "you can"
+    ],
+    [
+     "devo",
+     "I have to"
+    ],
+    [
+     "devi",
+     "you have to"
+    ],
+    [
+     "voglio",
+     "I want"
+    ],
+    [
+     "vuoi",
+     "you want"
+    ],
+    [
+     "dove",
+     "where"
+    ]
+   ]
+  },
+  {
+   "group": "L'acqua",
+   "words": [
+    [
+     "l'acqua",
+     "water"
+    ],
+    [
+     "la bottiglia",
+     "bottle"
+    ],
+    [
+     "riempire",
+     "to fill"
+    ]
+   ]
+  }
+ ],
+ "grammar": {
+  "head": "voglio, devo, posso + andare, then a or in + the place",
+  "verbs": [],
+  "rows": [],
+  "tricks": [
+   "After voglio, devo and posso, use andare.",
+   "A city or a point is a bullseye: a Roma, a casa, a scuola.",
+   "A big place or a room you step into is a pool: in Italia, in mensa, in palestra."
+  ],
+  "chips": [
+   "Voglio andare a casa.",
+   "Posso andare in bagno?",
+   "Devo andare in biblioteca.",
+   "Vuoi andare in mensa?"
+  ]
+ },
+ "sentences": [
+  [
+   "Voglio andare a casa.",
+   "I want to go home."
+  ],
+  [
+   "Vuoi andare a scuola?",
+   "Do you want to go to school?"
+  ],
+  [
+   "Devo andare in biblioteca.",
+   "I have to go to the library."
+  ],
+  [
+   "Devi andare in palestra.",
+   "You have to go to the gym."
+  ],
+  [
+   "Posso andare in bagno?",
+   "Can I go to the bathroom?"
+  ],
+  [
+   "Puoi andare in infermeria?",
+   "Can you go to the nurse's office?"
+  ],
+  [
+   "Ho fame: voglio andare in mensa.",
+   "I'm hungry: I want to go to the cafeteria."
+  ],
+  [
+   "Vuoi andare a Roma?",
+   "Do you want to go to Rome?"
+  ],
+  [
+   "Voglio andare in Italia.",
+   "I want to go to Italy."
+  ],
+  [
+   "Posso andare a prendere l'acqua?",
+   "Can I go get water?"
+  ],
+  [
+   "Devo andare a casa.",
+   "I have to go home."
+  ],
+  [
+   "Hai fame? Vuoi andare in mensa?",
+   "Are you hungry? Do you want to go to the cafeteria?"
+  ]
+ ],
+ "forms": [
+  {
+   "prompt": "io + voglio + go",
+   "answer": "voglio andare",
+   "alts": [],
+   "traps": [
+    "voglio vado",
+    "voglio vai"
+   ],
+   "why": "After voglio, use andare.",
+   "trick": [
+    "voglio + andare",
+    "Modal + andare: voglio andare."
+   ]
+  },
+  {
+   "prompt": "tu + vuoi + go",
+   "answer": "vuoi andare",
+   "alts": [],
+   "traps": [
+    "vuoi vado",
+    "vuoi vai"
+   ],
+   "why": "After vuoi, use andare.",
+   "trick": [
+    "vuoi + andare",
+    "Modal + andare: vuoi andare."
+   ]
+  },
+  {
+   "prompt": "io + devo + go",
+   "answer": "devo andare",
+   "alts": [],
+   "traps": [
+    "devo vado",
+    "devo vai"
+   ],
+   "why": "After devo, use andare.",
+   "trick": [
+    "devo + andare",
+    "Modal + andare: devo andare."
+   ]
+  },
+  {
+   "prompt": "tu + devi + go",
+   "answer": "devi andare",
+   "alts": [],
+   "traps": [
+    "devi vado",
+    "devi vai"
+   ],
+   "why": "After devi, use andare.",
+   "trick": [
+    "devi + andare",
+    "Modal + andare: devi andare."
+   ]
+  },
+  {
+   "prompt": "io + posso + go",
+   "answer": "posso andare",
+   "alts": [],
+   "traps": [
+    "posso vado",
+    "posso vai"
+   ],
+   "why": "After posso, use andare.",
+   "trick": [
+    "posso + andare",
+    "Modal + andare: posso andare."
+   ]
+  },
+  {
+   "prompt": "tu + puoi + go",
+   "answer": "puoi andare",
+   "alts": [],
+   "traps": [
+    "puoi vado",
+    "puoi vai"
+   ],
+   "why": "After puoi, use andare.",
+   "trick": [
+    "puoi + andare",
+    "Modal + andare: puoi andare."
+   ]
+  },
+  {
+   "prompt": "andare ___ casa (a or in?)",
+   "answer": "a",
+   "alts": [],
+   "traps": [
+    "in",
+    "con"
+   ],
+   "why": "Home is a point: a casa.",
+   "trick": [
+    "a = bullseye",
+    "a casa, a scuola, a Roma."
+   ]
+  },
+  {
+   "prompt": "andare ___ scuola (a or in?)",
+   "answer": "a",
+   "alts": [],
+   "traps": [
+    "in",
+    "con"
+   ],
+   "why": "School is a point: a scuola.",
+   "trick": [
+    "a = bullseye",
+    "a casa, a scuola, a Roma."
+   ]
+  },
+  {
+   "prompt": "andare ___ Roma (a or in?)",
+   "answer": "a",
+   "alts": [],
+   "traps": [
+    "in",
+    "con"
+   ],
+   "why": "A city takes a: a Roma.",
+   "trick": [
+    "a = city",
+    "A city is a bullseye: a Roma."
+   ]
+  },
+  {
+   "prompt": "andare ___ mensa (a or in?)",
+   "answer": "in",
+   "alts": [],
+   "traps": [
+    "a",
+    "con"
+   ],
+   "why": "A room you step into takes in: in mensa.",
+   "trick": [
+    "in = pool",
+    "in mensa, in palestra, in bagno."
+   ]
+  },
+  {
+   "prompt": "andare ___ biblioteca (a or in?)",
+   "answer": "in",
+   "alts": [],
+   "traps": [
+    "a",
+    "con"
+   ],
+   "why": "A room takes in: in biblioteca.",
+   "trick": [
+    "in = pool",
+    "in biblioteca, in infermeria."
+   ]
+  },
+  {
+   "prompt": "andare ___ Italia (a or in?)",
+   "answer": "in",
+   "alts": [],
+   "traps": [
+    "a",
+    "con"
+   ],
+   "why": "A country takes in: in Italia.",
+   "trick": [
+    "in = country",
+    "A country is a big pool: in Italia."
+   ]
+  }
+ ],
+ "fill": [
+  {
+   "text": "Voglio andare ___ casa.",
+   "answers": [
+    "a"
+   ],
+   "cue": "to / at",
+   "bank": [
+    "a",
+    "in",
+    "con"
+   ],
+   "hint": "Home is a point. a…",
+   "why": "a casa."
+  },
+  {
+   "text": "Devo andare ___ biblioteca.",
+   "answers": [
+    "in"
+   ],
+   "cue": "to / in",
+   "bank": [
+    "a",
+    "in",
+    "con"
+   ],
+   "hint": "A room. i…",
+   "why": "in biblioteca."
+  },
+  {
+   "text": "Posso andare ___ bagno?",
+   "answers": [
+    "in"
+   ],
+   "cue": "to / in",
+   "bank": [
+    "a",
+    "in",
+    "con"
+   ],
+   "hint": "A room. i…",
+   "why": "in bagno."
+  },
+  {
+   "text": "Vuoi andare ___ Roma?",
+   "answers": [
+    "a"
+   ],
+   "cue": "to / at",
+   "bank": [
+    "a",
+    "in",
+    "con"
+   ],
+   "hint": "A city. a…",
+   "why": "a Roma."
+  },
+  {
+   "text": "Voglio andare ___ Italia.",
+   "answers": [
+    "in"
+   ],
+   "cue": "to / in",
+   "bank": [
+    "a",
+    "in",
+    "con"
+   ],
+   "hint": "A country. i…",
+   "why": "in Italia."
+  },
+  {
+   "text": "Devi andare ___ scuola.",
+   "answers": [
+    "a"
+   ],
+   "cue": "to / at",
+   "bank": [
+    "a",
+    "in",
+    "con"
+   ],
+   "hint": "School is a point. a…",
+   "why": "a scuola."
+  },
+  {
+   "text": "Ho fame: ___ andare in mensa.",
+   "answers": [
+    "voglio"
+   ],
+   "cue": "I want",
+   "bank": [
+    "voglio",
+    "devo",
+    "posso",
+    "vuoi"
+   ],
+   "hint": "I want: v…",
+   "why": "io + want = voglio."
+  },
+  {
+   "text": "___ andare in infermeria?",
+   "answers": [
+    "Posso"
+   ],
+   "cue": "Can I",
+   "bank": [
+    "Posso",
+    "Puoi",
+    "Devo",
+    "Vuoi"
+   ],
+   "hint": "Can I: P…",
+   "why": "io + can = posso."
+  }
+ ],
+ "read": {
+  "title": "Un giorno a scuola",
+  "passage": [
+   [
+    "Sono a scuola. Ho fame.",
+    "I'm at school. I'm hungry."
+   ],
+   [
+    "Voglio andare in mensa, ma devo andare in biblioteca.",
+    "I want to go to the cafeteria, but I have to go to the library."
+   ],
+   [
+    "Poi voglio andare in palestra.",
+    "Then I want to go to the gym."
+   ],
+   [
+    "Non sto bene. Posso andare in infermeria?",
+    "I don't feel well. Can I go to the nurse's office?"
+   ],
+   [
+    "Finalmente posso andare a casa!",
+    "Finally I can go home!"
+   ]
+  ],
+  "gloss": {
+   "Poi": "then",
+   "Non sto bene": "I don't feel well",
+   "Finalmente": "finally"
+  },
+  "questions": [
+   {
+    "q": "Boh, hai fame. Dove vuoi andare?",
+    "answer": "in mensa",
+    "traps": [
+     "in palestra",
+     "a casa"
+    ],
+    "why": "Voglio andare in mensa."
+   },
+   {
+    "q": "Boh, dove devi andare?",
+    "answer": "in biblioteca",
+    "traps": [
+     "in infermeria",
+     "a Roma"
+    ],
+    "why": "Devo andare in biblioteca."
+   },
+   {
+    "q": "Boh, dove puoi andare finalmente?",
+    "answer": "a casa",
+    "traps": [
+     "in mensa",
+     "in bagno"
+    ],
+    "why": "Finalmente posso andare a casa!"
+   }
+  ]
+ },
+ "listen": [
+  {
+   "q": "Dove vuoi andare?",
+   "en": "Where do you want to go?",
+   "frames": [
+    "Voglio andare in …",
+    "Voglio andare a …"
+   ]
+  },
+  {
+   "q": "Devi andare a scuola?",
+   "en": "Do you have to go to school?",
+   "frames": [
+    "Sì, devo andare a …",
+    "No, devo andare in …"
+   ]
+  },
+  {
+   "q": "Puoi andare in bagno?",
+   "en": "Can you go to the bathroom?",
+   "frames": [
+    "Sì, posso andare in …",
+    "No, devo andare a …"
+   ]
+  }
+ ],
+ "chat": {
+  "who": [
+   "Boh",
+   "Sara"
+  ],
+  "lines": [
+   [
+    1,
+    "Hai fame? Dove vuoi andare?",
+    "Are you hungry? Where do you want to go?"
+   ],
+   [
+    0,
+    "Voglio andare in mensa.",
+    "I want to go to the cafeteria."
+   ],
+   [
+    1,
+    "Devi andare in biblioteca?",
+    "Do you have to go to the library?"
+   ],
+   [
+    0,
+    "Sì, devo andare in biblioteca.",
+    "Yes, I have to go to the library."
+   ],
+   [
+    1,
+    "Posso andare a Roma?",
+    "Can I go to Rome?"
+   ],
+   [
+    0,
+    "Sì, puoi andare a Roma!",
+    "Yes, you can go to Rome!"
+   ]
+  ],
+  "words": {
+   "hai fame": "are you hungry",
+   "dove": "where"
+  }
+ },
+ "parla": {
+  "prompts": [
+   [
+    "Dove vuoi andare?",
+    "Voglio andare in …"
+   ],
+   [
+    "Devi andare a casa?",
+    "Sì, devo andare a …"
+   ],
+   [
+    "Hai fame? Vuoi andare in mensa?",
+    "Sì, voglio andare in …"
+   ]
+  ],
+  "checks": [
+   "Ho fatto le 3 domande.",
+   "Ho risposto con frasi intere.",
+   "Ho usato a o in."
+  ]
+ },
+ "finish": "Now I know how to say where I want to go, have to go, and can go!",
+ "idiom": {
+  "it": "Tutte le strade portano a Roma",
+  "en": "all roads lead to Rome",
+  "ex": "Tutte le strade portano a Roma. Voglio andare a Roma!",
+  "exEn": "All roads lead to Rome. I want to go to Rome!",
+  "note": "Said when different paths reach the same result."
+ },
+ "flags": [
+  "guideUnit is set to 4 as a placeholder: confirm the bonus unit number or slot.",
+  "Vocab count is 20. dove is the only new question word: show with 'where'.",
+  "The a/in rule is a point vs container idea; the 'A = AT, IN = IN' memory line is unverified.",
+  "in mensa and in infermeria: believed natural Italian, no source checked.",
+  "Posso andare a prendere l'acqua? is built; 'Posso riempire la bottiglia?' is a memorized chunk only, not in forms or fills.",
+  "Reading words poi, non sto bene, finalmente confirmed as taught by the teacher; glossed on tap.",
+  "Reading questions are addressed to Boh (tu), because third-person forms are not taught.",
+  "Grammar chart left empty: andare vado/vai is not charted, by design.",
+  "Finish uses the standard 'Now I know' line; the Bravissimo/a avatar feedback is a game-engine item, not in this file.",
+  "Idiom note is mine; check it against your idiom list."
+ ]
+}
