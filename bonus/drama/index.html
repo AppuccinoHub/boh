@@ -84,6 +84,9 @@ input.ans{font:inherit;font-size:22px;font-weight:800;width:100%;min-height:58px
 .acc button{min-width:44px;min-height:40px;border-radius:10px;border:2px solid var(--line);font-size:20px;font-weight:800}
 .bank{display:flex;flex-wrap:wrap;gap:6px}
 .bank span{background:var(--bg);border-radius:10px;padding:4px 10px;font-size:16px}
+.bank button{background:var(--bg);border:2px solid var(--line);border-radius:12px;min-height:44px;padding:6px 12px;font:inherit;font-size:17px;font-weight:700;color:inherit}
+.bank button:active{border-color:var(--ink,#16355c)}
+.pen{font-size:16px;color:var(--mute);margin-top:4px}
 .hear{width:100%;min-height:92px;border-radius:18px;background:var(--turq-soft);display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--display);font-size:22px;font-weight:600}
 .hear svg{width:40px;height:40px}
 /* home */
@@ -223,15 +226,16 @@ var S={},USE={};var BANK=['Ma dai!','Serio?','Che cosa?!','Fammi vedere!','E qua
 // Vero o falso deck: [word, 1=real 0=fake, why]
 var VF=[['la zucca',1,'Real: la zucca = the pumpkin.'],['il fantasma',1,'Real: il fantasma = the ghost.'],['la zucchiera',0,'Fake. Pumpkin is la zucca.'],['il vampiro',1,'Real: il vampiro = the vampire.'],['il fantasmuzzo',0,'Fake. Cute, but no.'],['la strega',1,'Real: la strega = the witch.'],['lo strego',0,'Fake. A male witch is lo stregone.'],['il mostro',1,'Real: il mostro = the monster.'],['il dolcettone',0,'Fake. Treats are i dolcetti.'],['lo scheletro',1,'Real: lo scheletro = the skeleton.'],['il vampirello',0,'Fake. Sounds cute, does not exist.'],['il costume',1,'Real: il costume = the costume.'],['la musicotta',0,'Fake. Music is la musica.'],['il pipistrello',1,'Real: il pipistrello = the bat.'],['il mostrico',0,'Fake. Monster is il mostro.'],['i dolcetti',1,'Real: i dolcetti = the treats.']];
 // Reagisci: Boh says a line, you type a reaction that fits. [promptIt, canonical, alts, who, voice]
+var PEN=['Did you see the story?','Halloween party at Giulia’s.','Saturday at eight.','Marco is coming too.','Marco danced with Sofia.','Look at the post.','Marco’s costume is terrible.','Are you coming Saturday?'];
 var PROVA=[
- ['Hai visto la storia?','Fammi vedere!',['No! Fammi vedere!','No!','Sì!','Serio?','Che storia?'],'Boh (lei)','s'],
+ ['Hai visto la storia?','Fammi vedere!',['No! Fammi vedere!','No!','Sì!','Serio?','Che storia?','Che cosa?!'],'Boh (lei)','s'],
  ['Festa di Halloween da Giulia.','E quando?',['Serio?','Serio? E quando?','Ma dai!','Top!','Una bomba!','Ovvio.'],'Boh (lei)','s'],
  ['Sabato alle otto.','Ovvio.',['E…?','E?','Perfetto.','Top.','Ma dai!','Serio?'],'Boh (lei)','s'],
- ['Viene anche Marco.','Ma dai!',['Serio?','No vabbè.','Che cosa?!','Che cosa?','Assurdo.','No!'],'Boh (lei)','s'],
+ ['Viene anche Marco.','Ma dai!',['Serio?','No vabbè.','Che cosa?!','Che cosa?','Assurdo.','No!','Mamma mia.','Ovvio.'],'Boh (lei)','s'],
  ['Marco ha ballato con Sofia.','Che cosa?!',['Che cosa?','Fammi vedere la foto!','Voglio vedere la foto!','Voglio vedere la foto.','Ma dai!','Mamma mia.','No vabbè.','Serio?'],'Boh (lei)','s'],
- ['Guarda il post.','Mamma mia.',['O!','O! Mamma mia.','Che drama.','Che figuraccia!','Cringe totale.','Assurdo.'],'Boh (lei)','s'],
- ['Il costume di Marco è terribile.','Cringe totale.',['Che figuraccia!','Mamma mia.','Che drama.','Fammi vedere!','Voglio vedere la foto!','Ma dai!'],'Boh (lei)','s'],
- ['Tu vieni sabato?','Ovvio.',['Ovvio, fra.','Sì!','Sì, ovvio.','Sarà una bomba.','Certo.','No.'],'Boh (lei)','s']
+ ['Guarda il post.','Mamma mia.',['O!','O! Mamma mia.','Che drama.','Che figuraccia!','Cringe totale.','Assurdo.','Ma dai!','Serio?','No vabbè.','Che cosa?!'],'Boh (lei)','s'],
+ ['Il costume di Marco è terribile.','Cringe totale.',['Che figuraccia!','Mamma mia.','Che drama.','Fammi vedere!','Voglio vedere la foto!','Ma dai!','No vabbè.','Assurdo.','Serio?'],'Boh (lei)','s'],
+ ['Tu vieni sabato?','Ovvio.',['Ovvio, fra.','Sì!','Sì, ovvio.','Sarà una bomba.','Certo.','No.','Top!'],'Boh (lei)','s']
 ];
 function chunkMc(i){var c=CH[i];var tr=shuffle(CH.filter(function(x){return x!==c})).slice(0,2).map(function(x){return x[0]});return {t:'mc',kick:'Pick it · Scegli',prompt:c[1],answer:c[0],traps:tr,why:c[0]+' = '+c[1],trick:[c[0],c[2]],say:c[0]}}
 function chunkHear(i){var c=CH[i];var tr=shuffle(CH.filter(function(x){return x!==c})).slice(0,2).map(function(x){return x[0]});return {t:'mc',kick:'Hear it · Ascolta',hear:c[0],sub:'Listen and tap what you hear.',answer:c[0],traps:tr,why:'You heard: '+c[0]+' = '+c[1],trick:[c[0],c[2]]}}
@@ -244,7 +248,7 @@ var G={
  title:'Il drama della festa',h1:'Il drama della festa',sub:'Halloween · Italiano 2 · react like an Italian',
  work:'reacting to gossip in Italian · 12 chunks + 10 party words',minutes:20,
  nStickers:4,goldSticker:3,
- provaLabel:'Reagisci! · voto',provaSub:'Graded. Boh says 8 lines; you type a reaction that fits.',provaShort:'Reagisci!',provaKick:'Boh says it. You react. Type a reaction that fits.',provaUnit:'reactions',provaSay:true,recName:'il-drama',
+ provaLabel:'Reagisci! · voto',provaSub:'Graded. Boh says 8 lines; you type a reaction that fits.',provaShort:'Reagisci!',provaKick:'Boh says a line. Tap one reaction from the bank, or type it. Several can fit.',provaUnit:'reactions',provaSay:true,recName:'il-drama',
  grammar:['e','o','no','sì','ma','che','dai'],
  refill:['Short and loud: Ma dai! Serio? Che cosa?!','E…? and O! are words too','Fammi vedere! = let me see'],
  auxTrick:function(){return ['Reagisci','Short and loud.']},
@@ -335,7 +339,8 @@ function hud(prog){var h='<div class="top"><button class="back" data-a="home">�
  if(run){h+='<span class="pill hearts" aria-label="hearts">'+[0,1,2].map(function(i){return '<i class="'+(i<run.hearts?'on':'')+'"></i>'}).join('')+'</span><span class="pill streak">'+run.streak+' di fila</span>'}
  h+='<span class="pill">'+st.stickers.length+' / '+(G.nStickers||5)+' stickers</span></div></div>';return h}
 
-function home(){run=null;var next=firstOpen();
+var onShelf=false;
+function home(){run=null;onShelf=true;var next=firstOpen();
  var h=hud()+'<div class="home">';
  h+='<div class="hero"><img src="'+IMG.wave+'" alt="Prof. Lo So waves"><div class="t"><h1>'+G.h1+'</h1><small>'+G.sub+'</small><small>About '+(G.minutes||25)+' minutes · 4 stops + a stretch + La Prova</small></div></div>';
  h+='<div class="shelf"><div class="kick">I miei stickers · My sticker sheet</div><div class="stk">'+STICKERS.slice(0,G.nStickers||5).map(function(f,i){var got=st.stickers.indexOf(i)!==-1;return '<div class="s '+(got?'got':'')+(i===(G.goldSticker!==undefined?G.goldSticker:4)?' gold':'')+'" aria-label="sticker '+(i+1)+(got?' earned':' locked')+'">'+(got?f():'')+'</div>'}).join('')+'</div></div>';
@@ -411,9 +416,9 @@ function stopDone(){var k=run.k,s=STOPS[k];if(st.done.indexOf(k)===-1)st.done.pu
 var pv=null;
 function provaStart(){if(st.prova.tries>=4){home();return}var idx=st.prova.wrong&&st.prova.wrong.length?st.prova.wrong:PROVA.map(function(_,i){return i});pv={q:idx.slice(),i:0,log:[],start:Date.now()};provaCard()}
 function provaCard(){var qi=pv.q[pv.i];if(qi===undefined)return provaEnd();var q=G.resolve?G.resolve(PROVA[qi]):PROVA[qi];run=null;
- app.innerHTML=hud()+'<div class="crumb"><span>'+(G.provaShort||'La Prova')+' · Attempt '+(st.prova.tries+1)+' of 4</span><span>'+(pv.i+1)+' / '+pv.q.length+'</span></div><div class="bar"><i style="width:'+Math.round(100*pv.i/pv.q.length)+'%"></i></div><div class="stage"><div class="card"><div class="kick">'+(G.provaKick||'Write the whole sentence in Italian · passato prossimo')+'</div><div class="prompt">'+(q[3]?'<span class="sub" style="display:block;font-size:15px">'+q[3]+'</span>':'')+q[0]+'</div>'+(G.provaSay?'<button class="hear" data-a="psay" style="min-height:52px">'+SPK+' Ascolta</button>':'')+
+ app.innerHTML=hud()+'<div class="crumb"><span>'+(G.provaShort||'La Prova')+' · Attempt '+(st.prova.tries+1)+' of 4</span><span>'+(pv.i+1)+' / '+pv.q.length+'</span></div><div class="bar"><i style="width:'+Math.round(100*pv.i/pv.q.length)+'%"></i></div><div class="stage"><div class="card"><div class="kick">'+(G.provaKick||'Write the whole sentence in Italian · passato prossimo')+'</div><div class="prompt">'+(q[3]?'<span class="sub" style="display:block;font-size:15px">'+q[3]+'</span>':'')+q[0]+'</div>'+(PEN[qi]?'<div class="pen">'+PEN[qi]+'</div>':'')+(G.provaSay?'<button class="hear" data-a="psay" style="min-height:52px">'+SPK+' Ascolta</button>':'')+
  '<input class="ans" id="ans" autocomplete="off" placeholder="In italiano…" aria-label="Write it in Italian"><div class="acc">'+['à','è','é','ì','ò','ù'].map(function(c){return '<button data-a="acc" data-c="'+c+'">'+c+'</button>'}).join('')+'</div>'+
- '<div class="kick">Word bank · banca delle parole</div><div class="bank">'+shuffle(BANK).map(function(w){return '<span>'+w+'</span>'}).join('')+'</div>'+
+ '<div class="kick">Word bank · banca delle parole</div><div class="bank">'+shuffle(BANK).map(function(w){return '<button type="button" data-a="bank" data-w="'+w+'">'+w+'</button>'}).join('')+'</div>'+
  '<div class="row">'+(pv.hint?'<div class="sub" style="flex:1">Hint: starts with <b>'+q[1].split(' ')[0]+'</b></div>':'<button class="btn g" data-a="phint">Hint</button>')+'<button class="btn p" data-a="psubmit">Check</button></div></div></div>';
  app.querySelector('#ans').focus()}
 function provaSubmit(){var inp=app.querySelector('#ans');var typed=inp?inp.value:'';var qi=pv.q[pv.i];var PQ=G.resolve?G.resolve(PROVA[qi]):PROVA[qi];var ok=[PQ[1]].concat(PQ[2]||[]).some(function(x){return sentOk(typed,x)});pv.log.push({i:qi,typed:typed,ok:ok,hint:!!pv.hint});pv.hint=false;say(PQ[1]);
@@ -466,7 +471,9 @@ function rVf(it){var v=run.vf||(run.vf={i:0,right:0,deck:shuffle(VF).slice(0,8),
 
 /* ---------- events ---------- */
 app.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.getAttribute('data-a');var it=run&&run.items[run.i];
- if(a==='home')return home();if(a==='gender'){st.gender=b.getAttribute('data-g');save();return home()}if(a==='start')return start(+b.getAttribute('data-k'));if(a==='startnext')return start(firstOpen());if(a==='go')return card();
+ var wasShelf=onShelf;if(a!=='gender')onShelf=false;
+ if(a==='bank'){var bi=app.querySelector('#ans');if(bi){bi.value=b.getAttribute('data-w');bi.focus()}return}
+ if(a==='home'){if(wasShelf){location.href='../../?levels=1';return}return home()}if(a==='gender'){st.gender=b.getAttribute('data-g');save();return home()}if(a==='start')return start(+b.getAttribute('data-k'));if(a==='startnext')return start(firstOpen());if(a==='go')return card();
  if(a==='prova')return provaStart();if(a==='psay'){var pq=G.resolve?G.resolve(PROVA[pv.q[pv.i]]):PROVA[pv.q[pv.i]];say(pq[0],pq[4]);return}if(a==='phint'){pv.hint=true;return provaCard()}if(a==='psubmit')return provaSubmit();if(a==='pnext'){pv.i++;return provaCard()}
  if(a==='acc'){var inp=app.querySelector('#ans');if(inp){inp.value+=b.getAttribute('data-c');inp.focus()}return}
  if(!it)return;
