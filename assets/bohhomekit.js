@@ -112,6 +112,7 @@
     '.hk-tile{all:unset;box-sizing:border-box;cursor:pointer;min-width:0;min-height:76px;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:var(--card-bg,#fff);border:2px solid var(--card-border,#D9D0BF);color:var(--text,#0E2A5B)}' +
     '.hk-tile:focus-visible,.hk-unit:focus-visible,.hk-x:focus-visible{outline:3px solid var(--accent-strong,#1A5CDF);outline-offset:3px}' +
     '.hk-tile-ic{font-size:26px;line-height:1}' +
+    '.hk-wide{grid-column:1/-1}' +
     '.hk-tile-tx{display:flex;flex-direction:column;min-width:0}.hk-tile-tx b{font:800 16px/1.2 "Bricolage Grotesque",Manrope,system-ui,sans-serif}.hk-tile-tx small{font:700 12px/1.3 Manrope,system-ui,sans-serif;color:var(--text-muted,#4A5878)}' +
     '.hk-sheet{display:none;position:fixed;inset:0;z-index:60;overflow-y:auto;background:var(--bg,#F5EFE6);color:var(--text,#0E2A5B)}' +
     '.hk-sh-in{max-width:480px;margin:0 auto;padding:18px 20px 48px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px}' +
@@ -162,7 +163,9 @@
     return '<button type="button" class="hk-tile" data-hk="prog"><span class="hk-tile-ic" aria-hidden="true">🔥</span>' +
       '<span class="hk-tile-tx"><b>Progressi</b><small>' + sk.cur + ' di ' + WEEK_TARGET + ' giorni</small></span></button>' +
       '<button type="button" class="hk-tile" data-hk="tab"><span class="hk-tile-ic" aria-hidden="true">📋</span>' +
-      '<span class="hk-tile-tx"><b>La Tabella</b><small>Help chart</small></span></button>';
+      '<span class="hk-tile-tx"><b>La Tabella</b><small>Help chart</small></span></button>' +
+      '<button type="button" class="hk-tile hk-wide" data-hk="units"><span class="hk-tile-ic" aria-hidden="true">\uD83D\uDDFA\uFE0F</span>' +
+      '<span class="hk-tile-tx"><b>Le tue unit\u00e0</b><small>All units \u00b7 ripassa quando vuoi</small></span></button>';
   }
   function unitsHTML() {
     var tabs = D.querySelectorAll('.unit-tabs > button'), out = '';
@@ -195,11 +198,13 @@
     var x = sheet.querySelector('.hk-x'); if (x) x.focus();
   }
   function closeSheet() { sheetOpen = false; if (sheet) sheet.style.display = 'none'; }
+  function openUnits() { openSheet(); try { var h3 = sheet.querySelector('.hk-h3'); if (h3) h3.scrollIntoView(); } catch (e) {} }   /* boh-allunits-v1 */
   function onClick(e) {
     var t = e.target && e.target.closest && e.target.closest('[data-hk]'); if (!t) return;
     var a = t.getAttribute('data-hk'), g = W.BohUI && W.BohUI.game;
     if (a === 'prog') openSheet();
     else if (a === 'close') closeSheet();
+    else if (a === 'units') openUnits();
     else if (a === 'open') { closeSheet(); if (g && g.openPacco) g.openPacco(); }
     else if (a === 'tab') { var tb = D.querySelector('.bt-hud .hud-tab'); if (tb) tb.click(); }
     else if (a === 'giro') { var gb = D.querySelector('.bt-hud .hud-btn'); closeSheet(); if (gb) gb.click(); }
@@ -225,7 +230,7 @@
   }
   D.addEventListener('keydown', function (e) { if (sheetOpen && e.key === 'Escape') closeSheet(); });
 
-  W.BohHomeKit = { sync: function () { return sync(W.BohUI && W.BohUI.game); }, state: function () { return load().r; }, rules: { WEEK_TARGET: WEEK_TARGET, PER_PACK: PER_PACK, PACKS_PER_DAY: PACKS_PER_DAY } };
+  W.BohHomeKit = { openUnits: openUnits, sync: function () { return sync(W.BohUI && W.BohUI.game); }, state: function () { return load().r; }, rules: { WEEK_TARGET: WEEK_TARGET, PER_PACK: PER_PACK, PACKS_PER_DAY: PACKS_PER_DAY } };
   st();
   tick(); timer = setInterval(tick, 700);
   D.addEventListener('visibilitychange', function () { if (!D.hidden) tick(); });

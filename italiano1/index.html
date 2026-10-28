@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#E88A6C">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <style>/* boh-sa-v1 */html{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}</style>
-<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610272000"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/today.js?v=202610112330"></script><script src="../assets/bohui.js?v=202610141200"></script><script src="../assets/bohhomekit.js?v=202610142100"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610271200" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610272000"></script>
+<link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610272000"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/today.js?v=202610112330"></script><script src="../assets/bohui.js?v=202610281500"></script><script src="../assets/bohhomekit.js?v=202610281500"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610271200" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610272000"></script>
 <script src="../assets/bohdone.js?v=202610151000"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
@@ -4634,6 +4634,7 @@ class Component extends DCLogic {
     if (what === 'all') { P.openTo = D.stops.length - 1; msg = 'Tutto il percorso è aperto.'; }
     if (what === 'prova') { if (D) P.prova = true; else P.modes = addUnique(P.modes || [], 'prova'); msg = 'La Prova è aperta.'; }
     if (what === 'mode') { P.modes = addUnique(P.modes || [], arg); msg = MODES[arg].label + ': aperto.'; }
+    if (what === 'pass') { this.sfx('tap'); this.setState({ passed: addUnique(s.passed || [], 'prova'), profU: P, profMsg: 'La Prova è segnata come superata (Prof). Nessun voto registrato.', profArm: false }); return; }   /* boh-creator-skip-v1: flag only, no score */
     if (what === 'lock') { P = { openTo: 0, prova: false, modes: [] }; msg = 'Bloccato di nuovo. Only what the student earned stays open.'; }
     if (what === 'reset') {
       if (!s.profArm) { this.sfx('soft'); this.setState({ profArm: true, profMsg: 'Tap again to start this unit over.' }); return; }
@@ -4673,6 +4674,8 @@ class Component extends DCLogic {
     acts.push({ t: 'Sblocca il prossimo Ripasso', sub: nextLocked ? MODES[nextLocked].label : 'Ripasso libero is all open', dis: lsD(!nextLocked), go: function () { self.profDo('mode', nextLocked); } });
     var any = (P.openTo || 0) > 0 || P.prova || (P.modes || []).length;
     if (any) st.push('Prof unlocks: ' + [(P.openTo || 0) > 0 ? 'path to tappa ' + (P.openTo + 1) : '', P.prova ? 'La Prova' : '', (P.modes || []).map(function (m) { return MODES[m] ? MODES[m].label : m; }).join(', ')].filter(Boolean).join(' · '));
+    var pPass = (s.passed || []).indexOf('prova') !== -1;   /* boh-creator-skip-v1 */
+    acts.push({ t: 'Segna La Prova come superata', sub: pPass ? 'Already passed' : 'Creator skip. No score is recorded. Undo: Ricomincia questa unità.', dis: lsD(pPass), go: function () { self.profDo('pass'); } });
     acts.push({ t: 'Blocca di nuovo', sub: 'Undo your unlocks. What the student earned stays.', dis: lsD(!any), go: function () { self.profDo('lock'); } });
     acts.push({ t: s.profArm ? 'Sicura? Tocca di nuovo' : 'Ricomincia questa unità', sub: 'Clears this unit only: path, rounds, La Prova. Coins and closet stay.', dis: null, cls: 'prof-act danger', go: function () { self.profDo('reset'); } });
     result.profActions = acts.map(function (a) { a.cls = a.cls || 'prof-act'; return a; });

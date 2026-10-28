@@ -161,14 +161,32 @@
     var UT = (W.BT_UNITS || {})[plan.target] || {};
     r.startT = T ? T.title : (qep && r.unitTitle ? r.unitTitle : plan.mode === 'next' ? (UT.tab || plan.target) : plan.mode === 'all' ? 'Tutto fatto' : String(r.continuaLabel || '').replace(/^(Comincia|Continua):\s*/, ''));
     r.startW = T && T.words ? T.words : '';
-    r.startN = T && T.note ? T.note : plan.mode === 'next' ? 'Unità da fare' : plan.mode === 'all' ? (plan.best && plan.best < 90 ? 'Miglior Prova: ' + Math.round(plan.best) + '%. Il 90% sblocca ASSURDO.' : 'Ripasso libero') : '';
+    r.startN = T && T.note ? T.note : plan.mode === 'next' ? 'Unità da fare' : plan.mode === 'all' ? (plan.best && plan.best < 90 ? 'Miglior Prova: ' + Math.round(plan.best) + '%. Il 90% sblocca ASSURDO.' : 'Scegli un\u2019unit\u00e0 da ripassare') : '';
     if (T && T.id && T.total) {   // an In classe lesson: show how many parts are done
       var d = 0; try { var z = JSON.parse(localStorage.getItem('boh_lz_' + T.id + '_v1') || 'null'); if (z && z.done) for (var k in z.done) if (z.done[k]) d++; } catch (e) {}
       r.startN = d >= T.total ? 'All ' + T.total + ' parts done' : d ? d + ' of ' + T.total + ' parts done. Keep going.' : 'Start here.';
     }
+    var fin = null;   /* boh-prova-step-v1: path finished but La Prova not passed yet: the card leads to La Prova, not back to stop 1 */
+    if (!T && !qep && plan.mode === 'stay' && (s.passed || []).indexOf('prova') === -1) {
+      try {
+        var finL = typeof g.lsState === 'function' && typeof g.lsData === 'function' ? g.lsState() : null, finD = finL ? g.lsData() : null;
+        if (finD && finD.stops && finL.finished && finL.done.length >= finD.stops.length) {
+          var finT = (s.provaTimes || []).filter(function (t0) { return Date.now() - t0 < 3600000; }), finLeft = 3 - finT.length;
+          var finW = new Date((finT.length ? Math.min.apply(null, finT) : Date.now()) + 3600000);
+          fin = { left: finLeft };
+          r.startT = finLeft > 0 ? 'La Prova' : 'Ripassa un\u2019unit\u00e0';
+          r.startN = finLeft > 0 ? 'Graded \u00b7 ' + finLeft + ' of 3 tries left this hour' : 'La Prova riapre alle ' + finW.getHours() + ':' + ('0' + finW.getMinutes()).slice(-2);
+        }
+      } catch (e) { fin = null; }
+    }
     r.hasStartW = !!r.startW; r.hasStartN = !!r.startN;
     r.startH = function () {
       try { g.sfx && g.sfx('tap'); } catch (e) {}
+      if (fin) {   /* boh-prova-step-v1 */
+        if (fin.left > 0 && typeof g.startMode === 'function') { g.startMode('prova'); return; }
+        if (W.BohHomeKit && W.BohHomeKit.openUnits) { W.BohHomeKit.openUnits(); return; }
+      }
+      if (plan.mode === 'all' && W.BohHomeKit && W.BohHomeKit.openUnits) { W.BohHomeKit.openUnits(); return; }   /* boh-allunits-v1: all done = pick a unit to review */
       var proceed = function () {
         if (T && T.unit && T.unit !== W.BT_UNIT && typeof g.btSwitchUnit === 'function') { try { g.setState({ qepOff: true }); g.btSwitchUnit(T.unit); } catch (e) { location.href = T.url; } }
         else if (T && !T.unit && T.url) { location.href = T.url; }
