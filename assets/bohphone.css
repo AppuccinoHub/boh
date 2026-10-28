@@ -123,7 +123,7 @@ html body [data-screen="play"] .play-col.bf-t2 .opt-grid button { min-height: 48
     box-shadow: 0 -8px 24px rgba(14, 42, 91, .2);
   }
 }
-html body [data-screen="play"] .play-col.bf-t2 label[for="frasiInput"] { display: none !important; }
+/* boh-directions-v1 (27 Oct 2026): the label over the answer box is the directions now, so it is never hidden (the old rule hid it on tight screens) */
 html body [data-screen="play"] .play-col.bf-t2 .sc-wrap input, html body [data-screen="play"] .play-col.bf-t2 #frasiInput { padding-top: 10px !important; padding-bottom: 10px !important; }
 /* the reading text's own screen (Il tema) on a small phone: the progress row steps aside while the student reads */
 html body [data-screen="play"] .play-col.bf-reading > .pc-meta, html body [data-screen="play"] .play-col.bf-reading > .pc-prog, html body [data-screen="play"] .play-col.bf-reading > .bt-fiamma { display: none !important; }

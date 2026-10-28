@@ -253,7 +253,7 @@
             [].forEach.call(root.querySelectorAll('div'), function (d) { if (!d.children.length && /^(WRITE IT IN ITALIAN|WORD HELP)/.test((d.textContent || '').trim())) d.classList.add('bf-later'); });
             if (over() > 1) root.classList.add('bf-t3');
             if (over() > 1) root.classList.add('bf-reading');
-            if (over() > 1) { var pp = q('.play-prompt', root), sub = pp && pp.nextElementSibling; for (var k3 = 0; sub && k3 < 3; k3++, sub = sub.nextElementSibling) if (/^\(/.test((sub.textContent || '').trim()) && sub.textContent.length < 90) { sub.classList.add('bf-later'); break; } }
+            if (over() > 1 && !q('input[type="text"], #frasiInput', root)) { /* boh-directions-v1 (27 Oct 2026): a screen with a typed answer keeps its directions line, always */ var pp = q('.play-prompt', root), sub = pp && pp.nextElementSibling; for (var k3 = 0; sub && k3 < 3; k3++, sub = sub.nextElementSibling) if (/^\(/.test((sub.textContent || '').trim()) && sub.textContent.length < 90) { sub.classList.add('bf-later'); break; } }
           }
         }
         var phone = s === 'lesson' && q('.ls-phone', root);
