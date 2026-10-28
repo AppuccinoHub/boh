@@ -12562,4 +12562,8 @@ fill();setInterval(fill,600);}catch(e){}})();</script>
 var HREF='../bonus/drama/',TXT='Bonus · Il drama della festa',SUB='Halloween · 20 min · react like an Italian · no Boh Cashi, stickers instead';
 function add(){var lp=document.querySelector('section.lp');if(!lp||lp.querySelector('.bonus-tile'))return;var a=document.createElement('a');a.className='lp-prova is-open bonus-tile';a.href=HREF;a.style.marginTop='10px';a.style.textDecoration='none';a.style.borderColor='var(--accent-strong,#E8338C)';a.innerHTML='<span class="lp-pl display">'+TXT+'</span><span class="lp-ps">'+SUB+'</span>';lp.appendChild(a)}
 add();setInterval(add,900)}catch(e){}})();</script>
+<script>/* boh-lesson-tiles-v1: two tiles under Il percorso on the Italiano 2 home, after the Halloween Bonus tile: Domani vado (mini lesson) and Dove vai? (bonus game). Same style as boh-bonus-tile-v1. Remove this block to remove both tiles. */(function(){try{
+var T=[['lt-domani','../domani-vado/','Domani vado \u00b7 mini lesson','Where I go tomorrow, and with whom'],['lt-andare','../bonus/andare/','Bonus \u00b7 Dove vai?','andare + a / in \u00b7 about 20 min \u00b7 stickers, no Boh Cashi']];
+function add(){var lp=document.querySelector('section.lp');if(!lp)return;T.forEach(function(t){if(lp.querySelector('.'+t[0]))return;var a=document.createElement('a');a.className='lp-prova is-open '+t[0];a.href=t[1];a.style.marginTop='10px';a.style.textDecoration='none';a.style.borderColor='var(--accent-strong,#E8338C)';a.innerHTML='<span class="lp-pl display">'+t[2]+'</span><span class="lp-ps">'+t[3]+'</span>';lp.appendChild(a)})}
+add();setInterval(add,900)}catch(e){}})();</script>
 </body></html>
