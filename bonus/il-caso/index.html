@@ -37,7 +37,20 @@ button.ghost:hover,a.btn.ghost:hover{background:var(--bg2)}
 .to.f-tu{background:#e3f0f4;color:#14495c;border-color:#bcd9e2}
 .to.f-voi{background:#f6eadf;color:#673608;border-color:#e6cdb5}
 .to.f-noi{background:#f0e6f3;color:#521e5f;border-color:#dcc6e3}
-.av{display:inline-flex;width:34px;height:34px;border-radius:50%;color:#fff;align-items:center;justify-content:center;font-weight:700;flex:none}
+.av{display:inline-flex;width:40px;height:40px;border-radius:50%;flex:none;overflow:hidden;box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(0,0,0,.12)}
+.av svg{width:100%;height:100%;display:block}
+html,body{background:radial-gradient(120% 60% at 50% 0%,#1d3354 0%,var(--bg) 60%) fixed,var(--bg)}
+.brand::before{content:"\1F50E\FE0E  ";letter-spacing:0}
+.brand{text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.card{box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.msg{box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.cast{background:var(--bg2);border:1px solid #2c4166;border-radius:12px;padding:12px 12px 8px;margin:16px 0 12px}
+.cast h3{margin:0 0 2px;font-size:15px;color:var(--gold);font-family:"Courier New",monospace;letter-spacing:.12em}
+.cast .cs{color:#c9c2ae;font-size:13px;margin:0 0 10px}
+.cast ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.cast li{display:flex;gap:10px;align-items:center;font-size:14px;line-height:1.3;color:#e9e1cc}
+.cast li .av{width:46px;height:46px}
+.cast li b{color:#fff}
 button[data-act="hint"]{margin-bottom:12px}
 .hintbox{background:#fbf6e6;color:#4a4436;border:1px solid #e8dcb6;border-radius:10px;padding:8px 12px;margin:0 0 12px;font-size:14px}
 button.acc{background:transparent;color:var(--red);border:1.5px solid #d9a3a5;font-weight:600;font-size:15px}
@@ -392,7 +405,24 @@ const BohBridge={
 const app=document.getElementById("app");
 const COLORS={Capitana:"#7b2d8e",Luca:"#1f6f8b",Marta:"#b5651d",Elena:"#2d6a4f",Dante:"#8c2f39"};
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
-function av(n){return '<span class="av" style="background:'+(COLORS[n]||"#555")+'" aria-hidden="true">'+esc(n.charAt(0))+'</span>';}
+const FACE={
+Capitana:{skin:"#e8b48f",hair:"#2b1b14",style:"bun",glass:1,role:"Prof.ssa Rinaldi, 45. Class teacher, runs the detective club. Everyone calls her la Capitana."},
+Luca:{skin:"#f1c9a5",hair:"#c9902f",style:"short",role:"16. Football mad, always late, always hungry. Means well."},
+Marta:{skin:"#c98e62",hair:"#3a2418",style:"curly",role:"17. Class rep and organiser. Bossy, but she gets things done."},
+Elena:{skin:"#f3d2b3",hair:"#6b3b1f",style:"long",role:"16. Swimmer and the calm one. Notices everything."},
+Dante:{skin:"#a86c46",hair:"#151010",style:"spiky",glass:1,role:"17. Joker of the class, writes poems nobody asked for."}};
+function face(n){const p=FACE[n],bg=COLORS[n]||"#555";if(!p)return '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="'+bg+'"/><text x="20" y="26" font-size="16" text-anchor="middle" fill="#fff" font-family="Georgia">'+esc(n.charAt(0))+'</text></svg>';
+ const H=p.hair,S=p.skin;let back="",front="";
+ if(p.style==="long"){back='<path d="M8 22c0-12 6-16 12-16s12 4 12 16v14H8z" fill="'+H+'"/>';front='<path d="M11 18c2-6 6-8 9-8s8 2 9 8c-4-3-8-4-18 0z" fill="'+H+'"/>';}
+ else if(p.style==="curly"){back='<g fill="'+H+'"><circle cx="11" cy="15" r="5"/><circle cx="29" cy="15" r="5"/><circle cx="15" cy="9" r="5"/><circle cx="25" cy="9" r="5"/><circle cx="20" cy="7" r="5"/><circle cx="9" cy="22" r="4"/><circle cx="31" cy="22" r="4"/></g>';}
+ else if(p.style==="bun"){back='<circle cx="20" cy="5" r="4.5" fill="'+H+'"/>';front='<path d="M11 17c1-6 5-8 9-8s8 2 9 8c-3-2-6-3-9-3s-6 1-9 3z" fill="'+H+'"/>';}
+ else if(p.style==="spiky"){front='<path d="M11 16l1-6 3 3 2-5 3 4 3-5 2 5 3-2 1 6c-6-2-12-2-18 0z" fill="'+H+'"/>';}
+ else{front='<path d="M11 17c0-6 4-9 9-9s9 3 9 9c-2-3-6-4-9-4s-7 1-9 4z" fill="'+H+'"/>';}
+ const g=p.glass?'<g fill="none" stroke="#222" stroke-width="1.1"><circle cx="16" cy="20" r="2.8"/><circle cx="24" cy="20" r="2.8"/><path d="M18.8 20h2.4"/></g>':'';
+ return '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="'+bg+'"/>'+back+'<path d="M8 40c1-7 6-10 12-10s11 3 12 10z" fill="#f5edd9" opacity=".9"/><rect x="17" y="26" width="6" height="5" fill="'+S+'"/><ellipse cx="20" cy="19" rx="8.5" ry="9.5" fill="'+S+'"/>'+front+'<circle cx="16" cy="20" r="1.1" fill="#222"/><circle cx="24" cy="20" r="1.1" fill="#222"/>'+g+'<path d="M17 24.5q3 2 6 0" stroke="#7a3b2e" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="13.5" cy="23" r="1.4" fill="#e06666" opacity=".25"/><circle cx="26.5" cy="23" r="1.4" fill="#e06666" opacity=".25"/></svg>';}
+function av(n){return '<span class="av" aria-hidden="true">'+face(n)+'</span>';}
+function castBox(){let h='<div class="cast"><h3>CHI SONO? &middot; WHO ARE THEY?</h3><p class="cs">3B at Liceo Manzoni, Bologna. Someone in the group keeps giving orders the wrong way. Find them.</p><ul>';
+ for(const n of ["Capitana","Marta","Luca","Elena","Dante"])h+='<li>'+av(n)+'<span><b>'+esc(n)+'</b> &mdash; '+esc(FACE[n].role)+'</span></li>';return h+'</ul></div>';}
 function caseNo(c){return CASES.indexOf(c)+1;}
 function byId(id){return CASES.find(function(c){return c.id===id;});}
 function isPaid(c){return !!S.paid[c.id];}
@@ -446,6 +476,7 @@ function viewHome(){
   h+='<div class="card"><span class="tag">Archive</span><p>All '+CASES.length+' cases. Level 1: pick the fix. Level 2: type it. Each case pays Boh Cashi the first time only.</p><button data-act="list">Open case files</button></div>';
   if(m)h+='<button class="ghost wide" data-act="endmission">End this mission</button>';
  }
+ h+=castBox();
  return h+'<a class="btn ghost" href="../../" data-link="boh">Back to Boh</a>';
 }
 function viewList(){
