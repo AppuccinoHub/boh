@@ -6,7 +6,7 @@
 <meta name="author" content="Assunta Scotto">
 <title>Il Caso</title>
 <style>
-:root{color-scheme:dark;--bg:#0f1b2d;--bg2:#162640;--paper:#f5edd9;--ink:#1c1c1c;--muted:#6b6455;--red:#b5171e;--green:#2d6a4f;--gold:#e0b84c;--line:#d8cdb2}
+:root{color-scheme:dark;--bg:#0f1b2d;--bg2:#162640;--paper:#f5edd9;--ink:#1c1c1c;--muted:#6b6455;--red:#b5171e;--green:#2d6a4f;--gold:#e0b84c;--line:#d8cdb2;--tu:#1f6f8b;--voi:#9a5210;--noi:#7b2d8e}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--paper);font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.5}
 #app{max-width:560px;margin:0 auto;padding-block:14px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -28,21 +28,29 @@ button.ghost,a.btn.ghost{background:transparent;color:var(--paper);border-color:
 button.ghost:hover,a.btn.ghost:hover{background:var(--bg2)}
 .card button.ghost{color:var(--ink);border-color:var(--ink)}
 .card button.ghost:hover{background:#efe6cd}
-button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .msg{background:#fff;color:var(--ink);border-radius:10px;padding:10px 12px;margin:0 0 10px;border:1px solid var(--line)}
 .msg .who{display:flex;gap:10px;align-items:center;margin-bottom:6px}
-.msg .to{display:block;font-size:13px;color:var(--muted)}
-.msg .say{font-size:20px}
+.msg .say{font-size:21px;margin:2px 0 6px}
 .msg.bad{border:2px solid var(--red);background:#fdeceb}
 .msg.good{border:2px solid var(--green);background:#e9f5ee}
+.to{display:inline-block;color:#fff;font-weight:700;font-size:17px;line-height:1.25;padding:5px 14px;border-radius:999px;margin:0 0 4px}
+.to.f-tu{background:var(--tu)}
+.to.f-voi{background:var(--voi)}
+.to.f-noi{background:var(--noi)}
 .av{display:inline-flex;width:34px;height:34px;border-radius:50%;color:#fff;align-items:center;justify-content:center;font-weight:700;flex:none}
-.err{color:#ffb3a8;font-size:15px;margin:6px 0}
+button[data-act="hint"]{margin-bottom:12px}
+.hintbox{background:#fff3c4;color:var(--ink);border:2px solid var(--gold);border-radius:10px;padding:10px 14px;margin:0 0 12px;font-size:16px}
+.err{color:#ffb3a8;font-size:15px;margin:6px 0;min-height:1px}
 .card .err{color:var(--red)}
 .stamp{display:inline-block;font-family:"Courier New",monospace;font-weight:700;letter-spacing:.2em;border:3px solid var(--red);color:var(--red);padding:2px 10px;transform:rotate(-6deg);animation:pop .35s ease-out;margin:2px 0 8px}
 @keyframes pop{from{transform:rotate(-6deg) scale(2);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .shake{animation:shake .3s}
-input[type=text]{width:100%;font:inherit;font-size:20px;padding:10px 12px;border-radius:8px;border:2px solid var(--ink);margin:6px 0}
+.opt{display:flex;width:100%;justify-content:flex-start;font-size:21px;min-height:56px;margin:0 0 8px;text-align:left}
+.opt[disabled]{opacity:.4;cursor:default;text-decoration:line-through}
+input[type=text]{width:100%;font:inherit;font-size:20px;padding:10px 12px;border-radius:8px;border:2px solid var(--ink);margin:6px 0;background:#fff;color:var(--ink)}
+.stamp.still{animation:none}
+.start{font-family:"Courier New",monospace;font-size:18px;background:#fff3c4;border-radius:8px;padding:6px 12px;margin:6px 0;color:var(--ink)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0}
 .badge{font-family:"Courier New",monospace;font-size:12px;padding:2px 8px;border-radius:999px;background:#e8e0c8;color:var(--ink)}
@@ -50,7 +58,22 @@ input[type=text]{width:100%;font:inherit;font-size:20px;padding:10px 12px;border
 .badge.ok{background:var(--green);color:#fff}
 .pts{font-family:"Courier New",monospace;font-size:15px;margin:4px 0;color:var(--ink)}
 .lvl{font-family:"Courier New",monospace;color:var(--gold);margin:14px 0 6px;letter-spacing:.08em}
-@media (prefers-reduced-motion:reduce){.stamp,.shake{animation:none}}
+.hr{display:flex;align-items:center;gap:6px}
+button.snd{min-height:36px;padding:2px 8px;margin:0;font-size:16px;background:transparent;border:1px solid #2c4166;color:var(--paper);border-radius:999px}
+button.snd:hover{background:var(--bg2)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+.bc.bump{animation:bump .35s ease-out;border-color:var(--gold)}
+.chip{display:inline-block;font-family:"Courier New",monospace;font-size:14px;background:var(--bg2);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:3px 12px;margin:0 0 10px}
+button.big{display:flex;width:100%;justify-content:center;font-size:23px;min-height:72px;border-radius:14px;margin:10px 0 6px}
+.lead{color:#c9c2ae;text-align:center;margin:0 0 22px;font-size:16px}
+.wide{display:flex;width:100%;justify-content:center;margin:0 0 10px}
+.cnt{background:var(--red);color:#fff;border-radius:999px;font-family:"Courier New",monospace;font-size:13px;padding:0 8px;margin-left:8px}
+.msg.caught{border:2px solid var(--red)}
+.note{font-size:16px;margin:4px 0 2px;color:var(--red);font-weight:700}
+.note.ok{color:var(--green)}
+.clear{text-align:center}
+.clear .big-n{font-family:"Courier New",monospace;font-size:40px;color:var(--green);font-weight:700;margin:6px 0}
+@media (prefers-reduced-motion:reduce){.stamp,.shake,.bc.bump{animation:none}}
 </style>
 </head>
 <body>
@@ -59,8 +82,14 @@ input[type=text]{width:100%;font:inherit;font-size:20px;padding:10px 12px;border
 <div id="credit" hidden>Made by Assunta Scotto</div>
 <script>
 /*PURE_START*/
-/* Scope: Italiano 4, unit "l'imperativo: gli ordini". tu, noi, voi; negative tu = non + infinitive; reflexives (alzati, alzatevi, alziamoci). No Lei. */
-const TYPE_LABEL={person:"Wrong person (tu / voi / noi)",ending:"Wrong ending",negative:"Wrong negative command",pronoun:"The little word (ti / vi / ci) is in the wrong place"};
+/* Scope: Italiano 4, unit "l'imperativo: gli ordini". tu, noi, voi; negative tu = non + infinitive; reflexives (alzati, alzatevi, alziamoci). No Lei.
+   Level 1: pick the fix from 3 (the right one + choices). Level 2: type the fix. */
+const ACCUSE_HINT={
+ person:"Check who each order is for. One person = tu. A group = voi. 'Let's' = noi.",
+ ending:"Check the endings. To one person: -are gives -a, -ere and -ire give -i. To a group: -ate, -ete, -ite.",
+ negative:"Check the 'don't' orders. To one friend (tu) a negative order is non + the infinitive, like non parlare.",
+ pronoun:"Check the little word (ti, vi, ci). In an order it joins the end of the verb: alzati, alzatevi, alziamoci."
+};
 const HINT={
  person:"Check who is being spoken to: one friend (tu), a group (voi), or 'let's' (noi).",
  ending:"Look at the ending. tu: -are gives -a, -ere and -ire give -i. voi: -ate, -ete, -ite. noi: -iamo.",
@@ -74,6 +103,7 @@ const CASES=[
  ["Elena","Marco (tu)","Aspetta un momento!"],
  ["Dante","the class (voi)","Ascolta, ragazzi!"]],
  bad:3,types:["person"],fix:"Ascoltate, ragazzi!",
+ choices:["Ascoltete, ragazzi!","Ascoltite, ragazzi!"],
  accept:["Ascoltate, ragazzi!","Ascoltate"],
  why:"A group gets the voi form. For -are verbs voi ends in -ate: ascoltate."},
 {id:2,level:1,lines:[
@@ -82,6 +112,7 @@ const CASES=[
  ["Dante","Sara (tu)","Apri il libro!"],
  ["Elena","Marco (tu)","Scrive il nome!"]],
  bad:3,types:["ending"],fix:"Scrivi il nome!",
+ choices:["Scrivete il nome!","Scrivo il nome!"],
  accept:["Scrivi il nome!","Scrivi"],
  why:"To one friend, an -ere verb ends in -i: scrivi. Scrive means 'he/she writes'. It is not a command."},
 {id:3,level:1,lines:[
@@ -90,6 +121,7 @@ const CASES=[
  ["Marta","Sara (tu)","Vieni qui!"],
  ["Dante","Sara (tu)","Aspettate un momento!"]],
  bad:3,types:["person"],fix:"Aspetta un momento!",
+ choices:["Aspettiamo un momento!","Aspetto un momento!"],
  accept:["Aspetta un momento!","Aspetta"],
  why:"Sara is one friend, so she gets tu: aspetta. Aspettate is for a group."},
 {id:4,level:1,lines:[
@@ -98,6 +130,7 @@ const CASES=[
  ["Elena","Sara (tu)","Dormi bene!"],
  ["Dante","everyone, including himself (noi)","Mangiate insieme!"]],
  bad:3,types:["person"],fix:"Mangiamo insieme!",
+ choices:["Mangia insieme!","Mangio insieme!"],
  accept:["Mangiamo insieme!","Mangiamo"],
  why:"'Let's' is the noi form, which ends in -iamo: mangiamo. Mangiate is for telling a group to eat."},
 {id:5,level:1,lines:[
@@ -106,6 +139,7 @@ const CASES=[
  ["Luca","Sara (tu)","Leggi con me!"],
  ["Dante","the class (voi)","Dormete bene!"]],
  bad:3,types:["ending"],fix:"Dormite bene!",
+ choices:["Dormi bene!","Dormate bene!"],
  accept:["Dormite bene!","Dormite"],
  why:"For voi, -ire verbs end in -ite: dormite. Only -ere verbs take -ete (scrivete, leggete)."},
 {id:6,level:1,lines:[
@@ -114,6 +148,7 @@ const CASES=[
  ["Marta","everyone, including herself (noi)","Parliamo!"],
  ["Elena","Marco (tu)","Ascolti, Marco!"]],
  bad:3,types:["ending"],fix:"Ascolta, Marco!",
+ choices:["Ascoltate, Marco!","Ascolto, Marco!"],
  accept:["Ascolta, Marco!","Ascolta"],
  why:"To one friend, -are verbs end in -a: ascolta. Ascolti means 'you listen'. It is not the command."},
 {id:7,level:1,lines:[
@@ -122,6 +157,7 @@ const CASES=[
  ["Capitana","everyone, including herself (noi)","Leggiamo!"],
  ["Dante","Marco (tu)","Apre il libro!"]],
  bad:3,types:["ending"],fix:"Apri il libro!",
+ choices:["Aprite il libro!","Apro il libro!"],
  accept:["Apri il libro!","Apri"],
  why:"To one friend, an -ire verb ends in -i: apri. Apre means 'he/she opens'."},
 {id:8,level:1,lines:[
@@ -130,6 +166,7 @@ const CASES=[
  ["Elena","Sara (tu)","Aspetta qui!"],
  ["Capitana","everyone, including herself (noi)","Partite subito!"]],
  bad:3,types:["person"],fix:"Partiamo subito!",
+ choices:["Parti subito!","Parto subito!"],
  accept:["Partiamo subito!","Partiamo"],
  why:"'Let's' is the noi form: partiamo. Partite is for telling other people to leave."},
 {id:9,level:1,lines:[
@@ -138,6 +175,7 @@ const CASES=[
  ["Elena","Sara (tu)","Guarda qui!"],
  ["Marta","the class (voi)","Prendi il libro, ragazzi!"]],
  bad:3,types:["person"],fix:"Prendete il libro, ragazzi!",
+ choices:["Prendite il libro, ragazzi!","Prendate il libro, ragazzi!"],
  accept:["Prendete il libro, ragazzi!","Prendete il libro","Prendete"],
  why:"A group gets the voi form. For -ere verbs voi ends in -ete: prendete."},
 {id:10,level:1,lines:[
@@ -146,6 +184,7 @@ const CASES=[
  ["Dante","everyone, including himself (noi)","Beviamo!"],
  ["Elena","the class (voi)","Bevite piano!"]],
  bad:3,types:["ending"],fix:"Bevete piano!",
+ choices:["Bevi piano!","Bevate piano!"],
  accept:["Bevete piano!","Bevete"],
  why:"Bere is an -ere verb, so voi ends in -ete: bevete. Bevite would be an -ire ending."},
 {id:11,level:2,lines:[
@@ -230,6 +269,19 @@ function isAccepted(c,input){
  if(!n) return false;
  return c.accept.some(a=>norm(a)===n);
 }
+/* "Marco (tu)" -> {who:"Marco",form:"tu"}; noi is shown as "all of us (let's)" */
+function parseTo(l){
+ const m=String(l).match(/^(.*) \((tu|voi|noi)\)$/);
+ const form=m?m[2]:"";
+ let who=m?m[1]:String(l);
+ if(form==="noi")who="all of us (let's)";
+ return {who:who,form:form};
+}
+/* first word of the fix; a negative order shows "Non" plus the verb, because "Non" alone helps nobody */
+function firstWord(fix){
+ const w=String(fix).replace(/[!.?,]/g,"").split(/\s+/);
+ return (w[0].toLowerCase()==="non"&&w[1])?w[0]+" "+w[1]:w[0];
+}
 function pad(n){return n<10?"0"+n:""+n;}
 function todayStr(d){d=d||new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
 function addDays(str,n){const p=str.split("-").map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2]+n)).toISOString().slice(0,10);}
@@ -245,16 +297,47 @@ function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a
 function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
 function shuffled(arr,rnd){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function dailyIndex(d,n){return hashStr("ilcaso:"+d)%n;}
-/* daily is 0 on purpose: each case pays once, and nothing pays twice. Set above 0 only if Assunta asks. */
-const PTS={culprit:2,type:1,fixFirst:5,fixSecond:2,daily:0};
+/* A full clean solve pays 8, same as v1 (3 + 5). A hint costs 1 on its step and never takes a step to 0.
+   Accuse: right on the 1st tap 3 (2 with the hint); right on the 2nd tap 1 (with or without the hint);
+   wrong twice = the real culprit is stamped, catch pays 0, go to Fix.
+   Level 1: 1st pick 5, 2nd pick 2, 3rd pick 1.  Level 2 typed: 1st try 5, 2nd try 2, "first word" costs 2 on a first try and 1 on a second.
+   daily is 0 on purpose: each case pays once and nothing pays twice. */
+const PTS={culprit:3,culpritHint:2,culprit2:1,fix1:5,fix2:2,fix3:1,fix1Hint:3,fix2Hint:1,daily:0};
+const MISSION_LEN=3;
+/* Mission queue: never-paid unsolved Level 1 cases first (in order), then never-paid unsolved Level 2,
+   then any unsolved case, then solved cases in random order (those replays pay 0). */
+function missionQueue(paid,solved,rnd){
+ const fresh=function(l){return CASES.filter(function(c){return c.level===l&&!paid[c.id]&&!solved[c.id];}).map(function(c){return c.id;});};
+ let q=fresh(1).concat(fresh(2));
+ if(q.length<MISSION_LEN)q=q.concat(CASES.filter(function(c){return !solved[c.id]&&q.indexOf(c.id)<0;}).map(function(c){return c.id;}));
+ if(q.length<MISSION_LEN)q=q.concat(shuffled(CASES.filter(function(c){return q.indexOf(c.id)<0;}).map(function(c){return c.id;}),rnd||Math.random));
+ return q.slice(0,MISSION_LEN);
+}
 /*PURE_END*/
 
 const KEY="ilcaso.v1";
-function blank(){return {cases:{},solved:{},paid:{},daily:{date:"",done:false}};}
+function blank(){return {cases:{},solved:{},paid:{},daily:{date:"",done:false},mission:null,mute:false};}
 let S=blank();
 try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(blank(),JSON.parse(r));}catch(e){}
 if(!S.paid||typeof S.paid!=="object")S.paid={};
+/* a mission saved as {queue:[ids], i:index of the case being played, earned, clean}; drop it if broken or already finished */
+if(S.mission&&!(Array.isArray(S.mission.queue)&&S.mission.queue.length&&S.mission.i<S.mission.queue.length&&S.mission.queue.every(function(id){return !!byId(id);})))S.mission=null;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* Sound: a tiny built-in ding (catch) and thud (miss). No audio files. Off with the speaker button; fails silently. */
+let AC=null;
+function sound(kind){
+ if(S.mute)return;
+ try{
+  AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+  const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;
+  if(kind==="ok"){o.type="triangle";o.frequency.setValueAtTime(660,t);o.frequency.setValueAtTime(990,t+.09);}
+  else{o.type="sine";o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(70,t+.18);}
+  g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.001,t+.26);
+  o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+.28);
+ }catch(e){}
+ try{if(kind!=="ok"&&navigator.vibrate)navigator.vibrate(60);}catch(e){}
+}
 
 /* BohBridge: everything that touches Boh Cashi lives here and nowhere else.
    Same pattern as aiutami/index.html: earn into the Italiano 4 inbox, show purse + inbox.
@@ -275,10 +358,31 @@ function av(n){return '<span class="av" style="background:'+(COLORS[n]||"#555")+
 function caseNo(c){return CASES.indexOf(c)+1;}
 function byId(id){return CASES.find(function(c){return c.id===id;});}
 function isPaid(c){return !!S.paid[c.id];}
+function toPill(label){const p=parseTo(label);return '<span class="to f-'+esc(p.form)+'">to '+esc(p.who)+' &middot; '+esc(p.form)+'</span>';}
+function orderHead(l){return '<div class="who">'+av(l[0])+'<b>'+esc(l[0])+'</b></div>'+toPill(l[1]);}
 
-let G={view:"home",c:null,order:[],culprit:null,type:null,attempts:0,val:"",err:"",fixOk:false,firstTry:false,earn:null,mode:"free",queue:[],shake:false};
+let G={view:"home",c:null,order:[],opts:[],struck:[],culprit:null,hint:false,fw:false,attempts:0,val:"",err:"",fixOk:false,firstTry:false,earn:null,mode:"free",queue:[],shake:false,missed:[],stampOn:null,locked:false,lost:false,shakeName:null,more:false,mn:0,clear:null};
 
-function header(){return '<div class="top"><div class="brand">IL CASO</div><div class="bc" aria-label="Boh Cashi">BC <b>'+BohBridge.balance()+'</b></div></div>';}
+/* Header coins: purse + inbox, plus the catch earned in the case being played (not paid yet; it goes into the inbox once, at finish). */
+function shownTarget(){
+ let v=BohBridge.balance();
+ if((G.view==="accuse"||G.view==="fix")&&G.c&&G.earn&&!isPaid(G.c))v+=G.earn.culprit;
+ return v;
+}
+let shownBC=null;
+function header(){
+ const v=shownTarget();
+ return '<div class="top"><div class="brand">IL CASO</div><div class="hr"><button class="snd" data-act="mute" aria-pressed="'+(S.mute?"false":"true")+'" aria-label="'+(S.mute?"Sound is off. Turn sound on":"Sound is on. Turn sound off")+'">'+(S.mute?"&#128263;":"&#128266;")+'</button><div class="bc" aria-label="Boh Cashi" data-total="'+v+'">BC <b>'+(shownBC===null?v:shownBC)+'</b></div></div></div>';
+}
+function animateBC(){
+ const box=document.querySelector(".bc");if(!box)return;
+ const el=box.querySelector("b");const to=shownTarget();
+ const calm=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(shownBC===null||to<=shownBC||calm){shownBC=to;el.textContent=to;return;}
+ const from=shownBC;shownBC=to;box.classList.add("bump");
+ const t0=performance.now();
+ (function step(now){const k=Math.min(1,(now-t0)/300);if(el.isConnected)el.textContent=Math.round(from+(to-from)*k);if(k<1)requestAnimationFrame(step);})(t0);
+}
 function status(c){
  const st=S.cases[c.id];const t=todayStr();
  if(st&&st.due<=t)return '<span class="badge due">review due</span>';
@@ -286,21 +390,29 @@ function status(c){
  if(S.solved[c.id])return '<span class="badge ok">solved</span>';
  return '<span class="badge">new</span>';
 }
+function chip(n){return '<span class="chip" data-chip="1">Caso '+n+' di '+MISSION_LEN+'</span>';}
 
 function viewHome(){
  const t=todayStr();
  const dailyDone=S.daily.date===t&&S.daily.done;
  const due=dueIds(S.cases,t);
- return header()+
- '<p class="sub">Four crew members gave orders. One used the wrong form. Find them, then fix the line.</p>'+
- '<div class="card"><span class="tag">Today</span><h2>Caso del giorno</h2><p>'+(dailyDone?'Done for today. Same case for the whole class. Come back tomorrow.':'One shared case for the whole class. Everyone gets the same one today.')+'</p><button class="pri" data-act="daily">'+(dailyDone?'Play it again':'Open today\'s case')+'</button></div>'+
- '<div class="card"><span class="tag">Ripasso</span><h2>Review</h2><p>'+(due.length?due.length+(due.length===1?' case is':' cases are')+' due. These are forms you missed or haven\'t seen in a while.':'Nothing due right now. Missed cases come back here tomorrow.')+'</p><button data-act="review">Start review</button></div>'+
- '<div class="card"><span class="tag">Archive</span><h2>All cases</h2><p>'+CASES.length+' cases in 2 levels. Each case pays Boh Cashi the first time only.</p><button data-act="list">Open case files</button></div>'+
- '<a class="btn ghost" href="../../" data-link="boh">Back to Boh</a>';
+ const m=S.mission;
+ let h=header();
+ if(m)h+='<div style="text-align:center">'+chip(m.i+1)+'</div>';
+ h+='<button class="pri big" data-act="mission">'+(m?'Continue mission':'Start mission')+'</button>';
+ h+='<p class="lead">Find the wrong order. Fix it. Three cases.</p>';
+ h+='<button class="ghost wide" data-act="daily">Caso del giorno'+(dailyDone?' &middot; done today':'')+'</button>';
+ h+='<button class="ghost wide" data-act="more" aria-expanded="'+(G.more?"true":"false")+'">More'+(due.length?'<span class="cnt" aria-label="'+due.length+' due">'+due.length+'</span>':'')+'</button>';
+ if(G.more){
+  h+='<div class="card"><span class="tag">Ripasso</span><p>'+(due.length?due.length+(due.length===1?' case is':' cases are')+' due for review.':'Nothing due right now. Missed cases come back here tomorrow.')+'</p>'+(due.length?'<button data-act="review">Start review</button>':'')+'</div>';
+  h+='<div class="card"><span class="tag">Archive</span><p>All '+CASES.length+' cases. Level 1: pick the fix. Level 2: type it. Each case pays Boh Cashi the first time only.</p><button data-act="list">Open case files</button></div>';
+  if(m)h+='<button class="ghost wide" data-act="endmission">End this mission</button>';
+ }
+ return h+'<a class="btn ghost" href="../../" data-link="boh">Back to Boh</a>';
 }
 function viewList(){
  let h=header()+'<div class="top"><button class="ghost" data-act="home">Back</button></div>';
- [[1,"LEVEL 1: TU, VOI, NOI"],[2,"LEVEL 2: NON + INFINITIVE, AND THE LITTLE WORD"]].forEach(function(L){
+ [[1,"LEVEL 1: PICK THE FIX"],[2,"LEVEL 2: TYPE THE FIX"]].forEach(function(L){
   h+='<div class="lvl">'+L[1]+'</div><div class="card">';
   CASES.filter(function(c){return c.level===L[0];}).forEach(function(c){
    h+='<div class="row"><button data-act="open" data-id="'+c.id+'">Caso '+caseNo(c)+'</button>'+status(c)+'</div>';
@@ -310,85 +422,145 @@ function viewList(){
  return h;
 }
 function modeTag(){return G.mode==="daily"?"Caso del giorno":G.mode==="review"?"Ripasso":"Level "+G.c.level;}
-function viewChat(){
+function topTag(){
  const c=G.c;
- let h=header()+'<p class="tag" style="color:#c9c2ae">Caso '+caseNo(c)+' &middot; '+esc(modeTag())+'</p><p class="sub">Read all four orders. One has the wrong form.</p>';
- G.order.forEach(function(i){
-  const l=c.lines[i];
-  h+='<div class="msg"><div class="who">'+av(l[0])+'<div><b>'+esc(l[0])+'</b><span class="to">to '+esc(l[1])+'</span></div></div><div class="say">'+esc(l[2])+'</div></div>';
- });
- return h+'<button class="pri" data-act="toAccuse">Accuse someone</button><button class="ghost" data-act="home">Home</button>';
+ if(G.mode==="mission")return '<div>'+chip(G.mn)+'</div>';
+ return '<p class="tag" style="color:#c9c2ae">Caso '+caseNo(c)+' &middot; '+esc(modeTag())+'</p>';
 }
+
+/* Step 1: read the orders and tap the wrong one.
+   Wrong tap: that card turns red and shakes, you stay here and try once more.
+   Right on the 2nd tap pays 1 for the catch. Wrong twice: the real culprit is stamped, 0 for the catch, then Fix. */
 function viewAccuse(){
- const c=G.c;
- let h=header()+'<div class="card"><h2>Who gave the wrong command?</h2>';
- G.order.forEach(function(i){const n=c.lines[i][0];h+='<button class="chip" data-act="pickC" data-v="'+esc(n)+'" aria-pressed="'+(G.culprit===n)+'">'+esc(n)+'</button>';});
- h+='<h2 style="margin-top:12px">What kind of mistake?</h2>';
- Object.keys(TYPE_LABEL).forEach(function(k){h+='<button class="chip" data-act="pickT" data-v="'+k+'" aria-pressed="'+(G.type===k)+'">'+esc(TYPE_LABEL[k])+'</button>';});
- h+='<div class="err" role="alert">'+esc(G.err)+'</div><button class="pri" data-act="accuse">Accuse</button><button data-act="toChat">Re-read the orders</button></div>';
- return h;
+ const c=G.c;const paid=isPaid(c);
+ let h=header()+topTag()+'<p class="sub">One order has the wrong form. Tap it.</p>';
+ if(G.hint)h+='<div class="hintbox" role="status"><b>Hint.</b> '+esc(ACCUSE_HINT[c.types[0]])+'</div>';
+ else if(!G.locked)h+='<button class="ghost" data-act="hint">Hint'+(paid||G.missed.length?'':' (-1 BC)')+'</button>';
+ G.order.forEach(function(i){
+  const l=c.lines[i];const n=l[0];
+  const miss=G.missed.indexOf(n)>-1;const st=G.stampOn===n;
+  h+='<div class="msg'+(miss?' bad':'')+(st?' caught':'')+(G.shakeName===n?' shake':'')+'" data-card="'+esc(n)+'">'+orderHead(l)+'<div class="say">'+esc(l[2])+'</div>';
+  if(st){
+   h+='<span class="stamp'+(G.stamped?' still':'')+'">COLPEVOLE</span>';
+   if(G.lost)h+='<p class="note" role="status">This was the wrong order. 0 BC for the catch.</p>';
+   else h+='<p class="note ok" role="status">Caught!'+(paid?'':' +'+G.earn.culprit+' BC')+'</p>';
+  }else if(miss){
+   h+='<p class="note" role="alert">Not '+esc(n)+'.'+(G.locked?'':' Try another.')+'</p>';
+  }else{
+   h+='<button class="pri" data-act="accuse" data-v="'+esc(n)+'"'+(G.locked?' disabled':'')+'>It\'s '+esc(n)+'</button>';
+  }
+  h+='</div>';
+ });
+ return h+(G.locked?'':'<button class="ghost" data-act="home">Home</button>');
 }
+function accuse(v){
+ const c=G.c;const bad=c.lines[c.bad][0];
+ if(G.locked||G.missed.indexOf(v)>-1)return;
+ if(v===bad){
+  G.culprit=v;
+  G.earn.culprit=G.missed.length===0?(G.hint?PTS.culpritHint:PTS.culprit):PTS.culprit2;
+  G.stampOn=v;G.locked=true;sound("ok");render();G.stamped=true;goFix(600);
+ }else{
+  G.missed.push(v);G.shakeName=v;sound("miss");
+  if(G.missed.length<2){render();return;}
+  G.culprit=v;G.earn.culprit=0;G.lost=true;G.stampOn=bad;G.locked=true;render();G.stamped=true;goFix(1400);
+ }
+}
+function goFix(ms){
+ const c=G.c;
+ setTimeout(function(){if(G.view==="accuse"&&G.c===c){G.view="fix";G.err="";render();}},ms);
+}
+/* Step 2: fix the line */
 function viewFix(){
  const c=G.c;const bl=c.lines[c.bad];
  const caught=G.culprit===bl[0];
  const paid=isPaid(c);
- let h=header()+'<div class="card">';
- h+=caught?'<span class="stamp">COLPEVOLE</span><p>Caught. It was <b>'+esc(bl[0])+'</b>.'+(paid?'':' +'+PTS.culprit+' BC')+'</p>':'<p>Not '+esc(G.culprit)+'. The wrong line was <b>'+esc(bl[0])+'</b>\'s. You can still fix it.</p>';
- h+='<p>'+(G.type&&c.types.indexOf(G.type)>-1?'Right kind of mistake.'+(paid?'':' +'+PTS.type+' BC'):'The mistake type was: '+esc(TYPE_LABEL[c.types[0]])+'.')+'</p></div>';
- h+='<div class="msg bad"><div class="who">'+av(bl[0])+'<div><b>'+esc(bl[0])+'</b><span class="to">to '+esc(bl[1])+'</span></div></div><div class="say">'+esc(bl[2])+'</div></div>';
- h+='<div class="card"><h2>Correct the line</h2><p>Type what '+esc(bl[0])+' should have said. Accents and capital letters are forgiven.</p>';
- h+='<input type="text" id="ans" lang="it" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your corrected command" value="'+esc(G.val)+'">';
- h+='<div class="err'+(G.shake?' shake':'')+'" role="alert">'+esc(G.err)+'</div><button class="pri" data-act="check">Check</button></div>';
+ let h=header()+(G.mode==="mission"?chip(G.mn):'')+'<div class="card">';
+ h+=caught?'<span class="stamp still">COLPEVOLE</span><p>Caught. It was <b>'+esc(bl[0])+'</b>.'+(paid?'':' +'+G.earn.culprit+' BC')+'</p>':'<p>The wrong order was <b>'+esc(bl[0])+'</b>\'s. You can still fix it.</p>';
+ h+='</div><div class="msg bad">'+orderHead(bl)+'<div class="say">'+esc(bl[2])+'</div></div>';
+ if(c.level===1){
+  h+='<div class="card"><h2>Pick the right order</h2><p>What should '+esc(bl[0])+' have said?</p>';
+  G.opts.forEach(function(o,i){h+='<button class="opt" data-act="pickfix" data-i="'+i+'"'+(G.struck.indexOf(i)>-1?' disabled':'')+'>'+esc(o)+'</button>';});
+  h+='<div class="err'+(G.shake?' shake':'')+'" role="alert">'+esc(G.err)+'</div></div>';
+ }else{
+  h+='<div class="card"><h2>Correct the line</h2><p>Type what '+esc(bl[0])+' should have said. Accents and capital letters are forgiven.</p>';
+  if(G.fw)h+='<div class="start">Starts with: '+esc(firstWord(c.fix))+'</div>';
+  else h+='<button class="ghost" data-act="firstword">Show the first word'+(paid?'':' (-'+(G.attempts===0?PTS.fix1-PTS.fix1Hint:PTS.fix2-PTS.fix2Hint)+' BC)')+'</button>';
+  h+='<input type="text" id="ans" lang="it" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your corrected command" value="'+esc(G.val)+'">';
+  h+='<div class="err'+(G.shake?' shake':'')+'" role="alert">'+esc(G.err)+'</div><button class="pri" data-act="check">Check</button></div>';
+ }
  return h;
 }
 function viewReveal(){
  const c=G.c;const e=G.earn;
- const total=e.culprit+e.type+e.fix+e.daily;
- let h=header()+'<div class="card"><span class="tag">The reveal</span><h2>Every line, explained</h2>';
+ const total=e.culprit+e.fix+e.daily;
+ let h=header()+(G.mode==="mission"?chip(G.mn):'')+'<div class="card"><span class="tag">The reveal</span><h2>'+(e.success?'Clean solve!':'Solved.')+'</h2>';
  G.order.forEach(function(i){
   const l=c.lines[i];const isBad=i===c.bad;
-  h+='<div class="msg'+(isBad?' bad':'')+'"><div class="who">'+av(l[0])+'<div><b>'+esc(l[0])+'</b><span class="to">to '+esc(l[1])+'</span></div></div><div class="say">'+esc(l[2])+'</div></div>';
+  h+='<div class="msg'+(isBad?' bad':'')+'">'+orderHead(l)+'<div class="say">'+esc(l[2])+'</div></div>';
   if(isBad)h+='<div class="msg good"><div class="say">'+esc(c.fix)+'</div></div>';
  });
  h+='<p style="color:var(--ink);font-size:17px">'+esc(c.why)+'</p>';
  if(total>0){
   const parts=[];
   if(e.culprit>0)parts.push('Caught: +'+e.culprit);
-  if(e.type>0)parts.push('Type: +'+e.type);
   if(e.fix>0)parts.push('Fix: +'+e.fix);
   if(e.daily>0)parts.push('Daily: +'+e.daily);
   h+='<div class="pts" data-purse="1">'+parts.join(' &nbsp; ')+'<br><b>Total: +'+total+' BC</b></div>';
  }
- h+='<p>'+(e.success?'Clean solve. This one comes back in a few days.':'This one comes back tomorrow in Ripasso.')+'</p>';
+ h+='<p>'+(e.success?'This one comes back in a few days.':'This one comes back tomorrow in Ripasso.')+'</p>';
  h+='<button class="pri" data-act="next">'+(nextLabel())+'</button><button class="ghost" data-act="home">Home</button></div>';
+ return h;
+}
+function viewClear(){
+ const k=G.clear||{earned:0,clean:0};
+ let h=header()+'<div class="card clear"><span class="tag">Mission clear</span><h2>Three cases closed.</h2>';
+ if(k.earned>0)h+='<div class="big-n" data-purse="1">+'+k.earned+' BC</div><p>earned this mission</p>';
+ h+='<p>'+(k.clean===MISSION_LEN?'All three clean solves.':k.clean+' of '+MISSION_LEN+' clean solves.')+'</p>';
+ h+='<button class="pri" data-act="mission">Another mission</button><button class="ghost" data-act="home">Home</button></div>';
  return h;
 }
 function nextTarget(){
  if(G.mode==="daily")return null;
+ if(G.mode==="mission")return "mission";
  if(G.mode==="review"){const q=G.queue.filter(function(id){return id!==G.c.id;});return q.length?q[0]:null;}
  const pool=CASES.filter(function(c){return c.level===G.c.level&&c.id!==G.c.id&&!S.solved[c.id];});
  if(pool.length)return pool[0].id;
  const any=CASES.filter(function(c){return c.id!==G.c.id&&!S.solved[c.id];});
  return any.length?any[0].id:null;
 }
-function nextLabel(){return nextTarget()?"Next case":"Back to home";}
+function nextLabel(){
+ if(G.mode==="mission")return S.mission?"Next case":"Mission clear";
+ return nextTarget()?"Next case":"Back to home";
+}
 
 function startCase(id,mode,queue){
  const c=byId(id);
  const rnd=mode==="daily"?mulberry32(hashStr("order:"+todayStr()+":"+id)):Math.random;
- G={view:"chat",c:c,order:shuffled([0,1,2,3],rnd),culprit:null,type:null,attempts:0,val:"",err:"",fixOk:false,firstTry:false,earn:{culprit:0,type:0,fix:0,daily:0,success:false},mode:mode,queue:queue||[],shake:false};
+ const opts=c.level===1?shuffled([c.fix].concat(c.choices||[]),rnd):[];
+ G={view:"accuse",c:c,order:shuffled([0,1,2,3],rnd),opts:opts,struck:[],culprit:null,hint:false,fw:false,attempts:0,val:"",err:"",fixOk:false,firstTry:false,earn:{culprit:0,fix:0,daily:0,success:false},mode:mode,queue:queue||[],shake:false,missed:[],stampOn:null,locked:false,lost:false,shakeName:null,stamped:false,more:false,mn:mode==="mission"&&S.mission?S.mission.i+1:0,clear:null};
  render();
+}
+/* Mission: 3 cases saved under ilcaso.v1 as S.mission, so a reload keeps your place. */
+function playMission(){
+ if(!S.mission){S.mission={queue:missionQueue(S.paid,S.solved),i:0,earned:0,clean:0};save();}
+ startCase(S.mission.queue[S.mission.i],"mission");
 }
 function finish(){
  if(G.view==="reveal")return;
  const c=G.c;const t=todayStr();const e=G.earn;
- e.success=(G.culprit===c.lines[c.bad][0])&&G.firstTry;
+ e.success=(G.culprit===c.lines[c.bad][0])&&G.missed.length===0&&G.firstTry&&!G.hint&&!G.fw;
  if(G.fixOk)S.solved[c.id]=true;
  S.cases[c.id]=nextState(S.cases[c.id],e.success,t);
  if(G.mode==="daily"&&!(S.daily.date===t&&S.daily.done)){S.daily={date:t,done:true};}
- let total=e.culprit+e.type+e.fix+e.daily;
- if(isPaid(c)){e.culprit=0;e.type=0;e.fix=0;e.daily=0;total=0;}
+ let total=e.culprit+e.fix+e.daily;
+ if(isPaid(c)){e.culprit=0;e.fix=0;e.daily=0;total=0;}
  else if(total>0){S.paid[c.id]=true;}
+ if(G.mode==="mission"&&S.mission){
+  S.mission.earned+=total;if(e.success)S.mission.clean++;
+  S.mission.i++;
+  if(S.mission.i>=S.mission.queue.length){G.clear={earned:S.mission.earned,clean:S.mission.clean};S.mission=null;}
+ }
  save();
  if(total>0)BohBridge.add(total);
  G.view="reveal";render();
@@ -396,11 +568,14 @@ function finish(){
 
 function render(){
  const v=G.view;
- app.innerHTML=v==="home"?viewHome():v==="list"?viewList():v==="chat"?viewChat():v==="accuse"?viewAccuse():v==="fix"?viewFix():viewReveal();
- G.shake=false;
- if(v==="fix"){const i=document.getElementById("ans");if(i){i.focus();i.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();doCheck();}});}}
- window.scrollTo(0,0);
+ app.innerHTML=v==="home"?viewHome():v==="list"?viewList():v==="accuse"?viewAccuse():v==="fix"?viewFix():v==="clear"?viewClear():viewReveal();
+ G.shake=false;G.shakeName=null;
+ if(v==="fix")G.stamped=true;
+ animateBC();
+ if(v==="fix"&&G.c.level===2){const i=document.getElementById("ans");if(i){i.focus();i.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();doCheck();}});}}
+ if(v!=="accuse"||!G.locked)window.scrollTo(0,0);
 }
+/* Level 2: typed fix */
 function doCheck(){
  const i=document.getElementById("ans");const val=i?i.value:"";
  G.val=val;
@@ -408,17 +583,33 @@ function doCheck(){
  const c=G.c;
  if(isAccepted(c,val)){
   G.fixOk=true;G.firstTry=G.attempts===0;
-  G.earn.fix=G.firstTry?PTS.fixFirst:PTS.fixSecond;
-  G.err="";finish();return;
+  G.earn.fix=G.attempts===0?(G.fw?PTS.fix1Hint:PTS.fix1):(G.fw?PTS.fix2Hint:PTS.fix2);
+  G.err="";sound("ok");finish();return;
  }
- G.attempts++;
+ G.attempts++;sound("miss");
  if(G.attempts===1){G.err="Not quite. "+HINT[c.types[0]]+" One more try.";G.shake=true;render();return;}
  G.fixOk=false;G.firstTry=false;G.err="";finish();
 }
+/* Level 1: pick the fix from 3 */
+function doPick(i){
+ const c=G.c;
+ if(G.view!=="fix"||G.struck.indexOf(i)>-1)return;
+ if(G.opts[i]===c.fix){
+  G.fixOk=true;G.firstTry=G.struck.length===0;
+  G.earn.fix=G.struck.length===0?PTS.fix1:G.struck.length===1?PTS.fix2:PTS.fix3;
+  G.err="";sound("ok");finish();return;
+ }
+ G.struck.push(i);G.attempts=G.struck.length;sound("miss");
+ G.err="Not that one. "+HINT[c.types[0]];G.shake=true;render();
+}
 app.addEventListener("click",function(ev){
- const b=ev.target.closest("button");if(!b)return;
+ const b=ev.target.closest("button");if(!b||b.disabled)return;
  const a=b.getAttribute("data-act");const v=b.getAttribute("data-v");
- if(a==="home"){G.view="home";render();}
+ if(a==="home"){G.view="home";G.more=false;render();}
+ else if(a==="mute"){S.mute=!S.mute;save();render();}
+ else if(a==="more"){G.more=!G.more;render();}
+ else if(a==="mission"){playMission();}
+ else if(a==="endmission"){S.mission=null;save();G.more=false;render();}
  else if(a==="daily"){startCase(CASES[dailyIndex(todayStr(),CASES.length)].id,"daily");}
  else if(a==="review"){
   const q=dueIds(S.cases,todayStr());
@@ -427,19 +618,13 @@ app.addEventListener("click",function(ev){
  }
  else if(a==="list"){G.view="list";render();}
  else if(a==="open"){startCase(Number(b.getAttribute("data-id")),"free");}
- else if(a==="toAccuse"){G.view="accuse";G.err="";render();}
- else if(a==="toChat"){G.view="chat";render();}
- else if(a==="pickC"){G.culprit=v;G.err="";render();}
- else if(a==="pickT"){G.type=v;G.err="";render();}
- else if(a==="accuse"){
-  if(!G.culprit||!G.type){G.err="Pick a crew member and a type of mistake first.";render();return;}
-  const c=G.c;
-  if(G.culprit===c.lines[c.bad][0])G.earn.culprit=PTS.culprit;
-  if(c.types.indexOf(G.type)>-1)G.earn.type=PTS.type;
-  G.view="fix";G.err="";render();
- }
+ else if(a==="hint"){G.hint=true;render();}
+ else if(a==="accuse"){accuse(v);}
+ else if(a==="firstword"){const i=document.getElementById("ans");if(i)G.val=i.value;G.fw=true;render();}
+ else if(a==="pickfix"){doPick(Number(b.getAttribute("data-i")));}
  else if(a==="check"){doCheck();}
  else if(a==="next"){
+  if(G.mode==="mission"){if(S.mission)playMission();else{G.view="clear";render();}return;}
   const n=nextTarget();
   if(!n){G.view="home";render();return;}
   if(G.mode==="review"){const q=G.queue.filter(function(id){return id!==G.c.id;});startCase(n,"review",q);}
