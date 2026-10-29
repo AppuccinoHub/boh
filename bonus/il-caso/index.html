@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="author" content="Assunta Scotto">
+<title>Il Caso</title>
+<style>
+:root{color-scheme:dark;--bg:#0f1b2d;--bg2:#162640;--paper:#f5edd9;--ink:#1c1c1c;--muted:#6b6455;--red:#b5171e;--green:#2d6a4f;--gold:#e0b84c;--line:#d8cdb2}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--paper);font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.5}
+#app{max-width:560px;margin:0 auto;padding-block:14px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{display:flex;justify-content:space-between;align-items:center;margin:4px 0 10px;gap:10px}
+.brand{font-family:"Courier New",monospace;letter-spacing:.18em;font-weight:700;color:var(--gold);font-size:20px}
+.bc{background:var(--bg2);border:1px solid #2c4166;border-radius:999px;padding:4px 14px;font-family:"Courier New",monospace;font-size:15px;white-space:nowrap}
+.bc b{color:var(--gold)}
+.sub{color:#c9c2ae;margin:0 0 14px}
+.card{background:var(--paper);color:var(--ink);border-radius:10px;padding:14px 16px;margin:0 0 12px;border-left:6px solid var(--gold)}
+.card h2{margin:0 0 4px;font-size:19px}
+.card p{margin:0 0 10px;color:var(--muted);font-size:15px}
+.tag{font-family:"Courier New",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+button,a.btn{font:inherit;cursor:pointer;min-height:46px;border-radius:8px;border:2px solid var(--ink);background:#fff;color:var(--ink);padding:8px 16px;margin:2px 6px 2px 0;display:inline-flex;align-items:center;text-decoration:none}
+button:hover,a.btn:hover{background:#efe6cd}
+button:focus-visible,input:focus-visible,a.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button.pri{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+button.pri:hover{background:#951318}
+button.ghost,a.btn.ghost{background:transparent;color:var(--paper);border-color:#46618f}
+button.ghost:hover,a.btn.ghost:hover{background:var(--bg2)}
+.card button.ghost{color:var(--ink);border-color:var(--ink)}
+.card button.ghost:hover{background:#efe6cd}
+button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.msg{background:#fff;color:var(--ink);border-radius:10px;padding:10px 12px;margin:0 0 10px;border:1px solid var(--line)}
+.msg .who{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.msg .to{display:block;font-size:13px;color:var(--muted)}
+.msg .say{font-size:20px}
+.msg.bad{border:2px solid var(--red);background:#fdeceb}
+.msg.good{border:2px solid var(--green);background:#e9f5ee}
+.av{display:inline-flex;width:34px;height:34px;border-radius:50%;color:#fff;align-items:center;justify-content:center;font-weight:700;flex:none}
+.err{color:#ffb3a8;font-size:15px;margin:6px 0}
+.card .err{color:var(--red)}
+.stamp{display:inline-block;font-family:"Courier New",monospace;font-weight:700;letter-spacing:.2em;border:3px solid var(--red);color:var(--red);padding:2px 10px;transform:rotate(-6deg);animation:pop .35s ease-out;margin:2px 0 8px}
+@keyframes pop{from{transform:rotate(-6deg) scale(2);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s}
+input[type=text]{width:100%;font:inherit;font-size:20px;padding:10px 12px;border-radius:8px;border:2px solid var(--ink);margin:6px 0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.badge{font-family:"Courier New",monospace;font-size:12px;padding:2px 8px;border-radius:999px;background:#e8e0c8;color:var(--ink)}
+.badge.due{background:var(--red);color:#fff}
+.badge.ok{background:var(--green);color:#fff}
+.pts{font-family:"Courier New",monospace;font-size:15px;margin:4px 0;color:var(--ink)}
+.lvl{font-family:"Courier New",monospace;color:var(--gold);margin:14px 0 6px;letter-spacing:.08em}
+@media (prefers-reduced-motion:reduce){.stamp,.shake{animation:none}}
+</style>
+</head>
+<body>
+<!-- Made by Assunta Scotto -->
+<div id="app"></div>
+<div id="credit" hidden>Made by Assunta Scotto</div>
+<script>
+/*PURE_START*/
+/* Scope: Italiano 4, unit "l'imperativo: gli ordini". tu, noi, voi; negative tu = non + infinitive; reflexives (alzati, alzatevi, alziamoci). No Lei. */
+const TYPE_LABEL={person:"Wrong person (tu / voi / noi)",ending:"Wrong ending",negative:"Wrong negative command",pronoun:"The little word (ti / vi / ci) is in the wrong place"};
+const HINT={
+ person:"Check who is being spoken to: one friend (tu), a group (voi), or 'let's' (noi).",
+ ending:"Look at the ending. tu: -are gives -a, -ere and -ire give -i. voi: -ate, -ete, -ite. noi: -iamo.",
+ negative:"A negative command to one friend (tu) is non + the infinitive.",
+ pronoun:"In a command the little word joins the end of the verb: alzati, alzatevi, alziamoci."
+};
+const CASES=[
+{id:1,level:1,lines:[
+ ["Marta","Marco (tu)","Ascolta!"],
+ ["Luca","the class (voi)","Aprite il libro!"],
+ ["Elena","Marco (tu)","Aspetta un momento!"],
+ ["Dante","the class (voi)","Ascolta, ragazzi!"]],
+ bad:3,types:["person"],fix:"Ascoltate, ragazzi!",
+ accept:["Ascoltate, ragazzi!","Ascoltate"],
+ why:"A group gets the voi form. For -are verbs voi ends in -ate: ascoltate."},
+{id:2,level:1,lines:[
+ ["Capitana","Marco (tu)","Parla piano, per favore."],
+ ["Marta","the class (voi)","Scrivete qui!"],
+ ["Dante","Sara (tu)","Apri il libro!"],
+ ["Elena","Marco (tu)","Scrive il nome!"]],
+ bad:3,types:["ending"],fix:"Scrivi il nome!",
+ accept:["Scrivi il nome!","Scrivi"],
+ why:"To one friend, an -ere verb ends in -i: scrivi. Scrive means 'he/she writes'. It is not a command."},
+{id:3,level:1,lines:[
+ ["Luca","the class (voi)","Parlate piano!"],
+ ["Capitana","Marco (tu)","Ascolta, Marco!"],
+ ["Marta","Sara (tu)","Vieni qui!"],
+ ["Dante","Sara (tu)","Aspettate un momento!"]],
+ bad:3,types:["person"],fix:"Aspetta un momento!",
+ accept:["Aspetta un momento!","Aspetta"],
+ why:"Sara is one friend, so she gets tu: aspetta. Aspettate is for a group."},
+{id:4,level:1,lines:[
+ ["Capitana","everyone, including herself (noi)","Andiamo!"],
+ ["Luca","the class (voi)","Scrivete il nome!"],
+ ["Elena","Sara (tu)","Dormi bene!"],
+ ["Dante","everyone, including himself (noi)","Mangiate insieme!"]],
+ bad:3,types:["person"],fix:"Mangiamo insieme!",
+ accept:["Mangiamo insieme!","Mangiamo"],
+ why:"'Let's' is the noi form, which ends in -iamo: mangiamo. Mangiate is for telling a group to eat."},
+{id:5,level:1,lines:[
+ ["Elena","the class (voi)","Aprite il libro!"],
+ ["Marta","Marco (tu)","Apri il libro!"],
+ ["Luca","Sara (tu)","Leggi con me!"],
+ ["Dante","the class (voi)","Dormete bene!"]],
+ bad:3,types:["ending"],fix:"Dormite bene!",
+ accept:["Dormite bene!","Dormite"],
+ why:"For voi, -ire verbs end in -ite: dormite. Only -ere verbs take -ete (scrivete, leggete)."},
+{id:6,level:1,lines:[
+ ["Capitana","the class (voi)","Leggete!"],
+ ["Luca","Sara (tu)","Scrivi qui!"],
+ ["Marta","everyone, including herself (noi)","Parliamo!"],
+ ["Elena","Marco (tu)","Ascolti, Marco!"]],
+ bad:3,types:["ending"],fix:"Ascolta, Marco!",
+ accept:["Ascolta, Marco!","Ascolta"],
+ why:"To one friend, -are verbs end in -a: ascolta. Ascolti means 'you listen'. It is not the command."},
+{id:7,level:1,lines:[
+ ["Luca","the class (voi)","Aprite la porta!"],
+ ["Marta","Sara (tu)","Ascolta!"],
+ ["Capitana","everyone, including herself (noi)","Leggiamo!"],
+ ["Dante","Marco (tu)","Apre il libro!"]],
+ bad:3,types:["ending"],fix:"Apri il libro!",
+ accept:["Apri il libro!","Apri"],
+ why:"To one friend, an -ire verb ends in -i: apri. Apre means 'he/she opens'."},
+{id:8,level:1,lines:[
+ ["Luca","Marco (tu)","Parti subito!"],
+ ["Marta","the class (voi)","Partite!"],
+ ["Elena","Sara (tu)","Aspetta qui!"],
+ ["Capitana","everyone, including herself (noi)","Partite subito!"]],
+ bad:3,types:["person"],fix:"Partiamo subito!",
+ accept:["Partiamo subito!","Partiamo"],
+ why:"'Let's' is the noi form: partiamo. Partite is for telling other people to leave."},
+{id:9,level:1,lines:[
+ ["Luca","Marco (tu)","Mangia piano!"],
+ ["Dante","everyone, including himself (noi)","Prendiamo il libro!"],
+ ["Elena","Sara (tu)","Guarda qui!"],
+ ["Marta","the class (voi)","Prendi il libro, ragazzi!"]],
+ bad:3,types:["person"],fix:"Prendete il libro, ragazzi!",
+ accept:["Prendete il libro, ragazzi!","Prendete il libro","Prendete"],
+ why:"A group gets the voi form. For -ere verbs voi ends in -ete: prendete."},
+{id:10,level:1,lines:[
+ ["Luca","Marco (tu)","Bevi piano, Marco!"],
+ ["Marta","Sara (tu)","Leggi qui!"],
+ ["Dante","everyone, including himself (noi)","Beviamo!"],
+ ["Elena","the class (voi)","Bevite piano!"]],
+ bad:3,types:["ending"],fix:"Bevete piano!",
+ accept:["Bevete piano!","Bevete"],
+ why:"Bere is an -ere verb, so voi ends in -ete: bevete. Bevite would be an -ire ending."},
+{id:11,level:2,lines:[
+ ["Capitana","the class (voi)","Scrivete qui!"],
+ ["Luca","Sara (tu)","Non parlare!"],
+ ["Marta","Marco (tu)","Aspetta!"],
+ ["Elena","Marco (tu)","Non scrivi qui!"]],
+ bad:3,types:["negative"],fix:"Non scrivere qui!",
+ accept:["Non scrivere qui!","Non scrivere"],
+ why:"A negative command to one friend (tu) is non + the infinitive: non scrivere."},
+{id:12,level:2,lines:[
+ ["Luca","the class (voi)","Ascoltate!"],
+ ["Marta","Marco (tu)","Non dormire!"],
+ ["Capitana","Sara (tu)","Ascolta, Sara!"],
+ ["Dante","Sara (tu)","Non parla!"]],
+ bad:3,types:["negative"],fix:"Non parlare!",
+ accept:["Non parlare!","Non parlare"],
+ why:"Parla is the positive command. For a negative command to one friend, switch to the infinitive: non parlare."},
+{id:13,level:2,lines:[
+ ["Marta","Sara (tu)","Mangia!"],
+ ["Elena","the class (voi)","Mangiate!"],
+ ["Capitana","everyone, including herself (noi)","Mangiamo!"],
+ ["Luca","Marco (tu)","Non mangi!"]],
+ bad:3,types:["negative"],fix:"Non mangiare!",
+ accept:["Non mangiare!","Non mangiare"],
+ why:"Non mangi means 'you don't eat'. A negative command to one friend is non + the infinitive: non mangiare."},
+{id:14,level:2,lines:[
+ ["Capitana","the class (voi)","Arrivate presto!"],
+ ["Marta","Marco (tu)","Arriva subito!"],
+ ["Elena","everyone, including herself (noi)","Arriviamo presto!"],
+ ["Dante","Sara (tu)","Non arrivi tardi!"]],
+ bad:3,types:["negative"],fix:"Non arrivare tardi!",
+ accept:["Non arrivare tardi!","Non arrivare tardi, Sara!","Non arrivare"],
+ why:"A negative command to one friend is non + the infinitive: non arrivare tardi."},
+{id:15,level:2,lines:[
+ ["Luca","the class (voi)","Partite subito!"],
+ ["Marta","Sara (tu)","Non dormire!"],
+ ["Dante","everyone, including himself (noi)","Partiamo!"],
+ ["Elena","Marco (tu)","Non parti ora!"]],
+ bad:3,types:["negative"],fix:"Non partire ora!",
+ accept:["Non partire ora!","Non partire"],
+ why:"Non parti means 'you don't leave'. A negative command to one friend is non + the infinitive: non partire."},
+{id:16,level:2,lines:[
+ ["Luca","the class (voi)","Alzatevi!"],
+ ["Capitana","everyone, including herself (noi)","Alziamoci!"],
+ ["Elena","Sara (tu)","Svegliati!"],
+ ["Marta","Marco (tu)","Ti alzi, Marco!"]],
+ bad:3,types:["pronoun"],fix:"Alzati, Marco!",
+ accept:["Alzati, Marco!","Alzati"],
+ why:"In a command the little word sticks to the end: alzati (tu), alziamoci (noi), alzatevi (voi)."},
+{id:17,level:2,lines:[
+ ["Capitana","Marco (tu)","Divertiti!"],
+ ["Luca","everyone, including himself (noi)","Prepariamoci!"],
+ ["Elena","Sara (tu)","Svegliati, Sara!"],
+ ["Dante","the class (voi)","Vi lavate le mani!"]],
+ bad:3,types:["pronoun"],fix:"Lavatevi le mani!",
+ accept:["Lavatevi le mani!","Lavatevi"],
+ why:"For voi the little word vi sticks to the end of the command: lavatevi."},
+{id:18,level:2,lines:[
+ ["Marta","Marco (tu)","Alzati presto!"],
+ ["Elena","the class (voi)","Alzatevi!"],
+ ["Capitana","Sara (tu)","Divertiti un po'!"],
+ ["Luca","everyone, including himself (noi)","Ci prepariamo in fretta!"]],
+ bad:3,types:["pronoun"],fix:"Prepariamoci in fretta!",
+ accept:["Prepariamoci in fretta!","Prepariamoci"],
+ why:"For noi the little word ci sticks to the end of the command: prepariamoci."},
+{id:19,level:2,lines:[
+ ["Luca","the class (voi)","Alzatevi!"],
+ ["Marta","Sara (tu)","Non parlare!"],
+ ["Capitana","everyone, including herself (noi)","Alziamoci!"],
+ ["Dante","Marco (tu)","Non alzati!"]],
+ bad:3,types:["negative","pronoun"],fix:"Non alzarti!",
+ accept:["Non alzarti!","Non ti alzare!","Non alzarti","Non ti alzare"],
+ why:"A negative command to one friend uses the infinitive. With a reflexive verb you can write non alzarti or non ti alzare."}
+];
+function norm(s){
+ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+  .replace(/[‘’`´]/g,"'").replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim();
+}
+function isAccepted(c,input){
+ const n=norm(input);
+ if(!n) return false;
+ return c.accept.some(a=>norm(a)===n);
+}
+function pad(n){return n<10?"0"+n:""+n;}
+function todayStr(d){d=d||new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function addDays(str,n){const p=str.split("-").map(Number);return new Date(Date.UTC(p[0],p[1]-1,p[2]+n)).toISOString().slice(0,10);}
+const INTERVALS=[1,2,4,8,16];
+function nextState(prev,success,today){
+ const box=success?Math.min(((prev&&prev.box)||0)+1,4):0;
+ return {box:box,due:addDays(today,success?INTERVALS[box]:1)};
+}
+function dueIds(store,today){
+ return Object.keys(store).filter(k=>store[k]&&store[k].due<=today).map(Number);
+}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function shuffled(arr,rnd){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function dailyIndex(d,n){return hashStr("ilcaso:"+d)%n;}
+/* daily is 0 on purpose: each case pays once, and nothing pays twice. Set above 0 only if Assunta asks. */
+const PTS={culprit:2,type:1,fixFirst:5,fixSecond:2,daily:0};
+/*PURE_END*/
+
+const KEY="ilcaso.v1";
+function blank(){return {cases:{},solved:{},paid:{},daily:{date:"",done:false}};}
+let S=blank();
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(blank(),JSON.parse(r));}catch(e){}
+if(!S.paid||typeof S.paid!=="object")S.paid={};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* BohBridge: everything that touches Boh Cashi lives here and nowhere else.
+   Same pattern as aiutami/index.html: earn into the Italiano 4 inbox, show purse + inbox.
+   This page NEVER writes bohItaliano4_v2. Italiano 4 moves the inbox into the purse the next time it opens. */
+const BohBridge={
+ INBOX:"boh_bc_inbox_4",
+ PURSE:"bohItaliano4_v2",
+ inbox:function(){try{return parseInt(localStorage.getItem(this.INBOX)||"0")||0;}catch(e){return 0;}},
+ purse:function(){try{const d=JSON.parse(localStorage.getItem(this.PURSE)||"null");if(d&&typeof d.cashi==="number")return d.cashi;}catch(e){}return 0;},
+ balance:function(){return this.purse()+this.inbox();},
+ add:function(n){n=Math.floor(Number(n))||0;if(n>0){try{localStorage.setItem(this.INBOX,String(this.inbox()+n));}catch(e){}}}
+};
+
+const app=document.getElementById("app");
+const COLORS={Capitana:"#7b2d8e",Luca:"#1f6f8b",Marta:"#b5651d",Elena:"#2d6a4f",Dante:"#8c2f39"};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function av(n){return '<span class="av" style="background:'+(COLORS[n]||"#555")+'" aria-hidden="true">'+esc(n.charAt(0))+'</span>';}
+function caseNo(c){return CASES.indexOf(c)+1;}
+function byId(id){return CASES.find(function(c){return c.id===id;});}
+function isPaid(c){return !!S.paid[c.id];}
+
+let G={view:"home",c:null,order:[],culprit:null,type:null,attempts:0,val:"",err:"",fixOk:false,firstTry:false,earn:null,mode:"free",queue:[],shake:false};
+
+function header(){return '<div class="top"><div class="brand">IL CASO</div><div class="bc" aria-label="Boh Cashi">BC <b>'+BohBridge.balance()+'</b></div></div>';}
+function status(c){
+ const st=S.cases[c.id];const t=todayStr();
+ if(st&&st.due<=t)return '<span class="badge due">review due</span>';
+ if(st&&st.box>=4)return '<span class="badge ok">mastered</span>';
+ if(S.solved[c.id])return '<span class="badge ok">solved</span>';
+ return '<span class="badge">new</span>';
+}
+
+function viewHome(){
+ const t=todayStr();
+ const dailyDone=S.daily.date===t&&S.daily.done;
+ const due=dueIds(S.cases,t);
+ return header()+
+ '<p class="sub">Four crew members gave orders. One used the wrong form. Find them, then fix the line.</p>'+
+ '<div class="card"><span class="tag">Today</span><h2>Caso del giorno</h2><p>'+(dailyDone?'Done for today. Same case for the whole class. Come back tomorrow.':'One shared case for the whole class. Everyone gets the same one today.')+'</p><button class="pri" data-act="daily">'+(dailyDone?'Play it again':'Open today\'s case')+'</button></div>'+
+ '<div class="card"><span class="tag">Ripasso</span><h2>Review</h2><p>'+(due.length?due.length+(due.length===1?' case is':' cases are')+' due. These are forms you missed or haven\'t seen in a while.':'Nothing due right now. Missed cases come back here tomorrow.')+'</p><button data-act="review">Start review</button></div>'+
+ '<div class="card"><span class="tag">Archive</span><h2>All cases</h2><p>'+CASES.length+' cases in 2 levels. Each case pays Boh Cashi the first time only.</p><button data-act="list">Open case files</button></div>'+
+ '<a class="btn ghost" href="../../" data-link="boh">Back to Boh</a>';
+}
+function viewList(){
+ let h=header()+'<div class="top"><button class="ghost" data-act="home">Back</button></div>';
+ [[1,"LEVEL 1: TU, VOI, NOI"],[2,"LEVEL 2: NON + INFINITIVE, AND THE LITTLE WORD"]].forEach(function(L){
+  h+='<div class="lvl">'+L[1]+'</div><div class="card">';
+  CASES.filter(function(c){return c.level===L[0];}).forEach(function(c){
+   h+='<div class="row"><button data-act="open" data-id="'+c.id+'">Caso '+caseNo(c)+'</button>'+status(c)+'</div>';
+  });
+  h+='</div>';
+ });
+ return h;
+}
+function modeTag(){return G.mode==="daily"?"Caso del giorno":G.mode==="review"?"Ripasso":"Level "+G.c.level;}
+function viewChat(){
+ const c=G.c;
+ let h=header()+'<p class="tag" style="color:#c9c2ae">Caso '+caseNo(c)+' &middot; '+esc(modeTag())+'</p><p class="sub">Read all four orders. One has the wrong form.</p>';
+ G.order.forEach(function(i){
+  const l=c.lines[i];
+  h+='<div class="msg"><div class="who">'+av(l[0])+'<div><b>'+esc(l[0])+'</b><span class="to">to '+esc(l[1])+'</span></div></div><div class="say">'+esc(l[2])+'</div></div>';
+ });
+ return h+'<button class="pri" data-act="toAccuse">Accuse someone</button><button class="ghost" data-act="home">Home</button>';
+}
+function viewAccuse(){
+ const c=G.c;
+ let h=header()+'<div class="card"><h2>Who gave the wrong command?</h2>';
+ G.order.forEach(function(i){const n=c.lines[i][0];h+='<button class="chip" data-act="pickC" data-v="'+esc(n)+'" aria-pressed="'+(G.culprit===n)+'">'+esc(n)+'</button>';});
+ h+='<h2 style="margin-top:12px">What kind of mistake?</h2>';
+ Object.keys(TYPE_LABEL).forEach(function(k){h+='<button class="chip" data-act="pickT" data-v="'+k+'" aria-pressed="'+(G.type===k)+'">'+esc(TYPE_LABEL[k])+'</button>';});
+ h+='<div class="err" role="alert">'+esc(G.err)+'</div><button class="pri" data-act="accuse">Accuse</button><button data-act="toChat">Re-read the orders</button></div>';
+ return h;
+}
+function viewFix(){
+ const c=G.c;const bl=c.lines[c.bad];
+ const caught=G.culprit===bl[0];
+ const paid=isPaid(c);
+ let h=header()+'<div class="card">';
+ h+=caught?'<span class="stamp">COLPEVOLE</span><p>Caught. It was <b>'+esc(bl[0])+'</b>.'+(paid?'':' +'+PTS.culprit+' BC')+'</p>':'<p>Not '+esc(G.culprit)+'. The wrong line was <b>'+esc(bl[0])+'</b>\'s. You can still fix it.</p>';
+ h+='<p>'+(G.type&&c.types.indexOf(G.type)>-1?'Right kind of mistake.'+(paid?'':' +'+PTS.type+' BC'):'The mistake type was: '+esc(TYPE_LABEL[c.types[0]])+'.')+'</p></div>';
+ h+='<div class="msg bad"><div class="who">'+av(bl[0])+'<div><b>'+esc(bl[0])+'</b><span class="to">to '+esc(bl[1])+'</span></div></div><div class="say">'+esc(bl[2])+'</div></div>';
+ h+='<div class="card"><h2>Correct the line</h2><p>Type what '+esc(bl[0])+' should have said. Accents and capital letters are forgiven.</p>';
+ h+='<input type="text" id="ans" lang="it" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your corrected command" value="'+esc(G.val)+'">';
+ h+='<div class="err'+(G.shake?' shake':'')+'" role="alert">'+esc(G.err)+'</div><button class="pri" data-act="check">Check</button></div>';
+ return h;
+}
+function viewReveal(){
+ const c=G.c;const e=G.earn;
+ const total=e.culprit+e.type+e.fix+e.daily;
+ let h=header()+'<div class="card"><span class="tag">The reveal</span><h2>Every line, explained</h2>';
+ G.order.forEach(function(i){
+  const l=c.lines[i];const isBad=i===c.bad;
+  h+='<div class="msg'+(isBad?' bad':'')+'"><div class="who">'+av(l[0])+'<div><b>'+esc(l[0])+'</b><span class="to">to '+esc(l[1])+'</span></div></div><div class="say">'+esc(l[2])+'</div></div>';
+  if(isBad)h+='<div class="msg good"><div class="say">'+esc(c.fix)+'</div></div>';
+ });
+ h+='<p style="color:var(--ink);font-size:17px">'+esc(c.why)+'</p>';
+ if(total>0){
+  const parts=[];
+  if(e.culprit>0)parts.push('Caught: +'+e.culprit);
+  if(e.type>0)parts.push('Type: +'+e.type);
+  if(e.fix>0)parts.push('Fix: +'+e.fix);
+  if(e.daily>0)parts.push('Daily: +'+e.daily);
+  h+='<div class="pts" data-purse="1">'+parts.join(' &nbsp; ')+'<br><b>Total: +'+total+' BC</b></div>';
+ }
+ h+='<p>'+(e.success?'Clean solve. This one comes back in a few days.':'This one comes back tomorrow in Ripasso.')+'</p>';
+ h+='<button class="pri" data-act="next">'+(nextLabel())+'</button><button class="ghost" data-act="home">Home</button></div>';
+ return h;
+}
+function nextTarget(){
+ if(G.mode==="daily")return null;
+ if(G.mode==="review"){const q=G.queue.filter(function(id){return id!==G.c.id;});return q.length?q[0]:null;}
+ const pool=CASES.filter(function(c){return c.level===G.c.level&&c.id!==G.c.id&&!S.solved[c.id];});
+ if(pool.length)return pool[0].id;
+ const any=CASES.filter(function(c){return c.id!==G.c.id&&!S.solved[c.id];});
+ return any.length?any[0].id:null;
+}
+function nextLabel(){return nextTarget()?"Next case":"Back to home";}
+
+function startCase(id,mode,queue){
+ const c=byId(id);
+ const rnd=mode==="daily"?mulberry32(hashStr("order:"+todayStr()+":"+id)):Math.random;
+ G={view:"chat",c:c,order:shuffled([0,1,2,3],rnd),culprit:null,type:null,attempts:0,val:"",err:"",fixOk:false,firstTry:false,earn:{culprit:0,type:0,fix:0,daily:0,success:false},mode:mode,queue:queue||[],shake:false};
+ render();
+}
+function finish(){
+ if(G.view==="reveal")return;
+ const c=G.c;const t=todayStr();const e=G.earn;
+ e.success=(G.culprit===c.lines[c.bad][0])&&G.firstTry;
+ if(G.fixOk)S.solved[c.id]=true;
+ S.cases[c.id]=nextState(S.cases[c.id],e.success,t);
+ if(G.mode==="daily"&&!(S.daily.date===t&&S.daily.done)){S.daily={date:t,done:true};}
+ let total=e.culprit+e.type+e.fix+e.daily;
+ if(isPaid(c)){e.culprit=0;e.type=0;e.fix=0;e.daily=0;total=0;}
+ else if(total>0){S.paid[c.id]=true;}
+ save();
+ if(total>0)BohBridge.add(total);
+ G.view="reveal";render();
+}
+
+function render(){
+ const v=G.view;
+ app.innerHTML=v==="home"?viewHome():v==="list"?viewList():v==="chat"?viewChat():v==="accuse"?viewAccuse():v==="fix"?viewFix():viewReveal();
+ G.shake=false;
+ if(v==="fix"){const i=document.getElementById("ans");if(i){i.focus();i.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();doCheck();}});}}
+ window.scrollTo(0,0);
+}
+function doCheck(){
+ const i=document.getElementById("ans");const val=i?i.value:"";
+ G.val=val;
+ if(!norm(val)){G.err="Type your answer first.";render();return;}
+ const c=G.c;
+ if(isAccepted(c,val)){
+  G.fixOk=true;G.firstTry=G.attempts===0;
+  G.earn.fix=G.firstTry?PTS.fixFirst:PTS.fixSecond;
+  G.err="";finish();return;
+ }
+ G.attempts++;
+ if(G.attempts===1){G.err="Not quite. "+HINT[c.types[0]]+" One more try.";G.shake=true;render();return;}
+ G.fixOk=false;G.firstTry=false;G.err="";finish();
+}
+app.addEventListener("click",function(ev){
+ const b=ev.target.closest("button");if(!b)return;
+ const a=b.getAttribute("data-act");const v=b.getAttribute("data-v");
+ if(a==="home"){G.view="home";render();}
+ else if(a==="daily"){startCase(CASES[dailyIndex(todayStr(),CASES.length)].id,"daily");}
+ else if(a==="review"){
+  const q=dueIds(S.cases,todayStr());
+  if(!q.length){return;}
+  startCase(q[0],"review",q);
+ }
+ else if(a==="list"){G.view="list";render();}
+ else if(a==="open"){startCase(Number(b.getAttribute("data-id")),"free");}
+ else if(a==="toAccuse"){G.view="accuse";G.err="";render();}
+ else if(a==="toChat"){G.view="chat";render();}
+ else if(a==="pickC"){G.culprit=v;G.err="";render();}
+ else if(a==="pickT"){G.type=v;G.err="";render();}
+ else if(a==="accuse"){
+  if(!G.culprit||!G.type){G.err="Pick a crew member and a type of mistake first.";render();return;}
+  const c=G.c;
+  if(G.culprit===c.lines[c.bad][0])G.earn.culprit=PTS.culprit;
+  if(c.types.indexOf(G.type)>-1)G.earn.type=PTS.type;
+  G.view="fix";G.err="";render();
+ }
+ else if(a==="check"){doCheck();}
+ else if(a==="next"){
+  const n=nextTarget();
+  if(!n){G.view="home";render();return;}
+  if(G.mode==="review"){const q=G.queue.filter(function(id){return id!==G.c.id;});startCase(n,"review",q);}
+  else startCase(n,"free");
+ }
+});
+render();
+</script>
+</body>
+</html>
