@@ -261,7 +261,42 @@ const CASES=[
  ["Dante","Marco (tu)","Non alzati!"]],
  bad:3,types:["negative","pronoun"],fix:"Non alzarti!",
  accept:["Non alzarti!","Non ti alzare!","Non alzarti","Non ti alzare"],
- why:"A negative command to one friend uses the infinitive. With a reflexive verb you can write non alzarti or non ti alzare."}
+ why:"A negative command to one friend uses the infinitive. With a reflexive verb you can write non alzarti or non ti alzare."},
+/* Healthy "don't" list: negative commands. tu = non + infinitive; voi = non + voi form; noi = non + noi form. */
+{id:20,level:1,lines:[
+ ["Capitana","Sara (tu)","Non mangiare troppi dolci!"],
+ ["Elena","the class (voi)","Non saltate la colazione!"],
+ ["Luca","everyone, including himself (noi)","Non stiamo sempre seduti!"],
+ ["Dante","Marco (tu)","Non fumi, Marco!"]],
+ bad:3,types:["negative"],fix:"Non fumare, Marco!",
+ choices:["Non fuma, Marco!","Fuma, Marco!"],
+ accept:["Non fumare, Marco!","Non fumare"],
+ why:"Non fumi means 'you don't smoke'. A 'don't' order to one friend is non + the infinitive: non fumare."},
+{id:21,level:1,lines:[
+ ["Marta","Marco (tu)","Non bere troppa cola!"],
+ ["Capitana","everyone, including herself (noi)","Non guardiamo il telefono a letto!"],
+ ["Elena","Sara (tu)","Non mangiare cibo spazzatura!"],
+ ["Dante","the class (voi)","Non dormire poco, ragazzi!"]],
+ bad:3,types:["person"],fix:"Non dormite poco, ragazzi!",
+ choices:["Non dormi poco, ragazzi!","Non dormiamo poco, ragazzi!"],
+ accept:["Non dormite poco, ragazzi!","Non dormite poco","Non dormite"],
+ why:"Non + infinitive is only for one friend. To a group, keep the voi form after non: non dormite."},
+{id:22,level:2,lines:[
+ ["Luca","the class (voi)","Non fumate!"],
+ ["Marta","Marco (tu)","Fai sport ogni giorno!"],
+ ["Capitana","everyone, including herself (noi)","Non saltiamo la colazione!"],
+ ["Elena","Sara (tu)","Non bevi troppe bibite gassate!"]],
+ bad:3,types:["negative"],fix:"Non bere troppe bibite gassate!",
+ accept:["Non bere troppe bibite gassate!","Non bere troppe bibite","Non bere"],
+ why:"Non bevi means 'you don't drink'. A 'don't' order to one friend is non + the infinitive: non bere."},
+{id:23,level:2,lines:[
+ ["Marta","Marco (tu)","Non guardare troppa TV!"],
+ ["Elena","the class (voi)","Non mangiate troppi dolci!"],
+ ["Capitana","Sara (tu)","Dormi otto ore!"],
+ ["Dante","everyone, including himself (noi)","Non stare sempre seduti!"]],
+ bad:3,types:["person","negative"],fix:"Non stiamo sempre seduti!",
+ accept:["Non stiamo sempre seduti!","Non stiamo seduti","Non stiamo"],
+ why:"'Let's not' is non + the noi form: non stiamo. Non + infinitive (non stare) is only for one friend."}
 ];
 function norm(s){
  return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
