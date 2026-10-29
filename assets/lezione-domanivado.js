@@ -8,6 +8,7 @@
    - opts = the three answers shown (the right one must be in the list; the order is shuffled).
    - mem = the quick "how to remember it" line shown under the answer, right or wrong.
    - say = Prof. Lo So's lines before the answers appear: [pose, line]. Italian only, no English (her rule).
+     NEVER put the answer in a say line: the last say line stays on screen while the student chooses. Use a neutral cue (Pronti? Capisci? Andiamo! Ancora!). The answer is shown and spoken after the tap.
    - pay = Boh Cashi for that card (first time only). Harder parts pay more.
 
    Teacher notes (for Assunta, not shown to students)
@@ -30,22 +31,22 @@ BohLezione.register({
     /* ---------- PART 1 · THE FOUR PIECES (teach by showing the whole sentence first) ---------- */
     { id: 'pezzi', type: 'pick', label: 'I pezzi', en: 'The four pieces', pay: 2,
       cards: [
-        { say: [['wave', 'Ciao! Domani vado in banca con mia madre.'], ['finger-up', 'Domani!']],
+        { say: [['wave', 'Pronti?']],
           en: 'tomorrow', it: 'Domani',
           opts: ['Domani', 'Ieri', 'Oggi'],
           mem: 'Domani = tomorrow. Say it: do-MAH-nee.' },
-        { say: [['present', 'Domani vado in banca con mia madre.'], ['beckon', 'Vado!']],
+        { say: [['finger-up', 'Capisci?']],
           en: 'I go', it: 'vado',
           opts: ['vado', 'voglio', 'devo'],
           mem: 'Vado = I go. Voglio = I want. Same V, different job.' },
-        { say: [['point-you', 'Domani vado in banca con mia madre.'], ['finger-up', 'In banca!']],
+        { say: [['beckon', 'Andiamo!']],
           en: 'to the bank', it: 'in banca',
           opts: ['in banca', 'in posta', 'in farmacia'],
           mem: 'Errands use IN: in banca, in posta, in farmacia. No extra word.' },
-        { say: [['hands-heart', 'Domani vado in banca con mia madre.'], ['present', 'Con mia madre!']],
+        { say: [['present', 'Ancora!']],
           en: 'with my mom', it: 'con mia madre',
           opts: ['con mia madre', 'con mio padre', 'con mia sorella'],
-          mem: 'Con = with. Mia madre = my mom.' }
+          mem: 'Con = with. Mia madre = my mom. Now all together: Domani vado in banca con mia madre.' }
       ],
       /* optional harder cards: they pay double */
       levelUp: {
@@ -53,27 +54,27 @@ BohLezione.register({
         note: 'Learn each one as a single piece. They pay double.',
         pay: 4,
         cards: [
-          { say: [['beckon', 'Più posti!'], ['present', 'Domani vado al cinema.']],
+          { say: [['beckon', 'Più posti!']],
             en: 'to the movie theater', it: 'al cinema',
             opts: ['al cinema', 'al supermercato', 'alla stazione'],
             mem: 'Named places: learn the whole piece. Al cinema.' },
-          { say: [['present', 'Domani vado al supermercato.']],
+          { say: [['present', 'Pronti?']],
             en: 'to the supermarket', it: 'al supermercato',
             opts: ['al supermercato', 'al cinema', 'in palestra'],
             mem: 'Al supermercato: one piece. Do not take it apart.' },
-          { say: [['point-you', 'Domani vado alla stazione.']],
+          { say: [['point-you', 'Andiamo!']],
             en: 'to the train station', it: 'alla stazione',
             opts: ['alla stazione', 'al cinema', 'in posta'],
             mem: 'Alla stazione: one piece. It sounds like “stazione”, station.' },
-          { say: [['present', 'Domani vado dal dottore.']],
+          { say: [['finger-up', 'Capisci?']],
             en: 'to the doctor', it: 'dal dottore',
             opts: ['dal dottore', 'da Marco', 'in farmacia'],
             mem: 'Going to a person: dal dottore, da Marco.' },
-          { say: [['point-you', 'Domani vado da Marco.']],
+          { say: [['present', 'Ancora!']],
             en: 'to Marco’s house', it: 'da Marco',
             opts: ['da Marco', 'a Roma', 'a casa'],
             mem: 'Da Marco = to Marco’s place.' },
-          { say: [['finger-up', 'Roma è una città. Domani vado a Roma.']],
+          { say: [['beckon', 'Pronti?']],
             en: 'to Rome', it: 'a Roma',
             opts: ['a Roma', 'in banca', 'a scuola'],
             mem: 'A city is a tiny bullseye: you throw a dart AT it. A Roma.' }
