@@ -428,7 +428,7 @@ function bPick(o){var it=run.items[run.i],b=run.b;if(b.done)return;var s=b.steps
    if(st.sent.indexOf(sentence)===-1){st.sent.push(sentence);if(st.sent.length>12)st.sent.shift()}
    if(it.pid!=='acqua'&&st.stickers.indexOf(it.pid)===-1){st.stickers.push(it.pid);b.newSticker=true}
    save();setTimeout(function(){say(sentence)},300)}
-  else b.msg='<b>'+R_PART+'</b> '+b.steps[b.n-1].tip}
+  else b.msg='<b>'+R_PART+'</b>'}
  else{b.miss++;b.show=s.ok;b.bad=true;run.streak=0;
   b.msg='<b>'+(b.miss>=2?R_HELP:badHead())+'</b> '+s.tip+' It is <span class="pk">'+s.ok+'</span>.';
   if(!b.counted){b.counted=true;run.total++;run.hearts=Math.max(0,run.hearts-1);if(run.hearts===0){run.hearts=3;run.refill=true}}}
