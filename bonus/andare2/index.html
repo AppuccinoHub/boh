@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dove vai? 2 · Italiano 2 · BOH</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap">
+<style>
+:root{
+  --bg:#EAF4FB; --card:#FFFFFF; --fg:#17304A; --mute:#5B7185; --line:#CFE0EE;
+  --blue:#1E63D6; --blue-fg:#FFFFFF; --turq:#17B3A6; --turq-soft:#DDF6F3;
+  --pink:#E8338C; --pink-soft:#FDE4F0; --gold:#D79A1E; --gold-soft:#FFF1CC;
+  --ok:#1E9E5A; --ok-soft:#DDF5E7; --heart:#F0497A;
+  --display:'Fredoka','Nunito',system-ui,sans-serif; --body:'Nunito',system-ui,-apple-system,sans-serif;
+  --r:22px; --shadow:0 6px 18px rgba(23,48,74,.08);
+}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.35;font-weight:700}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+button:focus-visible,input:focus-visible{outline:3px solid var(--turq);outline-offset:2px}
+#app{height:100%;display:flex;flex-direction:column;max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:max(10px,env(safe-area-inset-top,0px));padding-bottom:max(10px,env(safe-area-inset-bottom,0px))}
+.top{display:flex;align-items:center;gap:10px;min-height:48px}
+.top .back{white-space:nowrap;font-family:var(--display);font-weight:600;font-size:17px;padding:8px 12px;border-radius:999px;background:var(--card);box-shadow:var(--shadow)}
+.top .sp{flex:1}
+.hud{display:flex;gap:8px;align-items:center;font-family:var(--display);font-size:17px}
+.hud .pill{white-space:nowrap;font-size:16px;background:var(--card);border-radius:999px;padding:6px 10px;box-shadow:var(--shadow);display:flex;gap:6px;align-items:center}
+.hearts i{display:inline-block;width:16px;height:16px;background:var(--heart);clip-path:path('M8 15 L1.5 8.5 A4 4 0 0 1 8 3.5 A4 4 0 0 1 14.5 8.5 Z');margin-right:2px;opacity:.25}
+.hearts i.on{opacity:1}
+.crumb{font-size:16px;color:var(--mute);font-weight:800;margin:6px 2px 4px;display:flex;justify-content:space-between;gap:10px}
+.bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:0 2px 8px}
+.bar i{display:block;height:100%;background:var(--turq);width:0;transition:width .3s}
+.stage{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow:auto}
+.kick{font-size:16px;color:var(--mute);letter-spacing:.02em;text-transform:uppercase;font-weight:800}
+h1,h2{font-family:var(--display);font-weight:700;margin:0;text-wrap:balance;line-height:1.15}
+h1{font-size:30px}h2{font-size:24px}
+.prompt{font-family:var(--display);font-size:28px;font-weight:600}
+.pk{color:var(--pink)}
+.sub{color:var(--mute);font-size:17px}
+.opts{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.opts{grid-template-columns:1fr 1fr}}
+.opt{min-height:56px;border-radius:16px;border:2px solid var(--line);background:var(--card);padding:10px 14px;font-size:20px;font-weight:800;text-align:left;transition:transform .08s}
+.opt:active{transform:scale(.98)}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}
+.opt.no{background:var(--pink-soft);border-color:var(--pink);color:var(--pink)}
+.opt.show{border-color:var(--pink);box-shadow:0 0 0 3px var(--pink-soft)}
+.opt[disabled]{cursor:default}
+.tip{border-radius:16px;background:var(--turq-soft);padding:12px 14px;font-size:17px;display:flex;gap:10px;align-items:flex-start}
+.tip b{font-family:var(--display);font-weight:600;display:block;font-size:20px}
+.tip img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top;flex:none;background:var(--card)}
+.tip.bad{background:var(--pink-soft)}
+.prof{display:flex;gap:12px;align-items:flex-end}
+.prof img{width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:top;background:var(--turq-soft);flex:none}
+.bubble{background:var(--turq-soft);border-radius:18px;padding:12px 14px;font-size:21px;font-family:var(--display);font-weight:600;flex:1}
+.bubble small{display:block;color:var(--mute);font-size:16px;margin-top:3px;font-family:var(--body);font-weight:700}
+.btn{font-family:var(--display);font-weight:600;font-size:21px;min-height:56px;border-radius:18px;padding:10px 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.p{background:var(--blue);color:var(--blue-fg)}
+.btn.g{background:var(--card);border:2px solid var(--line)}
+.btn.wide{width:100%}
+.btn[disabled]{opacity:.45;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>.btn{flex:1}
+.tricks{background:var(--turq-soft);border-radius:16px;padding:12px 14px;font-size:17px}
+.tricks div{display:flex;gap:10px;margin:4px 0}
+.tricks span.n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--fg);color:var(--card);font-size:14px;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+input.ans{font:inherit;font-size:22px;font-weight:800;width:100%;min-height:58px;border-radius:16px;border:2px solid var(--line);padding:10px 14px;background:var(--card);color:var(--fg)}
+.acc{display:flex;gap:6px;flex-wrap:wrap}
+.acc button{min-width:44px;min-height:44px;border-radius:10px;border:2px solid var(--line);font-size:20px;font-weight:800}
+.bank{display:flex;flex-wrap:wrap;gap:6px}
+.bank span{background:var(--bg);border-radius:10px;padding:4px 10px;font-size:16px}
+.hear{width:100%;min-height:92px;border-radius:18px;background:var(--turq-soft);display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--display);font-size:22px;font-weight:600}
+.hear svg{width:40px;height:40px}
+.big{font-family:var(--display);font-size:64px;font-weight:700;line-height:1;color:var(--blue)}
+.center{text-align:center;align-items:center}
+.shot{background:var(--pink-soft);border-radius:16px;padding:12px 14px;font-size:17px}
+.scorecard{border:3px solid var(--blue);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:6px;background:var(--card);width:100%;text-align:left}
+.scorecard .k{font-size:15px;color:var(--mute);text-transform:uppercase;letter-spacing:.02em}
+.scorecard ul{margin:4px 0;padding-left:20px;font-size:18px}
+.streak{color:var(--gold)}
+/* home */
+.home{display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow:auto}
+.hero{display:flex;gap:12px;align-items:center}
+.hero img{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:top;background:var(--card);box-shadow:var(--shadow)}
+.hero .t small{display:block;color:var(--mute);font-size:16px}
+.shelf{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:12px 14px}
+.shelf .kick{margin-bottom:6px}
+.stk{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stk .s{min-height:52px;border-radius:16px;background:var(--bg);display:flex;align-items:center;justify-content:center;border:2px dashed var(--line);font-family:var(--display);font-weight:600;font-size:19px;color:var(--mute);text-align:center;padding:4px}
+.stk .s.got{border-style:solid;border-color:var(--turq);background:var(--turq-soft);color:var(--fg)}
+.stops{display:flex;flex-direction:column;gap:8px}
+.stop{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:12px 14px;text-align:left;width:100%}
+.stop .n{width:40px;height:40px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:19px;flex:none}
+.stop.cur .n{background:var(--blue);color:var(--blue-fg)}
+.stop.done .n{background:var(--turq);color:#fff}
+.stop.lock{opacity:.5}
+.stop .l{flex:1;font-size:19px;font-weight:800}.stop .l small{display:block;color:var(--mute);font-size:16px;font-weight:700}
+.work{font-size:16px;color:var(--mute)}
+/* mini lesson */
+.dots{display:flex;gap:8px;justify-content:center}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--blue)}
+.chunk{text-align:center}
+.chunk .bg{font-family:var(--display);font-size:52px;font-weight:700}
+.chunk .eq{font-size:22px;color:var(--mute)}
+.pairs{display:flex;flex-direction:column;gap:8px}
+.pair{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg);border-radius:14px;padding:10px 14px;font-size:20px}
+.pair small{color:var(--mute);font-size:16px}
+.artrow{display:flex;gap:14px;align-items:center;justify-content:center}
+.artrow .word{font-family:var(--display);font-size:34px;font-weight:700}
+.artrow .word small{display:block;font-size:16px;color:var(--mute);font-family:var(--body)}
+.say{display:flex;flex-direction:column;gap:10px}
+.sayb{background:var(--bg);border-radius:16px;padding:12px 14px;text-align:left;font-size:22px;min-height:60px}
+.sayb span{display:block;color:var(--mute);font-size:16px;font-weight:700}
+/* builder */
+.slots{display:flex;flex-wrap:wrap;gap:8px;min-height:96px;align-content:flex-start;border:2px dashed var(--line);border-radius:16px;padding:12px}
+.slots .w{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:6px 14px;font-size:24px;font-family:var(--display);font-weight:600}.slots .w.pk{background:var(--pink-soft);border-color:var(--pink);color:var(--pink)}
+.slots .ph{color:var(--mute);font-size:17px}
+.msg{min-height:56px;border-radius:16px;background:var(--turq-soft);padding:10px 14px;font-size:18px}
+.msg b{font-family:var(--display);font-size:22px;font-weight:600;margin-right:6px}
+.msg.bad{background:var(--pink-soft)}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices .opt{flex:1;min-width:30%;text-align:center;min-height:52px}
+.stickerpop{font-family:var(--display);font-size:38px;color:var(--fg);font-weight:700;border:3px solid var(--turq);background:var(--turq-soft);border-radius:24px;padding:14px 26px}
+@media (prefers-reduced-motion:no-preference){.pop{animation:pop .35s}}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@media(max-height:700px){.prompt{font-size:24px}.opt{min-height:50px;font-size:18px}.prof img{width:72px;height:72px}body{font-size:17px}.slots{min-height:80px}}
+
+/* rounds, foil, stars */
+.bigplay{font-family:var(--display);font-weight:600;font-size:28px;min-height:88px;border-radius:24px;background:var(--blue);color:var(--blue-fg);width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;box-shadow:var(--shadow)}
+.bigplay small{font-family:var(--body);font-size:16px;font-weight:700;margin-top:4px}
+.stk .s.foil{border:3px solid var(--gold);background:linear-gradient(135deg,#FFF1CC,#F6D77E 55%,#FFF1CC);color:var(--fg);position:relative}
+.stk .s.foil::after{content:"";position:absolute;top:4px;right:6px;width:10px;height:10px;background:#fff;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.stk .s.fresh{border-color:var(--pink);background:var(--pink-soft);color:var(--pink)}
+.foilpop{font-family:var(--display);font-size:42px;font-weight:700;border:4px solid var(--gold);background:linear-gradient(135deg,#FFF1CC,#F6D77E 55%,#FFF1CC);border-radius:28px;padding:16px 32px;color:var(--fg)}
+.meter{height:12px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:6px;width:100%}
+.meter i{display:block;height:100%;background:var(--gold)}
+.goal{width:100%;text-align:left;font-size:18px}
+.goal b{font-family:var(--display);font-weight:600}
+.pop2{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn.quiet{background:transparent;border:2px solid var(--line);font-size:19px;min-height:52px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function(){
+'use strict';
+/* BOH · Italiano 2 · Bonus · Dove vai? 2 (vado, vai, vengo, vieni). Content only.
+   Level: io and tu, posso/puoi, devo/devi, voglio/vuoi, andare, a or in (Dove vai? 1), Domani vado (taught).
+   New here: vai, vengo, vieni, venire, con me, con te. No articulated prepositions anywhere. */
+var KEY = 'boh_andare2_v1';
+
+/* seven places that make sense in a plan (no bagno, infermeria or l'acqua here) */
+var PL = {
+  casa:       { it: 'casa',       en: 'home',            prep: 'a',  t3: 'Bullseye: a home, school or city is a point. Use a.',            t4: 'Casa = home.' },
+  scuola:     { it: 'scuola',     en: 'to school',       prep: 'a',  t3: 'Bullseye: a home, school or city is a point. Use a.',        t4: 'Scuola = school.' },
+  Roma:       { it: 'Roma',       en: 'to Rome',         prep: 'a',  t3: 'Bullseye: a home, school or city is a point. Use a.',          t4: 'Roma = Rome.' },
+  palestra:   { it: 'palestra',   en: 'to the gym',      prep: 'in', t3: 'Pool: a room or a country is big. Use in.',      t4: 'La palestra = the gym.' },
+  biblioteca: { it: 'biblioteca', en: 'to the library',  prep: 'in', t3: 'Pool: a room or a country is big. Use in.',    t4: 'La biblioteca = the library.' },
+  mensa:      { it: 'mensa',      en: 'to the cafeteria',prep: 'in', t3: 'Pool: a room or a country is big. Use in.',         t4: 'La mensa = the cafeteria.' },
+  Italia:     { it: 'Italia',     en: 'to Italy',        prep: 'in', t3: 'Pool: a room or a country is big. Use in.',            t4: "L'Italia = Italy." }
+};
+var PLACE_IDS = ['casa', 'scuola', 'Roma', 'palestra', 'biblioteca', 'mensa', 'Italia'];
+var STICKERS = ['vado', 'vai', 'stasera', 'domani', 'vengo', 'vieni'];
+
+var R_OK = ['Bene!', 'Ottimo!', 'Eccellente!', 'Ue!'];
+var R_BAD = ['Quasi!', 'Non ancora', 'Ma no!'];
+var R_PART = 'E!!';
+var R_HELP = 'E dai!';
+
+/* ---------- the sentence generator: every sentence is built from parts, so the grammar is always right ---------- */
+var TIME_EN = { Stasera: 'Tonight', Domani: 'Tomorrow' };
+var VERB_WRONG = { vado: ['vai', 'vengo'], vai: ['vado', 'vieni'], vengo: ['vado', 'vieni'], vieni: ['vai', 'vengo'], venire: ['andare', 'vengo'], andare: ['venire', 'vado'] };
+var TIP = {
+  time: 'Stasera = tonight. Domani = tomorrow.',
+  vado: 'Vado = I go. Vai = you go.', vai: 'Vai = you go. Vado = I go.',
+  vengo: 'Vengo = I come. Vieni = you come.', vieni: 'Vieni = you come. Vengo = I come.',
+  venire: 'After vuoi, posso, puoi: venire stays whole.', andare: 'After voglio, devo, devi: andare stays whole.',
+  modal: 'Voglio, devo, posso = I. Vuoi, devi, puoi = you.',
+  conme: 'I come with YOU: con te. You come with ME: con me.',
+  chunk: 'a + a verb: go AT it. a prendere.'
+};
+var MODAL_GROUP = { io: ['Voglio', 'Devo', 'Posso'], tu: ['Vuoi', 'Devi', 'Puoi'] };
+
+function P(r, v, wrong, tip) { return { r: r, v: v, wrong: wrong, tip: tip }; }
+function cap1(s) { return s.charAt(0).toUpperCase() + s.slice(1) }
+function placeWrong(pid) { return PLACE_IDS.filter(function (x) { return PL[x].prep === PL[pid].prep && x !== pid }).map(function (x) { return PL[x].it }) }
+function pPrep(pid) { return P('prep', PL[pid].prep, [PL[pid].prep === 'a' ? 'in' : 'a'], PL[pid].t3) }
+function pPlace(pid) { return P('place', PL[pid].it, placeWrong(pid), PL[pid].t4) }
+function pTime(t) { return P('time', t, [t === 'Stasera' ? 'Domani' : 'Stasera'], TIP.time) }
+/* verb part: capitalised only when it opens the sentence */
+function pVerb(v, cap) { var f = function (x) { return cap ? cap1(x) : x }; return P('verb', f(v), VERB_WRONG[v].map(f), TIP[v]) }
+function pConme(w) { return P('conme', w, [w === 'con me' ? 'con te' : 'con me'], TIP.conme) }
+function pModal(m, grp) { return P('modal', m, MODAL_GROUP[grp].filter(function (x) { return x !== m }), TIP.modal) }
+
+function mk(parts, punct, en, tags) {
+  var it = parts.map(function (p) { return p.v }).join(' ') + punct;
+  return { it: it, en: en, parts: parts, punct: punct, tags: tags, key: it };
+}
+function dest(pid) { return PL[pid].en }
+var ALL = [];
+(function () {
+  var T = ['Stasera', 'Domani'];
+  /* plans: [time] + vado / vai + a|in + place */
+  [null, 'Stasera', 'Domani'].forEach(function (t) {
+    ['vado', 'vai'].forEach(function (v) {
+      PLACE_IDS.forEach(function (pid) {
+        var parts = []; if (t) parts.push(pTime(t));
+        parts.push(pVerb(v, !t)); parts.push(pPrep(pid)); parts.push(pPlace(pid));
+        var en = v === 'vado'
+          ? (t ? TIME_EN[t] + " I'm going " + dest(pid) + '.' : "I'm going " + dest(pid) + '.')
+          : (t ? TIME_EN[t] + ', are you going ' + dest(pid) + '?' : 'Are you going ' + dest(pid) + '?');
+        ALL.push(mk(parts, v === 'vado' ? '.' : '?', en, [v, 'p:' + pid].concat(t ? [t.toLowerCase()] : [])));
+      });
+    });
+  });
+  /* coming: Vieni con me? / Vengo con te. */
+  ALL.push(mk([pVerb('vieni', true), pConme('con me')], '?', 'Are you coming with me?', ['vieni', 'conme']));
+  ALL.push(mk([pVerb('vengo', true), pConme('con te')], '.', "I'm coming with you.", ['vengo', 'conme']));
+  /* modal + venire + con me / con te */
+  [['Vuoi', 'tu', 'con me', '?', 'Do you want to come with me?'], ['Puoi', 'tu', 'con me', '?', 'Can you come with me?'], ['Devi', 'tu', 'con me', '?', 'Do you have to come with me?'],
+   ['Posso', 'io', 'con te', '?', 'Can I come with you?'], ['Voglio', 'io', 'con te', '.', 'I want to come with you.'], ['Devo', 'io', 'con te', '.', 'I have to come with you.']].forEach(function (x) {
+    ALL.push(mk([pModal(x[0], x[1]), pVerb('venire', false), pConme(x[2])], x[3], x[4], ['venire', 'conme']));
+  });
+  /* Vuoi venire a|in place? */
+  PLACE_IDS.forEach(function (pid) {
+    ALL.push(mk([pModal('Vuoi', 'tu'), pVerb('venire', false), pPrep(pid), pPlace(pid)], '?', 'Do you want to come ' + dest(pid) + '?', ['venire', 'p:' + pid]));
+  });
+  /* time + vengo / vieni + a|in place + con te / con me */
+  T.forEach(function (t) {
+    PLACE_IDS.forEach(function (pid) {
+      ALL.push(mk([pTime(t), pVerb('vengo', false), pPrep(pid), pPlace(pid), pConme('con te')], '.', TIME_EN[t] + " I'm coming " + dest(pid) + ' with you.', ['vengo', t.toLowerCase(), 'p:' + pid, 'conme']));
+      ALL.push(mk([pTime(t), pVerb('vieni', false), pPrep(pid), pPlace(pid), pConme('con me')], '?', TIME_EN[t] + ', are you coming ' + dest(pid) + ' with me?', ['vieni', t.toLowerCase(), 'p:' + pid, 'conme']));
+    });
+  });
+  /* the water bottle line, as in the Posso, devo, voglio bonus */
+  ALL.push(mk([pModal('Devi', 'tu'), pVerb('andare', false), P('chunk', "a prendere l'acqua", ["in prendere l'acqua", 'a casa'], TIP.chunk)], '?', 'Do you have to go get water?', ['andare', 'acqua']));
+})();
+
+/* the English for the 'home' sentences reads "I'm going home" and "are you going home" */
+
+/* odd-but-correct sentences removed (teacher chose "remove the odd ones"): nobody goes to school or to Italy tonight, and "Vuoi venire a casa?" is ambiguous */
+ALL = ALL.filter(function (s) {
+  var tags = s.tags;
+  if (tags.indexOf('stasera') !== -1 && (tags.indexOf('p:scuola') !== -1 || tags.indexOf('p:Italia') !== -1)) return false;
+  if (s.it === 'Vuoi venire a casa?') return false;
+  return true;
+});
+
+/* ---------- mini lessons (cards of a swipe). kind: meet | say | try ---------- */
+var L1 = {
+  id: 'L1',
+  cards: [
+    { kind: 'meet', prof: 'Ue! Pronti?', tip: 'You know Domani vado. Vado = I go. Now meet vai = you go.',
+      big: 'vado · vai', eq: 'I go · you go',
+      pairs: [['<b>Vado</b> a casa.', "I'm going home."], ['<b>Vai</b> a scuola?', 'Are you going to school?'], ['<b>Stasera</b> vado in mensa.', "Tonight I'm going to the cafeteria."]] },
+    { kind: 'say', prof: 'Ascolta. Ripeti.', tip: 'Tap each line.',
+      lines: [['Stasera vado in palestra.', "Tonight I'm going to the gym."], ['Domani vai a Roma?', 'Tomorrow, are you going to Rome?'], ['Vado a casa.', "I'm going home."]] },
+    { kind: 'try', prof: 'Capisci?', tip: 'Pick the one that works.',
+      q: 'Are you going to school?', opts: ['Vado a scuola?', 'Vai a scuola?', 'Vai in scuola?'], ok: 'Vai a scuola?',
+      why: 'You go = vai. School is a point: a scuola.' }
+  ]
+};
+var L2 = {
+  id: 'L2',
+  cards: [
+    { kind: 'meet', prof: 'Pronti?', tip: 'Venire = to come. Vengo = I come. Vieni = you come.',
+      big: 'vengo · vieni', eq: 'I come · you come',
+      pairs: [['<b>Vengo</b> a Roma.', "I'm coming to Rome."], ['<b>Vieni</b> a casa?', 'Are you coming home?'], ['Vuoi <b>venire</b>?', 'Do you want to come?']] },
+    { kind: 'meet', prof: 'Andiamo!', tip: 'It is opposite! I come with YOU. You come with ME.',
+      big: 'con te · con me', eq: 'with you · with me',
+      pairs: [['Vengo <b class="pk">con te</b>.', "I'm coming with you."], ['Vieni <b class="pk">con me</b>?', 'Are you coming with me?'], ['Posso venire <b class="pk">con te</b>?', 'Can I come with you?']] },
+    { kind: 'try', prof: 'Capisci?', tip: 'Who is coming with whom?',
+      q: 'Are you coming with me?', opts: ['Vieni con me?', 'Vieni con te?', 'Vengo con me?'], ok: 'Vieni con me?',
+      why: 'You come = vieni. You come with ME: con me.' }
+  ]
+};
+var C1 = [
+  { q: "Tonight I'm going to the gym.", opts: ['Stasera vado in palestra.', 'Stasera vai in palestra.', 'Stasera vado a palestra.'], ok: 'Stasera vado in palestra.', why: 'I go = vado. The gym is a room: in palestra.', say: 'Stasera vado in palestra.' },
+  { q: 'Tomorrow, are you going to Rome?', opts: ['Domani vai a Roma?', 'Domani vado a Roma?', 'Domani vai in Roma?'], ok: 'Domani vai a Roma?', why: 'You go = vai. Rome is a point: a Roma.', say: 'Domani vai a Roma?' },
+  { hear: 'Vai a scuola?', q: 'Listen and tap what you hear.', opts: ['Vado a scuola?', 'Vai a scuola?', 'Vai a casa?'], ok: 'Vai a scuola?', why: 'You heard: vai a scuola = are you going to school?' }
+];
+var C2 = [
+  { q: "I'm coming with you.", opts: ['Vengo con te.', 'Vengo con me.', 'Vieni con te.'], ok: 'Vengo con te.', why: 'I come = vengo. I come with YOU: con te.', say: 'Vengo con te.' },
+  { q: 'Do you want to come with me?', opts: ['Vuoi venire con me?', 'Vuoi vengo con me?', 'Vuoi venire con te?'], ok: 'Vuoi venire con me?', why: 'After vuoi, venire stays whole. You come with ME.', say: 'Vuoi venire con me?' },
+  { hear: 'Posso venire con te?', q: 'Listen and tap what you hear.', opts: ['Posso venire con te?', 'Posso venire con me?', 'Puoi venire con me?'], ok: 'Posso venire con te?', why: 'You heard: posso venire con te = can I come with you?' }
+];
+
+/* La Prova: 6 sentences from English. [english, italian, alts] */
+var PROVA = [
+  ["Tonight I'm going to the cafeteria.", 'Stasera vado in mensa.', ['Stasera io vado in mensa.']],
+  ['Tomorrow, are you going to Rome?', 'Domani vai a Roma?', ['Domani tu vai a Roma?']],
+  ["I'm coming with you.", 'Vengo con te.', ['Io vengo con te.']],
+  ['Are you coming with me?', 'Vieni con me?', ['Tu vieni con me?']],
+  ['Do you want to come to the library?', 'Vuoi venire in biblioteca?', ['Tu vuoi venire in biblioteca?']],
+  ["Tomorrow I'm coming to Rome with you.", 'Domani vengo a Roma con te.', ['Domani io vengo a Roma con te.']]
+];
+var BANK = ['vado', 'vai', 'vengo', 'vieni', 'venire', 'stasera', 'domani', 'vuoi', 'posso', 'a', 'in', 'con me', 'con te', 'casa', 'scuola', 'Roma', 'palestra', 'biblioteca', 'mensa', 'Italia'];
+var GRAMMAR = ['vado', 'vai', 'vengo', 'vieni', 'venire', 'vuoi', 'posso', 'puoi', 'devi', 'devo', 'voglio', 'a', 'in', 'me', 'te', 'con'];
+
+/* every Italian phrase the game can speak (for Sara clips) */
+function allPhrases() {
+  var out = [];
+  var add = function (t) { if (t) out.push(String(t).replace(/<[^>]+>/g, '').replace(/___/g, '').trim()); };
+  [L1, L2].forEach(function (L) { L.cards.forEach(function (c) {
+    if (c.lines) c.lines.forEach(function (l) { add(l[0]); });
+    if (c.pairs) c.pairs.forEach(function (p) { add(p[0]); });
+    if (c.opts) c.opts.forEach(add); add(c.prof);
+  }); });
+  C1.concat(C2).forEach(function (x) { add(x.say); add(x.hear); x.opts.forEach(add); });
+  ALL.forEach(function (s) { add(s.it); s.parts.forEach(function (p) { add(p.v); p.wrong.forEach(add); }); });
+  PROVA.forEach(function (p) { add(p[1]); });
+  ['Ue! Pronti?', 'Pronti?', 'Ascolta. Ripeti.', 'Capisci?', 'Andiamo!', 'Bene!', 'Ottimo!', 'Eccellente!', 'Quasi!', 'Oooo!', 'vado', 'vai', 'vengo', 'vieni', 'venire', 'stasera', 'domani', 'con me', 'con te'].forEach(add);
+  return out;
+}
+
+var IMGDIR='../../assets/guide/bust/';
+var IMG={wave:IMGDIR+'wave.webp',present:IMGDIR+'present.webp',think:IMGDIR+'think.webp',clap:IMGDIR+'clap.webp',cheeky:IMGDIR+'cheeky-what.webp',joy:IMGDIR+'jump-joy.webp',listen:IMGDIR+'listen.webp',point:IMGDIR+'point-you.webp'};
+var SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4z" fill="currentColor"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
+
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+
+/* ---------- state ---------- */
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
+var st=load()||{};
+['learn','stickers','foils','sent'].forEach(function(k){if(!Array.isArray(st[k]))st[k]=[]});
+['seen','mast'].forEach(function(k){if(!st[k]||typeof st[k]!=='object')st[k]={}});
+if(!st.prova)st.prova={tries:0,best:null,wrong:null,log:[]};
+['half','rounds','perfect','streakBest'].forEach(function(k){if(typeof st[k]!=='number')st[k]=0});
+if(st.gender===undefined)st.gender=null;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+/* The student's Boh body decides Bravissimo or Bravissima. Boh profile: f and h are girls, m is a boy. */
+function bohEnd(){
+  try{var p=JSON.parse(localStorage.getItem('boh_profile_v1')||'null');if(p&&p.bohBase){return p.bohBase==='m'?'o':'a'}}catch(e){}
+  return st.gender==='m'?'o':st.gender==='f'?'a':null;
+}
+function bravo(){var e=bohEnd();return 'Bravissim'+(e||'o')+'!'}
+var run=null,inShow=false,pv=null;var app=document.getElementById('app');
+
+/* ---------- voice: Sara clips when we have them, device Italian voice otherwise ---------- */
+var CLIPS={};CLIPS={"vado a casa":"audio/c_6cc2df6511.mp3","vai a scuola":"audio/c_9841cb3e2a.mp3","stasera vado in mensa":"audio/c_70f6fdc5e0.mp3","ue pronti":"../andare/audio/c_486ad802b2.mp3","stasera vado in palestra":"audio/c_7bace7134e.mp3","domani vai a roma":"audio/c_3fb18e37a7.mp3","ascolta ripeti":"../andare/audio/c_294510e74d.mp3","vado a scuola":"audio/c_df0f7ec507.mp3","vai in scuola":"audio/c_94adb988ec.mp3","capisci":"../andare/audio/c_57c5e7f83f.mp3","vengo a roma":"audio/c_c7199b02cd.mp3","vieni a casa":"audio/c_88f7245684.mp3","vuoi venire":"audio/c_25ff2a105b.mp3","pronti":"../andare/audio/c_9463e927d5.mp3","vengo con te":"audio/c_c41416b287.mp3","vieni con me":"audio/c_2a37075b70.mp3","posso venire con te":"audio/c_7119014766.mp3","andiamo":"../andare/audio/c_e8d4ba61a5.mp3","vieni con te":"audio/c_22c2fbed4f.mp3","vengo con me":"audio/c_c3c61b477f.mp3","stasera vai in palestra":"audio/c_8ade8e547d.mp3","stasera vado a palestra":"audio/c_f5b6cafd4e.mp3","domani vado a roma":"audio/c_d1a36885d4.mp3","domani vai in roma":"audio/c_d4a051c478.mp3","vai a casa":"audio/c_88db313f16.mp3","vuoi venire con me":"audio/c_f2bbf717d3.mp3","vuoi vengo con me":"audio/c_86c56a0b30.mp3","vuoi venire con te":"audio/c_5060448a2b.mp3","posso venire con me":"audio/c_bf218edd9a.mp3","puoi venire con me":"audio/c_3a2fd7fc7f.mp3","vado":"../andare/audio/c_df57de7a8d.mp3","vai":"../andare/audio/c_120032fb70.mp3","vengo":"audio/c_4eddb3cf23.mp3","a":"../andare/audio/c_86f7e437fa.mp3","in":"../andare/audio/c_af10ef20dd.mp3","casa":"../andare/audio/c_81bce1f3bf.mp3","scuola":"../andare/audio/c_3486c0109a.mp3","roma":"../andare/audio/c_a6b6ea31c4.mp3","vado a roma":"audio/c_cf7be21325.mp3","vado in palestra":"audio/c_7630a117b9.mp3","palestra":"../andare/audio/c_d534f713c5.mp3","biblioteca":"../andare/audio/c_973f3077d2.mp3","mensa":"../andare/audio/c_14d0127770.mp3","italia":"../andare/audio/c_653c2db2fb.mp3","vado in biblioteca":"audio/c_afe0d60016.mp3","vado in mensa":"audio/c_ebd01ba164.mp3","vado in italia":"audio/c_7b44563de2.mp3","vieni":"audio/c_e98606c38a.mp3","vai a roma":"audio/c_c6eaa1b55d.mp3","vai in palestra":"audio/c_055c9fa284.mp3","vai in biblioteca":"audio/c_317a63c514.mp3","vai in mensa":"audio/c_b68097b93e.mp3","vai in italia":"audio/c_e5a14ff87c.mp3","stasera vado a casa":"audio/c_9b997aa6c9.mp3","stasera":"audio/c_a93cac21d9.mp3","domani":"audio/c_0bbdc2f66a.mp3","stasera vado a roma":"audio/c_902cf2d449.mp3","stasera vado in biblioteca":"audio/c_3df0ab6156.mp3","stasera vai a casa":"audio/c_c1cb0b62f5.mp3","stasera vai a roma":"audio/c_977a242ca7.mp3","stasera vai in biblioteca":"audio/c_3c644c0491.mp3","stasera vai in mensa":"audio/c_547bde56e3.mp3","domani vado a casa":"audio/c_87774db97c.mp3","domani vado a scuola":"audio/c_de4159bffb.mp3","domani vado in palestra":"audio/c_bc85ba388a.mp3","domani vado in biblioteca":"audio/c_6895c2a891.mp3","domani vado in mensa":"audio/c_20ef4c09f1.mp3","domani vado in italia":"audio/c_cb3bdb4ca0.mp3","domani vai a casa":"audio/c_a8646a171f.mp3","domani vai a scuola":"audio/c_07cc4d5053.mp3","domani vai in palestra":"audio/c_64b8123e3e.mp3","domani vai in biblioteca":"audio/c_8eebfb876d.mp3","domani vai in mensa":"audio/c_235987add5.mp3","domani vai in italia":"audio/c_1c9cac9585.mp3","con me":"audio/c_a01763fcfc.mp3","con te":"audio/c_e7817ec755.mp3","vuoi":"audio/c_ffc824ecd5.mp3","devi":"audio/c_825e522c6f.mp3","puoi":"audio/c_6dcc558efc.mp3","venire":"audio/c_a37e670db4.mp3","andare":"../andare/audio/c_6071689e62.mp3","devi venire con me":"audio/c_f7a9ea4901.mp3","posso":"../andare/audio/c_f04f40b549.mp3","voglio":"../andare/audio/c_d4e369d325.mp3","devo":"../andare/audio/c_8c6008a139.mp3","voglio venire con te":"audio/c_ffc3fb7580.mp3","devo venire con te":"audio/c_3891bdcbee.mp3","vuoi venire a scuola":"audio/c_1f6d5a88ff.mp3","vuoi venire a roma":"audio/c_543264ce64.mp3","vuoi venire in palestra":"audio/c_608222952c.mp3","vuoi venire in biblioteca":"audio/c_889e2f1994.mp3","vuoi venire in mensa":"audio/c_3a6e9727e6.mp3","vuoi venire in italia":"audio/c_afd411999e.mp3","stasera vengo a casa con te":"audio/c_e7bad92336.mp3","stasera vieni a casa con me":"audio/c_9ccf4790fc.mp3","stasera vengo a roma con te":"audio/c_319e02ce66.mp3","stasera vieni a roma con me":"audio/c_c23f2cd4f3.mp3","stasera vengo in palestra con te":"audio/c_7ef1eede3d.mp3","stasera vieni in palestra con me":"audio/c_01442f1e46.mp3","stasera vengo in biblioteca con te":"audio/c_fac5ac395c.mp3","stasera vieni in biblioteca con me":"audio/c_13840c30eb.mp3","stasera vengo in mensa con te":"audio/c_ed70ec9787.mp3","stasera vieni in mensa con me":"audio/c_597b64f6fb.mp3","domani vengo a casa con te":"audio/c_e8aefa4581.mp3","domani vieni a casa con me":"audio/c_eea7d0c495.mp3","domani vengo a scuola con te":"audio/c_91132340e2.mp3","domani vieni a scuola con me":"audio/c_8ba82247d0.mp3","domani vengo a roma con te":"audio/c_26d38c3777.mp3","domani vieni a roma con me":"audio/c_eaed588f5d.mp3","domani vengo in palestra con te":"audio/c_f5aa739647.mp3","domani vieni in palestra con me":"audio/c_5ee6b0fbe8.mp3","domani vengo in biblioteca con te":"audio/c_1787337f32.mp3","domani vieni in biblioteca con me":"audio/c_9082db7d74.mp3","domani vengo in mensa con te":"audio/c_791ce179d9.mp3","domani vieni in mensa con me":"audio/c_755fbf8565.mp3","domani vengo in italia con te":"audio/c_506653e2f3.mp3","domani vieni in italia con me":"audio/c_b89ef000a4.mp3","devi andare a prendere l'acqua":"audio/c_7a80a16642.mp3","a prendere l'acqua":"../andare/audio/c_63f842961d.mp3","in prendere l'acqua":"audio/c_fe754e6eb7.mp3","a casa":"../andare/audio/c_cd58f6c09b.mp3","bene":"../andare/audio/c_2376b80336.mp3","ottimo":"../andare/audio/c_c8278098f0.mp3","eccellente":"../andare/audio/c_767c98ae9c.mp3","quasi":"audio/c_5dae1666f0.mp3","oooo":"audio/c_d13150fd10.mp3"};
+function vkey(s){return String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/[^\p{L}\p{N}' ]+/gu,' ').replace(/\s+/g,' ').trim()}
+var _au=null;
+function say(text){if(!text)return;var k=vkey(text),f=CLIPS[k];
+ if(window.__spoken)window.__spoken.push(k);
+ if(f){try{if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}try{if(_au){_au.pause()}_au=new Audio(f);_au.play().catch(function(){tts(text)});return}catch(e){}}
+ tts(text)}
+function tts(text){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang='it-IT';u.rate=.92;var vs=speechSynthesis.getVoices().filter(function(v){return /it[-_]IT/i.test(v.lang)});var pick=vs.find(function(v){return /Google|Alice|Federica|Elsa/i.test(v.name)})||vs[0];if(pick)u.voice=pick;speechSynthesis.speak(u)}catch(e){}}
+
+function starsText(h){var w=Math.floor(h/2),half=h%2;return (w?w:'')+(half?'½':'')+(!w&&!half?'0':'')+' of 3 stars'}
+function leftText(r){var w=Math.floor(r/2),h=r%2;return (w?w:'')+(h?'\u00bd':'')+' star'+(r>2?'s':'')}
+function hud(){var h='<div class="top">'+(run||pv||inShow?'<button class="back" data-a="home">‹ Home</button>':'')+'<span class="sp"></span><div class="hud">';
+ if(run&&run.hearts!==undefined){h+='<span class="pill hearts" aria-label="hearts">'+[0,1,2].map(function(i){return '<i class="'+(i<run.hearts?'on':'')+'"></i>'}).join('')+'</span><span class="pill streak">'+run.streak+' ×</span>'}
+ else if(!run&&!pv&&!inShow&&st.streakBest>0){h+='<span class="pill streak" aria-label="best streak">Best '+st.streakBest+' ×</span>'}
+ h+='<span class="pill" aria-label="stickers">'+st.stickers.length+' / 6</span></div></div>';return h}
+function profBox(img,it,en){return '<div class="prof"><img src="'+img+'" alt="Prof. Lo So"><div class="bubble">'+it+(en?'<small>'+en+'</small>':'')+'</div></div>'}
+function tipBox(ok,head,answer,why,trick){return '<div class="tip '+(ok?'':'bad')+' pop"><img src="'+(ok?IMG.clap:IMG.cheeky)+'" alt=""><div><b>'+head+(ok?'':' <span class="pk">'+answer+'</span>')+'</b>'+why+(trick?'<div style="margin-top:4px;color:var(--mute)">'+trick+'</div>':'')+'</div></div>'}
+function okHead(){run.okN=(run.okN||0)+1;var n=run.okN%5;return n===0?bravo():R_OK[(n-1)%R_OK.length]}
+function badHead(){run.badN=(run.badN||0)+1;return R_BAD[(run.badN-1)%R_BAD.length]}
+
+/* ---------- Learn: two short stops, played once ---------- */
+function mcItem(x){return {t:'mc',kick:x.hear?'Hear it · Ascolta':'Pick it · Scegli',hear:x.hear,prompt:x.q,say:x.say,answer:x.ok,opts:shuffle(x.opts),why:x.why}}
+var LEARN=[
+ {key:'vai',label:'Vado e vai',min:4,items:function(){return [{t:'lesson',L:L1}].concat(C1.map(mcItem))}},
+ {key:'vieni',label:'Vengo e vieni',min:4,items:function(){return [{t:'lesson',L:L2}].concat(C2.map(mcItem))}}
+];
+function learnDone(){return st.learn.length>=2}
+function nextLearn(){for(var k=0;k<2;k++)if(st.learn.indexOf(k)===-1)return k;return 2}
+
+function home(){run=null;pv=null;inShow=false;var open=!!bohEnd();
+ var h=hud()+'<div class="home">';
+ h+='<div class="hero"><img src="'+IMG.wave+'" alt="Prof. Lo So waves"><div class="t"><h1>Dove vai? 2</h1><small>Vado, vai, vengo, vieni</small><small>'+(learnDone()?'Rounds of 6 sentences · about 3 minutes':'First learn it, about 8 minutes')+'</small></div></div>';
+ if(!open){h+='<div class="shelf"><div class="kick">First: who is talking? · Chi parla?</div><div class="row"><button class="btn g" data-a="gender" data-g="m">Sono un ragazzo</button><button class="btn g" data-a="gender" data-g="f">Sono una ragazza</button></div><div class="sub" style="margin-top:8px">Prof. Lo So will say Bravissimo or Bravissima to match.</div></div>'}
+ if(learnDone()){
+  h+='<button class="bigplay" data-a="round" '+(open?'':'disabled')+'>Play a Round<small>6 sentences · about 3 min</small></button>';
+  h+=shelf(null)+goalLine();
+  var pb=st.prova.best;
+  h+='<div class="stops"><button class="stop'+(pb!==null?' done':'')+'" data-a="prova" '+(open?'':'disabled')+'><span class="n">P</span><span class="l">La Prova · 6 frasi<small>'+(pb!==null?'Best: '+pb+'% · '+(4-st.prova.tries)+' tries left':'Graded. Write 6 sentences.')+'</small></span></button>'+
+   '<button class="stop" data-a="showprof"><span class="n">P</span><span class="l">Show Prof<small>Your work card for Google Classroom</small></span></button></div>';
+  h+='<button class="btn quiet" data-a="relearn">Learn again</button>';
+ } else {
+  var next=nextLearn();
+  h+='<div class="stops">'+LEARN.map(function(s,k){var d=st.learn.indexOf(k)!==-1,o=open&&k<=next;var cls='stop'+(d?' done':k===next?' cur':'')+(!o&&!d?' lock':'');
+   return '<button class="'+cls+'" data-a="start" data-k="'+k+'" '+(o||d?'':'disabled')+'><span class="n">'+(d?'✓':(k+1))+'</span><span class="l">'+s.label+'<small>'+s.min+' min</small></span></button>'}).join('')+
+   '<button class="stop lock" disabled><span class="n">▶</span><span class="l">Play a Round<small>Opens after Learn.</small></span></button></div>';
+  h+=shelf(null);
+ }
+ h+='<div class="work">Working on: saying where I go and who comes with me</div></div>';
+ app.innerHTML=h}
+function shelf(fresh){return '<div class="shelf"><div class="kick">I miei stickers · My sticker sheet</div><div class="stk">'+STICKERS.map(function(t){var got=st.stickers.indexOf(t)!==-1,f=st.foils.indexOf(t)!==-1,nw=fresh&&fresh.indexOf(t)!==-1;
+  return '<div class="s '+(f?'foil':got?(nw?'got fresh':'got'):'')+'" aria-label="'+t+(f?' gold foil':got?' earned':' locked')+'">'+(got?t:'?')+'</div>'}).join('')+'</div></div>'}
+function goalLine(){
+ if(st.stickers.length<6&&st.half===0&&st.rounds===0)return '<div class="goal sub">Win a sticker for each new word.</div>';
+ return '<div class="shelf goal"><b>Foil: '+starsText(st.half)+'</b><div class="meter"><i style="width:'+Math.min(100,Math.round(100*st.half/6))+'%"></i></div></div>'}
+
+function startLearn(k){var s=LEARN[k];run={mode:'learn',k:k,items:s.items(),i:0,hearts:3,streak:0,right:0,total:0,revealed:false,page:0}; card()}
+
+function card(){
+ if(run.mode==='round'){if(run.i>=6)return roundEnd();if(!run.items[run.i])run.items[run.i]=pickItem(run.i)}
+ var it=run.items[run.i];if(!it)return learnStopDone();
+ var h=hud();
+ if(run.mode==='round')h+='<div class="crumb"><span>Round</span><span>'+(run.i+1)+' / 6</span></div><div class="bar"><i style="width:'+Math.round(100*run.i/6)+'%"></i></div><div class="stage">';
+ else h+='<div class="crumb"><span>Learn '+(run.k+1)+' of 2 · '+LEARN[run.k].label+'</span><span>'+(run.i+1)+' / '+run.items.length+'</span></div><div class="bar"><i style="width:'+Math.round(100*run.i/run.items.length)+'%"></i></div><div class="stage">';
+ h+=({lesson:rLesson,mc:rMc,build:rBuild,type:rType})[it.t](it);
+ h+='</div>';app.innerHTML=h;
+ if(it.t==='mc'&&it.hear&&!run.revealed)setTimeout(function(){say(it.hear)},350);
+ if(it.t==='type'&&!run.revealed)setTimeout(function(){say(it.hear)},350);
+ var inp=app.querySelector('input.ans');if(inp)inp.focus()}
+
+/* ---------- mini lesson (swipe cards) ---------- */
+function rLesson(it){var L=it.L,n=run.page||0,c=L.cards[n],last=n===L.cards.length-1;
+ var h='<div class="card"><div class="dots">'+L.cards.map(function(_,i){return '<i class="'+(i===n?'on':'')+'"></i>'}).join('')+'</div>';
+ h+=profBox(IMG.present,c.prof,'');
+ if(c.tip)h+='<div class="sub">'+c.tip+'</div>';
+ if(c.kind==='meet'){
+   if(c.big)h+='<div class="chunk"><div class="bg pk">'+c.big+'</div><div class="eq">= '+c.eq+'</div></div>';
+   h+='<div class="pairs">'+c.pairs.map(function(p){return '<button class="pair" data-a="say" data-s="'+esc(p[0].replace(/<[^>]+>/g,''))+'"><span>'+p[0]+'</span><small>'+p[1]+'</small></button>'}).join('')+'</div>';
+ } else if(c.kind==='say'){
+   h+='<div class="say">'+c.lines.map(function(l){return '<button class="sayb" data-a="say" data-s="'+esc(l[0])+'"><b>'+l[0]+'</b><span>'+l[1]+'</span></button>'}).join('')+'</div>';
+ } else {
+   if(!c.opts2)c.opts2=shuffle(c.opts);
+   h+='<div class="prompt">'+c.q+'</div><div class="opts">'+c.opts2.map(function(o){var cl='opt';if(run.revealed){if(o===c.ok)cl+=' ok';else if(o===run.picked)cl+=' no'}return '<button class="'+cl+'" data-a="lpick" data-o="'+esc(o)+'" '+(run.revealed?'disabled':'')+'>'+o+'</button>'}).join('')+'</div>';
+   if(run.revealed)h+=tipBox(run.ok,run.ok?okHead():badHead(),c.ok,c.why);
+ }
+ var canGo=c.kind!=='try'||run.revealed;
+ h+='<button class="btn p wide" data-a="lnext" '+(canGo?'':'disabled')+'>'+(last?'Andiamo!':'Avanti')+'</button></div>';return h}
+
+/* ---------- plain multiple choice (learn checks and slot-ins) ---------- */
+function rMc(it){var h='<div class="card"><div class="kick">'+it.kick+'</div>';
+ if(it.hear)h+='<button class="hear" data-a="hear">'+SPK+' Ascolta · tap to hear again</button>';else h+='<div class="prompt">'+it.prompt+'</div>';
+ if(it.sub)h+='<div class="sub">'+it.sub+'</div>';
+ h+='<div class="opts">'+it.opts.map(function(o){var c='opt';if(run.revealed){if(o===it.answer)c+=' ok';else if(o===run.picked)c+=' no'}return '<button class="'+c+'" data-a="pick" data-o="'+esc(o)+'" '+(run.revealed?'disabled':'')+'>'+o+'</button>'}).join('')+'</div>';
+ if(run.revealed)h+=tipBox(run.ok,run.ok?okHead():badHead(),it.answer,it.why)+'<button class="btn p wide" data-a="next">Avanti</button>';
+ return h+'</div>'}
+
+/* ---------- the sentence builder: one step per piece, 2 or 3 choices each ---------- */
+function bSteps(s){return s.parts.map(function(p){var w=shuffle(p.wrong).slice(0,2);return {opts:[p.v].concat(w),ok:p.v,tip:p.tip,role:p.r}})}
+function rBuild(it){
+ if(!run.b||run.b.id!==run.i){run.b={id:run.i,steps:bSteps(it.sent),n:0,got:[],miss:0,anyMiss:false,msg:'',bad:false,show:null,done:false};run.b.steps.forEach(function(s){s.opts=shuffle(s.opts)})}
+ var b=run.b;
+ var h='<div class="card"><div class="kick">Build it · Costruisci</div><div class="prompt">'+it.sent.en+'</div>';
+ h+='<div class="slots">'+(b.got.length?b.got.map(function(w,i){return '<span class="w'+(b.steps[i].role==='prep'?' pk':'')+'">'+w+'</span>'}).join(''):'<span class="ph">Tap the word that comes next.</span>')+'</div>';
+ if(!b.done){var s=b.steps[b.n];
+  h+='<div class="choices">'+s.opts.map(function(o){return '<button class="opt'+(b.show===o?' show':'')+'" data-a="bpick" data-o="'+esc(o)+'">'+o+'</button>'}).join('')+'</div>';
+  h+='<div class="msg'+(b.bad?' bad':'')+'">'+(b.msg||'Tap the word that comes next.')+'</div>';
+ } else {
+  h+='<div class="msg"><b>'+(b.head||'')+'</b>'+b.fin+'</div><button class="btn p wide" data-a="bnext">Avanti</button>';
+ }
+ return h+'</div>'}
+function sentHtml(s){return s.parts.map(function(p){return p.r==='prep'?'<span class="pk"><u>'+p.v+'</u></span>':p.v}).join(' ')+s.punct}
+function bPick(o){var it=run.items[run.i],b=run.b;if(b.done)return;var s=b.steps[b.n];say(o);
+ if(o===s.ok){b.got.push(o);b.miss=0;b.show=null;b.bad=false;b.n++;
+  if(b.n>=b.steps.length){b.done=true;run.streak=b.anyMiss?0:run.streak+1;if(run.streak>st.streakBest)st.streakBest=run.streak;
+   b.fin=sentHtml(it.sent);b.head=(b.anyMiss?'':okHead())+' ';
+   finishItem(it,!b.anyMiss,true);
+   setTimeout(function(){say(it.sent.it)},300)}
+  else b.msg='<b>'+R_PART+'</b>'}
+ else{b.miss++;b.anyMiss=true;b.show=s.ok;b.bad=true;run.streak=0;
+  b.msg='<b>'+(b.miss>=2?R_HELP:badHead())+'</b> '+s.tip+' It is <span class="pk">'+s.ok+'</span>.';
+  if(!b.counted){b.counted=true;run.hearts=Math.max(0,run.hearts-1);if(run.hearts===0){run.hearts=3;run.refill=true}}}
+ card()}
+
+/* ---------- listen and type ---------- */
+function rType(it){var h='<div class="card"><div class="kick">Listen and type · Ascolta e scrivi</div><button class="hear" data-a="hear">'+SPK+' Ascolta · tap to hear again</button>';
+ if(run.help>=1)h+='<div class="sub">English: '+it.en+'</div>';if(run.help>=2)h+='<div class="sub">Starts with: <b>'+it.answer.split(' ').slice(0,2).join(' ')+'…</b></div>';
+ if(!run.revealed){h+='<input class="ans" id="ans" autocomplete="off" autocapitalize="sentences" placeholder="Scrivi quello che senti…" aria-label="Type what you hear">';
+  h+='<div class="acc">'+['à','è','é','ì','ò','ù'].map(function(c){return '<button data-a="acc" data-c="'+c+'">'+c+'</button>'}).join('')+'</div>';
+  h+='<div class="row"><button class="btn g" data-a="help">'+((run.help||0)===0?'Help · Aiuto':(run.help===1?'More help':'No more help'))+'</button><button class="btn p" data-a="check">Check</button></div>'}
+ else h+='<div class="prompt">'+(run.ok?'<span class="pk">'+it.answer+'</span>':'<s style="color:var(--mute)">'+esc(run.typed)+'</s><br><span class="pk">'+it.answer+'</span>')+'</div>'+tipBox(run.ok,run.ok?okHead():badHead(),it.answer,it.answer+' = '+it.en)+'<button class="btn p wide" data-a="next">Avanti</button>';
+ return h+'</div>'}
+
+/* ---------- checking: forgive typos, not grammar ---------- */
+function norm(s){return s.toLowerCase().replace(/[’']/g,"'").replace(/[?.!,;:]/g,'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim()}
+function ed(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++){d[i]=[i]}for(j=0;j<=n;j++)d[0][j]=j;for(i=1;i<=m;i++)for(j=1;j<=n;j++){var c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]}
+function wordOk(got,want){if(got===want)return true;if(GRAMMAR.indexOf(want)!==-1||GRAMMAR.indexOf(got)!==-1)return false;return want.length>=4&&ed(got,want)<=1}
+function sentOk(typed,answer){var a=norm(typed).split(' '),b=norm(answer).split(' ');if(a.length!==b.length)return false;for(var i=0;i<a.length;i++)if(!wordOk(a[i],b[i]))return false;return true}
+
+/* ---------- the round: 6 items, easy to hard and back to an easy finish ---------- */
+var POS_TYPE=['slot','build','build','slot','type','build'];
+var POS_DIFF=['easy','med','hard','easy','med','easy'];
+function mastery(s){var t=s.tags,sum=0;for(var i=0;i<t.length;i++)sum+=(st.mast[t[i]]||0);return sum/t.length}
+function seenN(s){return st.seen[s.key]||0}
+function blankable(s){return s.parts.some(function(p){return p.r==='prep'||p.r==='verb'||p.r==='conme'||p.r==='modal'})}
+function pickSentence(diff,type){
+ var c=ALL.filter(function(s){return !run.used[s.key]&&(type!=='slot'||blankable(s))});
+ if(!c.length)c=ALL.filter(function(s){return !run.used[s.key]});
+ c=shuffle(c);
+ c.sort(function(a,b){
+  var sa=seenN(a),sb=seenN(b);if(sa!==sb)return sa-sb;
+  var ca=a.parts.length,cb=b.parts.length,ma=mastery(a),mb=mastery(b);
+  if(diff==='easy'){if(ma!==mb)return mb-ma;return ca-cb}
+  if(diff==='hard'){if(ca!==cb)return cb-ca;return ma-mb}
+  var da=Math.abs(ca-3),db=Math.abs(cb-3);if(da!==db)return da-db;return 0});
+ return c[0]}
+function pickItem(pos){var type=POS_TYPE[pos],diff=POS_DIFF[pos];var s=pickSentence(diff,type);run.used[s.key]=1;
+ if(type==='build')return {t:'build',sent:s,diff:diff};
+ if(type==='type')return {t:'type',hear:s.it,en:s.en,answer:s.it,sent:s,diff:diff};
+ var idx=[];s.parts.forEach(function(p,i){if(p.r==='prep'||p.r==='verb'||p.r==='conme'||p.r==='modal')idx.push(i)});
+ var bi=rnd(idx),bp=s.parts[bi];
+ var txt=s.parts.map(function(p,i){return i===bi?'<span class="pk">___</span>':p.v}).join(' ')+s.punct;
+ return {t:'mc',kick:'Slot it · Completa',prompt:txt,sub:s.en,say:s.it,answer:bp.v,opts:shuffle([bp.v].concat(shuffle(bp.wrong).slice(0,2))),why:bp.tip,sent:s,diff:diff}}
+function startRound(){run={mode:'round',items:[],i:0,hearts:3,streak:0,res:[],used:{},newStk:[],revealed:false,page:0};card()}
+
+/* record what happened on one item: skill, history, stickers */
+function finishItem(it,ok,built){
+ var s=it.sent;if(!s)return;
+ run.res.push(ok);
+ s.tags.forEach(function(t){var v=(st.mast[t]||0)+(ok?1:-2);st.mast[t]=Math.max(-3,Math.min(5,v))});
+ st.seen[s.key]=(st.seen[s.key]||0)+1;
+ if(ok||built){s.tags.forEach(function(t){if(STICKERS.indexOf(t)!==-1&&st.stickers.indexOf(t)===-1){st.stickers.push(t);run.newStk.push(t)}})}
+ if(st.sent.indexOf(s.it)===-1){st.sent.push(s.it);if(st.sent.length>12)st.sent.shift()}
+ save()}
+
+function answer(ok){var it=run.items[run.i];run.revealed=true;run.ok=ok;
+ if(ok){run.right++;run.streak++;if(run.streak>st.streakBest){st.streakBest=run.streak;save()}}
+ else{run.streak=0;run.hearts=Math.max(0,run.hearts-1);
+  if(run.mode==='learn'&&!it.again&&it.t!=='lesson'){var again=JSON.parse(JSON.stringify(it));again.again=true;again.kick='Ancora una volta · '+(it.kick||'');if(again.opts)again.opts=shuffle(again.opts);run.items.splice(Math.min(run.i+3,run.items.length),0,again)}}
+ if(run.mode==='round')finishItem(it,ok,false);
+ if(run.hearts===0){run.hearts=3;run.refill=true}}
+function next(){run.i++;run.revealed=false;run.help=0;run.page=0;run.picked=null;run.typed='';run.b=null;
+ if(run.refill){run.refill=false;app.innerHTML=hud()+'<div class="stage"><div class="card center">'+profBox(IMG.think,'Ma no! Un cuore nuovo.','')+'<div class="tricks"><div><span class="n">1</span><span>I go = vado. You go = vai.</span></div><div><span class="n">2</span><span>I come = vengo. You come = vieni.</span></div><div><span class="n">3</span><span>I come with YOU: con te. You come with ME: con me.</span></div></div><button class="btn p wide" data-a="go">Andiamo!</button></div></div>';return}
+ card()}
+function learnStopDone(){var k=run.k;if(st.learn.indexOf(k)===-1)st.learn.push(k);save();
+ var pct=run.total?Math.round(100*run.right/run.total):100;var last=learnDone();
+ app.innerHTML=hud()+'<div class="stage"><div class="card center pop">'+profBox(IMG.joy,'Oooo! '+bravo(),'')+'<div class="big">'+(last?'✓':'✓')+'</div><div class="sub">'+(last?'You have learned all four words. Now play rounds for stickers and gold foil.':'One more stop to learn.')+'</div>'+
+ '<div class="row" style="width:100%"><button class="btn p" data-a="'+(last?'round':'learnnext')+'">'+(last?'Play a Round':'Avanti')+'</button><button class="btn g" data-a="home">Home</button></div></div></div>'}
+
+/* the end of a round always lands on a win screen */
+function roundEnd(){
+ var right=run.res.filter(Boolean).length,gain=right===6?2:right===5?1:0;
+ st.rounds++;if(right===6)st.perfect++;st.half+=gain;
+ var foilWon=null;
+ while(st.half>=6){var cand=st.stickers.filter(function(t){return st.foils.indexOf(t)===-1});if(!cand.length)break;foilWon=rnd(cand);st.foils.push(foilWon);st.half-=6}
+ save();var r=run;run=null;lastRound={right:right,gain:gain,newStk:r.newStk,foil:foilWon};
+ if(foilWon)return foilScreen();resultScreen()}
+var lastRound=null;
+function foilScreen(){var w=lastRound.foil;
+ app.innerHTML=hud()+'<div class="stage"><div class="card center pop">'+profBox(IMG.joy,'Oooo! '+bravo(),'')+'<div class="sub">Third star. One of your stickers turns to gold.</div><div class="foilpop pop">'+w+'</div><div class="big" style="font-size:34px;color:var(--gold)">Foil sticker!</div><button class="btn p wide" data-a="foildone">Avanti</button></div></div>'}
+function resultScreen(){var L=lastRound,right=L.right;
+ var line=right===6?'Oooo! '+bravo():right===5?'Quasi! Ottimo!':'Bene!';
+ var gainTxt=L.gain===2?'+1 star':L.gain===1?'+½ star':'';
+ app.innerHTML=hud()+'<div class="stage"><div class="card center pop">'+profBox(IMG.joy,line,'')+'<div class="big">'+right+' / 6</div>'+
+ (L.newStk.length?'<div class="pop2">'+L.newStk.map(function(t){return '<div class="stickerpop pop">'+t+'</div>'}).join('')+'</div><div class="sub">Nuovo sticker!</div>':'')+
+ (gainTxt?'<div class="sub"><b>'+gainTxt+'</b>'+(right===5?' · so close to perfect':'')+'</div>':'')+
+ '<div class="goal"><b>'+(L.foil?'Next foil: ':'Foil: ')+starsText(st.half)+'</b><div class="meter"><i style="width:'+Math.min(100,Math.round(100*st.half/6))+'%"></i></div></div>'+
+ '<div class="sub">'+st.stickers.length+' of 6 stickers · best streak '+st.streakBest+' di fila</div>'+
+ '<button class="bigplay" data-a="round">One more round<small>'+(L.foil||st.half===0?'Next foil: '+starsText(st.half):leftText(6-st.half)+' to the next foil')+'</small></button>'+
+ '<button class="btn quiet wide" data-a="showprof">Done for today</button></div></div>'}
+
+/* ---------- La Prova ---------- */
+function provaStart(){if(st.prova.tries>=4){home();return}var idx=st.prova.wrong&&st.prova.wrong.length?st.prova.wrong:[0,1,2,3,4,5];pv={q:idx.slice(),i:0,log:[]};provaCard()}
+function provaCard(){var qi=pv.q[pv.i];if(qi===undefined)return provaEnd();var q=PROVA[qi];run=null;
+ app.innerHTML=hud()+'<div class="crumb"><span>La Prova · Attempt '+(st.prova.tries+1)+' of 4</span><span>'+(pv.i+1)+' / '+pv.q.length+'</span></div><div class="bar"><i style="width:'+Math.round(100*pv.i/pv.q.length)+'%"></i></div><div class="stage"><div class="card"><div class="kick">Write the whole sentence in Italian</div><div class="prompt">'+q[0]+'</div>'+
+ '<input class="ans" id="ans" autocomplete="off" placeholder="In italiano…" aria-label="Write it in Italian"><div class="acc">'+['à','è','é','ì','ò','ù'].map(function(c){return '<button data-a="acc" data-c="'+c+'">'+c+'</button>'}).join('')+'</div>'+
+ '<div class="kick">Word bank · banca delle parole</div><div class="bank">'+shuffle(BANK).map(function(w){return '<span>'+w+'</span>'}).join('')+'</div>'+
+ '<div class="row">'+(pv.hint?'<div class="sub" style="flex:1">Hint: starts with <b>'+q[1].split(' ')[0]+'</b></div>':'<button class="btn g" data-a="phint">Hint</button>')+'<button class="btn p" data-a="psubmit">Check</button></div></div></div>';
+ app.querySelector('#ans').focus()}
+function provaSubmit(){var inp=app.querySelector('#ans');var typed=inp?inp.value:'';var qi=pv.q[pv.i];var q=PROVA[qi];var ok=[q[1]].concat(q[2]||[]).some(function(x){return sentOk(typed,x)});pv.log.push({i:qi,typed:typed,ok:ok});pv.hint=false;say(q[1]);
+ run={okN:0,badN:0};
+ app.innerHTML=hud()+'<div class="stage"><div class="card"><div class="kick">'+q[0]+'</div><div class="prompt">'+(ok?'<span class="pk">'+q[1]+'</span>':'<s style="color:var(--mute)">'+esc(typed||'…')+'</s><br><span class="pk">'+q[1]+'</span>')+'</div>'+tipBox(ok,ok?okHead():badHead(),q[1],q[1]+' = '+q[0])+'<button class="btn p wide" data-a="pnext">Avanti</button></div></div>';run=null}
+function hashStr(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h}
+function today(){var d=new Date();return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function provaEnd(){var wrong=pv.log.filter(function(r){return !r.ok}).map(function(r){return r.i});var prevRight=6-pv.q.length;var right=prevRight+pv.log.filter(function(r){return r.ok}).length;var pct=Math.round(100*right/6);
+ st.prova.tries++;st.prova.wrong=wrong;if(st.prova.best===null||pct>st.prova.best)st.prova.best=pct;st.prova.log.push({pct:pct,date:new Date().toISOString().slice(0,10)});save();
+ scoreScreen('prova',wrong.length&&st.prova.tries<4)}
+function codeOf(){return ((st.prova.best||0)*7+st.prova.tries*3+17).toString(36).toUpperCase()+'-'+(Math.abs(hashStr(JSON.stringify(st.prova.log))%46656)).toString(36).toUpperCase()}
+/* The Show Prof card: the student's proof of work. Screenshot and upload to Google Classroom. */
+function scoreScreen(from,again){
+ inShow=true;run=null;var last=st.sent.slice(-4);
+ app.innerHTML=hud()+'<div class="stage"><div class="card center"><div class="shot"><b>FAI UNO SCREENSHOT DEL TUO LAVORO</b><br>Then upload it to your Google Classroom page.<br><small>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</small></div>'+
+ '<div class="scorecard"><div class="k">Dove vai? 2 · Show Prof</div><div class="k">'+today()+'</div>'+
+ (st.prova.best!==null?'<div class="big">'+st.prova.best+'%</div><div>La Prova best · attempt '+st.prova.tries+' of 4</div>':'<div>La Prova: not tried yet</div>')+
+ '<div class="k">Rounds</div><div>Played '+st.rounds+' · Perfect '+st.perfect+' · Best streak '+st.streakBest+'</div>'+
+ '<div class="k">Sentences I built</div><ul>'+(last.length?last.map(function(s){return '<li>'+s+'</li>'}).join(''):'<li>None yet</li>')+'</ul>'+
+ '<div class="k">Stickers: '+st.stickers.length+' of 6 · Foils: '+st.foils.length+'</div><div>'+(st.stickers.length?st.stickers.map(function(t){return t+(st.foils.indexOf(t)!==-1?' (gold)':'')}).join(', '):'None yet')+'</div>'+
+ (st.prova.tries?'<div class="k">Code '+codeOf()+'</div>':'')+'</div>'+
+ (again?'<div class="sub">Next try brings back only the ones you missed. Best score counts.</div>':'')+
+ '<div class="row" style="width:100%">'+(again?'<button class="btn p" data-a="prova">Try again ›</button>':'')+(learnDone()?'<button class="btn p" data-a="round">One more round</button>':'')+'<button class="btn g" data-a="home">Home</button></div></div></div>'}
+
+/* ---------- events ---------- */
+app.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.getAttribute('data-a');var it=run&&run.items&&run.items[run.i];
+ if(a==='home')return home();
+ if(a==='gender'){st.gender=b.getAttribute('data-g');save();return home()}
+ if(a==='start')return startLearn(+b.getAttribute('data-k'));
+ if(a==='learnnext')return startLearn(nextLearn());
+ if(a==='relearn'){st.learn=[];save();return home()}
+ if(a==='round')return startRound();
+ if(a==='foildone')return resultScreen();
+ if(a==='go')return card();
+ if(a==='prova')return provaStart();
+ if(a==='showprof')return scoreScreen('home',false);
+ if(a==='phint'){pv.hint=true;return provaCard()}
+ if(a==='psubmit')return provaSubmit();
+ if(a==='pnext'){pv.i++;return provaCard()}
+ if(a==='acc'){var inp=app.querySelector('#ans');if(inp){inp.value+=b.getAttribute('data-c');inp.focus()}return}
+ if(a==='say'){say(b.getAttribute('data-s'));return}
+ if(!it)return;
+ if(a==='hear'){say(it.hear);return}
+ if(a==='next')return next();
+ if(a==='lnext'){var L=it.L;if(run.page<L.cards.length-1){run.page++;run.revealed=false;run.picked=null;return card()}run.page=0;return next()}
+ if(a==='lpick'){if(run.revealed)return;var c=it.L.cards[run.page];run.picked=b.getAttribute('data-o');say(c.ok);run.revealed=true;run.ok=run.picked===c.ok;return card()}
+ if(a==='pick'){if(run.revealed)return;run.picked=b.getAttribute('data-o');say(it.say||it.answer);answer(run.picked===it.answer);return card()}
+ if(a==='bpick'){return bPick(b.getAttribute('data-o'))}
+ if(a==='bnext'){var done=run.b&&run.b.done;if(done)return next();return}
+ if(a==='help'){if((run.help||0)<2)run.help=(run.help||0)+1;return card()}
+ if(a==='check'&&it.t==='type'){var inp2=app.querySelector('#ans');run.typed=inp2?inp2.value:'';answer([it.answer].some(function(x){return sentOk(run.typed,x)}));say(it.answer);return card()}
+});
+app.addEventListener('keydown',function(e){if(e.key!=='Enter')return;if(e.target.id!=='ans')return;e.preventDefault();var b=app.querySelector('[data-a="check"],[data-a="psubmit"]');if(b)b.click()});
+window.__andare2=function(){return {run:run,st:st,pv:pv,last:lastRound}};
+home();
+})();
+</script>
+</body>
+</html>
