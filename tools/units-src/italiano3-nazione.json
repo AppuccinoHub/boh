@@ -179,6 +179,81 @@
     "exEn": "Should I study history, art or Latin? All roads lead to Rome!",
     "note": "Said when different choices lead to the same result; it goes back to the road network of ancient Rome."
   },
+  "provaExtras": {
+    "pD1": {
+      "alts": [
+        "L'Italia ha 20 regioni.",
+        "In Italia ci sono venti regioni.",
+        "Ci sono venti regioni in Italia."
+      ]
+    },
+    "pD2": {
+      "alts": [
+        "Le Alpi sono al confine nord d'Italia.",
+        "Le Alpi sono sul confine nord dell'Italia.",
+        "Le Alpi sono al confine nord in Italia."
+      ]
+    },
+    "pD3": {
+      "alts": [
+        "L'Italia è diventata unita nel 1861.",
+        "L'Italia è diventata un paese unificato nel 1861.",
+        "L'Italia è diventata una nazione nel 1861.",
+        "Nel 1861 l'Italia è diventata un paese unito.",
+        "Nel 1861 l'Italia è diventata unita.",
+        "L'unità d'Italia è stata nel 1861.",
+        "L'unità d'Italia è avvenuta nel 1861.",
+        "L'unificazione d'Italia è stata nel 1861.",
+        "L'unificazione d'Italia è avvenuta nel 1861."
+      ],
+      "bank": [
+        "unito"
+      ]
+    },
+    "pD4": {
+      "alts": [
+        "Nel 1860 Garibaldi è andato in Sicilia con i Mille.",
+        "Garibaldi è partito per la Sicilia con i Mille nel 1860.",
+        "Garibaldi è andato in Sicilia con i Mille nel 1860.",
+        "Nel 1860 Garibaldi partì per la Sicilia con i Mille.",
+        "Garibaldi partì per la Sicilia con i Mille nel 1860."
+      ],
+      "bank": [
+        "i Mille"
+      ],
+      "must": [
+        {
+          "w": "i",
+          "why": "The Thousand is i Mille (masculine plural), not le Mille."
+        }
+      ],
+      "altNotes": {
+        "Nel 1860 Garibaldi partì per la Sicilia con i Mille.": "Counts! Partì is the passato remoto, the past tense of history books. The model sentence uses è partito.",
+        "Garibaldi partì per la Sicilia con i Mille nel 1860.": "Counts! Partì is the passato remoto, the past tense of history books. The model sentence uses è partito."
+      }
+    },
+    "pD5": {
+      "alts": [
+        "Molti italiani del sud emigrarono in America.",
+        "Molti italiani meridionali sono emigrati in America.",
+        "Molti meridionali sono emigrati in America."
+      ],
+      "altNotes": {
+        "Molti italiani del sud emigrarono in America.": "Counts! Emigrarono is the passato remoto, the past tense of history books. In conversation: sono emigrati."
+      }
+    },
+    "pD6": {
+      "alts": [
+        "Mio nonno parlava napoletano.",
+        "Mio nonno parlava il napoletano.",
+        "Mio nonno parlava in dialetto napoletano.",
+        "Mio nonno parlava il dialetto di Napoli."
+      ],
+      "bank": [
+        "napoletano"
+      ]
+    }
+  },
   "flags": [
     "North/south framing (industry in the north, fewer jobs in the south, emigration) is the standard textbook account. Please review it against your own knowledge of southern Italian economic history before it goes live.",
     "Facts, Unverified (standard history, not checked against a source in this session): Kingdom of Italy proclaimed 17 March 1861; Expedition of the Thousand landed in Sicily in May 1860; Rome capital in 1871; Italy has 20 regions.",
