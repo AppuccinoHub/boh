@@ -10283,13 +10283,13 @@ class Component extends DCLogic {
   finishProva(log) {
     var s = this.state;
     var firsts = log.filter(function (r) { return r.ok; }).length, seconds = log.filter(function (r) { return r.half; }).length;
-    var right = firsts + seconds / 2;
+    var right = window.BohGrade ? Math.round(BohGrade.total(log) * 10) / 10 : firsts + seconds / 2;   /* boh-grade-v1: partial credit, rule in assets/bohgrade.js */
     var pct = Math.round(100 * right / log.length);
     var bySec = {};
     log.forEach(function (r) {
       bySec[r.sec] = bySec[r.sec] || { right: 0, total: 0 };
       bySec[r.sec].total++;
-      if (r.ok) bySec[r.sec].right++; else if (r.half) bySec[r.sec].right += 0.5;
+      bySec[r.sec].right += window.BohGrade ? BohGrade.pts(r) : (r.ok ? 1 : r.half ? 0.5 : 0);   /* boh-grade-v1 */
     });
     var attempt = (s.provaAttempt || 0) + 1;
     var mins = Math.max(1, Math.round((Date.now() - (s.provaStart || Date.now())) / 60000));
@@ -12578,4 +12578,5 @@ add();setInterval(add,900)}catch(e){}})();</script>
 var T=[['lt-domani','../domani-vado/','Domani vado \u00b7 mini lesson','Where I go tomorrow, and with whom'],['lt-andare','../bonus/andare/','Bonus \u00b7 Dove vai?','andare + a / in \u00b7 about 20 min \u00b7 stickers, no Boh Cashi']];
 function add(){var lp=document.querySelector('section.lp');if(!lp)return;T.forEach(function(t){if(lp.querySelector('.'+t[0]))return;var a=document.createElement('a');a.className='lp-prova is-open '+t[0];a.href=t[1];a.style.marginTop='10px';a.style.textDecoration='none';a.style.borderColor='var(--accent-strong,#E8338C)';a.innerHTML='<span class="lp-pl display">'+t[2]+'</span><span class="lp-ps">'+t[3]+'</span>';lp.appendChild(a)})}
 add();setInterval(add,900)}catch(e){}})();</script>
+<script src="../assets/bohgrade.js?v=202610291200"></script>
 </body></html>

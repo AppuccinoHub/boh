@@ -3992,13 +3992,13 @@ class Component extends DCLogic {
   finishProva(log) {
     var s = this.state;
     var firsts = log.filter(function (r) { return r.ok; }).length, seconds = log.filter(function (r) { return r.half; }).length;
-    var right = firsts + seconds / 2;
+    var right = window.BohGrade ? Math.round(BohGrade.total(log) * 10) / 10 : firsts + seconds / 2;   /* boh-grade-v1: partial credit, rule in assets/bohgrade.js */
     var pct = Math.round(100 * right / log.length);
     var bySec = {};
     log.forEach(function (r) {
       bySec[r.sec] = bySec[r.sec] || { right: 0, total: 0 };
       bySec[r.sec].total++;
-      if (r.ok) bySec[r.sec].right++; else if (r.half) bySec[r.sec].right += 0.5;
+      bySec[r.sec].right += window.BohGrade ? BohGrade.pts(r) : (r.ok ? 1 : r.half ? 0.5 : 0);   /* boh-grade-v1 */
     });
     var attempt = (s.provaAttempt || 0) + 1;
     var mins = Math.max(1, Math.round((Date.now() - (s.provaStart || Date.now())) / 60000));
@@ -6223,4 +6223,5 @@ var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohB
 /* the size and shrink rules that were here were removed Oct 14 2026 (boh-fit-v3 in assets/bohphone.css) */
 /* /boh-fit-v2 */</style>
 <!-- boh-fit-v2 shrink script removed Oct 14 2026: replaced by boh-fit-v3 -->
+<script src="../assets/bohgrade.js?v=202610291200"></script>
 </body></html>
