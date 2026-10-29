@@ -123,7 +123,7 @@ const CASES=[
  accept:["Ascoltate, ragazzi!","Ascoltate"],
  why:"A group gets the voi form. For -are verbs voi ends in -ate: ascoltate."},
 {id:2,level:1,lines:[
- ["Capitana","Marco (tu)","Parla piano, per favore."],
+ ["Lo So","Marco (tu)","Parla piano, per favore."],
  ["Marta","the class (voi)","Scrivete qui!"],
  ["Dante","Sara (tu)","Apri il libro!"],
  ["Elena","Marco (tu)","Scrive il nome!"]],
@@ -133,7 +133,7 @@ const CASES=[
  why:"To one friend, an -ere verb ends in -i: scrivi. Scrive means 'he/she writes'. It is not a command."},
 {id:3,level:1,lines:[
  ["Luca","the class (voi)","Parlate piano!"],
- ["Capitana","Marco (tu)","Ascolta, Marco!"],
+ ["Lo So","Marco (tu)","Ascolta, Marco!"],
  ["Marta","Sara (tu)","Vieni qui!"],
  ["Dante","Sara (tu)","Aspettate un momento!"]],
  bad:3,types:["person"],fix:"Aspetta un momento!",
@@ -141,7 +141,7 @@ const CASES=[
  accept:["Aspetta un momento!","Aspetta"],
  why:"Sara is one friend, so she gets tu: aspetta. Aspettate is for a group."},
 {id:4,level:1,lines:[
- ["Capitana","everyone, including herself (noi)","Andiamo!"],
+ ["Lo So","everyone, including herself (noi)","Andiamo!"],
  ["Luca","the class (voi)","Scrivete il nome!"],
  ["Elena","Sara (tu)","Dormi bene!"],
  ["Dante","everyone, including himself (noi)","Mangiate insieme!"]],
@@ -159,7 +159,7 @@ const CASES=[
  accept:["Dormite bene!","Dormite"],
  why:"For voi, -ire verbs end in -ite: dormite. Only -ere verbs take -ete (scrivete, leggete)."},
 {id:6,level:1,lines:[
- ["Capitana","the class (voi)","Leggete!"],
+ ["Lo So","the class (voi)","Leggete!"],
  ["Luca","Sara (tu)","Scrivi qui!"],
  ["Marta","everyone, including herself (noi)","Parliamo!"],
  ["Elena","Marco (tu)","Ascolti, Marco!"]],
@@ -170,7 +170,7 @@ const CASES=[
 {id:7,level:1,lines:[
  ["Luca","the class (voi)","Aprite la porta!"],
  ["Marta","Sara (tu)","Ascolta!"],
- ["Capitana","everyone, including herself (noi)","Leggiamo!"],
+ ["Lo So","everyone, including herself (noi)","Leggiamo!"],
  ["Dante","Marco (tu)","Apre il libro!"]],
  bad:3,types:["ending"],fix:"Apri il libro!",
  choices:["Aprite il libro!","Apro il libro!"],
@@ -180,7 +180,7 @@ const CASES=[
  ["Luca","Marco (tu)","Parti subito!"],
  ["Marta","the class (voi)","Partite!"],
  ["Elena","Sara (tu)","Aspetta qui!"],
- ["Capitana","everyone, including herself (noi)","Partite subito!"]],
+ ["Lo So","everyone, including herself (noi)","Partite subito!"]],
  bad:3,types:["person"],fix:"Partiamo subito!",
  choices:["Parti subito!","Parto subito!"],
  accept:["Partiamo subito!","Partiamo"],
@@ -204,7 +204,7 @@ const CASES=[
  accept:["Bevete piano!","Bevete"],
  why:"Bere is an -ere verb, so voi ends in -ete: bevete. Bevite would be an -ire ending."},
 {id:11,level:2,lines:[
- ["Capitana","the class (voi)","Scrivete qui!"],
+ ["Lo So","the class (voi)","Scrivete qui!"],
  ["Luca","Sara (tu)","Non parlare!"],
  ["Marta","Marco (tu)","Aspetta!"],
  ["Elena","Marco (tu)","Non scrivi qui!"]],
@@ -214,7 +214,7 @@ const CASES=[
 {id:12,level:2,lines:[
  ["Luca","the class (voi)","Ascoltate!"],
  ["Marta","Marco (tu)","Non dormire!"],
- ["Capitana","Sara (tu)","Ascolta, Sara!"],
+ ["Lo So","Sara (tu)","Ascolta, Sara!"],
  ["Dante","Sara (tu)","Non parla!"]],
  bad:3,types:["negative"],fix:"Non parlare!",
  accept:["Non parlare!","Non parlare"],
@@ -222,13 +222,13 @@ const CASES=[
 {id:13,level:2,lines:[
  ["Marta","Sara (tu)","Mangia!"],
  ["Elena","the class (voi)","Mangiate!"],
- ["Capitana","everyone, including herself (noi)","Mangiamo!"],
+ ["Lo So","everyone, including herself (noi)","Mangiamo!"],
  ["Luca","Marco (tu)","Non mangi!"]],
  bad:3,types:["negative"],fix:"Non mangiare!",
  accept:["Non mangiare!","Non mangiare"],
  why:"Non mangi means 'you don't eat'. A negative command to one friend is non + the infinitive: non mangiare."},
 {id:14,level:2,lines:[
- ["Capitana","the class (voi)","Arrivate presto!"],
+ ["Lo So","the class (voi)","Arrivate presto!"],
  ["Marta","Marco (tu)","Arriva subito!"],
  ["Elena","everyone, including herself (noi)","Arriviamo presto!"],
  ["Dante","Sara (tu)","Non arrivi tardi!"]],
@@ -245,14 +245,14 @@ const CASES=[
  why:"Non parti means 'you don't leave'. A negative command to one friend is non + the infinitive: non partire."},
 {id:16,level:2,lines:[
  ["Luca","the class (voi)","Alzatevi!"],
- ["Capitana","everyone, including herself (noi)","Alziamoci!"],
+ ["Lo So","everyone, including herself (noi)","Alziamoci!"],
  ["Elena","Sara (tu)","Svegliati!"],
  ["Marta","Marco (tu)","Ti alzi, Marco!"]],
  bad:3,types:["pronoun"],fix:"Alzati, Marco!",
  accept:["Alzati, Marco!","Alzati"],
  why:"In a command the little word sticks to the end: alzati (tu), alziamoci (noi), alzatevi (voi)."},
 {id:17,level:2,lines:[
- ["Capitana","Marco (tu)","Divertiti!"],
+ ["Lo So","Marco (tu)","Divertiti!"],
  ["Luca","everyone, including himself (noi)","Prepariamoci!"],
  ["Elena","Sara (tu)","Svegliati, Sara!"],
  ["Dante","the class (voi)","Vi lavate le mani!"]],
@@ -262,7 +262,7 @@ const CASES=[
 {id:18,level:2,lines:[
  ["Marta","Marco (tu)","Alzati presto!"],
  ["Elena","the class (voi)","Alzatevi!"],
- ["Capitana","Sara (tu)","Divertiti un po'!"],
+ ["Lo So","Sara (tu)","Divertiti un po'!"],
  ["Luca","everyone, including himself (noi)","Ci prepariamo in fretta!"]],
  bad:3,types:["pronoun"],fix:"Prepariamoci in fretta!",
  accept:["Prepariamoci in fretta!","Prepariamoci"],
@@ -270,14 +270,14 @@ const CASES=[
 {id:19,level:2,lines:[
  ["Luca","the class (voi)","Alzatevi!"],
  ["Marta","Sara (tu)","Non parlare!"],
- ["Capitana","everyone, including herself (noi)","Alziamoci!"],
+ ["Lo So","everyone, including herself (noi)","Alziamoci!"],
  ["Dante","Marco (tu)","Non alzati!"]],
  bad:3,types:["negative","pronoun"],fix:"Non alzarti!",
  accept:["Non alzarti!","Non ti alzare!","Non alzarti","Non ti alzare"],
  why:"A negative command to one friend uses the infinitive. With a reflexive verb you can write non alzarti or non ti alzare."},
 /* Healthy "don't" list: negative commands. tu = non + infinitive; voi = non + voi form; noi = non + noi form. */
 {id:20,level:1,lines:[
- ["Capitana","Sara (tu)","Non mangiare troppi dolci!"],
+ ["Lo So","Sara (tu)","Non mangiare troppi dolci!"],
  ["Elena","the class (voi)","Non saltate la colazione!"],
  ["Luca","everyone, including himself (noi)","Non stiamo sempre seduti!"],
  ["Dante","Marco (tu)","Non fumi, Marco!"]],
@@ -287,7 +287,7 @@ const CASES=[
  why:"Non fumi means 'you don't smoke'. A 'don't' order to one friend is non + the infinitive: non fumare."},
 {id:21,level:1,lines:[
  ["Marta","Marco (tu)","Non bere troppa cola!"],
- ["Capitana","everyone, including herself (noi)","Non guardiamo il telefono a letto!"],
+ ["Lo So","everyone, including herself (noi)","Non guardiamo il telefono a letto!"],
  ["Elena","Sara (tu)","Non mangiare cibo spazzatura!"],
  ["Dante","the class (voi)","Non dormire poco, ragazzi!"]],
  bad:3,types:["person"],fix:"Non dormite poco, ragazzi!",
@@ -297,7 +297,7 @@ const CASES=[
 {id:22,level:2,lines:[
  ["Luca","the class (voi)","Non fumate!"],
  ["Marta","Marco (tu)","Fai sport ogni giorno!"],
- ["Capitana","everyone, including herself (noi)","Non saltiamo la colazione!"],
+ ["Lo So","everyone, including herself (noi)","Non saltiamo la colazione!"],
  ["Elena","Sara (tu)","Non bevi troppe bibite gassate!"]],
  bad:3,types:["negative"],fix:"Non bere troppe bibite gassate!",
  accept:["Non bere troppe bibite gassate!","Non bere troppe bibite","Non bere"],
@@ -305,7 +305,7 @@ const CASES=[
 {id:23,level:2,lines:[
  ["Marta","Marco (tu)","Non guardare troppa TV!"],
  ["Elena","the class (voi)","Non mangiate troppi dolci!"],
- ["Capitana","Sara (tu)","Dormi otto ore!"],
+ ["Lo So","Sara (tu)","Dormi otto ore!"],
  ["Dante","everyone, including himself (noi)","Non stare sempre seduti!"]],
  bad:3,types:["person","negative"],fix:"Non stiamo sempre seduti!",
  accept:["Non stiamo sempre seduti!","Non stiamo seduti","Non stiamo"],
@@ -403,15 +403,15 @@ const BohBridge={
 };
 
 const app=document.getElementById("app");
-const COLORS={Capitana:"#7b2d8e",Luca:"#1f6f8b",Marta:"#b5651d",Elena:"#2d6a4f",Dante:"#8c2f39"};
+const COLORS={"Lo So":"#7b2d8e",Luca:"#1f6f8b",Marta:"#b5651d",Elena:"#2d6a4f",Dante:"#8c2f39"};
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 const FACE={
-Capitana:{skin:"#e8b48f",hair:"#2b1b14",style:"bun",glass:1,role:"Prof.ssa Rinaldi, 45. Class teacher, runs the detective club. Everyone calls her la Capitana."},
+"Lo So":{img:"../../assets/guide/bust/beckon.webp",role:"Prof. Lo So, your Italian teacher. She runs the Boh study group chat and posts the orders. Answer to everything: Boh!"},
 Luca:{skin:"#f1c9a5",hair:"#c9902f",style:"short",role:"16. Football mad, always late, always hungry. Means well."},
 Marta:{skin:"#c98e62",hair:"#3a2418",style:"curly",role:"17. Class rep and organiser. Bossy, but she gets things done."},
 Elena:{skin:"#f3d2b3",hair:"#6b3b1f",style:"long",role:"16. Swimmer and the calm one. Notices everything."},
 Dante:{skin:"#a86c46",hair:"#151010",style:"spiky",glass:1,role:"17. Joker of the class, writes poems nobody asked for."}};
-function face(n){const p=FACE[n],bg=COLORS[n]||"#555";if(!p)return '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="'+bg+'"/><text x="20" y="26" font-size="16" text-anchor="middle" fill="#fff" font-family="Georgia">'+esc(n.charAt(0))+'</text></svg>';
+function face(n){const p=FACE[n],bg=COLORS[n]||"#555";if(p&&p.img)return '<img src="'+p.img+'" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top;background:'+bg+'">';if(!p)return '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="'+bg+'"/><text x="20" y="26" font-size="16" text-anchor="middle" fill="#fff" font-family="Georgia">'+esc(n.charAt(0))+'</text></svg>';
  const H=p.hair,S=p.skin;let back="",front="";
  if(p.style==="long"){back='<path d="M8 22c0-12 6-16 12-16s12 4 12 16v14H8z" fill="'+H+'"/>';front='<path d="M11 18c2-6 6-8 9-8s8 2 9 8c-4-3-8-4-18 0z" fill="'+H+'"/>';}
  else if(p.style==="curly"){back='<g fill="'+H+'"><circle cx="11" cy="15" r="5"/><circle cx="29" cy="15" r="5"/><circle cx="15" cy="9" r="5"/><circle cx="25" cy="9" r="5"/><circle cx="20" cy="7" r="5"/><circle cx="9" cy="22" r="4"/><circle cx="31" cy="22" r="4"/></g>';}
@@ -421,8 +421,8 @@ function face(n){const p=FACE[n],bg=COLORS[n]||"#555";if(!p)return '<svg viewBox
  const g=p.glass?'<g fill="none" stroke="#222" stroke-width="1.1"><circle cx="16" cy="20" r="2.8"/><circle cx="24" cy="20" r="2.8"/><path d="M18.8 20h2.4"/></g>':'';
  return '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="'+bg+'"/>'+back+'<path d="M8 40c1-7 6-10 12-10s11 3 12 10z" fill="#f5edd9" opacity=".9"/><rect x="17" y="26" width="6" height="5" fill="'+S+'"/><ellipse cx="20" cy="19" rx="8.5" ry="9.5" fill="'+S+'"/>'+front+'<circle cx="16" cy="20" r="1.1" fill="#222"/><circle cx="24" cy="20" r="1.1" fill="#222"/>'+g+'<path d="M17 24.5q3 2 6 0" stroke="#7a3b2e" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="13.5" cy="23" r="1.4" fill="#e06666" opacity=".25"/><circle cx="26.5" cy="23" r="1.4" fill="#e06666" opacity=".25"/></svg>';}
 function av(n){return '<span class="av" aria-hidden="true">'+face(n)+'</span>';}
-function castBox(){let h='<div class="cast"><h3>CHI SONO? &middot; WHO ARE THEY?</h3><p class="cs">3B at Liceo Manzoni, Bologna. Someone in the group keeps giving orders the wrong way. Find them.</p><ul>';
- for(const n of ["Capitana","Marta","Luca","Elena","Dante"])h+='<li>'+av(n)+'<span><b>'+esc(n)+'</b> &mdash; '+esc(FACE[n].role)+'</span></li>';return h+'</ul></div>';}
+function castBox(){let h='<div class="cast"><h3>CHI SONO? &middot; WHO ARE THEY?</h3><div style="display:flex;gap:12px;align-items:center;margin:8px 0"><img src="../../assets/guide/bust/beckon.webp" alt="Prof. Lo So" style="width:96px;height:96px;object-fit:cover;object-position:top;border-radius:50%;background:#7b2d8e;flex:none"><span><b>Prof. Lo So</b> &mdash; host of the Boh study group chat. <i>Ciao ragazzi! Chi ha sbagliato l&rsquo;ordine? Boh!</i></span></div><p class="cs">The Boh study group chat for Prof. Lo So&rsquo;s Italian class. Someone in the chat keeps giving orders the wrong way. Find them.</p><ul>';
+ for(const n of ["Lo So","Marta","Luca","Elena","Dante"])h+='<li>'+av(n)+'<span><b>'+esc(n)+'</b> &mdash; '+esc(FACE[n].role)+'</span></li>';return h+'</ul></div>';}
 function caseNo(c){return CASES.indexOf(c)+1;}
 function byId(id){return CASES.find(function(c){return c.id===id;});}
 function isPaid(c){return !!S.paid[c.id];}
