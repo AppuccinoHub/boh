@@ -1,6 +1,6 @@
 # Boh.
 
-**[▶ Play online](https)** — open the live app in your browser.
+**[▶ Play online](https://appuccinohub.github.io/boh/)** — open the live app in your browser.
 
 
 *Non sa niente. Per ora.*
