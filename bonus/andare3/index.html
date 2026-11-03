@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Andare · Chi va? · Italiano 2 · BOH</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#EAF4FB; --card:#FFFFFF; --fg:#17304A; --mute:#4F657A; --line:#CFE0EE;
+  --blue:#1E63D6; --blue-fg:#FFFFFF; --turq:#17B3A6; --turq-soft:#DDF6F3;
+  --pink:#C81E78; --pink-soft:#FDE4F0; --gold:#D79A1E; --gold-soft:#FFF1CC;
+  --ok:#1E9E5A; --ok-soft:#DDF5E7; --amber:#9A4A00; --amber-soft:#FFF0D9;
+  --display:'Fredoka','Nunito',system-ui,sans-serif; --body:'Nunito',system-ui,-apple-system,sans-serif;
+  --r:22px; --shadow:0 6px 18px rgba(23,48,74,.08);
+}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.35;font-weight:700;overflow-x:hidden}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:inherit}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+#app{height:100%;display:flex;flex-direction:column;max-width:760px;margin:0 auto;padding:max(10px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));overflow-y:auto;overflow-x:hidden}
+.top{display:flex;align-items:center;gap:10px;min-height:48px;flex:none}
+.top .back{white-space:nowrap;font-family:var(--display);font-weight:600;font-size:17px;padding:8px 14px;border-radius:999px;background:var(--card);box-shadow:var(--shadow);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.top .sp{flex:1}
+.pill{white-space:nowrap;font-family:var(--display);font-size:16px;background:var(--card);border-radius:999px;padding:6px 12px;box-shadow:var(--shadow)}
+.crumb{font-size:16px;color:var(--mute);font-weight:800;margin:6px 2px 4px;display:flex;justify-content:space-between;gap:10px;flex:none}
+.bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:0 2px 8px;flex:none}
+.bar i{display:block;height:100%;background:var(--turq);width:0;transition:width .3s}
+.stage{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}
+.kick{font-size:16px;color:var(--mute);letter-spacing:.03em;text-transform:uppercase;font-weight:800}
+h1,h2{font-family:var(--display);font-weight:700;margin:0;text-wrap:balance;line-height:1.15}
+h1{font-size:30px}h2{font-size:24px}
+.prompt{font-family:var(--display);font-size:28px;font-weight:600;line-height:1.25}
+.pk{color:var(--pink)}
+.en{font-size:20px;color:var(--fg);background:var(--bg);border-radius:14px;padding:10px 14px}
+.sub{color:var(--mute);font-size:17px}
+.chip{display:inline-block;font-size:16px;font-weight:800;color:var(--mute);border:2px solid var(--line);border-radius:999px;padding:2px 12px;align-self:flex-start}
+.opts{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.opts.two,.opts.three{grid-template-columns:1fr 1fr}.opts.three .opt:last-child:nth-child(odd){grid-column:1/-1}}
+.opt{min-height:58px;border-radius:16px;border:2px solid var(--line);background:var(--card);padding:10px 14px;font-size:21px;font-weight:800;text-align:left;transition:transform .08s}
+.opt:active{transform:scale(.98)}
+.opt.sel{border-color:var(--blue);background:#E6EFFC}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}
+.opt.no{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.opt[disabled]{cursor:default}
+.fb{border-radius:16px;padding:12px 14px;font-size:18px;display:flex;gap:10px;align-items:flex-start}
+.fb.ok{background:var(--ok-soft)}
+.fb.no{background:var(--amber-soft)}
+.fb b{font-family:var(--display);font-weight:600;display:block;font-size:22px}
+.fb img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top;flex:none;background:var(--card)}
+.prof{display:flex;gap:12px;align-items:flex-end}
+.prof img{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:top;background:var(--turq-soft);flex:none}
+.bubble{background:var(--turq-soft);border-radius:18px;padding:12px 14px;font-size:22px;font-family:var(--display);font-weight:600;flex:1}
+.bubble small{display:block;color:var(--mute);font-size:17px;margin-top:3px;font-family:var(--body);font-weight:700}
+.btn{font-family:var(--display);font-weight:600;font-size:21px;min-height:56px;border-radius:18px;padding:10px 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center}
+.btn.p{background:var(--blue);color:var(--blue-fg)}
+.btn.g{background:var(--card);border:2px solid var(--line)}
+.btn.q{background:transparent;border:2px solid var(--line);font-size:19px;min-height:52px}
+.btn.wide{width:100%}
+.btn[disabled]{opacity:.45;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>.btn{flex:1;min-width:140px}
+.helpbox{border-radius:14px;background:var(--gold-soft);padding:10px 14px;font-size:18px}
+.hearbtn{width:100%;min-height:84px;border-radius:18px;background:var(--turq-soft);display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--display);font-size:24px;font-weight:600}
+.hearbtn svg{width:38px;height:38px}
+.nocl{border-radius:14px;background:var(--bg);padding:10px 14px;font-size:17px;color:var(--mute)}
+input.ans{font:inherit;font-size:24px;font-weight:800;width:100%;min-height:60px;border-radius:16px;border:2px solid var(--line);padding:10px 14px;background:var(--card);color:var(--fg)}
+.slots{display:flex;flex-wrap:wrap;gap:8px;min-height:84px;align-content:flex-start;border:2px dashed var(--line);border-radius:16px;padding:12px}
+.slots .ph{color:var(--mute);font-size:17px}
+.tok{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:6px 14px;font-size:24px;font-family:var(--display);font-weight:600;min-height:48px}
+.slots .tok{background:var(--blue);border-color:var(--blue);color:#fff}
+.bank{display:flex;flex-wrap:wrap;gap:8px}
+.bank .tok[disabled]{opacity:.35}
+/* match */
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mgrid .opt{text-align:center;padding:10px 8px}
+.pips{display:flex;gap:8px;align-items:center;font-family:var(--display);font-size:20px}
+.pips i{width:22px;height:22px;border-radius:50%;background:var(--line);display:inline-block}
+.pips i.on{background:var(--gold)}
+/* path */
+.home{display:flex;flex-direction:column;gap:12px;flex:1;min-height:0}
+.hero{display:flex;gap:12px;align-items:center}
+.hero img{width:104px;height:104px;border-radius:50%;object-fit:cover;object-position:top;background:var(--card);box-shadow:var(--shadow)}
+.hero .t small{display:block;color:var(--mute);font-size:17px}
+.stops{display:flex;flex-direction:column;gap:8px}
+.stop{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:12px 14px;text-align:left;width:100%;min-height:68px}
+.stop .n{width:42px;height:42px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:20px;flex:none}
+.stop.cur .n{background:var(--pink);color:#fff}
+.stop.done .n{background:var(--turq);color:#fff}
+.stop.lock{opacity:.6}
+.stop .l{flex:1;font-size:20px;font-weight:800}.stop .l small{display:block;color:var(--mute);font-size:16px;font-weight:700}
+.stop .r{font-family:var(--display);font-size:18px;color:var(--mute)}
+.parlacard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:14px;display:flex;gap:12px;align-items:center;text-align:left;width:100%;border:2px solid var(--line)}
+.parlacard img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;background:var(--turq-soft);flex:none}
+.parlacard b{font-family:var(--display);font-size:22px;font-weight:600;display:block}
+.parlacard small{display:block;color:var(--mute);font-size:16px}
+/* teach */
+.tsc{flex:1;min-height:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tsc::-webkit-scrollbar{display:none}
+.tp{flex:0 0 100%;scroll-snap-align:center;min-width:0}
+.tp .card{height:100%}
+.dots{display:flex;gap:10px;justify-content:center;flex:none;padding:4px 0}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--blue)}
+.chunk{text-align:center}
+.chunk .bg{font-family:var(--display);font-size:50px;font-weight:700;line-height:1.1}
+.chunk .eq{font-size:22px;color:var(--mute)}
+.pairs{display:flex;flex-direction:column;gap:8px}
+.pair{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg);border-radius:14px;padding:10px 14px;font-size:21px;text-align:left;min-height:56px;width:100%}
+.pair small{color:var(--mute);font-size:17px;text-align:right}
+.pair .spk{width:24px;height:24px;flex:none;color:var(--blue)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zone{border-radius:16px;padding:10px 12px;background:var(--bg);display:flex;flex-direction:column;gap:4px}
+@media(max-width:480px){.zone p{font-size:16px}.setph{padding:8px 12px;font-size:17px}.zone .ph button,.setph button{min-height:44px;font-size:17px}.tp .card{padding:12px;gap:8px}.tp .prof img{width:52px;height:52px}.tp .bubble{font-size:19px;padding:6px 12px}.tp .bubble small{font-size:16px;margin-top:0}.zone h3{font-size:20px}}
+.zone h3{margin:0;font-family:var(--display);font-size:22px;font-weight:700}
+.zone p{margin:0;font-size:17px}
+.zone .ph{display:flex;flex-wrap:wrap;gap:6px}
+.zone .ph button{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:4px 10px;font-size:18px;min-height:44px}
+.setph{border-radius:14px;background:var(--gold-soft);padding:10px 14px;font-size:18px}
+.setph button{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:4px 10px;font-size:18px;min-height:44px;margin:2px 4px 2px 0}
+@media(max-width:480px){.two-col{grid-template-columns:1fr}}
+/* results */
+.big{font-family:var(--display);font-size:64px;font-weight:700;line-height:1;color:var(--blue)}
+.center{text-align:center;align-items:center}
+.shot{background:var(--pink-soft);border:2px solid var(--pink);border-radius:16px;padding:12px 14px;font-size:18px;width:100%;text-align:left}
+.shot b{color:var(--pink);font-family:var(--display);font-size:22px;font-weight:700;display:block}
+.bcline{font-family:var(--display);font-size:22px;color:var(--fg)}
+/* parla */
+.tier{border:2px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.tier h2{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.tier .bc{font-family:var(--display);font-size:18px;background:var(--gold-soft);border-radius:999px;padding:2px 12px;white-space:nowrap}
+.tier.done{border-color:var(--ok);background:#F4FBF7}
+.steps{margin:0;padding-left:22px;font-size:18px}
+.steps li{margin:4px 0}
+.say-line{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--bg);border-radius:14px;padding:8px 12px;font-size:22px;font-family:var(--display);font-weight:600;min-height:52px}
+.say-line small{display:block;font-family:var(--body);font-size:16px;color:var(--mute);font-weight:700}
+.say-line button{min-width:44px;min-height:44px;color:var(--blue)}
+.say-line svg{width:26px;height:26px}
+.recwrap{overflow-x:hidden}
+/* the shared recorder (assets/recorder.js) has a few lines under 16px; raise them here only, so other levels are untouched */
+.brec .brec-note,.brec-note,.bhi-ok,.bhi-n,.bhi-nm,.bhi-msg,.bhi-en,.bhi-row code,.bhi-s,.brec small,.brec label{font-size:16px!important}
+.brec,.bhi{max-width:100%;overflow-wrap:anywhere}
+@media (prefers-reduced-motion:no-preference){.pop{animation:pop .3s}}
+@keyframes pop{from{transform:scale(.92);opacity:.4}to{transform:scale(1);opacity:1}}
+@media(max-height:760px){.prompt{font-size:25px}.opt{min-height:52px;font-size:20px}.prof img{width:68px;height:68px}.chunk .bg{font-size:42px}.big{font-size:52px}.hero img{width:80px;height:80px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="../../assets/recorder.js"></script>
+<script>
+(function(){
+'use strict';
+/* BOH · Italiano 2 · Side unit · Andare · Chi va?
+   Not tied to the modal order. Five stops unlock in order. Each stop: 3 teach cards, 8 practice cards, Results.
+   Level: Italiano 2. Taught here: the six presente forms of andare (vado, vai, va, andiamo, andate, vanno), a / in, and two set phrases
+   (dal dottore, a prendere acqua) with English and no grammar talk. "dove" is the only new word. No articulated prepositions.
+   English shows only on the teach cards and practice cards 1 and 2. After that: Italian only; Help gives the English first, then a word or two of Italian.
+   PLACEHOLDERS (not final): every BC amount below, and the Prof. Lo So / Boh art (assets/guide/bust). */
+var KEY='boh_andare3_v1';
+var INBOX='boh_bc_inbox_2';                       /* picked up by italiano2/index.html on its next load */
+var BC={perRight:2,clear:10,reward:5,parla:{ripeti:10,rispondi:20,giorno:30}};   /* PLACEHOLDERS */
+
+/* ---------- audio: Sara clips only. No device voice, so a line without a clip shows as text. ---------- */
+var CLIPS={
+ "vado":"../andare/audio/c_df57de7a8d.mp3","vai":"../andare/audio/c_120032fb70.mp3","andiamo":"../andare/audio/c_e8d4ba61a5.mp3",
+ "a casa":"../andare/audio/c_cd58f6c09b.mp3","a scuola":"../andare/audio/c_d570993782.mp3","in bagno":"../andare/audio/c_c6198c1941.mp3",
+ "in palestra":"../andare/audio/c_dc1430bce8.mp3","a roma":"../andare/audio/c_1f044bde9a.mp3","in italia":"../andare/audio/c_eb432f3974.mp3",
+ "dal dottore":"../../assets/audio/c_79ff86f180.mp3",
+ "vado in palestra":"../andare2/audio/c_7630a117b9.mp3","vai a scuola":"../andare2/audio/c_9841cb3e2a.mp3",
+ "vado a roma":"../andare2/audio/c_cf7be21325.mp3","vado in italia":"../andare2/audio/c_7b44563de2.mp3",
+ "vado a casa":"../andare2/audio/c_6cc2df6511.mp3","vai in palestra":"../andare2/audio/c_055c9fa284.mp3"
+};
+/* NEW lines for Sara (not recorded yet). When a clip is added to bonus/andare3/audio/, put its key in SARA_HAVE and the line starts to play. */
+var SARA_NEW={
+ "vuoi parlare":"audio/c_bd95bdddee.mp3","io vado a casa":"audio/c_65903b3fe1.mp3","tu vai a casa":"audio/c_f3d072c2b8.mp3",
+ "a prendere acqua":"audio/c_a0092a8ad5.mp3","dove vai":"audio/c_ff41deeaaf.mp3",
+ "lui va a casa":"audio/c_989b10b2f3.mp3","lei va a scuola":"audio/c_853eceb26c.mp3","lei va in italia":"audio/c_df4e7ab92e.mp3",
+ "noi andiamo dal dottore":"audio/c_9f69a04c0b.mp3","andiamo a scuola":"audio/c_e90d4b5e07.mp3","loro vanno a scuola":"audio/c_c51e8a36be.mp3",
+ "voi andate in bagno":"audio/c_6a7b7deb1d.mp3","dove va":"audio/c_c9bf2c266c.mp3","dove andate":"audio/c_7fdf362214.mp3"
+};
+var SARA_HAVE=["vuoi parlare","io vado a casa","tu vai a casa","a prendere acqua","dove vai"];   /* recorded Nov 3 (Sara, if_sara) */
+function vkey(s){return String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/[^\p{L}\p{N}' ]+/gu,' ').replace(/\s+/g,' ').trim()}
+function clipFor(text){var k=vkey(text);return CLIPS[k]||(SARA_HAVE.indexOf(k)!==-1&&SARA_NEW[k])||null}
+function hasClip(t){return !!clipFor(t)}
+var _au=null;
+function say(text){var f=clipFor(text);if(!f)return;try{if(_au)_au.pause();_au=new Audio(f);_au.play().catch(function(){})}catch(e){}}
+var SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4z" fill="currentColor"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
+
+/* ---------- the eight places and the six people ---------- */
+var PL={
+ casa:{ph:'a casa',prep:'a',w:'casa',en:'home'},scuola:{ph:'a scuola',prep:'a',w:'scuola',en:'to school'},
+ bagno:{ph:'in bagno',prep:'in',w:'bagno',en:'to the bathroom'},palestra:{ph:'in palestra',prep:'in',w:'palestra',en:'to the gym'},
+ Roma:{ph:'a Roma',prep:'a',w:'Roma',en:'to Rome'},Italia:{ph:'in Italia',prep:'in',w:'Italia',en:'to Italy'},
+ dottore:{ph:'dal dottore',prep:null,w:'dottore',en:"to the doctor's"},acqua:{ph:'a prendere acqua',prep:null,w:'acqua',en:'to get water'}
+};
+var ENDINGS=['a casa','a scuola','in bagno','in palestra','a roma','in italia','dal dottore','a prendere acqua'];
+var PERS={
+ io:{pr:'Io',v:'vado',en:'I',g:'go'},tu:{pr:'Tu',v:'vai',en:'You',g:'go'},lui:{pr:'Lui',v:'va',en:'He',g:'goes'},lei:{pr:'Lei',v:'va',en:'She',g:'goes'},
+ noi:{pr:'Noi',v:'andiamo',en:'We',g:'go'},voi:{pr:'Voi',v:'andate',en:'You all',g:'go'},loro:{pr:'Loro',v:'vanno',en:'They',g:'go'}
+};
+var ALLV=['vado','vai','va','andiamo','andate','vanno'];
+function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+/* sentence: p person, pid place, o: {np:no pronoun, q:question} */
+function sent(p,pid,o){o=o||{};var P=PERS[p],pl=PL[pid];var t=(o.np?cap1(P.v):P.pr+' '+P.v)+' '+pl.ph+(o.q?'?':'.');return t}
+function sentEn(p,pid){var P=PERS[p],pl=PL[pid];var d=pid==='casa'?'home':pl.en;return P.en+' '+P.g+' '+d+'.'}
+var LIM=6;   /* how many forms of ALLV the current stop has taught (stop 1: 2, stop 2: 3, stop 3: 4, stops 4-5: 6) */
+function wrongVerb(p){var cur=PERS[p].v;return shuffle(ALLV.slice(0,LIM).filter(function(v){return v!==cur})).concat(['andare'])}
+function swapVerb(p,pid,o,v){var P=PERS[p],pl=PL[pid];return (o&&o.np?cap1(v):P.pr+' '+v)+' '+pl.ph+((o&&o.q)?'?':'.')}
+function swapPrep(p,pid,o){var P=PERS[p],pl=PL[pid];if(!pl.prep)return null;var pp=pl.prep==='a'?'in':'a';return (o&&o.np?cap1(P.v):P.pr+' '+P.v)+' '+pp+' '+pl.w+((o&&o.q)?'?':'.')}
+
+/* ---------- the five stops: [3 teach cards] + the 8 practice cards ---------- */
+/* teach card: {bub:[it,en], big, eq, pairs:[[it,en]], note, kind} */
+var STOPS=[
+ {n:1,title:'Io e tu',sub:'vado, vai',
+  teach:[
+   {bub:['Andare!','to go'],big:'andare',eq:'to go',pairs:[['Dove vai?','Where are you going?']],note:'One little verb that takes you everywhere. <b>Dove</b> is the only new word. It changes shape depending on WHO goes.'},
+   {bub:['Guarda la fine!','Look at the ending!'],big:'vad<b class="pk">o</b> · va<b class="pk">i</b>',eq:'-o = I go · -i = you go',pairs:[['Vado a Roma.','I go to Rome.'],['Vai a scuola.','You go to school.'],['Vado in Italia.','I go to Italy.']],note:'The last letter tells you who.'},
+   {kind:'pool',bub:['Bersaglio o piscina?','Dartboard or swimming pool?']}
+  ],
+  c:{c1:['io','Roma',{np:1}],c2:['io','Italia',{np:1,dove:1}],c3:['tu','scuola','verb'],c4:['io','palestra',{np:1}],
+     c5:[['Roma','a Roma'],['Italia','in Italia'],['scuola','a scuola']],c6:['tu','scuola',{np:1}],c7:{pre:['Io','vado'],dis:['vai','Tu']},c8:['io','Roma']}},
+ {n:2,title:'Lui e lei',sub:'va',
+  teach:[
+   {bub:['Lui va. Lei va.','He goes. She goes.'],big:'va',eq:'he goes · she goes',pairs:[['Lui va a casa.','He goes home.'],['Lei va a scuola.','She goes to school.'],['Marco va in palestra.','Marco goes to the gym.']],note:'Lui and lei use the SAME word: <b>va</b>.'},
+   {bub:['La scala!','The ladder!'],big:'vado · vai · <b class="pk">va</b>',eq:'I go · you go · he/she goes',pairs:[['<b>Vado</b>','-o = I'],['<b>Vai</b>','-i = you'],['<b>Va</b>','-a = he or she']],note:'The word gets shorter. The last letter still tells you who.'},
+   {bub:['Anche i posti!','The places too!'],big:'a · in',eq:'🎯 a · 🏊 in',pairs:[['Sofia va a Roma.','Sofia goes to Rome.'],['Lui va in Italia.','He goes to Italy.'],['Lei va dal dottore.','She goes to the doctor\'s.'],['Lui va a prendere acqua.','He goes to get water.']],note:'Same rule: a city is a bullseye (a), a big space is a pool (in).'}
+  ],
+  c:{c1:['lei','scuola',{}],c2:['lui','palestra',{}],c3:['lei','Roma','verb'],c4:['lui','casa',{}],
+     c5:[['Lui','va'],['Io','vado'],['Tu','vai']],c6:['lei','Italia',{}],c7:{pre:['Lei','va'],dis:['vai','Lui']},c8:['lei','bagno']}},
+ {n:3,title:'Noi',sub:'andiamo',
+  teach:[
+   {bub:['Noi andiamo!','We go!'],big:'andiamo',eq:'we go',pairs:[['Noi andiamo a casa.','We go home.'],['Andiamo in palestra.','We go to the gym.'],['Andiamo a Roma.','We go to Rome.']],note:'<b>Noi</b> = we. You can drop <b>noi</b>: the ending already says it.'},
+   {bub:['Andiamo!','Let\'s go!'],big:'andiam<b class="pk">o</b>',eq:'the ending -iamo = we',pairs:[['Andiamo!','Let\'s go!'],['Noi andiamo a scuola.','We go to school.'],['Andiamo in Italia.','We go to Italy.']],note:'Same word, two jobs: "we go" and "let\'s go".'},
+   {bub:['Insieme!','Together!'],big:'noi',eq:'we',pairs:[['Andiamo dal dottore.','We go to the doctor\'s.'],['Andiamo a prendere acqua.','We go to get water.'],['Noi andiamo in bagno.','We go to the bathroom.']],note:'<b>dal dottore</b> and <b>a prendere acqua</b> are set phrases. Just learn them as they are.'}
+  ],
+  c:{c1:['noi','casa',{}],c2:['noi','Roma',{}],c3:['noi','palestra','verb'],c4:['noi','scuola',{np:1}],
+     c5:[['Noi','andiamo'],['Lei','va'],['Io','vado']],c6:['noi','dottore',{}],c7:{pre:['Noi','andiamo'],dis:['vanno','Voi']},c8:['noi','Italia']}},
+ {n:4,title:'Voi e loro',sub:'andate, vanno',
+  teach:[
+   {bub:['Voi andate!','You all go!'],big:'andate',eq:'you all go (voi)',pairs:[['Voi andate a casa.','You all go home.'],['Andate in palestra.','You all go to the gym.'],['Voi andate a Roma.','You all go to Rome.']],note:'<b>Voi</b> = you, but to MORE than one person.'},
+   {bub:['Loro vanno!','They go!'],big:'vanno',eq:'they go (loro)',pairs:[['Loro vanno a scuola.','They go to school.'],['Vanno in Italia.','They go to Italy.'],['Loro vanno dal dottore.','They go to the doctor\'s.']],note:'<b>Loro</b> = they. Watch the double <b>n</b>: vanno.'},
+   {bub:['Due gruppi!','Two groups!'],big:'andate · <b class="pk">vanno</b>',eq:'you all · they',pairs:[['<b>Voi</b> andate in bagno.','You all go to the bathroom.'],['<b>Loro</b> vanno in bagno.','They go to the bathroom.'],['Voi andate a prendere acqua.','You all go to get water.']],note:'Talking TO the group: voi. Talking ABOUT the group: loro.'}
+  ],
+  c:{c1:['voi','casa',{}],c2:['loro','Roma',{}],c3:['voi','Roma','verb'],c4:['loro','scuola',{}],
+     c5:[['Voi','andate'],['Loro','vanno'],['Noi','andiamo']],c6:['voi','bagno',{}],c7:{pre:'RANDOM_VL',dis:['andiamo','va']},c8:['loro','Italia']}},
+ {n:5,title:'Tutti insieme',sub:'all six mixed',
+  teach:[
+   {bub:['Le sei forme!','The six forms!'],big:'vado · vai · va<br>andiamo · andate · vanno',eq:'',pairs:[['<b>io</b> vado · <b>tu</b> vai','I go · you go'],['<b>lui/lei</b> va · <b>noi</b> andiamo','he/she goes · we go'],['<b>voi</b> andate · <b>loro</b> vanno','you all go · they go']],note:'Six people, six words. Every one is the presente of <b>andare</b>.'},
+   {bub:['Chi è?','Who is it?'],big:'chi? poi dove?',eq:'who? then where?',pairs:[['Find the <b>person</b> first.','Who is going?'],['Then pick the <b>verb</b> that matches.','vado · vai · va · andiamo · andate · vanno'],['Then pick <b>a</b> or <b>in</b>.','🎯 a · 🏊 in']],note:'Three quick questions, every time.'},
+   {bub:['Dove?','Where?'],big:'Dove?',eq:'where?',pairs:[['Dove vai?','Where are you going? (to one person)'],['Dove va?','Where is he/she going?'],['Dove andate?','Where are you all going?']],note:'<b>Dove</b> asks where. The verb already tells you who.'}
+  ],
+  c:{c1:['tu','casa',{}],c2:['lui','dottore',{}],c3:['loro','Italia','verb'],c4:['tu','palestra',{np:1,q:1}],
+     c5:[['Lei','va'],['Noi','andiamo'],['Loro','vanno']],c6:['io','casa',{np:1}],c7:{pre:'RANDOM_ALL',dis:['andare','vado']},c8:['noi','Roma']}}
+];
+
+/* ---------- build the 8 practice items of one stop ---------- */
+var KICK=['Riscaldamento','Scegli','Completa','Costruiscila','Premio · 3 di fila','Ascolta e scrivi','SFIDA','Ultima!'];
+function mkSentenceItems(S){
+ var C=S.c,items=[];LIM=[0,2,3,4,6,6][S.n];
+ function opts3(p,pid,o){var wv=wrongVerb(p),sp=swapPrep(p,pid,o);var a=[sent(p,pid,o),swapVerb(p,pid,o,wv[0])];a.push(sp||swapVerb(p,pid,o,wv[1]));return a}
+ /* 1 warm-up: 2 choices, English shown */
+ (function(){var a=C.c1,o=a[2],ok=sent(a[0],a[1],o);var wv=wrongVerb(a[0]);
+  items.push({t:'pick',n:1,en:sentEn(a[0],a[1]),ok:ok,opts:shuffle([ok,swapVerb(a[0],a[1],o,wv[0])]),why:PERS[a[0]].pr+' = '+PERS[a[0]].v+'.',say:ok,
+   help:{en:'Match the person to the verb.',it:PERS[a[0]].pr+' → '+PERS[a[0]].v}})})();
+ /* 2 pick: 3 choices, English shown */
+ (function(){var a=C.c2,o=a[2],ok=sent(a[0],a[1],o);var pl=PL[a[1]];
+  items.push({t:'pick',n:2,dove:o.dove,en:sentEn(a[0],a[1]),ok:ok,opts:shuffle(opts3(a[0],a[1],o)),
+   why:PERS[a[0]].pr+' = '+PERS[a[0]].v+'. '+(pl.prep==='a'?'🎯 a':pl.prep==='in'?'🏊 in':'Set phrase: '+pl.ph)+'.',say:ok,
+   help:{en:'Check the verb, then check a or in.',it:PERS[a[0]].v+' · '+pl.ph}})})();
+ /* 3 pick, no English: fill the verb */
+ (function(){var a=C.c3,p=a[0],pid=a[1],P=PERS[p],pl=PL[pid];var ok=P.v;var d=wrongVerb(p).slice(0,2);
+  items.push({t:'pick',n:3,tense:1,prompt:P.pr+' <span class="pk">___</span> '+pl.ph+'.',ok:ok,opts:shuffle([ok].concat(d)),say:sent(p,pid,{}),
+   help:{en:sentEn(p,pid),it:P.pr.toLowerCase()+' → '+ok.charAt(0)+'…'}})})();
+ /* 4 build it from audio */
+ (function(){var a=C.c4,o=a[2]||{},tx=sent(a[0],a[1],o),w=tx.replace(/[.?]$/,'').split(' ');var pl=PL[a[1]];
+  var dis=[wrongVerb(a[0])[0],pl.prep==='a'?'in':'a'].filter(function(x){return x&&w.map(function(y){return y.toLowerCase()}).indexOf(x.toLowerCase())===-1});
+  items.push({t:'build',n:4,tense:1,target:tx,words:w,bank:w.concat(dis.slice(0,2)),audio:tx,
+   help:{en:sentEn(a[0],a[1]),it:w[0]+'…'}})})();
+ /* 5 reward match */
+ items.push({t:'match',n:5,pairs:C.c5,help:{en:'Match each person, or place, to its partner.',it:C.c5[0][0]+' → '+C.c5[0][1]}});
+ /* 6 listen and type */
+ (function(){var a=C.c6,o=a[2]||{},tx=sent(a[0],a[1],o);
+  items.push({t:'type',n:6,tense:1,answer:tx,audio:tx,help:{en:sentEn(a[0],a[1]),it:tx.split(' ')[0]+'…'}})})();
+ /* 7 challenge: whole sentence, last two words are the student's */
+ (function(){var pre=C.c7.pre;if(pre==='RANDOM_VL')pre=rnd([['Voi','andate'],['Loro','vanno']]);if(pre==='RANDOM_ALL'){var q=rnd(['io','tu','lui','lei','noi','voi','loro']);pre=[PERS[q].pr,PERS[q].v]}
+  items.push({t:'chal',n:7,tense:1,pre:pre,dis:C.c7.dis,help:{en:'Say who goes, then choose where YOU go.',it:pre.join(' ')+' …'}})})();
+ /* 8 easy closer: a or in */
+ (function(){var a=C.c8,P=PERS[a[0]],pl=PL[a[1]];var ok=pl.prep;
+  items.push({t:'pick',n:8,tense:1,prompt:(a[0]==='io'?cap1(P.v):P.pr+' '+P.v)+' <span class="pk">___</span> '+pl.w+'.',ok:ok,opts:shuffle(['a','in']),say:sent(a[0],a[1],{np:a[0]==='io'}),
+   help:{en:'A city is a bullseye. A big space or a room is a pool.',it:pl.prep==='a'?'🎯 a':'🏊 in'}})})();
+ return items;
+}
+
+/* ---------- state ---------- */
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
+var st=load()||{};
+if(!st.stops||typeof st.stops!=='object')st.stops={};
+if(!st.parla||typeof st.parla!=='object')st.parla={};
+if(typeof st.bc!=='number')st.bc=0;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function award(n){if(n<=0)return;try{var c=parseInt(localStorage.getItem(INBOX)||'0')||0;localStorage.setItem(INBOX,String(c+n))}catch(e){}st.bc+=n;save()}
+function unlocked(n){return n===1||!!(st.stops[n-1]&&st.stops[n-1].done)}
+function bohEnd(){try{var p=JSON.parse(localStorage.getItem('boh_profile_v1')||'null');if(p&&p.bohBase)return p.bohBase==='m'?'o':'a'}catch(e){}return 'o'}
+var IMGDIR='../../assets/guide/bust/';
+var IMG={wave:IMGDIR+'wave.webp',present:IMGDIR+'present.webp',clap:IMGDIR+'clap.webp',cheeky:IMGDIR+'cheeky-what.webp',joy:IMGDIR+'jump-joy.webp',mic:IMGDIR+'mic.webp',think:IMGDIR+'think.webp'};
+var app=document.getElementById('app');
+var run=null,view='path';
+var R_OK=['Bene!','Ottimo!','Eccellente!','Ue!'],R_BAD=['Quasi!','Non ancora','Ma no!'];
+function okHead(){run.okN=(run.okN||0)+1;return run.okN%5===0?'Bravissim'+bohEnd()+'!':R_OK[(run.okN-1)%R_OK.length]}
+function badHead(){run.badN=(run.badN||0)+1;return R_BAD[(run.badN-1)%R_BAD.length]}
+function norm(s){return String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/[.,?!;:]/g,' ').replace(/\s+/g,' ').trim()}
+function profBox(img,it,en){return '<div class="prof"><img src="'+img+'" alt="Prof. Lo So"><div class="bubble">'+it+(en?'<small>'+en+'</small>':'')+'</div></div>'}
+function topbar(back){return '<div class="top">'+back+'<span class="sp"></span><span class="pill" aria-label="Boh Cashi from this unit">'+st.bc+' BC</span></div>'}
+var BACKPATH='<button class="back" data-a="path">‹ Chi va?</button>';
+var BACKHOME='<a class="back" href="../../italiano2/">‹ Italiano 2</a>';
+
+/* ---------- path ---------- */
+function path(){view='path';run=null;
+ var h=topbar(BACKHOME)+'<div class="home"><div class="hero"><img src="'+IMG.wave+'" alt="Prof. Lo So waves"><div class="t"><h1>Andare · Chi va?</h1><small>Five stops · a side unit</small><small>Each stop: 3 teach cards, then 8 practice cards</small></div></div>';
+ var cur=0;for(var i=1;i<=5;i++){if(!(st.stops[i]&&st.stops[i].done)){cur=i;break}}
+ h+='<div class="stops">'+STOPS.map(function(S){var d=st.stops[S.n]&&st.stops[S.n].done,o=unlocked(S.n);var cls='stop'+(d?' done':S.n===cur?' cur':'')+(!o?' lock':'');
+  return '<button class="'+cls+'" data-a="stop" data-n="'+S.n+'" '+(o?'':'disabled aria-disabled="true"')+'><span class="n">'+(d?'✓':o?S.n:'🔒')+'</span><span class="l">'+S.title+'<small>'+S.sub+'</small></span><span class="r">'+(d?(st.stops[S.n].best+' / 8'):'')+'</span></button>'}).join('')+'</div>';
+ h+='<button class="parlacard" data-a="parla"><img src="'+IMG.mic+'" alt=""><span><b>Vuoi parlare?</b><small>Do you want to speak? Optional. Skip it and nothing is lost.</small></span></button></div>';
+ app.innerHTML=h}
+
+/* ---------- teach ---------- */
+function teachCard(S,c,k){
+ var h='<div class="card">'+profBox(IMG.present,c.bub[0],c.bub[1]);
+ if(c.kind==='pool'){
+  h+='<div class="two-col"><div class="zone"><h3>🎯 Dartboard · a</h3><p>A city is a tiny bullseye. Throw a dart <b>AT</b> it.</p><div class="ph"><button data-a="say" data-s="a Roma">a Roma</button><button data-a="say" data-s="a casa">a casa</button><button data-a="say" data-s="a scuola">a scuola</button></div><p>a casa · a scuola: a pair. At home, at school.</p></div>'+
+   '<div class="zone"><h3>🏊 Pool · in</h3><p>A big space, a country or a room. Jump <b>IN</b>.</p><div class="ph"><button data-a="say" data-s="in Italia">in Italia</button><button data-a="say" data-s="in palestra">in palestra</button><button data-a="say" data-s="in bagno">in bagno</button></div></div></div>'+
+   '<div class="setph"><b>Two set phrases.</b> Learn them as they are:<br><button data-a="say" data-s="dal dottore">dal dottore</button> = at the doctor\'s<br><span class="pk" style="font-weight:800">a prendere acqua</span> = to get water</div>';
+  return h+'</div>'}
+ h+='<div class="chunk"><div class="bg">'+(k===1&&S.n===1?'':'')+c.big+'</div>'+(c.eq?'<div class="eq">= '+c.eq+'</div>':'')+'</div>';
+ h+='<div class="pairs">'+c.pairs.map(function(p){var plain=p[0].replace(/<[^>]+>/g,'');var can=hasClip(plain);
+   return (can?'<button class="pair" data-a="say" data-s="'+esc(plain)+'"><span>'+p[0]+'</span><small>'+p[1]+'</small><span class="spk">'+SPK+'</span></button>':'<div class="pair"><span>'+p[0]+'</span><small>'+p[1]+'</small></div>')}).join('')+'</div>';
+ if(c.note)h+='<div class="sub">'+c.note+'</div>';
+ return h+'</div>'}
+function teach(n){view='teach';var S=STOPS[n-1];run={n:n,page:0,mode:'teach'};
+ var h=topbar(BACKPATH)+'<div class="crumb"><span>Stop '+n+' · '+S.title+'</span><span>Teach</span></div><div class="stage"><div class="tsc" id="tsc">'+
+  S.teach.map(function(c,i){return '<div class="tp" role="group" aria-label="Teach card '+(i+1)+' of 3">'+teachCard(S,c,i+1)+'</div>'}).join('')+'</div><div class="dots" id="dots">'+S.teach.map(function(_,i){return '<i class="'+(i===0?'on':'')+'"></i>'}).join('')+'</div><button class="btn p wide" data-a="tnext">Avanti</button></div>';
+ app.innerHTML=h;
+ var sc=document.getElementById('tsc');
+ sc.addEventListener('scroll',function(){var p=Math.round(sc.scrollLeft/Math.max(1,sc.clientWidth));if(p!==run.page){run.page=p;var d=document.getElementById('dots').children;for(var i=0;i<d.length;i++)d[i].className=i===p?'on':''}},{passive:true})}
+function tnext(){var sc=document.getElementById('tsc');if(!sc)return;var last=STOPS[run.n-1].teach.length-1;
+ if(run.page>=last)return startPractice(run.n);
+ sc.scrollTo({left:sc.clientWidth*(run.page+1)+ (run.page+1)*12,behavior:'smooth'})}
+
+/* ---------- practice ---------- */
+function startPractice(n){var S=STOPS[n-1];run={n:n,mode:'practice',items:mkSentenceItems(S),i:0,right:0,res:[],reward3:false,okN:0,badN:0,revealed:false,help:0};card()}
+function crumb(){return '<div class="crumb"><span>Stop '+run.n+' · '+KICK[run.i]+'</span><span>'+(run.i+1)+' / 8</span></div><div class="bar"><i style="width:'+Math.round(100*run.i/8)+'%"></i></div>'}
+function helpHtml(it){if(run.revealed)return '';
+ if(run.help)return '<div class="helpbox"><b>Help:</b> '+it.help.en+' <span style="color:var(--mute)">·</span> <b>'+esc(it.help.it)+'</b></div>';
+ return '<button class="btn q" data-a="help">Help · Aiuto</button>'}
+function tenseChip(it){return it.tense?'<span class="chip">Tempo: presente</span>':''}
+function audioBlock(it,text){
+ if(hasClip(text))return '<button class="hearbtn" data-a="hear" aria-label="Play the sentence">'+SPK+'<span>Ascolta</span></button>';
+ return '<div class="nocl">🔇 L’audio di Sara arriva presto. Leggi la frase:</div><div class="prompt">'+esc(text)+'</div>'}
+function fbHtml(it,ok,answer){
+ var h='<div class="fb '+(ok?'ok':'no')+' pop"><img src="'+(ok?IMG.clap:IMG.cheeky)+'" alt=""><div><b>'+(ok?okHead():badHead())+'</b>';
+ if(!ok)h+='Giusto: <b style="display:inline;font-size:inherit">'+esc(answer)+'</b>';
+ if(it.n<=2&&it.why)h+=(ok?'':'<br>')+it.why;
+ return h+'</div></div><button class="btn p wide" data-a="next">Avanti</button>'}
+function card(){
+ var it=run.items[run.i];if(!it)return results(run.n);
+ var h=topbar(BACKPATH)+crumb()+'<div class="stage"><div class="card">';
+ if(it.t==='pick'){
+  h+='<div class="kick">'+KICK[run.i]+'</div>';
+  if(it.dove)h+='<div class="en"><b>Dove vai?</b><br><span style="color:var(--mute)">Where are you going?</span></div>';
+  if(it.en)h+='<div class="en">'+it.en+'</div>';
+  if(it.prompt)h+='<div class="prompt">'+it.prompt+'</div>';
+  else h+='<div class="prompt"><span class="pk">Scegli.</span></div>';
+  h+=tenseChip(it)+'<div class="opts '+(it.opts.length===2?'two':'three')+'">'+it.opts.map(function(o,i){var c='opt';if(run.revealed){if(o===it.ok)c+=' ok';else if(o===run.picked)c+=' no'}return '<button class="'+c+'" data-a="pick" data-o="'+i+'" '+(run.revealed?'disabled':'')+'>'+esc(o)+'</button>'}).join('')+'</div>';
+  h+=run.revealed?fbHtml(it,run.ok,it.ok):helpHtml(it);
+ } else if(it.t==='build'){
+  h+='<div class="kick">'+KICK[run.i]+'</div>'+audioBlock(it,it.audio)+tenseChip(it)+chipsHtml(it)+(run.revealed?fbHtml(it,run.ok,it.target):'<div class="row"><button class="btn p" data-a="bcheck" '+(run.sel.length?'':'disabled')+'>Controlla</button><button class="btn g" data-a="bclear">Cancella</button></div>'+helpHtml(it));
+ } else if(it.t==='match'){
+  h+=matchHtml(it);
+ } else if(it.t==='type'){
+  h+='<div class="kick">'+KICK[run.i]+'</div>'+audioBlockType(it)+tenseChip(it)+'<input class="ans" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Scrivi in italiano…" aria-label="Scrivi la frase in italiano" '+(run.revealed?'disabled value="'+esc(run.typed)+'"':'')+'>'+
+   (run.revealed?fbHtml(it,run.ok,it.answer):'<button class="btn p wide" data-a="tcheck">Controlla</button>'+helpHtml(it));
+ } else if(it.t==='chal'){
+  h+='<div class="kick" style="color:var(--pink)">SFIDA</div><div class="prompt">Costruisci una frase. Le ultime due parole sono tue.</div>'+tenseChip(it)+chipsHtml(it)+(run.revealed?fbHtml(it,run.ok,run.chalShow):'<div class="row"><button class="btn p" data-a="ccheck" '+(run.sel.length?'':'disabled')+'>Controlla</button><button class="btn g" data-a="bclear">Cancella</button></div>'+helpHtml(it));
+ }
+ h+='</div></div>';app.innerHTML=h;
+ if((it.t==='build'||it.t==='type')&&!run.revealed&&hasClip(it.audio||it.answer))setTimeout(function(){say(it.audio||it.answer)},300);
+ var inp=app.querySelector('input.ans');if(inp&&!run.revealed)inp.focus()}
+function audioBlockType(it){return hasClip(it.audio)?'<button class="hearbtn" data-a="hear" aria-label="Play the sentence">'+SPK+'<span>Ascolta</span></button><div class="prompt"><span class="pk">Scrivi quello che senti.</span></div>':'<div class="nocl">🔇 L’audio di Sara arriva presto. Leggi la frase, poi scrivila:</div><div class="prompt"><span class="pk">'+esc(it.audio)+'</span></div>'}
+
+/* chips (build + challenge) */
+function bankFor(it){
+ if(it.t==='build')return it.bank;
+ var ends=['a','in','casa','scuola','bagno','palestra','Roma','Italia','dal dottore','a prendere acqua'];
+ return it.pre.concat(it.dis).concat(ends)}
+function chipsHtml(it){
+ if(!run.bank||run.bankFor!==run.i){run.bank=shuffle(bankFor(it)).map(function(t,i){return {id:i,t:t}});run.sel=[];run.bankFor=run.i}
+ var used={};run.sel.forEach(function(id){used[id]=1});
+ var h='<div class="slots" aria-label="La tua frase">'+(run.sel.length?run.sel.map(function(id){var b=run.bank[id];return '<button class="tok" data-a="unchip" data-c="'+id+'" '+(run.revealed?'disabled':'')+'>'+esc(b.t)+'</button>'}).join(''):'<span class="ph">Tocca le parole in ordine…</span>')+'</div>';
+ h+='<div class="bank">'+run.bank.map(function(b){return '<button class="tok" data-a="chip" data-c="'+b.id+'" '+(used[b.id]||run.revealed?'disabled':'')+'>'+esc(b.t)+'</button>'}).join('')+'</div>';
+ return h}
+
+/* match */
+function matchHtml(it){
+ if(!run.m||run.mFor!==run.i){run.mFor=run.i;run.m={L:shuffle(it.pairs.map(function(p,i){return {i:i,t:p[0]}})),R:shuffle(it.pairs.map(function(p,i){return {i:i,t:p[1]}})),sel:null,done:{},err:0,streak:0,bad:null}}
+ var m=run.m,h='<div class="kick" style="color:var(--pink)">Premio · 3 di fila</div><div class="prompt">Abbina.</div><div class="pips" aria-label="3 di fila">'+[0,1,2].map(function(i){return '<i class="'+(i<m.streak?'on':'')+'"></i>'}).join('')+'<span>3 di fila</span></div>';
+ h+='<div class="mgrid"><div class="stage" style="gap:10px">'+m.L.map(function(x){var c='opt'+(m.done[x.i]?' ok':m.sel===x.i?' sel':'');return '<button class="'+c+'" data-a="mL" data-i="'+x.i+'" '+(m.done[x.i]?'disabled':'')+'>'+esc(x.t)+'</button>'}).join('')+'</div>'+
+  '<div class="stage" style="gap:10px">'+m.R.map(function(x){var c='opt'+(m.done[x.i]?' ok':m.bad===x.i?' no':'');return '<button class="'+c+'" data-a="mR" data-i="'+x.i+'" '+(m.done[x.i]?'disabled':'')+'>'+esc(x.t)+'</button>'}).join('')+'</div></div>';
+ if(run.revealed){h+='<div class="fb '+(run.ok?'ok':'no')+' pop"><img src="'+(run.ok?IMG.joy:IMG.cheeky)+'" alt=""><div><b>'+(run.ok?'3 di fila! '+okHead():badHead())+'</b></div></div><button class="btn p wide" data-a="next">Avanti</button>'}
+ else h+=helpHtml(it);
+ return h}
+
+function record(ok){var it=run.items[run.i];run.revealed=true;run.ok=ok;run.res.push(ok);if(ok)run.right++;if(it.t==='match'&&ok)run.reward3=true}
+
+/* ---------- events ---------- */
+app.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.getAttribute('data-a');
+ if(a==='path')return path();
+ if(a==='stop'){if(!unlocked(+b.getAttribute('data-n')))return;return teach(+b.getAttribute('data-n'))}
+ if(a==='tnext')return tnext();
+ if(a==='say')return say(b.getAttribute('data-s'));
+ if(a==='parla')return parla();
+ if(a==='again')return startPractice(+b.getAttribute('data-n'));
+ if(a==='nextstop'){var n=+b.getAttribute('data-n');return n<=5&&unlocked(n)?teach(n):path()}
+ if(a==='dopractice')return startPractice(+b.getAttribute('data-n'));
+ if(a.indexOf('t_')===0)return;
+ if(!run||run.mode!=='practice')return parlaClick(b,a);
+ var it=run.items[run.i];
+ if(a==='help'){run.help=1;return card()}
+ if(a==='hear'){return say(it.audio||it.answer)}
+ if(a==='next'){run.i++;run.revealed=false;run.help=0;run.picked=null;run.typed='';run.sel=[];return card()}
+ if(a==='pick'&&!run.revealed){var o=it.opts[+b.getAttribute('data-o')];run.picked=o;record(o===it.ok);if(it.say)say(it.say);return card()}
+ if(a==='chip'&&!run.revealed){run.sel.push(+b.getAttribute('data-c'));return card()}
+ if(a==='unchip'&&!run.revealed){var id=+b.getAttribute('data-c');run.sel=run.sel.filter(function(x){return x!==id});return card()}
+ if(a==='bclear'){run.sel=[];return card()}
+ if(a==='bcheck'){var got=run.sel.map(function(id){return run.bank[id].t}).join(' ');record(norm(got)===norm(it.target));if(it.audio)say(it.audio);return card()}
+ if(a==='ccheck'){var toks=run.sel.map(function(id){return run.bank[id].t}),k=it.pre.length;
+   var preOk=toks.length>=k+1&&it.pre.every(function(w,i){return toks[i].toLowerCase()===w.toLowerCase()});
+   var end=toks.slice(k).join(' ').toLowerCase();var endOk=ENDINGS.indexOf(end)!==-1&&end.split(' ').length>=2;
+   run.chalShow=toks.join(' ')+'.';var ok=preOk&&endOk;
+   if(!ok)run.chalShow=it.pre.join(' ')+' '+(endOk?'…':'a / in + il posto')+' (🎯 a · 🏊 in)';
+   record(ok);return card()}
+ if(a==='tcheck'){var inp=app.querySelector('#ans');run.typed=inp?inp.value:'';record(norm(run.typed)===norm(it.answer));say(it.answer);return card()}
+ if(a==='mL'&&!run.revealed){run.m.sel=+b.getAttribute('data-i');run.m.bad=null;return card()}
+ if(a==='mR'&&!run.revealed){var m=run.m;if(m.sel===null)return;var ri=+b.getAttribute('data-i');
+   if(ri===m.sel){m.done[ri]=1;m.streak++;m.sel=null;m.bad=null;if(Object.keys(m.done).length===it.pairs.length){record(m.err===0)}}
+   else{m.err++;m.streak=0;m.bad=ri;m.sel=null}
+   return card()}
+});
+app.addEventListener('keydown',function(e){
+ if(e.key==='Enter'&&e.target.id==='ans'){e.preventDefault();var b=app.querySelector('[data-a="tcheck"]');if(b)b.click();return}
+ if(view==='teach'&&run&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){var sc=document.getElementById('tsc');if(!sc)return;var p=run.page+(e.key==='ArrowRight'?1:-1);p=Math.max(0,Math.min(2,p));sc.scrollTo({left:p*(sc.clientWidth+12),behavior:'smooth'})}
+});
+
+/* ---------- Results (same buttons as every other level) ---------- */
+function results(n){view='results';var S=STOPS[n-1];var right=run.right,first=!(st.stops[n]&&st.stops[n].done);
+ var bc=0;if(first){bc=right*BC.perRight+BC.clear+(run.reward3?BC.reward:0)}
+ var prev=st.stops[n]||{};st.stops[n]={done:true,best:Math.max(prev.best||0,right),paid:true};save();if(bc>0)award(bc);
+ var nextN=n<5?n+1:0;var line=right===8?'Oooo! Bravissim'+bohEnd()+'!':right>=6?'Ottimo!':right>=4?'Bene!':'Ancora un giro!';
+ app.innerHTML=topbar(BACKPATH)+'<div class="stage"><div class="card center pop">'+profBox(right>=6?IMG.joy:IMG.think,line,'')+
+  '<div class="big">'+right+' / 8</div><div class="sub">Stop '+n+' · '+S.title+' · '+S.sub+'</div>'+
+  '<div class="bcline">'+(bc>0?'+'+bc+' Boh Cashi':'Practice run · no new Boh Cashi')+'</div><div class="sub">'+(bc>0?'They land in your wallet the next time you open Italiano 2.':'Boh Cashi pay once per stop.')+'</div>'+
+  '<div class="shot"><b>FAI UNO SCREENSHOT DEL TUO LAVORO</b>Then upload it to your Google Classroom page.<br>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</div>'+
+  '<div class="row" style="width:100%"><button class="btn p" data-a="nextstop" data-n="'+nextN+'">Avanti</button><a class="btn g" href="../../italiano2/?go=shop">Boh-tique</a></div>'+
+  '<div class="row" style="width:100%"><button class="btn g" data-a="again" data-n="'+n+'">Try again</button><a class="btn g" href="../../italiano2/">Save &amp; quit</a></div>'+
+  '<button class="btn q wide" data-a="parla">Vuoi parlare? <span style="font-size:17px;color:var(--mute);font-family:var(--body)">Do you want to speak?</span></button></div></div>'}
+
+/* ---------- Parla: optional. Never blocks a stop. ---------- */
+var TIERS=[
+ {k:'ripeti',name:'Ripeti',en:'Repeat',bc:BC.parla.ripeti,lines:[['Vado a Roma.','I go to Rome.'],['Vado in Italia.','I go to Italy.'],['Vai a scuola.','You go to school.']],ask:'Listen, then say each line out loud.'},
+ {k:'rispondi',name:'Rispondi',en:'Answer',bc:BC.parla.rispondi,lines:[['Dove vai?','Where are you going?'],['Tu vai a casa?','Are you going home?']],ask:'Answer each question out loud in Italian. Use vado… or vai…'},
+ {k:'giorno',name:'Il tuo giorno',en:'Your day',bc:BC.parla.giorno,lines:[],ask:'Say 3 places you go in your day. Start each one with Vado…'}
+];
+function parla(){view='parla';run=null;
+ var h=topbar(BACKPATH)+'<div class="stage"><div class="card">'+profBox(IMG.mic,'Vuoi parlare?','Do you want to speak?')+
+  '<div class="sub">Totally optional. You can skip all of it and nothing is lost: no penalty, no blocked stops. Each tier you finish earns extra Boh Cashi.</div>';
+ TIERS.forEach(function(T){var d=st.parla[T.k];
+  h+='<div class="tier'+(d?' done':'')+'" data-tier="'+T.k+'"><h2><span>'+T.name+' <small style="font-size:17px;color:var(--mute);font-family:var(--body)">'+T.en+'</small></span><span class="bc">'+(d?'✓ done':'+'+T.bc+' BC')+'</span></h2><div class="sub">'+T.ask+'</div>';
+  if(T.lines.length)h+=T.lines.map(function(l){return '<div class="say-line"><span>'+l[0]+'<small>'+l[1]+'</small></span>'+(hasClip(l[0])?'<button data-a="say" data-s="'+esc(l[0])+'" aria-label="Hear '+esc(l[0])+'">'+SPK+'</button>':'')+'</div>'}).join('');
+  else h+='<div class="say-line"><span>a casa · a scuola · in bagno · in palestra<small>a Roma · in Italia · dal dottore · a prendere acqua</small></span></div>';
+  h+='<div class="recwrap" id="rec_'+T.k+'"></div><div id="alt_'+T.k+'"></div>'+
+   (d?'':'<div class="row"><button class="btn g" data-a="vocaroo" data-k="'+T.k+'">Mic not working? Vocaroo</button><button class="btn g" data-a="cant" data-k="'+T.k+'">I can’t do it here</button></div>')+'</div>'});
+ h+='<div id="handin"></div><button class="btn p wide" data-a="path">Avanti</button></div></div>';
+ app.innerHTML=h;
+ TIERS.forEach(function(T){var el=document.getElementById('rec_'+T.k);if(!el||st.parla[T.k])return;
+  try{if(window.BohRecorder)window.BohRecorder.mount(el,{key:'andare3_'+T.k,label:T.name,maxSec:60,name:'',onChange:function(has){if(has)markTier(T.k,'mic')},onEscalate:function(){vocaroo(T.k)}});else vocaroo(T.k)}catch(err){vocaroo(T.k)}});
+ handIn()}
+function handIn(){var el=document.getElementById('handin');var n=Object.keys(st.parla).length;if(!el||!n)return;try{if(window.BohRecorder&&window.BohRecorder.handIn)window.BohRecorder.handIn(el,{unit:'Andare · Chi va?',n:n,dl:false})}catch(e){}}
+function markTier(k,how){if(st.parla[k])return;var T=TIERS.filter(function(x){return x.k===k})[0];st.parla[k]={how:how,ts:new Date().toISOString().slice(0,10)};save();award(T.bc);if(view==='parla')parla()}
+function vocaroo(k){var box=document.getElementById('alt_'+k);if(!box||box.firstChild)return;
+ box.innerHTML='<div class="helpbox"><b>No microphone here? Use Vocaroo.</b><ol class="steps"><li><a href="https://vocaroo.com" target="_blank" rel="noopener">Open Vocaroo</a></li><li>Record yourself, then copy the link.</li><li>Paste the link into Google Classroom.</li></ol><button class="btn p wide" data-a="tdone" data-k="'+k+'" data-how="vocaroo">Ho fatto · I did it</button></div>'}
+function cant(k){var box=document.getElementById('alt_'+k);if(!box)return;
+ box.innerHTML='<div class="helpbox"><b>I can’t do it here.</b> Record on your own device (phone or computer), then add the file to Google Classroom or email it to your teacher.<button class="btn p wide" style="margin-top:8px" data-a="tdone" data-k="'+k+'" data-how="other">Ho fatto · I did it</button></div>'}
+function parlaClick(b,a){
+ if(a==='vocaroo')return vocaroo(b.getAttribute('data-k'));
+ if(a==='cant')return cant(b.getAttribute('data-k'));
+ if(a==='tdone')return markTier(b.getAttribute('data-k'),b.getAttribute('data-how'))}
+
+window.__andare3=function(){return {run:run,st:st,view:view,STOPS:STOPS}};
+path();
+})();
+</script>
+</body>
+</html>
