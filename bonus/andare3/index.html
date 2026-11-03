@@ -254,7 +254,7 @@ var STOPS=[
  {n:5,title:'Tutti insieme',sub:'all six mixed',
   teach:[
    {bub:['Le sei forme!','The six forms!'],big:'vado · vai · va<br>andiamo · andate · vanno',eq:'',pairs:[['<b>io</b> vado · <b>tu</b> vai','I go · you go'],['<b>lui/lei</b> va · <b>noi</b> andiamo','he/she goes · we go'],['<b>voi</b> andate · <b>loro</b> vanno','you all go · they go']],note:'Six people, six words. Every one is the presente of <b>andare</b>.'},
-   {bub:['Chi è?','Who is it?'],big:'chi? poi dove?',eq:'who? then where?',pairs:[['Find the <b>person</b> first.','Who is going?'],['Then pick the <b>verb</b> that matches.','vado · vai · va · andiamo · andate · vanno'],['Then pick <b>a</b> or <b>in</b>.','🎯 a · 🏊 in']],note:'Three quick questions, every time.'},
+   {bub:['Chi va?','Who is going?'],big:'chi? poi dove?',eq:'who? then where?',pairs:[['Find the <b>person</b> first.','Who is going?'],['Then pick the <b>verb</b> that matches.','vado · vai · va · andiamo · andate · vanno'],['Then pick <b>a</b> or <b>in</b>.','🎯 a · 🏊 in']],note:'Three quick questions, every time.'},
    {bub:['Dove?','Where?'],big:'Dove?',eq:'where?',pairs:[['Dove vai?','Where are you going? (to one person)'],['Dove va?','Where is he/she going?'],['Dove andate?','Where are you all going?']],note:'<b>Dove</b> asks where. The verb already tells you who.'}
   ],
   c:{c1:['tu','casa',{}],c2:['lui','dottore',{}],c3:['loro','Italia','verb'],c4:['tu','palestra',{np:1,q:1}],
@@ -337,7 +337,7 @@ function teachCard(S,c,k){
  if(c.kind==='pool'){
   h+='<div class="two-col"><div class="zone"><h3>🎯 Dartboard · a</h3><p>A city is a tiny bullseye. Throw a dart <b>AT</b> it.</p><div class="ph"><button data-a="say" data-s="a Roma">a Roma</button><button data-a="say" data-s="a casa">a casa</button><button data-a="say" data-s="a scuola">a scuola</button></div><p>a casa · a scuola: a pair. At home, at school.</p></div>'+
    '<div class="zone"><h3>🏊 Pool · in</h3><p>A big space, a country or a room. Jump <b>IN</b>.</p><div class="ph"><button data-a="say" data-s="in Italia">in Italia</button><button data-a="say" data-s="in palestra">in palestra</button><button data-a="say" data-s="in bagno">in bagno</button></div></div></div>'+
-   '<div class="setph"><b>Two set phrases.</b> Learn them as they are:<br><button data-a="say" data-s="dal dottore">dal dottore</button> = at the doctor\'s<br><span class="pk" style="font-weight:800">a prendere acqua</span> = to get water</div>';
+   '<div class="setph"><b>Two set phrases.</b> Learn them as they are:<br><button data-a="say" data-s="dal dottore">dal dottore</button> = to the doctor\'s<br><span class="pk" style="font-weight:800">a prendere acqua</span> = to get water</div>';
   return h+'</div>'}
  h+='<div class="chunk"><div class="bg">'+(k===1&&S.n===1?'':'')+c.big+'</div>'+(c.eq?'<div class="eq">= '+c.eq+'</div>':'')+'</div>';
  h+='<div class="pairs">'+c.pairs.map(function(p){var plain=p[0].replace(/<[^>]+>/g,'');var can=hasClip(plain);
