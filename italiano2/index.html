@@ -2727,6 +2727,16 @@ var STORAGE_KEY = 'bohItaliano2_v2';
     localStorage.setItem(STORAGE_KEY, JSON.stringify(out));
   } catch (e) {}
 })();
+(function () {   // Boh Cashi earned in the Andare side unit (bonus/andare3) wait in an inbox until this page opens. Runs after the migration above so it never blocks it.
+  try {
+    var n = parseInt(localStorage.getItem('boh_bc_inbox_2') || '0') || 0;
+    if (n <= 0) return;
+    var d = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {};
+    d.cashi = (d.cashi || 0) + n; d.lifetime = (d.lifetime || 0) + n;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    localStorage.removeItem('boh_bc_inbox_2');
+  } catch (e) {}
+})();
 // build fingerprint
 var _b7 = 'Qm9oOiBWb2xlcmUgRG92ZXJlIFBvdGVyZS4gQ3JlYXRlZCBieSBBc3N1bnRhIFNjb3R0bywgSGFtaWx0b24gSGlnaCBTY2hvb2wgV2VzdCwgMjAyNi4=';
 var _b7d = function () { try { return atob(_b7); } catch (e) { return ''; } };
@@ -12575,7 +12585,7 @@ var HREF='../bonus/drama/',TXT='Bonus · Il drama della festa',SUB='Halloween ·
 function add(){var lp=document.querySelector('section.lp');if(!lp||lp.querySelector('.bonus-tile'))return;var a=document.createElement('a');a.className='lp-prova is-open bonus-tile';a.href=HREF;a.style.marginTop='10px';a.style.textDecoration='none';a.style.borderColor='var(--accent-strong,#E8338C)';a.innerHTML='<span class="lp-pl display">'+TXT+'</span><span class="lp-ps">'+SUB+'</span>';lp.appendChild(a)}
 add();setInterval(add,900)}catch(e){}})();</script>
 <script>/* boh-lesson-tiles-v1: two tiles under Il percorso on the Italiano 2 home, after the Halloween Bonus tile: Domani vado (mini lesson) and Dove vai? (bonus game). Same style as boh-bonus-tile-v1. Remove this block to remove both tiles. */(function(){try{
-var T=[['lt-domani','../domani-vado/','Domani vado \u00b7 mini lesson','Where I go tomorrow, and with whom'],['lt-andare','../bonus/andare/','Bonus \u00b7 Dove vai?','andare + a / in \u00b7 about 20 min \u00b7 stickers, no Boh Cashi'],['lt-andare2','../bonus/andare2/','Bonus \u00b7 Dove vai? 2','vado, vai, vengo, vieni \u00b7 short rounds \u00b7 stickers and gold foil']];
+var T=[['lt-domani','../domani-vado/','Domani vado \u00b7 mini lesson','Where I go tomorrow, and with whom'],['lt-andare','../bonus/andare/','Bonus \u00b7 Dove vai?','andare + a / in \u00b7 about 20 min \u00b7 stickers, no Boh Cashi'],['lt-andare2','../bonus/andare2/','Bonus \u00b7 Dove vai? 2','vado, vai, vengo, vieni \u00b7 short rounds \u00b7 stickers and gold foil'],['lt-andare3','../bonus/andare3/','Side unit \u00b7 Andare: chi va?','vado, vai, va, andiamo, andate, vanno \u00b7 5 stops \u00b7 optional speaking \u00b7 earns Boh Cashi']];
 function add(){var lp=document.querySelector('section.lp');if(!lp)return;T.forEach(function(t){if(lp.querySelector('.'+t[0]))return;var a=document.createElement('a');a.className='lp-prova is-open '+t[0];a.href=t[1];a.style.marginTop='10px';a.style.textDecoration='none';a.style.borderColor='var(--accent-strong,#E8338C)';a.innerHTML='<span class="lp-pl display">'+t[2]+'</span><span class="lp-ps">'+t[3]+'</span>';lp.appendChild(a)})}
 add();setInterval(add,900)}catch(e){}})();</script>
 </body></html>
