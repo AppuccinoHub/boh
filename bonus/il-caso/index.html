@@ -88,6 +88,26 @@ button.big{display:flex;width:100%;justify-content:center;font-size:18px;min-hei
 .lead{color:#c9c2ae;text-align:center;margin:0 0 8px;font-size:14px;line-height:1.3}
 .wide{display:flex;width:100%;justify-content:center;margin:0 0 5px}
 .cnt{background:var(--red);color:#fff;border-radius:999px;font-family:"Courier New",monospace;font-size:13px;padding:0 8px;margin-left:8px}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 6px}
+.board>.msg{position:relative;margin:0;padding:0;overflow:hidden;border-radius:10px}
+.board>.msg::before{content:"";display:block;padding-top:100%}
+.board .tile{position:absolute;inset:0;display:flex;flex-direction:column;padding:6px;min-width:0}
+.board .who{margin:0}
+.board .av{width:24px;height:24px}
+.board .who b{font-size:13px}
+.board .to{font-size:11px;line-height:1.15;padding:1px 6px;max-width:100%}
+.board .say{flex:1;display:grid;align-items:center;min-height:0;min-width:0;margin:2px 0;font-size:17px;font-weight:700;line-height:1.12;color:#141414}
+.board button.acc{align-self:flex-start;font-size:12px;min-height:26px;padding:1px 7px;max-width:100%}
+@media (min-width:520px){
+.board .say{font-size:22px}
+.board .to{font-size:13px}
+.board .who b{font-size:15px}
+.board .av{width:32px;height:32px}
+.board button.acc{font-size:14px;min-height:30px}
+}
+.board .stamp{font-size:10px;letter-spacing:.04em;padding:0 4px;margin:0 0 0 2px;align-self:flex-start;transform:rotate(-3deg);transform-origin:left center;animation-name:popboard}
+@keyframes popboard{from{transform:rotate(-3deg) scale(1.12);opacity:0}to{transform:rotate(-3deg) scale(1);opacity:1}}
+.board .note{font-size:11px;line-height:1.15;margin:1px 0 0}
 .msg.caught{border:2px solid var(--red)}
 .note{font-size:13px;margin:2px 0 0;color:var(--red);font-weight:700}
 .note.ok{color:var(--green)}
@@ -509,10 +529,11 @@ function viewAccuse(){
  let h=header()+topTag()+'<p class="sub">One order has the wrong form. Tap it.</p>';
  if(G.hint)h+='<div class="hintbox" role="status"><b>Hint.</b> '+esc(ACCUSE_HINT[c.types[0]])+'</div>';
  else if(!G.locked)h+='<button class="ghost" data-act="hint">Hint'+(paid||G.missed.length?'':' (-1 BC)')+'</button>';
+ h+='<div class="board">';
  G.order.forEach(function(i){
   const l=c.lines[i];const n=l[0];
   const miss=G.missed.indexOf(n)>-1;const st=G.stampOn===n;
-  h+='<div class="msg'+(miss?' bad':'')+(st?' caught':'')+(G.shakeName===n?' shake':'')+'" data-card="'+esc(n)+'">'+orderHead(l)+'<div class="say">'+esc(l[2])+'</div>';
+  h+='<div class="msg'+(miss?' bad':'')+(st?' caught':'')+(G.shakeName===n?' shake':'')+'" data-card="'+esc(n)+'"><div class="tile">'+orderHead(l)+'<div class="say">'+esc(l[2])+'</div>';
   if(st){
    h+='<span class="stamp'+(G.stamped?' still':'')+'">COLPEVOLE</span>';
    if(G.lost)h+='<p class="note" role="status">This was the wrong order. 0 BC for the catch.</p>';
@@ -522,9 +543,9 @@ function viewAccuse(){
   }else{
    h+='<button class="acc" data-act="accuse" data-v="'+esc(n)+'"'+(G.locked?' disabled':'')+'>It\'s '+esc(n)+'</button>';
   }
-  h+='</div>';
+  h+='</div></div>';
  });
- return h+(G.locked?'':'<button class="ghost" data-act="home">Home</button>');
+ return h+'</div>'+(G.locked?'':'<button class="ghost" data-act="home">Home</button>');
 }
 function accuse(v){
  const c=G.c;const bad=c.lines[c.bad][0];
@@ -567,12 +588,14 @@ function viewFix(){
 function viewReveal(){
  const c=G.c;const e=G.earn;
  const total=e.culprit+e.fix+e.daily;
- let h=header()+(G.mode==="mission"?chip(G.mn):'')+'<div class="card"><span class="tag">The reveal</span><h2>'+(e.success?'Clean solve!':'Solved.')+'</h2>';
+ let h=header()+(G.mode==="mission"?chip(G.mn):'')+'<div class="card"><span class="tag">The reveal</span><h2>'+(e.success?'Clean solve!':'Solved.')+'</h2><div class="board">';
+ let fixBox="";
  G.order.forEach(function(i){
   const l=c.lines[i];const isBad=i===c.bad;
-  h+='<div class="msg'+(isBad?' bad':'')+'">'+orderHead(l)+'<div class="say">'+esc(l[2])+'</div></div>';
-  if(isBad)h+='<div class="msg good"><div class="say">'+esc(c.fix)+'</div></div>';
+  h+='<div class="msg'+(isBad?' bad':'')+'"><div class="tile">'+orderHead(l)+'<div class="say">'+esc(l[2])+'</div></div></div>';
+  if(isBad)fixBox='<div class="msg good"><div class="say">'+esc(c.fix)+'</div></div>';
  });
+ h+='</div>'+fixBox;
  h+='<p style="color:var(--ink);font-size:14px">'+esc(c.why)+'</p>';
  if(total>0){
   const parts=[];
