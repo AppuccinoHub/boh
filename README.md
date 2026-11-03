@@ -1,5 +1,8 @@
 # Boh.
 
+**[▶ Play online](https)** — open the live app in your browser.
+
+
 *Non sa niente. Per ora.*
 
 An Italian-language learning game. Students customize their own Boh, learn Italian, and earn rewards as Boh grows.
