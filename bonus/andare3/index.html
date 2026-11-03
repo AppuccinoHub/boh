@@ -183,7 +183,7 @@ var SARA_NEW={
  "noi andiamo dal dottore":"audio/c_9f69a04c0b.mp3","andiamo a scuola":"audio/c_e90d4b5e07.mp3","loro vanno a scuola":"audio/c_c51e8a36be.mp3",
  "voi andate in bagno":"audio/c_6a7b7deb1d.mp3","dove va":"audio/c_c9bf2c266c.mp3","dove andate":"audio/c_7fdf362214.mp3"
 };
-var SARA_HAVE=["vuoi parlare","io vado a casa","tu vai a casa","a prendere acqua","dove vai"];   /* recorded Nov 3 (Sara, if_sara) */
+var SARA_HAVE=["vuoi parlare","io vado a casa","tu vai a casa","a prendere acqua","dove vai","lui va a casa","lei va a scuola","lei va in italia","noi andiamo dal dottore","andiamo a scuola","loro vanno a scuola","voi andate in bagno","dove va","dove andate"];   /* recorded Nov 3 (Sara, if_sara) */
 function vkey(s){return String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/[^\p{L}\p{N}' ]+/gu,' ').replace(/\s+/g,' ').trim()}
 function clipFor(text){var k=vkey(text);return CLIPS[k]||(SARA_HAVE.indexOf(k)!==-1&&SARA_NEW[k])||null}
 function hasClip(t){return !!clipFor(t)}
