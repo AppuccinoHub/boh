@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Boh Passport — Demo</title>
+<style>
+:root{
+  --cream:#FFE9C9; --navy:#0E2A5B; --page:#fff8ec; --ink:#1a2744;
+  --ok:#2e8b57; --bad:#c0392b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9dcc6;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--navy);-webkit-tap-highlight-color:transparent}
+#stage{max-width:390px;min-height:100vh;margin:0 auto;background:var(--cream);padding:14px 16px 96px;position:relative}
+header{display:flex;justify-content:space-between;align-items:center}
+h1{font-size:28px;margin:0;letter-spacing:1.5px}
+h2{margin:10px 0 6px;font-size:20px}
+.tag{font-size:12px;opacity:.8;margin:2px 0 8px;line-height:1.35}
+.wallet{background:var(--navy);color:var(--cream);border-radius:20px;padding:6px 12px;font-weight:700;font-size:14px;white-space:nowrap}
+.steps{display:flex;gap:4px;margin:6px 0 8px}
+.steps span{flex:1;text-align:center;font-size:11px;padding:7px 2px;border-radius:10px;border:2px solid var(--navy);opacity:.45;cursor:pointer;font-weight:700;user-select:none}
+.steps span.on{opacity:1;background:var(--navy);color:var(--cream)}
+.packs{display:flex;gap:5px;margin:0 0 10px;flex-wrap:wrap}
+.packs button{
+  flex:1 1 42%;min-width:0;border:2px solid var(--navy);background:#fff;color:var(--navy);
+  border-radius:12px;padding:7px 4px;font-size:11px;font-weight:800;cursor:pointer;line-height:1.2;
+}
+.packs button.on{background:var(--navy);color:var(--cream)}
+.packs button .flag{display:block;font-size:16px;line-height:1.1}
+.packs button .plab{display:block;margin-top:2px;font-size:10px;letter-spacing:.2px}
+.note{font-size:12px;text-align:center;margin:6px 0;opacity:.75}
+.card{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:14px;margin:10px 0}
+.it{font-size:28px;font-weight:800;text-align:center;margin:8px 0;line-height:1.2}
+.en{text-align:center;opacity:.7;font-size:14px}
+.opt{display:block;width:100%;margin:6px 0;padding:12px;border-radius:14px;border:2px solid var(--navy);background:#fff;font-size:16px;color:var(--navy);cursor:pointer;font-weight:600;text-align:left}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.chip{border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:14px;padding:7px 12px;font-weight:700;cursor:pointer;font-size:13px}
+.btn{display:block;width:100%;background:var(--navy);color:var(--cream);border:0;border-radius:16px;padding:14px;font-size:16px;font-weight:800;margin-top:10px;cursor:pointer}
+.btn.alt{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:390px;display:flex;background:var(--navy);z-index:20;box-shadow:0 -4px 16px rgba(14,42,91,.18)}
+nav button{flex:1;background:none;border:0;color:var(--cream);padding:15px 0 16px;font-weight:700;font-size:13px;cursor:pointer;opacity:.55}
+nav button.on{opacity:1}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--cream);padding:10px 16px;border-radius:14px;font-weight:700;display:none;z-index:30;max-width:90%;text-align:center;font-size:14px}
+input[type=text]{width:100%;padding:11px 12px;border-radius:12px;border:2px solid var(--navy);font-size:16px;background:#fff;color:var(--navy)}
+
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.stamp-card{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:10px 8px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.stamp-card.owned{border-color:var(--ok);background:#f3fbf6}
+.stamp-card b{font-size:13px;line-height:1.2;min-height:2.4em;display:flex;align-items:center;justify-content:center}
+.stamp-card .price{font-size:12px;opacity:.7}
+.stamp-card button{width:100%;padding:8px;border-radius:10px;border:0;background:var(--navy);color:var(--cream);font-weight:700;cursor:pointer;font-size:13px}
+.stamp-card button:disabled{opacity:.45}
+.stamp-card button.owned-btn{background:var(--ok)}
+
+.book-wrap{perspective:900px;margin:8px 0 4px}
+.book{
+  position:relative;width:100%;min-height:420px;border-radius:6px 14px 14px 6px;
+  background:linear-gradient(90deg,#0a1f45 0 10px,var(--navy) 10px);
+  border:3px solid #071833;box-shadow:8px 10px 0 rgba(14,42,91,.18),0 4px 20px rgba(14,42,91,.25);
+  padding:18px 16px 16px 22px;overflow:hidden;
+}
+.book.cover-mode{
+  background:linear-gradient(135deg,#0a1f45 0%,var(--navy) 55%,#163a7a 100%);
+  color:var(--cream);min-height:440px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.book.page-mode{background:linear-gradient(90deg,#d9c9a8 0 8px,var(--page) 8px);color:var(--ink);border-color:#c4b08a}
+.cover-crest{text-align:center;padding-top:28px}
+.cover-crest .seal{
+  width:86px;height:86px;margin:0 auto 14px;border-radius:50%;
+  border:3px solid var(--cream);display:flex;align-items:center;justify-content:center;
+  font-size:36px;background:rgba(255,233,201,.12);
+}
+.cover-crest h3{margin:0;font-size:24px;letter-spacing:2px}
+.cover-crest .sub{font-size:12px;opacity:.85;margin-top:6px;letter-spacing:1px}
+.cover-foot{font-size:13px;opacity:.9}
+.page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid rgba(14,42,91,.2);padding-bottom:6px;margin-bottom:12px}
+.page-head h3{margin:0;font-size:18px;letter-spacing:.5px}
+.page-head .pg{font-size:11px;opacity:.6;font-weight:700}
+.stamp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 10px;padding:6px 2px 10px}
+.slot{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:110px}
+.slot .label{font-size:11px;font-weight:700;opacity:.55;text-align:center}
+.slot.inked .label{opacity:.9;color:var(--navy)}
+
+.badge{
+  width:92px;height:92px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;font-weight:800;text-align:center;line-height:1.1;user-select:none;
+}
+.badge.empty{
+  border:2.5px dashed rgba(14,42,91,.28);background:rgba(14,42,91,.03);color:rgba(14,42,91,.25);font-size:11px;
+}
+.badge.ink{
+  border:3px solid currentColor;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),transparent 55%),
+    color-mix(in srgb, currentColor 14%, #fff8ec);
+  box-shadow:inset 0 0 0 5px color-mix(in srgb, currentColor 18%, transparent),
+    1px 2px 0 rgba(14,42,91,.08);
+  transform:rotate(var(--rot, -4deg));
+  animation:inkIn .45s ease-out;
+}
+.badge .ico{font-size:22px;line-height:1;margin-bottom:2px}
+.badge .ttl{font-size:10px;letter-spacing:.2px;padding:0 6px;max-width:84px}
+.badge .yr{font-size:8px;opacity:.7;margin-top:2px;font-weight:700}
+@keyframes inkIn{from{transform:scale(.6) rotate(var(--rot,-4deg));opacity:0}to{transform:scale(1) rotate(var(--rot,-4deg));opacity:1}}
+
+.flip-bar{display:flex;gap:8px;margin-top:10px;align-items:center}
+.flip-bar .btn{margin-top:0;flex:1;padding:12px}
+.flip-bar .mid{flex:0 0 auto;font-size:12px;font-weight:700;opacity:.7;min-width:70px;text-align:center}
+.stats{font-size:13px;text-align:center;margin:8px 0;opacity:.85}
+.quiz-note{font-size:11px;text-align:center;opacity:.65;margin:-2px 0 8px}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div class="toast" id="toast"></div>
+<script>
+/* ===== Boh Passport — multi country-pack demo ===== */
+const QS = [
+  {it:'Ciao!', en:'(a friend waves at you)', q:'What does “Ciao” mean?', o:['Hi / Bye','Thank you','Good night'], a:0, hint:'Ciao = hi AND bye — casual, with friends.'},
+  {it:'Come stai?', en:'(your friend asks)', q:'What are they asking?', o:['What’s your name?','How are you?','Where are you?'], a:1, hint:'Come = how · stai = you are'},
+  {it:'Bene, grazie!', en:'', q:'Pick the meaning:', o:['Bad, sorry','Good, thanks!','Yes, please'], a:1, hint:'bene = well/good · grazie = thanks'},
+  {it:'🧑 Ciao! Come stai?', en:'Choose your reply in Italian:', q:'', o:['Bene, grazie!','Ciao, come stai?','Grazie, ciao?'], a:0, hint:'Answer “how are you” with “Bene, grazie!”'},
+  {it:'🧑 Bene, grazie! E tu?', en:'“E tu?” = “And you?”', q:'Reply:', o:['Come stai?','Bene, grazie!','Ciao?'], a:1, hint:'Same answer works: Bene, grazie!'}
+];
+const PER = 12, BONUS = 10;
+
+const PAGES = [
+  {id:'cover',     title:'Cover'},
+  {id:'greetings', title:'Greetings'},
+  {id:'towns',     title:'Towns'},
+  {id:'songs',     title:'Songs'}
+];
+
+const PACKS = [
+  {
+    id:'it', flag:'🇮🇹', short:'Italia', name:'Italia', lang:'Italian',
+    mark:'ITALIA', coverTitle:'PASSAPORTO', coverSub:'BOH · ITALIA',
+    note:'Italian pack 1',
+    stamps:[
+      {id:'ciao',     name:'Ciao',              page:'greetings', price:20, ico:'👋', color:'#c0392b', rot:'-6deg'},
+      {id:'comestai', name:'Come stai?',        page:'greetings', price:25, ico:'💬', color:'#1e6f9f', rot:'4deg'},
+      {id:'bene',     name:'Bene grazie',       page:'greetings', price:30, ico:'✨', color:'#2e8b57', rot:'-3deg'},
+      {id:'bacoli',   name:'Bacoli',            page:'towns',     price:35, ico:'⚓', color:'#0E2A5B', rot:'5deg'},
+      {id:'mdp',      name:'Monte di Procida',  page:'towns',     price:40, ico:'🌅', color:'#d35400', rot:'-5deg'},
+      {id:'ischia',   name:'Ischia',            page:'towns',     price:40, ico:'🌋', color:'#8e44ad', rot:'3deg'},
+      {id:'capri',    name:'Capri',             page:'towns',     price:50, ico:'💎', color:'#2980b9', rot:'-2deg'},
+      {id:'sanremo',  name:'Sanremo',           page:'songs',     price:45, ico:'🎵', color:'#c0392b', rot:'6deg'}
+    ]
+  },
+  {
+    id:'fr', flag:'🇫🇷', short:'France', name:'France', lang:'French',
+    mark:'FRANCE', coverTitle:'PASSEPORT', coverSub:'BOH · FRANCE',
+    note:'French pack 1',
+    stamps:[
+      {id:'bonjour',  name:'Bonjour',     page:'greetings', price:20, ico:'👋', color:'#002395', rot:'-5deg'},
+      {id:'cava',     name:'Ça va?',      page:'greetings', price:25, ico:'💬', color:'#c0392b', rot:'4deg'},
+      {id:'merci',    name:'Merci',       page:'greetings', price:30, ico:'✨', color:'#2e8b57', rot:'-3deg'},
+      {id:'paris',    name:'Paris',       page:'towns',     price:40, ico:'🗼', color:'#0E2A5B', rot:'5deg'},
+      {id:'lyon',     name:'Lyon',        page:'towns',     price:35, ico:'🦁', color:'#8e44ad', rot:'-4deg'},
+      {id:'marseille',name:'Marseille',   page:'towns',     price:40, ico:'⚓', color:'#1e6f9f', rot:'3deg'},
+      {id:'edith',    name:'La Vie en rose', page:'songs',  price:45, ico:'🌹', color:'#c0392b', rot:'6deg'}
+    ]
+  },
+  {
+    id:'es', flag:'🇪🇸', short:'España', name:'España', lang:'Spanish (Spain)',
+    mark:'ESPAÑA', coverTitle:'PASAPORTE', coverSub:'BOH · ESPAÑA',
+    note:'Spain pack 1 · peninsular',
+    stamps:[
+      {id:'hola',     name:'Hola',        page:'greetings', price:20, ico:'👋', color:'#c0392b', rot:'-6deg'},
+      {id:'quetal',   name:'¿Qué tal?',   page:'greetings', price:25, ico:'💬', color:'#f1c40f', rot:'4deg'},
+      {id:'gracias',  name:'Gracias',     page:'greetings', price:30, ico:'✨', color:'#2e8b57', rot:'-3deg'},
+      {id:'madrid',   name:'Madrid',      page:'towns',     price:40, ico:'🏰', color:'#0E2A5B', rot:'5deg'},
+      {id:'sevilla',  name:'Sevilla',     page:'towns',     price:40, ico:'🍊', color:'#d35400', rot:'-5deg'},
+      {id:'barcelona',name:'Barcelona',   page:'towns',     price:45, ico:'⛪', color:'#8e44ad', rot:'3deg'},
+      {id:'rumba',    name:'Rumba gitana',page:'songs',     price:45, ico:'🎸', color:'#c0392b', rot:'6deg'}
+    ]
+  },
+  {
+    id:'latam', flag:'🌎', short:'LatAm', name:'Sudamérica / Centroamérica', lang:'Spanish (LatAm)',
+    mark:'LATAM', coverTitle:'PASAPORTE', coverSub:'BOH · SUDAMÉRICA / CENTROAMÉRICA',
+    note:'LatAm pack 1 · vos / ustedes',
+    stamps:[
+      {id:'hola_la',  name:'Hola',           page:'greetings', price:20, ico:'👋', color:'#27ae60', rot:'-5deg'},
+      {id:'comoestas',name:'¿Cómo estás?',   page:'greetings', price:25, ico:'💬', color:'#2980b9', rot:'4deg'},
+      {id:'gracias_la',name:'Gracias',       page:'greetings', price:30, ico:'✨', color:'#f39c12', rot:'-3deg'},
+      {id:'cdmx',     name:'Ciudad de México', page:'towns',  price:40, ico:'🌮', color:'#c0392b', rot:'5deg'},
+      {id:'bsas',     name:'Buenos Aires',   page:'towns',     price:40, ico:'🥩', color:'#0E2A5B', rot:'-4deg'},
+      {id:'bogota',   name:'Bogotá',         page:'towns',     price:40, ico:'☕', color:'#8e44ad', rot:'3deg'},
+      {id:'cumbia',   name:'Cumbia',         page:'songs',     price:45, ico:'🥁', color:'#16a085', rot:'6deg'}
+    ]
+  }
+];
+
+const KEY = 'boh_passport_v2';
+const KEY_OLD = 'boh_passport_v1';
+
+function emptyOwned(){
+  const o = {};
+  PACKS.forEach(p => o[p.id] = []);
+  return o;
+}
+
+function loadState(){
+  let raw = JSON.parse(localStorage.getItem(KEY) || 'null');
+  if(raw){
+    if(!raw.owned || Array.isArray(raw.owned)) raw.owned = emptyOwned();
+    PACKS.forEach(p => { if(!Array.isArray(raw.owned[p.id])) raw.owned[p.id] = []; });
+    if(!raw.pack || !PACKS.find(p => p.id === raw.pack)) raw.pack = 'it';
+    return raw;
+  }
+  // migrate v1 Italia-only owned list
+  const old = JSON.parse(localStorage.getItem(KEY_OLD) || 'null');
+  if(old){
+    const owned = emptyOwned();
+    if(Array.isArray(old.owned)) owned.it = old.owned.slice();
+    return { name: old.name||'', cashi: old.cashi||0, owned, rounds: old.rounds||0, pack:'it' };
+  }
+  return { name:'', cashi:0, owned: emptyOwned(), rounds:0, pack:'it' };
+}
+
+let S = loadState();
+const save = () => localStorage.setItem(KEY, JSON.stringify(S));
+
+let tab = 'shop'; // default shop so pack tabs are obvious; play still works
+let pageIdx = 0;
+let qi = 0, right = 0, earned = 0, locked = false, answering = false;
+
+const pack = () => PACKS.find(p => p.id === S.pack) || PACKS[0];
+const stamps = () => pack().stamps;
+const owned = () => S.owned[S.pack] || (S.owned[S.pack] = []);
+
+const stage = () => document.getElementById('stage');
+const $ = (h) => { stage().innerHTML = h; };
+
+function toast(m){
+  const t = document.getElementById('toast');
+  t.textContent = m; t.style.display = 'block';
+  clearTimeout(t._); t._ = setTimeout(() => t.style.display = 'none', 1800);
+}
+
+function speak(s){
+  try{
+    const u = new SpeechSynthesisUtterance(s.replace(/[🧑]/g,''));
+    u.lang = 'it-IT'; u.rate = .85;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+function packTabs(){
+  return `<div class="packs" role="tablist" aria-label="Country pack">${PACKS.map(p =>
+    `<button type="button" class="${p.id===S.pack?'on':''}" onclick="setPack('${p.id}')" title="${esc(p.name)}">
+      <span class="flag">${p.flag}</span><span class="plab">${esc(p.short)}</span>
+    </button>`
+  ).join('')}</div>`;
+}
+
+function setPack(id){
+  if(!PACKS.find(p => p.id === id)) return;
+  S.pack = id;
+  pageIdx = 0;
+  save();
+  toast(pack().flag + ' ' + pack().name);
+  render();
+}
+
+function hdr(){
+  const st = ['play','shop','passport'];
+  const lb = ['1 Play','2 Stamp shop','3 Passport'];
+  return `<header><h1>BOH</h1><span class="wallet">🪙 ${S.cashi} BC</span></header>
+    <div class="tag">Learn Italian. Earn Boh Cashi. Build a Boh like no other.</div>
+    <div class="steps">${st.map((s,i)=>`<span class="${s===tab?'on':''}" role="button" tabindex="0" onclick="go('${s}')">${lb[i]}</span>`).join('')}</div>
+    ${packTabs()}`;
+}
+
+function nav(){
+  return `<nav>${[
+    ['play','Play'],
+    ['shop','Stamp shop'],
+    ['passport','Passport']
+  ].map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="go('${k}')">${l}</button>`).join('')}</nav>`;
+}
+
+function go(t){
+  tab = t;
+  if(t === 'play'){ qi = 0; right = 0; earned = 0; locked = false; answering = false; }
+  render();
+}
+
+function badgeHTML(st, inked){
+  if(!inked) return `<div class="badge empty">empty<br>slot</div>`;
+  const mark = pack().mark;
+  return `<div class="badge ink" style="color:${st.color};--rot:${st.rot}">
+    <span class="ico">${st.ico}</span>
+    <span class="ttl">${st.name}</span>
+    <span class="yr">${mark} · 2026</span>
+  </div>`;
+}
+
+function renderPlay(){
+  if(qi >= QS.length){
+    const perfect = right === QS.length;
+    if(!locked){
+      locked = true;
+      if(perfect){ earned += BONUS; S.cashi += BONUS; }
+      S.rounds++;
+      save();
+    }
+    $(hdr() + `
+      <div class="card" style="text-align:center">
+        <h2>Bravo${S.name ? ', ' + esc(S.name) : ''}! 🎉</h2>
+        <p>${right}/${QS.length} right</p>
+        <div class="it">+${earned} BC</div>
+        ${perfect ? `<p>Includes +${BONUS} perfect-round bonus</p>` : ''}
+        <p>Wallet: <b>${S.cashi} BC</b> <span style="opacity:.7">(shared)</span></p>
+      </div>
+      <button class="btn" onclick="go('shop')">Spend Cashi in the Stamp shop →</button>
+      <button class="btn alt" onclick="go('play')">Play again</button>
+      <button class="btn alt" onclick="go('passport')">Open passport →</button>
+    ` + nav());
+    return;
+  }
+  const q = QS[qi];
+  $(hdr() + `
+    <h2>Greetings · Level 1</h2>
+    <div class="quiz-note">Play quiz is Italian-only this pass · packs change shop &amp; passport</div>
+    <div class="note">Question ${qi+1} of ${QS.length} · +${PER} BC each</div>
+    <div class="card">
+      <div class="it">${q.it}</div>
+      <div class="en">${q.en}</div>
+      <button class="chip" style="display:block;margin:8px auto" onclick="speak(QS[${qi}].it)">🔊 Listen</button>
+      <div style="font-weight:700;margin:6px 0">${q.q}</div>
+      ${q.o.map((o,i)=>`<button class="opt" id="o${i}" onclick="ans(${i})">${esc(o)}</button>`).join('')}
+      <div id="hint" class="note"></div>
+    </div>
+    <button class="btn alt" onclick="go('shop')">← Stamp shop</button>
+    <button class="btn alt" onclick="go('passport')">← Passport</button>
+  ` + nav());
+  speak(q.it);
+}
+
+function ans(i){
+  if(answering) return;
+  const q = QS[qi];
+  const first = document.getElementById('o0');
+  if(!first || first.disabled) return;
+  answering = true;
+  document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+  if(i === q.a){
+    document.getElementById('o'+i).classList.add('ok');
+    right++; earned += PER; S.cashi += PER; save();
+    toast('Esatto! +' + PER + ' BC');
+  } else {
+    document.getElementById('o'+i).classList.add('no');
+    document.getElementById('o'+q.a).classList.add('ok');
+  }
+  document.getElementById('hint').textContent = '💡 ' + q.hint;
+  setTimeout(() => { qi++; answering = false; render(); }, 1500);
+}
+
+function renderShop(){
+  const list = stamps();
+  const own = owned();
+  const pk = pack();
+  $(hdr() + `
+    <h2>Stamp shop</h2>
+    <div class="note">${pk.flag} ${esc(pk.note)} · shared 🪙 wallet</div>
+    <div class="stats">${own.length}/${list.length} in this pack · 🪙 ${S.cashi} BC</div>
+    <div class="shop-grid">
+      ${list.map(st => {
+        const isOwn = own.includes(st.id);
+        const can = S.cashi >= st.price;
+        return `<div class="stamp-card ${isOwn?'owned':''}">
+          ${badgeHTML(st, true)}
+          <b>${esc(st.name)}</b>
+          <div class="price">${pageLabel(st.page)} · ${st.price} BC</div>
+          ${isOwn
+            ? `<button class="owned-btn" disabled>Inked ✓</button>`
+            : `<button ${can?'':'disabled'} onclick="buy('${st.id}')">Buy · ${st.price} BC</button>`}
+        </div>`;
+      }).join('')}
+    </div>
+    <button class="btn" onclick="go('passport')">Open passport →</button>
+    <button class="btn alt" onclick="go('play')">Need more Cashi? Play a round</button>
+  ` + nav());
+}
+
+function pageLabel(p){
+  return ({greetings:'Greetings', towns:'Towns', songs:'Songs'})[p] || p;
+}
+
+function buy(id){
+  const list = stamps();
+  const st = list.find(x => x.id === id);
+  const own = owned();
+  if(!st || own.includes(id) || S.cashi < st.price) return;
+  S.cashi -= st.price;
+  own.push(id);
+  save();
+  toast('Stamp inked: ' + st.name + '!');
+  const pi = PAGES.findIndex(p => p.id === st.page);
+  if(pi >= 0) pageIdx = pi;
+  render();
+}
+
+function renderPassport(){
+  const p = PAGES[pageIdx];
+  const pk = pack();
+  const listAll = stamps();
+  const own = owned();
+  let body = '';
+  if(p.id === 'cover'){
+    body = `<div class="book cover-mode">
+      <div class="cover-crest">
+        <div class="seal">${pk.flag}</div>
+        <h3>${esc(pk.coverTitle)}</h3>
+        <div class="sub">${esc(pk.coverSub)}</div>
+      </div>
+      <div class="cover-foot">
+        <label style="display:block;font-size:12px;opacity:.85;margin-bottom:4px">Nome / Name</label>
+        <input type="text" id="pname" maxlength="18" value="${esc(S.name)}" placeholder="e.g. Sofia"
+          oninput="S.name=this.value;save()"
+          style="background:rgba(255,233,201,.15);border-color:rgba(255,233,201,.55);color:var(--cream)">
+        <div style="margin-top:12px;font-size:12px;opacity:.8">${pk.flag} ${own.length}/${listAll.length} in pack · ${S.rounds} rounds · 🪙 ${S.cashi} BC shared</div>
+      </div>
+    </div>`;
+  } else {
+    const list = listAll.filter(s => s.page === p.id);
+    body = `<div class="book page-mode">
+      <div class="page-head">
+        <h3>${p.title}</h3>
+        <span class="pg">${pk.flag} ${esc(pk.short)} · p.${pageIdx}</span>
+      </div>
+      <div class="stamp-grid">
+        ${list.map(st => {
+          const inked = own.includes(st.id);
+          return `<div class="slot ${inked?'inked':''}">
+            ${badgeHTML(st, inked)}
+            <div class="label">${esc(st.name)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="note" style="margin-top:auto">${list.filter(s=>own.includes(s.id)).length}/${list.length} inked on this page</div>
+    </div>`;
+  }
+
+  const prevDis = pageIdx === 0;
+  const nextDis = pageIdx === PAGES.length - 1;
+  $(hdr() + `
+    <h2>Boh Passport</h2>
+    <div class="note">One book · stamps stay per pack</div>
+    <div class="book-wrap">${body}</div>
+    <div class="flip-bar">
+      <button class="btn alt" ${prevDis?'disabled':''} onclick="flip(-1)">← Prev</button>
+      <div class="mid">${pageIdx+1} / ${PAGES.length}<br>${p.title}</div>
+      <button class="btn alt" ${nextDis?'disabled':''} onclick="flip(1)">Next →</button>
+    </div>
+    <button class="btn" onclick="go('shop')">Buy more stamps →</button>
+    <button class="btn alt" onclick="if(confirm('Reset passport demo?')){localStorage.removeItem(KEY);localStorage.removeItem(KEY_OLD);location.reload()}">Reset demo</button>
+  ` + nav());
+}
+
+function flip(d){
+  pageIdx = Math.max(0, Math.min(PAGES.length - 1, pageIdx + d));
+  render();
+}
+
+function esc(s){
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function render(){
+  if(tab === 'play') renderPlay();
+  else if(tab === 'shop') renderShop();
+  else renderPassport();
+}
+
+render();
+</script>
+</body>
+</html>
