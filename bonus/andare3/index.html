@@ -262,6 +262,7 @@ var STOPS=[
 ];
 
 /* ---------- build the 8 practice items of one stop ---------- */
+function kick(){return run.quiz?'Quiz':KICK[run.i]}
 var KICK=['Riscaldamento','Scegli','Completa','Costruiscila','Premio · 3 di fila','Ascolta e scrivi','SFIDA','Ultima!'];
 function mkSentenceItems(S){
  var C=S.c,items=[];LIM=[0,2,3,4,6,6][S.n];
@@ -356,7 +357,8 @@ function tnext(){var sc=document.getElementById('tsc');if(!sc)return;var last=ST
 
 /* ---------- practice ---------- */
 function startPractice(n){var S=STOPS[n-1];run={n:n,mode:'practice',items:mkSentenceItems(S),i:0,right:0,res:[],reward3:false,okN:0,badN:0,revealed:false,help:0};card()}
-function crumb(){return '<div class="crumb"><span>Stop '+run.n+' · '+KICK[run.i]+'</span><span>'+(run.i+1)+' / 8</span></div><div class="bar"><i style="width:'+Math.round(100*run.i/8)+'%"></i></div>'}
+function crumb(){if(run.quiz){var T=run.items.length;return '<div class="crumb"><span>Quiz · Chi va?</span><span>'+(run.streak>=2?run.streak+' di fila · ':'')+(run.i+1)+' / '+T+'</span></div><div class="bar"><i style="width:'+Math.round(100*run.i/T)+'%"></i></div>'}
+ return '<div class="crumb"><span>Stop '+run.n+' · '+KICK[run.i]+'</span><span>'+(run.i+1)+' / 8</span></div><div class="bar"><i style="width:'+Math.round(100*run.i/8)+'%"></i></div>'}
 function helpHtml(it){if(run.revealed)return '';
  if(run.help)return '<div class="helpbox"><b>Help:</b> '+it.help.en+' <span style="color:var(--mute)">·</span> <b>'+esc(it.help.it)+'</b></div>';
  return '<button class="btn q" data-a="help">Help · Aiuto</button>'}
@@ -370,28 +372,29 @@ function fbHtml(it,ok,answer){
  if(it.n<=2&&it.why)h+=(ok?'':'<br>')+it.why;
  return h+'</div></div><button class="btn p wide" data-a="next">Avanti</button>'}
 function card(){
- var it=run.items[run.i];if(!it)return results(run.n);
+ var it=run.items[run.i];if(!it)return run.quiz?quizResults():results(run.n);
  var h=topbar(BACKPATH)+crumb()+'<div class="stage"><div class="card">';
  if(it.t==='pick'){
-  h+='<div class="kick">'+KICK[run.i]+'</div>';
+  h+='<div class="kick">'+kick()+'</div>';
   if(it.dove)h+='<div class="en"><b>Dove vai?</b><br><span style="color:var(--mute)">Where are you going?</span></div>';
   if(it.en)h+='<div class="en">'+it.en+'</div>';
+  if(it.audio)h+=audioBlock(it,it.audio);
   if(it.prompt)h+='<div class="prompt">'+it.prompt+'</div>';
   else h+='<div class="prompt"><span class="pk">Scegli.</span></div>';
   h+=tenseChip(it)+'<div class="opts '+(it.opts.length===2?'two':'three')+'">'+it.opts.map(function(o,i){var c='opt';if(run.revealed){if(o===it.ok)c+=' ok';else if(o===run.picked)c+=' no'}return '<button class="'+c+'" data-a="pick" data-o="'+i+'" '+(run.revealed?'disabled':'')+'>'+esc(o)+'</button>'}).join('')+'</div>';
   h+=run.revealed?fbHtml(it,run.ok,it.ok):helpHtml(it);
  } else if(it.t==='build'){
-  h+='<div class="kick">'+KICK[run.i]+'</div>'+audioBlock(it,it.audio)+tenseChip(it)+chipsHtml(it)+(run.revealed?fbHtml(it,run.ok,it.target):'<div class="row"><button class="btn p" data-a="bcheck" '+(run.sel.length?'':'disabled')+'>Controlla</button><button class="btn g" data-a="bclear">Cancella</button></div>'+helpHtml(it));
+  h+='<div class="kick">'+kick()+'</div>'+audioBlock(it,it.audio)+tenseChip(it)+chipsHtml(it)+(run.revealed?fbHtml(it,run.ok,it.target):'<div class="row"><button class="btn p" data-a="bcheck" '+(run.sel.length?'':'disabled')+'>Controlla</button><button class="btn g" data-a="bclear">Cancella</button></div>'+helpHtml(it));
  } else if(it.t==='match'){
   h+=matchHtml(it);
  } else if(it.t==='type'){
-  h+='<div class="kick">'+KICK[run.i]+'</div>'+audioBlockType(it)+tenseChip(it)+'<input class="ans" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Scrivi in italiano…" aria-label="Scrivi la frase in italiano" '+(run.revealed?'disabled value="'+esc(run.typed)+'"':'')+'>'+
+  h+='<div class="kick">'+kick()+'</div>'+audioBlockType(it)+tenseChip(it)+'<input class="ans" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Scrivi in italiano…" aria-label="Scrivi la frase in italiano" '+(run.revealed?'disabled value="'+esc(run.typed)+'"':'')+'>'+
    (run.revealed?fbHtml(it,run.ok,it.answer):'<button class="btn p wide" data-a="tcheck">Controlla</button>'+helpHtml(it));
  } else if(it.t==='chal'){
   h+='<div class="kick" style="color:var(--pink)">SFIDA</div><div class="prompt">Costruisci una frase. Le ultime due parole sono tue.</div>'+tenseChip(it)+chipsHtml(it)+(run.revealed?fbHtml(it,run.ok,run.chalShow):'<div class="row"><button class="btn p" data-a="ccheck" '+(run.sel.length?'':'disabled')+'>Controlla</button><button class="btn g" data-a="bclear">Cancella</button></div>'+helpHtml(it));
  }
  h+='</div></div>';app.innerHTML=h;
- if((it.t==='build'||it.t==='type')&&!run.revealed&&run.autoI!==run.i&&hasClip(it.audio||it.answer)){run.autoI=run.i;setTimeout(function(){say(it.audio||it.answer)},300)}
+ if((it.t==='build'||it.t==='type'||(it.t==='pick'&&it.audio))&&!run.revealed&&run.autoI!==run.i&&hasClip(it.audio||it.answer)){run.autoI=run.i;setTimeout(function(){say(it.audio||it.answer)},300)}
  var inp=app.querySelector('input.ans');if(inp&&!run.revealed)inp.focus()}
 function audioBlockType(it){return hasClip(it.audio)?'<button class="hearbtn" data-a="hear" aria-label="Play the sentence">'+SPK+'<span>Ascolta</span></button><div class="prompt"><span class="pk">Scrivi quello che senti.</span></div>':'<div class="nocl">🔇 L’audio di Sara arriva presto. Leggi la frase, poi scrivila:</div><div class="prompt"><span class="pk">'+esc(it.audio)+'</span></div>'}
 
@@ -417,7 +420,7 @@ function matchHtml(it){
  else h+=helpHtml(it);
  return h}
 
-function record(ok){var it=run.items[run.i];run.revealed=true;run.ok=ok;run.res.push(ok);if(ok)run.right++;if(it.t==='match'&&ok)run.reward3=true}
+function record(ok){var it=run.items[run.i];if(run.quiz){run.streak=ok?(run.streak||0)+1:0;run.bestStreak=Math.max(run.bestStreak||0,run.streak)}run.revealed=true;run.ok=ok;run.res.push(ok);if(ok)run.right++;if(it.t==='match'&&ok)run.reward3=true}
 
 /* ---------- events ---------- */
 app.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.getAttribute('data-a');
@@ -429,6 +432,7 @@ app.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!
  if(a==='again')return startPractice(+b.getAttribute('data-n'));
  if(a==='nextstop'){var n=+b.getAttribute('data-n');return n<=5&&unlocked(n)?teach(n):path()}
  if(a==='dopractice')return startPractice(+b.getAttribute('data-n'));
+ if(a==='quiz')return startQuiz();
  if(a.indexOf('t_')===0)return;
  if(!run||run.mode!=='practice')return parlaClick(b,a);
  var it=run.items[run.i];
@@ -458,6 +462,35 @@ app.addEventListener('keydown',function(e){
  if(view==='teach'&&run&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){var sc=document.getElementById('tsc');if(!sc)return;var p=run.page+(e.key==='ArrowRight'?1:-1);p=Math.max(0,Math.min(2,p));sc.scrollTo({left:p*(sc.clientWidth+12),behavior:'smooth'})}
 });
 
+/* ---------- Unit quiz: optional checkpoint after stop 5. Never blocks anything. ---------- */
+function mkQuizItems(){
+ function pk(ok,wrong,prompt,o){o=o||{};return {t:'pick',quiz:1,tense:o.tense,audio:o.audio,prompt:prompt,ok:ok,opts:shuffle([ok].concat(wrong)),help:o.help}}
+ var L='<span class="pk">Ascolta e scegli.</span>';
+ return [
+  pk('vado',['vai','va'],'io + andare = <span class="pk">___</span>',{help:{en:'I + to go. Which form?',it:'v…'}}),
+  pk('va',['vai','vanno'],'Lei <span class="pk">___</span> a casa.',{tense:1,help:{en:'She goes home.',it:'lei → v…'}}),
+  pk('a Roma',['in Italia','a scuola'],L,{audio:'Vado a Roma.',help:{en:'A city: the bullseye.',it:'🎯 a'}}),
+  pk('andiamo',['andate','vanno'],'noi + andare = <span class="pk">___</span>',{help:{en:'We + to go. Which form?',it:'a…'}}),
+  pk('vanno',['va','vado'],'Loro <span class="pk">___</span> in Italia.',{tense:1,help:{en:'They go to Italy.',it:'loro → v…'}}),
+  pk('Vai in palestra.',['Vado in palestra.','Vai a scuola.'],L,{audio:'Vai in palestra.',help:{en:'You go to the gym.',it:'Vai…'}}),
+  pk('dal dottore',['a prendere acqua','in bagno'],L,{audio:'dal dottore',help:{en:'To the doctor’s.',it:'dal d…'}}),
+  pk('andate',['andiamo','vanno'],'Voi <span class="pk">___</span> in bagno.',{tense:1,help:{en:'You all go to the bathroom.',it:'voi → a…'}}),
+  pk('Vado in Italia.',['Vado a Roma.','Vado a casa.'],L,{audio:'Vado in Italia.',help:{en:'I go to Italy.',it:'Vado in…'}}),
+  pk('vai',['vado','va'],'tu + andare = <span class="pk">___</span>',{help:{en:'You + to go. Which form?',it:'v…'}})
+ ]}
+function startQuiz(){run={n:0,quiz:true,mode:'practice',items:mkQuizItems(),i:0,right:0,res:[],streak:0,bestStreak:0,okN:0,badN:0,revealed:false,help:0};card()}
+function quizResults(){view='results';var T=run.items.length,right=run.right;
+ var q=st.quiz||{},first=!q.done;var bc=first?right*BC.perRight+BC.clear:0;
+ st.quiz={done:true,best:Math.max(q.best||0,right),paid:true};save();if(bc>0)award(bc);
+ var line=right===T?'Oooo! Bravissim'+bohEnd()+'!':right>=8?'Ottimo!':right>=5?'Bene!':'Ancora un giro!';
+ app.innerHTML=topbar(BACKPATH)+'<div class="stage"><div class="card center pop">'+profBox(right>=8?IMG.joy:IMG.think,line,'')+
+  '<div class="big">'+right+' / '+T+'</div><div class="sub">Quiz · Chi va? · '+run.bestStreak+' di fila</div>'+
+  '<div class="bcline">'+(bc>0?'+'+bc+' Boh Cashi':'Practice run · no new Boh Cashi')+'</div><div class="sub">'+(bc>0?'They land in your wallet the next time you open Italiano 2.':'Boh Cashi pay once.')+'</div>'+
+  '<div class="shot"><b>FAI UNO SCREENSHOT DEL TUO LAVORO</b>Then upload it to your Google Classroom page.<br>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</div>'+
+  '<div class="row" style="width:100%"><button class="btn p" data-a="nextstop" data-n="0">Avanti</button><a class="btn g" href="../../italiano2/?go=shop">Boh-tique</a></div>'+
+  '<div class="row" style="width:100%"><button class="btn g" data-a="quiz">Try again</button><a class="btn g" href="../../italiano2/">Save &amp; quit</a></div>'+
+  '<button class="btn q wide" data-a="parla">Vuoi parlare? <span style="font-size:17px;color:var(--mute);font-family:var(--body)">Do you want to speak?</span></button></div></div>'}
+
 /* ---------- Results (same buttons as every other level) ---------- */
 function results(n){view='results';var S=STOPS[n-1];var right=run.right,first=!(st.stops[n]&&st.stops[n].done);
  var bc=0;if(first){bc=right*BC.perRight+BC.clear+(run.reward3?BC.reward:0)}
@@ -468,6 +501,7 @@ function results(n){view='results';var S=STOPS[n-1];var right=run.right,first=!(
   '<div class="bcline">'+(bc>0?'+'+bc+' Boh Cashi':'Practice run · no new Boh Cashi')+'</div><div class="sub">'+(bc>0?'They land in your wallet the next time you open Italiano 2.':'Boh Cashi pay once per stop.')+'</div>'+
   '<div class="shot"><b>FAI UNO SCREENSHOT DEL TUO LAVORO</b>Then upload it to your Google Classroom page.<br>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</div>'+
   '<div class="row" style="width:100%"><button class="btn p" data-a="nextstop" data-n="'+nextN+'">Avanti</button><a class="btn g" href="../../italiano2/?go=shop">Boh-tique</a></div>'+
+  (n===5?'<button class="btn q wide" data-a="quiz">Quiz</button>':'')+
   '<div class="row" style="width:100%"><button class="btn g" data-a="again" data-n="'+n+'">Try again</button><a class="btn g" href="../../italiano2/">Save &amp; quit</a></div>'+
   '<button class="btn q wide" data-a="parla">Vuoi parlare? <span style="font-size:17px;color:var(--mute);font-family:var(--body)">Do you want to speak?</span></button></div></div>'}
 
