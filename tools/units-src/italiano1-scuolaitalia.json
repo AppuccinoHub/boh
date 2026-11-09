@@ -1,0 +1,703 @@
+{
+ "level": "italiano1",
+ "key": "scuolaitalia",
+ "guideUnit": 5,
+ "proficiency": "Novice Mid",
+ "title": "Unità 5 · La scuola in Italia",
+ "tab": "Scuola in Italia",
+ "tabSub": "UNITÀ 5",
+ "eyebrow": "ITALIANO 1 · UNITÀ 5",
+ "question": "How does school work in Italy?",
+ "words": "(la scuola media, il liceo, la maturità)",
+ "workingOn": "how school works in Italy: stages, ages and the final exam",
+ "canDo": [
+  "I can say the ages and the years of each school stage in Italy.",
+  "I can name the three kinds of Italian high school.",
+  "I can say who is in charge of a school.",
+  "I can compare an Italian school day with mine."
+ ],
+ "culture": "In Italy, school is required from age 6 to 16, and many students stay until 19. High school lasts five years and ends with a big exam called la maturità. After it, students get a diploma.",
+ "vocab": [
+  {
+   "group": "Le scuole",
+   "words": [
+    [
+     "la scuola elementare",
+     "elementary school"
+    ],
+    [
+     "la scuola media",
+     "middle school"
+    ],
+    [
+     "la scuola superiore",
+     "high school"
+    ],
+    [
+     "il liceo",
+     "a type of high school"
+    ],
+    [
+     "l'istituto tecnico",
+     "technical institute"
+    ],
+    [
+     "l'istituto professionale",
+     "vocational institute"
+    ],
+    [
+     "il diploma",
+     "diploma"
+    ]
+   ]
+  },
+  {
+   "group": "Chi decide? L'esame",
+   "words": [
+    [
+     "il ministero",
+     "the ministry"
+    ],
+    [
+     "il preside",
+     "the principal"
+    ],
+    [
+     "l'esame",
+     "the exam"
+    ],
+    [
+     "la maturità",
+     "the final exam"
+    ]
+   ]
+  },
+  {
+   "group": "Una giornata",
+   "words": [
+    [
+     "la ricreazione",
+     "the break"
+    ],
+    [
+     "la mensa",
+     "the cafeteria"
+    ],
+    [
+     "il panino",
+     "the sandwich"
+    ],
+    [
+     "il pranzo",
+     "lunch"
+    ]
+   ]
+  },
+  {
+   "group": "Tre parole da ricordare",
+   "words": [
+    [
+     "dura",
+     "lasts"
+    ],
+    [
+     "comincia",
+     "starts"
+    ],
+    [
+     "finisce",
+     "ends"
+    ]
+   ]
+  }
+ ],
+ "grammar": {
+  "head": "essere and avere for schools: La scuola è…, Il liceo ha cinque anni.",
+  "verbs": [
+   "essere",
+   "avere"
+  ],
+  "rows": [
+   [
+    "io",
+    [
+     "s",
+     "ono"
+    ],
+    [
+     "h",
+     "o"
+    ]
+   ],
+   [
+    "tu",
+    [
+     "s",
+     "ei"
+    ],
+    [
+     "h",
+     "ai"
+    ]
+   ],
+   [
+    "lui / lei",
+    [
+     "",
+     "è"
+    ],
+    [
+     "h",
+     "a"
+    ]
+   ],
+   [
+    "noi",
+    [
+     "s",
+     "iamo"
+    ],
+    [
+     "abb",
+     "iamo"
+    ]
+   ],
+   [
+    "voi",
+    [
+     "s",
+     "iete"
+    ],
+    [
+     "av",
+     "ete"
+    ]
+   ],
+   [
+    "loro",
+    [
+     "s",
+     "ono"
+    ],
+    [
+     "h",
+     "anno"
+    ]
+   ]
+  ],
+  "tricks": [
+   "One school or one stage: è and ha. More than one: sono and hanno.",
+   "Dura = lasts, comincia = starts, finisce = ends. Learn them as chunks: La scuola dura cinque anni.",
+   "Ages use avere: Ho quattordici anni = I am fourteen. The numbers are the ones you know: sei, undici, quattordici, diciannove.",
+   "Ogni = every, and it never changes: ogni scuola, ogni studente."
+  ],
+  "chips": [
+   "La scuola media dura tre anni.",
+   "Ogni scuola ha un preside.",
+   "Sono le otto: la scuola comincia."
+  ]
+ },
+ "sentences": [
+  [
+   "La scuola elementare dura cinque anni.",
+   "Elementary school lasts five years."
+  ],
+  [
+   "La scuola media dura tre anni.",
+   "Middle school lasts three years."
+  ],
+  [
+   "La scuola superiore dura cinque anni.",
+   "High school lasts five years."
+  ],
+  [
+   "Il liceo è una scuola superiore.",
+   "The liceo is a high school."
+  ],
+  [
+   "Ci sono tre tipi di scuola superiore.",
+   "There are three kinds of high school."
+  ],
+  [
+   "Il liceo, l'istituto tecnico e l'istituto professionale sono scuole superiori.",
+   "The liceo, the technical institute and the vocational institute are high schools."
+  ],
+  [
+   "Ogni scuola ha un preside.",
+   "Every school has a principal."
+  ],
+  [
+   "Il ministero decide per le scuole.",
+   "The ministry decides for the schools."
+  ],
+  [
+   "Sono le otto: la scuola comincia.",
+   "It is eight: school starts."
+  ],
+  [
+   "Sono le dieci: c'è la ricreazione.",
+   "It is ten: there is a break."
+  ],
+  [
+   "È l'una: la scuola finisce.",
+   "It is one: school ends."
+  ],
+  [
+   "Dopo cinque anni c'è la maturità.",
+   "After five years there is the maturità."
+  ]
+ ],
+ "forms": [
+  {
+   "prompt": "la scuola + avere",
+   "answer": "ha",
+   "alts": [],
+   "traps": [
+    "hanno",
+    "ho"
+   ],
+   "why": "One school → ha.",
+   "trick": [
+    "lui / lei / one thing → ha",
+    "Ha (with h) = has. A (no h) = to / at."
+   ]
+  },
+  {
+   "prompt": "le scuole + avere",
+   "answer": "hanno",
+   "alts": [],
+   "traps": [
+    "ha",
+    "abbiamo"
+   ],
+   "why": "More than one school → hanno.",
+   "trick": [
+    "loro / more than one → hanno",
+    "Le scuole hanno un preside."
+   ]
+  },
+  {
+   "prompt": "il liceo + essere",
+   "answer": "è",
+   "alts": [],
+   "traps": [
+    "sono",
+    "sei"
+   ],
+   "why": "One school → è.",
+   "trick": [
+    "lui / lei / one thing → è",
+    "È with an accent = is. E without = and."
+   ]
+  },
+  {
+   "prompt": "le scuole superiori + essere",
+   "answer": "sono",
+   "alts": [],
+   "traps": [
+    "è",
+    "siete"
+   ],
+   "why": "More than one → sono.",
+   "trick": [
+    "loro → sono",
+    "Sono = they are, and also I am."
+   ]
+  },
+  {
+   "prompt": "io + essere",
+   "answer": "sono",
+   "alts": [],
+   "traps": [
+    "sei",
+    "è"
+   ],
+   "why": "io → sono.",
+   "trick": [
+    "io → sono",
+    "Sono uno studente = I am a student."
+   ]
+  },
+  {
+   "prompt": "tu + essere",
+   "answer": "sei",
+   "alts": [],
+   "traps": [
+    "sono",
+    "siamo"
+   ],
+   "why": "tu → sei.",
+   "trick": [
+    "tu → sei",
+    "Sei uno studente? = Are you a student?"
+   ]
+  },
+  {
+   "prompt": "noi + essere",
+   "answer": "siamo",
+   "alts": [],
+   "traps": [
+    "siete",
+    "sono"
+   ],
+   "why": "noi → siamo.",
+   "trick": [
+    "noi → -iamo",
+    "Siamo = we are."
+   ]
+  },
+  {
+   "prompt": "voi + essere",
+   "answer": "siete",
+   "alts": [],
+   "traps": [
+    "siamo",
+    "sei"
+   ],
+   "why": "voi → siete.",
+   "trick": [
+    "voi → -ete / -iete",
+    "Siete = you all are."
+   ]
+  },
+  {
+   "prompt": "io + avere",
+   "answer": "ho",
+   "alts": [],
+   "traps": [
+    "hai",
+    "ha"
+   ],
+   "why": "io → ho. The h is silent.",
+   "trick": [
+    "io → ho",
+    "Ho quattordici anni = I am fourteen."
+   ]
+  },
+  {
+   "prompt": "tu + avere",
+   "answer": "hai",
+   "alts": [],
+   "traps": [
+    "ha",
+    "ho"
+   ],
+   "why": "tu → hai.",
+   "trick": [
+    "tu → hai",
+    "Quanti anni hai? = How old are you?"
+   ]
+  },
+  {
+   "prompt": "noi + avere",
+   "answer": "abbiamo",
+   "alts": [],
+   "traps": [
+    "avete",
+    "hanno"
+   ],
+   "why": "noi → abbiamo.",
+   "trick": [
+    "noi → -iamo",
+    "Abbiamo la ricreazione."
+   ]
+  },
+  {
+   "prompt": "voi + avere",
+   "answer": "avete",
+   "alts": [],
+   "traps": [
+    "abbiamo",
+    "hai"
+   ],
+   "why": "voi → avete.",
+   "trick": [
+    "voi → -ete",
+    "Avete un preside."
+   ]
+  }
+ ],
+ "fill": [
+  {
+   "text": "La scuola media ___ tre anni.",
+   "answers": [
+    "dura"
+   ],
+   "cue": "lasts",
+   "bank": [
+    "dura",
+    "comincia",
+    "finisce"
+   ],
+   "hint": "lasts → starts with d-u.",
+   "why": "Dura = lasts: La scuola media dura tre anni."
+  },
+  {
+   "text": "Sono le otto: la scuola ___.",
+   "answers": [
+    "comincia"
+   ],
+   "cue": "starts",
+   "bank": [
+    "comincia",
+    "finisce",
+    "dura"
+   ],
+   "hint": "starts → starts with c-o-m.",
+   "why": "Comincia = starts."
+  },
+  {
+   "text": "È l'una: la scuola ___.",
+   "answers": [
+    "finisce"
+   ],
+   "cue": "ends",
+   "bank": [
+    "finisce",
+    "comincia",
+    "dura"
+   ],
+   "hint": "ends → starts with f-i-n.",
+   "why": "Finisce = ends."
+  },
+  {
+   "text": "Ogni scuola ___ un preside.",
+   "answers": [
+    "ha"
+   ],
+   "cue": "has",
+   "bank": [
+    "ha",
+    "hanno",
+    "è",
+    "sono"
+   ],
+   "hint": "one school → starts with h-a.",
+   "why": "Ogni scuola = one school → ha."
+  },
+  {
+   "text": "Le scuole superiori ___ cinque anni.",
+   "answers": [
+    "hanno"
+   ],
+   "cue": "have",
+   "bank": [
+    "hanno",
+    "ha",
+    "sono",
+    "siamo"
+   ],
+   "hint": "they have → starts with h-a-n.",
+   "why": "More than one school → hanno."
+  },
+  {
+   "text": "Il liceo ___ una scuola superiore.",
+   "answers": [
+    "è"
+   ],
+   "cue": "is",
+   "bank": [
+    "è",
+    "sono",
+    "ha"
+   ],
+   "hint": "is → one letter, with an accent.",
+   "why": "One school → è."
+  },
+  {
+   "text": "La scuola elementare è per i bambini da sei a ___ anni.",
+   "answers": [
+    "undici"
+   ],
+   "cue": "eleven",
+   "bank": [
+    "undici",
+    "quattordici",
+    "diciannove"
+   ],
+   "hint": "eleven → starts with u-n.",
+   "why": "Elementare: six to eleven."
+  },
+  {
+   "text": "Dopo cinque anni c'è la ___.",
+   "answers": [
+    "maturità"
+   ],
+   "cue": "final exam",
+   "bank": [
+    "maturità",
+    "ricreazione",
+    "mensa"
+   ],
+   "hint": "final exam → starts with m-a-t.",
+   "why": "La maturità = the final exam."
+  }
+ ],
+ "read": {
+  "title": "La scuola di Marco",
+  "passage": [
+   [
+    "La scuola di Marco si chiama Liceo Dante.",
+    "Marco's school is called Liceo Dante."
+   ],
+   [
+    "La scuola superiore dura cinque anni.",
+    "High school lasts five years."
+   ],
+   [
+    "Sono le dieci: c'è la ricreazione. Marco mangia un panino.",
+    "It is ten: there is a break. Marco eats a sandwich."
+   ],
+   [
+    "È l'una: la scuola finisce.",
+    "It is one: school ends."
+   ]
+  ],
+  "gloss": {
+   "si chiama": "is called",
+   "ricreazione": "break"
+  },
+  "questions": [
+   {
+    "q": "Come si chiama la scuola di Marco?",
+    "answer": "Liceo Dante",
+    "traps": [
+     "Liceo Verdi",
+     "Liceo Galileo"
+    ],
+    "why": "La scuola di Marco si chiama Liceo Dante."
+   },
+   {
+    "q": "Quanti anni dura la scuola superiore?",
+    "answer": "cinque",
+    "traps": [
+     "tre",
+     "quattro"
+    ],
+    "why": "La scuola superiore dura cinque anni."
+   },
+   {
+    "q": "Che cosa mangia Marco?",
+    "answer": "un panino",
+    "traps": [
+     "una pizza",
+     "un gelato"
+    ],
+    "why": "Marco mangia un panino."
+   },
+   {
+    "q": "Quando finisce la scuola?",
+    "answer": "È l'una.",
+    "traps": [
+     "Sono le otto.",
+     "Sono le dieci."
+    ],
+    "why": "È l'una: la scuola finisce."
+   }
+  ]
+ },
+ "listen": [
+  {
+   "q": "Quanti anni dura la scuola media?",
+   "en": "How many years does middle school last?",
+   "frames": [
+    "La scuola media dura …"
+   ]
+  },
+  {
+   "q": "Come si chiama l'esame finale?",
+   "en": "What is the final exam called?",
+   "frames": [
+    "L'esame si chiama …"
+   ]
+  },
+  {
+   "q": "A che ora comincia la scuola?",
+   "en": "What time does school start?",
+   "frames": [
+    "Sono le …: la scuola comincia."
+   ]
+  }
+ ],
+ "chat": {
+  "who": [
+   "Giulia",
+   "Marco"
+  ],
+  "lines": [
+   [
+    0,
+    "Ciao Marco! Quanti anni hai?",
+    "Hi Marco! How old are you?"
+   ],
+   [
+    1,
+    "Ho quattordici anni. E tu?",
+    "I am fourteen. And you?"
+   ],
+   [
+    0,
+    "Ho tredici anni. Sono in una scuola media.",
+    "I am thirteen. I am in a middle school."
+   ],
+   [
+    1,
+    "Io sono in una scuola superiore. Dura cinque anni!",
+    "I am in a high school. It lasts five years!"
+   ],
+   [
+    0,
+    "Che ora è?",
+    "What time is it?"
+   ],
+   [
+    1,
+    "Sono le otto: la scuola comincia!",
+    "It is eight: school starts!"
+   ]
+  ],
+  "words": {
+   "Quanti anni hai": "how old are you"
+  }
+ },
+ "parla": {
+  "prompts": [
+   [
+    "Quanti anni dura la scuola media?",
+    "La scuola media dura …"
+   ],
+   [
+    "Come si chiama l'esame finale in Italia?",
+    "L'esame si chiama …"
+   ],
+   [
+    "A che ora comincia la scuola?",
+    "Sono le …: la scuola comincia."
+   ]
+  ],
+  "checks": [
+   "Ho fatto le 3 domande.",
+   "Ho risposto con frasi intere.",
+   "Ho detto una cosa del mio compagno."
+  ]
+ },
+ "finish": "Now I know how school works in Italy: the stages, the ages and the final exam!",
+ "idiom": {
+  "it": "In bocca al lupo!",
+  "en": "good luck (literally: in the wolf's mouth)",
+  "ex": "Domani c'è l'esame. In bocca al lupo!",
+  "exEn": "Tomorrow there is the exam. Good luck!",
+  "note": "Italians say it before an exam or a big moment. The answer is Crepi! (may it die)."
+ },
+ "flags": [
+  "The district guide lists only four Italian 1 units. Unit 5 is a supplemental unit, not a guide unit. It matches the guide's Italian 1 intercultural topic 'similarities and differences of school routines and expectations'. Decide where it sits in your pacing.",
+  "It reviews essere and avere from Units 1 and 2. The 20 classroom words (banco, lavagna, pennarello and the rest) are not here because Unit 2 already covers school objects.",
+  "Memorized chunks, not taught as grammar: dura, comincia, finisce, decide, si chiama, ci sono, dopo, c'è. Please confirm ci sono, c'è and dopo are known from earlier units.",
+  "Numbers 6 to 19 are assumed known (you confirmed numbers up to 19-20 were taught in Italian 1).",
+  "Words not on the Italian 1 midterm: elementare, media, diploma, maturità, ministero, preside, ricreazione, mensa, panino, pranzo. They are new here.",
+  "Facts checked against Eurydice, Istat and the Italian ministry: stages 6-11, 11-14, 14-19; school is required from 6 to 16; five-year high school; maturità; ministry called MIM. Not included: whether students eat lunch at home (Unverified).",
+  "No combined prepositions anywhere (no al, alla, del, nel).",
+  "The idiom In bocca al lupo! contains al (a + il), a combined preposition. Assunta says KEEP it as a set phrase. The Crepi! reply is general knowledge (Unverified).",
+  "Everything is Untested and all the Italian needs your review."
+ ]
+}

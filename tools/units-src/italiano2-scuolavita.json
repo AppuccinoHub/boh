@@ -1,0 +1,719 @@
+{
+ "level": "italiano2",
+ "key": "scuolavita",
+ "guideUnit": 5,
+ "proficiency": "Novice High",
+ "title": "Unità 5 · La scuola italiana",
+ "tab": "Scuola italiana",
+ "tabSub": "UNITÀ 5",
+ "eyebrow": "ITALIANO 2 · UNITÀ 5",
+ "question": "How does school work in Italy, and what do students do there?",
+ "words": "(studio, parli, la maturità)",
+ "workingOn": "school in Italy and what we do there: -are verbs",
+ "canDo": [
+  "I can say what I and other people study, eat and listen to at school.",
+  "I can say the ages and years of each school stage in Italy.",
+  "I can name the three kinds of Italian high school and the final exam.",
+  "I can ask and answer questions about my school day."
+ ],
+ "culture": "In Italy, school is required from age 6 to 16, and many students stay until 19. High school lasts five years and ends with a big exam called la maturità. A ministry decides for all the schools, and each school has a preside, the principal.",
+ "vocab": [
+  {
+   "group": "La scuola in Italia",
+   "words": [
+    [
+     "la scuola elementare",
+     "elementary school"
+    ],
+    [
+     "la scuola media",
+     "middle school"
+    ],
+    [
+     "la scuola superiore",
+     "high school"
+    ],
+    [
+     "il liceo",
+     "a type of high school"
+    ],
+    [
+     "l'istituto tecnico",
+     "technical institute"
+    ],
+    [
+     "l'istituto professionale",
+     "vocational institute"
+    ],
+    [
+     "il preside",
+     "the principal"
+    ],
+    [
+     "il ministero",
+     "the ministry"
+    ],
+    [
+     "la maturità",
+     "the final exam"
+    ],
+    [
+     "il diploma",
+     "diploma"
+    ]
+   ]
+  },
+  {
+   "group": "I verbi della scuola",
+   "words": [
+    [
+     "studiare",
+     "to study"
+    ],
+    [
+     "parlare",
+     "to speak"
+    ],
+    [
+     "mangiare",
+     "to eat"
+    ],
+    [
+     "ascoltare",
+     "to listen"
+    ],
+    [
+     "comprare",
+     "to buy"
+    ]
+   ]
+  },
+  {
+   "group": "Una giornata",
+   "words": [
+    [
+     "la ricreazione",
+     "the break"
+    ],
+    [
+     "la mensa",
+     "the cafeteria"
+    ],
+    [
+     "il panino",
+     "the sandwich"
+    ]
+   ]
+  }
+ ],
+ "grammar": {
+  "head": "-are verbs, all six persons: studio, studi, studia, studiamo, studiate, studiano",
+  "verbs": [
+   "studiare",
+   "parlare",
+   "mangiare"
+  ],
+  "rows": [
+   [
+    "io",
+    [
+     "stud",
+     "io"
+    ],
+    [
+     "parl",
+     "o"
+    ],
+    [
+     "mang",
+     "io"
+    ]
+   ],
+   [
+    "tu",
+    [
+     "stud",
+     "i"
+    ],
+    [
+     "parl",
+     "i"
+    ],
+    [
+     "mang",
+     "i"
+    ]
+   ],
+   [
+    "lui / lei",
+    [
+     "stud",
+     "ia"
+    ],
+    [
+     "parl",
+     "a"
+    ],
+    [
+     "mang",
+     "ia"
+    ]
+   ],
+   [
+    "noi",
+    [
+     "stud",
+     "iamo"
+    ],
+    [
+     "parl",
+     "iamo"
+    ],
+    [
+     "mang",
+     "iamo"
+    ]
+   ],
+   [
+    "voi",
+    [
+     "stud",
+     "iate"
+    ],
+    [
+     "parl",
+     "ate"
+    ],
+    [
+     "mang",
+     "iate"
+    ]
+   ],
+   [
+    "loro",
+    [
+     "stud",
+     "iano"
+    ],
+    [
+     "parl",
+     "ano"
+    ],
+    [
+     "mang",
+     "iano"
+    ]
+   ]
+  ],
+  "tricks": [
+   "Cut -are, then add: io -o · tu -i · lui/lei -a · noi -iamo · voi -ate · loro -ano.",
+   "Verbs that end in -iare (studiare, mangiare) keep one i: studio, mangio; tu studi, mangi (not studii).",
+   "Loro adds -ano to the stem: parlano, ascoltano. Gli studenti = loro.",
+   "Parlare is the model for all the regular -are verbs: ascoltare, comprare, abitare."
+  ],
+  "chips": [
+   "Io studio italiano.",
+   "Marco mangia un panino.",
+   "Gli studenti ascoltano il professore."
+  ]
+ },
+ "sentences": [
+  [
+   "Io studio italiano a scuola.",
+   "I study Italian at school."
+  ],
+  [
+   "Tu parli italiano con il professore.",
+   "You speak Italian with the teacher."
+  ],
+  [
+   "Marco mangia un panino a ricreazione.",
+   "Marco eats a sandwich at the break."
+  ],
+  [
+   "Noi studiamo la storia e le scienze.",
+   "We study history and science."
+  ],
+  [
+   "Voi parlate con il preside.",
+   "You all speak with the principal."
+  ],
+  [
+   "Gli studenti ascoltano il professore.",
+   "The students listen to the teacher."
+  ],
+  [
+   "In Italia la scuola superiore dura cinque anni.",
+   "In Italy high school lasts five years."
+  ],
+  [
+   "Ci sono tre tipi di scuola superiore.",
+   "There are three kinds of high school."
+  ],
+  [
+   "Il ministero decide per le scuole.",
+   "The ministry decides for the schools."
+  ],
+  [
+   "Dopo la maturità, gli studenti hanno il diploma.",
+   "After the maturità, students get the diploma."
+  ],
+  [
+   "Sono le otto: la scuola comincia.",
+   "It is eight: school starts."
+  ],
+  [
+   "Compro un panino e studio in classe.",
+   "I buy a sandwich and I study in class."
+  ]
+ ],
+ "forms": [
+  {
+   "prompt": "io + studiare",
+   "answer": "studio",
+   "alts": [],
+   "traps": [
+    "studi",
+    "studia"
+   ],
+   "why": "io → -o: studio (the i stays from studi-).",
+   "trick": [
+    "io → -o",
+    "Cut -are, add -o: studiare → studio."
+   ]
+  },
+  {
+   "prompt": "tu + parlare",
+   "answer": "parli",
+   "alts": [],
+   "traps": [
+    "parla",
+    "parlo"
+   ],
+   "why": "tu → -i: parli.",
+   "trick": [
+    "tu → -i",
+    "Parli italiano? = Do you speak Italian?"
+   ]
+  },
+  {
+   "prompt": "lui + mangiare",
+   "answer": "mangia",
+   "alts": [],
+   "traps": [
+    "mangi",
+    "mangio"
+   ],
+   "why": "lui / lei → -a: mangia.",
+   "trick": [
+    "lui / lei → -a",
+    "Marco mangia un panino."
+   ]
+  },
+  {
+   "prompt": "noi + studiare",
+   "answer": "studiamo",
+   "alts": [],
+   "traps": [
+    "studiate",
+    "studiano"
+   ],
+   "why": "noi → -iamo: studiamo.",
+   "trick": [
+    "noi → -iamo",
+    "Every noi form ends in -iamo."
+   ]
+  },
+  {
+   "prompt": "voi + parlare",
+   "answer": "parlate",
+   "alts": [],
+   "traps": [
+    "parliamo",
+    "parlano"
+   ],
+   "why": "voi → -ate: parlate.",
+   "trick": [
+    "voi → -ate",
+    "voi = you all: parlate."
+   ]
+  },
+  {
+   "prompt": "loro + mangiare",
+   "answer": "mangiano",
+   "alts": [],
+   "traps": [
+    "mangia",
+    "mangiate"
+   ],
+   "why": "loro → -ano: mangiano.",
+   "trick": [
+    "loro → -ano",
+    "Gli studenti mangiano."
+   ]
+  },
+  {
+   "prompt": "io + ascoltare",
+   "answer": "ascolto",
+   "alts": [],
+   "traps": [
+    "ascolti",
+    "ascolta"
+   ],
+   "why": "io → -o: ascolto.",
+   "trick": [
+    "io → -o",
+    "Ascolto la musica."
+   ]
+  },
+  {
+   "prompt": "tu + studiare",
+   "answer": "studi",
+   "alts": [],
+   "traps": [
+    "studio",
+    "studia"
+   ],
+   "why": "tu → -i: studi (one i, not studii).",
+   "trick": [
+    "tu → -i",
+    "-iare verbs keep one i: studi, mangi."
+   ]
+  },
+  {
+   "prompt": "lei + parlare",
+   "answer": "parla",
+   "alts": [],
+   "traps": [
+    "parli",
+    "parlo"
+   ],
+   "why": "lui / lei → -a: parla.",
+   "trick": [
+    "lui / lei → -a",
+    "La professoressa parla."
+   ]
+  },
+  {
+   "prompt": "noi + mangiare",
+   "answer": "mangiamo",
+   "alts": [],
+   "traps": [
+    "mangiate",
+    "mangiano"
+   ],
+   "why": "noi → -iamo: mangiamo.",
+   "trick": [
+    "noi → -iamo",
+    "Mangiamo a ricreazione."
+   ]
+  },
+  {
+   "prompt": "voi + ascoltare",
+   "answer": "ascoltate",
+   "alts": [],
+   "traps": [
+    "ascoltiamo",
+    "ascoltano"
+   ],
+   "why": "voi → -ate: ascoltate.",
+   "trick": [
+    "voi → -ate",
+    "Ascoltate il professore."
+   ]
+  },
+  {
+   "prompt": "gli studenti + studiare",
+   "answer": "studiano",
+   "alts": [],
+   "traps": [
+    "studia",
+    "studiate"
+   ],
+   "why": "Gli studenti = loro → -ano: studiano.",
+   "trick": [
+    "loro → -ano",
+    "More than one person → -ano."
+   ]
+  }
+ ],
+ "fill": [
+  {
+   "text": "Io ___ italiano a scuola.",
+   "answers": [
+    "studio"
+   ],
+   "cue": "study",
+   "bank": [
+    "studio",
+    "studi",
+    "studia"
+   ],
+   "hint": "I study → starts with s-t-u.",
+   "why": "io → studio."
+  },
+  {
+   "text": "Tu ___ con il preside.",
+   "answers": [
+    "parli"
+   ],
+   "cue": "speak",
+   "bank": [
+    "parli",
+    "parlo",
+    "parla"
+   ],
+   "hint": "you speak → starts with p-a-r.",
+   "why": "tu → parli."
+  },
+  {
+   "text": "Marco ___ un panino a ricreazione.",
+   "answers": [
+    "mangia"
+   ],
+   "cue": "eats",
+   "bank": [
+    "mangia",
+    "mangi",
+    "mangio"
+   ],
+   "hint": "he eats → starts with m-a-n.",
+   "why": "lui → mangia."
+  },
+  {
+   "text": "Noi ___ la storia.",
+   "answers": [
+    "studiamo"
+   ],
+   "cue": "study",
+   "bank": [
+    "studiamo",
+    "studiate",
+    "studiano"
+   ],
+   "hint": "we study → ends in -iamo.",
+   "why": "noi → studiamo."
+  },
+  {
+   "text": "Voi ___ il professore.",
+   "answers": [
+    "ascoltate"
+   ],
+   "cue": "listen to",
+   "bank": [
+    "ascoltate",
+    "ascoltiamo",
+    "ascoltano"
+   ],
+   "hint": "you all listen → ends in -ate.",
+   "why": "voi → ascoltate."
+  },
+  {
+   "text": "Gli studenti ___ il pranzo.",
+   "answers": [
+    "mangiano"
+   ],
+   "cue": "eat",
+   "bank": [
+    "mangiano",
+    "mangia",
+    "mangiamo"
+   ],
+   "hint": "they eat → ends in -ano.",
+   "why": "loro → mangiano."
+  },
+  {
+   "text": "In Italia la scuola superiore ___ cinque anni.",
+   "answers": [
+    "dura"
+   ],
+   "cue": "lasts",
+   "bank": [
+    "dura",
+    "comincia",
+    "finisce"
+   ],
+   "hint": "lasts → starts with d-u.",
+   "why": "Dura = lasts."
+  },
+  {
+   "text": "Dopo la maturità, gli studenti ___ il diploma.",
+   "answers": [
+    "hanno"
+   ],
+   "cue": "have",
+   "bank": [
+    "hanno",
+    "ha",
+    "sono"
+   ],
+   "hint": "they have → starts with h-a-n.",
+   "why": "gli studenti = loro → hanno."
+  }
+ ],
+ "read": {
+  "title": "Una giornata a scuola in Italia",
+  "passage": [
+   [
+    "Sofia ha quindici anni e studia in un liceo.",
+    "Sofia is fifteen and studies in a liceo."
+   ],
+   [
+    "Il liceo dura cinque anni e Sofia studia l'italiano, la storia e le scienze.",
+    "The liceo lasts five years and Sofia studies Italian, history and science."
+   ],
+   [
+    "Sono le dieci: c'è la ricreazione. Sofia mangia un panino con le amiche.",
+    "It is ten: there is a break. Sofia eats a sandwich with her friends."
+   ],
+   [
+    "Dopo cinque anni c'è la maturità. Poi gli studenti hanno il diploma.",
+    "After five years there is the maturità. Then the students get the diploma."
+   ]
+  ],
+  "gloss": {
+   "ricreazione": "break",
+   "Poi": "then"
+  },
+  "questions": [
+   {
+    "q": "Quanti anni ha Sofia?",
+    "answer": "quindici",
+    "traps": [
+     "quattordici",
+     "sedici"
+    ],
+    "why": "Sofia ha quindici anni."
+   },
+   {
+    "q": "Quanti anni dura il liceo?",
+    "answer": "cinque",
+    "traps": [
+     "tre",
+     "quattro"
+    ],
+    "why": "Il liceo dura cinque anni."
+   },
+   {
+    "q": "Che cosa mangia Sofia?",
+    "answer": "un panino",
+    "traps": [
+     "una pizza",
+     "un gelato"
+    ],
+    "why": "Sofia mangia un panino."
+   },
+   {
+    "q": "Che cosa hanno gli studenti dopo la maturità?",
+    "answer": "il diploma",
+    "traps": [
+     "un preside",
+     "una mensa"
+    ],
+    "why": "Dopo la maturità gli studenti hanno il diploma."
+   }
+  ]
+ },
+ "listen": [
+  {
+   "q": "Che cosa studi a scuola?",
+   "en": "What do you study at school?",
+   "frames": [
+    "Studio …"
+   ]
+  },
+  {
+   "q": "Che cosa mangi a ricreazione?",
+   "en": "What do you eat at the break?",
+   "frames": [
+    "Mangio …"
+   ]
+  },
+  {
+   "q": "Quanti anni dura la scuola superiore in Italia?",
+   "en": "How many years does high school last in Italy?",
+   "frames": [
+    "La scuola superiore dura …"
+   ]
+  }
+ ],
+ "chat": {
+  "who": [
+   "Giulia",
+   "Marco"
+  ],
+  "lines": [
+   [
+    0,
+    "Ciao Marco! Che cosa studi?",
+    "Hi Marco! What do you study?"
+   ],
+   [
+    1,
+    "Studio l'italiano, la storia e le scienze. E tu?",
+    "I study Italian, history and science. And you?"
+   ],
+   [
+    0,
+    "Io studio la matematica e l'arte. Sono le dieci!",
+    "I study math and art. It is ten!"
+   ],
+   [
+    1,
+    "C'è la ricreazione! Mangi un panino?",
+    "There is the break! Do you eat a sandwich?"
+   ],
+   [
+    0,
+    "Sì! Compro un panino.",
+    "Yes! I buy a sandwich."
+   ],
+   [
+    1,
+    "Che bello! Mangiamo!",
+    "How nice! Let us eat!"
+   ]
+  ],
+  "words": {
+   "Che bello": "how nice"
+  }
+ },
+ "parla": {
+  "prompts": [
+   [
+    "Che cosa studi a scuola?",
+    "Studio …"
+   ],
+   [
+    "Che cosa mangi a ricreazione?",
+    "Mangio …"
+   ],
+   [
+    "Quanti anni dura la scuola superiore in Italia?",
+    "La scuola superiore dura …"
+   ]
+  ],
+  "checks": [
+   "Ho fatto le 3 domande.",
+   "Ho risposto con frasi intere.",
+   "Ho detto una cosa del mio compagno."
+  ]
+ },
+ "finish": "Now I know how to talk about school in Italy and about what I do at school!",
+ "idiom": {
+  "it": "In bocca al lupo!",
+  "en": "good luck (literally: in the wolf's mouth)",
+  "ex": "Oggi c'è la maturità. In bocca al lupo!",
+  "exEn": "Today is the maturità. Good luck!",
+  "note": "Italians say it before an exam or a big moment. The answer is Crepi! (may it die)."
+ },
+ "flags": [
+  "The district guide lists only four Italian 2 units. Unit 5 is a supplemental unit, not a guide unit. Decide where it sits in your pacing.",
+  "It is the Italian 2 step up from Italian 1 Unit 5: the same school facts, but with all six forms of regular -are verbs (studiare, parlare, mangiare, ascoltare, comprare).",
+  "Regular -are verbs are on your Italian 2 midterm. The game practices only io and tu for -are verbs elsewhere, so this unit also practices noi, voi and loro.",
+  "Present tense only. No combined prepositions. The idiom In bocca al lupo! contains al, kept as a set phrase (Assunta says keep).",
+  "Chunks to confirm are known: dura, comincia, decide, si chiama, ci sono, c'è, dopo, con, poi, quanti anni.",
+  "Facts checked against Eurydice, Istat and the Italian ministry: stages 6-11, 11-14, 14-19; school required from 6 to 16; five-year high school; maturità; ministry called MIM. The Crepi! reply is general knowledge (Unverified).",
+  "Everything is Untested and all the Italian needs your review."
+ ]
+}

@@ -10,8 +10,8 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const SRC = __dirname;
 const LEVELS = ['italiano1', 'italiano2', 'italiano3', 'italiano4', 'ap'];
 const ORDER = {   /* where the new units go: after the units already in the game, in guide order */
-  italiano1: ['scuola', 'famiglia', 'cibo'],
-  italiano2: ['feste', 'cibo', 'weekend', 'passato', 'andare'],
+  italiano1: ['scuola', 'famiglia', 'cibo', 'scuolaitalia'],
+  italiano2: ['feste', 'cibo', 'weekend', 'passato', 'andare', 'scuolavita'],
   italiano3: ['casa', 'futuro', 'vorrei', 'nazione'],
   italiano4: ['globale', 'tecno', 'arte', 'dante'],
   ap: []
