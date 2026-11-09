@@ -391,7 +391,7 @@ function card(){
   h+='<div class="kick" style="color:var(--pink)">SFIDA</div><div class="prompt">Costruisci una frase. Le ultime due parole sono tue.</div>'+tenseChip(it)+chipsHtml(it)+(run.revealed?fbHtml(it,run.ok,run.chalShow):'<div class="row"><button class="btn p" data-a="ccheck" '+(run.sel.length?'':'disabled')+'>Controlla</button><button class="btn g" data-a="bclear">Cancella</button></div>'+helpHtml(it));
  }
  h+='</div></div>';app.innerHTML=h;
- if((it.t==='build'||it.t==='type')&&!run.revealed&&hasClip(it.audio||it.answer))setTimeout(function(){say(it.audio||it.answer)},300);
+ if((it.t==='build'||it.t==='type')&&!run.revealed&&run.autoI!==run.i&&hasClip(it.audio||it.answer)){run.autoI=run.i;setTimeout(function(){say(it.audio||it.answer)},300)}
  var inp=app.querySelector('input.ans');if(inp&&!run.revealed)inp.focus()}
 function audioBlockType(it){return hasClip(it.audio)?'<button class="hearbtn" data-a="hear" aria-label="Play the sentence">'+SPK+'<span>Ascolta</span></button><div class="prompt"><span class="pk">Scrivi quello che senti.</span></div>':'<div class="nocl">🔇 L’audio di Sara arriva presto. Leggi la frase, poi scrivila:</div><div class="prompt"><span class="pk">'+esc(it.audio)+'</span></div>'}
 
@@ -439,14 +439,14 @@ app.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!
  if(a==='chip'&&!run.revealed){run.sel.push(+b.getAttribute('data-c'));return card()}
  if(a==='unchip'&&!run.revealed){var id=+b.getAttribute('data-c');run.sel=run.sel.filter(function(x){return x!==id});return card()}
  if(a==='bclear'){run.sel=[];return card()}
- if(a==='bcheck'){var got=run.sel.map(function(id){return run.bank[id].t}).join(' ');record(norm(got)===norm(it.target));if(it.audio)say(it.audio);return card()}
+ if(a==='bcheck'){var got=run.sel.map(function(id){return run.bank[id].t}).join(' ');record(norm(got)===norm(it.target));return card()}
  if(a==='ccheck'){var toks=run.sel.map(function(id){return run.bank[id].t}),k=it.pre.length;
    var preOk=toks.length>=k+1&&it.pre.every(function(w,i){return toks[i].toLowerCase()===w.toLowerCase()});
    var end=toks.slice(k).join(' ').toLowerCase();var endOk=ENDINGS.indexOf(end)!==-1&&end.split(' ').length>=2;
    run.chalShow=toks.join(' ')+'.';var ok=preOk&&endOk;
    if(!ok)run.chalShow=it.pre.join(' ')+' '+(endOk?'…':'a / in + il posto')+' (🎯 a · 🏊 in)';
    record(ok);return card()}
- if(a==='tcheck'){var inp=app.querySelector('#ans');run.typed=inp?inp.value:'';record(norm(run.typed)===norm(it.answer));say(it.answer);return card()}
+ if(a==='tcheck'){var inp=app.querySelector('#ans');run.typed=inp?inp.value:'';record(norm(run.typed)===norm(it.answer));return card()}
  if(a==='mL'&&!run.revealed){run.m.sel=+b.getAttribute('data-i');run.m.bad=null;return card()}
  if(a==='mR'&&!run.revealed){var m=run.m;if(m.sel===null)return;var ri=+b.getAttribute('data-i');
    if(ri===m.sel){m.done[ri]=1;m.streak++;m.sel=null;m.bad=null;if(Object.keys(m.done).length===it.pairs.length){record(m.err===0)}}
