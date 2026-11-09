@@ -68,7 +68,7 @@ function dup(){var h=document.querySelector('.home-hero'),t=document.querySelect
  if(!h||!t||!o)return;var same=!!o.textContent&&t.textContent.trim()===o.textContent.trim();h.classList.toggle('dup',same);}
 fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-theme-v2 */</script>
 <link rel="stylesheet" href="../assets/bohui.css?v=202610121200"><link rel="stylesheet" href="../assets/bohphone.css?v=202610272000"><script src="../assets/english.js?v=202610081100"></script><script src="../assets/bohui.js?v=202610281500"></script><script src="../assets/bohhomekit.js?v=202610281500"></script><script src="../assets/bohfinish.js?v=202610140100"></script><script src="../assets/bohpuns.js?v=202610121400"></script><script src="../assets/bohcelebrate.js?v=202610271200" defer></script><script src="../assets/bohpacco.js?v=202610131000" defer></script><script src="../assets/bohphone.js?v=202610272000"></script>
-<script src="../assets/bohdone.js?v=202610151000"></script><script src="../assets/parla-italiano2.js?v=202610140100"></script><script src="../assets/recorder.js?v=202610201500"></script><script src="../assets/bohparla.js?v=202610201500"></script></head><body>
+<script src="../assets/bohdone.js?v=202610151000"></script><script src="../assets/parla-italiano2.js?v=202610140100"></script><script src="../assets/recorder.js?v=202610201500"></script><script src="../assets/bohparla.js?v=202611091700"></script></head><body>
 <a class="boh-home" href="../?levels=1" aria-label="Back to all levels">&larr; Livelli</a>
 <style>.boh-home{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;font:800 14px/1 "Manrope",system-ui,-apple-system,sans-serif;color:inherit;text-decoration:none;background:color-mix(in srgb,currentColor 9%,transparent);border:1.5px solid color-mix(in srgb,currentColor 22%,transparent);backdrop-filter:blur(6px)}.bb-box{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--error-bg);border:2px solid var(--error-border)}
 .bb-head{font-size:18px;font-weight:800;color:var(--error-text)}
@@ -11255,12 +11255,14 @@ class Component extends DCLogic {
     r.startK = 'Oggi'; r.startKen = 'Today';
     r.startT = String(D.title || '').replace(/^Page\s*\d+\s*·\s*/, '');
     r.startW = ''; r.hasStartW = false;
-    r.startN = pStep ? 'Last step: talk with Prof' : all ? 'Lezione fatta!' : 'Round ' + (fr + 1);
+    var provaPassed = (s.passed || []).indexOf('prova') !== -1, pTimes = btProvaLeft(s.provaTimes, Date.now()), pLeft = 3 - pTimes.length, toProva = all && !provaPassed && typeof r.lsProvaH === 'function';   /* boh-continua-prova-v1: path and Parla done, Prova not passed: Continua goes to La Prova, not back to Stop 1 */
+    r.startN = pStep ? 'Last step: talk with Prof' : toProva ? (pLeft > 0 ? 'Next: La Prova (graded)' : 'La Prova riapre alle ' + btClock(Math.min.apply(null, pTimes) + 3600000)) : all ? 'Lezione fatta!' : 'Round ' + (fr + 1);
     r.hasStartN = true;
     r.startGo = 'Continua'; r.startGoEn = 'Continue';   /* H-05: one label, every level, every state */
     var base = r.startH;
     r.startH = function () {
       if (pStep) { self.sfx('tap'); window.BohParla.open(); }
+      else if (toProva) { r.lsProvaH(); }
       else if (all) { self.sfx('tap'); if (typeof r.lsGoH === 'function') r.lsGoH(); }
       else if (typeof base === 'function') base();
     };

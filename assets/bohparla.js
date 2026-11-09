@@ -102,7 +102,8 @@
     if (D.getElementById('bp-css')) return;
     var st = D.createElement('style'); st.id = 'bp-css'; st.textContent = css; D.head.appendChild(st);
   }
-  function close() { if (ov && ov.parentNode) ov.parentNode.removeChild(ov); ov = null; sync(); }
+  function refresh() { try { if (W.__game && W.__game.setState) W.__game.setState({}); } catch (e) {} }   /* redraw the page so the Oggi card re-reads boh_parla_v1 (otherwise it keeps saying "talk with Prof") */
+  function close() { if (ov && ov.parentNode) ov.parentNode.removeChild(ov); ov = null; sync(); refresh(); }
 
   function doneView(u, d) {
     ov.className = 'bp-ov done'; ov.removeAttribute('aria-modal');
@@ -170,7 +171,7 @@
       if (a) box.innerHTML = '<p class="bp-ok">' + (a.t === 'link' ? '✓ Vocaroo link kept' : '✓ Recorded another way') + '</p>';
     });
     ov.querySelector('[data-x]').onclick = close;
-    go.onclick = function () { if (go.disabled) return; save(u, { ready: true, ts: new Date().toISOString() }); doneView(u, d); };
+    go.onclick = function () { if (go.disabled) return; save(u, { ready: true, ts: new Date().toISOString() }); doneView(u, d); refresh(); };
     check();
   }
 
