@@ -796,6 +796,9 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
 .ls-stamp.big{font-size:30px;letter-spacing:.08em}
 .ls-earn{font-size:20px;font-weight:800;color:var(--success-text)}
 .ls-earn:empty{display:none}
+.ls-zero{align-self:stretch;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:14px;border:1.5px solid var(--gold);background:var(--option-default-bg)}
+.ls-zero b{font-size:15px;font-weight:800;color:var(--gold)}
+.ls-zero span{font-size:13px;font-weight:600;color:var(--text-muted)}
 .ls-nx{font-size:14px;font-weight:700;color:var(--text-muted)}
 .ls-done .ls-actions{align-self:stretch}
 .ls-stats{align-self:stretch;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
@@ -1903,6 +1906,7 @@ fill();dup();setInterval(function(){fill();dup()},800);}catch(e){}})();/* boh-th
               <div class="ls-done">
                 <div class="ls-stamp">{{lsDoneTitle}}</div>
                 <div class="ls-earn">{{lsDoneEarn}}</div>
+                <sc-if value="{{lsHasZero}}" hint-placeholder-val="{{false}}"><div class="ls-zero"><b>{{lsZeroIt}}</b><sc-if value="{{lsHasLvlEn}}" hint-placeholder-val="{{true}}"><span>{{lsZeroEn}}</span></sc-if></div></sc-if>
                 <sc-if value="{{lsHasNext}}" hint-placeholder-val="{{true}}"><div class="ls-nx">{{lsNextStopSub}}</div></sc-if>
                 <div class="ls-actions">
                   <button class="ls-btn2" onClick="{{lsPathH}}">Torna al percorso</button>
@@ -11172,6 +11176,7 @@ class Component extends DCLogic {
     var pay = this.lsPay(L, 'S' + s.lsCur, 25), justDone = false;
     var lvUp = wasDone && L.m[s.lsCur] <= 3 ? L.m[s.lsCur] : 0, mPay = lvUp === 3 ? this.lsPay(L, 'M' + s.lsCur, 50) : 0; pay += mPay;
     patch.lsLvlUp = lvUp; patch.lsLvlPay = mPay;
+    patch.lsReplay0 = wasDone && !pay; patch.lsReplayLeft = lvUp === 2 ? 1 : 0;   /* boh-replay-zero-v1: tell the student why a replay pays 0 */
     if (!L.finished && L.done.length >= D.stops.length) { L.finished = true; justDone = true; pay += this.lsPay(L, 'FIN', 100); }
     this.lsMoney(patch, pay);
     patch.lesson = L; patch.lsStopEarn = pay;
@@ -11553,6 +11558,7 @@ class Component extends DCLogic {
     var nx = k + 1 < N ? D.stops[k + 1] : null;
     result.lsDoneTitle = 'Tappa ' + (k + 1) + ' fatta!';
     result.lsDoneEarn = s.lsStopEarn ? '+' + s.lsStopEarn + ' BC' : '';
+    result.lsHasZero = !!s.lsReplay0; result.lsZeroIt = 'Già fatta: 0 BC questa volta'; result.lsZeroEn = s.lsReplayLeft ? 'Already earned. One more finish pays a 50 BC bonus.' : 'Already earned.';
     result.lsHasNext = !!nx && view === 'between';
     result.lsNextStopLabel = nx ? 'Avanti: ' + nx.label : '';
     result.lsNextStopSub = nx ? 'Tappa ' + (k + 2) + ' di ' + N + ' · ' + nx.min + ' min' : '';
