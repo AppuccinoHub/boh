@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Restore Boh Cashi</title>
+<style>
+  body{margin:0;background:#f5f3ee;color:#1b2a5c;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;font-size:18px;line-height:1.5}
+  main{max-width:480px;margin:0 auto;padding:28px 20px}
+  h1{font-size:24px;margin:0 0 4px}
+  p{margin:8px 0}
+  .sub{color:#4a5578}
+  .bal{margin:18px 0;padding:12px 16px;border:2px solid #8a6a1f;border-radius:14px;color:#8a6a1f;font-weight:600}
+  input{width:100%;box-sizing:border-box;font-size:18px;padding:12px;border:2px solid #cfcbc0;border-radius:12px;background:#fff;margin:6px 0 12px}
+  button,a.btn{display:block;width:100%;box-sizing:border-box;text-align:center;text-decoration:none;font-size:19px;font-weight:600;color:#fff;background:#2f5bd9;border:0;border-radius:14px;padding:15px;margin-top:10px}
+  .ok{background:#e6f3e8;border:1px solid #2f7d3b;color:#1f5c29;border-radius:12px;padding:12px 14px;margin-top:14px}
+  .warn{background:#fdf0dc;border:1px solid #b5651d;color:#7a3f0c;border-radius:12px;padding:12px 14px;margin-top:14px}
+  [hidden]{display:none}
+</style>
+</head>
+<body>
+<main>
+  <h1>Restore Boh Cashi</h1>
+  <p class="sub">Italiano 2 &middot; one-time repair for the Prof</p>
+
+  <div class="bal" id="bal">Reading your balance&hellip;</div>
+
+  <div id="gate">
+    <label for="pin">Prof PIN</label>
+    <input id="pin" type="password" inputmode="numeric" autocomplete="off">
+    <button id="go" type="button">Add 2,225 BC</button>
+  </div>
+
+  <div id="msg"></div>
+  <a class="btn" id="open" href="../italiano2/" hidden>Open Italiano 2</a>
+</main>
+
+<script>
+(function () {
+  var AMOUNT = 2225;
+  var PIN_HASH = '1b0fa6c4c967f1c21f9c23ecc41ef8a27528a7be52b29d65d47123f5ac18d5be';
+  var LEVEL_KEY = 'bohItaliano2_v2';
+  var INBOX = 'boh_bc_inbox_2';
+  var FLAG = 'boh_restore_2225_v1';
+
+  var balEl = document.getElementById('bal');
+  var gate = document.getElementById('gate');
+  var msg = document.getElementById('msg');
+  var openBtn = document.getElementById('open');
+
+  function say(cls, text) { msg.innerHTML = ''; var d = document.createElement('div'); d.className = cls; d.textContent = text; msg.appendChild(d); }
+
+  function storageOk() {
+    try { localStorage.setItem('__t', '1'); var r = localStorage.getItem('__t') === '1'; localStorage.removeItem('__t'); return r; }
+    catch (e) { return false; }
+  }
+
+  function balance() {
+    try {
+      var d = JSON.parse(localStorage.getItem(LEVEL_KEY) || 'null');
+      var inbox = parseInt(localStorage.getItem(INBOX) || '0', 10) || 0;
+      if (!d || typeof d.cashi !== 'number') return null;
+      return { now: d.cashi, waiting: inbox };
+    } catch (e) { return null; }
+  }
+
+  function sha(txt) {
+    try {
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt)).then(function (b) {
+        return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+      });
+    } catch (e) { return Promise.resolve(''); }
+  }
+
+  function show() {
+    if (!storageOk()) {
+      balEl.textContent = 'This browser will not save here.';
+      gate.hidden = true;
+      say('warn', 'Open this page in a normal Safari tab (not private) and try again.');
+      return;
+    }
+    var b = balance();
+    if (!b) {
+      balEl.textContent = 'No Italiano 2 save found on this device.';
+      gate.hidden = true;
+      say('warn', 'Open Italiano 2 once on this phone first, then come back here.');
+      return;
+    }
+    balEl.textContent = 'Italiano 2 balance now: ' + b.now.toLocaleString() + ' BC' + (b.waiting ? ' (+' + b.waiting.toLocaleString() + ' waiting)' : '');
+    var done = false;
+    try { done = localStorage.getItem(FLAG) === '1'; } catch (e) {}
+    if (done) {
+      gate.hidden = true;
+      say('ok', 'Already added on this device. Nothing more to do.');
+      openBtn.hidden = false;
+    }
+  }
+
+  document.getElementById('go').addEventListener('click', function () {
+    var pin = (document.getElementById('pin').value || '').trim();
+    if (!pin) { say('warn', 'Enter the Prof PIN first.'); return; }
+    sha(pin).then(function (h) {
+      if (h !== PIN_HASH) { say('warn', 'Wrong PIN.'); return; }
+      try {
+        if (localStorage.getItem(FLAG) === '1') { say('ok', 'Already added on this device.'); return; }
+        var n = parseInt(localStorage.getItem(INBOX) || '0', 10) || 0;
+        localStorage.setItem(INBOX, String(n + AMOUNT));
+        localStorage.setItem(FLAG, '1');
+        var back = parseInt(localStorage.getItem(INBOX) || '0', 10) || 0;
+        if (back !== n + AMOUNT || localStorage.getItem(FLAG) !== '1') { say('warn', 'Not saved. Open this page in a normal Safari tab and try again.'); return; }
+      } catch (e) { say('warn', 'Not saved. Open this page in a normal Safari tab and try again.'); return; }
+      gate.hidden = true;
+      say('ok', 'Saved. ' + AMOUNT.toLocaleString() + ' BC are waiting. Open Italiano 2 now and they will be added.');
+      openBtn.hidden = false;
+      show2();
+    });
+  });
+
+  function show2() {
+    var b = balance();
+    if (b) balEl.textContent = 'Italiano 2 balance now: ' + b.now.toLocaleString() + ' BC (+' + b.waiting.toLocaleString() + ' waiting)';
+  }
+
+  show();
+})();
+</script>
+</body>
+</html>
