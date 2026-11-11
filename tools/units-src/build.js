@@ -23,6 +23,7 @@ function strip(s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, ''); }
 function uniq(a) { return a.filter((x, i) => x && a.indexOf(x) === i); }
 function noArt(w) { return w.replace(/^(il|lo|la|i|gli|le|l'|l’|un|uno|una|un')\s*/i, ''); }
 function rot(arr, i, n) { const out = []; for (let k = 1; out.length < n && k < arr.length; k++) out.push(arr[(i + k * 3) % arr.length]); return uniq(out).filter(x => x !== arr[i]).slice(0, n); }
+function provaX(u, id, base) { const x = (u.provaExtras || {})[id]; return x ? Object.assign({}, base, x, { alts: uniq(base.alts.concat(x.alts || [])) }) : base; }   /* optional per-sentence extras: more accepted answers, a word bank, a must-have word, notes */
 function alts(ans) { return uniq([strip(ans), ans.replace(/[.!?]$/, ''), strip(ans).replace(/[.!?]$/, '')]).filter(x => x !== ans); }
 
 function buildUnit(u) {
@@ -51,7 +52,7 @@ function buildUnit(u) {
   const step = Math.max(1, Math.floor(words.length / 8));
   for (let i = 0, n = 0; i < words.length && n < 8; i += step, n++) QB.push({ id: 'pA' + (n + 1), cat: 'prova', sec: 'A', type: 'selfcheck', prompt: words[i][1], sub: 'Write it in Italian.', answer: words[i][0], alts: uniq(alts(words[i][0]).concat([noArt(words[i][0]), strip(noArt(words[i][0]))])).filter(x => x !== words[i][0]) });
   u.forms.slice(0, 6).forEach((f, i) => QB.push({ id: 'pB' + (i + 1), cat: 'prova', sec: 'B', type: 'selfcheck', prompt: f.prompt, sub: 'Write the form.', answer: f.answer, alts: uniq((f.alts || []).concat(alts(f.answer))) }));
-  u.sentences.slice(0, 6).forEach((s, i) => QB.push({ id: 'pD' + (i + 1), cat: 'prova', sec: 'D', type: 'selfcheck', prompt: s[1], sub: 'Write the whole sentence in Italian.', answer: s[0], alts: alts(s[0]) }));
+  u.sentences.slice(0, 6).forEach((s, i) => QB.push(provaX(u, 'pD' + (i + 1), { id: 'pD' + (i + 1), cat: 'prova', sec: 'D', type: 'selfcheck', prompt: s[1], sub: 'Write the whole sentence in Italian.', answer: s[0], alts: alts(s[0]) })));
   const nProva = QB.filter(q => q.cat === 'prova').length;
   const nv = Math.min(12, words.length), nf = Math.min(10, u.forms.length), nl = Math.min(8, u.sentences.length);
   const MODES = {
