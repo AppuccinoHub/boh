@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<!-- Boh · Facciamo un piano! (Italiano 2 summative project, 50 points).
+     Created by Assunta Scotto, 2026-11-13. (c) 2026 Assunta Scotto. All rights reserved.
+     Original author and owner: Assunta Scotto. Part of Boh (github.com/AppuccinoHub/boh). No license is granted. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Boh · Facciamo un piano!</title>
+<meta name="author" content="Assunta Scotto">
+<meta name="copyright" content="(c) 2026 Assunta Scotto. All rights reserved. Created 2026-11-13.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F4EE">
+<link rel="icon" href="../assets/bc.svg">
+<script>(function(){try{var t=localStorage.getItem('boh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+/* Colors copied from assets/lezione.css (Boh color system): pink = the one thing to look at,
+   blue = what to tap, turquoise = progress, green = correct. Created by Assunta Scotto, 2026. */
+:root{--bg:#F7F4EE;--card:#FFFFFF;--line:#DAD7D0;--line2:#7E8792;--text:#0E2A5B;--mut:#46566E;--tap:#1A5CDF;--tap-text:#FFFFFF;
+  --ok-bg:#DCF8D9;--ok-text:#235B1E;--ok-line:#3D8F35;--pop:#BC1E72;--pop-text:#FFFFFF;--pop-tint:#FEE5EE;
+  --soft:#EFECE7;--prog:#0A9A9A;--track:#DAD7D0;--tag:#E2F7F7;--sig:"Created by Assunta Scotto 2026";color-scheme:light}
+:root[data-theme="dark"]{--bg:#0C1421;--card:#151E2E;--line:#2C384D;--line2:#69788F;--text:#E6ECF2;--mut:#AAB5C4;--tap:#7FAEE9;--tap-text:#0A121F;
+  --ok-bg:#1A2F17;--ok-text:#94E28B;--ok-line:#50A248;--pop:#F075AA;--pop-text:#1C0710;--pop-tint:#4C1E32;
+  --soft:#1C2738;--prog:#10BFBF;--track:#2C384D;--tag:#0A3537;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:600 17px/1.45 "Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dsp{font-family:"Bricolage Grotesque","Manrope",system-ui,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px calc(env(safe-area-inset-bottom,0px) + 40px)}
+:focus-visible{outline:3px solid var(--tap);outline-offset:2px}
+h1{font:800 34px/1.05 "Bricolage Grotesque",sans-serif;margin:4px 0 6px}
+h2{font:800 24px/1.15 "Bricolage Grotesque",sans-serif;margin:0 0 6px}
+h3{font:800 19px/1.2 "Bricolage Grotesque",sans-serif;margin:0 0 4px}
+p{margin:0 0 10px}
+.mut{color:var(--mut)}
+.eyebrow{font:800 16px/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:.06em;color:var(--prog);text-transform:uppercase}
+.it{color:var(--pop);font-weight:800}
+.top{display:flex;align-items:center;gap:10px;min-height:48px;margin-bottom:8px}
+.back{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:999px;border:2px solid var(--line2);background:var(--card);font-weight:800;font-size:16px;text-decoration:none;color:var(--text)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tile{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:16px;border-radius:18px;background:var(--card);border:2px solid var(--line);text-decoration:none;color:var(--text)}
+.tile:hover{border-color:var(--tap)}
+.tile b{font:800 20px/1.15 "Bricolage Grotesque",sans-serif}
+.tile .day{font:800 16px/1 "Bricolage Grotesque",sans-serif;color:var(--prog);text-transform:uppercase;letter-spacing:.06em}
+.tile .turn{margin-top:auto;font-size:16px;font-weight:800;color:var(--mut)}
+.tile.step{border-color:var(--tap);border-width:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;border-radius:14px;border:0;background:var(--tap);color:var(--tap-text);font:800 18px "Bricolage Grotesque",sans-serif;text-decoration:none}
+.btn.ghost{background:var(--card);color:var(--text);border:2px solid var(--line2)}
+.btn.small{min-height:44px;padding:8px 14px;font-size:16px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sp{justify-content:space-between}
+label.f{display:block;font-size:16px;font-weight:800;color:var(--mut);margin:12px 0 4px}
+input[type=text],select,textarea{width:100%;min-height:48px;padding:10px 12px;border-radius:12px;border:2px solid var(--line2);background:var(--card);color:var(--text);font:700 18px "Manrope",sans-serif}
+.acc{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.acc button{min-width:44px;min-height:44px;border-radius:12px;border:2px solid var(--line2);background:var(--card);font-weight:800;font-size:18px}
+.dots{display:flex;gap:5px;margin:8px 0 12px}
+.dots i{flex:1;height:8px;border-radius:99px;background:var(--track)}
+.dots i.on{background:var(--prog)}
+.dots i.cur{background:var(--pop)}
+.sent{font:800 26px/1.3 "Bricolage Grotesque",sans-serif;margin:6px 0}
+.sent .blank{display:inline-block;min-width:90px;border-bottom:4px solid var(--pop);color:var(--pop);text-align:center}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0}
+.opt{min-height:56px;padding:10px;border-radius:14px;border:2px solid var(--tap);background:var(--card);color:var(--text);font:800 20px "Bricolage Grotesque",sans-serif}
+.opt.right{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok-text)}
+.opt.off{opacity:.45;border-color:var(--line2)}
+.fb{border-radius:14px;padding:12px 14px;margin:12px 0;border:2px solid var(--line2);background:var(--soft)}
+.fb.ok{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok-text)}
+.fb b.ans{color:var(--pop);font-size:20px}
+.fb.ok b.ans{color:inherit}
+.tip{font-size:16px;margin-top:6px}
+table.t{width:100%;border-collapse:collapse;margin:6px 0}
+table.t td,table.t th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:17px;vertical-align:top}
+table.t th{color:var(--mut);font-size:16px}
+.line{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.line:last-child{border-bottom:0}
+.who{flex:none;width:86px;font:800 16px/1.3 "Bricolage Grotesque",sans-serif;color:var(--mut);padding-top:3px}
+.line .txt{flex:1;min-width:0}
+.line .txt .it{font-size:19px;display:block}
+.en{display:block;color:var(--mut);font-size:16px;font-weight:600}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.tag{font-size:16px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--tag);color:var(--text)}
+.enb{flex:none;min-width:48px;min-height:44px;border-radius:12px;border:2px solid var(--line2);background:var(--card);font-weight:800;font-size:16px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.check:last-child{border-bottom:0}
+.check input{flex:none;width:28px;height:28px;margin:2px 0 0;accent-color:var(--prog)}
+.found{font-size:16px;color:var(--mut);font-weight:700;display:block}
+.found .y{color:var(--ok-text);font-weight:800}
+.sline{display:grid;grid-template-columns:96px 1fr;gap:8px;align-items:center;margin:8px 0}
+.sline .n{font:800 16px/1.2 "Bricolage Grotesque",sans-serif;color:var(--mut)}
+.note{border-left:5px solid var(--prog);padding:8px 12px;background:var(--tag);border-radius:8px;margin:10px 0;font-size:16px}
+.warn{color:var(--pop);font-weight:800;font-size:16px}
+.credit{margin-top:28px;text-align:center;font-size:16px;color:var(--mut)}
+#printview{display:none}
+@media (max-width:480px){h1{font-size:29px}.sent{font-size:22px}.who{width:72px}.sline{grid-template-columns:1fr}}
+@media print{
+  body{background:#fff;color:#000;font-size:13pt}
+  #app{display:none}
+  #printview{display:block;padding:0 6mm}
+  #printview h1{font-size:20pt;margin:0 0 4pt}
+  #printview .pbox{border:1.5pt solid #000;border-radius:6pt;padding:8pt 10pt;margin:8pt 0;min-height:34pt;page-break-inside:avoid}
+  #printview .pl{font-weight:800}
+  #printview .pcredit{margin-top:14pt;font-size:10pt}
+}
+</style>
+</head>
+<body>
+<div id="app" class="wrap"></div>
+<div id="printview"></div>
+<noscript>This page needs JavaScript turned on.</noscript>
+<script>
+/* Boh · Facciamo un piano! Created by Assunta Scotto, 2026-11-13. (c) 2026 Assunta Scotto. All rights reserved. */
+(function(){
+'use strict';
+var BOH_AUTHOR={name:'Assunta Scotto',created:'2026-11-13',work:'Boh · Facciamo un piano!',rights:'(c) 2026 Assunta Scotto. All rights reserved.'};
+window.BOH_FUP_AUTHOR=BOH_AUTHOR;
+var KEY='boh_fup_v1';
+
+/* ---------- content ---------- */
+var P=['io','tu','lui/lei','noi','voi','loro'];
+var END=['o','i','a','iamo','ate','ano'];
+var ARE=['giocare','nuotare','ballare','cantare','suonare','guardare','ascoltare','disegnare','cucinare','camminare'];
+var ANDARE=['vado','vai','va','andiamo','andate','vanno'];
+var VOLERE=['voglio','vuoi','vuole','vogliamo','volete','vogliono'];
+function conj(inf){var s=inf.slice(0,-3);return END.map(function(e,i){return (inf==='giocare'&&(i===1||i===3)?s+'h':s)+e;});}
+
+var DIALOGUE=[
+ ['Marcello','Ciao Aurora! Che cosa fai il weekend?','Hi Aurora! What are you doing this weekend?',['question']],
+ ['Aurora','Ciao Marcello! Domenica suono la chitarra. E tu, dove vai sabato?','Hi Marcello! On Sunday I play the guitar. And you, where are you going on Saturday?',['-are: io','question']],
+ ['Marcello','Sabato vado al parco. Vuoi giocare a calcio con me?','On Saturday I am going to the park. Do you want to play soccer with me?',['andare: vado + place','volere: vuoi + infinitive','invitation','question']],
+ ['Aurora','No, mi dispiace. Non voglio giocare a calcio, preferisco guardare un film.','No, I am sorry. I do not want to play soccer, I prefer to watch a movie.',['volere: voglio + infinitive','says no + reason']],
+ ['Marcello','Va bene! Vogliamo andare al cinema domenica?','OK! Do we want to go to the movies on Sunday? (Shall we go?)',['volere: vogliamo + infinitive','question']],
+ ['Aurora','Sì, volentieri! A che ora andiamo al cinema?','Yes, gladly! What time are we going to the movies?',['andare: andiamo + place','question']],
+ ['Marcello','Andiamo alle otto di sera. E sabato, tu vai in piscina?','We are going at eight in the evening. And on Saturday, are you going to the pool?',['time','andare: vai + place','question']],
+ ['Aurora','No, sabato gioco a tennis e ascolto la musica. E tu, suoni la chitarra?','No, on Saturday I play tennis and I listen to music. And you, do you play the guitar?',['-are: io','-are: tu','question']],
+ ['Marcello','No, suono il pianoforte.','No, I play the piano.',['-are: io']],
+ ['Aurora','E domenica guardiamo un film al cinema alle otto?','And on Sunday we watch a movie at the movies at eight?',['-are: noi','question']],
+ ['Marcello','Sì! Domenica alle otto di sera, al cinema.','Yes! Sunday at eight in the evening, at the movies.',['day + time agreed']],
+ ['Aurora','Perfetto, a domenica!','Perfect, see you Sunday!',[]],
+ ['Marcello','A domenica! Ciao, Aurora!','See you Sunday! Bye, Aurora!',[]],
+ ['Aurora','Ciao, Marcello!','Bye, Marcello!',[]]
+];
+
+var CHECKLIST=[
+ ['lines','12 to 16 lines in total (about 1 to 2 minutes when you perform it)'],
+ ['are','At least 4 different -are verbs. Between them you use io, tu and noi'],
+ ['andare','Andare in 3 forms (vado, vai, andiamo), each with a place'],
+ ['volere','Volere in 3 forms (voglio, vuoi, vogliamo), each with an infinitive'],
+ ['questions','Each partner asks at least 3 questions'],
+ ['invite','One invitation, and one answer that accepts or says no with a reason'],
+ ['when','You agree on a day and a time']
+];
+
+var PHRASES=[
+ ['Hobbies (passatempi)',[
+  ['giocare a calcio','to play soccer'],['giocare a tennis','to play tennis'],['giocare ai videogiochi','to play video games'],
+  ['suonare la chitarra','to play the guitar'],['suonare il pianoforte','to play the piano'],['guardare la TV','to watch TV'],
+  ['guardare un film','to watch a movie'],['ascoltare la musica','to listen to music'],['nuotare','to swim'],['ballare','to dance'],
+  ['cantare','to sing'],['disegnare','to draw'],['cucinare','to cook'],['camminare','to walk']]],
+ ['Places. Learn each one as a whole phrase',[
+  ['al cinema','to the movies'],['al parco','to the park'],['al mare','to the beach'],['in piscina','to the pool'],
+  ['in centro','downtown'],['in palestra','to the gym'],['a casa di Aurora','to Aurora\'s house']]],
+ ['Asking and answering',[
+  ['Che cosa ti piace fare?','What do you like to do?'],['Ti piace…?','Do you like…?'],['Che cosa fai il weekend?','What are you doing this weekend?'],
+  ['Dove vai sabato?','Where are you going on Saturday?'],['A che ora?','At what time?'],['Vuoi venire con me?','Do you want to come with me?'],
+  ['Sì, volentieri!','Yes, gladly!'],['Va bene!','OK!'],['No, mi dispiace, preferisco…','No, I am sorry, I prefer…'],['Perfetto, a sabato!','Perfect, see you Saturday!']]],
+ ['Days and times',[
+  ['sabato','Saturday'],['domenica','Sunday'],['il weekend','the weekend'],['alle tre','at three'],['alle otto di sera','at eight in the evening']]]
+];
+
+/* practice items. k: are | andare | volere | inf */
+var PRACTICE={
+ are:{title:'-are verbs',tense:'presente (present tense)',
+  teach:'<p>Take off <span class="it" lang="it">-are</span> and add the ending for who is doing it.</p>'+
+   '<table class="t"><tr><th>who</th><th>ending</th><th lang="it">guardare</th></tr>'+
+   '<tr><td lang="it">io</td><td class="it">-o</td><td class="it" lang="it">guardo</td></tr><tr><td lang="it">tu</td><td class="it">-i</td><td class="it" lang="it">guardi</td></tr>'+
+   '<tr><td lang="it">lui / lei</td><td class="it">-a</td><td class="it" lang="it">guarda</td></tr><tr><td lang="it">noi</td><td class="it">-iamo</td><td class="it" lang="it">guardiamo</td></tr>'+
+   '<tr><td lang="it">voi</td><td class="it">-ate</td><td class="it" lang="it">guardate</td></tr><tr><td lang="it">loro</td><td class="it">-ano</td><td class="it" lang="it">guardano</td></tr></table>'+
+   '<p><b>Spelling change:</b> <span class="it" lang="it">giocare</span> adds an <b>h</b> before <b>i</b> to keep the hard k sound: <span class="it" lang="it">giochi</span>, <span class="it" lang="it">giochiamo</span>.</p>',
+  tip:'io -o · tu -i · lui/lei -a · noi -iamo · voi -ate · loro -ano',
+  items:[
+   {k:'are',verb:'suonare',p:0,s:'io',b:'Io',a:'la chitarra.',en:'I play the guitar.',mode:'choose',o:[1,0,2]},
+   {k:'are',verb:'ascoltare',p:1,s:'tu',b:'Tu',a:'la musica?',en:'Do you listen to music?',mode:'type'},
+   {k:'are',verb:'guardare',p:3,s:'noi',b:'Noi',a:'un film sabato.',en:'We watch a movie on Saturday.',mode:'type'},
+   {k:'are',verb:'giocare',p:1,s:'tu',b:'Tu',a:'a calcio?',en:'Do you play soccer?',mode:'type'},
+   {k:'are',verb:'nuotare',p:2,s:'Marcello (lui)',b:'Marcello',a:'in piscina.',en:'Marcello swims in the pool.',mode:'choose',o:[0,2,5]},
+   {k:'are',verb:'giocare',p:3,s:'noi',b:'Noi',a:'ai videogiochi.',en:'We play video games.',mode:'type'},
+   {k:'are',verb:'ballare',p:4,s:'voi',b:'Voi',a:'domenica?',en:'Are you all dancing on Sunday?',mode:'type'},
+   {k:'are',verb:'cantare',p:5,s:'Aurora e Marcello (loro)',b:'Aurora e Marcello',a:'.',en:'Aurora and Marcello sing.',mode:'choose',o:[4,5,3]}
+  ],
+  easy:[['Which one means "I play"?','gioco','giochiamo'],['Which ending goes with noi?','-iamo','-o'],['Which one means "you watch" (tu)?','guardi','guardo']]},
+ andare:{title:'andare (to go)',tense:'presente (present tense)',
+  teach:'<p><span class="it" lang="it">Andare</span> is irregular. It does not follow the -are pattern, so learn the six forms.</p>'+
+   '<table class="t"><tr><td lang="it">io</td><td class="it" lang="it">vado</td><td lang="it">noi</td><td class="it" lang="it">andiamo</td></tr>'+
+   '<tr><td lang="it">tu</td><td class="it" lang="it">vai</td><td lang="it">voi</td><td class="it" lang="it">andate</td></tr>'+
+   '<tr><td lang="it">lui / lei</td><td class="it" lang="it">va</td><td lang="it">loro</td><td class="it" lang="it">vanno</td></tr></table>'+
+   '<p>Then say where: <span class="it" lang="it">al cinema, al parco, al mare, in piscina, in centro, in palestra</span>.</p>',
+  tip:'vado · vai · va · andiamo · andate · vanno',
+  items:[
+   {k:'andare',p:0,s:'io',b:'Io',a:'al cinema sabato.',en:'I am going to the movies on Saturday.',mode:'choose',o:[0,1,2]},
+   {k:'andare',p:1,s:'tu',b:'Tu',a:'in palestra?',en:'Are you going to the gym?',mode:'type'},
+   {k:'andare',p:3,s:'noi',b:'Noi',a:'al parco domenica.',en:'We are going to the park on Sunday.',mode:'type'},
+   {k:'andare',p:2,s:'Aurora (lei)',b:'Aurora',a:'in centro.',en:'Aurora is going downtown.',mode:'choose',o:[1,5,2]},
+   {k:'andare',p:4,s:'voi',b:'Voi',a:'al mare?',en:'Are you all going to the beach?',mode:'type'},
+   {k:'andare',p:5,s:'Marcello e Aurora (loro)',b:'Marcello e Aurora',a:'in piscina.',en:'Marcello and Aurora are going to the pool.',mode:'type'}
+  ],
+  easy:[['Which one means "I go"?','vado','andiamo'],['Which one means "we go"?','andiamo','vai'],['Which one means "you go" (tu)?','vai','vado']]},
+ volere:{title:'volere + infinitive (to want to…)',tense:'presente (present tense)',
+  teach:'<p><span class="it" lang="it">Volere</span> is irregular. Only <span class="it" lang="it">volere</span> changes. The next verb stays in the infinitive (the form ending in <span class="it" lang="it">-are</span>).</p>'+
+   '<table class="t"><tr><td lang="it">io</td><td class="it" lang="it">voglio</td><td lang="it">noi</td><td class="it" lang="it">vogliamo</td></tr>'+
+   '<tr><td lang="it">tu</td><td class="it" lang="it">vuoi</td><td lang="it">voi</td><td class="it" lang="it">volete</td></tr>'+
+   '<tr><td lang="it">lui / lei</td><td class="it" lang="it">vuole</td><td lang="it">loro</td><td class="it" lang="it">vogliono</td></tr></table>'+
+   '<p><span class="it" lang="it">Voglio giocare a tennis.</span> <span class="en">I want to play tennis.</span></p>',
+  tip:'volere changes, the next verb stays in the infinitive: voglio giocare',
+  items:[
+   {k:'volere',p:0,s:'io',b:'Io',a:'guardare un film.',en:'I want to watch a movie.',mode:'choose',o:[1,0,2]},
+   {k:'volere',p:1,s:'tu',b:'Tu',a:'venire con me?',en:'Do you want to come with me?',mode:'type'},
+   {k:'volere',p:3,s:'noi',b:'Noi',a:'andare al cinema.',en:'We want to go to the movies.',mode:'type'},
+   {k:'inf',ans:'giocare',opts:['gioco','giocare','giochi'],b:'Voglio',a:'a tennis.',en:'I want to play tennis.',mode:'choose'},
+   {k:'inf',ans:'ascoltare',opts:['ascoltare','ascolti','ascolto'],b:'Vuoi',a:'la musica?',en:'Do you want to listen to music?',mode:'choose'},
+   {k:'volere',p:2,s:'Marcello (lui)',b:'Marcello',a:'suonare il pianoforte.',en:'Marcello wants to play the piano.',mode:'type'},
+   {k:'volere',p:4,s:'voi',b:'Voi',a:'ballare sabato?',en:'Do you all want to dance on Saturday?',mode:'type'},
+   {k:'volere',p:5,s:'Aurora e Marcello (loro)',b:'Aurora e Marcello',a:'andare al mare.',en:'Aurora and Marcello want to go to the beach.',mode:'type'}
+  ],
+  easy:[['Which one means "I want"?','voglio','vogliamo'],['Which one means "do you want" (tu)?','vuoi','voglio'],['After voglio, which form comes next?','giocare','gioco']]}
+};
+
+function forms(it){return it.k==='are'?conj(it.verb):it.k==='andare'?ANDARE:VOLERE;}
+function answer(it){return it.k==='inf'?it.ans:forms(it)[it.p];}
+function options(it){return it.k==='inf'?it.opts:it.o.map(function(i){return forms(it)[i];});}
+function norm(s){s=String(s||'').toLowerCase().trim().replace(/[.?!,;:]+$/,'').replace(/\s+/g,' ');
+  return s.replace(/^(io|tu|lui|lei|noi|voi|loro)\s+/,'');}
+
+/* why a wrong answer is wrong (never just "incorrect") */
+function why(it,raw){
+  var a=norm(raw),right=answer(it),f,i;
+  if(!a) return 'Nothing was typed yet. Type the form of the verb that fits the sentence, then check it.';
+  if(it.k==='inf') return '"'+a+'" is a form that changes with the person. After volere the next verb does not change: it stays in the infinitive, the form ending in -are.';
+  f=forms(it);i=f.indexOf(a);
+  if(it.k==='are'){
+    if(a===it.verb) return '"'+a+'" is the infinitive, the "to…" form. Take off -are and add the ending for '+it.s+': -'+END[it.p]+'.';
+    if(i>-1&&i!==it.p) return '"'+a+'" is the '+P[i]+' form. The subject here is '+it.s+', so the ending is -'+END[it.p]+'.';
+    if(it.verb==='giocare'&&(it.p===1||it.p===3)&&a===it.verb.slice(0,-3)+END[it.p]) return 'The ending is right, but giocare needs an h before i to keep the hard k sound. Without the h it would sound like "ch" in English.';
+    if(a.slice(0,3)!==it.verb.slice(0,3)) return '"'+a+'" looks like a different verb. This sentence uses '+it.verb+'. For '+it.s+', take off -are and add -'+END[it.p]+'.';
+    if(a.slice(-END[it.p].length)===END[it.p]) return 'The ending -'+END[it.p]+' is right for '+it.s+', but the first part of the verb is misspelled. Take off -are from '+it.verb+' and keep the rest.';
+    return 'For '+it.s+', take off -are from '+it.verb+' and add -'+END[it.p]+'. "'+a+'" does not end in -'+END[it.p]+'.';
+  }
+  if(i>-1&&i!==it.p) return '"'+a+'" is the '+P[i]+' form. The subject here is '+it.s+'.';
+  if(it.k==='andare'){
+    if(/^and/.test(a)&&it.p!==3&&it.p!==4) return 'Andare is irregular. Only noi (andiamo) and voi (andate) start with and-. The other four forms start with va-.';
+    if(/^and/.test(a)) return 'Close. '+P[it.p]+' does keep and-, but the ending is off. Noi ends in -iamo and voi ends in -ate.';
+    if(/^va/.test(a)&&(it.p===3||it.p===4)) return 'Close. Noi and voi are the two forms that keep and- from andare. The va- forms are for io, tu, lui/lei and loro.';
+    return 'Andare is irregular, so regular -are endings do not work here. "'+a+'" is not one of its six forms. Look at the table again.';
+  }
+  if(/^vol/.test(a)&&it.p===4) return 'Close. Voi does keep vol-, but the ending is off. Volere is an -ere verb, so the voi form ends in -ete.';
+  if(/^vol/.test(a)&&it.p!==4) return 'Volere is irregular. Only voi (volete) keeps vol-. The other forms start with vogl- or vuo-.';
+  return 'Volere is irregular. "'+a+'" is not one of its six forms: voglio, vuoi, vuole, vogliamo, volete, vogliono. Pick the one for '+it.s+'.';
+}
+
+/* ---------- storage: this device only, nothing is sent anywhere ---------- */
+var S=load();
+function blank(){return {survey:[{},{},{}],me:'',p1:'',p2:'',lines:[],n:12,ticks:{},cue:[]};}
+function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.survey)return Object.assign(blank(),d);}catch(e){}return blank();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function $(sel,root){return (root||document).querySelector(sel);}
+function $$(sel,root){return Array.prototype.slice.call((root||document).querySelectorAll(sel));}
+var app=document.getElementById('app');
+function top(title){return '<div class="top"><a class="back" href="#home">Back</a><span class="eyebrow">'+esc(title)+'</span></div>';}
+function credit(){return '<p class="credit">Created by Assunta Scotto · 2026</p>';}
+function accRow(){return '<div class="acc" aria-label="Accent letters">'+['à','è','é','ì','ò','ù'].map(function(c){return '<button type="button" data-acc="'+c+'" aria-label="Insert '+c+'">'+c+'</button>';}).join('')+'</div>';}
+var lastField=null;
+document.addEventListener('focusin',function(e){if(e.target.matches&&e.target.matches('input[type=text],textarea'))lastField=e.target;});
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-acc]');if(!b||!lastField||!document.body.contains(lastField))return;
+  var f=lastField,st=f.selectionStart==null?f.value.length:f.selectionStart,en=f.selectionEnd==null?st:f.selectionEnd;
+  f.value=f.value.slice(0,st)+b.getAttribute('data-acc')+f.value.slice(en);f.focus();
+  try{f.setSelectionRange(st+1,st+1);}catch(x){}
+  f.dispatchEvent(new Event('input',{bubbles:true}));
+});
+/* two-tap confirm, no pop-up windows */
+function twoTap(btn,ask,fn){var armed=false,old=btn.textContent,t=null;
+  btn.addEventListener('click',function(){if(armed){clearTimeout(t);armed=false;btn.textContent=old;fn();return;}
+    armed=true;btn.textContent=ask;t=setTimeout(function(){armed=false;btn.textContent=old;},6000);});}
+function today(){var d=new Date();return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
+function doPrint(html){document.getElementById('printview').innerHTML='<h1>Facciamo un piano!</h1><p>Italiano 2 · '+esc(today())+'</p>'+html+'<p class="pcredit">Boh · Created by Assunta Scotto · 2026</p>';window.print();}
+
+/* ---------- screens ---------- */
+var SCREENS={},stopPractice=null;
+
+SCREENS.home=function(){
+  app.innerHTML='<span class="eyebrow">Italiano 2 · Project · 50 points</span>'+
+   '<h1 lang="it">Facciamo un piano!</h1>'+
+   '<p>With a partner, act out a phone call or a text conversation. You plan your weekend around your hobbies (<span class="it" lang="it">passatempi</span>). One of you invites, the other says yes or says no with a reason, and together you choose where to go and when.</p>'+
+   '<h2>Your 3 steps</h2>'+
+   '<div class="grid">'+
+    '<a class="tile step" href="#step1"><span class="day">Day 1</span><b>Hobby survey</b><span>Interview 3 classmates.</span><span class="turn">Turn in: the chart</span></a>'+
+    '<a class="tile step" href="#step2"><span class="day">Day 2</span><b>Write the script</b><span>Use the checklist with your partner.</span><span class="turn">Turn in: the script</span></a>'+
+    '<a class="tile step" href="#step3"><span class="day">Day 3</span><b>Perform it</b><span>Live or recorded, with a cue card.</span><span class="turn">Turn in: the performance or recording</span></a>'+
+   '</div>'+
+   '<h2 style="margin-top:22px">Get ready</h2>'+
+   '<div class="grid">'+
+    '<a class="tile" href="../facciamo-un-piano-1/"><b>Learn it first in Boh</b><span class="mut">Lesson 1: hobbies and -are verbs</span></a>'+
+    '<a class="tile" href="#phrases"><b>Words and phrases</b><span class="mut">Everything you can use</span></a>'+
+    '<a class="tile" href="#model"><b>Model dialogue</b><span class="mut">Marcello and Aurora, 14 lines</span></a>'+
+    '<a class="tile" href="#practice-are"><b>Practice: -are verbs</b><span class="mut" lang="it">gioco, giochi, giochiamo</span></a>'+
+    '<a class="tile" href="#practice-andare"><b>Practice: andare</b><span class="mut" lang="it">vado, vai, andiamo</span></a>'+
+    '<a class="tile" href="#practice-volere"><b>Practice: volere</b><span class="mut" lang="it">voglio, vuoi, vogliamo</span></a>'+
+    '<a class="tile" href="rubric.html"><b>How you are graded</b><span class="mut">The 50-point rubric</span></a>'+
+   '</div>'+
+   '<div class="card"><p class="mut" style="margin:0 0 10px">What you type is saved only on this device so you can come back to it. Nothing is sent anywhere and there is no login.</p>'+
+   '<button class="btn ghost small" id="wipe" type="button">Erase my work on this device</button><p class="warn" id="wiped" aria-live="polite" style="margin:8px 0 0"></p></div>'+credit();
+  twoTap($('#wipe'),'Tap again to erase your survey, script and cue card',function(){try{localStorage.removeItem(KEY);}catch(e){}S=blank();$('#wiped').textContent='Erased from this device.';});
+};
+
+SCREENS.phrases=function(){
+  app.innerHTML=top('Words and phrases')+'<h1>Words and phrases</h1><p>Use these in your survey and your script.</p>'+
+   PHRASES.map(function(g){return '<div class="card"><h3>'+esc(g[0])+'</h3><table class="t">'+g[1].map(function(r){return '<tr><td class="it" lang="it">'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';}).join('')+'</table></div>';}).join('')+credit();
+};
+
+SCREENS.model=function(){
+  var allEn=false,tags=false;
+  app.innerHTML=top('Model dialogue')+'<h1>Model dialogue</h1><p>Marcello and Aurora plan their weekend on the phone. Read it with a partner. This is an example. Your own script must be different.</p>'+
+   '<div class="row"><button class="btn ghost small" id="allen" type="button" aria-pressed="false">Show all English</button>'+
+   '<button class="btn ghost small" id="showtags" type="button" aria-pressed="false">Show what each line does</button></div>'+
+   '<div class="card" id="dlg">'+DIALOGUE.map(function(l,i){
+     return '<div class="line"><span class="who">'+(i+1)+'. '+esc(l[0])+'</span><span class="txt"><span class="it" lang="it">'+esc(l[1])+'</span>'+
+      '<span class="en" hidden>'+esc(l[2])+'</span><span class="tags" hidden>'+l[3].map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('')+'</span></span>'+
+      '<button class="enb" type="button" aria-pressed="false" aria-label="English for line '+(i+1)+'">EN</button></div>';}).join('')+'</div>'+credit();
+  $$('.enb',app).forEach(function(b){b.onclick=function(){var en=$('.en',b.parentNode);en.hidden=!en.hidden;b.setAttribute('aria-pressed',String(!en.hidden));};});
+  $('#allen').onclick=function(){allEn=!allEn;this.setAttribute('aria-pressed',String(allEn));this.textContent=allEn?'Hide all English':'Show all English';
+    $$('.en',$('#dlg')).forEach(function(e){e.hidden=!allEn;});$$('.enb',app).forEach(function(b){b.setAttribute('aria-pressed',String(allEn));});};
+  $('#showtags').onclick=function(){tags=!tags;this.setAttribute('aria-pressed',String(tags));this.textContent=tags?'Hide what each line does':'Show what each line does';
+    $$('.tags',$('#dlg')).forEach(function(e){e.hidden=!tags||!e.children.length;});};
+};
+
+function practice(key){
+  var A=PRACTICE[key],queue=A.items.slice(),pos=0,tries=0,missRun=0,firstTry=0,easyUsed=0,timer=null;
+  function clear(){if(timer){clearTimeout(timer);timer=null;}}
+  stopPractice=clear;
+  function intro(){
+    app.innerHTML=top('Practice')+'<h1>'+esc(A.title)+'</h1><div class="card"><h3>How it works</h3>'+A.teach+'</div>'+
+     '<button class="btn" id="go" type="button">Start practice</button>'+credit();
+    $('#go').onclick=function(){show();};
+  }
+  function dots(){var d=Math.min(countDone(),A.items.length);return '<div class="dots" aria-hidden="true">'+A.items.map(function(x,i){
+    return '<i class="'+(i<d?'on':i===d?'cur':'')+'"></i>';}).join('')+'</div>';}
+  function countDone(){var n=0;for(var i=0;i<pos;i++)if(!queue[i].easy)n++;return n;}
+  function head(){return top('Practice · '+A.title)+dots();}
+  function show(){
+    clear();tries=0;
+    if(pos>=queue.length)return end();
+    var it=queue[pos];
+    if(it.easy)return showEasy(it);
+    var html=head()+'<div class="card"><p class="mut" style="margin:0">Tense: '+esc(A.tense)+(it.verb?' · verb: <span class="it" lang="it">'+esc(it.verb)+'</span>':it.k==='andare'?' · verb: <span class="it" lang="it">andare</span>':it.k==='volere'?' · verb: <span class="it" lang="it">volere</span>':'')+'</p>'+
+     '<p class="sent" lang="it">'+esc(it.b)+' <span class="blank" id="blank">&nbsp;</span> '+esc(it.a)+'</p><p class="en">'+esc(it.en)+'</p>';
+    if(it.mode==='choose'){
+      html+='<p style="margin-top:12px">Choose the form that fits.</p><div class="opts">'+options(it).map(function(o){return '<button class="opt" type="button" lang="it" data-o="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
+    }else{
+      html+='<label class="f" for="ans">Type the form that fits.</label><input type="text" id="ans" lang="it" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">'+accRow()+
+       '<button class="btn" id="chk" type="button">Check</button>';
+    }
+    html+='<div id="fb" aria-live="polite"></div></div>';
+    app.innerHTML=html;
+    if(it.mode==='choose'){$$('.opt',app).forEach(function(b){b.onclick=function(){judge(it,b.getAttribute('data-o'),b);};});}
+    else{var inp=$('#ans');inp.focus();$('#chk').onclick=function(){judge(it,inp.value,null);};inp.onkeydown=function(e){if(e.key==='Enter')judge(it,inp.value,null);};}
+  }
+  function lock(){$$('.opt,#chk,#ans',app).forEach(function(e){e.disabled=true;});}
+  function judge(it,raw,btn){
+    var right=answer(it),fb=$('#fb');
+    if(norm(raw)===right){
+      if(tries===0){missRun=0;if(!it.again)firstTry++;}
+      lock();if(btn)btn.classList.add('right');$('#blank').textContent=right;
+      fb.innerHTML='<div class="fb ok"><b>Correct.</b><div class="tip">Remember: <span lang="it">'+esc(A.tip)+'</span></div></div>';
+      timer=setTimeout(next,2200);return;
+    }
+    tries++;
+    if(btn){btn.disabled=true;btn.classList.add('off');}
+    if(tries===1){
+      missRun++;
+      fb.innerHTML='<div class="fb"><b>Not yet. Here is why:</b> '+esc(why(it,raw))+'<div class="tip">Try one more time.</div></div>';
+      var inp=$('#ans');if(inp){inp.select();}
+      return;
+    }
+    lock();$('#blank').textContent=right;
+    $$('.opt',app).forEach(function(b){if(b.getAttribute('data-o')===right)b.classList.add('right');});
+    fb.innerHTML='<div class="fb"><b>Why:</b> '+esc(why(it,raw))+'<div class="tip">The answer is <b class="ans" lang="it">'+esc(right)+'</b>. You will see this one again.</div>'+
+     '<div class="tip">Remember: <span lang="it">'+esc(A.tip)+'</span></div></div><button class="btn" id="nx" type="button">Next</button>';
+    if(!it.again){var c={};for(var k in it)c[k]=it[k];c.again=true;queue.push(c);}
+    $('#nx').onclick=next;$('#nx').focus();
+  }
+  function next(){
+    clear();pos++;
+    if(missRun>=2&&easyUsed<A.easy.length){
+      missRun=0;var add=[];
+      for(var i=0;i<2&&easyUsed<A.easy.length;i++){add.push({easy:A.easy[easyUsed++]});}
+      queue.splice.apply(queue,[pos,0].concat(add));
+    }
+    show();
+  }
+  function showEasy(it){
+    var e=it.easy,opts=Math.random()<.5?[e[1],e[2]]:[e[2],e[1]];
+    app.innerHTML=head()+'<div class="card"><p class="mut" style="margin:0">Quick one</p><p class="sent">'+esc(e[0])+'</p>'+
+     '<div class="opts">'+opts.map(function(o){return '<button class="opt" type="button" lang="it" data-o="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div><div id="fb" aria-live="polite"></div></div>';
+    $$('.opt',app).forEach(function(b){b.onclick=function(){
+      if(b.getAttribute('data-o')===e[1]){lock();b.classList.add('right');$('#fb').innerHTML='<div class="fb ok"><b>Correct.</b></div>';timer=setTimeout(next,1300);}
+      else{b.disabled=true;b.classList.add('off');$('#fb').innerHTML='<div class="fb">Not that one. Tap the other one.</div>';}
+    };});
+  }
+  function end(){
+    var n=A.items.length;
+    app.innerHTML=top('Practice · '+A.title)+'<h1>Practice finished</h1><div class="card"><p class="sent">'+firstTry+' of '+n+' right on the first try</p>'+
+     '<p>'+(firstTry===n?'Every form was right the first time.':'Every form you missed came back until you had it. Play again to raise your first-try number.')+'</p>'+
+     '<p class="mut">This practice is not graded.</p></div><div class="row"><button class="btn" id="again" type="button">Practice again</button><a class="btn ghost" href="#home">Back to the project</a></div>'+credit();
+    $('#again').onclick=function(){practice(key);};
+  }
+  intro();
+}
+SCREENS['practice-are']=function(){practice('are');};
+SCREENS['practice-andare']=function(){practice('andare');};
+SCREENS['practice-volere']=function(){practice('volere');};
+
+/* Day 1 */
+SCREENS.step1=function(){
+  function yn(i,k){var v=S.survey[i][k]||'';return '<select data-i="'+i+'" data-k="'+k+'" aria-label="Answer"><option value="">Answer</option><option'+(v==='Sì'?' selected':'')+'>Sì</option><option'+(v==='No'?' selected':'')+'>No</option></select>';}
+  function tx(i,k,ph){return '<input type="text" lang="it" data-i="'+i+'" data-k="'+k+'" value="'+esc(S.survey[i][k]||'')+'" placeholder="'+esc(ph)+'" autocomplete="off">';}
+  app.innerHTML=top('Day 1')+'<h1>Hobby survey</h1>'+
+   '<p>Interview 3 classmates in Italian. Ask each one two <span class="it" lang="it">Ti piace…?</span> questions and <span class="it" lang="it">Che cosa fai il weekend?</span> Write what they say.</p>'+
+   '<div class="note">Example: <span class="it" lang="it">Ti piace nuotare?</span> <span class="it" lang="it">Sì!</span> · <span class="it" lang="it">Che cosa fai il weekend?</span> <span class="it" lang="it">Sabato gioco a calcio.</span></div>'+
+   '<label class="f" for="me">Your first name</label><input type="text" id="me" value="'+esc(S.me)+'" autocomplete="off">'+accRow()+
+   [0,1,2].map(function(i){return '<div class="card"><h3>Classmate '+(i+1)+'</h3>'+
+     '<label class="f">First name</label>'+tx(i,'name','')+
+     '<label class="f"><span lang="it">Ti piace…?</span> (first activity)</label>'+tx(i,'a1','guardare un film')+yn(i,'y1')+
+     '<label class="f"><span lang="it">Ti piace…?</span> (second activity)</label>'+tx(i,'a2','ballare')+yn(i,'y2')+
+     '<label class="f"><span lang="it">Che cosa fai il weekend?</span></label>'+tx(i,'w','Sabato…')+'</div>';}).join('')+
+   '<div class="card"><h3>Turn in: the chart</h3><p>Print it or save it as a PDF, or take a screenshot. Add it to the Google Classroom assignment.</p>'+
+   '<p class="warn" id="msg" aria-live="polite"></p><button class="btn" id="pr" type="button">Print or save as PDF</button></div>'+credit();
+  $('#me').oninput=function(){S.me=this.value;save();};
+  $$('[data-i]',app).forEach(function(el){el.oninput=el.onchange=function(){S.survey[+el.getAttribute('data-i')][el.getAttribute('data-k')]=el.value;save();};});
+  $('#pr').onclick=function(){
+    var done=S.survey.filter(function(r){return (r.name||'').trim()&&(r.w||'').trim();}).length;
+    $('#msg').textContent=done<3?'You have '+done+' of 3 classmates filled in. You can still print, but the chart is not finished.':'';
+    doPrint('<p><span class="pl">Hobby survey by:</span> '+esc(S.me)+'</p>'+S.survey.map(function(r,i){return '<div class="pbox"><span class="pl">Classmate '+(i+1)+':</span> '+esc(r.name||'')+
+      '<br>Ti piace '+esc(r.a1||'______')+'? '+esc(r.y1||'____')+'<br>Ti piace '+esc(r.a2||'______')+'? '+esc(r.y2||'____')+'<br>Che cosa fai il weekend? '+esc(r.w||'')+'</div>';}).join(''));
+  };
+};
+
+/* Day 2 */
+function scan(){
+  var txt=S.lines.slice(0,S.n).map(function(l){return (l||'').toLowerCase();});
+  var words=txt.join(' ').replace(/[^a-zàèéìòù' ]/g,' ').split(/\s+/);
+  function has(w){return words.indexOf(w)>-1;}
+  var verbs={},persons={};
+  ARE.forEach(function(v){var f=conj(v);[0,1,3].forEach(function(p){if(has(f[p])){verbs[v]=1;persons[P[p]]=1;}});});
+  var qa=0,qb=0,filled=0;
+  txt.forEach(function(l,i){if(l.trim())filled++;var q=(l.match(/\?/g)||[]).length;if(i%2===0)qa+=q;else qb+=q;});
+  return {filled:filled,verbs:Object.keys(verbs),persons:persons,
+    andare:['vado','vai','andiamo'].filter(has),volere:['voglio','vuoi','vogliamo'].filter(has),qa:qa,qb:qb};
+}
+SCREENS.step2=function(){
+  function nameOf(i){return (i%2===0?S.p1:S.p2)||('Partner '+(i%2===0?'A':'B'));}
+  function linesHtml(){var h='';for(var i=0;i<S.n;i++){h+='<div class="sline"><label class="n" for="l'+i+'">'+(i+1)+'. '+esc(nameOf(i))+'</label><input type="text" id="l'+i+'" lang="it" data-l="'+i+'" value="'+esc(S.lines[i]||'')+'" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>';}return h;}
+  function foundHtml(){
+    var r=scan(),y=function(ok,t){return '<span class="'+(ok?'y':'')+'">'+esc(t)+'</span>';};
+    return {
+     lines:y(r.filled>=12&&r.filled<=16,r.filled+' lines written'),
+     are:y(r.verbs.length>=4,r.verbs.length+' -are verbs found'+(r.verbs.length?': '+r.verbs.join(', '):''))+' · '+['io','tu','noi'].map(function(p){return y(r.persons[p],p+(r.persons[p]?' found':' not found'));}).join(' · '),
+     andare:['vado','vai','andiamo'].map(function(w){return y(r.andare.indexOf(w)>-1,w+(r.andare.indexOf(w)>-1?' found':' not found'));}).join(' · '),
+     volere:['voglio','vuoi','vogliamo'].map(function(w){return y(r.volere.indexOf(w)>-1,w+(r.volere.indexOf(w)>-1?' found':' not found'));}).join(' · '),
+     questions:y(r.qa>=3,nameOf(0)+': '+r.qa+' question marks')+' · '+y(r.qb>=3,nameOf(1)+': '+r.qb+' question marks'),
+     invite:'You check this one yourselves.',when:'You check this one yourselves.'};
+  }
+  function refreshFound(){var f=foundHtml();CHECKLIST.forEach(function(c){var el=$('#f-'+c[0]);if(el)el.innerHTML=f[c[0]];});}
+  function draw(){
+    app.innerHTML=top('Day 2')+'<h1>Write the script</h1><p>Write your conversation with your partner. Take turns, one line each. Tick each requirement when it is in your script.</p>'+
+     '<div class="grid"><div><label class="f" for="p1">Partner A, first name</label><input type="text" id="p1" value="'+esc(S.p1)+'" autocomplete="off"></div>'+
+     '<div><label class="f" for="p2">Partner B, first name</label><input type="text" id="p2" value="'+esc(S.p2)+'" autocomplete="off"></div></div>'+
+     '<div class="note"><b>Accents:</b> <span class="it" lang="it">è</span> = is, <span class="it" lang="it">e</span> = and. Writing <span lang="it">e</span> when you mean <span lang="it">è</span> counts as wrong. Other missing accents do not cost points.</div>'+
+     '<div class="card"><h3>Your script</h3>'+accRow()+'<div id="lines">'+linesHtml()+'</div>'+
+     '<div class="row" style="margin-top:10px"><button class="btn ghost small" id="add" type="button"'+(S.n>=16?' disabled':'')+'>Add a line</button><button class="btn ghost small" id="rem" type="button"'+(S.n<=12?' disabled':'')+'>Remove the last line</button><span class="mut">'+S.n+' of 16 lines</span></div></div>'+
+     '<div class="card"><h3>Checklist</h3><p class="mut">The gray notes are a helper that looks for words in your script. It can miss things. Your teacher grades the real script.</p>'+
+     CHECKLIST.map(function(c){return '<label class="check"><input type="checkbox" data-c="'+c[0]+'"'+(S.ticks[c[0]]?' checked':'')+'><span>'+esc(c[1])+'<span class="found" id="f-'+c[0]+'"></span></span></label>';}).join('')+'</div>'+
+     '<div class="card"><h3>Turn in: the script</h3><p>Copy your script and paste it into the Google Classroom assignment, or print it or save it as a PDF.</p>'+
+     '<p class="warn" id="msg" aria-live="polite"></p><div class="row"><button class="btn" id="copy" type="button">Copy my script</button><button class="btn ghost" id="pr" type="button">Print or save as PDF</button></div></div>'+credit();
+    refreshFound();
+    $('#p1').onchange=function(){S.p1=this.value;save();draw();};
+    $('#p2').onchange=function(){S.p2=this.value;save();draw();};
+    $$('[data-l]',app).forEach(function(el){el.oninput=function(){S.lines[+el.getAttribute('data-l')]=el.value;save();refreshFound();};});
+    $$('[data-c]',app).forEach(function(el){el.onchange=function(){S.ticks[el.getAttribute('data-c')]=el.checked;save();};});
+    $('#add').onclick=function(){if(S.n<16){S.n++;save();draw();var e=$('#l'+(S.n-1));if(e)e.focus();}};
+    function dropLine(){if(S.n>12){S.lines[S.n-1]='';S.n--;save();draw();}}
+    if((S.lines[S.n-1]||'').trim())twoTap($('#rem'),'Line '+S.n+' has writing. Tap again to remove it',dropLine);else $('#rem').onclick=dropLine;
+    function text(){var out='Facciamo un piano! · '+(S.p1||'Partner A')+' e '+(S.p2||'Partner B')+'\n\n';for(var i=0;i<S.n;i++){if((S.lines[i]||'').trim())out+=nameOf(i)+': '+S.lines[i].trim()+'\n';}return out;}
+    function status(){var r=scan(),un=CHECKLIST.filter(function(c){return !S.ticks[c[0]];}).length;var m=[];
+      if(r.filled<12)m.push('Only '+r.filled+' lines are written. You need 12 to 16.');
+      if(un)m.push(un+' checklist item'+(un>1?'s are':' is')+' not ticked yet.');return m.join(' ');}
+    $('#copy').onclick=function(){var t=text(),m=$('#msg'),s=status();
+      function ok(){m.textContent='Copied. Paste it into Google Classroom. '+s;}
+      function manual(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();var done=false;try{done=document.execCommand('copy');}catch(e){}document.body.removeChild(ta);
+        if(done)ok();else m.textContent='Copy did not work on this device. Use Print or save as PDF.';}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,manual);}else manual();};
+    $('#pr').onclick=function(){$('#msg').textContent=status();var h='<p><span class="pl">Partners:</span> '+esc(S.p1)+' e '+esc(S.p2)+'</p>';
+      for(var i=0;i<S.n;i++){h+='<div class="pbox"><span class="pl">'+(i+1)+'. '+esc(nameOf(i))+':</span> '+esc(S.lines[i]||'')+'</div>';}
+      h+='<p class="pl">Checklist</p>'+CHECKLIST.map(function(c){return '<p>['+(S.ticks[c[0]]?'x':' ')+'] '+esc(c[1])+'</p>';}).join('');doPrint(h);};
+  }
+  draw();
+};
+
+/* Day 3 */
+SCREENS.step3=function(){
+  function words(s){return (s||'').trim().split(/\s+/).filter(Boolean).length;}
+  app.innerHTML=top('Day 3')+'<h1>Perform it</h1>'+
+   '<p>Perform your conversation live, or record it. Do not read your script. Use a cue card with key words only, so it stays a real conversation.</p>'+
+   '<div class="card"><h3>Your cue card</h3><p class="mut">Up to 8 boxes. 3 words or fewer in each box. No full sentences.</p>'+accRow()+
+   '<div class="grid">'+[0,1,2,3,4,5,6,7].map(function(i){return '<div><label class="f" for="c'+i+'">Key words '+(i+1)+'</label><input type="text" id="c'+i+'" lang="it" data-q="'+i+'" value="'+esc(S.cue[i]||'')+'" autocomplete="off"><span class="warn" id="w'+i+'"></span></div>';}).join('')+'</div>'+
+   '<div class="row" style="margin-top:14px"><button class="btn ghost" id="pr" type="button">Print my cue card</button></div></div>'+
+   '<div class="card"><h3>Before you perform</h3>'+
+   ['Look at your partner, not at the card.','React to what your partner says: <span class="it" lang="it">Va bene!</span> <span class="it" lang="it">Perfetto!</span> <span class="it" lang="it">Sì, volentieri!</span>','Speak slowly and clearly. Aim for 1 to 2 minutes.'].map(function(t){return '<p>'+t+'</p>';}).join('')+'</div>'+
+   '<div class="card"><h3>Turn in: the performance or recording</h3><p>If you perform live, your teacher grades you in class. If you record, use the recorder your teacher tells you to use and add the recording to the Google Classroom assignment. This page does not record you.</p>'+
+   '<a class="btn ghost" href="rubric.html">See how you are graded</a></div>'+credit();
+  function chk(i){var n=words(S.cue[i]);$('#w'+i).textContent=n>3?'Too long: '+n+' words. Use 3 or fewer.':'';}
+  $$('[data-q]',app).forEach(function(el){var i=+el.getAttribute('data-q');chk(i);el.oninput=function(){S.cue[i]=el.value;save();chk(i);};});
+  $('#pr').onclick=function(){doPrint('<p><span class="pl">Cue card:</span> '+esc(S.p1)+' e '+esc(S.p2)+'</p>'+[0,1,2,3,4,5,6,7].map(function(i){return '<div class="pbox"><span class="pl">'+(i+1)+'.</span> '+esc(S.cue[i]||'')+'</div>';}).join(''));};
+};
+
+/* ---------- router ---------- */
+function route(){if(stopPractice){stopPractice();stopPractice=null;}var h=(location.hash||'#home').slice(1);if(!SCREENS[h])h='home';SCREENS[h]();window.scrollTo(0,0);
+  var f=$('h1',app);if(f){f.setAttribute('tabindex','-1');}}
+window.addEventListener('hashchange',route);
+window.BOH_FUP={why:why,answer:answer,options:options,conj:conj,PRACTICE:PRACTICE,DIALOGUE:DIALOGUE,CHECKLIST:CHECKLIST,PHRASES:PHRASES,norm:norm,ARE:ARE};
+route();
+})();
+</script>
+</body>
+</html>

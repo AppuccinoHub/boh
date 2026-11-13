@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<!-- Boh · Facciamo un piano! · Rubric (Italiano 2 summative project, 50 points).
+     Created by Assunta Scotto, 2026-11-13. (c) 2026 Assunta Scotto. All rights reserved.
+     Original author and owner: Assunta Scotto. Part of Boh (github.com/AppuccinoHub/boh). No license is granted. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Boh · Facciamo un piano! · Rubric</title>
+<meta name="author" content="Assunta Scotto">
+<meta name="copyright" content="(c) 2026 Assunta Scotto. All rights reserved. Created 2026-11-13.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F4EE">
+<link rel="icon" href="../assets/bc.svg">
+<script>(function(){try{var t=localStorage.getItem('boh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+/* Colors copied from assets/lezione.css (Boh color system). Created by Assunta Scotto, 2026. */
+:root{--bg:#F7F4EE;--card:#FFFFFF;--line:#DAD7D0;--line2:#7E8792;--text:#0E2A5B;--mut:#46566E;--tap:#1A5CDF;--tap-text:#FFFFFF;
+  --pop:#BC1E72;--prog:#0A9A9A;--tag:#E2F7F7;--sig:"Created by Assunta Scotto 2026";color-scheme:light}
+:root[data-theme="dark"]{--bg:#0C1421;--card:#151E2E;--line:#2C384D;--line2:#69788F;--text:#E6ECF2;--mut:#AAB5C4;--tap:#7FAEE9;--tap-text:#0A121F;
+  --pop:#F075AA;--prog:#10BFBF;--tag:#0A3537;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:600 17px/1.45 "Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 40px}
+:focus-visible{outline:3px solid var(--tap);outline-offset:2px}
+h1{font:800 34px/1.05 "Bricolage Grotesque",sans-serif;margin:4px 0 6px}
+h2{font:800 22px/1.15 "Bricolage Grotesque",sans-serif;margin:0 0 4px}
+p{margin:0 0 10px}
+.mut{color:var(--mut)}
+.eyebrow{font:800 16px/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:.06em;color:var(--prog);text-transform:uppercase}
+.top{display:flex;align-items:center;gap:10px;min-height:48px;margin-bottom:8px;flex-wrap:wrap}
+.back,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border-radius:999px;border:2px solid var(--line2);background:var(--card);font-weight:800;font-size:16px;text-decoration:none;color:var(--text);cursor:pointer}
+.btn.main{background:var(--tap);color:var(--tap-text);border-color:var(--tap)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
+label.f{display:block;font-size:16px;font-weight:800;color:var(--mut);margin-bottom:4px}
+input[type=text]{width:100%;min-height:48px;padding:10px 12px;border-radius:12px;border:2px solid var(--line2);background:var(--card);font-weight:700;font-size:18px}
+.cat{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px;margin:12px 0}
+.cat .hd{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cat .pts{font:800 18px "Bricolage Grotesque",sans-serif;color:var(--mut)}
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.lv{display:flex;flex-direction:column;gap:4px;text-align:left;min-height:64px;padding:10px;border-radius:14px;border:2px solid var(--line2);background:var(--card);cursor:pointer;font-weight:600;font-size:16px;line-height:1.35}
+.lv b{font:800 24px/1 "Bricolage Grotesque",sans-serif;color:var(--tap)}
+.lv[aria-pressed="true"]{border-color:var(--pop);border-width:4px;padding:8px;background:var(--tag)}
+.lv[aria-pressed="true"] b{color:var(--pop)}
+.note{border-left:5px solid var(--prog);padding:10px 12px;background:var(--tag);border-radius:8px;margin:12px 0}
+.total{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--card);border:3px solid var(--text);border-radius:18px;padding:14px 16px;margin:14px 0}
+.total .n{font:800 34px/1 "Bricolage Grotesque",sans-serif}
+.credit{margin-top:24px;text-align:center;font-size:16px;color:var(--mut)}
+.it{color:var(--pop);font-weight:800}
+@media (max-width:760px){.levels{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.levels{grid-template-columns:1fr}h1{font-size:28px}}
+@media print{
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .noprint{display:none!important}
+  .wrap{max-width:none;padding:0}
+  h1{font-size:18pt}h2{font-size:12pt}
+  .cat{border:1pt solid #000;border-radius:6pt;padding:6pt;margin:6pt 0;page-break-inside:avoid}
+  .levels{grid-template-columns:repeat(4,1fr);gap:4pt;margin-top:4pt}
+  .lv{border:1pt solid #000;border-radius:4pt;padding:4pt;min-height:0;font-size:9.5pt;background:#fff}
+  .lv b{color:#000;font-size:13pt}
+  .lv[aria-pressed="true"]{border:3pt solid #000;padding:2pt;background:#fff}
+  .lv[aria-pressed="true"] b{color:#000}
+  .total{border:1.5pt solid #000;padding:6pt 8pt;margin:6pt 0}
+  .total .n{font-size:18pt}
+  .note{border:1pt solid #000;background:#fff;padding:5pt 8pt;margin:6pt 0}
+  input[type=text]{border:0;border-bottom:1pt solid #000;border-radius:0;min-height:0;padding:2pt 0;font-size:11pt}
+  .it{color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top noprint"><a class="back" href="index.html">Back to the project</a>
+    <button class="btn main" id="pr" type="button">Print or save as PDF</button>
+    <button class="btn" id="clr" type="button">Clear scores</button></div>
+  <span class="eyebrow">Italiano 2 · Project rubric</span>
+  <h1><span lang="it">Facciamo un piano!</span> · 50 points</h1>
+  <p class="noprint mut">Students: this is how your project is graded. Teachers: tap one box in each row to score. Nothing is saved or sent; print or save as PDF to keep a copy.</p>
+  <div class="fields">
+    <div><label class="f" for="pa">Partner A</label><input type="text" id="pa" autocomplete="off"></div>
+    <div><label class="f" for="pb">Partner B</label><input type="text" id="pb" autocomplete="off"></div>
+    <div><label class="f" for="dt">Date</label><input type="text" id="dt" autocomplete="off"></div>
+  </div>
+  <div id="cats"></div>
+  <div class="note"><b>Accents:</b> a missing accent does not cost points, with one exception: <span class="it" lang="it">è</span> (is) and <span class="it" lang="it">e</span> (and). Writing <span lang="it">e</span> when <span lang="it">è</span> is meant counts as an error.</div>
+  <div class="total"><span><b>Total</b> <span class="mut" id="left"></span></span><span class="n"><span id="sum">__</span> / 50</span></div>
+  <p class="credit">Boh · Created by Assunta Scotto · 2026</p>
+</div>
+<script>
+/* Boh · Facciamo un piano! · Rubric. Created by Assunta Scotto, 2026-11-13. (c) 2026 Assunta Scotto. All rights reserved. */
+(function(){
+'use strict';
+window.BOH_FUP_AUTHOR={name:'Assunta Scotto',created:'2026-11-13',work:'Boh · Facciamo un piano! · Rubric',rights:'(c) 2026 Assunta Scotto. All rights reserved.'};
+var PTS=[10,8,6,3];
+var RUBRIC=[
+ ['Task completion','Every checklist item is there.',[
+  'All 7 checklist items are there. The script has 12 to 16 lines.',
+  'One checklist item is missing or incomplete.',
+  'Two or three checklist items are missing.',
+  'Four or more checklist items are missing, or the script has fewer than 8 lines.']],
+ ['-are verb forms','gioco, giochi, giochiamo…',[
+  '4 or more different -are verbs, with io, tu and noi all used. 0 to 1 errors in the forms.',
+  '4 different -are verbs are used. 2 to 3 errors in the forms, and the meaning is still clear.',
+  'Only 2 to 3 different -are verbs, or one of io, tu, noi is missing, or 4 to 5 errors.',
+  'Mostly infinitives or wrong endings. The forms rarely match who is doing the action.']],
+ ['Andare and volere forms','vado, vai, andiamo + place · voglio, vuoi, vogliamo + infinitive',[
+  'All six forms are used and correct: andare with a place, volere with an infinitive.',
+  '5 of the six forms are correct. One slip: a wrong form, a missing place, or the verb after volere is not an infinitive.',
+  '4 of the six forms are correct.',
+  '3 or fewer of the six forms are used correctly.']],
+ ['Interaction','They ask, react and follow up naturally.',[
+  'Each partner asks 3 or more questions, reacts to the answers and follows up. It sounds like a real conversation.',
+  'Each partner asks 3 questions. Reactions are short or sometimes missing.',
+  'One partner asks fewer than 3 questions, or the partners take turns without reacting to each other.',
+  'Very little real exchange. Lines are said with almost no questions or reactions.']],
+ ['Pronunciation and fluency','Clear Italian at a steady pace.',[
+  'Easy to understand from start to finish. Steady pace. Uses only the cue card.',
+  'Understandable, with a few mispronounced words or short pauses.',
+  'Several words are hard to understand, or there are many long pauses. Leans on reading.',
+  'Hard to understand most of the time, or reads the full script word for word.']]
+];
+window.BOH_FUP_RUBRIC=RUBRIC;
+var picked=[null,null,null,null,null];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+document.getElementById('cats').innerHTML=RUBRIC.map(function(c,i){
+  return '<section class="cat" aria-labelledby="h'+i+'"><div class="hd"><div><h2 id="h'+i+'">'+esc(c[0])+'</h2><span class="mut">'+esc(c[1])+'</span></div><span class="pts"><span id="s'+i+'">__</span> / 10</span></div>'+
+   '<div class="levels" role="group" aria-label="'+esc(c[0])+' score">'+c[2].map(function(d,j){return '<button type="button" class="lv" aria-pressed="false" data-c="'+i+'" data-j="'+j+'"><b>'+PTS[j]+'</b><span>'+esc(d)+'</span></button>';}).join('')+'</div></section>';
+}).join('');
+function draw(){
+  var sum=0,n=0;
+  picked.forEach(function(j,i){document.getElementById('s'+i).textContent=j==null?'__':PTS[j];if(j!=null){sum+=PTS[j];n++;}});
+  Array.prototype.forEach.call(document.querySelectorAll('.lv'),function(b){b.setAttribute('aria-pressed',String(picked[+b.getAttribute('data-c')]===+b.getAttribute('data-j')));});
+  document.getElementById('sum').textContent=n===5?sum:(n?sum:'__');
+  document.getElementById('left').textContent=n>0&&n<5?'('+(5-n)+' row'+(5-n>1?'s':'')+' not scored yet)':'';
+}
+document.getElementById('cats').addEventListener('click',function(e){var b=e.target.closest('.lv');if(!b)return;var i=+b.getAttribute('data-c'),j=+b.getAttribute('data-j');picked[i]=picked[i]===j?null:j;draw();});
+document.getElementById('pr').onclick=function(){window.print();};
+document.getElementById('clr').onclick=function(){picked=[null,null,null,null,null];['pa','pb','dt'].forEach(function(id){document.getElementById(id).value='';});draw();};
+draw();
+})();
+</script>
+</body>
+</html>
