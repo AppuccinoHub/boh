@@ -5,14 +5,14 @@
       "title": "Io e il mio cane",
       "passage": [
         ["Io sono Luca e ho quindici anni.", "I am Luca and I am fifteen years old."],
-        ["Sono di Hamilton.", "I am from Hamilton."],
+        ["Sono di Roma.", "I am from Rome."],
         ["Ho un cane bianco e un gatto.", "I have a white dog and a cat."],
         ["Il mio cane è piccolo e molto simpatico.", "My dog is small and very nice."]
       ],
       "gloss": { "quindici": "fifteen", "simpatico": "nice, likeable" },
       "questions": [
         { "q": "Quanti anni ha Luca?", "answer": "quindici anni", "traps": ["quattordici anni", "sedici anni"], "why": "Io sono Luca e ho quindici anni." },
-        { "q": "Di dov'è Luca?", "answer": "di Hamilton", "traps": ["di Roma", "di Venezia"], "why": "Sono di Hamilton." },
+        { "q": "Di dov'è Luca?", "answer": "di Roma", "traps": ["di Milano", "di Venezia"], "why": "Sono di Roma." },
         { "q": "Che animali ha Luca?", "answer": "un cane e un gatto", "traps": ["un cane e un criceto", "un gatto e un uccello"], "why": "Ho un cane bianco e un gatto." },
         { "q": "Com'è il cane?", "answer": "piccolo e simpatico", "traps": ["grande e simpatico", "piccolo e vecchio"], "why": "Il mio cane è piccolo e molto simpatico." }
       ]

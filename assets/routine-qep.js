@@ -50,7 +50,7 @@ BohRoutine.register({
       q: 'Dove abitavi?', qEn: 'Where did you live?', tu: 'Abitavi', tuEn: 'Did you live',
       det: ['sempre', 'fratello'],
       choices: [
-        { it: 'a Hamilton', en: 'in Hamilton', pic: 'img:../assets/qep/hamilton.webp' },
+        { it: 'a Roma', en: 'in Rome', pic: 'img:../assets/boutique/viaggio_roma.webp' },
         { it: 'a Trenton', en: 'in Trenton', pic: 'img:../assets/qep/skyline.webp' },
         { it: 'in città', en: 'in the city', pic: 'img:../assets/qep/piazza.webp' },
         { it: 'in campagna', en: 'in the country', pic: 'img:../assets/qep/campagna.webp' } ] },

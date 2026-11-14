@@ -1,0 +1,305 @@
+{
+ "ext": [
+  "ht_cornetto_h",
+  "ht_cornetto_m",
+  "ht_fedora_f",
+  "ht_fedora_h",
+  "ht_fedora_m",
+  "ht_limoni_f",
+  "ht_limoni_h",
+  "ht_limoni_m",
+  "ht_occhio_f",
+  "ht_occhio_h",
+  "ht_occhio_m",
+  "ht_paglia_h",
+  "ht_paglia_m",
+  "ht_pelo_h",
+  "ht_pelo_m",
+  "ht_spille_h",
+  "ht_spille_m",
+  "ht_trecce_h",
+  "ht_trecce_m",
+  "ht_tricolore_h",
+  "ht_tricolore_m",
+  "lk_bologna_f",
+  "lk_bologna_h",
+  "lk_bologna_m",
+  "lk_capri_f",
+  "lk_capri_h",
+  "lk_capri_m",
+  "lk_cornetto_f",
+  "lk_cornetto_h",
+  "lk_cornetto_m",
+  "lk_divisa_f",
+  "lk_divisa_h",
+  "lk_divisa_m",
+  "lk_fantasma_f",
+  "lk_fantasma_h",
+  "lk_fantasma_m",
+  "lk_grigio_f",
+  "lk_grigio_h",
+  "lk_grigio_m",
+  "lk_milano_f",
+  "lk_milano_h",
+  "lk_milano_m",
+  "lk_napoli_f",
+  "lk_napoli_h",
+  "lk_napoli_m",
+  "lk_nero_f",
+  "lk_nero_h",
+  "lk_nero_m",
+  "lk_roma_f",
+  "lk_roma_h",
+  "lk_roma_m",
+  "lk_torino_f",
+  "lk_torino_h",
+  "lk_torino_m",
+  "lk_tuta_boh_f",
+  "lk_tuta_boh_h",
+  "lk_tuta_boh_m",
+  "lk_tuta_tri_f",
+  "lk_tuta_tri_h",
+  "lk_tuta_tri_m",
+  "lk_venezia_f",
+  "lk_venezia_h",
+  "lk_venezia_m",
+  "lk_veneziano_f",
+  "lk_veneziano_h",
+  "lk_veneziano_m",
+  "sd_ciabatte_f_brown",
+  "sd_ciabatte_f_brown_p",
+  "sd_ciabatte_f_deep",
+  "sd_ciabatte_f_deep_p",
+  "sd_ciabatte_f_fair",
+  "sd_ciabatte_f_fair_p",
+  "sd_ciabatte_f_light",
+  "sd_ciabatte_f_light_p",
+  "sd_ciabatte_f_medium",
+  "sd_ciabatte_f_medium_p",
+  "sd_ciabatte_f_olive",
+  "sd_ciabatte_f_olive_p",
+  "sd_ciabatte_m_brown",
+  "sd_ciabatte_m_brown_p",
+  "sd_ciabatte_m_deep",
+  "sd_ciabatte_m_deep_p",
+  "sd_ciabatte_m_fair",
+  "sd_ciabatte_m_fair_p",
+  "sd_ciabatte_m_light",
+  "sd_ciabatte_m_light_p",
+  "sd_ciabatte_m_medium",
+  "sd_ciabatte_m_medium_p",
+  "sd_ciabatte_m_olive",
+  "sd_ciabatte_m_olive_p",
+  "sd_infradito_f_brown",
+  "sd_infradito_f_brown_p",
+  "sd_infradito_f_deep",
+  "sd_infradito_f_deep_p",
+  "sd_infradito_f_fair",
+  "sd_infradito_f_fair_p",
+  "sd_infradito_f_light",
+  "sd_infradito_f_light_p",
+  "sd_infradito_f_medium",
+  "sd_infradito_f_medium_p",
+  "sd_infradito_f_olive",
+  "sd_infradito_f_olive_p",
+  "sd_infradito_m_brown",
+  "sd_infradito_m_brown_p",
+  "sd_infradito_m_deep",
+  "sd_infradito_m_deep_p",
+  "sd_infradito_m_fair",
+  "sd_infradito_m_fair_p",
+  "sd_infradito_m_light",
+  "sd_infradito_m_light_p",
+  "sd_infradito_m_medium",
+  "sd_infradito_m_medium_p",
+  "sd_infradito_m_olive",
+  "sd_infradito_m_olive_p",
+  "tu_antracite_f",
+  "tu_antracite_h",
+  "tu_antracite_m",
+  "tu_cappuccio_f",
+  "tu_cappuccio_h",
+  "tu_cappuccio_m",
+  "tu_chiara_f",
+  "tu_chiara_h",
+  "tu_chiara_m"
+ ],
+ "fit": {
+  "lk_bologna": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_calcio": {
+   "f": "tbfnd",
+   "h": "bshd",
+   "m": "tbfnd"
+  },
+  "lk_capri": {
+   "f": "tbfnd",
+   "h": "bshd",
+   "m": "tbfnd"
+  },
+  "lk_cornetto": {
+   "f": "tbsnd",
+   "h": "bshd",
+   "m": "tbsnd"
+  },
+  "lk_divisa": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_fantasma": {
+   "f": "tbfn",
+   "h": "tbsh",
+   "m": "tbfn"
+  },
+  "lk_grigio": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_milano": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbsnd"
+  },
+  "lk_napoli": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_nero": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_roma": {
+   "f": "tbfnd",
+   "h": "bshd"
+  },
+  "lk_salopette": {
+   "f": "tbfnd",
+   "h": "bshd",
+   "m": "tbfnd"
+  },
+  "lk_strass": {
+   "f": "tbfnd",
+   "h": "bshd",
+   "m": "tbfnd"
+  },
+  "lk_torino": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_tuta_boh": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_tuta_tri": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "lk_venezia": {
+   "f": "tbfd",
+   "h": "tbshd",
+   "m": "tbfd"
+  },
+  "lk_veneziano": {
+   "f": "tbf",
+   "h": "tbsh",
+   "m": "tbf"
+  },
+  "pn_tuta_chiara": {
+   "f": "b",
+   "m": "b"
+  },
+  "pn_tuta_nera": {
+   "f": "b",
+   "m": "b"
+  },
+  "pn_zampa_gr": {
+   "f": "b",
+   "m": "b"
+  },
+  "pn_zampa_nera": {
+   "f": "b",
+   "m": "b"
+  },
+  "sd_ciabatte": {
+   "f": "gd",
+   "m": "gd"
+  },
+  "sd_infradito": {
+   "f": "gd",
+   "m": "gd"
+  },
+  "sk_jeans": {
+   "f": "b"
+  },
+  "sk_lunga": {
+   "f": "b"
+  },
+  "sk_pieghe": {
+   "f": "b"
+  },
+  "sk_rossa": {
+   "f": "b"
+  },
+  "sk_scozzese": {
+   "f": "b"
+  },
+  "tu_antracite": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "tu_cappuccio": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  },
+  "tu_chiara": {
+   "f": "tbfnd",
+   "h": "tbshd",
+   "m": "tbfnd"
+  }
+ },
+ "hands_under": [
+  "lk_fantasma",
+  "lk_veneziano"
+ ],
+ "hats": [
+  "ht_basco",
+  "ht_boh",
+  "ht_bohngiorno",
+  "ht_cornetto",
+  "ht_fedora",
+  "ht_limoni",
+  "ht_occhio",
+  "ht_paglia",
+  "ht_pelo",
+  "ht_pescatore",
+  "ht_spille",
+  "ht_trecce",
+  "ht_tricolore"
+ ],
+ "known": [
+  "lk_roma pieces"
+ ],
+ "neck_covered": [
+  "lk_veneziano",
+  "lk_venezia"
+ ],
+ "pulled": {
+  "bg_hhw": 900,
+  "ht_hhw": 560,
+  "lk_firenze": 420,
+  "lk_hornets": 840,
+  "maglia_hhw": 175
+ }
+}

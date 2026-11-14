@@ -1,0 +1,173 @@
+/* BOH wardrobe fit: one stylesheet for every level and the front page. Wardrobe fit, Package 1 + 1b. (c) 2026 Assunta Scotto, creator and owner of BOH. Built 2026-11-14. Made by tools/wardrobe/package1.py, do not edit by hand. */
+.dl.body.fx{-webkit-mask-image:var(--mh,linear-gradient(#000,#000)),var(--mt,linear-gradient(#000,#000)),var(--mb,linear-gradient(#000,#000)),var(--mf,linear-gradient(#000,#000));mask-image:var(--mh,linear-gradient(#000,#000)),var(--mt,linear-gradient(#000,#000)),var(--mb,linear-gradient(#000,#000)),var(--mf,linear-gradient(#000,#000));-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-composite:source-in;mask-composite:intersect}
+.dl.body.m.xt{--mt:url(look/fit/fit_m_top.webp)}
+.dl.body.m.xb{--mb:url(look/fit/fit_m_bottom.webp)}
+.dl.body.m.xs{--mf:url(look/fit/fit_m_shoes.webp)}
+.dl.body.m.xf{--mf:url(look/fit/fit_m_feet.webp)}
+.dl.body.m.xg{--mf:url(look/fit/fit_m_sand.webp)}
+.dl.body.m.hat-ht_basco{--mh:url(look/fit/hat_ht_basco_m.webp)}
+.dl.body.m.hat-ht_boh{--mh:url(look/fit/hat_ht_boh_m.webp)}
+.dl.body.m.hat-ht_bohngiorno{--mh:url(look/fit/hat_ht_bohngiorno_m.webp)}
+.dl.body.m.hat-ht_cornetto{--mh:url(look/fit/hat_ht_cornetto_m.webp)}
+.dl.body.m.hat-ht_fedora{--mh:url(look/fit/hat_ht_fedora_m.webp)}
+.dl.body.m.hat-ht_limoni{--mh:url(look/fit/hat_ht_limoni_m.webp)}
+.dl.body.m.hat-ht_occhio{--mh:url(look/fit/hat_ht_occhio_m.webp)}
+.dl.body.m.hat-ht_paglia{--mh:url(look/fit/hat_ht_paglia_m.webp)}
+.dl.body.m.hat-ht_pelo{--mh:url(look/fit/hat_ht_pelo_m.webp)}
+.dl.body.m.hat-ht_pescatore{--mh:url(look/fit/hat_ht_pescatore_m.webp)}
+.dl.body.m.hat-ht_spille{--mh:url(look/fit/hat_ht_spille_m.webp)}
+.dl.body.m.hat-ht_trecce{--mh:url(look/fit/hat_ht_trecce_m.webp)}
+.dl.body.m.hat-ht_tricolore{--mh:url(look/fit/hat_ht_tricolore_m.webp)}
+.dl.body.f.xt{--mt:url(look/fit/fit_f_top.webp)}
+.dl.body.f.xb{--mb:url(look/fit/fit_f_bottom.webp)}
+.dl.body.f.xs{--mf:url(look/fit/fit_f_shoes.webp)}
+.dl.body.f.xf{--mf:url(look/fit/fit_f_feet.webp)}
+.dl.body.f.xg{--mf:url(look/fit/fit_f_sand.webp)}
+.dl.body.f.hat-ht_basco{--mh:url(look/fit/hat_ht_basco_f.webp)}
+.dl.body.f.hat-ht_boh{--mh:url(look/fit/hat_ht_boh_f.webp)}
+.dl.body.f.hat-ht_bohngiorno{--mh:url(look/fit/hat_ht_bohngiorno_f.webp)}
+.dl.body.f.hat-ht_cornetto{--mh:url(look/fit/hat_ht_cornetto_f.webp)}
+.dl.body.f.hat-ht_fedora{--mh:url(look/fit/hat_ht_fedora_f.webp)}
+.dl.body.f.hat-ht_limoni{--mh:url(look/fit/hat_ht_limoni_f.webp)}
+.dl.body.f.hat-ht_occhio{--mh:url(look/fit/hat_ht_occhio_f.webp)}
+.dl.body.f.hat-ht_paglia{--mh:url(look/fit/hat_ht_paglia_f.webp)}
+.dl.body.f.hat-ht_pelo{--mh:url(look/fit/hat_ht_pelo_f.webp)}
+.dl.body.f.hat-ht_pescatore{--mh:url(look/fit/hat_ht_pescatore_f.webp)}
+.dl.body.f.hat-ht_spille{--mh:url(look/fit/hat_ht_spille_f.webp)}
+.dl.body.f.hat-ht_trecce{--mh:url(look/fit/hat_ht_trecce_f.webp)}
+.dl.body.f.hat-ht_tricolore{--mh:url(look/fit/hat_ht_tricolore_f.webp)}
+.dl.body.h.xt{--mt:url(look/fit/fit_h_top.webp)}
+.dl.body.h.xb{--mb:url(look/fit/fit_h_bottom.webp)}
+.dl.body.h.xs{--mf:url(look/fit/fit_h_shoes.webp)}
+.dl.body.h.xf{--mf:url(look/fit/fit_h_shoes.webp)}
+.dl.body.ov{-webkit-mask:var(--mo) 0 0/100% 100% no-repeat;mask:var(--mo) 0 0/100% 100% no-repeat}
+.dl.body.h.ov.oh{--mo:url(look/fit/ov_h_head.webp)}
+.dl.body.m.ov.on{--mo:url(look/fit/ov_m_neck.webp)}
+.dl.body.f.ov.on{--mo:url(look/fit/ov_f_neck.webp)}
+.dl.body.m.ov.od{--mo:url(look/fit/ov_m_hands.webp)}
+.dl.body.f.ov.od{--mo:url(look/fit/ov_f_hands.webp)}
+.dl.body.h.ov.od{--mo:url(look/fit/ov_h_hands.webp)}
+/* fixed pictures (uncut outfits, lifted hats, cleaned sandals) live in boutique/p/x and replace the originals */
+.dl.dl.pw-ht_cornetto-h{background-image:url(boutique/p/x/ht_cornetto_h.webp)}
+.dl.dl.pw-ht_cornetto-m{background-image:url(boutique/p/x/ht_cornetto_m.webp)}
+.dl.dl.pw-ht_fedora-f{background-image:url(boutique/p/x/ht_fedora_f.webp)}
+.dl.dl.pw-ht_fedora-h{background-image:url(boutique/p/x/ht_fedora_h.webp)}
+.dl.dl.pw-ht_fedora-m{background-image:url(boutique/p/x/ht_fedora_m.webp)}
+.dl.dl.pw-ht_limoni-f{background-image:url(boutique/p/x/ht_limoni_f.webp)}
+.dl.dl.pw-ht_limoni-h{background-image:url(boutique/p/x/ht_limoni_h.webp)}
+.dl.dl.pw-ht_limoni-m{background-image:url(boutique/p/x/ht_limoni_m.webp)}
+.dl.dl.pw-ht_occhio-f{background-image:url(boutique/p/x/ht_occhio_f.webp)}
+.dl.dl.pw-ht_occhio-h{background-image:url(boutique/p/x/ht_occhio_h.webp)}
+.dl.dl.pw-ht_occhio-m{background-image:url(boutique/p/x/ht_occhio_m.webp)}
+.dl.dl.pw-ht_paglia-h{background-image:url(boutique/p/x/ht_paglia_h.webp)}
+.dl.dl.pw-ht_paglia-m{background-image:url(boutique/p/x/ht_paglia_m.webp)}
+.dl.dl.pw-ht_pelo-h{background-image:url(boutique/p/x/ht_pelo_h.webp)}
+.dl.dl.pw-ht_pelo-m{background-image:url(boutique/p/x/ht_pelo_m.webp)}
+.dl.dl.pw-ht_spille-h{background-image:url(boutique/p/x/ht_spille_h.webp)}
+.dl.dl.pw-ht_spille-m{background-image:url(boutique/p/x/ht_spille_m.webp)}
+.dl.dl.pw-ht_trecce-h{background-image:url(boutique/p/x/ht_trecce_h.webp)}
+.dl.dl.pw-ht_trecce-m{background-image:url(boutique/p/x/ht_trecce_m.webp)}
+.dl.dl.pw-ht_tricolore-h{background-image:url(boutique/p/x/ht_tricolore_h.webp)}
+.dl.dl.pw-ht_tricolore-m{background-image:url(boutique/p/x/ht_tricolore_m.webp)}
+.dl.dl.pw-lk_bologna-f{background-image:url(boutique/p/x/lk_bologna_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_bologna-h{background-image:url(boutique/p/x/lk_bologna_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_bologna-m{background-image:url(boutique/p/x/lk_bologna_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_capri-f{background-image:url(boutique/p/x/lk_capri_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_capri-h{background-image:url(boutique/p/x/lk_capri_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_capri-m{background-image:url(boutique/p/x/lk_capri_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_cornetto-f{background-image:url(boutique/p/x/lk_cornetto_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_cornetto-h{background-image:url(boutique/p/x/lk_cornetto_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_cornetto-m{background-image:url(boutique/p/x/lk_cornetto_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_divisa-f{background-image:url(boutique/p/x/lk_divisa_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_divisa-h{background-image:url(boutique/p/x/lk_divisa_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_divisa-m{background-image:url(boutique/p/x/lk_divisa_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_fantasma-f{background-image:url(boutique/p/x/lk_fantasma_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_fantasma-h{background-image:url(boutique/p/x/lk_fantasma_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_fantasma-m{background-image:url(boutique/p/x/lk_fantasma_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_grigio-f{background-image:url(boutique/p/x/lk_grigio_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_grigio-h{background-image:url(boutique/p/x/lk_grigio_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_grigio-m{background-image:url(boutique/p/x/lk_grigio_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_milano-f{background-image:url(boutique/p/x/lk_milano_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_milano-h{background-image:url(boutique/p/x/lk_milano_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_milano-m{background-image:url(boutique/p/x/lk_milano_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_napoli-f{background-image:url(boutique/p/x/lk_napoli_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_napoli-h{background-image:url(boutique/p/x/lk_napoli_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_napoli-m{background-image:url(boutique/p/x/lk_napoli_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_nero-f{background-image:url(boutique/p/x/lk_nero_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_nero-h{background-image:url(boutique/p/x/lk_nero_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_nero-m{background-image:url(boutique/p/x/lk_nero_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_roma-f{background-image:url(boutique/p/x/lk_roma_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_roma-h{background-image:url(boutique/p/x/lk_roma_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_roma-m{background-image:url(boutique/p/x/lk_roma_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_torino-f{background-image:url(boutique/p/x/lk_torino_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_torino-h{background-image:url(boutique/p/x/lk_torino_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_torino-m{background-image:url(boutique/p/x/lk_torino_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_tuta_boh-f{background-image:url(boutique/p/x/lk_tuta_boh_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_tuta_boh-h{background-image:url(boutique/p/x/lk_tuta_boh_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_tuta_boh-m{background-image:url(boutique/p/x/lk_tuta_boh_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_tuta_tri-f{background-image:url(boutique/p/x/lk_tuta_tri_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_tuta_tri-h{background-image:url(boutique/p/x/lk_tuta_tri_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_tuta_tri-m{background-image:url(boutique/p/x/lk_tuta_tri_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_venezia-f{background-image:url(boutique/p/x/lk_venezia_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_venezia-h{background-image:url(boutique/p/x/lk_venezia_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_venezia-m{background-image:url(boutique/p/x/lk_venezia_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_veneziano-f{background-image:url(boutique/p/x/lk_veneziano_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_veneziano-h{background-image:url(boutique/p/x/lk_veneziano_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-lk_veneziano-m{background-image:url(boutique/p/x/lk_veneziano_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.sk-brown .dl.dl.pw-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_brown.webp)}
+.sk-brown .dl.dl.pwp-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_brown_p.webp)}
+.sk-deep .dl.dl.pw-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_deep.webp)}
+.sk-deep .dl.dl.pwp-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_deep_p.webp)}
+.sk-fair .dl.dl.pw-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_fair.webp)}
+.sk-fair .dl.dl.pwp-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_fair_p.webp)}
+.sk-light .dl.dl.pw-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_light.webp)}
+.sk-light .dl.dl.pwp-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_light_p.webp)}
+.sk-medium .dl.dl.pw-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_medium.webp)}
+.sk-medium .dl.dl.pwp-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_medium_p.webp)}
+.sk-olive .dl.dl.pw-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_olive.webp)}
+.sk-olive .dl.dl.pwp-sd_ciabatte-f{background-image:url(boutique/p/x/sd_ciabatte_f_olive_p.webp)}
+.sk-brown .dl.dl.pw-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_brown.webp)}
+.sk-brown .dl.dl.pwp-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_brown_p.webp)}
+.sk-deep .dl.dl.pw-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_deep.webp)}
+.sk-deep .dl.dl.pwp-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_deep_p.webp)}
+.sk-fair .dl.dl.pw-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_fair.webp)}
+.sk-fair .dl.dl.pwp-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_fair_p.webp)}
+.sk-light .dl.dl.pw-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_light.webp)}
+.sk-light .dl.dl.pwp-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_light_p.webp)}
+.sk-medium .dl.dl.pw-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_medium.webp)}
+.sk-medium .dl.dl.pwp-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_medium_p.webp)}
+.sk-olive .dl.dl.pw-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_olive.webp)}
+.sk-olive .dl.dl.pwp-sd_ciabatte-m{background-image:url(boutique/p/x/sd_ciabatte_m_olive_p.webp)}
+.sk-brown .dl.dl.pw-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_brown.webp)}
+.sk-brown .dl.dl.pwp-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_brown_p.webp)}
+.sk-deep .dl.dl.pw-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_deep.webp)}
+.sk-deep .dl.dl.pwp-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_deep_p.webp)}
+.sk-fair .dl.dl.pw-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_fair.webp)}
+.sk-fair .dl.dl.pwp-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_fair_p.webp)}
+.sk-light .dl.dl.pw-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_light.webp)}
+.sk-light .dl.dl.pwp-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_light_p.webp)}
+.sk-medium .dl.dl.pw-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_medium.webp)}
+.sk-medium .dl.dl.pwp-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_medium_p.webp)}
+.sk-olive .dl.dl.pw-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_olive.webp)}
+.sk-olive .dl.dl.pwp-sd_infradito-f{background-image:url(boutique/p/x/sd_infradito_f_olive_p.webp)}
+.sk-brown .dl.dl.pw-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_brown.webp)}
+.sk-brown .dl.dl.pwp-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_brown_p.webp)}
+.sk-deep .dl.dl.pw-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_deep.webp)}
+.sk-deep .dl.dl.pwp-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_deep_p.webp)}
+.sk-fair .dl.dl.pw-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_fair.webp)}
+.sk-fair .dl.dl.pwp-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_fair_p.webp)}
+.sk-light .dl.dl.pw-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_light.webp)}
+.sk-light .dl.dl.pwp-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_light_p.webp)}
+.sk-medium .dl.dl.pw-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_medium.webp)}
+.sk-medium .dl.dl.pwp-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_medium_p.webp)}
+.sk-olive .dl.dl.pw-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_olive.webp)}
+.sk-olive .dl.dl.pwp-sd_infradito-m{background-image:url(boutique/p/x/sd_infradito_m_olive_p.webp)}
+.dl.dl.pw-tu_antracite-f{background-image:url(boutique/p/x/tu_antracite_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_antracite-h{background-image:url(boutique/p/x/tu_antracite_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_antracite-m{background-image:url(boutique/p/x/tu_antracite_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_cappuccio-f{background-image:url(boutique/p/x/tu_cappuccio_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_cappuccio-h{background-image:url(boutique/p/x/tu_cappuccio_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_cappuccio-m{background-image:url(boutique/p/x/tu_cappuccio_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_chiara-f{background-image:url(boutique/p/x/tu_chiara_f.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_chiara-h{background-image:url(boutique/p/x/tu_chiara_h.webp);left:-21%;right:-21%;bottom:-2.6923%}
+.dl.dl.pw-tu_chiara-m{background-image:url(boutique/p/x/tu_chiara_m.webp);left:-21%;right:-21%;bottom:-2.6923%}
