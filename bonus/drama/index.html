@@ -156,6 +156,7 @@ input.ans{font:inherit;font-size:22px;font-weight:800;width:100%;min-height:58px
 @media(max-height:700px){.prompt{font-size:24px}.opt{min-height:50px;font-size:18px}.prof img{width:72px;height:72px}body{font-size:17px}}
 </style>
 <div id="app"></div>
+<script src="../../assets/bohquiz.js?v=202611131200"></script>
 <script>
 (function(){
 'use strict';
@@ -426,10 +427,11 @@ function provaSubmit(){var inp=app.querySelector('#ans');var typed=inp?inp.value
 function provaEnd(){var wrong=pv.log.filter(function(r){return !r.ok}).map(function(r){return r.i});var prevRight=PROVA.length-pv.q.length;var right=prevRight+pv.log.filter(function(r){return r.ok}).length;var pct=Math.round(100*right/PROVA.length);
  st.prova.tries++;st.prova.wrong=wrong;if(st.prova.best===null||pct>st.prova.best)st.prova.best=pct;st.prova.log.push({pct:pct,date:new Date().toISOString().slice(0,10)});save();
  var code=(right*7+st.prova.tries*3+13).toString(36).toUpperCase()+'-'+Math.abs(hashStr(JSON.stringify(st.prova.log))%46656).toString(36).toUpperCase();
- app.innerHTML=hud()+'<div class="stage"><div class="card center"><div class="shot"><b>FAI UNO SCREENSHOT DEL TUO VOTO</b><br>Then upload it to your Google Classroom page.<br><small>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</small></div>'+
+ var resultHTML=hud()+'<div class="stage"><div class="card center"><div class="shot"><b>FAI UNO SCREENSHOT DEL TUO VOTO</b><br>Then upload it to your Google Classroom page.<br><small>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</small></div>'+
  '<div class="scorecard"><div class="k">'+G.title+' · '+(G.provaShort||'La Prova')+'</div><div class="big">'+pct+'%</div><div>'+right+' / '+PROVA.length+' '+(G.provaUnit||'sentences')+' · attempt '+st.prova.tries+' of 4</div><div class="k">Best: '+st.prova.best+'% · code '+code+'</div></div>'+
  (wrong.length&&st.prova.tries<4?'<div class="sub">Next try brings back only the '+wrong.length+' you missed. Best score counts.</div>':'')+
- '<div class="row" style="width:100%">'+(wrong.length&&st.prova.tries<4?'<button class="btn p" data-a="prova">Try again ›</button>':'')+'<button class="btn g" data-a="home">Home</button></div></div></div>'}
+ '<div class="row" style="width:100%">'+(wrong.length&&st.prova.tries<4?'<button class="btn p" data-a="prova">Try again ›</button>':'')+'<button class="btn g" data-a="home">Home</button></div></div></div>';
+ var again=wrong.length&&st.prova.tries<4;window.BohQuiz?BohQuiz.sideGate(app,{pct:pct,best:st.prova.best,canRetry:again,retry:provaStart,keep:function(){app.innerHTML=resultHTML},top:hud()}):(app.innerHTML=resultHTML)}
 function hashStr(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h}
 
 /* ---------- scene: watch + dub ---------- */

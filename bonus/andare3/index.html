@@ -152,6 +152,7 @@ input.ans{font:inherit;font-size:24px;font-weight:800;width:100%;min-height:60px
 <body>
 <div id="app"></div>
 <script src="../../assets/recorder.js"></script>
+<script src="../../assets/bohquiz.js?v=202611131200"></script>
 <script>
 (function(){
 'use strict';
@@ -483,13 +484,15 @@ function quizResults(){view='results';var T=run.items.length,right=run.right;
  var q=st.quiz||{},first=!q.done;var bc=first?right*BC.perRight+BC.clear:0;
  st.quiz={done:true,best:Math.max(q.best||0,right),paid:true};save();if(bc>0)award(bc);
  var line=right===T?'Oooo! Bravissim'+bohEnd()+'!':right>=8?'Ottimo!':right>=5?'Bene!':'Ancora un giro!';
- app.innerHTML=topbar(BACKPATH)+'<div class="stage"><div class="card center pop">'+profBox(right>=8?IMG.joy:IMG.think,line,'')+
+ var resultHTML=topbar(BACKPATH)+'<div class="stage"><div class="card center pop">'+profBox(right>=8?IMG.joy:IMG.think,line,'')+
   '<div class="big">'+right+' / '+T+'</div><div class="sub">Quiz · Chi va? · '+run.bestStreak+' di fila</div>'+
   '<div class="bcline">'+(bc>0?'+'+bc+' Boh Cashi':'Practice run · no new Boh Cashi')+'</div><div class="sub">'+(bc>0?'They land in your wallet the next time you open Italiano 2.':'Boh Cashi pay once.')+'</div>'+
   '<div class="shot"><b>FAI UNO SCREENSHOT DEL TUO LAVORO</b>Then upload it to your Google Classroom page.<br>Chromebook: Ctrl + Show windows · iPhone: side button + volume up</div>'+
   '<div class="row" style="width:100%"><button class="btn p" data-a="nextstop" data-n="0">Avanti</button><a class="btn g" href="../../italiano2/?go=shop">Boh-tique</a></div>'+
   '<div class="row" style="width:100%"><button class="btn g" data-a="quiz">Try again</button><a class="btn g" href="../../italiano2/">Save &amp; quit</a></div>'+
-  '<button class="btn q wide" data-a="parla">Vuoi parlare? <span style="font-size:17px;color:var(--mute);font-family:var(--body)">Do you want to speak?</span></button></div></div>'}
+  '<button class="btn q wide" data-a="parla">Vuoi parlare? <span style="font-size:17px;color:var(--mute);font-family:var(--body)">Do you want to speak?</span></button></div></div>';
+ var pct=Math.round(100*right/T);
+ window.BohQuiz?BohQuiz.sideGate(app,{pct:pct,best:Math.round(100*(st.quiz.best||right)/T),canRetry:true,retry:startQuiz,keep:function(){app.innerHTML=resultHTML},top:topbar(BACKPATH)}):(app.innerHTML=resultHTML)}
 
 /* ---------- Results (same buttons as every other level) ---------- */
 function results(n){view='results';var S=STOPS[n-1];var right=run.right,first=!(st.stops[n]&&st.stops[n].done);

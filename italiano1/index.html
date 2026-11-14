@@ -2028,8 +2028,11 @@
     </sc-if>
     <sc-if value="{{isProva}}" hint-placeholder-val="{{false}}">
       <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px;">
-        <div class="pv-shot" role="alert"><b>TAKE A SCREENSHOT OF YOUR GRADE</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press <kbd>Ctrl</kbd> + <kbd>Show windows &#9645;&#9647;</kbd></span></div>
-        <button type="button" class="pv-dl" data-pvdl>Download my score</button>
+        <sc-if value="{{pvGate}}" hint-placeholder-val="{{false}}"><div class="pv-ask pv-gate" role="group" aria-label="Gradebook check"><sc-if value="{{pvHigh}}" hint-placeholder-val="{{true}}"><b>{{pvQ}}</b><span>{{pvQSub}}</span><div class="pv-ask-row"><button type="button" onClick="{{pvNoGradeHandler}}" class="pv-ask-no">{{pvNoLabel}}</button><button type="button" onClick="{{pvYesGradeHandler}}" class="pv-ask-yes">{{pvYesLabel}}</button></div></sc-if><sc-if value="{{pvLow}}" hint-placeholder-val="{{false}}"><b>{{pvLowT}}</b><span>{{pvLowB}}</span><div class="pv-ask-row"><button type="button" onClick="{{pvTryHandler}}" class="pv-ask-yes">{{pvTryLabel}}</button></div></sc-if><sc-if value="{{pvNoTry}}" hint-placeholder-val="{{false}}"><span>{{pvNoTryText}}</span></sc-if></div></sc-if>
+        <sc-if value="{{pvShotOn}}" hint-placeholder-val="{{true}}">
+          <div class="pv-shot" role="alert"><b>TAKE A SCREENSHOT OF YOUR GRADE</b><span>Then upload it to your Google Classroom page.</span><span>Chromebook: press <kbd>Ctrl</kbd> + <kbd>Show windows &#9645;&#9647;</kbd></span></div>
+          <button type="button" class="pv-dl" data-pvdl>Download my score</button>
+        </sc-if>
         <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:var(--card-bg);border:3px solid var(--primary-bg);">
           <div style="display:flex;align-items:center;gap:14px;">
             <div class="doll dS idle" style="flex-shrink:0;"><sc-for list="{{dollLayers}}" as="dl" hint-placeholder-count="1"><div class="{{dl.cls}}"></div></sc-for></div>
@@ -3755,9 +3758,9 @@ class Component extends DCLogic {
     card.code = provaCode(card, log);
     var patch = { provaLog: log, provaAttempt: attempt, provaCard: card,
                   provaFirst: card.first, provaBest: card.best,
-                  screen: 'prova', roundActive: false, mode: null };
+                  screen: 'prova', roundActive: false, mode: null, pvHappy: false, pvNoTries: false };
     // passing La Prova opens the harder tier
-    if (pct >= 85) patch.passed = addUnique(s.passed || [], 'prova');
+    if (window.BohQuiz ? BohQuiz.passes(pct) : pct >= 60) patch.passed = addUnique(s.passed || [], 'prova');   /* boh-quiz-v1: La Prova passes at 60%, rule in assets/bohquiz.js */
     this.setState(patch);
   }
 
@@ -5037,6 +5040,7 @@ class Component extends DCLogic {
       isSummary: s.screen === 'summary',
       isProva: s.screen === 'prova',
       pvAsk: s.screen === 'prova' && !!s.pvAsk, pvNoAsk: !s.pvAsk,
+      ...(window.BohQuiz ? BohQuiz.fields(s, self, { left: btProvaLeft, clock: btClock }) : {}),   /* boh-quiz-v1 */
       pvLeaveHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true, pvGo: 'menu' }); },
       pvNextHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true, pvGo: 'next' }); },
       pvQuitHandler: function () { self.sfx('tap'); self.setState({ pvAsk: true, pvGo: 'quit' }); },
@@ -5940,5 +5944,6 @@ var n=0,t=setInterval(function(){var g=window.__game;if(g&&g.state&&g.state.bohB
 /* the size and shrink rules that were here were removed Oct 14 2026 (boh-fit-v3 in assets/bohphone.css) */
 /* /boh-fit-v2 */</style>
 <!-- boh-fit-v2 shrink script removed Oct 14 2026: replaced by boh-fit-v3 -->
+<script src="../assets/bohquiz.js?v=202611131200"></script>
 <script src="../assets/bohgrade.js?v=202610291200"></script>
 </body></html>

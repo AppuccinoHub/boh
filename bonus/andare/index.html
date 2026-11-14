@@ -129,6 +129,7 @@ input.ans{font:inherit;font-size:22px;font-weight:800;width:100%;min-height:58px
 </head>
 <body>
 <div id="app"></div>
+<script src="../../assets/bohquiz.js?v=202611131200"></script>
 <script>
 (function(){
 'use strict';
@@ -477,7 +478,7 @@ function hashStr(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|
 function today(){var d=new Date();return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
 function provaEnd(){var wrong=pv.log.filter(function(r){return !r.ok}).map(function(r){return r.i});var prevRight=6-pv.q.length;var right=prevRight+pv.log.filter(function(r){return r.ok}).length;var pct=Math.round(100*right/6);
  st.prova.tries++;st.prova.wrong=wrong;if(st.prova.best===null||pct>st.prova.best)st.prova.best=pct;st.prova.log.push({pct:pct,date:new Date().toISOString().slice(0,10)});save();
- scoreScreen('prova',wrong.length&&st.prova.tries<4)}
+ var again=wrong.length&&st.prova.tries<4;window.BohQuiz?BohQuiz.sideGate(app,{pct:pct,best:st.prova.best,canRetry:again,retry:provaStart,keep:function(){scoreScreen('prova',again)},top:hud()}):(scoreScreen('prova',again))}
 function codeOf(){return ((st.prova.best||0)*7+st.prova.tries*3+13).toString(36).toUpperCase()+'-'+(Math.abs(hashStr(JSON.stringify(st.prova.log))%46656)).toString(36).toUpperCase()}
 /* The Show Prof card: the student's proof of work. Screenshot and upload to Google Classroom. */
 function scoreScreen(from,again){
