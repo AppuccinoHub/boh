@@ -1,8 +1,8 @@
-9e22a3b10c8bd548d705 italiano1/index.html
-885654a3fd76d90f5f5d italiano2/index.html
-d1ec7e0355e366fed935 italiano3/index.html
-511058359a9ccaf25561 italiano4/index.html
-27d7d2fde74b885223dc ap/index.html
+ba5912a88e511961de8d italiano1/index.html
+852d5465c709a99876af italiano2/index.html
+e77be39d8346a1c5c23c italiano3/index.html
+c49916e7e7a88206c6e4 italiano4/index.html
+933880863ed136300121 ap/index.html
 ab4817c5f568cfc57adb assets/bohlook.js
 848d34478aeb2b104356 assets/bohlook.css
 4205a8c3b2e4f3306abe assets/bohfit.css
