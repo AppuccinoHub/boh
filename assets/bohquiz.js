@@ -2,7 +2,7 @@
    Created by Assunta Scotto, 2026-11-13. Original work. Not for redistribution.
    Rule (Assunta, Nov 13 2026):
    - A graded quiz (La Prova, side-unit La Prova, side-unit Quiz) passes at 60%.
-   - Practice rounds are NOT touched: they keep their own 85% rule.
+   - Practice rounds are NOT touched here: their rule (70%, Win Ladder, fix-it round) is in assets/bohwin.js.
    - At 60% or more the student is asked "Are you happy with this grade going in the gradebook?"
        Yes = keep the grade and show the screenshot box. No = try again (best score is kept).
    - Under 60% the question is skipped: a kind message, a tips pointer and a Try again button.
