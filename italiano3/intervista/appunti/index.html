@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Intervista · Step 2 · Interview notes</title>
+<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Step 2 — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-author="Assunta Scotto" data-created="2026-11-17" data-project="boh-italiano3-intervista">
+<div class="wrap">
+  <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
+  <p class="eyebrow">Step 2 of 3</p>
+  <h1>Interview</h1>
+  <p class="lede">Interview your person and take notes. Your notes can be in English. Then add one photo or drawing of something from their past.</p>
+  <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
+
+  <section class="card no-print" aria-labelledby="bf">
+    <h2 id="bf">Before you start</h2>
+    <label class="chk"><input type="checkbox" data-k="perm1"> The person said yes to being interviewed.</label>
+    <label class="chk"><input type="checkbox" data-k="perm2"> I told them they can skip any question they would rather not answer.</label>
+    <label class="chk"><input type="checkbox" data-k="perm3"> I will only write what they are comfortable sharing, with no addresses or personal details.</label>
+    <div id="trktip"></div>
+  </section>
+
+  <section class="card no-print" aria-labelledby="ph">
+    <h2 id="ph">Your photo or drawing</h2>
+    <p>Add <b>one</b> photo or drawing of something from the person's past. It can be an object, a place, or an old photo. It does not have to show the person.</p>
+    <label class="chk"><input type="checkbox" data-k="ph1"> I have one photo or drawing of something from their past.</label>
+    <label class="chk"><input type="checkbox" data-k="ph2"> They gave me permission to use it.</label>
+    <label class="chk"><input type="checkbox" data-k="ph3"> No address, street sign, or other private detail is visible.</label>
+    <p class="mu">This page does not upload anything. Turn in your photo or drawing the way your teacher tells you.</p>
+  </section>
+
+  <section class="card" id="notesbox" aria-labelledby="nh">
+    <p class="print-only"><b>Intervista con Nonno/Nonna · Step 2 · Interview notes</b></p>
+    <p class="print-only">Name <span class="namebox"></span> Date <span class="namebox"></span></p>
+    <h2 id="nh">Your notes</h2>
+    <p class="mu no-print">Write what they said. Short notes are fine. English is okay.</p>
+    <div id="notes"></div>
+    <div class="row no-print">
+      <button type="button" class="btn pri" id="copy">Copy my notes</button>
+      <button type="button" class="btn" id="print">Print my notes</button>
+      <a class="btn" href="../rapporto/">Go to Step 3</a>
+    </div>
+    <p class="mu no-print" id="copystat" aria-live="polite" style="margin-top:8px"></p>
+  </section>
+</div>
+<script src="../app.js"></script>
+<script>
+(function(){
+  var st=INT.state(), esc=INT.esc;
+  var notesEl=document.getElementById('notes');
+
+  var TIPA='<p class="note info"><b>Track A tip:</b> ask each question in Italian. With permission, record yourself asking and their answers. Listen again and write the answers here. If they answer in dialect, write the standard Italian version.</p>';
+  var TIPB='<p class="note info"><b>Track B tip:</b> ask the question in English and write the answer here in English. Keep their answers short and simple. Pick the questions without the "medium" label first. In Step 3 you will turn your notes into Italian.</p>';
+  document.getElementById('trktip').innerHTML=st.track==='A'?TIPA:st.track==='B'?TIPB:TIPA+TIPB+'<p class="mu">You can pick your track on the project home page.</p>';
+
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-k]'),function(c){
+    c.checked=!!st.checks[c.getAttribute('data-k')];
+    c.addEventListener('change',function(){ st.checks[c.getAttribute('data-k')]=c.checked; INT.commit(st); });
+  });
+
+  var items=INT.chosen(st);
+  if(!items.length){
+    notesEl.innerHTML='<p class="note warn">You have not chosen any questions yet. <a href="../domande/">Go to Step 1</a> to choose them.</p>';
+  }else{
+    notesEl.innerHTML=items.map(function(q,i){
+      var id='n'+i;
+      return '<div class="nq"><label for="'+id+'"><span class="mu">'+(i+1)+'.</span> <span lang="it" class="qi" style="display:inline">'+esc(q.it)+'</span></label>'+
+        (q.en?'<div class="qe" style="margin:0 0 6px">'+esc(q.en)+'</div>':'')+
+        '<textarea id="'+id+'" data-q="'+esc(String(q.id))+'" aria-label="Notes for question '+(i+1)+'" placeholder="Their answer"></textarea></div>';
+    }).join('');
+    Array.prototype.forEach.call(notesEl.querySelectorAll('textarea'),function(t){
+      t.value=st.notes[t.getAttribute('data-q')]||'';
+      t.addEventListener('input',function(){ st.notes[t.getAttribute('data-q')]=t.value; INT.commit(st); });
+    });
+  }
+
+  document.getElementById('copy').addEventListener('click',function(){
+    var s=document.getElementById('copystat');
+    if(!items.length){ s.textContent='Choose your questions in Step 1 first.'; return; }
+    var txt=items.map(function(q,i){return (i+1)+'. '+q.it+'\n'+(st.notes[q.id]||'')+'\n';}).join('\n');
+    INT.copy('Intervista con Nonno/Nonna · Interview notes\n\n'+txt, s);
+  });
+  document.getElementById('print').addEventListener('click',function(){
+    if(!items.length){ document.getElementById('copystat').textContent='Choose your questions in Step 1 first.'; return; }
+    INT.printOnly(document.getElementById('notesbox'));
+  });
+  INT.footer();
+})();
+</script>
+</body>
+</html>

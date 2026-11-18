@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Intervista · Step 3 · Report</title>
+<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Step 3 — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-author="Assunta Scotto" data-created="2026-11-17" data-project="boh-italiano3-intervista">
+<div class="wrap">
+  <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
+  <p class="eyebrow">Step 3 of 3</p>
+  <h1>Report</h1>
+  <p class="lede">Write 10–12 sentences in Italian about the person you interviewed. Use the <b>third person</b> (lui/lei), not "I". Then present your report to the class or record it (1–2 minutes).</p>
+  <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
+
+  <details class="card no-print">
+    <summary>From "I" to lui/lei: how to change their words</summary>
+    <p>People answer about themselves ("I lived…"). Your report is about them ("She lived…"). Change the verb and the words that show whose it is.</p>
+    <p lang="it"><b>She says:</b> Io abitavo a Napoli. → <b>You write:</b> Mia nonna abitava a Napoli.<br>
+    <b>He says:</b> Sono nato nel 1950. → <b>You write:</b> Mio nonno è nato nel 1950.<br>
+    <b>She says:</b> La mia casa era piccola. → <b>You write:</b> La sua casa era piccola.</p>
+    <p class="mu">Gender: a grandmother is <i>nata</i>, <i>andata</i>, <i>piccola</i>. A grandfather is <i>nato</i>, <i>andato</i>, <i>piccolo</i>. Choose one and keep it.</p>
+  </details>
+
+  <section class="card no-print" aria-labelledby="sth">
+    <h2 id="sth">Answer starters</h2>
+    <p class="mu">Tap a starter to put it in your report. Then replace each ___ with what your person told you. Choose piccolo or piccola, nato or nata.</p>
+    <div id="starters"></div>
+    <details style="margin-top:10px"><summary class="lnk" style="display:flex">Show my interview notes</summary><div id="mynotes" class="mu"></div></details>
+  </section>
+
+  <section class="card" id="repbox" aria-labelledby="rh">
+    <p class="print-only"><b>Intervista con Nonno/Nonna · Step 3 · Report</b></p>
+    <p class="print-only">Name <span class="namebox"></span> Date <span class="namebox"></span></p>
+    <h2 id="rh">My report</h2>
+    <label for="rep" class="sr">My report in Italian</label>
+    <textarea id="rep" class="big" spellcheck="false" autocomplete="off" placeholder="Mia nonna è nata a…"></textarea>
+    <div id="repacc"></div>
+    <div class="counter no-print" style="position:static;border:0;padding:0;margin:8px 0" id="repcnt" aria-live="polite"></div>
+    <p class="note warn no-print" id="repmsg"></p>
+    <div class="row no-print">
+      <button type="button" class="btn pri" id="copy">Copy my report</button>
+      <button type="button" class="btn" id="print">Print my report</button>
+    </div>
+    <p class="mu no-print" id="copystat" aria-live="polite" style="margin-top:8px"></p>
+  </section>
+
+  <section class="card no-print" aria-labelledby="ckh">
+    <h2 id="ckh">Check your work</h2>
+    <label class="chk"><input type="checkbox" data-k="r1"> Every sentence is in the third person (lui/lei), not "io".</label>
+    <label class="chk"><input type="checkbox" data-k="r2"> I used the imperfetto for habits and descriptions (abitava, giocava, era).</label>
+    <label class="chk"><input type="checkbox" data-k="r3"> I used the passato prossimo for single events, with the right helper (è or ha) and the right ending (nato/nata).</label>
+    <label class="chk"><input type="checkbox" data-k="r4"> I checked every accent: è, perché, città, più, così.</label>
+    <label class="chk"><input type="checkbox" data-k="r5"> I read my report out loud once.</label>
+    <p><a href="../modello/">See the model report</a> · <a href="../pratica/">Practice imperfetto and passato prossimo</a></p>
+  </section>
+
+  <section class="card no-print" aria-labelledby="prh">
+    <h2 id="prh">Present or record</h2>
+    <p>Your presentation is <b>1–2 minutes</b>. You are graded on your own pronunciation and fluency, so use your own voice.</p>
+    <ul>
+      <li>Read your report out loud two or three times first.</li>
+      <li>Speak slowly. Say each word clearly.</li>
+      <li>Find a quiet spot. If you record, hold the phone steady and record only yourself.</li>
+      <li>Do not say addresses or private details.</li>
+    </ul>
+    <p class="mu">Turn in your report and your presentation or recording the way your teacher tells you. This page does not upload anything.</p>
+  </section>
+</div>
+<script src="../app.js"></script>
+<script>
+(function(){
+  var st=INT.state(), esc=INT.esc;
+  var rep=document.getElementById('rep'), cnt=document.getElementById('repcnt'), msg=document.getElementById('repmsg');
+  INT.accentBar(document.getElementById('repacc'), rep);
+  rep.value=st.report||'';
+
+  function countSentences(t){
+    var s=t.replace(/\s+/g,' ').trim();
+    if(!s)return 0;
+    var m=s.match(/[^.!?…]+[.!?…]+/g)||[];
+    var rest=s.replace(/[^.!?…]+[.!?…]+/g,'').trim();
+    return m.length+(/[A-Za-zÀ-ÿ]/.test(rest)?1:0);
+  }
+  function chip(label,txt,ok){ return '<span class="cc'+(ok?' ok':'')+'"><b>'+label+'</b> '+txt+(ok?' ✓':'')+'</span>'; }
+  function update(){
+    var t=rep.value, n=countSentences(t), bl=(t.match(/_{2,}/g)||[]).length;
+    var okN=n>=10&&n<=12;
+    cnt.innerHTML=chip('Sentences',n+' (goal 10–12)',okN)+chip('Blanks left',String(bl),bl===0&&n>0);
+    var m=[];
+    if(n===0)m.push('Start with a starter above, or write your own first sentence.');
+    else if(n<10)m.push('Write '+(10-n)+' more sentence'+(10-n===1?'':'s')+'.');
+    else if(n>12)m.push('You have '+(n-12)+' too many. Remove '+(n-12===1?'one sentence':(n-12)+' sentences')+'.');
+    if(bl)m.push('Replace every ___ with real words.');
+    if(/\b(io|ho|ero|avevo|abitavo|giocavo|facevo|andavo|mangiavo)\b/i.test(t))m.push('I see a first-person word (like io, ho, ero, abitavo). Your report must use lui/lei.');
+    if(m.length){ msg.className='note warn no-print'; msg.textContent=m.join(' '); }
+    else{ msg.className='note okn no-print'; msg.textContent='Your report has 10–12 sentences. Now run the checklist below.'; }
+  }
+  rep.addEventListener('input',function(){ st.report=rep.value; INT.commit(st); update(); });
+
+  var items=INT.chosen(st), stEl=document.getElementById('starters');
+  var withSt=items.filter(function(q){return q.st;});
+  if(!withSt.length){
+    stEl.innerHTML='<p class="note warn">Your chosen questions have no starters yet. <a href="../domande/">Go to Step 1</a> to choose questions from the bank.</p>';
+  }else{
+    stEl.innerHTML=withSt.map(function(q){
+      return '<div style="margin:0 0 10px"><button type="button" class="btn" style="width:100%;justify-content:flex-start;text-align:left" data-st="'+esc(q.st)+'"><span lang="it">'+esc(q.st)+'</span></button></div>';
+    }).join('');
+    stEl.addEventListener('click',function(e){
+      var b=e.target.closest('[data-st]'); if(!b)return;
+      var add=b.getAttribute('data-st'), v=rep.value;
+      rep.value=v+(v&&!/\s$/.test(v)?' ':'')+add+' ';
+      st.report=rep.value; INT.commit(st); update(); rep.focus();
+    });
+  }
+  var nt=document.getElementById('mynotes');
+  var haveNotes=items.filter(function(q){return st.notes[q.id]&&st.notes[q.id].trim();});
+  nt.innerHTML=haveNotes.length?haveNotes.map(function(q){return '<p><b lang="it">'+esc(q.it)+'</b><br>'+esc(st.notes[q.id])+'</p>';}).join(''):'<p>You have not written any notes yet. They appear here after Step 2.</p>';
+
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-k]'),function(c){
+    c.checked=!!st.checks[c.getAttribute('data-k')];
+    c.addEventListener('change',function(){ st.checks[c.getAttribute('data-k')]=c.checked; INT.commit(st); });
+  });
+
+  document.getElementById('copy').addEventListener('click',function(){
+    var s=document.getElementById('copystat');
+    if(!rep.value.trim()){ s.textContent='Write your report first.'; return; }
+    INT.copy(rep.value, s);
+  });
+  document.getElementById('print').addEventListener('click',function(){
+    if(!rep.value.trim()){ document.getElementById('copystat').textContent='Write your report first.'; return; }
+    INT.printOnly(document.getElementById('repbox'));
+  });
+  update();
+  INT.footer();
+})();
+</script>
+</body>
+</html>

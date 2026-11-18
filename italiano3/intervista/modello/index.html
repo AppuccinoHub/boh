@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Intervista · Model report</title>
+<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Model report — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-author="Assunta Scotto" data-created="2026-11-17" data-project="boh-italiano3-intervista">
+<div class="wrap">
+  <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
+  <p class="eyebrow">Model report</p>
+  <h1 lang="it">Nonna Lucia</h1>
+  <p class="lede">This report is about a made-up grandmother from Campania. It follows every requirement: 12 sentences, third person, imperfetto for habits and descriptions, and passato prossimo for single events.</p>
+
+  <section class="card no-print">
+    <div class="row">
+      <label class="chk" style="margin:0"><input type="checkbox" id="t-en"> Show English</label>
+      <label class="chk" style="margin:0"><input type="checkbox" id="t-gr"> Show grammar</label>
+    </div>
+  </section>
+
+  <section class="card">
+    <ol class="model" id="model" lang="it">
+      <li>Mia nonna Lucia <span class="pp">è nata</span> nel 1948 a Sorrento, in Campania.<div class="en" lang="en">My grandmother Lucia was born in 1948 in Sorrento, in Campania.</div></li>
+      <li>Sorrento <span class="imp">era</span> una città tranquilla e Lucia <span class="imp">abitava</span> in una casa piccola vicino al mare.<div class="en" lang="en">Sorrento was a quiet town and Lucia lived in a small house near the sea.</div></li>
+      <li>Nella casa <span class="imp">abitavano</span> sette persone: i genitori, quattro fratelli e lei.<div class="en" lang="en">Seven people lived in the house: her parents, four brothers, and her.</div></li>
+      <li>Sua madre <span class="imp">cucinava</span> ogni giorno e la domenica <span class="imp">faceva</span> la pasta al forno.<div class="en" lang="en">Her mother cooked every day, and on Sundays she made baked pasta.</div></li>
+      <li>Lucia <span class="imp">andava</span> a scuola a piedi con la sua migliore amica, Maria, perché la scuola <span class="imp">era</span> vicina.<div class="en" lang="en">Lucia walked to school with her best friend, Maria, because the school was close.</div></li>
+      <li>Dopo la scuola <span class="imp">giocava</span> sempre a palla con gli amici.<div class="en" lang="en">After school she always played ball with her friends.</div></li>
+      <li>D'estate <span class="imp">nuotava</span> nel mare ogni giorno.<div class="en" lang="en">In the summer she swam in the sea every day.</div></li>
+      <li>Il suo primo lavoro <span class="pp">è stato</span> in un negozio di scarpe: <span class="pp">ha cominciato</span> a lavorare a sedici anni.<div class="en" lang="en">Her first job was in a shoe store: she started working at sixteen.</div></li>
+      <li>Nel 1970 <span class="pp">ha preso</span> il treno per la prima volta e <span class="pp">è andata</span> a Roma.<div class="en" lang="en">In 1970 she took a train for the first time and went to Rome.</div></li>
+      <li>Il giorno più bello della sua vita <span class="pp">è stato</span> quando <span class="pp">è nato</span> il suo primo figlio.<div class="en" lang="en">The best day of her life was when her first son was born.</div></li>
+      <li>Oggi Lucia ha settantotto anni, parla italiano e un po' di inglese e prepara ancora la pasta al forno.<div class="en" lang="en">Today Lucia is seventy-eight, speaks Italian and a little English, and still makes baked pasta.</div></li>
+      <li>Per lei, la cosa più importante nella vita è la famiglia.<div class="en" lang="en">For her, the most important thing in life is family.</div></li>
+    </ol>
+    <div class="legend note info" id="legend" style="margin-top:10px">
+      <b>Grammar key:</b> <span class="imp" style="background:var(--i-bg);color:var(--i-tx);text-decoration:underline dotted 2px;text-underline-offset:3px;padding:0 4px;border-radius:4px">dotted underline</span> = imperfetto (habit or description) ·
+      <span class="pp" style="background:var(--p-bg);color:var(--p-tx);text-decoration:underline solid 2px;text-underline-offset:3px;padding:0 4px;border-radius:4px">solid underline</span> = passato prossimo (single event)
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Why it works</h2>
+    <ul>
+      <li>It has 12 sentences, all in the third person.</li>
+      <li>It goes in order: birth, childhood, school, free time, work, events, today.</li>
+      <li>Imperfetto: era, abitava, abitavano, cucinava, faceva, andava, giocava, nuotava.</li>
+      <li>Passato prossimo with <b>essere</b>: è nata, è andata, è nato, è stato. The ending matches the subject (nata, andata).</li>
+      <li>Passato prossimo with <b>avere</b>: ha cominciato, ha preso.</li>
+      <li>Accents: è, città, perché, più.</li>
+    </ul>
+    <div class="row no-print">
+      <a class="btn pri" href="../rapporto/">Write my report</a>
+      <a class="btn" href="../pratica/">Practice</a>
+    </div>
+  </section>
+</div>
+<script src="../app.js"></script>
+<script>
+(function(){
+  var m=document.getElementById('model'), lg=document.getElementById('legend');
+  document.getElementById('t-en').addEventListener('change',function(e){ m.classList.toggle('showen',e.target.checked); });
+  document.getElementById('t-gr').addEventListener('change',function(e){ m.classList.toggle('gram',e.target.checked); lg.classList.toggle('on',e.target.checked); });
+  INT.footer();
+})();
+</script>
+</body>
+</html>

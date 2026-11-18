@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Intervista · Practice</title>
+<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Practice — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-author="Assunta Scotto" data-created="2026-11-17" data-project="boh-italiano3-intervista">
+<div class="wrap">
+  <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
+  <p class="eyebrow">Practice</p>
+  <h1>Imperfetto or passato prossimo?</h1>
+  <p class="lede">These sentences sound like things your person might tell you. For each one, pick the tense, then type the verb form. Accents count.</p>
+  <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
+
+  <details class="card">
+    <summary>Clue words</summary>
+    <div class="sigs">
+      <div><h3>Imperfetto: habit or description</h3><p lang="it">da piccolo/a · sempre · di solito · ogni estate · ogni giorno · la domenica · quando era giovane</p><p class="mu">Think: how things were, or what they used to do again and again.</p></div>
+      <div><h3>Passato prossimo: one finished event</h3><p lang="it">nel 1965 (a date) · un giorno · per la prima volta · a diciotto anni</p><p class="mu">Think: one thing that happened and was finished.</p></div>
+    </div>
+    <p class="mu" style="margin-top:10px"><b>Careful with "una volta":</b> "una volta" can mean "one time" (passato prossimo) or "back then" (imperfetto). Use the other clues to decide.</p>
+  </details>
+
+  <section class="card" id="stage" aria-live="polite"></section>
+</div>
+<script src="../app.js"></script>
+<script>
+(function(){
+  var esc=INT.esc;
+  var Q=[
+    {s:"Da piccola, mia nonna ___ (abitare) a Salerno.",t:"I",a:["abitava"],why:"“Da piccola” points to how things were in childhood: a situation, not one finished event. That is the imperfetto."},
+    {s:"Mio nonno ___ (nascere) nel 1950.",t:"PP",a:["è nato"],why:"Being born happens once, on one date, and it is finished. That is the passato prossimo. Nascere uses essere, and the ending agrees with the subject: nonno → nato (a grandmother would be nata)."},
+    {s:"Ogni estate la mia famiglia ___ (andare) al mare.",t:"I",a:["andava"],why:"“Ogni estate” is a habit that repeated every year. Habits are the imperfetto."},
+    {s:"Nel 1965 mia nonna ___ (cominciare) a lavorare.",t:"PP",a:["ha cominciato"],why:"“Nel 1965” is a specific moment: one event with a clear start. That is the passato prossimo. Cominciare uses avere."},
+    {s:"La casa ___ (essere) piccola, ma bella.",t:"I",a:["era"],why:"Describing how something was (size, looks, feelings) is the imperfetto."},
+    {s:"Un giorno il nonno ___ (vedere) un film al cinema.",t:"PP",a:["ha visto"],why:"“Un giorno” introduces one single event that finished. That is the passato prossimo. Vedere uses avere and has an irregular participle: visto."},
+    {s:"Da piccolo, mio nonno ___ (giocare) sempre a pallone.",t:"I",a:["giocava"],why:"“Da piccolo” and “sempre” point to a habit in childhood. That is the imperfetto."},
+    {s:"Nel 1970 mia nonna ___ (arrivare) a Roma.",t:"PP",a:["è arrivata"],why:"“Nel 1970” is one finished event. That is the passato prossimo. Arrivare uses essere, and the ending agrees with the subject: nonna → arrivata."},
+    {s:"Di solito la mamma ___ (cucinare) la pasta la domenica.",t:"I",a:["cucinava"],why:"“Di solito” (usually) and “la domenica” (every Sunday) show a habit. That is the imperfetto."},
+    {s:"A diciotto anni mio nonno ___ (partire) per Napoli.",t:"PP",a:["è partito"],why:"“A diciotto anni” is one moment in his life: he left, and it was finished. That is the passato prossimo. Partire uses essere, and the ending agrees: nonno → partito."},
+    {s:"Quando era giovane, il nonno ___ (avere) una bicicletta rossa.",t:"I",a:["aveva"],why:"Having a bicycle is a description of how things were over a period of time. That is the imperfetto."},
+    {s:"Nel 1980 il nonno ___ (fare) un viaggio a Napoli.",t:"PP",a:["ha fatto"],why:"“Nel 1980” points to one trip that was finished. That is the passato prossimo. Fare uses avere and has an irregular participle: fatto."},
+    {s:"A scuola, la maestra ___ (essere) molto gentile.",t:"I",a:["era"],why:"Describing what a person was like is the imperfetto."},
+    {s:"Un giorno mia nonna ___ (prendere) il treno per la prima volta.",t:"PP",a:["ha preso"],why:"“Un giorno” and “per la prima volta” mark one single event. That is the passato prossimo. Prendere uses avere and has an irregular participle: preso."}
+  ];
+  var TN={I:'imperfetto',PP:'passato prossimo'};
+  var stage=document.getElementById('stage');
+  var i=0, score=0, firstTry=true, pick='', missed=[];
+
+  function norm(s){ return s.normalize('NFC').toLowerCase().replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim(); }
+  function strip(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,''); }
+
+  function show(){
+    var q=Q[i]; pick=''; firstTry=true;
+    stage.innerHTML='<div class="prog" aria-hidden="true"><i style="width:'+Math.round(i/Q.length*100)+'%"></i></div>'+
+      '<p class="mu">Sentence '+(i+1)+' of '+Q.length+'</p>'+
+      '<p class="psent" lang="it">'+esc(q.s)+'</p>'+
+      '<p style="font-weight:800;margin:0 0 6px">1. Which tense?</p>'+
+      '<div class="choice" id="ch"><button type="button" data-p="I" aria-pressed="false">Imperfetto</button><button type="button" data-p="PP" aria-pressed="false">Passato prossimo</button></div>'+
+      '<label for="ans">2. Type the verb form</label>'+
+      '<input type="text" id="ans" autocomplete="off" autocapitalize="none" spellcheck="false" lang="it">'+
+      '<div id="acc"></div>'+
+      '<div class="row" style="margin-top:12px"><button type="button" class="btn pri" id="chk">Check</button></div>'+
+      '<p class="err" id="err" role="alert"></p><div class="fb" id="fb"></div>';
+    INT.accentBar(document.getElementById('acc'), document.getElementById('ans'));
+    document.getElementById('ch').addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b)return; pick=b.getAttribute('data-p');
+      Array.prototype.forEach.call(this.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      document.getElementById('err').textContent='';
+    });
+    var ans=document.getElementById('ans');
+    ans.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); check(); } });
+    document.getElementById('chk').addEventListener('click',check);
+  }
+
+  function check(){
+    var q=Q[i], err=document.getElementById('err'), fb=document.getElementById('fb'), ans=document.getElementById('ans');
+    err.textContent='';
+    if(!pick){ err.textContent='Pick imperfetto or passato prossimo first.'; return; }
+    var v=norm(ans.value);
+    if(!v){ err.textContent='Type the verb form first.'; ans.focus(); return; }
+    var good=q.a[0], tenseOk=(pick===q.t), exact=q.a.indexOf(v)>-1;
+    var accentOnly=!exact&&q.a.some(function(a){return strip(a)===strip(v);});
+    var html, cls;
+    if(tenseOk&&exact){
+      cls='note okn'; html='<b>Correct.</b> '+esc(q.why)+' <span lang="it"><b>'+esc(good)+'</b></span>';
+      if(firstTry)score++;
+    }else if(!tenseOk){
+      cls='note bad'; html='<b>Not quite.</b> This one is the <b>'+TN[q.t]+'</b>. '+esc(q.why)+' The form is <span lang="it"><b>'+esc(good)+'</b></span>.';
+      if(firstTry)missed.push(q);
+    }else if(accentOnly){
+      cls='note warn';
+      var extra=(good.charAt(0)==='è')?' The word <b>è</b> (with the accent) is the verb “is/has”. Without the accent, <b>e</b> means “and”.':' Accents change how a word is written, and they count in your grade.';
+      html='<b>Almost.</b> Right tense, and the letters are right, but check the accent. It must be <span lang="it"><b>'+esc(good)+'</b></span>: the grave accent (è, à) leans to the left.'+extra;
+      if(firstTry)missed.push(q);
+    }else{
+      cls='note bad'; html='<b>Right tense, but check the verb form.</b> '+esc(q.why)+' The form is <span lang="it"><b>'+esc(good)+'</b></span>.';
+      if(firstTry)missed.push(q);
+    }
+    firstTry=false;
+    var ok=tenseOk&&exact;
+    fb.innerHTML='<p class="'+cls+'">'+html+'</p><div class="row">'+
+      (ok?'':'<button type="button" class="btn" id="again">Try again</button>')+
+      '<button type="button" class="btn pri" id="next">'+(i<Q.length-1?'Next sentence':'See my score')+'</button></div>';
+    var ag=document.getElementById('again');
+    if(ag)ag.addEventListener('click',function(){ fb.innerHTML=''; ans.value=''; ans.focus(); });
+    document.getElementById('next').addEventListener('click',function(){ i++; if(i<Q.length)show(); else finish(); });
+  }
+
+  function finish(){
+    var h='<div class="prog" aria-hidden="true"><i style="width:100%"></i></div><h2>Your score: '+score+' of '+Q.length+'</h2>';
+    h+='<p class="mu">A point counts only when the tense and the verb form are both right on the first try.</p>';
+    if(missed.length){
+      h+='<h3>Review these</h3>'+missed.map(function(q){return '<div class="note info"><span lang="it"><b>'+esc(q.s.replace('___',q.a[0]))+'</b></span><br>'+esc(q.why)+'</div>';}).join('');
+    }else{ h+='<p class="note okn">No misses. Every sentence was right on the first try.</p>'; }
+    h+='<div class="row"><button type="button" class="btn pri" id="restart">Practice again</button><a class="btn" href="../rapporto/">Back to my report</a></div>';
+    stage.innerHTML=h;
+    document.getElementById('restart').addEventListener('click',function(){ i=0; score=0; missed=[]; show(); });
+  }
+  show();
+  INT.footer();
+})();
+</script>
+</body>
+</html>
