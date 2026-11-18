@@ -13,7 +13,7 @@
   <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
   <p class="eyebrow">Step 1 of 3</p>
   <h1>Questions</h1>
-  <p class="lede">Choose 20 questions from the bank of 70 and write at least 5 of your own. You need at least 10 in the imperfetto and at least 5 in the passato prossimo. Tap a question to add it. Tap it again to remove it.</p>
+  <p class="lede">Choose 20 questions from the bank of 80 and write at least 5 of your own. You need at least 10 in the imperfetto and at least 5 in the passato prossimo. Tap a question to add it. Tap it again to remove it.</p>
   <p class="note info"><b>Start with the green "quick answer" questions.</b> They can be answered with one word, a number, a place, a year, or yes/no. That makes your interview and your report easier.</p>
   <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
 
@@ -54,10 +54,14 @@
     <div class="row no-print">
       <button type="button" class="btn pri" id="copy">Copy my list</button>
       <button type="button" class="btn" id="print">Print my list</button>
+      <button type="button" class="btn pri" id="mksheet">Make my interview sheet</button>
       <a class="btn" href="../appunti/">Go to Step 2</a>
     </div>
     <p class="mu no-print" id="copystat" aria-live="polite" style="margin-top:8px"></p>
+    <p class="mu no-print">"Make my interview sheet" opens your print screen. Choose <b>Save as PDF</b> to download it, or print it and write the answers by hand during the interview.</p>
   </section>
+
+  <section class="print-only sheet" id="sheet" aria-hidden="true"></section>
 </div>
 <script src="../app.js"></script>
 <script>
@@ -78,7 +82,7 @@
       '<span class="qs" aria-hidden="true">+</span></button>';
   }
   var h='';
-  for(var g=1;g<=7;g++){
+  for(var g=1;g<=8;g++){
     h+='<section class="grp" aria-labelledby="g'+g+'"><h2 id="g'+g+'"><span lang="it">'+esc(G[g][0])+'</span><small>'+esc(G[g][1])+'</small></h2>';
     B.forEach(function(q){ if(q.g===g) h+=qcard(q); });
     h+='</section>';
@@ -164,6 +168,23 @@
     var t=listText(); var s=document.getElementById('copystat');
     if(!t){ s.textContent='Add some questions first.'; return; }
     INT.copy('Intervista con Nonno/Nonna · Le mie domande\n\n'+t, s);
+  });
+  document.getElementById('mksheet').addEventListener('click',function(){
+    var items=INT.chosen(st), s2=document.getElementById('copystat');
+    if(!items.length){ s2.textContent='Add some questions first.'; return; }
+    var h='<h2 class="sh">Intervista con Nonno/Nonna · My interview sheet</h2>'+
+      '<p class="shl">Name <span class="namebox"></span> Date <span class="namebox"></span></p>'+
+      '<p class="shl">Person I am interviewing <span class="namebox wide"></span></p>'+
+      '<p class="shl small">Write their answers in the space under each question. English or Italian is okay.</p>';
+    h+=items.map(function(q,i){
+      return '<div class="shq"><p class="shi"><b>'+(i+1)+'.</b> <span lang="it">'+esc(q.it)+'</span></p>'+
+        (q.en?'<p class="she">'+esc(q.en)+'</p>':'')+'<div class="shans"></div></div>';
+    }).join('');
+    h+='<h3 class="sh2">More questions I want to ask</h3>';
+    for(var k=1;k<=3;k++) h+='<div class="shq"><p class="shi"><b>+'+k+'.</b> Question:</p><div class="shans short"></div><p class="she">Answer:</p><div class="shans"></div></div>';
+    document.getElementById('sheet').innerHTML=h;
+    window.addEventListener('afterprint',function(){ document.getElementById('sheet').innerHTML=''; },{once:true});
+    INT.printOnly(document.getElementById('sheet'));
   });
   document.getElementById('print').addEventListener('click',function(){
     if(!INT.chosen(st).length){ document.getElementById('copystat').textContent='Add some questions first.'; return; }

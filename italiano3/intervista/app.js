@@ -11,7 +11,8 @@
     4: ["Tempo libero, cibo, feste", "Free time, food, holidays"],
     5: ["Momenti importanti", "Big moments"],
     6: ["Ieri e oggi", "Then and now"],
-    7: ["La casa e la città", "Home and city"]
+    7: ["La casa e la città", "Home and city"],
+    8: ["Valori, lavoro e storia", "Values, work and history"]
   };
   var TN = { I: "imperfetto", PP: "passato prossimo", P: "present", O: "other" };
 
@@ -40,8 +41,8 @@
   add(2, "I", 0, 0, "What was your mother like?", "Com'era tua madre?", "Sua madre era ___.");
   add(2, "I", 0, 1, "What work did your father do?", "Che lavoro faceva tuo padre?", "Suo padre faceva il/la ___.");
   add(2, "I", 0, 1, "Who cooked in your house?", "Chi cucinava a casa tua?", "A casa cucinava ___.");
-  add(2, "PP", 1, 0, "Did you ever move to a different house as a child? When?", "Hai mai cambiato casa da piccolo/a? Quando?", "Nel ___ ha cambiato casa.");
   add(2, "P", 0, 1, "Do you still visit the place where you grew up?", "Torni ancora nel posto dove sei cresciuto/a?", "Oggi torna / non torna a ___.");
+  add(2, "I", 1, 0, "What traditions did your family have?", "Quali tradizioni aveva la tua famiglia?", "La famiglia aveva la tradizione di ___.");
 
   /* Group 3 · Scuola e amici */
   add(3, "I", 0, 1, "Where did you go to school when you were little?", "Dove andavi a scuola da piccolo/a?", "Andava a scuola a ___.");
@@ -57,18 +58,18 @@
 
   /* Group 4 · Tempo libero, cibo, feste */
   add(4, "I", 0, 1, "What games did you play?", "A che giochi giocavi?", "Da piccolo/a giocava a ___.");
-  add(4, "I", 0, 0, "What did you do on weekends?", "Che cosa facevi nel fine settimana?", "Nel fine settimana, di solito ___.");
   add(4, "I", 0, 0, "What did you do in the summer?", "Che cosa facevi d'estate?", "Ogni estate ___.");
   add(4, "I", 0, 1, "What music did you listen to?", "Che musica ascoltavi?", "Ascoltava ___.");
-  add(4, "I", 0, 1, "What sport did you play?", "Che sport facevi?", "Faceva ___.");
-  add(4, "I", 0, 1, "What was your favorite food?", "Qual era il tuo piatto preferito?", "Il suo piatto preferito era ___.");
   add(4, "I", 0, 1, "What did your family eat on Sundays?", "Che cosa mangiava la tua famiglia la domenica?", "La domenica la famiglia mangiava ___.");
   add(4, "I", 1, 0, "How did your family celebrate Christmas?", "Come festeggiava il Natale la tua famiglia?", "A Natale la famiglia ___.");
   add(4, "I", 0, 1, "What was your favorite holiday?", "Qual era la tua festa preferita?", "La sua festa preferita era ___ perché ___.");
   add(4, "PP", 0, 1, "What was the first movie you saw at the cinema?", "Qual è stato il primo film che hai visto al cinema?", "Al cinema ha visto per la prima volta ___.");
+  add(4, "I", 0, 1, "Who did you spend the holidays with?", "Con chi passavi le feste?", "Passava le feste con ___.");
+  add(4, "PP", 1, 0, "What is a happy memory from your childhood? What happened?", "Qual è un bel ricordo della tua infanzia? Che cosa è successo?", "Un bel ricordo è ___.");
+  add(4, "I", 0, 1, "What did your grandmother cook?", "Che cosa cucinava tua nonna?", "Sua nonna cucinava ___.");
 
   /* Group 5 · Momenti importanti */
-  add(5, "PP", 0, 1, "Where were you born?", "Dove sei nato/a?", "È nato/a a ___.");
+  add(7, "PP", 0, 1, "Where were you born?", "Dove sei nato/a?", "È nato/a a ___.");
   add(5, "PP", 0, 1, "In what year were you born?", "In che anno sei nato/a?", "È nato/a nel ___.");
   add(5, "PP", 0, 1, "When did you start working?", "Quando hai cominciato a lavorare?", "Ha cominciato a lavorare nel ___.");
   add(5, "PP", 0, 1, "What was your first job?", "Qual è stato il tuo primo lavoro?", "Il suo primo lavoro è stato ___.");
@@ -76,13 +77,11 @@
   add(5, "PP", 0, 0, "What was the best day of your life?", "Qual è stato il giorno più bello della tua vita?", "Il giorno più bello della sua vita è stato ___.");
   add(5, "PP", 1, 1, "What was the first thing you bought with your own money?", "Qual è stata la prima cosa che hai comprato con i tuoi soldi?", "Con i suoi primi soldi ha comprato ___.");
   add(5, "PP", 1, 1, "What did you learn to do when you were young?", "Che cosa hai imparato a fare da giovane?", "Da giovane ha imparato a ___.");
-  add(5, "PP", 1, 1, "Did you ever win a prize or a game?", "Hai mai vinto un premio o una gara?", "Ha vinto ___. / Non ha mai vinto ___.");
-  add(5, "PP", 1, 1, "When did you take a train or a plane for the first time?", "Quando hai preso il treno o l'aereo per la prima volta?", "Ha preso il treno / l'aereo per la prima volta nel ___.");
+  add(5, "PP", 1, 0, "Who did you meet who changed your life?", "Chi hai conosciuto che ha cambiato la tua vita?", "Ha conosciuto ___.");
+  add(5, "I", 0, 1, "What did you want to be when you grew up?", "Che cosa volevi fare da grande?", "Da grande, voleva fare il/la ___.");
+  add(5, "PP", 0, 1, "Did you go to college? Where?", "Sei andato/a all'università? Dove?", "È andato/a all'università a ___. / Non è andato/a all'università.");
 
   /* Group 6 · Ieri e oggi */
-  add(6, "I", 1, 0, "What was one thing that was different when you were young?", "Che cosa era diverso quando eri giovane?", "Da giovane, ___ era diverso.");
-  add(6, "I", 0, 1, "Did you have a phone at home when you were young?", "Avevi il telefono a casa quando eri giovane?", "Aveva / Non aveva il telefono a casa.");
-  add(6, "I", 1, 0, "How did you spend your time without phones or computers?", "Come passavi il tempo senza telefoni e computer?", "Senza telefoni e computer, ___.");
   add(6, "P", 0, 0, "What do you do every day now?", "Che cosa fai ogni giorno adesso?", "Ogni giorno ___.");
   add(6, "P", 0, 0, "What do you like to do now in your free time?", "Che cosa ti piace fare nel tempo libero adesso?", "Nel tempo libero, preferisce ___.");
   add(6, "P", 0, 1, "What food or recipe do you still make today?", "Quale piatto prepari ancora oggi?", "Ancora oggi prepara ___.");
@@ -90,12 +89,25 @@
   add(6, "P", 1, 0, "What do you miss from when you were young?", "Che cosa ti manca di quando eri giovane?", "Sente la mancanza di ___.");
   add(6, "P", 0, 0, "What advice do you have for young people?", "Che consiglio hai per i giovani?", "Il suo consiglio per i giovani è ___.");
   add(6, "P", 1, 0, "What is the most important thing in life for you?", "Qual è la cosa più importante nella vita per te?", "Per lui/lei, la cosa più importante nella vita è ___.");
+  add(6, "I", 0, 1, "Did you have a cell phone in high school?", "Avevi il cellulare alla scuola superiore?", "Aveva / Non aveva il cellulare.");
+  add(6, "I", 1, 0, "How did you talk to your friends when you were young?", "Come parlavi con i tuoi amici quando eri giovane?", "Parlava con gli amici ___.");
+  add(6, "PP", 0, 1, "What was your first cell phone?", "Qual è stato il tuo primo cellulare?", "Il suo primo cellulare è stato ___.");
 
+  /* Group 8 · Valori, lavoro e storia */
+  add(8, "I", 0, 1, "How much did gas cost when you were young?", "Quanto costava la benzina quando eri giovane?", "La benzina costava ___.");
+  add(8, "I", 0, 1, "Did you have a car? What kind?", "Avevi una macchina? Che macchina era?", "Aveva ___. / Non aveva la macchina.");
+  add(8, "I", 0, 1, "Did you like your job?", "Ti piaceva il tuo lavoro?", "Gli/Le piaceva il lavoro.");
+  add(8, "PP", 1, 0, "What did you learn from your job?", "Che cosa hai imparato dal tuo lavoro?", "Dal lavoro ha imparato ___.");
+  add(8, "I", 1, 0, "What advice did your parents give you?", "Che consigli ti davano i tuoi genitori?", "I genitori dicevano: ___.");
+  add(8, "I", 0, 1, "What saying did your family use?", "Quale proverbio diceva la tua famiglia?", "La famiglia diceva: ___.");
+  add(8, "P", 1, 0, "What are you proud of?", "Di che cosa sei orgoglioso/a?", "È orgoglioso/a di ___.");
+  add(8, "PP", 1, 0, "What have you learned in life?", "Che cosa hai imparato nella vita?", "Nella vita ha imparato ___.");
+  add(8, "P", 1, 0, "What is a big event you remember?", "Qual è un grande evento che ricordi?", "Ricorda ___.");
+  add(8, "P", 1, 0, "What do you want to tell your grandchildren?", "Che cosa vuoi dire ai tuoi nipoti?", "Vuole dire ai nipoti: ___.");
   /* Group 7 · La casa e la città */
   add(7, "I", 0, 1, "Did you share a room? With whom?", "Dividevi la camera con qualcuno? Con chi?", "Divideva la camera con ___.");
   add(7, "I", 0, 1, "Where did you eat at home?", "Dove mangiavi a casa?", "A casa mangiava ___.");
   add(7, "I", 0, 1, "What was your favorite place in the house?", "Qual era il tuo posto preferito in casa?", "Il suo posto preferito in casa era ___.");
-  add(7, "I", 0, 0, "What was in your bedroom?", "Che cosa c'era nella tua camera da letto?", "Nella camera da letto c'era ___.");
   add(7, "I", 0, 1, "Did you live in a house or an apartment?", "Abitavi in una casa o in un appartamento?", "Abitava in ___.");
   add(7, "PP", 1, 1, "How many times did you move in your life?", "Quante volte hai cambiato casa nella tua vita?", "Ha cambiato casa ___ volte.");
   add(7, "I", 0, 1, "Where did you do your homework?", "Dove facevi i compiti?", "Faceva i compiti ___.");

@@ -110,6 +110,16 @@ details.card[open] summary{margin-bottom:8px}
  textarea{border:1px solid #000;color:#000;background:#fff;min-height:220px}
  .tag{border:1px solid #000;background:#fff;color:#000}
  .namebox{display:inline-block;min-width:240px;height:34px;border:1px solid #000;vertical-align:middle;margin:0 12px 0 6px}
+ .sheet .shq{break-inside:avoid;page-break-inside:avoid;margin:0 0 14px}
+ .sheet .shi{font-size:13pt;margin:0 0 2px}
+ .sheet .she{font-size:10.5pt;color:#333;margin:0}
+ .sheet .shans{height:10em;border:0}
+ .sheet .shans.short{height:3em}
+ .sheet .sh{font-size:17pt;margin:0 0 8px}
+ .sheet .sh2{font-size:14pt;margin:18px 0 8px;break-after:avoid}
+ .sheet .shl{margin:6px 0}
+ .sheet .shl.small{font-size:10.5pt}
+ .namebox.wide{min-width:340px}
  body.pm .wrap>*{display:none!important}
  body.pm .wrap>.po,body.pm .wrap>.foot{display:block!important}
  body.pm .wrap>.po .no-print{display:none!important}
