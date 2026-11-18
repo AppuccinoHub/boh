@@ -13,7 +13,7 @@
   <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
   <p class="eyebrow">Step 1 of 3</p>
   <h1>Questions</h1>
-  <p class="lede">Choose <b>15 graded questions</b> from the bank of 80, including at least 4 you write yourself. You need at least 8 in the imperfetto and at least 4 in the passato prossimo. You may also add up to <b>5 warm-up questions</b> from group 1 (easy starters). Warm-ups are not graded. Tap a question to add it. Tap it again to remove it.</p>
+  <p class="lede">Choose <b>20 graded questions</b> from the bank of 80. You may write some of your own. You may also add up to <b>5 warm-up questions</b> from group 1 (easy starters). Warm-ups are not graded. Tap a question to add it. Tap it again to remove it.</p>
   <p class="note info"><b>Start with the green "quick answer" questions.</b> They can be answered with one word, a number, a place, a year, or yes/no. That makes your interview and your report easier.</p>
   <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
 
@@ -29,7 +29,7 @@
 
   <section class="card no-print" id="ownbox" aria-labelledby="ownh">
     <h2 id="ownh">Write your own question</h2>
-    <p class="mu">Write at least 5 of your own. Use the tu form. Short questions with a short answer are best. Then tell the page which tense it uses.</p>
+    <p class="mu">Write your own questions if you like. Use the tu form. Short questions with a short answer are best. Then tell the page which tense it uses.</p>
     <label for="own-it">Your question, in Italian</label>
     <textarea id="own-it" rows="2" autocomplete="off" autocapitalize="sentences" spellcheck="false"></textarea>
     <div id="ownacc"></div>
@@ -104,7 +104,7 @@
   }
   function update(){
     var c=counts();
-    cnt.innerHTML=chip('Graded questions',c.n,15,true)+chip('Imperfetto',c.I,8)+chip('Passato prossimo',c.PP,4)+chip('Your own',c.own,4)+'<span class="cc"><b>Warm-ups</b> '+c.wu+' of up to 5 (not graded)</span>';
+    cnt.innerHTML=chip('Graded questions',c.n,20,true)+'<span class="cc"><b>Imperfetto</b> '+c.I+'</span><span class="cc"><b>Passato prossimo</b> '+c.PP+'</span><span class="cc"><b>Your own</b> '+c.own+'</span>'+'<span class="cc"><b>Warm-ups</b> '+c.wu+' of up to 5 (not graded)</span>';
     Array.prototype.forEach.call(bankEl.querySelectorAll('.qc'),function(b){
       var on=st.order.indexOf(+b.getAttribute('data-id'))>-1;
       b.setAttribute('aria-pressed',on?'true':'false');
@@ -121,10 +121,7 @@
       }).join('')+'</ol>';
     }
     var need=[];
-    if(c.n<15)need.push((15-c.n)+' more graded question'+(15-c.n===1?'':'s'));
-    if(c.I<8)need.push((8-c.I)+' more in the imperfetto');
-    if(c.PP<4)need.push((4-c.PP)+' more in the passato prossimo');
-    if(c.own<4)need.push((4-c.own)+' more of your own');
+    if(c.n<20)need.push((20-c.n)+' more graded question'+(20-c.n===1?'':'s'));
     if(need.length){ msg.className='note warn'; msg.textContent='Still needed: '+need.join(', ')+'.'; }
     else { msg.className='note okn'; msg.textContent='Your list meets every requirement. Copy it or print it to turn it in.'; }
   }
@@ -136,7 +133,7 @@
     else{
       var qq=B[id-1], wu=qq&&qq.g===1, cc=counts();
       if(wu&&cc.wu>=5){ msg.className='note bad'; msg.textContent='You already have 5 warm-up questions. Remove one before you add another.'; return; }
-      if(!wu&&cc.n>=15){ msg.className='note bad'; msg.textContent='You already have 15 graded questions. Remove one before you add another.'; return; }
+      if(!wu&&cc.n>=20){ msg.className='note bad'; msg.textContent='You already have 20 graded questions. Remove one before you add another.'; return; }
       st.order.push(id);
     }
     INT.commit(st); update();
@@ -154,7 +151,7 @@
     err.textContent=''; warn.hidden=true;
     var v=ta.value.replace(/\s+/g,' ').trim();
     if(!v){ err.textContent='Write your question first.'; ta.focus(); return; }
-    if(counts().n>=15){ err.textContent='You already have 15 graded questions. Remove one first.'; return; }
+    if(counts().n>=20){ err.textContent='You already have 20 graded questions. Remove one first.'; return; }
     st.ownN=(st.ownN||0)+1;
     var id='o'+st.ownN;
     st.own[id]={it:v,t:sel.value};
