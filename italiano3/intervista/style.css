@@ -58,6 +58,7 @@ p{margin:0 0 10px}
 .tag.t-PP{background:var(--p-bg);color:var(--p-tx)}
 .tag.med{background:var(--warnbg);color:var(--warn)}
 .tag.own{background:var(--okbg);color:var(--ok)}
+.tag.quick{background:var(--okbg);color:var(--ok);border-color:var(--ok)}
 textarea,input[type=text],select{width:100%;font:inherit;font-size:17px;color:var(--tx);background:var(--field);border:2px solid var(--bd);border-radius:12px;padding:12px}
 textarea{min-height:130px;resize:vertical;line-height:1.55}
 textarea.big{min-height:340px}

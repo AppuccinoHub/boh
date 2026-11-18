@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Intervista · Make it simple</title>
+<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Make it simple — created by Assunta Scotto, 2026-11-18. © 2026 Assunta Scotto. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-author="Assunta Scotto" data-created="2026-11-18" data-project="boh-italiano3-intervista">
+<div class="wrap">
+  <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
+  <p class="eyebrow">Make it simple</p>
+  <h1>Short and simple is perfect</h1>
+  <p class="lede">Your person may give a long answer, in English or in Italian. You do not need to write all of it. You turn it into short Italian sentences. One idea = one sentence.</p>
+  <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
+
+  <section class="card" aria-labelledby="h3s">
+    <h2 id="h3s">The 3 steps</h2>
+    <ol style="padding-left:22px;margin:0">
+      <li><b>Find the key fact.</b> Who? What? Where? When? Pick the one that answers your question.</li>
+      <li><b>Use the answer starter.</b> Your report page gives you one for each question. Fill in the blank.</li>
+      <li><b>Cut the extras.</b> Leave out stories, "well…", and small details. If there are two facts, write two short sentences.</li>
+    </ol>
+  </section>
+
+  <section class="card" aria-labelledby="exh">
+    <h2 id="exh">See how it works</h2>
+    <div class="note info"><b>They say:</b> "Well, when I was little we lived in a small house near the sea in Sorrento, and my whole family lived there."<br>
+      <b>You write:</b> <span lang="it"><b>Abitava a Sorrento.</b> <b>La casa era piccola.</b> <b>La casa era vicino al mare.</b></span></div>
+    <div class="note info"><b>They say:</b> "I went to school on foot every morning, about twenty minutes, with my best friend."<br>
+      <b>You write:</b> <span lang="it"><b>Andava a scuola a piedi.</b> <b>Andava a scuola con la sua migliore amica.</b></span></div>
+    <div class="note info"><b>They say:</b> "Every Sunday my mother made pasta and we all ate together in the kitchen."<br>
+      <b>You write:</b> <span lang="it"><b>La domenica sua madre faceva la pasta.</b> <b>La famiglia mangiava in cucina.</b></span></div>
+    <div class="note info"><b>They say:</b> "I started working at sixteen in a shoe store. My uncle helped me get the job."<br>
+      <b>You write:</b> <span lang="it"><b>Ha cominciato a lavorare a sedici anni.</b> <b>Il suo primo lavoro è stato in un negozio di scarpe.</b></span><br>
+      <span class="mu">The uncle is a small detail, so it is cut.</span></div>
+    <div class="note info"><b>They say:</b> "In 1970 I took the train for the first time and went to Rome to see my cousin."<br>
+      <b>You write:</b> <span lang="it"><b>Nel 1970 ha preso il treno per la prima volta.</b> <b>È andata a Roma.</b></span></div>
+    <p class="mu">Notice: a habit or a description uses the <b>imperfetto</b> (abitava, era, faceva). One finished event uses the <b>passato prossimo</b> (ha cominciato, è andata).</p>
+  </section>
+
+  <section class="card" aria-labelledby="sah">
+    <h2 id="sah">Say this to your person</h2>
+    <p>Tell them you need short answers. You can say it in English or in Italian.</p>
+    <p><b>English:</b> "Short answers are perfect. One word or one short sentence."<br>
+    <b lang="it">Italiano:</b> <span lang="it">"Rispondi in modo semplice, per favore. Una parola o una frase breve va bene."</span></p>
+    <p><b>If you need help in Italian:</b></p>
+    <p lang="it">Puoi ripetere, per favore?<br>Più piano, per favore.<br>Che cosa vuol dire…?<br>Come si dice ___ in italiano?</p>
+    <p class="mu" lang="en">Can you repeat, please? · Slower, please. · What does … mean? · How do you say ___ in Italian?</p>
+  </section>
+
+  <section class="card" id="prac" aria-labelledby="ph">
+    <h2 id="ph">Try it: pick the best short sentence</h2>
+    <p class="mu">Read what your person said. Pick the short Italian sentence that is correct and simple.</p>
+    <div id="stage" aria-live="polite"></div>
+  </section>
+</div>
+<script src="../app.js"></script>
+<script>
+(function(){
+  var esc=INT.esc;
+  var Q=[
+    {say:"When I was little we lived in a small house in Sorrento.",ok:"Da piccola, abitava a Sorrento.",bad:["Da piccola, ha abitato a Sorrento.","Da piccola, io abitavo a Sorrento."],
+     why:"“Da piccola” points to how things were, so use the imperfetto: abitava. And your report is about her, so use the third person (abitava), not “io”."},
+    {say:"Every summer she swam in the sea.",ok:"Ogni estate nuotava nel mare.",bad:["Ogni estate ha nuotato nel mare.","Ogni estate nuota nel mare."],
+     why:"“Ogni estate” is a habit that repeated. That is the imperfetto: nuotava. The passato prossimo is for one finished event, and the present is for now."},
+    {say:"He started working at sixteen.",ok:"Ha cominciato a lavorare a sedici anni.",bad:["Cominciava a lavorare a sedici anni.","Ho cominciato a lavorare a sedici anni."],
+     why:"Starting a job is one event, so use the passato prossimo with avere: ha cominciato. “Ho” is first person, but the report is about him."},
+    {say:"He was born in 1950 in Naples.",ok:"È nato a Napoli nel 1950.",bad:["Nasceva a Napoli nel 1950.","Ha nato a Napoli nel 1950."],
+     why:"Being born is one event, so use the passato prossimo. Nascere uses essere: è nato. It is never “ha nato”. Remember the accent on È."},
+    {say:"Her house was small, but it was beautiful.",ok:"La casa era piccola, ma bella.",bad:["La casa è stata piccola, ma bella.","La casa era piccolo, ma bello."],
+     why:"Describing how something was is the imperfetto: era. Casa is feminine, so the describing words agree: piccola, bella."},
+    {say:"After school she always played ball with her friends.",ok:"Dopo la scuola giocava sempre a palla con gli amici.",bad:["Dopo la scuola ha giocato sempre a palla con gli amici.","Dopo la scuola giocare sempre a palla con gli amici."],
+     why:"“Sempre” shows a habit, so use the imperfetto: giocava. You need a conjugated verb, not the infinitive (giocare)."}
+  ];
+  var stage=document.getElementById('stage'), i=0, score=0, first=true, missed=[];
+  function shuffle(a){ a=a.slice(); for(var k=a.length-1;k>0;k--){ var j=Math.floor(Math.random()*(k+1)); var t=a[k]; a[k]=a[j]; a[j]=t; } return a; }
+  function show(){
+    first=true; var q=Q[i], opts=shuffle([q.ok].concat(q.bad));
+    stage.innerHTML='<div class="prog" aria-hidden="true"><i style="width:'+Math.round(i/Q.length*100)+'%"></i></div><p class="mu">Answer '+(i+1)+' of '+Q.length+'</p>'+
+      '<p class="note info"><b>They say:</b> “'+esc(q.say)+'”</p>'+
+      '<div id="opts">'+opts.map(function(o){return '<button type="button" class="qc" data-o="'+esc(o)+'" style="min-height:56px"><span class="qb"><span class="qi" lang="it">'+esc(o)+'</span></span></button>';}).join('')+'</div>'+
+      '<div id="fb"></div>';
+    document.getElementById('opts').addEventListener('click',function(e){
+      var b=e.target.closest('.qc'); if(!b||b.disabled)return;
+      var good=b.getAttribute('data-o')===q.ok, fb=document.getElementById('fb');
+      if(good){ if(first)score++; Array.prototype.forEach.call(this.querySelectorAll('.qc'),function(x){x.disabled=true;}); b.classList.add('on');
+        fb.innerHTML='<p class="note okn"><b>Correct.</b> '+esc(q.why)+'</p><div class="row"><button type="button" class="btn pri" id="next">'+(i<Q.length-1?'Next':'See my score')+'</button></div>';
+        document.getElementById('next').addEventListener('click',function(){ i++; if(i<Q.length)show(); else finish(); });
+      }else{
+        if(first)missed.push(q); first=false;
+        fb.innerHTML='<p class="note bad"><b>Not that one.</b> '+esc(q.why)+' Try another.</p>';
+      }
+    });
+  }
+  function finish(){
+    var ok=score>=5;
+    stage.innerHTML='<div class="prog" aria-hidden="true"><i style="width:100%"></i></div><h3>Your score: '+score+' of '+Q.length+'</h3>'+
+      '<p class="note '+(ok?'okn':'warn')+'">'+(ok?'You are done with this lesson. You got at least 5 of 6 on the first try.':'You are done when you get 5 of 6. Read the clues again and try once more.')+'</p>'+
+      '<div class="row"><button type="button" class="btn pri" id="re">Try again</button><a class="btn" href="../">Back to the lesson path</a></div>';
+    document.getElementById('re').addEventListener('click',function(){ i=0; score=0; missed=[]; show(); });
+  }
+  show();
+  INT.footer();
+})();
+</script>
+</body>
+</html>

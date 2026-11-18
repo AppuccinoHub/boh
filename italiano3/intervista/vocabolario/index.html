@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boh · Intervista · La casa e la città</title>
+<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Vocabulary — created by Assunta Scotto, 2026-11-18. © 2026 Assunta Scotto. Not for redistribution. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-author="Assunta Scotto" data-created="2026-11-18" data-project="boh-italiano3-intervista">
+<div class="wrap">
+  <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
+  <p class="eyebrow">Warm up</p>
+  <h1 lang="it">La casa e la città</h1>
+  <p class="lede">Your person will tell you about their home and their town. These words help you understand the answers and write your report.</p>
+  <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
+
+  <section class="card no-print">
+    <label class="chk" style="margin:0"><input type="checkbox" id="hide"> Hide the English (test yourself)</label>
+  </section>
+
+  <div id="lists"></div>
+
+  <section class="card" aria-labelledby="useh">
+    <h2 id="useh">Use the words in sentences</h2>
+    <p class="mu">In your report, describe your person's home and town with the imperfetto: it is how things were.</p>
+    <ul class="vl" lang="it" style="padding-left:20px">
+      <li>La casa <b>aveva</b> un balcone. <span class="mu" lang="en">The house had a balcony.</span></li>
+      <li>Nella camera <b>c'era</b> un letto e un armadio. <span class="mu" lang="en">In the bedroom there was a bed and a wardrobe.</span></li>
+      <li>Il soggiorno <b>aveva</b> un divano e un tappeto. <span class="mu" lang="en">The living room had a couch and a rug.</span></li>
+      <li>Il quartiere <b>aveva</b> una chiesa e un mercato. <span class="mu" lang="en">The neighborhood had a church and a market.</span></li>
+      <li>In centro <b>c'era</b> una grande piazza. <span class="mu" lang="en">In the center there was a big square.</span></li>
+    </ul>
+    <p style="margin-top:10px"><b>Starters you can use:</b></p>
+    <p lang="it">La casa aveva ___. · Nella casa c'era ___. · Il quartiere aveva ___. · In città c'era ___.</p>
+    <p class="mu"><b>aveva</b> and <b>c'era</b> (there was) are the imperfetto. Use <b>c'erano</b> for more than one: "Nel quartiere c'erano una chiesa e una piazza."</p>
+  </section>
+
+  <section class="card" id="prac" aria-labelledby="ph">
+    <h2 id="ph">Practice</h2>
+    <div id="stage" aria-live="polite"></div>
+  </section>
+</div>
+<script src="../app.js"></script>
+<script>
+(function(){
+  var esc=INT.esc;
+  var GR=[
+    ["Le stanze","Rooms",[["la cucina","kitchen"],["il soggiorno","living room"],["la camera da letto","bedroom"],["il bagno","bathroom"],["la sala da pranzo","dining room"],["il balcone","balcony"]]],
+    ["I mobili","Furniture",[["il letto","bed"],["l'armadio","wardrobe"],["la scrivania","desk"],["la sedia","chair"],["il divano","couch"],["la lampada","lamp"],["lo scaffale","shelf"],["il comodino","nightstand"],["lo specchio","mirror"],["il tappeto","rug"]]],
+    ["L'edificio","The building",[["l'appartamento","apartment"],["il condominio","apartment building"],["il piano","floor (level)"],["le persiane","shutters"],["le piastrelle","tiles"],["il bidet","bidet"]]],
+    ["La città","The city",[["il quartiere","neighborhood"],["la strada","street"],["la piazza","square"],["la chiesa","church"],["il negozio","store"],["il supermercato","supermarket"],["il mercato","market"],["il parco","park"],["il ristorante","restaurant"],["la stazione","station"],["il museo","museum"],["il centro","downtown, city center"]]]
+  ];
+  var all=[];
+  var h='';
+  GR.forEach(function(g,i){
+    h+='<section class="card" aria-labelledby="vg'+i+'"><h2 id="vg'+i+'"><span lang="it">'+esc(g[0])+'</span><small>'+esc(g[1])+'</small></h2><ul class="vl" style="list-style:none;padding:0;margin:0">';
+    g[2].forEach(function(w){
+      all.push(w);
+      h+='<li style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--bd)"><b lang="it" style="font-size:18px">'+esc(w[0])+'</b><span class="en mu" lang="en">'+esc(w[1])+'</span></li>';
+    });
+    h+='</ul></section>';
+  });
+  var L=document.getElementById('lists'); L.innerHTML=h;
+  document.getElementById('hide').addEventListener('change',function(e){
+    Array.prototype.forEach.call(L.querySelectorAll('.en'),function(x){x.style.visibility=e.target.checked?'hidden':'visible';});
+  });
+
+  /* practice */
+  var N=12, stage=document.getElementById('stage'), set=[], i=0, score=0, first=true, missed=[];
+  function shuffle(a){ a=a.slice(); for(var k=a.length-1;k>0;k--){ var j=Math.floor(Math.random()*(k+1)); var t=a[k]; a[k]=a[j]; a[j]=t; } return a; }
+  function norm(s){ return s.normalize('NFC').toLowerCase().replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim(); }
+  function bare(s){ return s.replace(/^(il|lo|la|l'|le|i|gli|un|una)\s*/,''); }
+  function dist(a,b){ var m=a.length,n=b.length,d=[],x,y; for(x=0;x<=m;x++){d[x]=[x];} for(y=1;y<=n;y++){d[0][y]=y;} for(x=1;x<=m;x++){for(y=1;y<=n;y++){ d[x][y]=Math.min(d[x-1][y]+1,d[x][y-1]+1,d[x-1][y-1]+(a.charAt(x-1)===b.charAt(y-1)?0:1)); }} return d[m][n]; }
+  function start(){ set=shuffle(all).slice(0,N); i=0; score=0; missed=[]; show(); }
+  function show(){
+    first=true; var w=set[i];
+    stage.innerHTML='<div class="prog" aria-hidden="true"><i style="width:'+Math.round(i/N*100)+'%"></i></div><p class="mu">Word '+(i+1)+' of '+N+'</p>'+
+      '<p class="psent">'+esc(w[1])+'</p>'+
+      '<label for="ans">Write it in Italian</label><input type="text" id="ans" autocomplete="off" autocapitalize="none" spellcheck="false" lang="it">'+
+      '<div class="row" style="margin-top:12px"><button type="button" class="btn pri" id="chk">Check</button></div>'+
+      '<p class="err" id="err" role="alert"></p><div id="fb"></div>';
+    var a=document.getElementById('ans');
+    a.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); check(); } });
+    document.getElementById('chk').addEventListener('click',check);
+  }
+  function check(){
+    var w=set[i], a=document.getElementById('ans'), err=document.getElementById('err'), fb=document.getElementById('fb');
+    err.textContent=''; var v=norm(a.value);
+    if(!v){ err.textContent='Type the Italian word first.'; a.focus(); return; }
+    var full=norm(w[0]), b=bare(full), vb=bare(v);
+    var exact=(v===full||v===b||vb===b);
+    var close=!exact&&b.length>=5&&dist(vb,b)<=1;
+    var cls,html;
+    if(exact){ cls='note okn'; html='<b>Correct.</b> <span lang="it"><b>'+esc(w[0])+'</b></span> = '+esc(w[1])+'.'; if(first)score++; }
+    else if(close){ cls='note warn'; html='<b>Almost.</b> Check the spelling: <span lang="it"><b>'+esc(w[0])+'</b></span>. Small typos still earn the point.'; if(first)score++; }
+    else{ cls='note bad'; html='<b>Not quite.</b> '+esc(w[1])+' = <span lang="it"><b>'+esc(w[0])+'</b></span>.'; if(first)missed.push(w); }
+    first=false;
+    fb.innerHTML='<p class="'+cls+'">'+html+'</p><div class="row">'+((exact||close)?'':'<button type="button" class="btn" id="again">Try again</button>')+'<button type="button" class="btn pri" id="next">'+(i<N-1?'Next word':'See my score')+'</button></div>';
+    var ag=document.getElementById('again'); if(ag)ag.addEventListener('click',function(){ fb.innerHTML=''; a.value=''; a.focus(); });
+    document.getElementById('next').addEventListener('click',function(){ i++; if(i<N)show(); else finish(); });
+  }
+  function finish(){
+    var ok=score>=10;
+    stage.innerHTML='<div class="prog" aria-hidden="true"><i style="width:100%"></i></div><h3>Your score: '+score+' of '+N+'</h3>'+
+      '<p class="note '+(ok?'okn':'warn')+'">'+(ok?'You are done with this warm-up. You got at least 10 of 12 on the first try.':'You are done when you get 10 of 12. Look at the words you missed, then try again.')+'</p>'+
+      (missed.length?'<p><b>Review:</b></p><ul lang="it">'+missed.map(function(w){return '<li><b>'+esc(w[0])+'</b> <span class="mu" lang="en">'+esc(w[1])+'</span></li>';}).join('')+'</ul>':'')+
+      '<div class="row"><button type="button" class="btn pri" id="re">Practice again</button><a class="btn" href="../">Back to the lesson path</a></div>';
+    document.getElementById('re').addEventListener('click',start);
+  }
+  start();
+  INT.footer();
+})();
+</script>
+</body>
+</html>

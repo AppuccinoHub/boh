@@ -13,7 +13,8 @@
   <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
   <p class="eyebrow">Step 3 of 3</p>
   <h1>Report</h1>
-  <p class="lede">Write 10–12 sentences in Italian about the person you interviewed. Use the <b>third person</b> (lui/lei), not "I". Then present your report to the class or record it (1–2 minutes).</p>
+  <p class="lede">Write <b>20 short sentences</b> in Italian about the person you interviewed. Use the <b>third person</b> (lui/lei), not "I". Then present your report to the class or record it (1–2 minutes).</p>
+  <p class="note info"><b>One answer = one sentence.</b> You chose 20 questions, so you have 20 answers. Keep each sentence short. If an answer is long, <a href="../semplice/">make it simple</a>: one idea per sentence.</p>
   <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
 
   <details class="card no-print">
@@ -27,7 +28,8 @@
 
   <section class="card no-print" aria-labelledby="sth">
     <h2 id="sth">Answer starters</h2>
-    <p class="mu">Tap a starter to put it in your report. Then replace each ___ with what your person told you. Choose piccolo or piccola, nato or nata.</p>
+    <p class="mu">Tap a starter to put it in your report, or use all of them at once. Then replace each ___ with what your person told you. Choose piccolo or piccola, nato or nata. For your own questions, write one sentence yourself.</p>
+    <div class="row" style="margin-bottom:10px"><button type="button" class="btn pri" id="allst">Start with all my starters</button></div>
     <div id="starters"></div>
     <details style="margin-top:10px"><summary class="lnk" style="display:flex">Show my interview notes</summary><div id="mynotes" class="mu"></div></details>
   </section>
@@ -55,6 +57,7 @@
     <label class="chk"><input type="checkbox" data-k="r3"> I used the passato prossimo for single events, with the right helper (è or ha) and the right ending (nato/nata).</label>
     <label class="chk"><input type="checkbox" data-k="r4"> I checked every accent: è, perché, città, più, così.</label>
     <label class="chk"><input type="checkbox" data-k="r5"> I read my report out loud once.</label>
+    <label class="chk"><input type="checkbox" data-k="r6"> My sentences are short: one idea in each.</label>
     <p><a href="../modello/">See the model report</a> · <a href="../pratica/">Practice imperfetto and passato prossimo</a></p>
   </section>
 
@@ -62,7 +65,7 @@
     <h2 id="prh">Present or record</h2>
     <p>Your presentation is <b>1–2 minutes</b>. You are graded on your own pronunciation and fluency, so use your own voice.</p>
     <ul>
-      <li>Read your report out loud two or three times first.</li>
+      <li>Read your report out loud two or three times first. With short sentences, 20 sentences fit in about two minutes.</li>
       <li>Speak slowly. Say each word clearly.</li>
       <li>Find a quiet spot. If you record, hold the phone steady and record only yourself.</li>
       <li>Do not say addresses or private details.</li>
@@ -88,16 +91,16 @@
   function chip(label,txt,ok){ return '<span class="cc'+(ok?' ok':'')+'"><b>'+label+'</b> '+txt+(ok?' ✓':'')+'</span>'; }
   function update(){
     var t=rep.value, n=countSentences(t), bl=(t.match(/_{2,}/g)||[]).length;
-    var okN=n>=10&&n<=12;
-    cnt.innerHTML=chip('Sentences',n+' (goal 10–12)',okN)+chip('Blanks left',String(bl),bl===0&&n>0);
+    var okN=n===20;
+    cnt.innerHTML=chip('Sentences',n+' (goal 20)',okN)+chip('Blanks left',String(bl),bl===0&&n>0);
     var m=[];
     if(n===0)m.push('Start with a starter above, or write your own first sentence.');
-    else if(n<10)m.push('Write '+(10-n)+' more sentence'+(10-n===1?'':'s')+'.');
-    else if(n>12)m.push('You have '+(n-12)+' too many. Remove '+(n-12===1?'one sentence':(n-12)+' sentences')+'.');
+    else if(n<20)m.push('Write '+(20-n)+' more sentence'+(20-n===1?'':'s')+'.');
+    else if(n>20)m.push('You have '+(n-20)+' more than 20. Combine or remove '+(n-20===1?'one sentence':(n-20)+' sentences')+'.');
     if(bl)m.push('Replace every ___ with real words.');
     if(/\b(io|ho|ero|avevo|abitavo|giocavo|facevo|andavo|mangiavo)\b/i.test(t))m.push('I see a first-person word (like io, ho, ero, abitavo). Your report must use lui/lei.');
     if(m.length){ msg.className='note warn no-print'; msg.textContent=m.join(' '); }
-    else{ msg.className='note okn no-print'; msg.textContent='Your report has 10–12 sentences. Now run the checklist below.'; }
+    else{ msg.className='note okn no-print'; msg.textContent='Your report has 20 sentences. Now run the checklist below.'; }
   }
   rep.addEventListener('input',function(){ st.report=rep.value; INT.commit(st); update(); });
 
@@ -105,10 +108,17 @@
   var withSt=items.filter(function(q){return q.st;});
   if(!withSt.length){
     stEl.innerHTML='<p class="note warn">Your chosen questions have no starters yet. <a href="../domande/">Go to Step 1</a> to choose questions from the bank.</p>';
+    document.getElementById('allst').hidden=true;
   }else{
     stEl.innerHTML=withSt.map(function(q){
       return '<div style="margin:0 0 10px"><button type="button" class="btn" style="width:100%;justify-content:flex-start;text-align:left" data-st="'+esc(q.st)+'"><span lang="it">'+esc(q.st)+'</span></button></div>';
     }).join('');
+    document.getElementById('allst').addEventListener('click',function(){
+      var v=rep.value;
+      if(v.trim()&&!window.confirm('Add all your starters to the end of your report?'))return;
+      rep.value=v+(v&&!/\n$/.test(v)?'\n':'')+withSt.map(function(q){return q.st;}).join('\n')+'\n';
+      st.report=rep.value; INT.commit(st); update(); rep.focus();
+    });
     stEl.addEventListener('click',function(e){
       var b=e.target.closest('[data-st]'); if(!b)return;
       var add=b.getAttribute('data-st'), v=rep.value;

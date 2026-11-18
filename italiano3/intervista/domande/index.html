@@ -13,13 +13,14 @@
   <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
   <p class="eyebrow">Step 1 of 3</p>
   <h1>Questions</h1>
-  <p class="lede">Choose 20 questions from the bank and write at least 5 of your own. You need at least 10 in the imperfetto and at least 5 in the passato prossimo. Tap a question to add it. Tap it again to remove it.</p>
+  <p class="lede">Choose 20 questions from the bank of 70 and write at least 5 of your own. You need at least 10 in the imperfetto and at least 5 in the passato prossimo. Tap a question to add it. Tap it again to remove it.</p>
+  <p class="note info"><b>Start with the green "quick answer" questions.</b> They can be answered with one word, a number, a place, a year, or yes/no. That makes your interview and your report easier.</p>
   <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
 
   <details class="card no-print">
-    <summary>How to ask in the Lei form</summary>
-    <p>You are talking to an older person you respect, so you use <b>Lei</b> (formal you), not <b>tu</b>. The verb is the same as <i>lui/lei</i>.</p>
-    <p lang="it"><b>Dove abita?</b> Not: Dove abiti?<br><b>Che cosa faceva?</b> Not: Che cosa facevi?<br><b>Dov'è nato/a?</b> Not: Dove sei nato/a?<br><b>la Sua casa</b> · <b>il Suo lavoro</b> · <b>Le piace</b> Not: la tua casa, il tuo lavoro, ti piace</p>
+    <summary>How to ask in the tu form</summary>
+    <p>You are talking to a person you know well, so you use <b>tu</b> (informal you). With tu, the verb usually ends in <b>-i</b>.</p>
+    <p lang="it"><b>Dove abiti?</b> · <b>Che cosa facevi?</b> · <b>Dove sei nato/a?</b> · <b>Quanti anni hai?</b><br><b>la tua casa</b> · <b>il tuo lavoro</b> · <b>tua madre</b> · <b>ti piace</b></p>
     <p class="mu">Question words: dove (where), quando (when), come (how), che cosa (what), chi (who), quanti/e (how many), perché (why), qual è / qual era (which, what is / was).</p>
   </details>
 
@@ -28,7 +29,7 @@
 
   <section class="card no-print" id="ownbox" aria-labelledby="ownh">
     <h2 id="ownh">Write your own question</h2>
-    <p class="mu">Write at least 5 of your own. Use the Lei form. Then tell the page which tense it uses.</p>
+    <p class="mu">Write at least 5 of your own. Use the tu form. Short questions with a short answer are best. Then tell the page which tense it uses.</p>
     <label for="own-it">Your question, in Italian</label>
     <textarea id="own-it" rows="2" autocomplete="off" autocapitalize="sentences" spellcheck="false"></textarea>
     <div id="ownacc"></div>
@@ -73,11 +74,11 @@
     return '<button type="button" class="qc" data-id="'+q.id+'" aria-pressed="false">'+
       '<span class="qn">'+q.id+'</span>'+
       '<span class="qb"><span class="qi" lang="it">'+esc(q.it)+'</span><span class="qe">'+esc(q.en)+'</span>'+
-      '<span class="tags">'+INT.tagT(q.t)+(q.m?'<span class="tag med">medium</span>':'<span class="tag">easy</span>')+'</span></span>'+
+      '<span class="tags">'+INT.tagT(q.t)+(q.m?'<span class="tag med">medium</span>':'<span class="tag">easy</span>')+(q.q?'<span class="tag quick">quick answer</span>':'')+'</span></span>'+
       '<span class="qs" aria-hidden="true">+</span></button>';
   }
   var h='';
-  for(var g=1;g<=5;g++){
+  for(var g=1;g<=7;g++){
     h+='<section class="grp" aria-labelledby="g'+g+'"><h2 id="g'+g+'"><span lang="it">'+esc(G[g][0])+'</span><small>'+esc(G[g][1])+'</small></h2>';
     B.forEach(function(q){ if(q.g===g) h+=qcard(q); });
     h+='</section>';
@@ -138,7 +139,7 @@
     INT.commit(st); update();
   });
 
-  var TU=/\b(tu|hai|sei|tuo|tua|tuoi|tue|ti|abiti|facevi|andavi|eri|avevi)\b/i;
+  var LEI=/\b(Lei|Suo|Sua|Suoi|Sue)\b|\bLe (piace|manca)\b/;
   document.getElementById('own-add').addEventListener('click',function(){
     err.textContent=''; warn.hidden=true;
     var v=ta.value.replace(/\s+/g,' ').trim();
@@ -151,7 +152,7 @@
     INT.commit(st);
     var w=[];
     if(v.charAt(v.length-1)!=='?')w.push('A question ends with a question mark (?).');
-    if(TU.test(v))w.push('This might be the tu form. Use Lei: ha, è, faceva, Suo/Sua. (If you meant the number six, ignore this.)');
+    if(LEI.test(v))w.push('This looks like the Lei form (Lei, Suo, Sua, Le piace). Use tu: hai, sei, tuo/tua, ti piace.');
     if(w.length){ warn.textContent='Added. Check this: '+w.join(' '); warn.hidden=false; }
     ta.value=''; update();
   });
