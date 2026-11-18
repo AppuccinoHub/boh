@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Boh · Italiano 3 · Intervista con Nonno/Nonna</title>
-<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<title>Boh · Italiano 3 · Intervista a un parente più grande · Interview with an Elder</title>
+<!-- Boh · Italiano 3 · Intervista a un parente più grande — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,8 @@
 <div class="wrap">
   <div class="top no-print"><a class="back" href="../">&larr; Italiano 3</a></div>
   <p class="eyebrow">Italiano 3 · Summative project · 50 points</p>
-  <h1 lang="it">Intervista con Nonno/Nonna</h1>
+  <h1 lang="it">Intervista a un parente più grande (come una nonna o un nonno)</h1>
+  <p class="mu" style="margin-top:-6px"><b>Interview with an Elder</b> · a grandparent, an older relative, or an older family friend</p>
   <p class="lede">Interview an older person you know about their childhood and their life, then report back in Italian. The interview can be in English or in Italian. Everything you write and present is in Italian.</p>
 
   <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
@@ -20,7 +21,7 @@
   <section class="card" aria-labelledby="bfh">
     <h2 id="bfh">Before you begin</h2>
     <ol style="padding-left:22px;margin:0 0 8px">
-      <li><b>Choose your person:</b> a grandparent or any older adult you know well.</li>
+      <li><b>Choose your person:</b> a grandparent, an older relative, or an older family friend you know well.</li>
       <li><b>Ask permission:</b> tell them about the project, and that they can skip any question.</li>
       <li><b>Pick your track</b> (below).</li>
     </ol>
@@ -39,7 +40,7 @@
   <section class="card" aria-labelledby="turnh">
     <h2 id="turnh">What you turn in</h2>
     <ol style="padding-left:22px;margin:0">
-      <li>Your list of 20 questions <span class="mu">(Step 1)</span></li>
+      <li>Your list of 15 graded questions, plus up to 5 warm-up questions <span class="mu">(Step 1)</span></li>
       <li>Your interview notes <span class="mu">(Step 2)</span></li>
       <li>One photo or drawing of something from your person's past <span class="mu">(Step 2)</span></li>
       <li>Your report: 20 short sentences in Italian <span class="mu">(Step 3)</span></li>
@@ -68,7 +69,7 @@
   </a>
   <a class="card stepcard" href="domande/">
     <span class="num" aria-hidden="true">5</span>
-    <span><b>Step 1 · Questions</b><span class="st"><b style="display:inline">You will:</b> choose 20 questions in the tu form, with at least 10 in the imperfetto, 5 in the passato prossimo, and 5 you write yourself.</span><span class="st"><b style="display:inline">You are done when:</b> all four counters turn green. <b style="display:inline">Turn in:</b> your question list.</span><span class="pts">10 points · <span id="s1">not started</span></span></span>
+    <span><b>Step 1 · Questions</b><span class="st"><b style="display:inline">You will:</b> choose 15 graded questions in the tu form, with at least 8 in the imperfetto, 4 in the passato prossimo, and 4 you write yourself. You may also add up to 5 easy warm-up questions (group 1). Warm-ups are not graded.</span><span class="st"><b style="display:inline">You are done when:</b> all four counters turn green. <b style="display:inline">Turn in:</b> your question list.</span><span class="pts">10 points · <span id="s1">not started</span></span></span>
   </a>
   <a class="card stepcard" href="appunti/">
     <span class="num" aria-hidden="true">6</span>
@@ -107,7 +108,7 @@
   });
   paint();
   var n=INT.chosen(st).length;
-  if(n)document.getElementById('s1').textContent=n+' of 20 chosen';
+  if(n)document.getElementById('s1').textContent=n+' chosen';
   var notes=0; Object.keys(st.notes).forEach(function(k){if(st.notes[k]&&st.notes[k].trim())notes++;});
   if(notes)document.getElementById('s2').textContent=notes+' answers noted';
   if(st.report&&st.report.trim())document.getElementById('s3').textContent='report started';

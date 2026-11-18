@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Boh · Intervista · Step 2 · Interview notes</title>
-<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Step 2 — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<!-- Boh · Italiano 3 · Intervista a un parente più grande · Step 2 — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -34,7 +34,7 @@
   </section>
 
   <section class="card" id="notesbox" aria-labelledby="nh">
-    <p class="print-only"><b>Intervista con Nonno/Nonna · Step 2 · Interview notes</b></p>
+    <p class="print-only"><b>Intervista a un parente più grande · Step 2 · Interview notes</b></p>
     <p class="print-only">Name <span class="namebox"></span> Date <span class="namebox"></span></p>
     <h2 id="nh">Your notes</h2>
     <p class="mu no-print">Write what they said. Short notes are fine. English is okay.</p>
@@ -53,7 +53,7 @@
   var st=INT.state(), esc=INT.esc;
   var notesEl=document.getElementById('notes');
 
-  var TIPA='<p class="note info"><b>Track A tip:</b> ask each question in Italian. With permission, record yourself asking and their answers. Listen again and write the answers here. If they answer in dialect, write the standard Italian version.</p>';
+  var TIPA='<p class="note info"><b>Track A tip:</b> ask each question in Italian. With permission, you may record yourself asking and their answers. Recording is optional and is not graded. Listen again and write the answers here. If they answer in dialect, write the standard Italian version.</p>';
   var TIPB='<p class="note info"><b>Track B tip:</b> ask the question in English and write the answer here in English. Keep their answers short and simple. Pick the green "quick answer" questions first. In Step 3 you will turn your notes into Italian.</p>';
   document.getElementById('trktip').innerHTML=st.track==='A'?TIPA:st.track==='B'?TIPB:TIPA+TIPB+'<p class="mu">You can pick your track on the project home page.</p>';
 
@@ -82,7 +82,7 @@
     var s=document.getElementById('copystat');
     if(!items.length){ s.textContent='Choose your questions in Step 1 first.'; return; }
     var txt=items.map(function(q,i){return (i+1)+'. '+q.it+'\n'+(st.notes[q.id]||'')+'\n';}).join('\n');
-    INT.copy('Intervista con Nonno/Nonna · Interview notes\n\n'+txt, s);
+    INT.copy('Interview with an Elder · Interview notes\n\n'+txt, s);
   });
   document.getElementById('print').addEventListener('click',function(){
     if(!items.length){ document.getElementById('copystat').textContent='Choose your questions in Step 1 first.'; return; }

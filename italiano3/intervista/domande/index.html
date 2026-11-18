@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Boh · Intervista · Step 1 · Questions</title>
-<!-- Boh · Italiano 3 · Intervista con Nonno/Nonna · Step 1 — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
+<!-- Boh · Italiano 3 · Intervista a un parente più grande · Step 1 — created by Assunta Scotto, 2026-11-17. © 2026 Assunta Scotto. Not for redistribution. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -13,7 +13,7 @@
   <div class="top no-print"><a class="back" href="../">&larr; Project home</a></div>
   <p class="eyebrow">Step 1 of 3</p>
   <h1>Questions</h1>
-  <p class="lede">Choose 20 questions from the bank of 80 and write at least 5 of your own. You need at least 10 in the imperfetto and at least 5 in the passato prossimo. Tap a question to add it. Tap it again to remove it.</p>
+  <p class="lede">Choose <b>15 graded questions</b> from the bank of 80, including at least 4 you write yourself. You need at least 8 in the imperfetto and at least 4 in the passato prossimo. You may also add up to <b>5 warm-up questions</b> from group 1 (easy starters). Warm-ups are not graded. Tap a question to add it. Tap it again to remove it.</p>
   <p class="note info"><b>Start with the green "quick answer" questions.</b> They can be answered with one word, a number, a place, a year, or yes/no. That makes your interview and your report easier.</p>
   <noscript><p class="note bad">This page needs JavaScript. Please turn it on and reload.</p></noscript>
 
@@ -46,7 +46,7 @@
   </section>
 
   <section class="card" id="mylist" aria-labelledby="myh">
-    <p class="print-only"><b>Intervista con Nonno/Nonna · Step 1 · Questions</b></p>
+    <p class="print-only"><b>Intervista a un parente più grande · Step 1 · Questions</b></p>
     <p class="print-only">Name <span class="namebox"></span> Date <span class="namebox"></span></p>
     <h2 id="myh">My question list</h2>
     <div id="mylist-body"></div>
@@ -78,7 +78,7 @@
     return '<button type="button" class="qc" data-id="'+q.id+'" aria-pressed="false">'+
       '<span class="qn">'+q.id+'</span>'+
       '<span class="qb"><span class="qi" lang="it">'+esc(q.it)+'</span><span class="qe">'+esc(q.en)+'</span>'+
-      '<span class="tags">'+INT.tagT(q.t)+(q.m?'<span class="tag med">medium</span>':'<span class="tag">easy</span>')+(q.q?'<span class="tag quick">quick answer</span>':'')+'</span></span>'+
+      '<span class="tags">'+INT.tagT(q.t)+(q.m?'<span class="tag med">medium</span>':'<span class="tag">easy</span>')+(q.g===1?'<span class="tag wu">warm-up · not graded</span>':'')+(q.q?'<span class="tag quick">quick answer</span>':'')+'</span></span>'+
       '<span class="qs" aria-hidden="true">+</span></button>';
   }
   var h='';
@@ -89,9 +89,13 @@
   }
   bankEl.innerHTML=h;
 
+  function isWU(q){ return !q.own && q.g===1; }
   function counts(){
-    var c={n:0,I:0,PP:0,own:0};
-    INT.chosen(st).forEach(function(q){ c.n++; if(q.t==='I')c.I++; if(q.t==='PP')c.PP++; if(q.own)c.own++; });
+    var c={n:0,wu:0,I:0,PP:0,own:0};
+    INT.chosen(st).forEach(function(q){
+      if(isWU(q)){ c.wu++; return; }
+      c.n++; if(q.t==='I')c.I++; if(q.t==='PP')c.PP++; if(q.own)c.own++;
+    });
     return c;
   }
   function chip(label,v,need,exact){
@@ -100,7 +104,7 @@
   }
   function update(){
     var c=counts();
-    cnt.innerHTML=chip('Questions',c.n,20,true)+chip('Imperfetto',c.I,10)+chip('Passato prossimo',c.PP,5)+chip('Your own',c.own,5);
+    cnt.innerHTML=chip('Graded questions',c.n,15,true)+chip('Imperfetto',c.I,8)+chip('Passato prossimo',c.PP,4)+chip('Your own',c.own,4)+'<span class="cc"><b>Warm-ups</b> '+c.wu+' of up to 5 (not graded)</span>';
     Array.prototype.forEach.call(bankEl.querySelectorAll('.qc'),function(b){
       var on=st.order.indexOf(+b.getAttribute('data-id'))>-1;
       b.setAttribute('aria-pressed',on?'true':'false');
@@ -112,15 +116,15 @@
       listEl.innerHTML='<p class="mu">No questions yet. Tap a question above to add it.</p>';
     }else{
       listEl.innerHTML='<ol class="ml">'+items.map(function(q){
-        return '<li><div><span lang="it" class="qi" style="display:inline">'+esc(q.it)+'</span> '+INT.tagT(q.t)+(q.own?' <span class="tag own">yours</span>':'')+'</div>'+
+        return '<li><div><span lang="it" class="qi" style="display:inline">'+esc(q.it)+'</span> '+INT.tagT(q.t)+(q.own?' <span class="tag own">yours</span>':'')+(isWU(q)?' <span class="tag wu">warm-up</span>':'')+'</div>'+
           '<button type="button" class="x no-print" data-rm="'+esc(String(q.id))+'" aria-label="Remove: '+esc(q.it)+'">Remove</button></li>';
       }).join('')+'</ol>';
     }
     var need=[];
-    if(c.n<20)need.push((20-c.n)+' more question'+(20-c.n===1?'':'s'));
-    if(c.I<10)need.push((10-c.I)+' more in the imperfetto');
-    if(c.PP<5)need.push((5-c.PP)+' more in the passato prossimo');
-    if(c.own<5)need.push((5-c.own)+' more of your own');
+    if(c.n<15)need.push((15-c.n)+' more graded question'+(15-c.n===1?'':'s'));
+    if(c.I<8)need.push((8-c.I)+' more in the imperfetto');
+    if(c.PP<4)need.push((4-c.PP)+' more in the passato prossimo');
+    if(c.own<4)need.push((4-c.own)+' more of your own');
     if(need.length){ msg.className='note warn'; msg.textContent='Still needed: '+need.join(', ')+'.'; }
     else { msg.className='note okn'; msg.textContent='Your list meets every requirement. Copy it or print it to turn it in.'; }
   }
@@ -130,7 +134,9 @@
     var id=+b.getAttribute('data-id'), i=st.order.indexOf(id);
     if(i>-1){ st.order.splice(i,1); }
     else{
-      if(INT.chosen(st).length>=20){ msg.className='note bad'; msg.textContent='You already have 20 questions. Remove one before you add another.'; return; }
+      var qq=B[id-1], wu=qq&&qq.g===1, cc=counts();
+      if(wu&&cc.wu>=5){ msg.className='note bad'; msg.textContent='You already have 5 warm-up questions. Remove one before you add another.'; return; }
+      if(!wu&&cc.n>=15){ msg.className='note bad'; msg.textContent='You already have 15 graded questions. Remove one before you add another.'; return; }
       st.order.push(id);
     }
     INT.commit(st); update();
@@ -148,7 +154,7 @@
     err.textContent=''; warn.hidden=true;
     var v=ta.value.replace(/\s+/g,' ').trim();
     if(!v){ err.textContent='Write your question first.'; ta.focus(); return; }
-    if(INT.chosen(st).length>=20){ err.textContent='You already have 20 questions. Remove one first.'; return; }
+    if(counts().n>=15){ err.textContent='You already have 15 graded questions. Remove one first.'; return; }
     st.ownN=(st.ownN||0)+1;
     var id='o'+st.ownN;
     st.own[id]={it:v,t:sel.value};
@@ -167,12 +173,12 @@
   document.getElementById('copy').addEventListener('click',function(){
     var t=listText(); var s=document.getElementById('copystat');
     if(!t){ s.textContent='Add some questions first.'; return; }
-    INT.copy('Intervista con Nonno/Nonna · Le mie domande\n\n'+t, s);
+    INT.copy('Interview with an Elder · Le mie domande\n\n'+t, s);
   });
   document.getElementById('mksheet').addEventListener('click',function(){
     var items=INT.chosen(st), s2=document.getElementById('copystat');
     if(!items.length){ s2.textContent='Add some questions first.'; return; }
-    var h='<h2 class="sh">Intervista con Nonno/Nonna · My interview sheet</h2>'+
+    var h='<h2 class="sh">Intervista a un parente più grande · My interview sheet</h2>'+
       '<p class="shl">Name <span class="namebox"></span> Date <span class="namebox"></span></p>'+
       '<p class="shl">Person I am interviewing <span class="namebox wide"></span></p>'+
       '<p class="shl small">Write their answers in the space under each question. English or Italian is okay.</p>';

@@ -210,7 +210,7 @@
     f.className = "foot";
     f.innerHTML = '<p class="no-print">Your work is saved only on this device and is never sent anywhere. <button type="button" class="lnk" id="clr">Clear my work</button></p>' +
       '<p class="note warn no-print" id="savewarn" hidden>This browser is not letting the page save. Copy your work before you close the page.</p>' +
-      '<p class="cr">© 2026 Assunta Scotto · Boh · Italiano 3 · Intervista con Nonno/Nonna · created 2026-11-17 · Not for redistribution.</p>';
+      '<p class="cr">© 2026 Assunta Scotto · Boh · Italiano 3 · Intervista a un parente più grande · created 2026-11-17 · Not for redistribution.</p>';
     wrap.appendChild(f);
     var ok = true;
     try { localStorage.setItem("__bohint_t", "1"); localStorage.removeItem("__bohint_t"); } catch (e) { ok = false; }
